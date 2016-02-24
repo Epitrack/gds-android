@@ -155,20 +155,9 @@ public class MapSymptomActivity extends AbstractBaseMapActivity implements Searc
         locationUtility = new LocationUtility(getApplicationContext());
 
         if (locationUtility.getLocation() == null) {
-            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
+            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED ||
                     ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-
-                Snackbar.make(mLayout, R.string.permission_location_rationale,
-                        Snackbar.LENGTH_INDEFINITE)
-                        .setAction(R.string.ok, new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                ActivityCompat.requestPermissions(MapSymptomActivity.this,
-                                        PERMISSIONS_LOCATION,
-                                        REQUEST_LOCATION);
-                            }
-                        })
-                        .show();
+                ActivityCompat.requestPermissions(MapSymptomActivity.this, PERMISSIONS_LOCATION, REQUEST_LOCATION);
             } else {
                 ActivityCompat.requestPermissions(this, PERMISSIONS_LOCATION, REQUEST_LOCATION);
             }
