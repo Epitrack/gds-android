@@ -542,6 +542,10 @@ public class UserActivity extends BaseAppCompatActivity {
                     editorImageUserToken.apply();
                 } else if (userAvatar > 0) {
                     jsonObject.put("picture", userAvatar);
+                } else {
+                    if (newMenber) {
+                        jsonObject.put("picture", "0");
+                    }
                 }
 
                 if (!socialNew) {
@@ -635,7 +639,7 @@ public class UserActivity extends BaseAppCompatActivity {
 
                 if (jsonObject.get("error").toString() == "true") {
                     //Toast.makeText(getApplicationContext(), jsonObject.get("message").toString(), Toast.LENGTH_SHORT).show();
-
+                    //R.string.error_add_new_member
                     new DialogBuilder(UserActivity.this).load()
                             .title(R.string.attention)
                             .content(R.string.error_add_new_member)
