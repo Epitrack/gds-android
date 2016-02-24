@@ -5,6 +5,9 @@
 
     # Common
 
+    <string name="permission_location_rationale">A permissão a sua localização é necessária para exibir o mapa.</string>
+    <string name="permision_available_location">Permissão a sua localização liberada.</string>
+    <string name="permissions_not_granted">Permissão a sua localização negada!</string>
     <string name="google_client_id">997325640691-p7453ssirrdtkoh51tlphdmbb0lfdkg3.apps.googleusercontent.com</string>
     <string name="about">Sobre</string>
     <string name="alert">Alertas</string>

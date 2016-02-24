@@ -13,7 +13,7 @@ import android.support.annotation.Nullable;
 import com.google.android.gms.maps.model.LatLng;
 
 /**
- * @author Igor Morais
+ * @author Miqueias Lopes
  */
 public final class LocationUtility extends Service implements LocationListener {
 
