@@ -1,6 +1,7 @@
 package com.epitrack.guardioes.view.account;
 
 import android.app.Dialog;
+import android.app.FragmentManager;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -184,7 +185,7 @@ public class CreateAccountActivity extends BaseAppCompatActivity implements Soci
 
     public void onPrivacy(final MenuItem item) {
 
-        new NotifyDialog() {
+        /*new NotifyDialog() {
 
             @Override
             public int getLayout() {
@@ -204,21 +205,17 @@ public class CreateAccountActivity extends BaseAppCompatActivity implements Soci
                 });
             }
 
-        }.show(getFragmentManager(), NotifyDialog.TAG);
+        }.show(getFragmentManager(), NotifyDialog.TAG);*/
+
+        FragmentManager fragmentManager = getFragmentManager();
+        NotifyDialog notifyDialog = new NotifyDialog();
+        notifyDialog.show(fragmentManager, "privacy");
+
 
         // custom dialog
         /*final Dialog dialog = new Dialog(this);
         dialog.setContentView(R.layout.privacy);
-        //dialog.setTitle("Title...");
-
-        // set the custom dialog components - text, image and button
-        //TextView text = (TextView) dialog.findViewById(R.id.text);
-        //text.setText("Android custom dialog example!");
-        //ImageView image = (ImageView) dialog.findViewById(R.id.image);
-        //image.setImageResource(R.drawable.ic_launcher);
-
         ImageButton dialogButton = (ImageButton) dialog.findViewById(R.id.image_button_close);
-        // if button is clicked, close the custom dialog
         dialogButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

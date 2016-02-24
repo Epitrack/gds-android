@@ -16,7 +16,7 @@ import com.epitrack.guardioes.view.base.DialogListener;
 /**
  * @author Igor Morais
  */
-public abstract class NotifyDialog extends DialogFragment implements OnClickListener {
+public class NotifyDialog extends DialogFragment implements OnClickListener {
 
     public static final String TAG = NotifyDialog.class.getSimpleName();
 
@@ -27,6 +27,10 @@ public abstract class NotifyDialog extends DialogFragment implements OnClickList
     private int requestCode;
 
     private DialogListener listener;
+
+    public NotifyDialog() {
+
+    }
 
     @Override
     public void onCreate(final Bundle bundle) {
@@ -115,5 +119,7 @@ public abstract class NotifyDialog extends DialogFragment implements OnClickList
         this.listener = listener;
     }
 
-    public abstract int getLayout();
+    public int getLayout() {
+        return R.layout.privacy;
+    }
 }

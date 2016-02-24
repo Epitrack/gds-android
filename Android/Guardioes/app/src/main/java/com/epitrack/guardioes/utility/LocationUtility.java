@@ -78,7 +78,7 @@ public final class LocationUtility extends Service implements LocationListener {
             isNetworkEnabled = locationManager
                     .isProviderEnabled(LocationManager.NETWORK_PROVIDER);
 
-            if (!isGPSEnabled && !isNetworkEnabled) {
+            if (isGPSEnabled == false && isNetworkEnabled == false) {
                 return null;
             }
             this.canGetLocation = true;
