@@ -88,6 +88,8 @@ public class ProfileActivity extends BaseAppCompatActivity implements UserListen
         if (userArrayList == null) {
             userArrayList = loadProfiles();
         }
+
+        listView.setAdapter(new UserAdapter(this, userArrayList, this));
     }
 
     @Override
