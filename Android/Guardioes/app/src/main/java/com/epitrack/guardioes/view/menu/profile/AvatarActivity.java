@@ -73,6 +73,13 @@ public class AvatarActivity extends BaseAppCompatActivity implements AdapterView
     }
 
     @Override
+    public boolean onOptionsItemSelected(final MenuItem item) {
+
+        onBackPressed();
+        return true;
+    }
+
+    @Override
     public void onResume() {
         super.onResume();
         mTracker.setScreenName("Select Avatar Screen - " + this.getClass().getSimpleName());
