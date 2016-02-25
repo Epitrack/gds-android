@@ -95,8 +95,8 @@ public class SocialLoginActivity extends BaseAppCompatActivity implements View.O
     private CallbackManager callbackManager;
 
     //Twitter
-    private static final String TWITTER_KEY = "2lnE0tRTpj0VPihSOpvrT13rv";
-    private static final String TWITTER_SECRET = "lbcEUcgSSZrzpRDkwPoBlj0BbcWADPymMLvvFewbwTO2j426hx";
+    private static final String TWITTER_KEY = "l4t5P03ZR3mbBON7HHLWhgSrS";
+    private static final String TWITTER_SECRET = "8Vi40vWK3s4kqViKMKPJJFO5bLsrFbvzRqhDbsy6mZQH7pkVbe";
     private ProfileTracker profileTracker;
 
     SingleUser singleUser = SingleUser.getInstance();
