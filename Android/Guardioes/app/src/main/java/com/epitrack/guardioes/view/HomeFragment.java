@@ -107,60 +107,76 @@ public class HomeFragment extends BaseFragment {
 
     private void loadImageProfile() {
 
-        String picture = singleUser.getPicture();
+       try {
+           String picture = singleUser.getPicture();
 
-        if (singleUser.getPicture().length() > 2) {
+           if (singleUser.getPicture().length() > 2) {
 
-            Uri uri = Uri.parse(singleUser.getPicture());
+               Uri uri = Uri.parse(singleUser.getPicture());
 
-            DisplayMetrics metrics = getResources().getDisplayMetrics();
-            int densityDpi = (int) (metrics.density * 160f);
-            int width = 0;
-            int height = 0;
+               DisplayMetrics metrics = getResources().getDisplayMetrics();
+               int densityDpi = (int) (metrics.density * 160f);
+               int width = 0;
+               int height = 0;
 
-            if (densityDpi == DisplayMetrics.DENSITY_LOW) {
-                width = 90;
-                height = 90;
-            } else if (densityDpi == DisplayMetrics.DENSITY_MEDIUM) {
-                width = 120;
-                height = 120;
-            } else if (densityDpi == DisplayMetrics.DENSITY_HIGH) {
-                width = 180;
-                height = 180;
-            } else if (densityDpi >= DisplayMetrics.DENSITY_XHIGH) {
-                width = 240;
-                height = 240;
-            }
-            imageViewPhoto.getLayoutParams().width = width;
-            imageViewPhoto.getLayoutParams().height = height;
+               if (densityDpi == DisplayMetrics.DENSITY_LOW) {
+                   width = 90;
+                   height = 90;
+               } else if (densityDpi == DisplayMetrics.DENSITY_MEDIUM) {
+                   width = 120;
+                   height = 120;
+               } else if (densityDpi == DisplayMetrics.DENSITY_HIGH) {
+                   width = 180;
+                   height = 180;
+               } else if (densityDpi == DisplayMetrics.DENSITY_XHIGH) {
+                   width = 240;
+                   height = 240;
+               } else if (densityDpi == DisplayMetrics.DENSITY_XXHIGH) {
+                   width = 300;
+                   height = 300;
+               } else if (densityDpi >= DisplayMetrics.DENSITY_XXXHIGH) {
+                   width = 360;
+                   height = 360;
+               }
 
-            File file = new File(singleUser.getPicture());
+               imageViewPhoto.getLayoutParams().width = width;
+               imageViewPhoto.getLayoutParams().height = height;
 
-            if (!file.exists()) {
-                imageViewPhoto.setImageURI(uri);
-                Drawable drawable = imageViewPhoto.getDrawable();
-                imageViewPhoto.setImageDrawable(drawable);
+               File file = new File(singleUser.getPicture());
 
-                if (drawable == null) {
-                    setDefaultAvatar();
-                }
-            } else {
-                imageViewPhoto.setImageURI(uri);
+               if (!file.exists()) {
+                   imageViewPhoto.setImageURI(uri);
+                   Drawable drawable = imageViewPhoto.getDrawable();
+                   imageViewPhoto.setImageDrawable(drawable);
 
-            }
+                   if (drawable == null) {
+                       setDefaultAvatar();
+                   }
+               } else {
+                   imageViewPhoto.setImageURI(uri);
 
-        } else {
+               }
 
-            if (singleUser.getPicture().equals("")) {
-                singleUser.setPicture("0");
-            }
+           } else {
 
-            if (Integer.parseInt(singleUser.getPicture()) == 0) {
-                setDefaultAvatar();
-            } else {
-                imageViewPhoto.setImageResource(Avatar.getBy(Integer.parseInt(singleUser.getPicture())).getLarge());
-            }
-        }
+               if (singleUser.getPicture().equals("")) {
+                   singleUser.setPicture("0");
+               }
+
+               if (Integer.parseInt(singleUser.getPicture()) == 0) {
+                   setDefaultAvatar();
+               } else {
+                   imageViewPhoto.setImageResource(Avatar.getBy(Integer.parseInt(singleUser.getPicture())).getLarge());
+               }
+           }
+       } catch (Exception e) {
+           /*new DialogBuilder(getActivity()).load()
+                   .title(R.string.attention)
+                   .content(e.getMessage())
+                   .positiveText(R.string.ok)
+                   .show();*/
+
+       }
     }
 
     private void setDefaultAvatar() {
@@ -178,9 +194,15 @@ public class HomeFragment extends BaseFragment {
         } else if (densityDpi == DisplayMetrics.DENSITY_HIGH) {
             width = 180;
             height = 180;
-        } else if (densityDpi >= DisplayMetrics.DENSITY_XHIGH) {
+        } else if (densityDpi == DisplayMetrics.DENSITY_XHIGH) {
             width = 240;
             height = 240;
+        } else if (densityDpi == DisplayMetrics.DENSITY_XXHIGH) {
+            width = 300;
+            height = 300;
+        } else if (densityDpi >= DisplayMetrics.DENSITY_XXXHIGH) {
+            width = 360;
+            height = 360;
         }
 
         imageViewPhoto.getLayoutParams().width = width;
