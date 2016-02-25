@@ -317,4 +317,36 @@ public class User {
     public void setVersionBuild(String versionBuild) {
         this.versionBuild = versionBuild;
     }
+
+    public void clean() {
+        this.image = 0;
+        this.nick = "";
+        this.email = "";
+        this.password = "";
+        this.client = "api";
+        this.dob = "";
+        this.gender = "";
+        this.app_token = "d41d8cd98f00b204e9800998ecf8427e";
+        this.lon = 0;
+        this.lat = 0;
+        this.race = "";
+        this.platform = "android";
+        this.type = "";
+        this.zip = "";
+        this.id = "";
+        this.picture = "";
+        this.user_token = "";
+        this.tw = "";
+        this.fb = "";
+        this.gl = "";
+        this.imageResource = "";
+        this.bitmapImage = null;
+        this.avatar = "";
+        this.hashtags = null;
+        this.widthImageProfile = 0;
+        this.heightImageProfile = 0;
+        this.uri = null;
+        this.relationship = "";
+        this.versionBuild = "";
+    }
 }

@@ -14,10 +14,13 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.epitrack.guardioes.R;
 import com.epitrack.guardioes.manager.PrefManager;
+import com.epitrack.guardioes.model.SingleUser;
 import com.epitrack.guardioes.service.AnalyticsApplication;
 import com.epitrack.guardioes.utility.Constants;
+import com.epitrack.guardioes.utility.DialogBuilder;
 import com.epitrack.guardioes.view.account.LoginActivity;
 import com.epitrack.guardioes.view.menu.HomeMenu;
 import com.epitrack.guardioes.view.welcome.WelcomeActivity;
@@ -107,15 +110,38 @@ public class HomeActivity extends AppCompatActivity implements OnNavigationItemS
 
         } else if (getCurrentFragment().getTag().equals(MAIN_FRAGMENT.getSimpleName())) {
 
-            //super.onBackPressed();
+            new DialogBuilder(HomeActivity.this).load()
+                    .title(R.string.attention)
+                    .content(R.string.exit_message)
+                    .positiveText(R.string.yes)
+                    .negativeText(R.string.no)
+                    .callback(new MaterialDialog.ButtonCallback() {
 
-            final Intent intent = new Intent(this, WelcomeActivity.class);
+                        @Override
+                        public void onNegative(final MaterialDialog dialog) {
 
-            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK |
-                    Intent.FLAG_ACTIVITY_NEW_TASK);
+                        }
 
-            startActivity(intent);
+                        @Override
+                        public void onPositive(final MaterialDialog dialog) {
+                            if (new PrefManager(getApplicationContext()).remove(Constants.Pref.USER)) {
 
+                                SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
+                                SharedPreferences.Editor editor = settings.edit();
+                                editor.putString("preferences_user_token", "");
+                                editor.commit();
+
+                                SingleUser.getInstance().clean();
+
+                                final Intent intent = new Intent(getApplicationContext(), WelcomeActivity.class);
+                                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                                        Intent.FLAG_ACTIVITY_NEW_TASK);
+
+                                startActivity(intent);
+                            }
+                        }
+
+                    }).show();
         } else {
 
             replaceFragment(MAIN_FRAGMENT,
@@ -134,20 +160,39 @@ public class HomeActivity extends AppCompatActivity implements OnNavigationItemS
 
         if (homeMenu.getId() == HomeMenu.EXIT.getId()) {
 
-            if (new PrefManager(this).remove(Constants.Pref.USER)) {
+            new DialogBuilder(HomeActivity.this).load()
+                    .title(R.string.attention)
+                    .content(R.string.exit_message)
+                    .positiveText(R.string.yes)
+                    .negativeText(R.string.no)
+                    .callback(new MaterialDialog.ButtonCallback() {
 
-                final Intent intent = new Intent(this, WelcomeActivity.class);
+                        @Override
+                        public void onNegative(final MaterialDialog dialog) {
 
-                SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
-                SharedPreferences.Editor editor = settings.edit();
-                editor.putString("preferences_user_token", "");
-                editor.commit();
+                        }
 
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK |
-                        Intent.FLAG_ACTIVITY_NEW_TASK);
+                        @Override
+                        public void onPositive(final MaterialDialog dialog) {
+                            if (new PrefManager(getApplicationContext()).remove(Constants.Pref.USER)) {
 
-                startActivity(intent);
-            }
+                                final Intent intent = new Intent(getApplicationContext(), WelcomeActivity.class);
+
+                                SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
+                                SharedPreferences.Editor editor = settings.edit();
+                                editor.putString("preferences_user_token", "");
+                                editor.commit();
+
+                                SingleUser.getInstance().clean();
+
+                                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                                        Intent.FLAG_ACTIVITY_NEW_TASK);
+
+                                startActivity(intent);
+                            }
+                        }
+
+                    }).show();
 
         } else if (homeMenu.isFragment()) {
 
