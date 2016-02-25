@@ -129,14 +129,14 @@ public class HomeFragment extends BaseFragment {
                    width = 180;
                    height = 180;
                } else if (densityDpi == DisplayMetrics.DENSITY_XHIGH) {
-                   width = 240;
-                   height = 240;
+                   width = 250;
+                   height = 250;
                } else if (densityDpi == DisplayMetrics.DENSITY_XXHIGH) {
-                   width = 300;
-                   height = 300;
-               } else if (densityDpi >= DisplayMetrics.DENSITY_XXXHIGH) {
                    width = 360;
                    height = 360;
+               } else if (densityDpi >= DisplayMetrics.DENSITY_XXXHIGH) {
+                   width = 400;
+                   height = 400;
                }
 
                imageViewPhoto.getLayoutParams().width = width;
@@ -195,14 +195,14 @@ public class HomeFragment extends BaseFragment {
             width = 180;
             height = 180;
         } else if (densityDpi == DisplayMetrics.DENSITY_XHIGH) {
-            width = 240;
-            height = 240;
+            width = 250;
+            height = 250;
         } else if (densityDpi == DisplayMetrics.DENSITY_XXHIGH) {
-            width = 300;
-            height = 300;
-        } else if (densityDpi >= DisplayMetrics.DENSITY_XXXHIGH) {
             width = 360;
             height = 360;
+        } else if (densityDpi >= DisplayMetrics.DENSITY_XXXHIGH) {
+            width = 400;
+            height = 400;
         }
 
         imageViewPhoto.getLayoutParams().width = width;

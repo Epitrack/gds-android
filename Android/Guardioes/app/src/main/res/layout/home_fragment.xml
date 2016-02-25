@@ -92,7 +92,7 @@
                     android:drawableTop="@drawable/icon_join"
                     android:layout_gravity="center"
                     android:text="@string/join"
-                    />
+                    android:textAlignment="center" />
         </LinearLayout>
 
         <LinearLayout

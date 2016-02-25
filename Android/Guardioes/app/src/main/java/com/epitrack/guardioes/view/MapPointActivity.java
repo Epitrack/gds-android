@@ -1,7 +1,9 @@
 package com.epitrack.guardioes.view;
 
+import android.Manifest;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
@@ -9,6 +11,8 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.Animation;
@@ -75,6 +79,9 @@ public class MapPointActivity extends AbstractBaseMapActivity {
 
     int tip;
     private LocationUtility locationUtility;
+    private static String[] PERMISSIONS_LOCATION = {Manifest.permission.ACCESS_FINE_LOCATION,
+            Manifest.permission.ACCESS_COARSE_LOCATION};
+    private final int REQUEST_LOCATION = 0;
     private Tracker mTracker;
 
     @Override
@@ -92,18 +99,13 @@ public class MapPointActivity extends AbstractBaseMapActivity {
         locationUtility = new LocationUtility(getApplicationContext());
 
         if (locationUtility.getLocation() == null) {
-            new DialogBuilder(MapPointActivity.this).load()
-                    .title(R.string.attention)
-                    .content(R.string.network_disable)
-                    .positiveText(R.string.ok)
-                    .callback(new MaterialDialog.ButtonCallback() {
-                        @Override
-                        public void onPositive(final MaterialDialog dialog) {
-                            navigateTo(HomeActivity.class);
-                        }
-                    }).show();
+            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED ||
+                    ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(MapPointActivity.this, PERMISSIONS_LOCATION, REQUEST_LOCATION);
+            } else {
+                ActivityCompat.requestPermissions(this, PERMISSIONS_LOCATION, REQUEST_LOCATION);
+            }
         } else {
-
             tip = getIntent().getIntExtra(Constants.Bundle.TIP, 0);
 
             final MapFragment mapFragment = (MapFragment) getFragmentManager()
@@ -123,6 +125,72 @@ public class MapPointActivity extends AbstractBaseMapActivity {
             } else if (Tip.getBy(tip) == Tip.HOSPITAL) {
                 getSupportActionBar().setTitle(R.string.hospital);
             }
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
+                                           @NonNull int[] grantResults) {
+
+        try {
+            if (requestCode == REQUEST_LOCATION) {
+                // BEGIN_INCLUDE(permission_result)
+                // Received permission result for camera permission.
+
+                // Check if the only required permission has been granted
+                if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    locationUtility = new LocationUtility(getApplicationContext());
+
+                    if (locationUtility.getLocation() == null) {
+                        new DialogBuilder(MapPointActivity.this).load()
+                                .title(R.string.attention)
+                                .content(R.string.network_disable)
+                                .positiveText(R.string.ok)
+                                .callback(new MaterialDialog.ButtonCallback() {
+
+                                    @Override
+                                    public void onPositive(final MaterialDialog dialog) {
+                                        navigateTo(HomeActivity.class);
+                                    }
+
+                                }).show();
+                    } else {
+                        final MapFragment mapFragment = (MapFragment) getFragmentManager()
+                                .findFragmentById(R.id.fragment_map);
+
+                        mapFragment.getMapAsync(this);
+                    }
+                } else {
+                    new DialogBuilder(MapPointActivity.this).load()
+                            .title(R.string.attention)
+                            .content(R.string.network_disable)
+                            .positiveText(R.string.ok)
+                            .callback(new MaterialDialog.ButtonCallback() {
+
+                                @Override
+                                public void onPositive(final MaterialDialog dialog) {
+                                    navigateTo(HomeActivity.class);
+                                }
+                            }).show();
+
+                }
+                // END_INCLUDE(permission_result)
+
+            } else {
+                super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+            }
+        } catch (Exception e) {
+            new DialogBuilder(MapPointActivity.this).load()
+                    .title(R.string.attention)
+                    .content(e.getMessage())
+                    .positiveText(R.string.ok)
+                    .callback(new MaterialDialog.ButtonCallback() {
+                        @Override
+                        public void onPositive(final MaterialDialog dialog) {
+                            navigateTo(HomeActivity.class);
+                        }
+
+                    }).show();
         }
     }
 

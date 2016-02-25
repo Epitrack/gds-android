@@ -134,7 +134,6 @@ public class MapSymptomActivity extends AbstractBaseMapActivity implements Searc
     private static final long DEFAULT_ZOOM = 12;
 
     private Tracker mTracker;
-    private View mLayout;
     private static String[] PERMISSIONS_LOCATION = {Manifest.permission.ACCESS_FINE_LOCATION,
             Manifest.permission.ACCESS_COARSE_LOCATION};
     private final int REQUEST_LOCATION = 0;
@@ -182,20 +181,28 @@ public class MapSymptomActivity extends AbstractBaseMapActivity implements Searc
 
                 // Check if the only required permission has been granted
                 if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    // Camera permission has been granted, preview can be displayed
-                    //Snackbar.make(mLayout, R.string.permision_available_location,
-                    //        Snackbar.LENGTH_SHORT).show();
-
                     locationUtility = new LocationUtility(getApplicationContext());
 
-                    final MapFragment mapFragment = (MapFragment) getFragmentManager()
-                            .findFragmentById(R.id.fragment_map);
+                    if (locationUtility.getLocation() == null) {
+                        new DialogBuilder(MapSymptomActivity.this).load()
+                                .title(R.string.attention)
+                                .content(R.string.network_disable)
+                                .positiveText(R.string.ok)
+                                .callback(new MaterialDialog.ButtonCallback() {
 
-                    mapFragment.getMapAsync(this);
+                                    @Override
+                                    public void onPositive(final MaterialDialog dialog) {
+                                        navigateTo(HomeActivity.class);
+                                    }
+
+                                }).show();
+                    } else {
+                        final MapFragment mapFragment = (MapFragment) getFragmentManager()
+                                .findFragmentById(R.id.fragment_map);
+
+                        mapFragment.getMapAsync(this);
+                    }
                 } else {
-                    //Snackbar.make(mLayout, R.string.permissions_not_granted,
-                    //        Snackbar.LENGTH_SHORT).show();
-
                     new DialogBuilder(MapSymptomActivity.this).load()
                             .title(R.string.attention)
                             .content(R.string.network_disable)
@@ -206,7 +213,6 @@ public class MapSymptomActivity extends AbstractBaseMapActivity implements Searc
                                 public void onPositive(final MaterialDialog dialog) {
                                     navigateTo(HomeActivity.class);
                                 }
-
                             }).show();
 
                 }
