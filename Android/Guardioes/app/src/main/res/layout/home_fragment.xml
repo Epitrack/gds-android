@@ -36,8 +36,9 @@
         android:layout_weight="1"/>
 
     <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="match_parent"
+        android:id="@+id/linear_layout_menu_home"
+        android:layout_width="match_parent"
+        android:layout_height="298dp"
         android:background="@drawable/background_home_menu"
         android:layout_marginBottom="20dp"
         android:layout_marginTop="20dp"

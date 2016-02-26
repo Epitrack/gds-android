@@ -16,6 +16,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.epitrack.guardioes.R;
@@ -71,6 +72,9 @@ public class HomeFragment extends BaseFragment {
     @Bind(R.id.image_view_photo)
     de.hdodenhof.circleimageview.CircleImageView imageViewPhoto;
 
+    @Bind(R.id.linear_layout_menu_home)
+    LinearLayout linearLayoutMenuHome;
+
     private Tracker mTracker;
     SingleUser singleUser = SingleUser.getInstance();
 
@@ -102,7 +106,30 @@ public class HomeFragment extends BaseFragment {
         text = text.replace("{0}", singleUser.getNick());
         textViewName.setText(text);
 
+        resizeBackgroundMenu();
+
         return view;
+    }
+
+    private void resizeBackgroundMenu() {
+
+        DisplayMetrics metrics = getResources().getDisplayMetrics();
+        int densityDpi = (int) (metrics.density * 160f);
+        int width = 0;
+        int height = 0;
+
+        if (densityDpi <= DisplayMetrics.DENSITY_MEDIUM) {
+            //width = 299;
+            height = 298;
+        } else {
+            //width = 597;
+            height = 596;
+        }
+
+        ViewGroup.LayoutParams params= linearLayoutMenuHome.getLayoutParams();
+        //params.width = width;
+        params.height = height;
+        linearLayoutMenuHome.setLayoutParams(params);
     }
 
     private void loadImageProfile() {
