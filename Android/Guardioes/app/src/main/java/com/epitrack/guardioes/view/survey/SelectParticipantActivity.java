@@ -125,7 +125,11 @@ public class SelectParticipantActivity extends BaseAppCompatActivity implements 
             if (Integer.parseInt(singleUser.getPicture()) == 0) {
                 setDefaultAvatar();
             } else {
-                imageViewAvatar.setImageResource(Avatar.getBy(Integer.parseInt(singleUser.getPicture())).getLarge());
+                try {
+                    imageViewAvatar.setImageResource(Avatar.getBy(Integer.parseInt(singleUser.getPicture())).getLarge());
+                } catch (Exception e) {
+                    setDefaultAvatar();
+                }
             }
         }
 

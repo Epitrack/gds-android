@@ -800,6 +800,10 @@ public class UserActivity extends BaseAppCompatActivity {
                         imageViewImage.getLayoutParams().height = height;
                         imageViewImage.setImageURI(profileImage.getUri());
 
+                        Drawable drawable = imageViewImage.getDrawable();
+                        imageViewImage.setImageDrawable(drawable);
+                        imageViewImage.setBackground(drawable);
+
                         photoPath = profileImage.getUri().toString();
                     }
                 }

@@ -18,7 +18,11 @@ public enum Avatar {
     AVATAR_OLD_MALE_1       (9, R.drawable.image_avatar_small_11, R.drawable.image_avatar_11),
     AVATAR_OLD_FEMALE_1     (10, R.drawable.image_avatar_small_9, R.drawable.image_avatar_9),
     AVATAR_OLD_MALE_2       (11, R.drawable.image_avatar_small_12, R.drawable.image_avatar_12),
-    AVATAR_OLD_FEMALE_2     (12, R.drawable.image_avatar_small_10, R.drawable.image_avatar_10);
+    AVATAR_OLD_FEMALE_2     (12, R.drawable.image_avatar_small_10, R.drawable.image_avatar_10),
+    AVATAR_CHILD_MALE_13     (13, R.drawable.image_avatar_small_6, R.drawable.image_avatar_6),
+    AVATAR_CHILD_MALE_14     (14, R.drawable.image_avatar_small_6, R.drawable.image_avatar_6),
+    AVATAR_CHILD_MALE_15     (15, R.drawable.image_avatar_small_6, R.drawable.image_avatar_6),
+    AVATAR_CHILD_MALE_16     (16, R.drawable.image_avatar_small_6, R.drawable.image_avatar_6);
 
     private final int id;
     private final int small;

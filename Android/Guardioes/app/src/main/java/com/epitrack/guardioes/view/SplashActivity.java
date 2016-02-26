@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.widget.Toast;
 
+import com.crashlytics.android.Crashlytics;
+import com.crashlytics.android.Crashlytics;
 import com.epitrack.guardioes.R;
 import com.epitrack.guardioes.manager.PrefManager;
 import com.epitrack.guardioes.model.SingleUser;
@@ -26,6 +28,8 @@ import org.json.JSONObject;
 
 import java.util.concurrent.ExecutionException;
 
+import io.fabric.sdk.android.Fabric;
+
 /**
  * @author Igor Morais
  */
@@ -40,6 +44,7 @@ public class SplashActivity extends BaseActivity implements Runnable {
     @Override
     protected void onCreate(final Bundle bundle) {
         super.onCreate(bundle);
+        Fabric.with(this, new Crashlytics());
 
         setContentView(R.layout.splash);
 
