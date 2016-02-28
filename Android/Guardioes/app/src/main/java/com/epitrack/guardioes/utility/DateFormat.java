@@ -77,6 +77,33 @@ public final class DateFormat {
         return diffDate;
     }
 
+    public static int getDateDiff(String date, int x) {
+
+        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+
+        Date userDate = null;
+        Date today = null;
+        int diffDate = -1;
+
+        try {
+            userDate = format.parse(date);
+            today = CalendarDay.today().getDate();
+
+            long diff = userDate.getTime() - today.getTime();
+            long diffHours = diff / (60 * 60 * 1000) % 24;
+            diffDate = ((int) diffHours);
+
+            if (diffDate < 0) {
+                diffDate = 24 - (diffDate * -1);
+            }
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        return diffDate;
+    }
+
     public static boolean isDate(String date) {
         boolean bReturn = true;
         SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");

@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:layout="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true">
 
+    <!--
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fitsSystemWindows="true"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        android:visibility="invisible">
 
         <android.support.design.widget.CollapsingToolbarLayout
             android:id="@+id/collapsing_toolbar"
@@ -18,24 +19,50 @@
             android:fitsSystemWindows="true"
             layout:contentScrim="@color/primary_light"
             layout:layout_scrollFlags="scroll|exitUntilCollapsed"
-            layout:statusBarScrim="@color/primary">
+            layout:statusBarScrim="@color/primary"
+            android:visibility="invisible">
 
             <include
                 layout="@layout/notice_header"
                 android:fitsSystemWindows="true"
-                layout:layout_collapseMode="parallax" />
+                layout:layout_collapseMode="parallax"
+                android:visibility="invisible"/>
 
             <include
-                layout="@layout/notice_toolbar" />
+                layout="@layout/notice_toolbar"
+                android:visibility="invisible"/>
 
         </android.support.design.widget.CollapsingToolbarLayout>
 
     </android.support.design.widget.AppBarLayout>
+    -->
+
+   <!-- <include
+        layout="@layout/notice_toolbar"/>-->
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/icon_news_twitter"
+        android:id="@+id/imageView7"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ministério da Saúde"
+        android:layout_marginTop="10dp"
+        android:textSize="16sp"
+        android:textColor="@color/grey_dark"
+        android:layout_below="@+id/imageView7"
+        android:layout_centerHorizontal="true" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        layout:layout_behavior="@string/appbar_scrolling_view_behavior" />
+        android:layout_marginTop="100dp"
+        />
 
-</android.support.design.widget.CoordinatorLayout>
+</RelativeLayout>

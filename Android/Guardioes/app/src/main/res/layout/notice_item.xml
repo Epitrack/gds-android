@@ -2,31 +2,143 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="15dp"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
     android:orientation="horizontal">
 
+        <ImageView
+            android:layout_gravity="center"
+            android:layout_height="wrap_content"
+            android:src="@drawable/img_news_point"
+            android:layout_width="wrap_content"
+            android:id="@+id/img_news_point"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true"
+
+            />
+
+        <ImageView
+            android:layout_gravity="center"
+            android:layout_height="wrap_content"
+            android:src="@drawable/img_news_timeline"
+            android:layout_width="wrap_content"
+            android:id="@+id/img_news_line"
+            android:layout_below="@+id/img_news_point"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="7dp"
+            />
 
         <TextView
             android:id="@+id/text_view_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ellipsize="end"
-            android:maxLines="2"
+            android:maxLines="3"
             android:textColor="@color/black"
             android:textSize="16dp"
             android:autoText="false"
             android:text="É HOJE!!! Fique ligado no nosso facebook. Às 14h30 terá início o Face to Face sobre o vírus Zika e microcefalia. #CombateAedes"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentStart="true" />
+            android:layout_marginRight="34dp"
+            android:layout_below="@+id/img_news_point"
+            android:layout_alignStart="@+id/txt_view_date" />
 
-        <ImageView
-            android:id="@+id/image_view_image"
-            android:layout_gravity="center"
-            android:layout_height="wrap_content"
-            android:src="@drawable/line_pixel1"
-            android:layout_width="wrap_content"
-            android:layout_below="@+id/text_view_title"
-            android:layout_alignParentStart="true"
-            android:layout_marginTop="25dp" />
+    <TextView
+        android:id="@+id/txt_view_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:textColor="@color/grey_light"
+        android:textSize="10dp"
+        android:text="11/11/2011"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="26dp"
+        android:layout_toEndOf="@+id/img_news_point" />
+
+    <ImageView
+        android:layout_gravity="center"
+        android:layout_height="wrap_content"
+        android:src="@drawable/icon_news_clock"
+        android:layout_width="wrap_content"
+        android:id="@+id/img_news_date"
+        android:layout_alignTop="@+id/img_news_like"
+        android:layout_alignEnd="@+id/text_view_title"
+        android:layout_marginEnd="32dp" />
+
+    <ImageView
+        android:layout_gravity="center"
+        android:layout_height="wrap_content"
+        android:src="@drawable/icon_news_like"
+        android:layout_width="wrap_content"
+        android:id="@+id/img_news_like"
+        android:layout_alignTop="@+id/imageView6"
+        android:layout_alignStart="@+id/text_view_title" />
+
+    <ImageView
+        android:layout_gravity="center"
+        android:layout_height="wrap_content"
+        android:src="@drawable/img_news_timeline"
+        android:layout_width="wrap_content"
+        android:id="@+id/imageView3"
+        android:layout_below="@+id/imageView4"
+        android:layout_alignStart="@+id/imageView4" />
+
+    <ImageView
+        android:layout_gravity="center"
+        android:layout_height="wrap_content"
+        android:src="@drawable/img_news_timeline"
+        android:layout_width="wrap_content"
+        android:id="@+id/imageView4"
+        android:layout_below="@+id/img_news_line"
+        android:layout_alignStart="@+id/img_news_line" />
+
+    <ImageView
+        android:layout_gravity="center"
+        android:layout_height="wrap_content"
+        android:src="@drawable/img_news_timeline"
+        android:layout_width="wrap_content"
+        android:id="@+id/imageView5"
+        android:layout_below="@+id/imageView3"
+        android:layout_alignStart="@+id/imageView3" />
+
+    <ImageView
+        android:layout_gravity="center"
+        android:layout_height="wrap_content"
+        android:src="@drawable/img_news_timeline"
+        android:layout_width="wrap_content"
+        android:id="@+id/imageView6"
+        android:layout_below="@+id/imageView5"
+        android:layout_alignStart="@+id/imageView5" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="10h"
+        android:id="@+id/txt_clock"
+        android:textSize="10dp"
+        android:textColor="@color/grey_light"
+        android:layout_alignTop="@+id/txt_like"
+        android:layout_alignStart="@+id/img_news_date"
+        android:layout_marginStart="11dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="5"
+        android:id="@+id/txt_like"
+        android:textSize="10dp"
+        android:textColor="@color/grey_light"
+        android:layout_alignBottom="@+id/img_news_like"
+        android:layout_toEndOf="@+id/img_news_like" />
+
+    <!--<ImageView
+        android:id="@+id/image_view_image"
+        android:layout_gravity="center"
+        android:layout_height="wrap_content"
+        android:src="@drawable/line_pixel1"
+        android:layout_width="wrap_content"
+        android:layout_below="@+id/text_view_title"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="25dp" />-->
 
 </RelativeLayout>

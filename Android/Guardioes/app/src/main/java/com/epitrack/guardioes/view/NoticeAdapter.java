@@ -20,6 +20,7 @@ import butterknife.ButterKnife;
 
 /**
  * @author Igor Morais
+ * @author Miqueias Lopes
  */
 public class NoticeAdapter extends RecyclerView.Adapter<NoticeAdapter.ViewHolder> {
 
@@ -45,14 +46,14 @@ public class NoticeAdapter extends RecyclerView.Adapter<NoticeAdapter.ViewHolder
         @Bind(R.id.text_view_title)
         TextView textViewTitle;
 
-        //@Bind(R.id.text_view_source)
-        //TextView textViewSource;
+        @Bind(R.id.txt_clock)
+        TextView textViewClock;
 
-        //@Bind(R.id.text_view_date)
-        //TextView textViewDate;
+        @Bind(R.id.txt_like)
+        TextView textViewLike;
 
-        //@Bind(R.id.image_view_image)
-        //ImageView imageViewImage;
+        @Bind(R.id.txt_view_date)
+        TextView textViewDate;
 
         public ViewHolder(final View view) {
             super(view);
@@ -76,9 +77,9 @@ public class NoticeAdapter extends RecyclerView.Adapter<NoticeAdapter.ViewHolder
         final Notice notice = noticeList.get(position);
 
         viewHolder.textViewTitle.setText(notice.getTitle());
-        //viewHolder.textViewSource.setText(notice.getSource());
-        //viewHolder.textViewDate.setText(notice.getPublicationDate());
-        //viewHolder.imageViewImage.setImageResource(R.drawable.stub1);
+        viewHolder.textViewClock.setText(notice.getClock());
+        viewHolder.textViewLike.setText(notice.getLike());
+        viewHolder.textViewDate.setText(notice.getPublicationDate());
 
         /*viewHolder.imageViewImage.setOnClickListener(new View.OnClickListener() {
             @Override

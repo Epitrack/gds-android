@@ -9,6 +9,8 @@ public class Notice {
     private String publicationDate;
     private String link;
     private int drawable;
+    private String like;
+    private String clock;
 
     public final String getTitle() {
         return title;
@@ -48,5 +50,21 @@ public class Notice {
 
     public void setDrawable(int drawable) {
         this.drawable = drawable;
+    }
+
+    public String getLike() {
+        return like;
+    }
+
+    public void setLike(String like) {
+        this.like = like;
+    }
+
+    public String getClock() {
+        return clock;
+    }
+
+    public void setClock(String clock) {
+        this.clock = clock;
     }
 }

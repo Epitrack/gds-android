@@ -16,6 +16,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -28,6 +29,7 @@ import com.epitrack.guardioes.request.Requester;
 import com.epitrack.guardioes.request.SimpleRequester;
 import com.epitrack.guardioes.service.AnalyticsApplication;
 import com.epitrack.guardioes.utility.BitmapUtility;
+import com.epitrack.guardioes.utility.DateFormat;
 import com.epitrack.guardioes.utility.DialogBuilder;
 import com.epitrack.guardioes.utility.Extension;
 import com.epitrack.guardioes.utility.FileUtility;
@@ -53,8 +55,12 @@ import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.concurrent.ExecutionException;
 
 import butterknife.Bind;
@@ -70,7 +76,8 @@ public class HomeFragment extends BaseFragment {
     TextView textViewName;
 
     @Bind(R.id.image_view_photo)
-    de.hdodenhof.circleimageview.CircleImageView imageViewPhoto;
+    ImageView imageViewPhoto;
+    //de.hdodenhof.circleimageview.CircleImageView imageViewPhoto;
 
     @Bind(R.id.linear_layout_menu_home)
     LinearLayout linearLayoutMenuHome;
@@ -164,6 +171,9 @@ public class HomeFragment extends BaseFragment {
                } else if (densityDpi >= DisplayMetrics.DENSITY_XXXHIGH) {
                    width = 400;
                    height = 400;
+               } else {
+                   width = 300;
+                   height = 300;
                }
 
                imageViewPhoto.getLayoutParams().width = width;
@@ -230,6 +240,9 @@ public class HomeFragment extends BaseFragment {
         } else if (densityDpi >= DisplayMetrics.DENSITY_XXXHIGH) {
             width = 400;
             height = 400;
+        } else {
+            width = 300;
+            height = 300;
         }
 
         imageViewPhoto.getLayoutParams().width = width;
@@ -513,11 +526,24 @@ public class HomeFragment extends BaseFragment {
                     Notice notice = new Notice();
 
                     notice.setTitle(jsonObject.get("text").toString());
-                    notice.setSource("via @minsaude");
-
-                    notice.setDrawable(R.drawable.stub1);
                     notice.setLink("https://twitter.com/minsaude/status/" + jsonObject.get("id_str").toString());
+                    notice.setLike(" " + jsonObject.get("favorite_count").toString());
 
+                    final String TWITTER="EEE MMM dd HH:mm:ss ZZZZZ yyyy";
+                    SimpleDateFormat sf = new SimpleDateFormat(TWITTER, Locale.ENGLISH);
+                    sf.setLenient(true);
+
+                    Date twitterDate = sf.parse(jsonObject.get("created_at").toString());
+                    SimpleDateFormat userFormat = new SimpleDateFormat("dd/MM/yyyy");
+                    String strPubDate = userFormat.format(twitterDate);
+
+                    notice.setPublicationDate(strPubDate);
+
+                    userFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+                    strPubDate = userFormat.format(twitterDate);
+                    int clockHours = DateFormat.getDateDiff(strPubDate, 0);
+
+                    notice.setClock(" " + String.valueOf(clockHours) + "h");
                     noticeList.add(notice);
                 }
             }
@@ -526,6 +552,8 @@ public class HomeFragment extends BaseFragment {
         } catch (ExecutionException e) {
             e.printStackTrace();
         } catch (JSONException e) {
+            e.printStackTrace();
+        } catch (ParseException e) {
             e.printStackTrace();
         }
         return noticeList;

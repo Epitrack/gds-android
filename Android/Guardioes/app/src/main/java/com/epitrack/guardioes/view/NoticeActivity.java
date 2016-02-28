@@ -3,35 +3,24 @@ package com.epitrack.guardioes.view;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.epitrack.guardioes.R;
 import com.epitrack.guardioes.model.Notice;
-import com.epitrack.guardioes.request.Method;
-import com.epitrack.guardioes.request.Requester;
-import com.epitrack.guardioes.request.SimpleRequester;
 import com.epitrack.guardioes.service.AnalyticsApplication;
 import com.epitrack.guardioes.utility.DialogBuilder;
+import com.epitrack.guardioes.view.base.BaseAppCompatActivity;
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.ExecutionException;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -40,24 +29,6 @@ import butterknife.ButterKnife;
  * @author Igor Morais
  */
 public class NoticeActivity extends AppCompatActivity implements NoticeListener {
-
-    @Bind(R.id.collapsing_toolbar)
-    CollapsingToolbarLayout toolbarLayout;
-
-    @Bind(R.id.toolbar)
-    Toolbar toolbar;
-
-    @Bind(R.id.text_view_title)
-    TextView textViewTitle;
-
-    @Bind(R.id.text_view_source)
-    TextView textViewSource;
-
-    @Bind(R.id.text_view_date)
-    TextView textViewDate;
-
-    @Bind(R.id.image_view_image)
-    ImageView imageView;
 
     @Bind(R.id.recycler_view)
     RecyclerView recyclerView;
@@ -79,21 +50,15 @@ public class NoticeActivity extends AppCompatActivity implements NoticeListener 
 
         ButterKnife.bind(this);
 
-        setSupportActionBar(toolbar);
+/*        setSupportActionBar(toolbar);
 
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-        setupHeader(new Notice());
+        getSupportActionBar().setTitle(R.string.notice);*/
 
         recyclerView.setHasFixedSize(true);
-
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
         recyclerView.setAdapter(new NoticeAdapter(this, noticeList));
-
-        getSupportActionBar().setTitle(R.string.notice);
-
     }
 
     @Override
@@ -117,7 +82,7 @@ public class NoticeActivity extends AppCompatActivity implements NoticeListener 
     private void setupHeader(final Notice notice) {
 
         // TODO: Stub only
-        imageView.setImageResource(R.drawable.img_news);
+        //imageView.setImageResource(R.drawable.img_news);
     }
 
     @Override

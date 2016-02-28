@@ -133,7 +133,8 @@
             android:exported="false"
             android:parentActivityName=".view.HomeActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/Notice" />
+            android:label="@string/notice"
+            />
         <activity
             android:name=".view.MapSymptomActivity"
             android:exported="false"
