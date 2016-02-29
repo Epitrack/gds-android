@@ -225,59 +225,62 @@ public class MapPointActivity extends AbstractBaseMapActivity {
 
     private void loadPharmacy() {
 
-        final List<Point> pointList = new ArrayList<Point>();
+        Loader.with().getHandler().post(new Runnable() {
+            @Override
+            public void run() {
+                final List<Point> pointList = new ArrayList<Point>();
 
-        SimpleRequester simpleRequester = new SimpleRequester();
-        simpleRequester.setJsonObject(null);
-        simpleRequester.setMethod(Method.GET);
-        simpleRequester.setOtherAPI(true);
-        simpleRequester.setUrl("https://maps.googleapis.com/maps/api/place/textsearch/json?query=pharmacy&location="+locationUtility.getLatitude()+","+locationUtility.getLongitude()+"&radius=10000&key=AIzaSyDYl7spN_NpAjAWL7Hi183SK2cApiIS3Eg");
+                SimpleRequester simpleRequester = new SimpleRequester();
+                simpleRequester.setJsonObject(null);
+                simpleRequester.setMethod(Method.GET);
+                simpleRequester.setOtherAPI(true);
+                simpleRequester.setUrl("https://maps.googleapis.com/maps/api/place/textsearch/json?query=pharmacy&location="+locationUtility.getLatitude()+","+locationUtility.getLongitude()+"&radius=10000&key=AIzaSyDYl7spN_NpAjAWL7Hi183SK2cApiIS3Eg");
 
-        String jsonStr = null;
-        try {
-            jsonStr = simpleRequester.execute(simpleRequester).get();
+                String jsonStr = null;
+                try {
+                    jsonStr = simpleRequester.execute(simpleRequester).get();
 
-            JSONObject jsonObject = new JSONObject(jsonStr);
+                    JSONObject jsonObject = new JSONObject(jsonStr);
 
-            if (!jsonObject.get("status").toString().toUpperCase().equals("OK")) {
-                Toast.makeText(getApplicationContext(), R.string.generic_error, Toast.LENGTH_SHORT).show();
-            } else {
+                    if (!jsonObject.get("status").toString().toUpperCase().equals("OK")) {
+                        Toast.makeText(getApplicationContext(), R.string.generic_error, Toast.LENGTH_SHORT).show();
+                    } else {
 
-                JSONArray jsonArray = jsonObject.getJSONArray("results");
+                        JSONArray jsonArray = jsonObject.getJSONArray("results");
 
-                for (int i = 0; i < jsonArray.length(); i++) {
+                        for (int i = 0; i < jsonArray.length(); i++) {
 
-                    jsonObject = jsonArray.getJSONObject(i);
-                    JSONObject jsonObjectGeometry = jsonObject.getJSONObject("geometry");
-                    JSONObject jsonObjectLocation = jsonObjectGeometry.getJSONObject("location");
+                            jsonObject = jsonArray.getJSONObject(i);
+                            JSONObject jsonObjectGeometry = jsonObject.getJSONObject("geometry");
+                            JSONObject jsonObjectLocation = jsonObjectGeometry.getJSONObject("location");
 
-                    Point point = new Point();
-                    point.setLatitude(jsonObjectLocation.getDouble("lat"));
-                    point.setLongitude(jsonObjectLocation.getDouble("lng"));
-                    point.setLogradouro(jsonObject.getString("formatted_address"));
-                    point.setName(jsonObject.getString("name"));
+                            Point point = new Point();
+                            point.setLatitude(jsonObjectLocation.getDouble("lat"));
+                            point.setLongitude(jsonObjectLocation.getDouble("lng"));
+                            point.setLogradouro(jsonObject.getString("formatted_address"));
+                            point.setName(jsonObject.getString("name"));
 
-                    pointList.add(point);
-                }
-
-                if (pointList.size() > 0) {
-                    new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            addMarker(pointList);
+                            pointList.add(point);
                         }
-                    }, 2000);
+
+                        if (pointList.size() > 0) {
+                            new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+                                    addMarker(pointList);
+                                }
+                            }, 2000);
+                        }
+                    }
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                } catch (ExecutionException e) {
+                    e.printStackTrace();
+                } catch (JSONException e) {
+                    e.printStackTrace();
                 }
             }
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
-
+        });
     }
 
     private void load() {
@@ -288,11 +291,35 @@ public class MapPointActivity extends AbstractBaseMapActivity {
             public void run() {
 
                 try {
+                    final ArrayList<Point> pointList = new ArrayList<Point>();
 
-                    final InputStream inputStream = getAssets().open("upas.json");
 
-                    final List<Point> pointList = new ObjectMapper().readValue(inputStream, new TypeReference<List<Point>>() {
-                    });
+                    SimpleRequester simpleRequester = new SimpleRequester();
+                    simpleRequester.setJsonObject(null);
+                    simpleRequester.setMethod(Method.GET);
+                    simpleRequester.setUrl(Requester.API_URL + "content/upas.json");
+
+                    String jsonStr = simpleRequester.execute(simpleRequester).get();
+                    //JSONObject jsonObject = new JSONObject(jsonStr);
+                    JSONArray jsonArray = new JSONArray(jsonStr);
+
+                    for (int i = 0; i < jsonArray.length(); i++) {
+                        JSONObject jsonObjectUpa = jsonArray.getJSONObject(i);
+
+                        Point point = new Point();
+                        point.setLatitude(jsonObjectUpa.getDouble("latitude"));
+                        point.setLongitude(jsonObjectUpa.getDouble("longitude"));
+
+                        String logradouro = jsonObjectUpa.getString("logradouro");
+                        String numero = jsonObjectUpa.getString("numero");
+                        String bairro = jsonObjectUpa.getString("bairro");
+                        String formattedAddress = logradouro + ", " + numero + " - " + bairro;
+
+                        point.setLogradouro(formattedAddress);
+                        point.setName(jsonObjectUpa.getString("name"));
+
+                        pointList.add(point);
+                    }
 
                     new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
 
@@ -303,7 +330,11 @@ public class MapPointActivity extends AbstractBaseMapActivity {
 
                     }, 2000);
 
-                } catch (IOException e) {
+                }  catch (InterruptedException e) {
+                    e.printStackTrace();
+                } catch (ExecutionException e) {
+                    e.printStackTrace();
+                } catch (JSONException e) {
                     e.printStackTrace();
                 }
             }

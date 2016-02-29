@@ -867,4 +867,18 @@ public class UserActivity extends BaseAppCompatActivity {
             navigateTo(WelcomeActivity.class);
         }
     }
+
+    @Override
+    public void onBackPressed() {
+
+        if (socialNew) {
+            final Intent intent = new Intent(getApplicationContext(), WelcomeActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                    Intent.FLAG_ACTIVITY_NEW_TASK);
+
+            startActivity(intent);
+        } else {
+            super.onBackPressed();
+        }
+    }
 }

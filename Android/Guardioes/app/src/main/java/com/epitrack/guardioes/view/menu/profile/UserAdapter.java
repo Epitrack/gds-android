@@ -16,6 +16,7 @@ import com.epitrack.guardioes.model.User;
 import com.epitrack.guardioes.request.Method;
 import com.epitrack.guardioes.request.Requester;
 import com.epitrack.guardioes.request.SimpleRequester;
+import com.epitrack.guardioes.utility.DateFormat;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -118,20 +119,66 @@ public class UserAdapter extends ArrayAdapter<User> {
 
                     if (url.substring(0, 4).toLowerCase().equals("http")) {
                         user.setPicture("0");
-                        //viewHolder.imageViewImage.setImageResource(Avatar.getBy(Integer.parseInt(user.getPicture())).getSmall());
-                        if (user.getGender().equals("M")) {
 
-                            if (user.getRace().equals("branco") || user.getRace().equals("amarelo")) {
-                                viewHolder.imageViewImage.setImageResource(R.drawable.image_avatar_small_6);
-                            } else {
-                                viewHolder.imageViewImage.setImageResource(R.drawable.image_avatar_small_4);
+                        int age = DateFormat.getDateDiff(singleUser.getDob());
+
+                        if (user.getGender().equals("F")) {
+                            if (user.getRace().equals("preto") || user.getRace().equals("indigena") || user.getRace().equals("pardo")) {
+                                if(age > 49) {
+                                    viewHolder.imageViewImage.setImageResource(R.drawable.avatar_3);
+                                } else if(age > 25) {
+                                    viewHolder.imageViewImage.setImageResource(R.drawable.avatar_2);
+                                } else {
+                                    viewHolder.imageViewImage.setImageResource(R.drawable.avatar_1);
+                                }
                             }
-                        } else {
-
-                            if (user.getRace().equals("branco") || user.getRace().equals("amarelo")) {
-                                viewHolder.imageViewImage.setImageResource(R.drawable.image_avatar_small_8);
-                            } else {
-                                viewHolder.imageViewImage.setImageResource(R.drawable.image_avatar_small_7);
+                            else if(user.getRace().equals("amarelo"))
+                            {
+                                if(age > 49) {
+                                    viewHolder.imageViewImage.setImageResource(R.drawable.avatar_9);
+                                } else if(age > 25) {
+                                    viewHolder.imageViewImage.setImageResource(R.drawable.avatar_8);
+                                } else {
+                                    viewHolder.imageViewImage.setImageResource(R.drawable.avatar_7);
+                                }
+                            }
+                            else if(user.getRace().equals("branco"))
+                            {
+                                if(age > 49) {
+                                    viewHolder.imageViewImage.setImageResource(R.drawable.avatar_14);
+                                } else if(age > 25) {
+                                    viewHolder.imageViewImage.setImageResource(R.drawable.avatar_8);
+                                } else {
+                                    viewHolder.imageViewImage.setImageResource(R.drawable.avatar_13);
+                                }
+                            }
+                        } else if (user.getGender().equals("M")) {
+                            if (user.getRace().equals("preto") || singleUser.getRace().equals("indigena") || singleUser.getRace().equals("pardo")) {
+                                if(age > 49) {
+                                    viewHolder.imageViewImage.setImageResource(R.drawable.avatar_6);
+                                } else if(age > 25) {
+                                    viewHolder.imageViewImage.setImageResource(R.drawable.avatar_5);
+                                } else {
+                                    viewHolder.imageViewImage.setImageResource(R.drawable.avatar_4);
+                                }
+                            }
+                            else if(user.getRace().equals("amarelo"))
+                            {
+                                if(age > 49) {
+                                    viewHolder.imageViewImage.setImageResource(R.drawable.avatar_12);
+                                } else if(age > 25) {
+                                    viewHolder.imageViewImage.setImageResource(R.drawable.avatar_11);
+                                } else {
+                                    viewHolder.imageViewImage.setImageResource(R.drawable.avatar_10);
+                                }
+                            } else if(user.getRace().equals("'branco'")) {
+                                if(age > 49) {
+                                    viewHolder.imageViewImage.setImageResource(R.drawable.avatar_16);
+                                } else if(age > 25) {
+                                    viewHolder.imageViewImage.setImageResource(R.drawable.avatar_11);
+                                } else {
+                                    viewHolder.imageViewImage.setImageResource(R.drawable.avatar_15);
+                                }
                             }
                         }
                     } else {
@@ -144,19 +191,66 @@ public class UserAdapter extends ArrayAdapter<User> {
                             viewHolder.imageViewImage.setImageDrawable(drawable);
 
                             if (drawable == null) {
-                                if (user.getGender().equals("M")) {
+                                //aqui
+                                int age = DateFormat.getDateDiff(singleUser.getDob());
 
-                                    if (user.getRace().equals("branco") || user.getRace().equals("amarelo")) {
-                                        viewHolder.imageViewImage.setImageResource(R.drawable.image_avatar_small_6);
-                                    } else {
-                                        viewHolder.imageViewImage.setImageResource(R.drawable.image_avatar_small_4);
+                                if (user.getGender().equals("F")) {
+                                    if (user.getRace().equals("preto") || user.getRace().equals("indigena") || user.getRace().equals("pardo")) {
+                                        if(age > 49) {
+                                            viewHolder.imageViewImage.setImageResource(R.drawable.avatar_3);
+                                        } else if(age > 25) {
+                                            viewHolder.imageViewImage.setImageResource(R.drawable.avatar_2);
+                                        } else {
+                                            viewHolder.imageViewImage.setImageResource(R.drawable.avatar_1);
+                                        }
                                     }
-                                } else {
-
-                                    if (user.getRace().equals("branco") || user.getRace().equals("amarelo")) {
-                                        viewHolder.imageViewImage.setImageResource(R.drawable.image_avatar_small_8);
-                                    } else {
-                                        viewHolder.imageViewImage.setImageResource(R.drawable.image_avatar_small_7);
+                                    else if(user.getRace().equals("amarelo"))
+                                    {
+                                        if(age > 49) {
+                                            viewHolder.imageViewImage.setImageResource(R.drawable.avatar_9);
+                                        } else if(age > 25) {
+                                            viewHolder.imageViewImage.setImageResource(R.drawable.avatar_8);
+                                        } else {
+                                            viewHolder.imageViewImage.setImageResource(R.drawable.avatar_7);
+                                        }
+                                    }
+                                    else if(user.getRace().equals("branco"))
+                                    {
+                                        if(age > 49) {
+                                            viewHolder.imageViewImage.setImageResource(R.drawable.avatar_14);
+                                        } else if(age > 25) {
+                                            viewHolder.imageViewImage.setImageResource(R.drawable.avatar_8);
+                                        } else {
+                                            viewHolder.imageViewImage.setImageResource(R.drawable.avatar_13);
+                                        }
+                                    }
+                                } else if (user.getGender().equals("M")) {
+                                    if (user.getRace().equals("preto") || singleUser.getRace().equals("indigena") || singleUser.getRace().equals("pardo")) {
+                                        if(age > 49) {
+                                            viewHolder.imageViewImage.setImageResource(R.drawable.avatar_6);
+                                        } else if(age > 25) {
+                                            viewHolder.imageViewImage.setImageResource(R.drawable.avatar_5);
+                                        } else {
+                                            viewHolder.imageViewImage.setImageResource(R.drawable.avatar_4);
+                                        }
+                                    }
+                                    else if(user.getRace().equals("amarelo"))
+                                    {
+                                        if(age > 49) {
+                                            viewHolder.imageViewImage.setImageResource(R.drawable.avatar_12);
+                                        } else if(age > 25) {
+                                            viewHolder.imageViewImage.setImageResource(R.drawable.avatar_11);
+                                        } else {
+                                            viewHolder.imageViewImage.setImageResource(R.drawable.avatar_10);
+                                        }
+                                    } else if(user.getRace().equals("'branco'")) {
+                                        if(age > 49) {
+                                            viewHolder.imageViewImage.setImageResource(R.drawable.avatar_16);
+                                        } else if(age > 25) {
+                                            viewHolder.imageViewImage.setImageResource(R.drawable.avatar_11);
+                                        } else {
+                                            viewHolder.imageViewImage.setImageResource(R.drawable.avatar_15);
+                                        }
                                     }
                                 }
                             }
@@ -166,65 +260,205 @@ public class UserAdapter extends ArrayAdapter<User> {
                     }
                 } catch (Exception e) {
                     user.setPicture("0");
-                    //viewHolder.imageViewImage.setImageResource(Avatar.getBy(Integer.parseInt(user.getPicture())).getSmall());
-                    if (user.getGender().equals("M")) {
+                    //aqui
+                    int age = DateFormat.getDateDiff(singleUser.getDob());
 
-                        if (user.getRace().equals("branco") || user.getRace().equals("amarelo")) {
-                            viewHolder.imageViewImage.setImageResource(R.drawable.image_avatar_small_6);
-                        } else {
-                            viewHolder.imageViewImage.setImageResource(R.drawable.image_avatar_small_4);
+                    if (user.getGender().equals("F")) {
+                        if (user.getRace().equals("preto") || user.getRace().equals("indigena") || user.getRace().equals("pardo")) {
+                            if(age > 49) {
+                                viewHolder.imageViewImage.setImageResource(R.drawable.avatar_3);
+                            } else if(age > 25) {
+                                viewHolder.imageViewImage.setImageResource(R.drawable.avatar_2);
+                            } else {
+                                viewHolder.imageViewImage.setImageResource(R.drawable.avatar_1);
+                            }
                         }
-                    } else {
-
-                        if (user.getRace().equals("branco") || user.getRace().equals("amarelo")) {
-                            viewHolder.imageViewImage.setImageResource(R.drawable.image_avatar_small_8);
-                        } else {
-                            viewHolder.imageViewImage.setImageResource(R.drawable.image_avatar_small_7);
+                        else if(user.getRace().equals("amarelo"))
+                        {
+                            if(age > 49) {
+                                viewHolder.imageViewImage.setImageResource(R.drawable.avatar_9);
+                            } else if(age > 25) {
+                                viewHolder.imageViewImage.setImageResource(R.drawable.avatar_8);
+                            } else {
+                                viewHolder.imageViewImage.setImageResource(R.drawable.avatar_7);
+                            }
+                        }
+                        else if(user.getRace().equals("branco"))
+                        {
+                            if(age > 49) {
+                                viewHolder.imageViewImage.setImageResource(R.drawable.avatar_14);
+                            } else if(age > 25) {
+                                viewHolder.imageViewImage.setImageResource(R.drawable.avatar_8);
+                            } else {
+                                viewHolder.imageViewImage.setImageResource(R.drawable.avatar_13);
+                            }
+                        }
+                    } else if (user.getGender().equals("M")) {
+                        if (user.getRace().equals("preto") || singleUser.getRace().equals("indigena") || singleUser.getRace().equals("pardo")) {
+                            if(age > 49) {
+                                viewHolder.imageViewImage.setImageResource(R.drawable.avatar_6);
+                            } else if(age > 25) {
+                                viewHolder.imageViewImage.setImageResource(R.drawable.avatar_5);
+                            } else {
+                                viewHolder.imageViewImage.setImageResource(R.drawable.avatar_4);
+                            }
+                        }
+                        else if(user.getRace().equals("amarelo"))
+                        {
+                            if(age > 49) {
+                                viewHolder.imageViewImage.setImageResource(R.drawable.avatar_12);
+                            } else if(age > 25) {
+                                viewHolder.imageViewImage.setImageResource(R.drawable.avatar_11);
+                            } else {
+                                viewHolder.imageViewImage.setImageResource(R.drawable.avatar_10);
+                            }
+                        } else if(user.getRace().equals("'branco'")) {
+                            if(age > 49) {
+                                viewHolder.imageViewImage.setImageResource(R.drawable.avatar_16);
+                            } else if(age > 25) {
+                                viewHolder.imageViewImage.setImageResource(R.drawable.avatar_11);
+                            } else {
+                                viewHolder.imageViewImage.setImageResource(R.drawable.avatar_15);
+                            }
                         }
                     }
+
                 }
             } else {
                 user.setPicture(user.getPicture());
 
                 if (Integer.parseInt(user.getPicture()) == 0) {
+                    //aqqui
+                    int age = DateFormat.getDateDiff(singleUser.getDob());
 
-                    if (user.getGender().equals("M")) {
-
-                        if (user.getRace().equals("branco") || user.getRace().equals("amarelo")) {
-                            viewHolder.imageViewImage.setImageResource(R.drawable.image_avatar_small_6);
-                        } else {
-                            viewHolder.imageViewImage.setImageResource(R.drawable.image_avatar_small_4);
+                    if (user.getGender().equals("F")) {
+                        if (user.getRace().equals("preto") || user.getRace().equals("indigena") || user.getRace().equals("pardo")) {
+                            if(age > 49) {
+                                viewHolder.imageViewImage.setImageResource(R.drawable.avatar_3);
+                            } else if(age > 25) {
+                                viewHolder.imageViewImage.setImageResource(R.drawable.avatar_2);
+                            } else {
+                                viewHolder.imageViewImage.setImageResource(R.drawable.avatar_1);
+                            }
                         }
-                    } else {
-
-                        if (user.getRace().equals("branco") || user.getRace().equals("amarelo")) {
-                            viewHolder.imageViewImage.setImageResource(R.drawable.image_avatar_small_8);
-                        } else {
-                            viewHolder.imageViewImage.setImageResource(R.drawable.image_avatar_small_7);
+                        else if(user.getRace().equals("amarelo"))
+                        {
+                            if(age > 49) {
+                                viewHolder.imageViewImage.setImageResource(R.drawable.avatar_9);
+                            } else if(age > 25) {
+                                viewHolder.imageViewImage.setImageResource(R.drawable.avatar_8);
+                            } else {
+                                viewHolder.imageViewImage.setImageResource(R.drawable.avatar_7);
+                            }
+                        }
+                        else if(user.getRace().equals("branco"))
+                        {
+                            if(age > 49) {
+                                viewHolder.imageViewImage.setImageResource(R.drawable.avatar_14);
+                            } else if(age > 25) {
+                                viewHolder.imageViewImage.setImageResource(R.drawable.avatar_8);
+                            } else {
+                                viewHolder.imageViewImage.setImageResource(R.drawable.avatar_13);
+                            }
+                        }
+                    } else if (user.getGender().equals("M")) {
+                        if (user.getRace().equals("preto") || singleUser.getRace().equals("indigena") || singleUser.getRace().equals("pardo")) {
+                            if(age > 49) {
+                                viewHolder.imageViewImage.setImageResource(R.drawable.avatar_6);
+                            } else if(age > 25) {
+                                viewHolder.imageViewImage.setImageResource(R.drawable.avatar_5);
+                            } else {
+                                viewHolder.imageViewImage.setImageResource(R.drawable.avatar_4);
+                            }
+                        }
+                        else if(user.getRace().equals("amarelo"))
+                        {
+                            if(age > 49) {
+                                viewHolder.imageViewImage.setImageResource(R.drawable.avatar_12);
+                            } else if(age > 25) {
+                                viewHolder.imageViewImage.setImageResource(R.drawable.avatar_11);
+                            } else {
+                                viewHolder.imageViewImage.setImageResource(R.drawable.avatar_10);
+                            }
+                        } else if(user.getRace().equals("'branco'")) {
+                            if(age > 49) {
+                                viewHolder.imageViewImage.setImageResource(R.drawable.avatar_16);
+                            } else if(age > 25) {
+                                viewHolder.imageViewImage.setImageResource(R.drawable.avatar_11);
+                            } else {
+                                viewHolder.imageViewImage.setImageResource(R.drawable.avatar_15);
+                            }
                         }
                     }
+
                 } else {
                     viewHolder.imageViewImage.setImageResource(Avatar.getBy(Integer.parseInt(user.getPicture())).getSmall());
                 }
             }
-
-            //return view;
         } catch (Exception e) {
-            if (user.getGender().equals("M")) {
+            //aqui
+            int age = DateFormat.getDateDiff(singleUser.getDob());
 
-                if (user.getRace().equals("branco") || user.getRace().equals("amarelo")) {
-                    viewHolder.imageViewImage.setImageResource(R.drawable.image_avatar_small_6);
-                } else {
-                    viewHolder.imageViewImage.setImageResource(R.drawable.image_avatar_small_4);
+            if (user.getGender().equals("F")) {
+                if (user.getRace().equals("preto") || user.getRace().equals("indigena") || user.getRace().equals("pardo")) {
+                    if(age > 49) {
+                        viewHolder.imageViewImage.setImageResource(R.drawable.avatar_3);
+                    } else if(age > 25) {
+                        viewHolder.imageViewImage.setImageResource(R.drawable.avatar_2);
+                    } else {
+                        viewHolder.imageViewImage.setImageResource(R.drawable.avatar_1);
+                    }
                 }
-            } else {
-
-                if (user.getRace().equals("branco") || user.getRace().equals("amarelo")) {
-                    viewHolder.imageViewImage.setImageResource(R.drawable.image_avatar_small_8);
-                } else {
-                    viewHolder.imageViewImage.setImageResource(R.drawable.image_avatar_small_7);
+                else if(user.getRace().equals("amarelo"))
+                {
+                    if(age > 49) {
+                        viewHolder.imageViewImage.setImageResource(R.drawable.avatar_9);
+                    } else if(age > 25) {
+                        viewHolder.imageViewImage.setImageResource(R.drawable.avatar_8);
+                    } else {
+                        viewHolder.imageViewImage.setImageResource(R.drawable.avatar_7);
+                    }
+                }
+                else if(user.getRace().equals("branco"))
+                {
+                    if(age > 49) {
+                        viewHolder.imageViewImage.setImageResource(R.drawable.avatar_14);
+                    } else if(age > 25) {
+                        viewHolder.imageViewImage.setImageResource(R.drawable.avatar_8);
+                    } else {
+                        viewHolder.imageViewImage.setImageResource(R.drawable.avatar_13);
+                    }
+                }
+            } else if (user.getGender().equals("M")) {
+                if (user.getRace().equals("preto") || singleUser.getRace().equals("indigena") || singleUser.getRace().equals("pardo")) {
+                    if(age > 49) {
+                        viewHolder.imageViewImage.setImageResource(R.drawable.avatar_6);
+                    } else if(age > 25) {
+                        viewHolder.imageViewImage.setImageResource(R.drawable.avatar_5);
+                    } else {
+                        viewHolder.imageViewImage.setImageResource(R.drawable.avatar_4);
+                    }
+                }
+                else if(user.getRace().equals("amarelo"))
+                {
+                    if(age > 49) {
+                        viewHolder.imageViewImage.setImageResource(R.drawable.avatar_12);
+                    } else if(age > 25) {
+                        viewHolder.imageViewImage.setImageResource(R.drawable.avatar_11);
+                    } else {
+                        viewHolder.imageViewImage.setImageResource(R.drawable.avatar_10);
+                    }
+                } else if(user.getRace().equals("'branco'")) {
+                    if(age > 49) {
+                        viewHolder.imageViewImage.setImageResource(R.drawable.avatar_16);
+                    } else if(age > 25) {
+                        viewHolder.imageViewImage.setImageResource(R.drawable.avatar_11);
+                    } else {
+                        viewHolder.imageViewImage.setImageResource(R.drawable.avatar_15);
+                    }
                 }
             }
+
         } finally {
             return view;
         }
