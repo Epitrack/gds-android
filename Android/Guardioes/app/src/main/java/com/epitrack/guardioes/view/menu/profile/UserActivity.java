@@ -306,7 +306,7 @@ public class UserActivity extends BaseAppCompatActivity {
                             File file = new File(profileImage.getUri().getPath());
 
                             if (!file.exists()) {
-                                if (gender.equals("M")) {
+                                /*if (gender.equals("M")) {
                                     if (race.equals("branco") || race.equals("amarelo")) {
                                         imageViewImage.setBackgroundResource(R.drawable.image_avatar_6);
                                     } else {
@@ -319,7 +319,8 @@ public class UserActivity extends BaseAppCompatActivity {
                                     } else {
                                         imageViewImage.setBackgroundResource(R.drawable.image_avatar_7);
                                     }
-                                }
+                                }*/
+                                setAvatarProfile(race, gender, dob);
                             } else {
                                 imageViewImage.setImageURI(profileImage.getUri());
                             }
@@ -332,7 +333,7 @@ public class UserActivity extends BaseAppCompatActivity {
                                 if (!picture.equals("")) {
                                     if (picture.length() > 2) {
                                         if (picture.substring(0, 4).toLowerCase().equals("http")) {
-                                            if (gender.equals("M")) {
+                                            /*if (gender.equals("M")) {
                                                 if (race.equals("branco") || race.equals("amarelo")) {
                                                     imageViewImage.setBackgroundResource(R.drawable.image_avatar_6);
                                                 } else {
@@ -345,7 +346,8 @@ public class UserActivity extends BaseAppCompatActivity {
                                                 } else {
                                                     imageViewImage.setBackgroundResource(R.drawable.image_avatar_7);
                                                 }
-                                            }
+                                            }*/
+                                            setAvatarProfile(race, gender, dob);
                                         } else {
                                             Uri uri = Uri.parse(picture);
                                             imageViewImage.setImageURI(uri);
@@ -356,7 +358,7 @@ public class UserActivity extends BaseAppCompatActivity {
 
                                             if (drawable == null) {
                                                 imageViewImage.setImageResource(R.drawable.mask);
-                                                if (gender.equals("M")) {
+                                                /*if (gender.equals("M")) {
                                                     if (race.equals("branco") || race.equals("amarelo")) {
                                                         imageViewImage.setBackgroundResource(R.drawable.image_avatar_6);
                                                     } else {
@@ -369,14 +371,15 @@ public class UserActivity extends BaseAppCompatActivity {
                                                     } else {
                                                         imageViewImage.setBackgroundResource(R.drawable.image_avatar_7);
                                                     }
-                                                }
+                                                }*/
+                                                setAvatarProfile(race, gender, dob);
                                             }
                                         }
                                     } else {
                                         imageViewImage.setBackgroundResource(Avatar.getBy(Integer.parseInt(picture)).getSmall());
                                     }
                                 } else if (singleUser.getImageResource() == null) {
-                                    if (gender.equals("M")) {
+                                    /*if (gender.equals("M")) {
                                         if (race.equals("branco") || race.equals("amarelo")) {
                                             imageViewImage.setBackgroundResource(R.drawable.image_avatar_6);
                                         } else {
@@ -389,7 +392,8 @@ public class UserActivity extends BaseAppCompatActivity {
                                         } else {
                                             imageViewImage.setBackgroundResource(R.drawable.image_avatar_7);
                                         }
-                                    }
+                                    }*/
+                                    setAvatarProfile(race, gender, dob);
                                 } else {
                                     if (singleUser.getEmail().equals(email) && !singleUser.getImageResource().equals("")) {
                                         imageViewImage.setImageBitmap(BitmapUtility.scale((singleUser.getWidthImageProfile() / 2), (singleUser.getHeightImageProfile() / 2), singleUser.getImageResource()));
@@ -448,6 +452,65 @@ public class UserActivity extends BaseAppCompatActivity {
             }
         }
     }
+
+    private void setAvatarProfile(String race, String gender, String dob) {
+        int age = DateFormat.getDateDiff(dob);
+
+        if (gender.equals("F")) {
+            if (race.equals("preto") || race.equals("indigena") || race.equals("pardo")) {
+                if(age > 49) {
+                    imageViewImage.setBackgroundResource(R.drawable.avatar_3);
+                } else if(age > 25) {
+                    imageViewImage.setBackgroundResource(R.drawable.avatar_2);
+                } else {
+                    imageViewImage.setBackgroundResource(R.drawable.avatar_1);
+                }
+            } else if(race.equals("amarelo")) {
+                if(age > 49) {
+                    imageViewImage.setBackgroundResource(R.drawable.avatar_9);
+                } else if(age > 25) {
+                    imageViewImage.setBackgroundResource(R.drawable.avatar_8);
+                } else {
+                    imageViewImage.setBackgroundResource(R.drawable.avatar_7);
+                }
+            } else if(race.equals("branco")) {
+                if(age > 49) {
+                    imageViewImage.setBackgroundResource(R.drawable.avatar_14);
+                } else if(age > 25) {
+                    imageViewImage.setBackgroundResource(R.drawable.avatar_8);
+                } else {
+                    imageViewImage.setBackgroundResource(R.drawable.avatar_13);
+                }
+            }
+        } else if (gender.equals("M")) {
+            if (race.equals("preto") || race.equals("indigena") || race.equals("pardo")) {
+                if(age > 49) {
+                    imageViewImage.setBackgroundResource(R.drawable.avatar_6);
+                } else if(age > 25) {
+                    imageViewImage.setBackgroundResource(R.drawable.avatar_5);
+                } else {
+                    imageViewImage.setBackgroundResource(R.drawable.avatar_4);
+                }
+            } else if(race.equals("amarelo")) {
+                if(age > 49) {
+                    imageViewImage.setBackgroundResource(R.drawable.avatar_12);
+                } else if(age > 25) {
+                    imageViewImage.setBackgroundResource(R.drawable.avatar_11);
+                } else {
+                    imageViewImage.setBackgroundResource(R.drawable.avatar_10);
+                }
+            } else if(race.equals("branco")) {
+                if(age > 49) {
+                    imageViewImage.setBackgroundResource(R.drawable.avatar_16);
+                } else if(age > 25) {
+                    imageViewImage.setBackgroundResource(R.drawable.avatar_11);
+                } else {
+                    imageViewImage.setBackgroundResource(R.drawable.avatar_15);
+                }
+            }
+        }
+    }
+
 
     @OnClick(R.id.image_view_image)
     public void onImage() {

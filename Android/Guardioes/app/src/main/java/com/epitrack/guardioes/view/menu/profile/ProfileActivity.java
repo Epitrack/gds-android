@@ -20,6 +20,7 @@ import com.epitrack.guardioes.request.Requester;
 import com.epitrack.guardioes.request.SimpleRequester;
 import com.epitrack.guardioes.service.AnalyticsApplication;
 import com.epitrack.guardioes.utility.Constants;
+import com.epitrack.guardioes.utility.DateFormat;
 import com.epitrack.guardioes.utility.DialogBuilder;
 import com.epitrack.guardioes.utility.NetworkUtility;
 import com.epitrack.guardioes.view.HomeActivity;
@@ -145,17 +146,61 @@ public class ProfileActivity extends BaseAppCompatActivity implements UserListen
         if (user.getPicture().length() > 2) {
             bundle.putString("picture", user.getPicture());
         } else if (Integer.parseInt(user.getPicture()) == 0) {
-            if (user.getGender().equals("M")) {
-                if (user.getRace().equals("branco") || user.getRace().equals("amarelo")) {
-                    bundle.putString("picture", "4");
-                } else {
-                    bundle.putString("picture", "3");
+            int age = DateFormat.getDateDiff(user.getDob());
+
+            if (user.getGender().equals("F")) {
+                if (user.getRace().equals("preto") || user.getRace().equals("indigena") || user.getRace().equals("pardo")) {
+                    if(age > 49) {
+                        bundle.putString("picture", "3");
+                    } else if(age > 25) {
+                        bundle.putString("picture", "2");
+                    } else {
+                        bundle.putString("picture", "1");
+                    }
                 }
-            } else {
-                if (user.getRace().equals("branco") || singleUser.getRace().equals("amarelo")) {
-                    bundle.putString("picture", "8");
-                } else {
-                    bundle.putString("picture", "7");
+                else if(user.getRace().equals("amarelo"))
+                {
+                    if(age > 49) {
+                        bundle.putString("picture", "9");
+                    } else if(age > 25) {
+                        bundle.putString("picture", "8");
+                    } else {
+                        bundle.putString("picture", "7");
+                    }
+                } else if(user.getRace().equals("branco")) {
+                    if(age > 49) {
+                        bundle.putString("picture", "14");
+                    } else if(age > 25) {
+                        bundle.putString("picture", "8");
+                    } else {
+                        bundle.putString("picture", "13");
+                    }
+                }
+            } else if (user.getGender().equals("M")) {
+                if (user.getRace().equals("preto") || user.getRace().equals("indigena") || user.getRace().equals("pardo")) {
+                    if(age > 49) {
+                        bundle.putString("picture", "6");
+                    } else if(age > 25) {
+                        bundle.putString("picture", "5");
+                    } else {
+                        bundle.putString("picture", "4");
+                    }
+                } else if(user.getRace().equals("amarelo")) {
+                    if(age > 49) {
+                        bundle.putString("picture", "12");
+                    } else if(age > 25) {
+                        bundle.putString("picture", "11");
+                    } else {
+                        bundle.putString("picture", "10");
+                    }
+                } else if(user.getRace().equals("branco")) {
+                    if(age > 49) {
+                        bundle.putString("picture", "16");
+                    } else if(age > 25) {
+                        bundle.putString("picture", "11");
+                    } else {
+                        bundle.putString("picture", "15");
+                    }
                 }
             }
         } else {
