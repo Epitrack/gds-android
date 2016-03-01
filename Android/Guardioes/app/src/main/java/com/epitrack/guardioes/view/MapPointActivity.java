@@ -13,6 +13,7 @@ import android.os.Handler;
 import android.os.Looper;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.Animation;
@@ -307,6 +308,7 @@ public class MapPointActivity extends AbstractBaseMapActivity {
                         JSONObject jsonObjectUpa = jsonArray.getJSONObject(i);
 
                         Point point = new Point();
+
                         point.setLatitude(jsonObjectUpa.getDouble("latitude"));
                         point.setLongitude(jsonObjectUpa.getDouble("longitude"));
 
@@ -317,7 +319,6 @@ public class MapPointActivity extends AbstractBaseMapActivity {
 
                         point.setLogradouro(formattedAddress);
                         point.setName(jsonObjectUpa.getString("name"));
-
                         pointList.add(point);
                     }
 
