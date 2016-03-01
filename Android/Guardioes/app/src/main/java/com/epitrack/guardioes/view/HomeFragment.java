@@ -298,7 +298,7 @@ public class HomeFragment extends BaseFragment {
                 } else {
                     imageViewPhoto.setImageResource(R.drawable.avatar_10);
                 }
-            } else if(singleUser.getRace().equals("'branco'")) {
+            } else if(singleUser.getRace().equals("branco")) {
                 if(age > 49) {
                     imageViewPhoto.setImageResource(R.drawable.avatar_16);
                 } else if(age > 25) {

@@ -192,7 +192,7 @@ public class SelectParticipantActivity extends BaseAppCompatActivity implements 
                 } else {
                     imageViewAvatar.setImageResource(R.drawable.avatar_10);
                 }
-            } else if(singleUser.getRace().equals("'branco'")) {
+            } else if(singleUser.getRace().equals("branco")) {
                 if(age > 49) {
                     imageViewAvatar.setImageResource(R.drawable.avatar_16);
                 } else if(age > 25) {

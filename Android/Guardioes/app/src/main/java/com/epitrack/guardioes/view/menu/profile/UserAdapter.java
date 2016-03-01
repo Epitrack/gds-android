@@ -171,7 +171,7 @@ public class UserAdapter extends ArrayAdapter<User> {
                                 } else {
                                     viewHolder.imageViewImage.setImageResource(R.drawable.avatar_10);
                                 }
-                            } else if(user.getRace().equals("'branco'")) {
+                            } else if(user.getRace().equals("branco")) {
                                 if(age > 49) {
                                     viewHolder.imageViewImage.setImageResource(R.drawable.avatar_16);
                                 } else if(age > 25) {
@@ -243,7 +243,7 @@ public class UserAdapter extends ArrayAdapter<User> {
                                         } else {
                                             viewHolder.imageViewImage.setImageResource(R.drawable.avatar_10);
                                         }
-                                    } else if(user.getRace().equals("'branco'")) {
+                                    } else if(user.getRace().equals("branco")) {
                                         if(age > 49) {
                                             viewHolder.imageViewImage.setImageResource(R.drawable.avatar_16);
                                         } else if(age > 25) {
@@ -312,7 +312,7 @@ public class UserAdapter extends ArrayAdapter<User> {
                             } else {
                                 viewHolder.imageViewImage.setImageResource(R.drawable.avatar_10);
                             }
-                        } else if(user.getRace().equals("'branco'")) {
+                        } else if(user.getRace().equals("branco")) {
                             if(age > 49) {
                                 viewHolder.imageViewImage.setImageResource(R.drawable.avatar_16);
                             } else if(age > 25) {
@@ -380,7 +380,7 @@ public class UserAdapter extends ArrayAdapter<User> {
                             } else {
                                 viewHolder.imageViewImage.setImageResource(R.drawable.avatar_10);
                             }
-                        } else if(user.getRace().equals("'branco'")) {
+                        } else if(user.getRace().equals("branco")) {
                             if(age > 49) {
                                 viewHolder.imageViewImage.setImageResource(R.drawable.avatar_16);
                             } else if(age > 25) {
@@ -448,7 +448,7 @@ public class UserAdapter extends ArrayAdapter<User> {
                     } else {
                         viewHolder.imageViewImage.setImageResource(R.drawable.avatar_10);
                     }
-                } else if(user.getRace().equals("'branco'")) {
+                } else if(user.getRace().equals("branco")) {
                     if(age > 49) {
                         viewHolder.imageViewImage.setImageResource(R.drawable.avatar_16);
                     } else if(age > 25) {
