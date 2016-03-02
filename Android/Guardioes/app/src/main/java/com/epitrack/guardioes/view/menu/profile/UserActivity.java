@@ -306,20 +306,6 @@ public class UserActivity extends BaseAppCompatActivity {
                             File file = new File(profileImage.getUri().getPath());
 
                             if (!file.exists()) {
-                                /*if (gender.equals("M")) {
-                                    if (race.equals("branco") || race.equals("amarelo")) {
-                                        imageViewImage.setBackgroundResource(R.drawable.image_avatar_6);
-                                    } else {
-                                        imageViewImage.setBackgroundResource(R.drawable.image_avatar_4);
-                                    }
-                                } else {
-
-                                    if (race.equals("branco") || race.equals("amarelo")) {
-                                        imageViewImage.setBackgroundResource(R.drawable.image_avatar_8);
-                                    } else {
-                                        imageViewImage.setBackgroundResource(R.drawable.image_avatar_7);
-                                    }
-                                }*/
                                 setAvatarProfile(race, gender, dob);
                             } else {
                                 imageViewImage.setImageURI(profileImage.getUri());
@@ -333,20 +319,6 @@ public class UserActivity extends BaseAppCompatActivity {
                                 if (!picture.equals("")) {
                                     if (picture.length() > 2) {
                                         if (picture.substring(0, 4).toLowerCase().equals("http")) {
-                                            /*if (gender.equals("M")) {
-                                                if (race.equals("branco") || race.equals("amarelo")) {
-                                                    imageViewImage.setBackgroundResource(R.drawable.image_avatar_6);
-                                                } else {
-                                                    imageViewImage.setBackgroundResource(R.drawable.image_avatar_4);
-                                                }
-                                            } else {
-
-                                                if (race.equals("branco") || race.equals("amarelo")) {
-                                                    imageViewImage.setBackgroundResource(R.drawable.image_avatar_8);
-                                                } else {
-                                                    imageViewImage.setBackgroundResource(R.drawable.image_avatar_7);
-                                                }
-                                            }*/
                                             setAvatarProfile(race, gender, dob);
                                         } else {
                                             Uri uri = Uri.parse(picture);
@@ -358,20 +330,6 @@ public class UserActivity extends BaseAppCompatActivity {
 
                                             if (drawable == null) {
                                                 imageViewImage.setImageResource(R.drawable.mask);
-                                                /*if (gender.equals("M")) {
-                                                    if (race.equals("branco") || race.equals("amarelo")) {
-                                                        imageViewImage.setBackgroundResource(R.drawable.image_avatar_6);
-                                                    } else {
-                                                        imageViewImage.setBackgroundResource(R.drawable.image_avatar_4);
-                                                    }
-                                                } else {
-
-                                                    if (race.equals("branco") || race.equals("amarelo")) {
-                                                        imageViewImage.setBackgroundResource(R.drawable.image_avatar_8);
-                                                    } else {
-                                                        imageViewImage.setBackgroundResource(R.drawable.image_avatar_7);
-                                                    }
-                                                }*/
                                                 setAvatarProfile(race, gender, dob);
                                             }
                                         }
@@ -379,20 +337,6 @@ public class UserActivity extends BaseAppCompatActivity {
                                         imageViewImage.setBackgroundResource(Avatar.getBy(Integer.parseInt(picture)).getSmall());
                                     }
                                 } else if (singleUser.getImageResource() == null) {
-                                    /*if (gender.equals("M")) {
-                                        if (race.equals("branco") || race.equals("amarelo")) {
-                                            imageViewImage.setBackgroundResource(R.drawable.image_avatar_6);
-                                        } else {
-                                            imageViewImage.setBackgroundResource(R.drawable.image_avatar_4);
-                                        }
-                                    } else {
-
-                                        if (race.equals("branco") || race.equals("amarelo")) {
-                                            imageViewImage.setBackgroundResource(R.drawable.image_avatar_8);
-                                        } else {
-                                            imageViewImage.setBackgroundResource(R.drawable.image_avatar_7);
-                                        }
-                                    }*/
                                     setAvatarProfile(race, gender, dob);
                                 } else {
                                     if (singleUser.getEmail().equals(email) && !singleUser.getImageResource().equals("")) {
@@ -591,9 +535,10 @@ public class UserActivity extends BaseAppCompatActivity {
 
                 }
 
-                if (singleUser.getUri() != null && (user.getNick().equals(singleUser.getNick()))) {
+                /*if (singleUser.getUri() != null && (user.getNick().equals(singleUser.getNick()))) {
                     jsonObject.put("picture", singleUser.getUri().toString());
-                } else if (photoPath != "") {
+                } else*/
+                if (photoPath != "") {
                     //jsonObject.put("picture", photoPath);
                     SharedPreferences settingsImage = getSharedPreferences(Constants.Pref.PREFS_IMAGE, 0);
                     SharedPreferences.Editor editorImage = settingsImage.edit();
@@ -603,8 +548,11 @@ public class UserActivity extends BaseAppCompatActivity {
                     SharedPreferences.Editor editorImageUserToken = settingsImageUserToken.edit();
                     editorImageUserToken.putString(Constants.Pref.PREFS_IMAGE_USER_TOKEN, photoPath);
                     editorImageUserToken.apply();
+                    singleUser.setPicture(photoPath);
+                    jsonObject.put("picture", "0");
                 } else if (userAvatar > 0) {
                     jsonObject.put("picture", userAvatar);
+                    singleUser.setPicture(String.valueOf(userAvatar));
                 } else {
                     if (newMenber) {
                         jsonObject.put("picture", "0");
@@ -790,6 +738,7 @@ public class UserActivity extends BaseAppCompatActivity {
                                     .show();
                         } else if (mainMember) {
                             lookup();
+
                             new DialogBuilder(UserActivity.this).load()
                                     .title(R.string.attention)
                                     .content(R.string.generic_update_data_ok)

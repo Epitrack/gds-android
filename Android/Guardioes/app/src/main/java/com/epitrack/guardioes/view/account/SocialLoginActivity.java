@@ -336,14 +336,11 @@ public class SocialLoginActivity extends BaseAppCompatActivity implements View.O
 
     private void handleSignInResult(GoogleSignInResult result) {
         if (result.isSuccess()) {
-            // Signed in successfully, show authenticated UI.
-            //GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
             GoogleSignInAccount acct = result.getSignInAccount();
             assert acct != null;
             String personName = acct.getDisplayName();
             String personEmail = acct.getEmail();
             String personId = acct.getId();
-            //Uri personPhoto = acct.getPhotoUrl();
             int genderInt = 0;//0 for male, and 1 for female
 
             updateUI(true);

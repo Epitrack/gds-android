@@ -311,7 +311,7 @@ public class MapPointActivity extends AbstractBaseMapActivity {
             @Override
             public void run() {
 
-                try {
+               /* try {
                     final ArrayList<Point> pointList = new ArrayList<Point>();
 
 
@@ -356,6 +356,26 @@ public class MapPointActivity extends AbstractBaseMapActivity {
                 } catch (ExecutionException e) {
                     e.printStackTrace();
                 } catch (JSONException e) {
+                    e.printStackTrace();
+                }*/
+
+                try {
+
+                    final InputStream inputStream = getAssets().open("upas.json");
+
+                    final List<Point> pointList = new ObjectMapper().readValue(inputStream, new TypeReference<List<Point>>() {
+                    });
+
+                    new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
+
+                        @Override
+                        public void run() {
+                            addMarker(pointList);
+                        }
+
+                    }, 2000);
+
+                } catch (IOException e) {
                     e.printStackTrace();
                 }
             }
