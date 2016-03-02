@@ -74,6 +74,7 @@ public final class Constants {
         public static final String GOOGLE = "google";
         public static final String FACEBOOK = "facebook";
         public static final String TWITTER = "twitter";
+        public static final String EMAIL = "email";
         public static final String ACCESS_SOCIAL = "access_social";
     }
 

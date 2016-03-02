@@ -38,6 +38,7 @@ import com.epitrack.guardioes.view.HomeActivity;
 import com.epitrack.guardioes.request.Method;
 import com.epitrack.guardioes.view.menu.help.Term;
 import com.epitrack.guardioes.view.menu.profile.UserActivity;
+import com.epitrack.guardioes.view.welcome.TermsAction;
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 import com.mobsandgeeks.saripaar.ValidationError;
@@ -110,6 +111,7 @@ public class CreateAccountActivity extends BaseAppCompatActivity implements Soci
     private State state = State.SOCIAL;
     private SharedPreferences sharedPreferences = null;
     private Tracker mTracker;
+    Bundle bundle;
 
     @Override
     protected void onCreate(final Bundle bundle) {
@@ -131,7 +133,7 @@ public class CreateAccountActivity extends BaseAppCompatActivity implements Soci
         mTracker = application.getDefaultTracker();
         // [END shared_tracker]
 
-        buttonMail.setEnabled(false);
+        buttonMail.setEnabled(true);
 
         getSocialFragment().setEnable(false);
 
@@ -140,12 +142,8 @@ public class CreateAccountActivity extends BaseAppCompatActivity implements Soci
 
         editTextBirthDate.addTextChangedListener(Mask.insert("##/##/####", editTextBirthDate));
 
-        // TODO: Check play service
-        // TODO: Register to GCM. Review soon..
-        // startService(new Intent(this, RegisterService.class));
-
-//        LocalBroadcastManager.getInstance(this).registerReceiver(mRegistrationBroadcastReceiver,
-//                new IntentFilter(QuickstartPreferences.REGISTRATION_COMPLETE));
+        getSocialFragment().setEnable(true);
+        getSocialFragment().isIsCreateAccount(true);
     }
 
     @Override
@@ -160,6 +158,13 @@ public class CreateAccountActivity extends BaseAppCompatActivity implements Soci
         super.onResume();
         mTracker.setScreenName("Create Account Screen - " + this.getClass().getSimpleName());
         mTracker.send(new HitBuilders.ScreenViewBuilder().build());
+
+        String bundle = getIntent().getStringExtra(Constants.Bundle.EMAIL);
+        if (bundle != null) {
+            if (bundle.equals("email")) {
+                onNextAnimation(linearLayoutNext, linearLayoutSocial);
+            }
+        }
     }
 
     @Override
@@ -286,7 +291,13 @@ public class CreateAccountActivity extends BaseAppCompatActivity implements Soci
                 .setCategory("Action")
                 .setAction("Create Account by Email Button")
                 .build());
-        onNextAnimation(linearLayoutNext, linearLayoutSocial);
+
+        bundle = new Bundle();
+
+        bundle.putString(Constants.Bundle.EMAIL, Constants.Bundle.EMAIL);
+        navigateTo(TermsAction.class, bundle);
+
+        //onNextAnimation(linearLayoutNext, linearLayoutSocial);
     }
 
     @OnClick(R.id.button_next)

@@ -5,7 +5,7 @@
 
     # Common
 
-    <string name="exit_message">Tem certeza que deseja sair do aplicativo?</string>
+    <string name="exit_message">Tem certeza que deseja sair?</string>
     <string name="permission_location_rationale">A permissão a sua localização é necessária para exibir o mapa.</string>
     <string name="permision_available_location">Permissão a sua localização liberada.</string>
     <string name="permissions_not_granted">Permissão a sua localização negada!</string>

@@ -54,6 +54,11 @@
             android:screenOrientation="portrait"
             android:theme="@style/Theme.NoActionBar" />
         <activity
+            android:name=".view.welcome.TermsAction"
+            android:exported="false"
+            android:label="@string/term"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".view.account.LoginActivity"
             android:exported="false"
             android:parentActivityName=".view.welcome.WelcomeActivity"

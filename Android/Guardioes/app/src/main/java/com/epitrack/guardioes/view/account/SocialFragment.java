@@ -18,6 +18,7 @@ import com.epitrack.guardioes.model.SingleUser;
 import com.epitrack.guardioes.utility.Constants;
 import com.epitrack.guardioes.view.Navigate;
 import com.epitrack.guardioes.view.base.BaseFragment;
+import com.epitrack.guardioes.view.welcome.TermsAction;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
@@ -53,11 +54,7 @@ import io.fabric.sdk.android.Fabric;
  */
 public class SocialFragment extends BaseFragment {
 
-    private static final int REQUEST_CODE_GOOGLE = 6667;
-    private static final int REQUEST_CODE_TWITTER = 140; // TODO: See
-    private static final int REQUEST_CODE_FACEBOOK = 64206;
-
-    private static final String FACEBOOK_PERMISSION_PUBLIC_PROFILE = "public_profile";
+    private static boolean IS_CREATE_ACCOUNT = false;
 
     @Bind(R.id.fragment_button_facebook)
     Button buttonFaceBook;
@@ -68,8 +65,6 @@ public class SocialFragment extends BaseFragment {
     @Bind(R.id.button_twitter)
     Button buttonTwitter;
 
-    //@Bind(R.id.button_access_social)
-    //Button buttonAccessSocial;
     private SocialAccountListener listener;
 
     @Override
@@ -103,37 +98,53 @@ public class SocialFragment extends BaseFragment {
         ButterKnife.unbind(this);
     }
 
-   //@OnClick(R.id.button_access_social)
-    //public void onSocial() {
-    //    navigateTo(SocialLoginActivity.class);
-    //}
 
    @OnClick(R.id.button_google)
     public void onGoogle() {
 
-        //loadGoogle(getActivity());
-        //authGoogle.connect();
-
        DTO.object = Constants.Bundle.GOOGLE;
-       navigateTo(SocialLoginActivity.class);
+
+       if (IS_CREATE_ACCOUNT) {
+           IS_CREATE_ACCOUNT = false;
+           final Bundle bundle = new Bundle();
+
+           bundle.putString(Constants.Bundle.GOOGLE, Constants.Bundle.GOOGLE);
+           navigateTo(TermsAction.class, bundle);
+       } else {
+           navigateTo(SocialLoginActivity.class);
+       }
     }
 
     @OnClick(R.id.button_twitter)
     public void onTwitter() {
 
-        //loadTwitter(getActivity().getApplicationContext());
-        //authTwitter.authorize(getActivity(), new TwitterHandler());
-
         DTO.object = Constants.Bundle.TWITTER;
-        navigateTo(SocialLoginActivity.class);
+
+        if (IS_CREATE_ACCOUNT) {
+            IS_CREATE_ACCOUNT = false;
+            final Bundle bundle = new Bundle();
+
+            bundle.putString(Constants.Bundle.TWITTER, Constants.Bundle.TWITTER);
+            navigateTo(TermsAction.class, bundle);
+        } else {
+            navigateTo(SocialLoginActivity.class);
+        }
     }
 
     @OnClick(R.id.fragment_button_facebook)
     public void onFaceBook() {
 
         DTO.object = Constants.Bundle.FACEBOOK;
-        navigateTo(SocialLoginActivity.class);
 
+        if (IS_CREATE_ACCOUNT) {
+            IS_CREATE_ACCOUNT = false;
+            final Bundle bundle = new Bundle();
+
+            bundle.putString(Constants.Bundle.FACEBOOK, Constants.Bundle.FACEBOOK);
+            navigateTo(TermsAction.class, bundle);
+        } else {
+            navigateTo(SocialLoginActivity.class);
+        }
     }
 
     public void setEnable(final boolean enable) {
@@ -141,6 +152,9 @@ public class SocialFragment extends BaseFragment {
         buttonTwitter.setEnabled(enable);
         buttonFaceBook.setEnabled(enable);
         buttonGoogle.setEnabled(enable);
-        //buttonAccessSocial.setEnabled(enable);
+    }
+
+    public void isIsCreateAccount(boolean isCreateAccount) {
+        IS_CREATE_ACCOUNT = isCreateAccount;
     }
 }
