@@ -12,6 +12,8 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.support.annotation.NonNull;
+import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.util.Log;
 import android.view.MenuItem;
@@ -74,6 +76,9 @@ public class MapPointActivity extends AbstractBaseMapActivity {
 
     @Bind(R.id.text_view_address)
     TextView textViewAddress;
+
+    @Bind(R.id.coordinatorLayout)
+    CoordinatorLayout coordinatorLayout;
 
     private MarkerOptions markerOption;
     private final Map<Marker, Point> pointMap = new HashMap<>();
@@ -220,6 +225,21 @@ public class MapPointActivity extends AbstractBaseMapActivity {
     @Override
     public void onMapReady(final GoogleMap map) {
         super.onMapReady(map);
+
+        String tipMap;
+
+        if(Tip.getBy(tip) == Tip.PHARMACY) {
+            tipMap = "farmácias";
+        } else {
+            tipMap = "UPAs";
+        }
+
+        Snackbar snackbar = Snackbar.make(coordinatorLayout, "Carregando " + tipMap + " no mapa", Snackbar.LENGTH_LONG);
+
+        View snackbarView = snackbar.getView();
+        snackbarView.setBackgroundResource(R.color.blue_dark);
+
+        snackbar.show();
 
         new MapAsyncTaskRunner().executeOnExecutor(Executors.newSingleThreadExecutor());
     }
