@@ -2,9 +2,11 @@ package com.epitrack.guardioes.view.account;
 
 import android.app.Dialog;
 import android.app.FragmentManager;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.app.ActionBar;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -112,6 +114,7 @@ public class CreateAccountActivity extends BaseAppCompatActivity implements Soci
     private SharedPreferences sharedPreferences = null;
     private Tracker mTracker;
     Bundle bundle;
+    String gcmToken;
 
     @Override
     protected void onCreate(final Bundle bundle) {
@@ -144,6 +147,9 @@ public class CreateAccountActivity extends BaseAppCompatActivity implements Soci
 
         getSocialFragment().setEnable(true);
         getSocialFragment().isIsCreateAccount(true);
+
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        gcmToken = sharedPreferences.getString(Constants.Push.SENDER_ID, "");
     }
 
     @Override
@@ -530,6 +536,7 @@ public class CreateAccountActivity extends BaseAppCompatActivity implements Soci
                         jRoot.put("race", user.getRace());
                         jRoot.put("platform", user.getPlatform());
                         jRoot.put("picture", "0");
+                        jRoot.put("gcm_token", gcmToken);
 
                         LocationUtility locationUtility = new LocationUtility(getApplicationContext());
 

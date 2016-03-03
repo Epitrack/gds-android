@@ -90,5 +90,6 @@ public final class Constants {
     public static class Push {
 
         public static final String SENDER = "1008511817333";
+        public static final String SENDER_ID = "SENDER_ID";
     }
 }

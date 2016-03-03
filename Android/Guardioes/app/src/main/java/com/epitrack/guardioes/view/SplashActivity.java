@@ -1,12 +1,12 @@
 package com.epitrack.guardioes.view;
 
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
@@ -19,7 +19,6 @@ import com.epitrack.guardioes.request.Method;
 import com.epitrack.guardioes.request.Requester;
 import com.epitrack.guardioes.request.SimpleRequester;
 import com.epitrack.guardioes.service.AnalyticsApplication;
-import com.epitrack.guardioes.service.BroadcastReceiver;
 import com.epitrack.guardioes.service.QuickstartPreferences;
 import com.epitrack.guardioes.service.RegistrationIntentService;
 import com.epitrack.guardioes.utility.Constants;
@@ -29,13 +28,11 @@ import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
-import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.gcm.GoogleCloudMessaging;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.IOException;
 import java.util.concurrent.ExecutionException;
 
 /**
@@ -56,6 +53,7 @@ public class SplashActivity extends BaseActivity implements Runnable {
     private static String SENDER_ID = "997325640691";
     private static final int PLAY_SERVICES_RESOLUTION_REQUEST = 9000;
     private static final String TAG = "SplashActivity";
+    private String gcmToken;
 
     @Override
     protected void onCreate(final Bundle bundle) {
@@ -84,15 +82,8 @@ public class SplashActivity extends BaseActivity implements Runnable {
         mRegistrationBroadcastReceiver = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
-                SharedPreferences sharedPreferences =
-                        PreferenceManager.getDefaultSharedPreferences(context);
-                boolean sentToken = sharedPreferences
-                        .getBoolean(QuickstartPreferences.SENT_TOKEN_TO_SERVER, false);
-                if (sentToken) {
-
-                } else {
-
-                }
+                SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+                gcmToken = sharedPreferences.getString(Constants.Push.SENDER_ID, "");
             }
         };
         // Registering BroadcastReceiver

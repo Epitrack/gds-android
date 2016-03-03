@@ -51,7 +51,9 @@ public class SelectParticipantActivity extends BaseAppCompatActivity implements 
     TextView textViewAge;
 
     @Bind(R.id.image_view_photo)
-    de.hdodenhof.circleimageview.CircleImageView imageViewAvatar;
+    ImageView imageViewAvatar;
+    //com.pkmmte.view.CircularImageView imageViewAvatar;
+    //de.hdodenhof.circleimageview.CircleImageView imageViewAvatar;
     //ImageView imageViewAvatar;
 
     @Bind(R.id.recycler_view)
