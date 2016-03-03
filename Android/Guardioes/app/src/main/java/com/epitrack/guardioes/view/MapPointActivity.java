@@ -122,11 +122,11 @@ public class MapPointActivity extends AbstractBaseMapActivity {
             if (Tip.getBy(tip) == Tip.PHARMACY) {
                 getSupportActionBar().setTitle(R.string.pharmacy);
 
-                new DialogBuilder(MapPointActivity.this).load()
+                /*new DialogBuilder(MapPointActivity.this).load()
                         .title(R.string.attention)
                         .content(R.string.alert_pharmacy)
                         .positiveText(R.string.ok)
-                        .show();
+                        .show();*/
 
             } else if (Tip.getBy(tip) == Tip.HOSPITAL) {
                 getSupportActionBar().setTitle(R.string.hospital);
@@ -234,11 +234,10 @@ public class MapPointActivity extends AbstractBaseMapActivity {
             tipMap = "UPAs";
         }
 
-        Snackbar snackbar = Snackbar.make(coordinatorLayout, "Carregando " + tipMap + " no mapa", Snackbar.LENGTH_LONG);
+        Snackbar snackbar = Snackbar.make(coordinatorLayout, "Carregando " + tipMap + " no mapa. Algumas farmácias podem não ser exibidas.", Snackbar.LENGTH_LONG);
 
         View snackbarView = snackbar.getView();
         snackbarView.setBackgroundResource(R.color.blue_dark);
-
         snackbar.show();
 
         new MapAsyncTaskRunner().executeOnExecutor(Executors.newSingleThreadExecutor());

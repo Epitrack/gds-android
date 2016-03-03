@@ -7,6 +7,8 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.view.MenuItem;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -56,6 +58,7 @@ public class ProfileActivity extends BaseAppCompatActivity implements UserListen
     private Tracker mTracker;
 
     public static ArrayList<User> userArrayList;
+    private ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(final Bundle bundle) {
@@ -69,11 +72,18 @@ public class ProfileActivity extends BaseAppCompatActivity implements UserListen
         mTracker = application.getDefaultTracker();
         // [END shared_tracker]
 
-        if (userArrayList == null) {
+        progressDialog = new ProgressDialog(ProfileActivity.this, R.style.Theme_MyProgressDialog);
+        progressDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.rgb(30, 136, 229)));
+        progressDialog.setTitle(R.string.app_name);
+        progressDialog.setMessage("Carregando...");
+        progressDialog.show();
+
+        upadteAdapter();
+        /*if (userArrayList == null) {
             userArrayList = loadProfiles();
         }
 
-        listView.setAdapter(new UserAdapter(this, userArrayList, this));
+        listView.setAdapter(new UserAdapter(this, userArrayList, this));*/
 
     }
 
@@ -86,11 +96,23 @@ public class ProfileActivity extends BaseAppCompatActivity implements UserListen
         super.onResume();
         mTracker.setScreenName("List Profile Screen - " + this.getClass().getSimpleName());
         mTracker.send(new HitBuilders.ScreenViewBuilder().build());
-        if (userArrayList == null) {
-            userArrayList = loadProfiles();
-        }
 
-        listView.setAdapter(new UserAdapter(this, userArrayList, this));
+        upadteAdapter();
+    }
+
+    private void upadteAdapter() {
+
+        final ProfileActivity me = this;
+
+        new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
+
+            @Override
+            public void run() {
+                userArrayList = loadProfiles();
+                listView.setAdapter(new UserAdapter(ProfileActivity.this, userArrayList, me));
+                progressDialog.dismiss();
+            }
+        }, 2000);
     }
 
     @Override

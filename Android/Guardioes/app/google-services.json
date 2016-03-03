@@ -11,10 +11,19 @@
         "client_id": "android:com.epitrack.guardioes",
         "client_type": 1,
         "android_client_info": {
-          "package_name": "com.epitrack.guardioes"
+          "package_name": "com.epitrack.guardioes",
+          "certificate_hash": []
         }
       },
       "oauth_client": [
+        {
+          "client_id": "997325640691-g4gofg7tndkvj1n6rqgplcffpbn3ejkt.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.epitrack.guardioes",
+            "certificate_hash": "E41AD8BA0FA47863CCA36C3D5EC35ACD5ED79A07"
+          }
+        },
         {
           "client_id": "997325640691-p7453ssirrdtkoh51tlphdmbb0lfdkg3.apps.googleusercontent.com",
           "client_type": 3
@@ -29,7 +38,7 @@
           }
         },
         "cloud_messaging_service": {
-          "status": 1,
+          "status": 2,
           "apns_config": []
         },
         "appinvite_service": {
@@ -37,7 +46,7 @@
           "other_platform_oauth_client": []
         },
         "google_signin_service": {
-          "status": 1
+          "status": 2
         },
         "ads_service": {
           "status": 1
