@@ -5,6 +5,7 @@
     <item
         android:onClick="onPhoto"
         android:title="@string/take_photo"
-        menu:showAsAction="always" />
+        menu:showAsAction="always"
+        android:visible="false"/>
 
 </menu>

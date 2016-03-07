@@ -62,7 +62,8 @@ public class MemberAdapter extends RecyclerView.Adapter<MemberAdapter.ViewHolder
         TextView textViewName;
 
         @Bind(R.id.image_view_photo)
-        de.hdodenhof.circleimageview.CircleImageView imageViewPhoto;
+        ImageView imageViewPhoto;
+        //de.hdodenhof.circleimageview.CircleImageView imageViewPhoto;
         //ImageView imageViewPhoto;
 
         @Bind(R.id.view_select)

@@ -9,6 +9,7 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.design.widget.TextInputLayout;
 import android.util.Log;
 import android.view.MenuItem;
@@ -60,6 +61,7 @@ import butterknife.OnClick;
 
 /**
  * @author Igor Morais
+ * @author Miqueias Lopes
  */
 public class UserActivity extends BaseAppCompatActivity {
 
@@ -70,8 +72,8 @@ public class UserActivity extends BaseAppCompatActivity {
     EditText editTextNickname;
 
     @Bind(R.id.image_view_image)
-    de.hdodenhof.circleimageview.CircleImageView imageViewImage;
-    //ImageView imageViewImage;
+    ImageView imageViewImage;
+    //de.hdodenhof.circleimageview.CircleImageView imageViewImage;
 
     @Bind(R.id.spinner_gender)
     Spinner spinnerGender;
@@ -111,6 +113,7 @@ public class UserActivity extends BaseAppCompatActivity {
     String photoPath = "";
     private Tracker mTracker;
     private ProfileImage profileImage = ProfileImage.getInstance();
+    private SharedPreferences shpGCMToken;
 
     @Override
     protected void onCreate(final Bundle bundle) {
@@ -121,6 +124,8 @@ public class UserActivity extends BaseAppCompatActivity {
         AnalyticsApplication application = (AnalyticsApplication) getApplication();
         mTracker = application.getDefaultTracker();
         // [END shared_tracker]
+
+        shpGCMToken = PreferenceManager.getDefaultSharedPreferences(UserActivity.this);
 
         profileImage = ProfileImage.getInstance();
 
@@ -598,8 +603,10 @@ public class UserActivity extends BaseAppCompatActivity {
                     if (newMenber) {
                         jsonObject.put("user", singleUser.getId());
                     } else if (mainMember) {
+                        jsonObject.put("gcm_token", shpGCMToken.getString(Constants.Push.SENDER_ID, ""));
                         jsonObject.put("id", singleUser.getId());
                     } else {
+                        jsonObject.put("gcm_token", shpGCMToken.getString(Constants.Push.SENDER_ID, ""));
                         jsonObject.put("id", getIntent().getStringExtra("id"));
                     }
 
@@ -618,6 +625,7 @@ public class UserActivity extends BaseAppCompatActivity {
                     jsonObject.put("tw", singleUser.getTw());
                     jsonObject.put("fb", singleUser.getFb());
                     jsonObject.put("picture", "0");
+                    jsonObject.put("gcm_token", shpGCMToken.getString(Constants.Push.SENDER_ID, ""));
 
                     try {
                         locationUtility = new LocationUtility(getApplicationContext());
@@ -856,12 +864,12 @@ public class UserActivity extends BaseAppCompatActivity {
 
                 JSONObject jsonObjectUser = jsonObject.getJSONObject("data");
 
-                singleUser.setNick(jsonObjectUser.getString("nick").toString());
-                singleUser.setEmail(jsonObjectUser.getString("email").toString());
-                singleUser.setGender(jsonObjectUser.getString("gender").toString());
-                singleUser.setId(jsonObjectUser.getString("id").toString());
-                singleUser.setRace(jsonObjectUser.getString("race").toString());
-                singleUser.setDob(jsonObjectUser.getString("dob").toString());
+                singleUser.setNick(jsonObjectUser.getString("nick"));
+                singleUser.setEmail(jsonObjectUser.getString("email"));
+                singleUser.setGender(jsonObjectUser.getString("gender"));
+                singleUser.setId(jsonObjectUser.getString("id"));
+                singleUser.setRace(jsonObjectUser.getString("race"));
+                singleUser.setDob(jsonObjectUser.getString("dob"));
                 singleUser.setUser_token(jsonObjectUser.get("token").toString());
 
                 try {

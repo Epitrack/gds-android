@@ -72,13 +72,13 @@ public class ProfileActivity extends BaseAppCompatActivity implements UserListen
         mTracker = application.getDefaultTracker();
         // [END shared_tracker]
 
-        progressDialog = new ProgressDialog(ProfileActivity.this, R.style.Theme_MyProgressDialog);
-        progressDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.rgb(30, 136, 229)));
-        progressDialog.setTitle(R.string.app_name);
-        progressDialog.setMessage("Carregando...");
-        progressDialog.show();
+        //progressDialog = new ProgressDialog(ProfileActivity.this, R.style.Theme_MyProgressDialog);
+        //progressDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.rgb(30, 136, 229)));
+        //progressDialog.setTitle(R.string.app_name);
+        //progressDialog.setMessage("Carregando...");
+        //progressDialog.show();
 
-        upadteAdapter();
+        //upadteAdapter();
         /*if (userArrayList == null) {
             userArrayList = loadProfiles();
         }
@@ -93,11 +93,17 @@ public class ProfileActivity extends BaseAppCompatActivity implements UserListen
 
     @Override
     protected void onResume() {
+        progressDialog = new ProgressDialog(ProfileActivity.this, R.style.Theme_MyProgressDialog);
+        progressDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.rgb(30, 136, 229)));
+        progressDialog.setTitle(R.string.app_name);
+        progressDialog.setMessage("Carregando...");
+        progressDialog.show();
+
+        upadteAdapter();
+
         super.onResume();
         mTracker.setScreenName("List Profile Screen - " + this.getClass().getSimpleName());
         mTracker.send(new HitBuilders.ScreenViewBuilder().build());
-
-        upadteAdapter();
     }
 
     private void upadteAdapter() {

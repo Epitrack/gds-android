@@ -62,6 +62,7 @@ public class HomeFragment extends BaseFragment {
 
     @Bind(R.id.image_view_photo)
     ImageView imageViewPhoto;
+    //ImageView imageViewPhoto;
     //de.hdodenhof.circleimageview.CircleImageView imageViewPhoto;
 
     @Bind(R.id.linear_layout_menu_home)
@@ -299,6 +300,9 @@ public class HomeFragment extends BaseFragment {
         super.onResume();
         //mTracker.setScreenName("Home Screen - " + this.getClass().getSimpleName());
         //mTracker.send(new HitBuilders.ScreenViewBuilder().build());
+        String text = getString(R.string.message_hello);
+        text = text.replace("{0}", singleUser.getNick());
+        textViewName.setText(text);
         loadImageProfile();
     }
 
@@ -388,7 +392,16 @@ public class HomeFragment extends BaseFragment {
             progressDialog.setMessage("Carregando...");
             progressDialog.show();
 
-            navigateTo(MapSymptomActivity.class);
+            new Thread() {
+
+                @Override
+                public void run() {
+                    getNoticeList();
+                    progressDialog.dismiss();
+                    navigateTo(MapSymptomActivity.class);
+                }
+
+            }.start();
 
         } else {
 

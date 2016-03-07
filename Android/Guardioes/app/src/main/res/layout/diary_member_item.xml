@@ -4,19 +4,19 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/image_view_photo"
-        android:layout_width="68dp"
-        android:layout_height="68dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp" />
-
-    <!--<ImageView
+    <!--<de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/image_view_photo"
         android:layout_width="68dp"
         android:layout_height="68dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp" />-->
+
+    <ImageView
+        android:id="@+id/image_view_photo"
+        android:layout_width="68dp"
+        android:layout_height="68dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp" />
 
     <View
         android:id="@+id/view_select"

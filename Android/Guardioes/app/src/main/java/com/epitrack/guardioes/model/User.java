@@ -42,6 +42,7 @@ public class User {
     private Uri uri;
     private String relationship;
     private String versionBuild;
+    private String gcmToken;
 
     public User() {
 
@@ -348,5 +349,13 @@ public class User {
         this.uri = null;
         this.relationship = "";
         this.versionBuild = "";
+    }
+
+    public String getGcmToken() {
+        return gcmToken;
+    }
+
+    public void setGcmToken(String gcmToken) {
+        this.gcmToken = gcmToken;
     }
 }

@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.IntentSender;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.app.ActionBar;
 import android.view.MenuItem;
 import android.view.View;
@@ -429,6 +430,9 @@ public class SocialLoginActivity extends BaseAppCompatActivity implements View.O
                     jsonObject = new JSONObject();
                     jsonObject.put("email", email);
                     jsonObject.put("password", password);
+
+                    SharedPreferences shpGCMToken = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+                    jsonObject.put("gcm_token", shpGCMToken.getString(Constants.Push.SENDER_ID, ""));
 
                     simpleRequester = new SimpleRequester();
                     simpleRequester.setUrl(Requester.API_URL + "user/login");

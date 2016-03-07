@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.app.ActionBar;
 import android.text.InputType;
 import android.view.MenuItem;
@@ -68,6 +69,7 @@ public class LoginActivity extends BaseAppCompatActivity implements SocialAccoun
     private Validator validator;
     SharedPreferences sharedPreferences = null;
     private Tracker mTracker;
+    private SharedPreferences shpGCMToken;
 
     @Override
     protected void onCreate(final Bundle bundle) {
@@ -88,6 +90,8 @@ public class LoginActivity extends BaseAppCompatActivity implements SocialAccoun
         // [END shared_tracker]
 
         actionBar.setDisplayShowTitleEnabled(false);
+
+        shpGCMToken = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
 
         sharedPreferences = getSharedPreferences(Constants.Pref.PREFS_NAME, 0);
         String prefUserToken = sharedPreferences.getString(Constants.Pref.PREFS_NAME, "");
@@ -131,6 +135,7 @@ public class LoginActivity extends BaseAppCompatActivity implements SocialAccoun
                     singleUser.setRace(jsonObjectUser.getString("race").toString());
                     singleUser.setDob(jsonObjectUser.getString("dob").toString());
                     singleUser.setUser_token(jsonObjectUser.get("token").toString());
+                    jsonObject.put("gcm_token", shpGCMToken.getString(Constants.Push.SENDER_ID, ""));
 
                     if (prefUserToken == prefImagUserToken) {
                         singleUser.setPicture(prefUserToken);
@@ -356,6 +361,7 @@ public class LoginActivity extends BaseAppCompatActivity implements SocialAccoun
             try {
                 jsonObject.put("email", user.getEmail());
                 jsonObject.put("password", user.getPassword());
+
 
                 SimpleRequester sendPostRequest = new SimpleRequester();
                 sendPostRequest.setUrl(Requester.API_URL + "user/login");
