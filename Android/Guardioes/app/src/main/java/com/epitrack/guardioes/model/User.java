@@ -4,9 +4,19 @@ import android.graphics.Bitmap;
 
 import org.json.JSONArray;
 
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.support.annotation.Nullable;
+
+import com.epitrack.guardioes.R;
+import com.epitrack.guardioes.view.menu.profile.Avatar;
+import com.github.siyamed.shapeimageview.CircularImageView;
+
+import java.io.File;
+
+import butterknife.Bind;
 
 public class User {
 
@@ -43,6 +53,7 @@ public class User {
     private String relationship;
     private String versionBuild;
     private String gcmToken;
+    private String file;
 
     public User() {
 
@@ -85,6 +96,19 @@ public class User {
         this.gender = gender;
         this.picture = picture;
         this.relationship = relationship;
+    }
+
+    public User(int image, String nick, String email, String id, String dob, String race, String gender, String picture, String relationship, String file) {
+        this.image = image;
+        this.nick = nick;
+        this.email = email;
+        this.id = id;
+        this.dob = dob;
+        this.race = race;
+        this.gender = gender;
+        this.picture = picture;
+        this.relationship = relationship;
+        this.file = file;
     }
 
     public int getImage() {
@@ -358,4 +382,80 @@ public class User {
     public void setGcmToken(String gcmToken) {
         this.gcmToken = gcmToken;
     }
+
+    public String getFile() {
+        return file;
+    }
+
+    public void setFile(String file) {
+        this.file = file;
+    }
+
+
+    public CircularImageView getImageProfile(CircularImageView imageView, User user) {
+
+        if (user == null) {
+            user = SingleUser.getInstance();
+        }
+
+        if (user.getFile() == null) {
+            user.setFile("");
+        }
+
+        if (user.getPicture().equals("0") && !user.getFile().equals("")) {
+
+            File file = new File(user.getFile());
+
+            if (!file.exists()) {
+                Uri uri = Uri.parse(user.getFile());
+                imageView.setImageURI(uri);
+                Drawable drawable = imageView.getDrawable();
+                imageView.setImageDrawable(drawable);
+            }
+        } else if (user.getPicture().equals("0")){
+            if (user.getGender().equals("F")) {
+                switch (user.getRace()) {
+                    case "branco":
+                        imageView.setImageResource(Avatar.getBy(Integer.parseInt("8")).getLarge());
+                        break;
+                    case "preto":
+                        imageView.setImageResource(Avatar.getBy(Integer.parseInt("1")).getLarge());
+                        break;
+                    case "pardo":
+                        imageView.setImageResource(Avatar.getBy(Integer.parseInt("2")).getLarge());
+                        break;
+                    case "amarelo":
+                        imageView.setImageResource(Avatar.getBy(Integer.parseInt("7")).getLarge());
+                        break;
+                    case "indigena":
+                        imageView.setImageResource(Avatar.getBy(Integer.parseInt("8")).getLarge());
+                        break;
+                }
+            } else {
+                switch (user.getGender()) {
+                    case "branco":
+                        imageView.setImageResource(Avatar.getBy(Integer.parseInt("11")).getLarge());
+                        break;
+                    case "preto":
+                        imageView.setImageResource(Avatar.getBy(Integer.parseInt("5")).getLarge());
+                        break;
+                    case "pardo":
+                        imageView.setImageResource(Avatar.getBy(Integer.parseInt("4")).getLarge());
+                        break;
+                    case "amarelo":
+                        imageView.setImageResource(Avatar.getBy(Integer.parseInt("10")).getLarge());
+                        break;
+                    case "indigena":
+                        imageView.setImageResource(Avatar.getBy(Integer.parseInt("4")).getLarge());
+                        break;
+                }
+            }
+        } else {
+            imageView.setImageResource(Avatar.getBy(Integer.parseInt(user.getPicture())).getLarge());
+        }
+
+
+        return imageView;
+    }
+
 }

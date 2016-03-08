@@ -62,7 +62,7 @@ public class MemberAdapter extends RecyclerView.Adapter<MemberAdapter.ViewHolder
         TextView textViewName;
 
         @Bind(R.id.image_view_photo)
-        ImageView imageViewPhoto;
+        com.github.siyamed.shapeimageview.CircularImageView imageViewPhoto;
         //de.hdodenhof.circleimageview.CircleImageView imageViewPhoto;
         //ImageView imageViewPhoto;
 
@@ -141,9 +141,13 @@ public class MemberAdapter extends RecyclerView.Adapter<MemberAdapter.ViewHolder
         userId = parent.getId();
         viewHolder.textViewId.setText(userId);
 
-        if (parent.getPicture().equals("")) {
+        viewHolder.imageViewPhoto = singleUser.getImageProfile(viewHolder.imageViewPhoto, parent);
+
+        /*if (parent.getPicture().equals("")) {
             parent.setPicture("0");
         }
+
+        viewHolder.imageViewPhoto = singleUser.getImageProfile(viewHolder.imageViewPhoto, parent);
 
         if (parent.getPicture().length() > 2) {
             String url = parent.getPicture();
@@ -189,7 +193,7 @@ public class MemberAdapter extends RecyclerView.Adapter<MemberAdapter.ViewHolder
             } else {
                 viewHolder.imageViewPhoto.setImageResource(Avatar.getBy(Integer.parseInt(parent.getPicture())).getLarge());
             }
-        }
+        }*/
 
     }
 

@@ -93,27 +93,17 @@ public class SimpleRequester extends AsyncTask<SimpleRequester, Object, String> 
     @Override
     protected void onPreExecute() {
         if (context != null) {
-            progressDialog = new ProgressDialog(context);
-            progressDialog.setTitle(R.string.app_name);
-            progressDialog.setMessage("Carregando...");
-            progressDialog.show();
         }
     }
 
     @Override
     protected void onPostExecute(String result) {
-        if (progressDialog != null) {
-            progressDialog.dismiss();
-        }
-
         this.strReturn = result;
     }
 
     @Override
     protected void onProgressUpdate(Object... values) {
-        if (progressDialog != null) {
-            progressDialog.setMessage("Carregando...");
-        }
+
     }
 
     @Override
@@ -157,11 +147,12 @@ public class SimpleRequester extends AsyncTask<SimpleRequester, Object, String> 
 
         if (method == Method.POST) {
 
-            HttpsURLConnection conn = null;
-            byte[] bytes = null;
-            conn = (HttpsURLConnection) url.openConnection();
-            //HTTPS
-            conn.setSSLSocketFactory(generateCertificate(context).getSocketFactory());
+            //HttpsURLConnection conn;
+            byte[] bytes;
+            //conn = (HttpsURLConnection) url.openConnection();
+            //conn.setSSLSocketFactory(generateCertificate(context).getSocketFactory());
+
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 
             String body = "";
             if (jsonObjSend != null) {
@@ -197,7 +188,8 @@ public class SimpleRequester extends AsyncTask<SimpleRequester, Object, String> 
             return convertStreamToString;
         } else if (method == Method.GET) {
 
-            HttpsURLConnection urlConnection;
+            //HttpsURLConnection urlConnection;
+            HttpURLConnection urlConnection;
             BufferedReader br;
 
             if (url.toString().substring(0, 12).equals("https://maps")) {
@@ -206,9 +198,10 @@ public class SimpleRequester extends AsyncTask<SimpleRequester, Object, String> 
 
                 br = new BufferedReader(new InputStreamReader(urlConn.getInputStream()));
             } else {
-                urlConnection = (HttpsURLConnection) url.openConnection();
+                //urlConnection = (HttpsURLConnection) url.openConnection();
+                urlConnection = (HttpURLConnection) url.openConnection();
                 //HTTPS
-                urlConnection.setSSLSocketFactory(generateCertificate(context).getSocketFactory());
+                //urlConnection.setSSLSocketFactory(generateCertificate(context).getSocketFactory());
 
                 if (!otherAPI) {
                     urlConnection.setRequestProperty("app_token", singleUser.getApp_token());

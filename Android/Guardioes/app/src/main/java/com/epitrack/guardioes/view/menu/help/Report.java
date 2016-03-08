@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.epitrack.guardioes.R;
+import com.epitrack.guardioes.model.SingleUser;
 import com.epitrack.guardioes.request.Method;
 import com.epitrack.guardioes.request.Requester;
 import com.epitrack.guardioes.request.SimpleRequester;
@@ -93,10 +94,12 @@ public class Report extends BaseAppCompatActivity {
                 JSONObject jsonPost = new JSONObject();
                 jsonPost.put("title", txtSubject.getText().toString().trim());
                 jsonPost.put("text", txtMessage.getText().toString().trim());
+                jsonPost.put("email", SingleUser.getInstance().getEmail());
 
                 SimpleRequester simpleRequester = new SimpleRequester();
                 simpleRequester.setMethod(Method.POST);
                 simpleRequester.setJsonObject(jsonPost);
+
                 simpleRequester.setUrl(Requester.API_URL + "email/log");
 
                 String jsonStr = simpleRequester.execute(simpleRequester).get();

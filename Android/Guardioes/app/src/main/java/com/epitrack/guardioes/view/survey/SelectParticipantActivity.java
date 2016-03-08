@@ -51,7 +51,7 @@ public class SelectParticipantActivity extends BaseAppCompatActivity implements 
     TextView textViewAge;
 
     @Bind(R.id.image_view_photo)
-    ImageView imageViewAvatar;
+    com.github.siyamed.shapeimageview.CircularImageView imageViewAvatar;
     //com.pkmmte.view.CircularImageView imageViewAvatar;
     //de.hdodenhof.circleimageview.CircleImageView imageViewAvatar;
     //ImageView imageViewAvatar;
@@ -85,55 +85,28 @@ public class SelectParticipantActivity extends BaseAppCompatActivity implements 
         textViewAge.setText(j + " Anos");
         textViewId.setText(singleUser.getId());
 
-        if (singleUser.getPicture().length() > 2) {
-            Uri uri = Uri.parse(singleUser.getPicture());
+        DisplayMetrics metrics = getResources().getDisplayMetrics();
+        int densityDpi = (int) (metrics.density * 160f);
+        int width = 0;
+        int height = 0;
 
-            DisplayMetrics metrics = getResources().getDisplayMetrics();
-            int densityDpi = (int) (metrics.density * 160f);
-            int width = 0;
-            int height = 0;
-
-            if (densityDpi == DisplayMetrics.DENSITY_LOW) {
-                width = 90;
-                height = 90;
-            } else if (densityDpi == DisplayMetrics.DENSITY_MEDIUM) {
-                width = 120;
-                height = 120;
-            } else if (densityDpi == DisplayMetrics.DENSITY_HIGH) {
-                width = 180;
-                height = 180;
-            } else if (densityDpi >= DisplayMetrics.DENSITY_XHIGH) {
-                width = 240;
-                height = 240;
-            }
-            imageViewAvatar.getLayoutParams().width = width;
-            imageViewAvatar.getLayoutParams().height = height;
-            imageViewAvatar.setImageURI(uri);
-
-            File file = new File(singleUser.getPicture());
-
-            if (!file.exists()) {
-                imageViewAvatar.setImageURI(uri);
-                Drawable drawable = imageViewAvatar.getDrawable();
-                imageViewAvatar.setImageDrawable(drawable);
-
-                if (drawable == null) {
-                    setDefaultAvatar();
-                }
-            } else {
-                imageViewAvatar.setImageURI(uri);
-            }
-        } else {
-            if (Integer.parseInt(singleUser.getPicture()) == 0) {
-                setDefaultAvatar();
-            } else {
-                try {
-                    imageViewAvatar.setImageResource(Avatar.getBy(Integer.parseInt(singleUser.getPicture())).getLarge());
-                } catch (Exception e) {
-                    setDefaultAvatar();
-                }
-            }
+        if (densityDpi == DisplayMetrics.DENSITY_LOW) {
+            width = 90;
+            height = 90;
+        } else if (densityDpi == DisplayMetrics.DENSITY_MEDIUM) {
+            width = 120;
+            height = 120;
+        } else if (densityDpi == DisplayMetrics.DENSITY_HIGH) {
+            width = 180;
+            height = 180;
+        } else if (densityDpi >= DisplayMetrics.DENSITY_XHIGH) {
+            width = 240;
+            height = 240;
         }
+        imageViewAvatar.getLayoutParams().width = width;
+        imageViewAvatar.getLayoutParams().height = height;
+
+        imageViewAvatar = singleUser.getImageProfile(imageViewAvatar, null);
 
         recyclerView.setHasFixedSize(true);
 

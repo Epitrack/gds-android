@@ -46,9 +46,15 @@
             android:id="@+id/image_view_photo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/image_avatar_3" />-->
+            android:src="@drawable/image_avatar_3" />
 
         <ImageView
+            android:id="@+id/image_view_photo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/image_avatar_3" />-->
+
+        <com.github.siyamed.shapeimageview.CircularImageView
             android:id="@+id/image_view_photo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

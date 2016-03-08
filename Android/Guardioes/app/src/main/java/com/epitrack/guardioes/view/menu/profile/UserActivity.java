@@ -72,7 +72,7 @@ public class UserActivity extends BaseAppCompatActivity {
     EditText editTextNickname;
 
     @Bind(R.id.image_view_image)
-    ImageView imageViewImage;
+    com.github.siyamed.shapeimageview.CircularImageView imageViewImage;
     //de.hdodenhof.circleimageview.CircleImageView imageViewImage;
 
     @Bind(R.id.spinner_gender)
@@ -182,6 +182,7 @@ public class UserActivity extends BaseAppCompatActivity {
         String email;
         String picture;
         String relationship;
+        String file;
 
         if (socialNew) {
             nick = singleUser.getNick();
@@ -191,6 +192,7 @@ public class UserActivity extends BaseAppCompatActivity {
             email = singleUser.getEmail();
             picture = singleUser.getPicture();
             relationship = null;
+            file = "";
         } else {
             nick = getIntent().getStringExtra("nick");
             dob = getIntent().getStringExtra("dob");
@@ -199,267 +201,138 @@ public class UserActivity extends BaseAppCompatActivity {
             email = getIntent().getStringExtra("email");
             picture = getIntent().getStringExtra("picture");
             relationship = getIntent().getStringExtra("relationship");
+            file = getIntent().getStringExtra("file");
         }
 
         if (!newMenber || socialNew) {
-            try {
-                    editTextNickname.setText(nick);
+            editTextNickname.setText(nick);
 
-                    if (dob != null) {
-                        String dateFormat = DateFormat.getDate(dob, "dd/MM/yyyy");
-                        editTextBirthDate.setText(dateFormat);
-                        //Mask.insert("##/##/####", editTextBirthDate);
+            if (dob != null) {
+                String dateFormat = DateFormat.getDate(dob, "dd/MM/yyyy");
+                editTextBirthDate.setText(dateFormat);
+            }
+            editTextMail.setText(email);
 
-                    }
-                    editTextMail.setText(email);
-
-                    if (race != null) {
-                        if (race.equals("branco")) {
-                            spinnerRace.setSelection(0);
-                        } else if (race.equals("preto")) {
-                            spinnerRace.setSelection(1);
-                        } else if (race.equals("pardo")) {
-                            spinnerRace.setSelection(2);
-                        } else if (race.equals("amarelo")) {
-                            spinnerRace.setSelection(3);
-                        } else if (race.equals("indígena")) {
-                            spinnerRace.setSelection(4);
-                        }
-                    }
-
-                    if (race == null) {
-                        race = "branco";
-                    }
-
-                    if (relationship != null) {
-                        switch (relationship) {
-                            case "pai":
-                                spinnerRelationship.setSelection(0);
-                                break;
-                            case "mae":
-                                spinnerRelationship.setSelection(1);
-                                break;
-                            case "filho":
-                                spinnerRelationship.setSelection(2);
-                                break;
-                            case "irmao":
-                                spinnerRelationship.setSelection(3);
-                                break;
-                            case "avo":
-                                spinnerRelationship.setSelection(4);
-                                break;
-                            case "neto":
-                                spinnerRelationship.setSelection(5);
-                                break;
-                            case "tio":
-                                spinnerRelationship.setSelection(6);
-                                break;
-                            case "sobrinho":
-                                spinnerRelationship.setSelection(7);
-                                break;
-                            case "bisavo":
-                                spinnerRelationship.setSelection(8);
-                                break;
-                            case "bisneto":
-                                spinnerRelationship.setSelection(9);
-                                break;
-                            case "primo":
-                                spinnerRelationship.setSelection(10);
-                                break;
-                            case "sogro":
-                                spinnerRelationship.setSelection(11);
-                                break;
-                            case "genro":
-                                spinnerRelationship.setSelection(12);
-                                break;
-                            case "nora":
-                                spinnerRelationship.setSelection(13);
-                                break;
-                            case "padrasto":
-                                spinnerRelationship.setSelection(14);
-                                break;
-                            case "madrasta":
-                                spinnerRelationship.setSelection(15);
-                                break;
-                            case "enteado":
-                                spinnerRelationship.setSelection(16);
-                                break;
-                            case "conjuge":
-                                spinnerRelationship.setSelection(17);
-                                break;
-                            case "outros":
-                                spinnerRelationship.setSelection(18);
-                                break;
-                            default:
-                                spinnerRelationship.setSelection(18);
-                                break;
-                        }
-                    }
-
-                    if (gender != null) {
-                        if (gender.equals("M")) {
-                            spinnerGender.setSelection(0);
-                        } else {
-                            spinnerGender.setSelection(1);
-                        }
-
-                        if (profileImage.getAvatar() != null) {
-                            if (!profileImage.getAvatar().equals("")) {
-                                imageViewImage.setBackgroundResource(Avatar.getBy(Integer.parseInt(profileImage.getAvatar())).getSmall());
-                            }
-                        } else if (profileImage.getUri() != null) {
-                            File file = new File(profileImage.getUri().getPath());
-
-                            if (!file.exists()) {
-                                setAvatarProfile(race, gender, dob);
-                            } else {
-                                imageViewImage.setImageURI(profileImage.getUri());
-                            }
-                        } else {
-
-                            if (singleUser.getUri() != null && (email.equals(singleUser.getEmail()))) {
-                                imageViewImage.setImageURI(singleUser.getUri());
-                            } else {
-
-                                if (!picture.equals("")) {
-                                    if (picture.length() > 2) {
-                                        if (picture.substring(0, 4).toLowerCase().equals("http")) {
-                                            setAvatarProfile(race, gender, dob);
-                                        } else {
-                                            Uri uri = Uri.parse(picture);
-                                            imageViewImage.setImageURI(uri);
-
-                                            Drawable drawable = imageViewImage.getDrawable();
-                                            imageViewImage.setBackground(drawable);
-                                            imageViewImage.setImageResource(R.drawable.mask);
-
-                                            if (drawable == null) {
-                                                imageViewImage.setImageResource(R.drawable.mask);
-                                                setAvatarProfile(race, gender, dob);
-                                            }
-                                        }
-                                    } else {
-                                        imageViewImage.setBackgroundResource(Avatar.getBy(Integer.parseInt(picture)).getSmall());
-                                    }
-                                } else if (singleUser.getImageResource() == null) {
-                                    setAvatarProfile(race, gender, dob);
-                                } else {
-                                    if (singleUser.getEmail().equals(email) && !singleUser.getImageResource().equals("")) {
-                                        imageViewImage.setImageBitmap(BitmapUtility.scale((singleUser.getWidthImageProfile() / 2), (singleUser.getHeightImageProfile() / 2), singleUser.getImageResource()));
-                                    }
-                                }
-                            }
-                        }
-                    }
-
-                    if (mainMember) {
-                        textViewMessage.setText(R.string.message_fields);
-
-                        textLayoutMail.setVisibility(View.VISIBLE);
-                        editTextMail.setVisibility(View.VISIBLE);
-
-                        linearLayoutPassword.setVisibility(View.VISIBLE);
-
-                        if (profileImage.getAvatar() != null) {
-                            if (!profileImage.getAvatar().equals("")) {
-                                imageViewImage.setBackgroundResource(Avatar.getBy(Integer.parseInt(profileImage.getAvatar())).getSmall());
-                            }
-                        } else if (profileImage.getUri() != null) {
-                            imageViewImage.setImageURI(profileImage.getUri());
-                        } else {
-                            if (Integer.parseInt(singleUser.getPicture()) > 0) {
-                                imageViewImage.setBackgroundResource(Avatar.getBy(Integer.parseInt(singleUser.getPicture())).getSmall());
-                            }
-                        }
-                    } else if (socialNew) {
-                        if (singleUser.getEmail() == null) {
-                            textLayoutMail.setVisibility(View.VISIBLE);
-                            editTextMail.setEnabled(true);
-                            editTextMail.setVisibility(View.VISIBLE);
-                        }
-                    } else if (newMenber) {
-                        textLayoutMail.setVisibility(View.VISIBLE);
-                        editTextMail.setEnabled(true);
-                        editTextMail.setVisibility(View.VISIBLE);
-                    } else {
-                        textLayoutMail.setVisibility(View.VISIBLE);
-                        editTextMail.setEnabled(true);
-                        editTextMail.setVisibility(View.VISIBLE);
-                    }
-
-                } catch (Exception e) {
-
-                e.printStackTrace();
-            } finally {
-                if (profileImage.getAvatar() != null) {
-                    profileImage.setAvatar(null);
+            if (race != null) {
+                if (race.equals("branco")) {
+                    spinnerRace.setSelection(0);
+                } else if (race.equals("preto")) {
+                    spinnerRace.setSelection(1);
+                } else if (race.equals("pardo")) {
+                    spinnerRace.setSelection(2);
+                } else if (race.equals("amarelo")) {
+                    spinnerRace.setSelection(3);
+                } else if (race.equals("indígena")) {
+                    spinnerRace.setSelection(4);
                 }
+            }
 
-                if (profileImage.getUri() != null) {
-                    profileImage.setUri(null);
+            if (relationship != null) {
+                switch (relationship) {
+                    case "pai":
+                        spinnerRelationship.setSelection(0);
+                        break;
+                    case "mae":
+                        spinnerRelationship.setSelection(1);
+                        break;
+                    case "filho":
+                        spinnerRelationship.setSelection(2);
+                        break;
+                    case "irmao":
+                        spinnerRelationship.setSelection(3);
+                        break;
+                    case "avo":
+                        spinnerRelationship.setSelection(4);
+                        break;
+                    case "neto":
+                        spinnerRelationship.setSelection(5);
+                        break;
+                    case "tio":
+                        spinnerRelationship.setSelection(6);
+                        break;
+                    case "sobrinho":
+                        spinnerRelationship.setSelection(7);
+                        break;
+                    case "bisavo":
+                        spinnerRelationship.setSelection(8);
+                        break;
+                    case "bisneto":
+                        spinnerRelationship.setSelection(9);
+                        break;
+                    case "primo":
+                        spinnerRelationship.setSelection(10);
+                        break;
+                    case "sogro":
+                        spinnerRelationship.setSelection(11);
+                        break;
+                    case "genro":
+                        spinnerRelationship.setSelection(12);
+                        break;
+                    case "nora":
+                        spinnerRelationship.setSelection(13);
+                        break;
+                    case "padrasto":
+                        spinnerRelationship.setSelection(14);
+                        break;
+                    case "madrasta":
+                        spinnerRelationship.setSelection(15);
+                        break;
+                    case "enteado":
+                        spinnerRelationship.setSelection(16);
+                        break;
+                    case "conjuge":
+                        spinnerRelationship.setSelection(17);
+                        break;
+                    case "outros":
+                        spinnerRelationship.setSelection(18);
+                        break;
+                    default:
+                        spinnerRelationship.setSelection(18);
+                        break;
+                }
+            }
+
+            if (gender != null) {
+                if (gender.equals("M")) {
+                    spinnerGender.setSelection(0);
+                } else {
+                    spinnerGender.setSelection(1);
                 }
             }
         }
-    }
 
-    private void setAvatarProfile(String race, String gender, String dob) {
-        int age = DateFormat.getDateDiff(dob);
+        if (mainMember) {
+            textViewMessage.setText(R.string.message_fields);
+            textLayoutMail.setVisibility(View.VISIBLE);
+            linearLayoutPassword.setVisibility(View.VISIBLE);
+            editTextMail.setEnabled(true);
+            editTextMail.setVisibility(View.VISIBLE);
 
-        if (gender.equals("F")) {
-            if (race.equals("preto") || race.equals("indigena") || race.equals("pardo")) {
-                if(age > 49) {
-                    imageViewImage.setBackgroundResource(R.drawable.avatar_3);
-                } else if(age > 25) {
-                    imageViewImage.setBackgroundResource(R.drawable.avatar_2);
-                } else {
-                    imageViewImage.setBackgroundResource(R.drawable.avatar_1);
-                }
-            } else if(race.equals("amarelo")) {
-                if(age > 49) {
-                    imageViewImage.setBackgroundResource(R.drawable.avatar_9);
-                } else if(age > 25) {
-                    imageViewImage.setBackgroundResource(R.drawable.avatar_8);
-                } else {
-                    imageViewImage.setBackgroundResource(R.drawable.avatar_7);
-                }
-            } else if(race.equals("branco")) {
-                if(age > 49) {
-                    imageViewImage.setBackgroundResource(R.drawable.avatar_14);
-                } else if(age > 25) {
-                    imageViewImage.setBackgroundResource(R.drawable.avatar_8);
-                } else {
-                    imageViewImage.setBackgroundResource(R.drawable.avatar_13);
-                }
+            imageViewImage = singleUser.getImageProfile(imageViewImage, singleUser);
+
+        } else if (socialNew) {
+            if (singleUser.getEmail() == null) {
+                textLayoutMail.setVisibility(View.VISIBLE);
+                editTextMail.setEnabled(true);
+                editTextMail.setVisibility(View.VISIBLE);
             }
-        } else if (gender.equals("M")) {
-            if (race.equals("preto") || race.equals("indigena") || race.equals("pardo")) {
-                if(age > 49) {
-                    imageViewImage.setBackgroundResource(R.drawable.avatar_6);
-                } else if(age > 25) {
-                    imageViewImage.setBackgroundResource(R.drawable.avatar_5);
-                } else {
-                    imageViewImage.setBackgroundResource(R.drawable.avatar_4);
-                }
-            } else if(race.equals("amarelo")) {
-                if(age > 49) {
-                    imageViewImage.setBackgroundResource(R.drawable.avatar_12);
-                } else if(age > 25) {
-                    imageViewImage.setBackgroundResource(R.drawable.avatar_11);
-                } else {
-                    imageViewImage.setBackgroundResource(R.drawable.avatar_10);
-                }
-            } else if(race.equals("branco")) {
-                if(age > 49) {
-                    imageViewImage.setBackgroundResource(R.drawable.avatar_16);
-                } else if(age > 25) {
-                    imageViewImage.setBackgroundResource(R.drawable.avatar_11);
-                } else {
-                    imageViewImage.setBackgroundResource(R.drawable.avatar_15);
-                }
-            }
+        } else {
+            textLayoutMail.setVisibility(View.VISIBLE);
+            editTextMail.setEnabled(true);
+            editTextMail.setVisibility(View.VISIBLE);
+            User household = new User();
+
+            household.setNick(nick);
+            household.setDob(dob);
+            household.setGender(gender);
+            household.setRace(race);
+            household.setEmail(email);
+            household.setPicture(picture);
+            household.setRelationship(relationship);
+
+            imageViewImage = singleUser.getImageProfile(imageViewImage, household);
         }
     }
-
 
     @OnClick(R.id.image_view_image)
     public void onImage() {
@@ -539,21 +412,9 @@ public class UserActivity extends BaseAppCompatActivity {
                 } catch (Exception e) {
 
                 }
-
-                /*if (singleUser.getUri() != null && (user.getNick().equals(singleUser.getNick()))) {
-                    jsonObject.put("picture", singleUser.getUri().toString());
-                } else*/
-                if (photoPath != "") {
-                    //jsonObject.put("picture", photoPath);
-                    SharedPreferences settingsImage = getSharedPreferences(Constants.Pref.PREFS_IMAGE, 0);
-                    SharedPreferences.Editor editorImage = settingsImage.edit();
-                    editorImage.putString(Constants.Pref.PREFS_IMAGE, photoPath);
-                    editorImage.apply();
-                    SharedPreferences settingsImageUserToken = getSharedPreferences(Constants.Pref.PREFS_IMAGE_USER_TOKEN, 0);
-                    SharedPreferences.Editor editorImageUserToken = settingsImageUserToken.edit();
-                    editorImageUserToken.putString(Constants.Pref.PREFS_IMAGE_USER_TOKEN, photoPath);
-                    editorImageUserToken.apply();
+                if (!photoPath.equals("")) {
                     singleUser.setPicture(photoPath);
+                    jsonObject.put("file", photoPath);
                     jsonObject.put("picture", "0");
                 } else if (userAvatar > 0) {
                     jsonObject.put("picture", userAvatar);

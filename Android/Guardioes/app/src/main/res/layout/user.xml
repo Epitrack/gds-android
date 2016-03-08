@@ -39,7 +39,7 @@
                 android:layout_height="60dp"
                 android:layout_gravity="center_vertical"
                 android:src="@drawable/mask"
-                android:background="@drawable/image_avatar_small_1"/>-->
+                android:background="@drawable/image_avatar_small_1"/>
 
             <ImageView
                 android:id="@+id/image_view_image"
@@ -47,7 +47,15 @@
                 android:layout_height="60dp"
                 android:layout_gravity="center_vertical"
                 android:src="@drawable/mask"
-                android:background="@drawable/image_avatar_small_1"/>
+                android:background="@drawable/image_avatar_small_1"/>-->
+
+            <com.github.siyamed.shapeimageview.CircularImageView
+                android:id="@+id/image_view_image"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/mask"
+                android:background="@drawable/image_avatar_small_1" />
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="0dp"

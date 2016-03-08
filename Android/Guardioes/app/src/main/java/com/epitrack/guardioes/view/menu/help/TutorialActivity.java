@@ -23,8 +23,8 @@ import butterknife.Bind;
  */
 public class TutorialActivity extends BaseAppCompatActivity {
 
-    @Bind(R.id.page_indicator)
-    CirclePageIndicator pageIndicator;
+    //@Bind(R.id.page_indicator)
+    //CirclePageIndicator pageIndicator;
 
     @Bind(R.id.view_pager)
     ViewPager viewPager;
@@ -51,7 +51,7 @@ public class TutorialActivity extends BaseAppCompatActivity {
 
         viewPager.setAdapter(new WelcomePagerAdapter(getSupportFragmentManager(), this, Welcome.values()));
 
-        pageIndicator.setViewPager(viewPager);
+        //pageIndicator.setViewPager(viewPager);
 
         buttonLogin.setVisibility(View.INVISIBLE);
         buttonCreateAccount.setVisibility(View.INVISIBLE);

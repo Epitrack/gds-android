@@ -182,6 +182,12 @@ public class SplashActivity extends BaseActivity implements Runnable {
                     singleUser.setDob(jsonObjectUser.getString("dob").toString());
                     singleUser.setUser_token(jsonObjectUser.get("token").toString());
 
+                    try {
+                        singleUser.setFile(jsonObjectUser.get("file").toString());
+                    } catch (Exception e) {
+                        singleUser.setFile("");
+                    }
+
                     if (prefUserToken == prefImagUserToken) {
                         singleUser.setPicture(prefUserToken);
                     } else {

@@ -11,6 +11,7 @@ import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -61,9 +62,10 @@ public class HomeFragment extends BaseFragment {
     TextView textViewName;
 
     @Bind(R.id.image_view_photo)
-    ImageView imageViewPhoto;
-    //ImageView imageViewPhoto;
+    com.github.siyamed.shapeimageview.CircularImageView imageViewPhoto;
     //de.hdodenhof.circleimageview.CircleImageView imageViewPhoto;
+    //ImageView imageViewPhoto;
+
 
     @Bind(R.id.linear_layout_menu_home)
     LinearLayout linearLayoutMenuHome;
@@ -93,13 +95,16 @@ public class HomeFragment extends BaseFragment {
 
         ButterKnife.bind(this, view);
 
-        loadImageProfile();
+        //loadImageProfile();
+        //loadImage(imageViewPhoto);
 
         String text = getString(R.string.message_hello);
         text = text.replace("{0}", singleUser.getNick());
         textViewName.setText(text);
 
         resizeBackgroundMenu();
+
+        imageViewPhoto = singleUser.getImageProfile(imageViewPhoto, null);
 
         return view;
     }
@@ -133,36 +138,7 @@ public class HomeFragment extends BaseFragment {
 
                Uri uri = Uri.parse(singleUser.getPicture());
 
-               DisplayMetrics metrics = getResources().getDisplayMetrics();
-               int densityDpi = (int) (metrics.density * 160f);
-               int width = 0;
-               int height = 0;
-
-               if (densityDpi == DisplayMetrics.DENSITY_LOW) {
-                   width = 90;
-                   height = 90;
-               } else if (densityDpi == DisplayMetrics.DENSITY_MEDIUM) {
-                   width = 120;
-                   height = 120;
-               } else if (densityDpi == DisplayMetrics.DENSITY_HIGH) {
-                   width = 180;
-                   height = 180;
-               } else if (densityDpi == DisplayMetrics.DENSITY_XHIGH) {
-                   width = 250;
-                   height = 250;
-               } else if (densityDpi == DisplayMetrics.DENSITY_XXHIGH) {
-                   width = 360;
-                   height = 360;
-               } else if (densityDpi >= DisplayMetrics.DENSITY_XXXHIGH) {
-                   width = 400;
-                   height = 400;
-               } else {
-                   width = 300;
-                   height = 300;
-               }
-
-               imageViewPhoto.getLayoutParams().width = width;
-               imageViewPhoto.getLayoutParams().height = height;
+               setImageViewSize(imageViewPhoto);
 
                File file = new File(singleUser.getPicture());
 
@@ -176,15 +152,12 @@ public class HomeFragment extends BaseFragment {
                    }
                } else {
                    imageViewPhoto.setImageURI(uri);
-
                }
-
            } else {
 
                if (singleUser.getPicture().equals("")) {
                    singleUser.setPicture("0");
                }
-
                if (Integer.parseInt(singleUser.getPicture()) == 0) {
                    setDefaultAvatar();
                } else {
@@ -192,46 +165,14 @@ public class HomeFragment extends BaseFragment {
                }
            }
        } catch (Exception e) {
-           /*new DialogBuilder(getActivity()).load()
-                   .title(R.string.attention)
-                   .content(e.getMessage())
-                   .positiveText(R.string.ok)
-                   .show();*/
+           setDefaultAvatar();
 
        }
     }
 
     private void setDefaultAvatar() {
-        DisplayMetrics metrics = getResources().getDisplayMetrics();
-        int densityDpi = (int) (metrics.density * 160f);
-        int width = 0;
-        int height = 0;
 
-        if (densityDpi == DisplayMetrics.DENSITY_LOW) {
-            width = 90;
-            height = 90;
-        } else if (densityDpi == DisplayMetrics.DENSITY_MEDIUM) {
-            width = 120;
-            height = 120;
-        } else if (densityDpi == DisplayMetrics.DENSITY_HIGH) {
-            width = 180;
-            height = 180;
-        } else if (densityDpi == DisplayMetrics.DENSITY_XHIGH) {
-            width = 250;
-            height = 250;
-        } else if (densityDpi == DisplayMetrics.DENSITY_XXHIGH) {
-            width = 360;
-            height = 360;
-        } else if (densityDpi >= DisplayMetrics.DENSITY_XXXHIGH) {
-            width = 400;
-            height = 400;
-        } else {
-            width = 300;
-            height = 300;
-        }
-
-        imageViewPhoto.getLayoutParams().width = width;
-        imageViewPhoto.getLayoutParams().height = height;
+        setImageViewSize(imageViewPhoto);
 
         int age = DateFormat.getDateDiff(singleUser.getDob());
 
@@ -296,6 +237,84 @@ public class HomeFragment extends BaseFragment {
         }
     }
 
+    private void setImageViewSize(com.github.siyamed.shapeimageview.CircularImageView imageViewPhoto) {
+
+        DisplayMetrics metrics = getResources().getDisplayMetrics();
+        int densityDpi = (int) (metrics.density * 160f);
+        int width = 0;
+        int height = 0;
+
+        if (densityDpi == DisplayMetrics.DENSITY_LOW) {
+            width = 90;
+            height = 90;
+        } else if (densityDpi == DisplayMetrics.DENSITY_MEDIUM) {
+            width = 120;
+            height = 120;
+        } else if (densityDpi == DisplayMetrics.DENSITY_HIGH) {
+            width = 180;
+            height = 180;
+        } else if (densityDpi == DisplayMetrics.DENSITY_XHIGH) {
+            width = 250;
+            height = 250;
+        } else if (densityDpi == DisplayMetrics.DENSITY_XXHIGH) {
+            width = 360;
+            height = 360;
+        } else if (densityDpi >= DisplayMetrics.DENSITY_XXXHIGH) {
+            width = 400;
+            height = 400;
+        } else {
+            width = 300;
+            height = 300;
+        }
+
+        imageViewPhoto.getLayoutParams().width = width;
+        imageViewPhoto.getLayoutParams().height = height;
+    }
+
+
+    private void loadImage(final View view) {
+
+        view.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+
+            @Override
+            public void onGlobalLayout() {
+
+                final int width = view.getWidth();
+                final int height = view.getHeight();
+
+                /*Picasso.with(getActivity()).load(Constants.PATH + profile.getUser().getPhoto())
+                        .memoryPolicy(MemoryPolicy.NO_CACHE)
+                        .resize(width, height)
+                        .centerCrop()
+                        .into(imageViewPhoto);*/
+
+                //loadImageProfile();
+
+                if (singleUser.getPicture().equals("0")) {
+
+                    if (!singleUser.getFile().equals("")) {
+                        Uri uri = Uri.parse(singleUser.getFile());
+
+                        setImageViewSize(imageViewPhoto);
+
+                        File file = new File(singleUser.getFile());
+
+                        if (!file.exists()) {
+                            imageViewPhoto.setImageURI(uri);
+                            Drawable drawable = imageViewPhoto.getDrawable();
+                            imageViewPhoto.setImageDrawable(drawable);
+                        }
+                    }
+                } else {
+                    imageViewPhoto.setImageResource(Avatar.getBy(Integer.parseInt("2")).getLarge());
+                }
+
+                view.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+            }
+        });
+    }
+
+
     public void onResume() {
         super.onResume();
         //mTracker.setScreenName("Home Screen - " + this.getClass().getSimpleName());
@@ -303,7 +322,8 @@ public class HomeFragment extends BaseFragment {
         String text = getString(R.string.message_hello);
         text = text.replace("{0}", singleUser.getNick());
         textViewName.setText(text);
-        loadImageProfile();
+        //loadImageProfile();
+        loadImage(imageViewPhoto);
     }
 
     @OnClick(R.id.image_view_photo)
@@ -495,7 +515,7 @@ public class HomeFragment extends BaseFragment {
         SingleUser singleUser = SingleUser.getInstance();
 
         userList.add(new User(R.drawable.image_avatar_small_2, singleUser.getNick(), singleUser.getEmail(), singleUser.getId(),
-                singleUser.getDob(), singleUser.getRace(), singleUser.getGender(), singleUser.getPicture()));
+                singleUser.getDob(), singleUser.getRace(), singleUser.getGender(), singleUser.getPicture(), "", singleUser.getFile()));
 
         SimpleRequester simpleRequester = new SimpleRequester();
         simpleRequester.setUrl(Requester.API_URL + "user/household/" + singleUser.getId());

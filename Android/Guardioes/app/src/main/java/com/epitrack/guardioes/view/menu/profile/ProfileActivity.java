@@ -170,70 +170,50 @@ public class ProfileActivity extends BaseAppCompatActivity implements UserListen
         bundle.putString("id", user.getId());
         bundle.putString("picture", user.getPicture());
         bundle.putString("relationship", user.getRelationship());
+        bundle.putString("file", user.getFile());
 
-        if (user.getPicture().length() > 2) {
-            bundle.putString("picture", user.getPicture());
-        } else if (Integer.parseInt(user.getPicture()) == 0) {
-            int age = DateFormat.getDateDiff(user.getDob());
-
+        if (user.getPicture().equals("0")) {
             if (user.getGender().equals("F")) {
-                if (user.getRace().equals("preto") || user.getRace().equals("indigena") || user.getRace().equals("pardo")) {
-                    if(age > 49) {
-                        bundle.putString("picture", "3");
-                    } else if(age > 25) {
-                        bundle.putString("picture", "2");
-                    } else {
+                switch (user.getRace()) {
+                    case "branco":
+                        bundle.putString("picture", "8");
+                        break;
+                    case "preto":
                         bundle.putString("picture", "1");
-                    }
-                }
-                else if(user.getRace().equals("amarelo"))
-                {
-                    if(age > 49) {
-                        bundle.putString("picture", "9");
-                    } else if(age > 25) {
-                        bundle.putString("picture", "8");
-                    } else {
+                        break;
+                    case "pardo":
+                        bundle.putString("picture", "2");
+                        break;
+                    case "amarelo":
                         bundle.putString("picture", "7");
-                    }
-                } else if(user.getRace().equals("branco")) {
-                    if(age > 49) {
-                        bundle.putString("picture", "14");
-                    } else if(age > 25) {
+                        break;
+                    case "indigena":
                         bundle.putString("picture", "8");
-                    } else {
-                        bundle.putString("picture", "13");
-                    }
+                        break;
                 }
-            } else if (user.getGender().equals("M")) {
-                if (user.getRace().equals("preto") || user.getRace().equals("indigena") || user.getRace().equals("pardo")) {
-                    if(age > 49) {
-                        bundle.putString("picture", "6");
-                    } else if(age > 25) {
+            } else {
+                switch (user.getGender()) {
+                    case "branco":
+                        bundle.putString("picture", "11");
+                        break;
+                    case "preto":
                         bundle.putString("picture", "5");
-                    } else {
+                        break;
+                    case "pardo":
                         bundle.putString("picture", "4");
-                    }
-                } else if(user.getRace().equals("amarelo")) {
-                    if(age > 49) {
-                        bundle.putString("picture", "12");
-                    } else if(age > 25) {
-                        bundle.putString("picture", "11");
-                    } else {
+                        break;
+                    case "amarelo":
                         bundle.putString("picture", "10");
-                    }
-                } else if(user.getRace().equals("branco")) {
-                    if(age > 49) {
-                        bundle.putString("picture", "16");
-                    } else if(age > 25) {
-                        bundle.putString("picture", "11");
-                    } else {
-                        bundle.putString("picture", "15");
-                    }
+                        break;
+                    case "indigena":
+                        bundle.putString("picture", "4");
+                        break;
                 }
             }
         } else {
             bundle.putString("picture", user.getPicture());
         }
+
 
         // TODO: Check if is main member..
         if (singleUser.getId() == user.getId()) {
@@ -319,7 +299,7 @@ public class ProfileActivity extends BaseAppCompatActivity implements UserListen
         SingleUser singleUser = SingleUser.getInstance();
 
         userList.add(new User(R.drawable.image_avatar_small_2, singleUser.getNick(), singleUser.getEmail(), singleUser.getId(),
-                singleUser.getDob(), singleUser.getRace(), singleUser.getGender(), singleUser.getPicture()));
+                singleUser.getDob(), singleUser.getRace(), singleUser.getGender(), singleUser.getPicture(), "", singleUser.getFile()));
 
         SimpleRequester simpleRequester = new SimpleRequester();
         simpleRequester.setUrl(Requester.API_URL + "user/household/" + singleUser.getId());
@@ -331,7 +311,7 @@ public class ProfileActivity extends BaseAppCompatActivity implements UserListen
 
             JSONObject jsonObject = new JSONObject(jsonStr);
 
-            if (jsonObject.get("error").toString() == "false") {
+            if (jsonObject.get("error").toString().equals("false")) {
 
                 JSONArray jsonArray = jsonObject.getJSONArray("data");
 

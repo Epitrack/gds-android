@@ -25,8 +25,8 @@ import butterknife.OnClick;
  */
 public class WelcomeActivity extends BaseFragmentActivity {
 
-    @Bind(R.id.page_indicator)
-    CirclePageIndicator pageIndicator;
+    //@Bind(R.id.page_indicator)
+    //CirclePageIndicator pageIndicator;
 
     @Bind(R.id.view_pager)
     ViewPager viewPager;
@@ -51,7 +51,7 @@ public class WelcomeActivity extends BaseFragmentActivity {
 
         viewPager.setAdapter(new WelcomePagerAdapter(getSupportFragmentManager(), this, Welcome.values()));
 
-        pageIndicator.setViewPager(viewPager);
+        //pageIndicator.setViewPager(viewPager);
     }
 
     @OnClick(R.id.button_login)
