@@ -1,6 +1,8 @@
 package com.epitrack.guardioes.view.survey;
 
 import android.content.Context;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -109,8 +111,13 @@ public class SymptomAdapter extends ArrayAdapter<SymptomList> {
 
             //viewHolder.textViewName.setText(symptomList.getNome());
             viewHolder.checkBoxSymptom.setChecked(symptomList.isSelected());
-            viewHolder.checkBoxSymptom.setText("   " + symptomList.getNome() + "                                                  ");
+            viewHolder.checkBoxSymptom.setText("" + symptomList.getNome() + "");
+            viewHolder.checkBoxSymptom.setTextColor(Color.parseColor("#757575"));
             viewHolder.checkBoxSymptom.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+            viewHolder.checkBoxSymptom.setCompoundDrawablePadding(50);
+            viewHolder.checkBoxSymptom.setPadding(50,0,100,0);
+
+
             return view;
         }
     }

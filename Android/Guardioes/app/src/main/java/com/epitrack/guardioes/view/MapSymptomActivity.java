@@ -38,6 +38,7 @@ import com.epitrack.guardioes.service.AnalyticsApplication;
 import com.epitrack.guardioes.utility.DialogBuilder;
 import com.epitrack.guardioes.utility.Extension;
 import com.epitrack.guardioes.utility.LocationUtility;
+import com.epitrack.guardioes.view.account.NotifyDialog;
 import com.epitrack.guardioes.view.base.AbstractBaseMapActivity;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -316,11 +317,33 @@ public class MapSymptomActivity extends AbstractBaseMapActivity implements Searc
     @OnClick(R.id.syndromes)
     public void onSyndromes() {
 
-        new DialogBuilder(MapSymptomActivity.this).load()
+       /* new DialogBuilder(MapSymptomActivity.this).load()
                 .title(R.string.syndromes)
                 .content(R.string.syndromes_desc)
                 .positiveText(R.string.ok)
-                .show();
+                .show();*/
+
+        new NotifyDialog() {
+
+            @Override
+            public int getLayout() {
+                return R.layout.symtoms;
+            }
+
+            @Override
+            public void findView(final View view) {
+                super.findView(view);
+
+                view.findViewById(R.id.image_button_close).setOnClickListener(new View.OnClickListener() {
+
+                    @Override
+                    public void onClick(final View view) {
+                        dismiss();
+                    }
+                });
+            }
+
+        }.show(getFragmentManager(), NotifyDialog.TAG);
     }
 
     @OnClick(R.id.button_expand)

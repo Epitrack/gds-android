@@ -115,6 +115,7 @@ public class CreateAccountActivity extends BaseAppCompatActivity implements Soci
     private Tracker mTracker;
     Bundle bundle;
     String gcmToken;
+    private NotifyDialog notifyDialog;
 
     @Override
     protected void onCreate(final Bundle bundle) {
@@ -150,6 +151,18 @@ public class CreateAccountActivity extends BaseAppCompatActivity implements Soci
 
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         gcmToken = sharedPreferences.getString(Constants.Push.SENDER_ID, "");
+
+        editTextBirthDate.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            public void onFocusChange(View v, boolean hasFocus) {
+                if(hasFocus){
+                    ((EditText) v).setHint(" ex: 01/01/1991");
+                }else{
+                    ((EditText) v).setHint("");
+                }
+            }
+        });
+
+
     }
 
     @Override
@@ -196,7 +209,7 @@ public class CreateAccountActivity extends BaseAppCompatActivity implements Soci
 
     public void onPrivacy(final MenuItem item) {
 
-        /*new NotifyDialog() {
+        new NotifyDialog() {
 
             @Override
             public int getLayout() {
@@ -216,12 +229,12 @@ public class CreateAccountActivity extends BaseAppCompatActivity implements Soci
                 });
             }
 
-        }.show(getFragmentManager(), NotifyDialog.TAG);*/
+        }.show(getFragmentManager(), NotifyDialog.TAG);
 
-        FragmentManager fragmentManager = getFragmentManager();
-        NotifyDialog notifyDialog = new NotifyDialog();
+/*        FragmentManager fragmentManager = getFragmentManager();
+        notifyDialog = new NotifyDialog();
         notifyDialog.show(fragmentManager, "privacy");
-
+*/
 
         // custom dialog
         /*final Dialog dialog = new Dialog(this);
@@ -556,7 +569,7 @@ public class CreateAccountActivity extends BaseAppCompatActivity implements Soci
                         simpleRequester.setMethod(Method.POST);
 
                         String jsonStr = simpleRequester.execute(simpleRequester).get();
-
+                        Toast.makeText(getApplicationContext(), jsonStr, Toast.LENGTH_SHORT).show();
                         JSONObject jsonObject = new JSONObject(jsonStr);
 
                         if (jsonObject.get("error").toString() == "true") {
