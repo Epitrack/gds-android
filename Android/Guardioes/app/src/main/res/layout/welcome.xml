@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-    <!--<com.viewpagerindicator.CirclePageIndicator
+    <com.viewpagerindicator.CirclePageIndicator
         android:id="@+id/page_indicator"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -20,7 +20,7 @@
         android:padding="5dp"
         layout:pageColor="@color/translucent_white_light"
         layout:radius="4dp"
-        layout:strokeWidth="0dp" />-->
+        layout:strokeWidth="0dp" />
 
     <LinearLayout
         android:id="@+id/linear_layout"

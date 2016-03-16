@@ -11,20 +11,17 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.MenuItem;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.epitrack.guardioes.R;
 import com.epitrack.guardioes.manager.PrefManager;
 import com.epitrack.guardioes.model.SingleUser;
-import com.epitrack.guardioes.service.AnalyticsApplication;
 import com.epitrack.guardioes.utility.Constants;
 import com.epitrack.guardioes.utility.DialogBuilder;
-import com.epitrack.guardioes.view.account.LoginActivity;
 import com.epitrack.guardioes.view.menu.HomeMenu;
 import com.epitrack.guardioes.view.welcome.WelcomeActivity;
-import com.facebook.AccessToken;
+import com.google.android.gms.analytics.GoogleAnalytics;
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 

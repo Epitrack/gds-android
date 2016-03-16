@@ -18,14 +18,12 @@ import com.epitrack.guardioes.model.SingleUser;
 import com.epitrack.guardioes.request.Method;
 import com.epitrack.guardioes.request.Requester;
 import com.epitrack.guardioes.request.SimpleRequester;
-import com.epitrack.guardioes.service.AnalyticsApplication;
 import com.epitrack.guardioes.service.QuickstartPreferences;
 import com.epitrack.guardioes.service.RegistrationIntentService;
 import com.epitrack.guardioes.utility.Constants;
 import com.epitrack.guardioes.view.base.BaseActivity;
 import com.epitrack.guardioes.view.welcome.WelcomeActivity;
 import com.google.android.gms.analytics.HitBuilders;
-import com.google.android.gms.analytics.Tracker;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.gms.gcm.GoogleCloudMessaging;
@@ -43,9 +41,9 @@ public class SplashActivity extends BaseActivity implements Runnable {
     private static final long WAIT_TIME = 1500;
 
     private final Handler handler = new Handler();
+
     SharedPreferences sharedPreferences = null;
 
-    private Tracker mTracker;
     private BroadcastReceiver mRegistrationBroadcastReceiver;
     private boolean isReceiverRegistered;
     private GoogleCloudMessaging gcm;
@@ -87,9 +85,16 @@ public class SplashActivity extends BaseActivity implements Runnable {
             Intent intent = new Intent(this, RegistrationIntentService.class);
             startService(intent);
         }
+    }
 
+    @Override
+    public void onResume() {
+        super.onResume();
 
         handler.postDelayed(this, WAIT_TIME);
+
+        getTracker().setScreenName("Splash Screen - " + this.getClass().getSimpleName());
+        getTracker().send(new HitBuilders.ScreenViewBuilder().build());
     }
 
     @Override
@@ -97,13 +102,6 @@ public class SplashActivity extends BaseActivity implements Runnable {
         super.onPause();
 
         handler.removeCallbacks(this);
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        getTracker.setScreenName("Splash Screen - " + this.getClass().getSimpleName());
-        getTracker.send(new HitBuilders.ScreenViewBuilder().build());
     }
 
     private void registerReceiver(){

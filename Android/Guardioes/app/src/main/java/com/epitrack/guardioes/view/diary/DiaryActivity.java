@@ -1,10 +1,6 @@
 package com.epitrack.guardioes.view.diary;
 
-import android.app.AlertDialog;
-import android.app.ProgressDialog;
-import android.content.Context;
 import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -21,12 +17,13 @@ import com.epitrack.guardioes.R;
 import com.epitrack.guardioes.model.SingleUser;
 import com.epitrack.guardioes.model.User;
 import com.epitrack.guardioes.request.Method;
+import com.epitrack.guardioes.request.RequestListener;
 import com.epitrack.guardioes.request.Requester;
 import com.epitrack.guardioes.request.SimpleRequester;
-import com.epitrack.guardioes.service.AnalyticsApplication;
+import com.epitrack.guardioes.utility.Logger;
+import com.epitrack.guardioes.utility.MySelectorDecoratorBad;
 import com.epitrack.guardioes.utility.MySelectorDecoratorEquals;
 import com.epitrack.guardioes.utility.MySelectorDecoratorGood;
-import com.epitrack.guardioes.utility.MySelectorDecoratorBad;
 import com.epitrack.guardioes.utility.MySelectorDecoratorOnlyBad;
 import com.epitrack.guardioes.utility.MySelectorDecoratorOnlyGood;
 import com.epitrack.guardioes.view.base.BaseAppCompatActivity;
