@@ -51,10 +51,7 @@ public class SelectParticipantActivity extends BaseAppCompatActivity implements 
     TextView textViewAge;
 
     @Bind(R.id.image_view_photo)
-    com.github.siyamed.shapeimageview.CircularImageView imageViewAvatar;
-    //com.pkmmte.view.CircularImageView imageViewAvatar;
-    //de.hdodenhof.circleimageview.CircleImageView imageViewAvatar;
-    //ImageView imageViewAvatar;
+    CircularImageView imageViewAvatar;
 
     @Bind(R.id.recycler_view)
     RecyclerView recyclerView;
@@ -64,19 +61,12 @@ public class SelectParticipantActivity extends BaseAppCompatActivity implements 
 
     public static List<User> parentList = new ArrayList<>();
     SingleUser singleUser = SingleUser.getInstance();
-    private Tracker mTracker;
 
     @Override
     protected void onCreate(final Bundle bundle) {
         super.onCreate(bundle);
 
         setContentView(R.layout.select_participant);
-
-        // [START shared_tracker]
-        // Obtain the shared Tracker instance.
-        AnalyticsApplication application = (AnalyticsApplication) getApplication();
-        mTracker = application.getDefaultTracker();
-        // [END shared_tracker]
 
         //Miquéias Lopes
         int j = DateFormat.getDateDiff(singleUser.getDob());
@@ -186,10 +176,11 @@ public class SelectParticipantActivity extends BaseAppCompatActivity implements 
     @Override
     protected void onResume() {
         super.onResume();
-        mTracker.setScreenName("Select Participant Survey Screen - " + this.getClass().getSimpleName());
-        mTracker.send(new HitBuilders.ScreenViewBuilder().build());
-        loadHousehold();
 
+        getTracker().setScreenName("Select Participant Survey Screen - " + this.getClass().getSimpleName());
+        getTracker().send(new HitBuilders.ScreenViewBuilder().build());
+
+        loadHousehold();
     }
 
     @Override
@@ -201,7 +192,7 @@ public class SelectParticipantActivity extends BaseAppCompatActivity implements 
     //@OnClick(R.id.button_add)
     public void onAdd() {
 
-        mTracker.send(new HitBuilders.EventBuilder()
+        getTracker().send(new HitBuilders.EventBuilder()
                 .setCategory("Action")
                 .setAction("Survey Add New Member Button")
                 .build());
@@ -217,7 +208,7 @@ public class SelectParticipantActivity extends BaseAppCompatActivity implements 
     @OnClick(R.id.image_view_photo)
     public void onUserSelect() {
 
-        mTracker.send(new HitBuilders.EventBuilder()
+        getTracker().send(new HitBuilders.EventBuilder()
                 .setCategory("Action")
                 .setAction("Survey Select Main User Button")
                 .build());
@@ -228,7 +219,6 @@ public class SelectParticipantActivity extends BaseAppCompatActivity implements 
         navigateTo(StateActivity.class, bundle);
     }
 
-
     @Override
     public void onParentSelect(String id) {
         if (id.equals("-1")) {
@@ -238,7 +228,8 @@ public class SelectParticipantActivity extends BaseAppCompatActivity implements 
             bundle.putBoolean(Constants.Bundle.SOCIAL_NEW, false);
             navigateTo(UserActivity.class, bundle);
         } else {
-            mTracker.send(new HitBuilders.EventBuilder()
+
+            getTracker().send(new HitBuilders.EventBuilder()
                     .setCategory("Action")
                     .setAction("Survey Select Household Button")
                     .build());

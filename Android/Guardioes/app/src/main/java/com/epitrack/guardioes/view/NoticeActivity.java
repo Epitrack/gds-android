@@ -33,7 +33,8 @@ public class NoticeActivity extends AppCompatActivity implements NoticeListener 
     @Bind(R.id.recycler_view)
     RecyclerView recyclerView;
 
-    private Tracker mTracker;
+    private Tracker tracker;
+
     public static List<Notice> noticeList;
 
     @Override
@@ -41,12 +42,6 @@ public class NoticeActivity extends AppCompatActivity implements NoticeListener 
         super.onCreate(bundle);
 
         setContentView(R.layout.notice);
-
-        // [START shared_tracker]
-        // Obtain the shared Tracker instance.
-        AnalyticsApplication application = (AnalyticsApplication) getApplication();
-        mTracker = application.getDefaultTracker();
-        // [END shared_tracker]
 
         ButterKnife.bind(this);
 
@@ -64,8 +59,9 @@ public class NoticeActivity extends AppCompatActivity implements NoticeListener 
     @Override
     public void onResume() {
         super.onResume();
-        mTracker.setScreenName("Notice Screen - " + this.getClass().getSimpleName());
-        mTracker.send(new HitBuilders.ScreenViewBuilder().build());
+
+        getTracker().setScreenName("Notice Screen - " + this.getClass().getSimpleName());
+        getTracker().send(new HitBuilders.ScreenViewBuilder().build());
     }
 
     @Override
@@ -88,7 +84,7 @@ public class NoticeActivity extends AppCompatActivity implements NoticeListener 
     @Override
     public void onNoticeSelect(final Notice notice) {
 
-        mTracker.send(new HitBuilders.EventBuilder()
+        getTracker().send(new HitBuilders.EventBuilder()
                 .setCategory("Action")
                 .setAction("Show Notice")
                 .build());
@@ -110,5 +106,14 @@ public class NoticeActivity extends AppCompatActivity implements NoticeListener 
                         startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(notice.getLink())));
                     }
                 }).show();
+    }
+
+    public Tracker getTracker() {
+
+        if (tracker == null) {
+            tracker = GoogleAnalytics.getInstance(this).newTracker(R.xml.analytics);
+        }
+
+        return tracker;
     }
 }

@@ -54,20 +54,14 @@ public class HomeActivity extends AppCompatActivity implements OnNavigationItemS
 
     private final Map<String, Fragment> fragmentMap = new HashMap<>();
     public static final String PREFS_NAME = "preferences_user_token";
-    private Tracker mTracker;
+
+    private Tracker tracker;
 
     @Override
     protected void onCreate(Bundle bundle) {
         super.onCreate(bundle);
 
         setContentView(R.layout.home_activity);
-
-        // [START shared_tracker]
-        // Obtain the shared Tracker instance.
-        AnalyticsApplication application = (AnalyticsApplication) getApplication();
-        mTracker = application.getDefaultTracker();
-        // [END shared_tracker]
-
 
         ButterKnife.bind(this);
 
@@ -244,8 +238,18 @@ public class HomeActivity extends AppCompatActivity implements OnNavigationItemS
     @Override
     public void onResume() {
         super.onResume();
-        mTracker.setScreenName("Home Screen - " + this.getClass().getSimpleName());
-        mTracker.send(new HitBuilders.ScreenViewBuilder().build());
 
+        getTracker().setScreenName("Home Screen - " + this.getClass().getSimpleName());
+
+        getTracker().send(new HitBuilders.ScreenViewBuilder().build());
+    }
+
+    public Tracker getTracker() {
+
+        if (tracker == null) {
+            tracker = GoogleAnalytics.getInstance(this).newTracker(R.xml.analytics);
+        }
+
+        return tracker;
     }
 }

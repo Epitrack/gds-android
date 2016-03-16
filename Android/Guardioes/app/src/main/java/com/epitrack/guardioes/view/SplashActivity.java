@@ -58,15 +58,8 @@ public class SplashActivity extends BaseActivity implements Runnable {
     @Override
     protected void onCreate(final Bundle bundle) {
         super.onCreate(bundle);
-        //Fabric.with(this, new Crashlytics());
 
         setContentView(R.layout.splash);
-
-        // [START shared_tracker]
-        // Obtain the shared Tracker instance.
-        AnalyticsApplication application = (AnalyticsApplication) getApplication();
-        mTracker = application.getDefaultTracker();
-        // [END shared_tracker]
 
         PackageInfo pInfo = null;
         try {
@@ -109,8 +102,8 @@ public class SplashActivity extends BaseActivity implements Runnable {
     @Override
     public void onResume() {
         super.onResume();
-        mTracker.setScreenName("Splash Screen - " + this.getClass().getSimpleName());
-        mTracker.send(new HitBuilders.ScreenViewBuilder().build());
+        getTracker.setScreenName("Splash Screen - " + this.getClass().getSimpleName());
+        getTracker.send(new HitBuilders.ScreenViewBuilder().build());
     }
 
     private void registerReceiver(){

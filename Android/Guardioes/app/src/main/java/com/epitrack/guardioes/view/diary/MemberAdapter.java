@@ -6,7 +6,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -62,9 +61,7 @@ public class MemberAdapter extends RecyclerView.Adapter<MemberAdapter.ViewHolder
         TextView textViewName;
 
         @Bind(R.id.image_view_photo)
-        com.github.siyamed.shapeimageview.CircularImageView imageViewPhoto;
-        //de.hdodenhof.circleimageview.CircleImageView imageViewPhoto;
-        //ImageView imageViewPhoto;
+        CircularImageView imageViewPhoto;
 
         @Bind(R.id.view_select)
         View viewSelect;
