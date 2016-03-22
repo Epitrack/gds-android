@@ -72,19 +72,6 @@ public class ProfileActivity extends BaseAppCompatActivity implements UserListen
         mTracker = application.getDefaultTracker();
         // [END shared_tracker]
 
-        //progressDialog = new ProgressDialog(ProfileActivity.this, R.style.Theme_MyProgressDialog);
-        //progressDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.rgb(30, 136, 229)));
-        //progressDialog.setTitle(R.string.app_name);
-        //progressDialog.setMessage("Carregando...");
-        //progressDialog.show();
-
-        //upadteAdapter();
-        /*if (userArrayList == null) {
-            userArrayList = loadProfiles();
-        }
-
-        listView.setAdapter(new UserAdapter(this, userArrayList, this));*/
-
     }
 
     private void back() {

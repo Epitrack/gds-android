@@ -3,6 +3,7 @@
     xmlns:layout="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/background_blue"
     >
 
@@ -55,7 +56,8 @@
                 android:layout_height="60dp"
                 android:layout_gravity="center_vertical"
                 android:src="@drawable/mask"
-                android:background="@drawable/image_avatar_small_1" />
+                app:siBorderWidth="0dp"
+                app:siBorderColor="@color/white"/>
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="0dp"

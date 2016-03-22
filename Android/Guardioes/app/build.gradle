@@ -20,8 +20,8 @@ android {
         applicationId "com.epitrack.guardioes"
         minSdkVersion 19
         targetSdkVersion 23
-        versionCode 32
-        versionName "1.2.1"
+        versionCode 34
+        versionName "1.2.3"
         multiDexEnabled true
     }
 
@@ -95,6 +95,7 @@ dependencies {
         transitive = true;
     }
     compile 'com.github.siyamed:android-shape-imageview:0.9.3@aar'
+    compile 'com.android.support:multidex:1.0.1'
 }
 
 apply plugin: 'com.google.gms.google-services'

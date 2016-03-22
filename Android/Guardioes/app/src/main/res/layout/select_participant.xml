@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:fab="http://schemas.android.com/apk/res-auto">
 
     <LinearLayout
@@ -58,6 +59,8 @@
             android:id="@+id/image_view_photo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            app:siBorderWidth="0dp"
+            app:siBorderColor="@color/primary_dark"
             android:src="@drawable/image_avatar_3" />
 
         <TextView

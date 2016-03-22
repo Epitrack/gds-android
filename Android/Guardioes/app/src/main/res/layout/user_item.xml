@@ -3,7 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:paddingBottom="5dp"
-    android:paddingTop="5dp">
+    android:paddingTop="5dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <LinearLayout
         android:id="@+id/linear_layout"
@@ -27,7 +28,9 @@
         <com.github.siyamed.shapeimageview.CircularImageView
             android:id="@+id/image_view_image"
             android:layout_width="40dp"
-            android:layout_height="40dp" />
+            android:layout_height="40dp"
+            app:siBorderWidth="1dp"
+            app:siBorderColor="@color/white"/>
 
         <LinearLayout
             android:layout_width="wrap_content"

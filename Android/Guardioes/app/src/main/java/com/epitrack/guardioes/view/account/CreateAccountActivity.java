@@ -204,13 +204,13 @@ public class CreateAccountActivity extends BaseAppCompatActivity implements Soci
             }
 
             @Override
-            public void findView(final View view) {
+            public void findView(View view) {
                 super.findView(view);
 
                 view.findViewById(R.id.image_button_close).setOnClickListener(new View.OnClickListener() {
 
                     @Override
-                    public void onClick(final View view) {
+                    public void onClick(View view) {
                         dismiss();
                     }
                 });

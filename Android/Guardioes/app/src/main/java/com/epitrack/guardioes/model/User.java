@@ -402,58 +402,62 @@ public class User {
             user.setFile("");
         }
 
-        if (user.getPicture().equals("0") && !user.getFile().equals("")) {
+        if (user.getPicture() == null) {
+            imageView.setImageResource(Avatar.getBy(Integer.parseInt("11")).getLarge());
+        } else {
 
-            File file = new File(user.getFile());
+            if (user.getPicture().equals("0") && !user.getFile().equals("")) {
 
-            if (!file.exists()) {
-                Uri uri = Uri.parse(user.getFile());
-                imageView.setImageURI(uri);
-                Drawable drawable = imageView.getDrawable();
-                imageView.setImageDrawable(drawable);
-            }
-        } else if (user.getPicture().equals("0")){
-            if (user.getGender().equals("F")) {
-                switch (user.getRace()) {
-                    case "branco":
-                        imageView.setImageResource(Avatar.getBy(Integer.parseInt("8")).getLarge());
-                        break;
-                    case "preto":
-                        imageView.setImageResource(Avatar.getBy(Integer.parseInt("1")).getLarge());
-                        break;
-                    case "pardo":
-                        imageView.setImageResource(Avatar.getBy(Integer.parseInt("2")).getLarge());
-                        break;
-                    case "amarelo":
-                        imageView.setImageResource(Avatar.getBy(Integer.parseInt("7")).getLarge());
-                        break;
-                    case "indigena":
-                        imageView.setImageResource(Avatar.getBy(Integer.parseInt("8")).getLarge());
-                        break;
+                File file = new File(user.getFile());
+
+                if (!file.exists()) {
+                    Uri uri = Uri.parse(user.getFile());
+                    imageView.setImageURI(uri);
+                    Drawable drawable = imageView.getDrawable();
+                    imageView.setImageDrawable(drawable);
+                }
+            } else if (user.getPicture().equals("0")) {
+                if (user.getGender().equals("F")) {
+                    switch (user.getRace()) {
+                        case "branco":
+                            imageView.setImageResource(Avatar.getBy(Integer.parseInt("8")).getLarge());
+                            break;
+                        case "preto":
+                            imageView.setImageResource(Avatar.getBy(Integer.parseInt("1")).getLarge());
+                            break;
+                        case "pardo":
+                            imageView.setImageResource(Avatar.getBy(Integer.parseInt("2")).getLarge());
+                            break;
+                        case "amarelo":
+                            imageView.setImageResource(Avatar.getBy(Integer.parseInt("7")).getLarge());
+                            break;
+                        case "indigena":
+                            imageView.setImageResource(Avatar.getBy(Integer.parseInt("8")).getLarge());
+                            break;
+                    }
+                } else {
+                    switch (user.getRace()) {
+                        case "branco":
+                            imageView.setImageResource(Avatar.getBy(Integer.parseInt("11")).getLarge());
+                            break;
+                        case "preto":
+                            imageView.setImageResource(Avatar.getBy(Integer.parseInt("5")).getLarge());
+                            break;
+                        case "pardo":
+                            imageView.setImageResource(Avatar.getBy(Integer.parseInt("4")).getLarge());
+                            break;
+                        case "amarelo":
+                            imageView.setImageResource(Avatar.getBy(Integer.parseInt("10")).getLarge());
+                            break;
+                        case "indigena":
+                            imageView.setImageResource(Avatar.getBy(Integer.parseInt("4")).getLarge());
+                            break;
+                    }
                 }
             } else {
-                switch (user.getGender()) {
-                    case "branco":
-                        imageView.setImageResource(Avatar.getBy(Integer.parseInt("11")).getLarge());
-                        break;
-                    case "preto":
-                        imageView.setImageResource(Avatar.getBy(Integer.parseInt("5")).getLarge());
-                        break;
-                    case "pardo":
-                        imageView.setImageResource(Avatar.getBy(Integer.parseInt("4")).getLarge());
-                        break;
-                    case "amarelo":
-                        imageView.setImageResource(Avatar.getBy(Integer.parseInt("10")).getLarge());
-                        break;
-                    case "indigena":
-                        imageView.setImageResource(Avatar.getBy(Integer.parseInt("4")).getLarge());
-                        break;
-                }
+                imageView.setImageResource(Avatar.getBy(Integer.parseInt(user.getPicture())).getLarge());
             }
-        } else {
-            imageView.setImageResource(Avatar.getBy(Integer.parseInt(user.getPicture())).getLarge());
         }
-
 
         return imageView;
     }

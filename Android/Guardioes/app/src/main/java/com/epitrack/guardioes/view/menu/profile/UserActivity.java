@@ -322,12 +322,21 @@ public class UserActivity extends BaseAppCompatActivity {
             editTextMail.setVisibility(View.VISIBLE);
             User household = new User();
 
+            if (userAvatar > 0) {
+                household.setPicture(String.valueOf(userAvatar));
+                household.setFile("");
+            } else if (!photoPath.equals("")){
+                household.setPicture("0");
+                household.setFile(photoPath);
+            } else {
+                household.setPicture(picture);
+            }
+
             household.setNick(nick);
             household.setDob(dob);
             household.setGender(gender);
             household.setRace(race);
             household.setEmail(email);
-            household.setPicture(picture);
             household.setRelationship(relationship);
 
             imageViewImage = singleUser.getImageProfile(imageViewImage, household);
@@ -663,7 +672,7 @@ public class UserActivity extends BaseAppCompatActivity {
                     userAvatar = avatar.getId();
 
                     if(userAvatar > 0) {
-                        imageViewImage.setBackgroundResource(Avatar.getBy(Integer.parseInt(profileImage.getAvatar())).getSmall());
+                        imageViewImage.setImageResource(Avatar.getBy(Integer.parseInt(profileImage.getAvatar())).getSmall());
                         userAvatar = Integer.parseInt(profileImage.getAvatar());
                     }
                 } else if (intent.hasExtra(Constants.Bundle.URI)) {
@@ -719,7 +728,7 @@ public class UserActivity extends BaseAppCompatActivity {
 
             jsonObject = new JSONObject(jsonStr);
 
-            if (jsonObject.get("error").toString() == "true") {
+            if (jsonObject.get("error").toString().equals("true")) {
                 navigateTo(WelcomeActivity.class);
             } else {
 

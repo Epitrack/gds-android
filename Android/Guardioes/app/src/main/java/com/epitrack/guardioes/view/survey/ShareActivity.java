@@ -63,6 +63,8 @@ public class ShareActivity extends BaseActivity {
     CallbackManager callbackManager;
     private Tracker mTracker;
 
+    private String MSG=" Eu faço minha parte, faça sua parte também no combate ao mosquito Aedes aegypti #ZikaZero. Acesse: http://www.guardioesdasaude.org";
+
     @Override
     protected void onCreate(final Bundle bundle) {
         super.onCreate(bundle);
@@ -152,7 +154,7 @@ public class ShareActivity extends BaseActivity {
                 .build());
 
         ShareLinkContent content = new ShareLinkContent.Builder()
-                .setContentDescription("Acabei de participar do Guardiões da Saúde, participe você também: www.guardioesdasaude.org")
+                .setContentDescription(MSG)
                 .setContentTitle("Guardiões da Saúde")
                 .setContentUrl(Uri.parse("http://www.guardioesdasaude.org"))
                 .build();
@@ -171,7 +173,7 @@ public class ShareActivity extends BaseActivity {
 
 
         TweetComposer.Builder builder = new TweetComposer.Builder(this)
-                .text("Acabei de participar do Guardiões da Saúde, participe você também: http://www.guardioesdasaude.org");
+                .text(MSG);
         builder.show();
         SocialShare.getInstance().setIsShared(true);
 
@@ -189,7 +191,7 @@ public class ShareActivity extends BaseActivity {
 
             Intent waIntent = new Intent(Intent.ACTION_SEND);
             waIntent.setType("text/plain");
-            String text = "Acabei de participar do Guardiões da Saúde, participe você também: http://www.guardioesdasaude.org";
+            String text = MSG;
 
             PackageInfo info=pm.getPackageInfo("com.whatsapp", PackageManager.GET_META_DATA);
             //Check if package exists or not. If not then code

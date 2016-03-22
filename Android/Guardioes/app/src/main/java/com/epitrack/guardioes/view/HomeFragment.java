@@ -239,7 +239,7 @@ public class HomeFragment extends BaseFragment {
 
     private void setImageViewSize(com.github.siyamed.shapeimageview.CircularImageView imageViewPhoto) {
 
-        DisplayMetrics metrics = getResources().getDisplayMetrics();
+      /*  DisplayMetrics metrics = getResources().getDisplayMetrics();
         int densityDpi = (int) (metrics.density * 160f);
         int width = 0;
         int height = 0;
@@ -269,6 +269,7 @@ public class HomeFragment extends BaseFragment {
 
         imageViewPhoto.getLayoutParams().width = width;
         imageViewPhoto.getLayoutParams().height = height;
+        */
     }
 
 

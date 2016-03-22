@@ -62,7 +62,7 @@ import java.util.concurrent.ExecutionException;
 
 import butterknife.Bind;
 import io.fabric.sdk.android.Fabric;
-
+import io.fabric.sdk.android.services.concurrency.PriorityThreadPoolExecutor;
 /**
  * @author Miqueias Lopes
  */
@@ -481,6 +481,7 @@ public class SocialLoginActivity extends BaseAppCompatActivity implements View.O
 
                         navigateTo(HomeActivity.class, Intent.FLAG_ACTIVITY_CLEAR_TASK |
                                 Intent.FLAG_ACTIVITY_NEW_TASK);
+
                     }
                 } else {
                     //if (type != Constants.Bundle.FACEBOOK) {

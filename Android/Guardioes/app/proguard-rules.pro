@@ -15,3 +15,5 @@
 #-keepclassmembers class fqcn.of.javascript.interface.for.webview {
 #   public *;
 #}
+-keep class io.fabric.sdk.android.** { *; }
+-keep class com.facebook.FacebookSdk
