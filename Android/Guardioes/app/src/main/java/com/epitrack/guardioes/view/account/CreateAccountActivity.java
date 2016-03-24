@@ -1,5 +1,6 @@
 package com.epitrack.guardioes.view.account;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -13,6 +14,7 @@ import android.view.animation.AnimationUtils;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -196,7 +198,7 @@ public class CreateAccountActivity extends BaseAppCompatActivity implements Soci
     }
 
     public void onPrivacy(final MenuItem item) {
-
+        
         new BaseDialogFragment() {
 
             @Override
@@ -220,7 +222,7 @@ public class CreateAccountActivity extends BaseAppCompatActivity implements Soci
         }.show(getFragmentManager(), BaseDialogFragment.TAG);
 
         // custom dialog
-        /*final Dialog dialog = new Dialog(this);
+        final Dialog dialog = new Dialog(this);
         dialog.setContentView(R.layout.privacy);
         ImageButton dialogButton = (ImageButton) dialog.findViewById(R.id.image_button_close);
         dialogButton.setOnClickListener(new View.OnClickListener() {
@@ -230,7 +232,7 @@ public class CreateAccountActivity extends BaseAppCompatActivity implements Soci
             }
         });
 
-        dialog.show();*/
+        dialog.show();
     }
 
     @OnCheckedChanged(R.id.check_box_term)

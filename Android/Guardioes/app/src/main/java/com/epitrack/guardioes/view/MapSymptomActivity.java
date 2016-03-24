@@ -33,6 +33,9 @@ import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.LocationSource;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
@@ -135,6 +138,7 @@ public class MapSymptomActivity extends AbstractBaseMapActivity implements Searc
 
     @Override
     public void onLastLocation(final Location location) {
+
         super.onLastLocation(location);
 
         final LatLng latLng = LocationUtility.toLatLng(location);
@@ -179,8 +183,26 @@ public class MapSymptomActivity extends AbstractBaseMapActivity implements Searc
                         JSONObject jsonObjectGeometry = jsonObject.getJSONObject("geometry");
                         JSONObject jsonObjectLocation = jsonObjectGeometry.getJSONObject("location");
 
-                        LatLng latLng = new LatLng(jsonObjectLocation.getDouble("lat"), jsonObjectLocation.getDouble("lng"));
+                        final LatLng latLng = new LatLng(jsonObjectLocation.getDouble("lat"), jsonObjectLocation.getDouble("lng"));
                         singleDTO.setLatLng(latLng);
+                        if (getLocationHandler().isConnected()) {
+                            getLocationHandler().disconnect();
+                        }
+
+                        getMap().animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, getDefaultZoom()), new GoogleMap.CancelableCallback() {
+
+                            @Override
+                            public void onFinish() {
+
+                                getUserMarker().setPosition(latLng);
+
+                            }
+
+                            @Override
+                            public void onCancel() {
+
+                            }
+                        });
                     }
 
                 } catch (final Exception e) {
@@ -375,6 +397,8 @@ public class MapSymptomActivity extends AbstractBaseMapActivity implements Searc
     }
 
     private void setupView(final double latitude, final double longitude) {
+
+
 
         SimpleRequester simpleRequester = new SimpleRequester();
         simpleRequester.setJsonObject(null);
@@ -584,17 +608,18 @@ public class MapSymptomActivity extends AbstractBaseMapActivity implements Searc
     public boolean onQueryTextSubmit(String query) {
 
         if (query.equals("")) {
-            singleDTO.setDto(null);
-            singleDTO.setLatLng(null);
-
+            if(!this.getLocationHandler().isConnected()){
+                this.getLocationHandler().connect();
+            }
         } else {
             singleDTO.setDto(query + "-BR");
             setLocationBySearch();
+
         }
 
-        startActivity(getIntent());
+        //startActivity(getIntent());
 
-        finish();
+        //finish();
 
         return false;
     }
