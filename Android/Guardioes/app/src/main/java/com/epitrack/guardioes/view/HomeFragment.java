@@ -29,7 +29,9 @@ import com.epitrack.guardioes.utility.NetworkUtility;
 import com.epitrack.guardioes.view.base.BaseFragment;
 import com.epitrack.guardioes.view.diary.DiaryActivity;
 import com.epitrack.guardioes.view.menu.profile.Avatar;
+import com.epitrack.guardioes.view.menu.profile.Profile;
 import com.epitrack.guardioes.view.menu.profile.ProfileActivity;
+import com.epitrack.guardioes.view.menu.profile.ProfileAdapter;
 import com.epitrack.guardioes.view.survey.SelectParticipantActivity;
 import com.epitrack.guardioes.view.tip.TipActivity;
 import com.github.siyamed.shapeimageview.CircularImageView;
@@ -81,9 +83,14 @@ public class HomeFragment extends BaseFragment {
     @Override
     public View onCreateView(final LayoutInflater inflater, final ViewGroup viewGroup, Bundle bundle) {
         singleUser = SingleUser.getInstance();
-        final View view = inflater.inflate(R.layout.home_fragment, viewGroup, false);
 
-        ButterKnife.bind(this, view);
+        return inflater.inflate(R.layout.home_fragment, viewGroup, false);
+    }
+
+    @Override
+    public void onViewCreated(final View view, @Nullable Bundle bundle) {
+
+        bind(view);
 
         //loadImageProfile();
         //loadImage(imageViewPhoto);
@@ -95,8 +102,6 @@ public class HomeFragment extends BaseFragment {
         resizeBackgroundMenu();
 
         imageViewPhoto = singleUser.getImageProfile(imageViewPhoto, null);
-
-        return view;
     }
 
     private void resizeBackgroundMenu() {

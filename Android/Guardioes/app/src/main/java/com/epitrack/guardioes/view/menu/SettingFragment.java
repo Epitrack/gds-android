@@ -21,23 +21,24 @@ public class SettingFragment extends BaseFragment {
     @Bind(R.id.list_view)
     ListView listView;
 
-    @Override
-    public void onCreate(final Bundle bundle) {
-        super.onCreate(bundle);
-
-        getSupportActionBar().setTitle(R.string.setting);
-    }
-
     @Nullable
     @Override
     public View onCreateView(final LayoutInflater inflater, final ViewGroup viewGroup, final Bundle bundle) {
+        return inflater.inflate(R.layout.setting, viewGroup, false);
+    }
 
-        final View view = inflater.inflate(R.layout.setting, viewGroup, false);
+    @Override
+    public void onViewCreated(final View view, @Nullable Bundle bundle) {
 
-        ButterKnife.bind(this, view);
+        bind(view);
 
         listView.setAdapter(new SettingAdapter(getActivity(), Setting.values()));
+    }
 
-        return view;
+    @Override
+    public void onActivityCreated(final Bundle bundle) {
+        super.onActivityCreated(bundle);
+
+        getSupportActionBar().setTitle(R.string.setting);
     }
 }

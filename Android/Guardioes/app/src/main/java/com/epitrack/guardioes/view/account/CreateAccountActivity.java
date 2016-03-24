@@ -198,7 +198,7 @@ public class CreateAccountActivity extends BaseAppCompatActivity implements Soci
     }
 
     public void onPrivacy(final MenuItem item) {
-        
+
         new BaseDialogFragment() {
 
             @Override

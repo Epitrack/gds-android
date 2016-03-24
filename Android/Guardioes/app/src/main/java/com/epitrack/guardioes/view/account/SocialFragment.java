@@ -52,21 +52,14 @@ public class SocialFragment extends BaseFragment {
     @Nullable
     @Override
     public View onCreateView(final LayoutInflater inflater, final ViewGroup viewGroup, final Bundle bundle) {
-
-        final View view = inflater.inflate(R.layout.social, viewGroup, false);
-
-        ButterKnife.bind(this, view);
-
-        return view;
+        return inflater.inflate(R.layout.social, viewGroup, false);
     }
 
     @Override
-    public void onDestroyView() {
-        super.onDestroyView();
+    public void onViewCreated(final View view, @Nullable Bundle bundle) {
 
-        ButterKnife.unbind(this);
+        bind(view);
     }
-
 
    @OnClick(R.id.button_google)
     public void onGoogle() {
