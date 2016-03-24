@@ -1,8 +1,5 @@
 package com.epitrack.guardioes.view.account;
 
-import android.app.Dialog;
-import android.app.FragmentManager;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -16,33 +13,28 @@ import android.view.animation.AnimationUtils;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.epitrack.guardioes.R;
 import com.epitrack.guardioes.model.DTO;
 import com.epitrack.guardioes.model.SingleUser;
 import com.epitrack.guardioes.model.User;
+import com.epitrack.guardioes.request.Method;
 import com.epitrack.guardioes.request.Requester;
 import com.epitrack.guardioes.request.SimpleRequester;
-import com.epitrack.guardioes.service.AnalyticsApplication;
 import com.epitrack.guardioes.utility.Constants;
 import com.epitrack.guardioes.utility.DateFormat;
 import com.epitrack.guardioes.utility.DialogBuilder;
 import com.epitrack.guardioes.utility.LocationUtility;
 import com.epitrack.guardioes.utility.Mask;
-import com.epitrack.guardioes.view.base.BaseAppCompatActivity;
 import com.epitrack.guardioes.view.HomeActivity;
-import com.epitrack.guardioes.request.Method;
+import com.epitrack.guardioes.view.base.BaseAppCompatActivity;
 import com.epitrack.guardioes.view.menu.help.Term;
 import com.epitrack.guardioes.view.menu.profile.UserActivity;
 import com.epitrack.guardioes.view.welcome.TermsAction;
 import com.google.android.gms.analytics.HitBuilders;
-import com.google.android.gms.analytics.Tracker;
 import com.mobsandgeeks.saripaar.ValidationError;
 import com.mobsandgeeks.saripaar.Validator;
 import com.mobsandgeeks.saripaar.annotation.ConfirmPassword;
@@ -112,9 +104,10 @@ public class CreateAccountActivity extends BaseAppCompatActivity implements Soci
     private Validator validator;
     private State state = State.SOCIAL;
     private SharedPreferences sharedPreferences = null;
-    private Tracker mTracker;
-    Bundle bundle;
-    String gcmToken;
+
+    private Bundle bundle;
+    private String gcmToken;
+    private NotifyDialog notifyDialog;
 
     @Override
     protected void onCreate(final Bundle bundle) {
@@ -130,12 +123,6 @@ public class CreateAccountActivity extends BaseAppCompatActivity implements Soci
 
         actionBar.setDisplayShowTitleEnabled(false);
 
-        // [START shared_tracker]
-        // Obtain the shared Tracker instance.
-        AnalyticsApplication application = (AnalyticsApplication) getApplication();
-        mTracker = application.getDefaultTracker();
-        // [END shared_tracker]
-
         buttonMail.setEnabled(true);
 
         getSocialFragment().setEnable(false);
@@ -150,6 +137,18 @@ public class CreateAccountActivity extends BaseAppCompatActivity implements Soci
 
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         gcmToken = sharedPreferences.getString(Constants.Push.SENDER_ID, "");
+
+        editTextBirthDate.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            public void onFocusChange(View v, boolean hasFocus) {
+                if(hasFocus){
+                    ((EditText) v).setHint(" ex: 01/01/1991");
+                }else{
+                    ((EditText) v).setHint("");
+                }
+            }
+        });
+
+
     }
 
     @Override
@@ -162,11 +161,13 @@ public class CreateAccountActivity extends BaseAppCompatActivity implements Soci
     @Override
     public void onResume() {
         super.onResume();
-        mTracker.setScreenName("Create Account Screen - " + this.getClass().getSimpleName());
-        mTracker.send(new HitBuilders.ScreenViewBuilder().build());
+
+        getTracker().setScreenName("Create Account Screen - " + this.getClass().getSimpleName());
+        getTracker().send(new HitBuilders.ScreenViewBuilder().build());
 
         String bundle = getIntent().getStringExtra(Constants.Bundle.EMAIL);
         if (bundle != null) {
+
             if (bundle.equals("email")) {
                 onNextAnimation(linearLayoutNext, linearLayoutSocial);
             }
@@ -196,7 +197,7 @@ public class CreateAccountActivity extends BaseAppCompatActivity implements Soci
 
     public void onPrivacy(final MenuItem item) {
 
-        /*new NotifyDialog() {
+        new NotifyDialog() {
 
             @Override
             public int getLayout() {
@@ -216,12 +217,7 @@ public class CreateAccountActivity extends BaseAppCompatActivity implements Soci
                 });
             }
 
-        }.show(getFragmentManager(), NotifyDialog.TAG);*/
-
-        FragmentManager fragmentManager = getFragmentManager();
-        NotifyDialog notifyDialog = new NotifyDialog();
-        notifyDialog.show(fragmentManager, "privacy");
-
+        }.show(getFragmentManager(), NotifyDialog.TAG);
 
         // custom dialog
         /*final Dialog dialog = new Dialog(this);
@@ -293,7 +289,8 @@ public class CreateAccountActivity extends BaseAppCompatActivity implements Soci
 
     @OnClick(R.id.button_mail)
     public void onMail() {
-        mTracker.send(new HitBuilders.EventBuilder()
+
+        getTracker().send(new HitBuilders.EventBuilder()
                 .setCategory("Action")
                 .setAction("Create Account by Email Button")
                 .build());
@@ -455,7 +452,8 @@ public class CreateAccountActivity extends BaseAppCompatActivity implements Soci
 
     @OnClick(R.id.button_create_account)
     public void onCreateAccount() {
-        mTracker.send(new HitBuilders.EventBuilder()
+
+        getTracker().send(new HitBuilders.EventBuilder()
                 .setCategory("Action")
                 .setAction("Register Yourself Button")
                 .build());
@@ -556,7 +554,7 @@ public class CreateAccountActivity extends BaseAppCompatActivity implements Soci
                         simpleRequester.setMethod(Method.POST);
 
                         String jsonStr = simpleRequester.execute(simpleRequester).get();
-
+                        Toast.makeText(getApplicationContext(), jsonStr, Toast.LENGTH_SHORT).show();
                         JSONObject jsonObject = new JSONObject(jsonStr);
 
                         if (jsonObject.get("error").toString() == "true") {

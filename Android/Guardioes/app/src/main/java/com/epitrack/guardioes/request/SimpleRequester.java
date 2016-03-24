@@ -1,33 +1,27 @@
 package com.epitrack.guardioes.request;
 
-import android.app.ProgressDialog;
+import android.app.Activity;
 import android.content.Context;
-import android.content.res.AssetManager;
-import android.content.res.Resources;
 import android.os.AsyncTask;
 
-import com.epitrack.guardioes.R;
 import com.epitrack.guardioes.model.SingleUser;
 import com.epitrack.guardioes.utility.Logger;
 import com.epitrack.guardioes.utility.MessageText;
 import com.epitrack.guardioes.utility.SingleContext;
+import com.epitrack.guardioes.view.dialog.LoadDialog;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.BufferedInputStream;
 import java.io.BufferedReader;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
 import java.net.URL;
-
-import java.net.HttpURLConnection;
 import java.net.URLConnection;
 import java.security.KeyManagementException;
 import java.security.KeyStore;
@@ -37,8 +31,6 @@ import java.security.cert.Certificate;
 import java.security.cert.CertificateException;
 import java.security.cert.CertificateFactory;
 import java.security.cert.X509Certificate;
-import java.text.SimpleDateFormat;
-import java.util.Objects;
 
 import javax.net.ssl.HttpsURLConnection;
 import javax.net.ssl.SSLContext;
@@ -54,9 +46,12 @@ public class SimpleRequester extends AsyncTask<SimpleRequester, Object, String> 
     private JSONObject jsonObject;
     private Method method;
     private boolean otherAPI = false;
-    private ProgressDialog progressDialog;
     private Context context;
     private String strReturn;
+
+    private RequestListener<String> listener;
+
+    private LoadDialog loadDialog = new LoadDialog();
 
     public SimpleRequester() {
 
@@ -82,8 +77,8 @@ public class SimpleRequester extends AsyncTask<SimpleRequester, Object, String> 
         this.context = context;
     }
 
-    public Context getContext() {
-        return context;
+    public void setListener(final RequestListener<String> listener) {
+        this.listener = listener;
     }
 
     public String getStrReturn() {
@@ -92,24 +87,35 @@ public class SimpleRequester extends AsyncTask<SimpleRequester, Object, String> 
 
     @Override
     protected void onPreExecute() {
+
         if (context != null) {
+            loadDialog.show(((Activity) context).getFragmentManager(), LoadDialog.TAG);
+        }
+
+        if (listener != null) {
+            listener.onStart();
         }
     }
 
     @Override
     protected void onPostExecute(String result) {
+
+        if (loadDialog.isVisible()) {
+            loadDialog.dismiss();
+        }
+
+        if (listener != null) {
+            listener.onSuccess(result);
+        }
+
         this.strReturn = result;
     }
 
     @Override
-    protected void onProgressUpdate(Object... values) {
-
-    }
-
-    @Override
     protected String doInBackground(SimpleRequester... params) {
+
         try {
-            publishProgress();
+
             SingleContext singleContext = SingleContext.getInstance();
             Context localContext;
 
@@ -119,7 +125,8 @@ public class SimpleRequester extends AsyncTask<SimpleRequester, Object, String> 
 
             localContext = singleContext.getContext();
 
-            return SendPostRequest(this.url, this.method, this.jsonObject, this.otherAPI, localContext);
+            return SendPostRequest(url, method, jsonObject, otherAPI, localContext);
+
         } catch (Exception e) {
             return e.getMessage();
         }
@@ -128,8 +135,8 @@ public class SimpleRequester extends AsyncTask<SimpleRequester, Object, String> 
     public void updateContext() {
         SingleContext singleContext = SingleContext.getInstance();
 
-        if (!this.context.equals(null)) {
-            singleContext.setContext(this.context);
+        if (context != null) {
+            singleContext.setContext(context);
         }
     }
 
@@ -147,12 +154,11 @@ public class SimpleRequester extends AsyncTask<SimpleRequester, Object, String> 
 
         if (method == Method.POST) {
 
-            //HttpsURLConnection conn;
-            byte[] bytes;
-            //conn = (HttpsURLConnection) url.openConnection();
-            //conn.setSSLSocketFactory(generateCertificate(context).getSocketFactory());
-
-            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            HttpsURLConnection conn = null;
+            byte[] bytes = null;
+            conn = (HttpsURLConnection) url.openConnection();
+            //HTTPS
+            conn.setSSLSocketFactory(generateCertificate(context).getSocketFactory());
 
             String body = "";
             if (jsonObjSend != null) {
@@ -188,8 +194,7 @@ public class SimpleRequester extends AsyncTask<SimpleRequester, Object, String> 
             return convertStreamToString;
         } else if (method == Method.GET) {
 
-            //HttpsURLConnection urlConnection;
-            HttpURLConnection urlConnection;
+            HttpsURLConnection urlConnection;
             BufferedReader br;
 
             if (url.toString().substring(0, 12).equals("https://maps")) {
@@ -198,10 +203,9 @@ public class SimpleRequester extends AsyncTask<SimpleRequester, Object, String> 
 
                 br = new BufferedReader(new InputStreamReader(urlConn.getInputStream()));
             } else {
-                //urlConnection = (HttpsURLConnection) url.openConnection();
-                urlConnection = (HttpURLConnection) url.openConnection();
+                urlConnection = (HttpsURLConnection) url.openConnection();
                 //HTTPS
-                //urlConnection.setSSLSocketFactory(generateCertificate(context).getSocketFactory());
+                urlConnection.setSSLSocketFactory(generateCertificate(context).getSocketFactory());
 
                 if (!otherAPI) {
                     urlConnection.setRequestProperty("app_token", singleUser.getApp_token());

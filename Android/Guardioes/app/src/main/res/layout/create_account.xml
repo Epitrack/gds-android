@@ -44,7 +44,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
-            android:background="@drawable/selector_button_mail" />
+            android:background="@drawable/selector_button_mail"
+            android:text="E-mail"
+            android:textColor="#ffffff" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -119,16 +121,21 @@
 
         </android.support.design.widget.TextInputLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
+        <GridLayout
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp">
+            android:layout_marginTop="5dp"
+            android:baselineAligned="true"
+            android:rowCount="1"
+            android:columnCount="2"
+            android:alignmentMode="alignMargins"
+            android:rowOrderPreserved="false">
 
             <LinearLayout
-                android:layout_width="0dp"
+                android:layout_width="170dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:layout_row="0">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -137,18 +144,18 @@
                     android:text="@string/gender"
                     android:textColor="@android:color/white"
                     android:textColorHint="@color/white_dark"
-                    android:textSize="13dp" />
+                    android:textSize="13sp" />
 
                 <Spinner
                     android:id="@+id/spinner_gender"
-                    android:layout_width="wrap_content"
+                    android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:entries="@array/gender_array" />
 
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="170dp"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
@@ -159,17 +166,17 @@
                     android:textColorHint="@color/white_dark"
                     android:text="@string/race"
                     android:textColor="@android:color/white"
-                    android:textSize="13dp" />
+                    android:textSize="13sp" />
 
                 <Spinner
                     android:id="@+id/spinner_race"
-                    android:layout_width="wrap_content"
+                    android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:entries="@array/race_array" />
 
             </LinearLayout>
 
-        </LinearLayout>
+        </GridLayout>
 
         <RelativeLayout
             android:layout_width="match_parent"

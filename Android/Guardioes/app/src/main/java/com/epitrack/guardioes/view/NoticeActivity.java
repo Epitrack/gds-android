@@ -3,20 +3,17 @@ package com.epitrack.guardioes.view;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.epitrack.guardioes.R;
 import com.epitrack.guardioes.model.Notice;
-import com.epitrack.guardioes.service.AnalyticsApplication;
 import com.epitrack.guardioes.utility.DialogBuilder;
-import com.epitrack.guardioes.view.base.BaseAppCompatActivity;
+import com.google.android.gms.analytics.GoogleAnalytics;
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 
@@ -33,7 +30,8 @@ public class NoticeActivity extends AppCompatActivity implements NoticeListener 
     @Bind(R.id.recycler_view)
     RecyclerView recyclerView;
 
-    private Tracker mTracker;
+    private Tracker tracker;
+
     public static List<Notice> noticeList;
 
     @Override
@@ -41,12 +39,6 @@ public class NoticeActivity extends AppCompatActivity implements NoticeListener 
         super.onCreate(bundle);
 
         setContentView(R.layout.notice);
-
-        // [START shared_tracker]
-        // Obtain the shared Tracker instance.
-        AnalyticsApplication application = (AnalyticsApplication) getApplication();
-        mTracker = application.getDefaultTracker();
-        // [END shared_tracker]
 
         ButterKnife.bind(this);
 
@@ -64,8 +56,9 @@ public class NoticeActivity extends AppCompatActivity implements NoticeListener 
     @Override
     public void onResume() {
         super.onResume();
-        mTracker.setScreenName("Notice Screen - " + this.getClass().getSimpleName());
-        mTracker.send(new HitBuilders.ScreenViewBuilder().build());
+
+        getTracker().setScreenName("Notice Screen - " + this.getClass().getSimpleName());
+        getTracker().send(new HitBuilders.ScreenViewBuilder().build());
     }
 
     @Override
@@ -88,7 +81,7 @@ public class NoticeActivity extends AppCompatActivity implements NoticeListener 
     @Override
     public void onNoticeSelect(final Notice notice) {
 
-        mTracker.send(new HitBuilders.EventBuilder()
+        getTracker().send(new HitBuilders.EventBuilder()
                 .setCategory("Action")
                 .setAction("Show Notice")
                 .build());
@@ -110,5 +103,14 @@ public class NoticeActivity extends AppCompatActivity implements NoticeListener 
                         startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(notice.getLink())));
                     }
                 }).show();
+    }
+
+    public Tracker getTracker() {
+
+        if (tracker == null) {
+            tracker = GoogleAnalytics.getInstance(this).newTracker(R.xml.analytics);
+        }
+
+        return tracker;
     }
 }

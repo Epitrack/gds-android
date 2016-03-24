@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
         android:text="@string/welcome"
-        android:textSize="24dp"
+        android:textSize="28dp"
         android:textStyle="bold" />
 
     <TextView
@@ -19,7 +19,8 @@
         android:layout_marginTop="10dp"
         android:fontFamily="sans-serif-light"
         android:gravity="center_horizontal"
-        android:text="@string/message_prepared" />
+        android:text="@string/message_prepared"
+        android:textSize="18dp" />
 
     <ImageView
         android:layout_width="wrap_content"

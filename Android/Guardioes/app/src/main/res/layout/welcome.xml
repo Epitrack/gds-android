@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-    <!--<com.viewpagerindicator.CirclePageIndicator
+    <com.viewpagerindicator.CirclePageIndicator
         android:id="@+id/page_indicator"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -20,7 +20,7 @@
         android:padding="5dp"
         layout:pageColor="@color/translucent_white_light"
         layout:radius="4dp"
-        layout:strokeWidth="0dp" />-->
+        layout:strokeWidth="0dp" />
 
     <LinearLayout
         android:id="@+id/linear_layout"
@@ -37,7 +37,8 @@
             android:layout_weight="3"
             android:background="@drawable/selector_button_white_translucent"
             android:text="@string/register"
-            android:textColor="@color/selector_blue_white" />
+            android:textColor="@color/selector_blue_white"
+            android:textSize="16dp" />
 
         <Button
             android:id="@+id/button_login"
@@ -48,7 +49,8 @@
             android:layout_weight="2"
             android:background="@drawable/selector_button_translucent_white"
             android:text="@string/enter"
-            android:textColor="@color/selector_white_blue" />
+            android:textColor="@color/selector_white_blue"
+            android:textSize="16dp" />
 
     </LinearLayout>
 

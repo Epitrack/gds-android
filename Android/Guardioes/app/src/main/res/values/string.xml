@@ -24,7 +24,7 @@
     <string name="category">Category</string>
     <string name="confirm">Confirmar</string>
     <string name="contact">Entre em contato</string>
-    <string name="diarrheal">Diarréica</string>
+    <string name="diarrheal">Diarreica</string>
     <string name="diary_health">Diário da Saúde</string>
     <string name="diary_health_1">Diário da\nSaúde</string>
     <string name="disease">Doenças</string>
@@ -109,7 +109,7 @@
     <string name="send">Enviar</string>
     <string name="email_null">Título e/ou mensagem não informados.</string>
     <string name="open_link">Deseja abrir o link da notícia?</string>
-    <string name="share_participation">Acabei de participar do Guardiões da Saúde, participe você também: www.guardioesdasaude.org</string>
+    <string name="share_participation"> Eu faço minha parte, faça sua parte também no combate ao mosquito Aedes aegypti #ZikaZero. Acesse: www.guardioesdasaude.org</string>
     <string name="alert_pharmacy">Algumas farmácias podem não ser exibidas no mapa.</string>
     <string name="share_ok">Obrigado por compartilhar!</string>
 
@@ -185,7 +185,7 @@
 
     # Hint
 
-    <string name="hint_birth_date">Data de nascimento ex: 01/01/1991</string>
+    <string name="hint_birth_date">Data de nascimento</string>
     <string name="hint_birth_date_dt">Nascimento</string>
     <string name="hint_mail">E-mail</string>
     <string name="hint_nickname">Apelido</string>
@@ -234,7 +234,7 @@
 
     <string name="message_privacy_tip_1">• Sua participação é voluntária e anônima</string>
     <string name="message_privacy_tip_2">• Os  dados fornecidos serão utilizados para promover uma comunidade mais saudável</string>
-    <string name="message_privacy_tip_3">• Para maiores informações, consulte os termos de uso</string>
+    <string name="message_privacy_tip_3">• Para maiores informações, consulte os Termos de Uso</string>
 
     # Home
 
@@ -243,11 +243,11 @@
     # Profile Activity
 
     <string name="message_select_profile">Selecione um dos perfis abaixo para\npoder editar.</string>
-    <string name="add_member">Adicionar novo membro</string>
+    <string name="add_member">Adicionar novo integrante</string>
     <string name="not_remove_member">Você não pode remover seu perfil.</string>
-    <string name="delete_user">Membro excluído com sucesso.</string>
-    <string name="new_member_ok">Membro incluído com sucesso.</string>
-    <string name="error_add_new_member">Não foi possível realizar o cadastro. Verifique se todos os campos estão preenchidos corretamente e tente novamente.</string>
+    <string name="delete_user">Integrante excluído com sucesso.</string>
+    <string name="new_member_ok">Integrante incluído com sucesso.</string>
+    <string name="error_add_new_member">Não foi possível realizar o cadastro. Verifique se todos os campos estão preenchidos corretamente e tente novamente ou se o e-mail já possui cadastro e tente novamente.</string>
     <string name="dob_invalid">Data de nascimento inválida.</string>
 
     # Profile Fragment
@@ -269,7 +269,7 @@
     # Select Participant
 
     <string name="message_age">%d anos</string>
-    <string name="message_home_member">Membros do domicílio</string>
+    <string name="message_home_member">Integrantes do domicílio</string>
     <string name="message_select_join">Selecione algum dos perfis abaixo\npara começar a participar.</string>
     <string name="message_who_participate">Quem vai participar?</string>
 

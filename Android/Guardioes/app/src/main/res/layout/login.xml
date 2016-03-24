@@ -45,7 +45,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
-            android:background="@drawable/selector_button_mail" />
+            android:background="@drawable/selector_button_mail"
+            android:text="E-mail"
+            android:textColor="#ffffff" />
 
     </LinearLayout>
 

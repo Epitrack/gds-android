@@ -9,28 +9,23 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.afollestad.materialdialogs.MaterialDialog;
 import com.epitrack.guardioes.R;
-import com.epitrack.guardioes.service.AnalyticsApplication;
 import com.epitrack.guardioes.utility.Constants;
 import com.epitrack.guardioes.utility.DialogBuilder;
 import com.epitrack.guardioes.utility.SocialShare;
 import com.epitrack.guardioes.utility.ViewUtility;
-import com.epitrack.guardioes.view.base.BaseActivity;
 import com.epitrack.guardioes.view.HomeActivity;
+import com.epitrack.guardioes.view.base.BaseActivity;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
 import com.facebook.FacebookSdk;
 import com.facebook.share.Sharer;
 import com.facebook.share.model.ShareLinkContent;
-import com.facebook.share.widget.MessageDialog;
 import com.facebook.share.widget.ShareButton;
 import com.facebook.share.widget.ShareDialog;
 import com.google.android.gms.analytics.HitBuilders;
-import com.google.android.gms.analytics.Tracker;
 import com.twitter.sdk.android.tweetcomposer.TweetComposer;
 
 import butterknife.Bind;
@@ -61,7 +56,6 @@ public class ShareActivity extends BaseActivity {
     ShareButton shareButton;
     ShareDialog shareDialog;
     CallbackManager callbackManager;
-    private Tracker mTracker;
 
     private String MSG=" Eu faço minha parte, faça sua parte também no combate ao mosquito Aedes aegypti #ZikaZero. Acesse: http://www.guardioesdasaude.org";
 
@@ -70,12 +64,6 @@ public class ShareActivity extends BaseActivity {
         super.onCreate(bundle);
 
         setContentView(R.layout.share);
-
-        // [START shared_tracker]
-        // Obtain the shared Tracker instance.
-        AnalyticsApplication application = (AnalyticsApplication) getApplication();
-        mTracker = application.getDefaultTracker();
-        // [END shared_tracker]
 
         FacebookSdk.sdkInitialize(getApplicationContext());
         callbackManager = CallbackManager.Factory.create();
@@ -115,8 +103,9 @@ public class ShareActivity extends BaseActivity {
     @Override
     public void onResume() {
         super.onResume();
-        mTracker.setScreenName("Share Survey Screen - " + this.getClass().getSimpleName());
-        mTracker.send(new HitBuilders.ScreenViewBuilder().build());
+
+        getTracker().setScreenName("Share Survey Screen - " + this.getClass().getSimpleName());
+        getTracker().send(new HitBuilders.ScreenViewBuilder().build());
     }
 
     @Override
@@ -132,10 +121,12 @@ public class ShareActivity extends BaseActivity {
 
     @OnClick(R.id.button_confirm)
     public void onConfirm() {
-        mTracker.send(new HitBuilders.EventBuilder()
+
+        getTracker().send(new HitBuilders.EventBuilder()
                 .setCategory("Action")
                 .setAction("Survey Confirm Button")
                 .build());
+
         navigateTo();
     }
 
@@ -148,7 +139,7 @@ public class ShareActivity extends BaseActivity {
     @OnClick(R.id.share_facebook)
     public void shareFacebook() {
 
-        mTracker.send(new HitBuilders.EventBuilder()
+        getTracker().send(new HitBuilders.EventBuilder()
                 .setCategory("Action")
                 .setAction("Survey Share Facebook Button")
                 .build());
@@ -166,7 +157,7 @@ public class ShareActivity extends BaseActivity {
     @OnClick(R.id.share_twitter)
     public void sahreTwitter() {
 
-        mTracker.send(new HitBuilders.EventBuilder()
+        getTracker().send(new HitBuilders.EventBuilder()
                 .setCategory("Action")
                 .setAction("Survey Share Twitter Button")
                 .build());
@@ -181,7 +172,8 @@ public class ShareActivity extends BaseActivity {
 
     @OnClick(R.id.share_whatsapp)
     public void shareWhatsApp() {
-        mTracker.send(new HitBuilders.EventBuilder()
+
+        getTracker().send(new HitBuilders.EventBuilder()
                 .setCategory("Action")
                 .setAction("WhatsApp Share Twitter Button")
                 .build());
@@ -208,7 +200,5 @@ public class ShareActivity extends BaseActivity {
                     .positiveText(R.string.ok)
                     .show();
         }
-
     }
-
 }

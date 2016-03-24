@@ -13,7 +13,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -24,7 +23,6 @@ import com.epitrack.guardioes.model.User;
 import com.epitrack.guardioes.request.Method;
 import com.epitrack.guardioes.request.Requester;
 import com.epitrack.guardioes.request.SimpleRequester;
-import com.epitrack.guardioes.service.AnalyticsApplication;
 import com.epitrack.guardioes.utility.DateFormat;
 import com.epitrack.guardioes.utility.DialogBuilder;
 import com.epitrack.guardioes.utility.NetworkUtility;
@@ -34,6 +32,7 @@ import com.epitrack.guardioes.view.menu.profile.Avatar;
 import com.epitrack.guardioes.view.menu.profile.ProfileActivity;
 import com.epitrack.guardioes.view.survey.SelectParticipantActivity;
 import com.epitrack.guardioes.view.tip.TipActivity;
+import com.github.siyamed.shapeimageview.CircularImageView;
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 
@@ -63,10 +62,7 @@ public class HomeFragment extends BaseFragment {
     TextView textViewName;
 
     @Bind(R.id.image_view_photo)
-    com.github.siyamed.shapeimageview.CircularImageView imageViewPhoto;
-    //de.hdodenhof.circleimageview.CircleImageView imageViewPhoto;
-    //ImageView imageViewPhoto;
-
+    CircularImageView imageViewPhoto;
 
     @Bind(R.id.linear_layout_menu_home)
     LinearLayout linearLayoutMenuHome;
@@ -77,12 +73,6 @@ public class HomeFragment extends BaseFragment {
     @Override
     public void onCreate(final Bundle bundle) {
         super.onCreate(bundle);
-
-        // [START shared_tracker]
-        // Obtain the shared Tracker instance.
-        AnalyticsApplication application = (AnalyticsApplication) getActivity().getApplication();
-        mTracker = application.getDefaultTracker();
-        // [END shared_tracker]
 
         setDisplayTitle(false);
         setDisplayLogo(true);
@@ -365,7 +355,7 @@ public class HomeFragment extends BaseFragment {
 
     @OnClick(R.id.text_view_notice)
     public void onNews() {
-        mTracker.send(new HitBuilders.EventBuilder()
+        getTracker().send(new HitBuilders.EventBuilder()
                 .setCategory("Action")
                 .setAction("Notice Button")
                 .build());
@@ -402,44 +392,17 @@ public class HomeFragment extends BaseFragment {
 
     @OnClick(R.id.text_view_map)
     public void onMap() {
-        mTracker.send(new HitBuilders.EventBuilder()
+        getTracker().send(new HitBuilders.EventBuilder()
                 .setCategory("Action")
-                .setAction("Notice Button")
+                .setAction("Map Button")
                 .build());
 
-        if (NetworkUtility.isOnline(getActivity().getApplication())) {
-
-            final ProgressDialog progressDialog;
-            progressDialog = new ProgressDialog(getActivity(), R.style.Theme_MyProgressDialog);
-            progressDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.rgb(30, 136, 229)));
-            progressDialog.setTitle(R.string.app_name);
-            progressDialog.setMessage("Carregando...");
-            progressDialog.show();
-
-            new Thread() {
-
-                @Override
-                public void run() {
-                    getNoticeList();
-                    progressDialog.dismiss();
-                    navigateTo(MapSymptomActivity.class);
-                }
-
-            }.start();
-
-        } else {
-
-            new DialogBuilder(getActivity()).load()
-                    .title(R.string.attention)
-                    .content(R.string.network_fail)
-                    .positiveText(R.string.ok)
-                    .show();
-        }
+        navigateTo(MapSymptomActivity.class);
     }
 
     @OnClick(R.id.text_view_tip)
     public void onTip() {
-        mTracker.send(new HitBuilders.EventBuilder()
+        getTracker().send(new HitBuilders.EventBuilder()
                 .setCategory("Action")
                 .setAction("Tip Button")
                 .build());
@@ -449,19 +412,12 @@ public class HomeFragment extends BaseFragment {
 
     @OnClick(R.id.text_view_diary)
     public void onDiary() {
-        mTracker.send(new HitBuilders.EventBuilder()
+        getTracker().send(new HitBuilders.EventBuilder()
                 .setCategory("Action")
                 .setAction("Diary of Health Button")
                 .build());
 
         if (NetworkUtility.isOnline(getActivity().getApplication())) {
-
-            final ProgressDialog progressDialog;
-            progressDialog = new ProgressDialog(getActivity(), R.style.Theme_MyProgressDialog);
-            progressDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.rgb(30, 136, 229)));
-            progressDialog.setTitle(R.string.app_name);
-            progressDialog.setMessage("Carregando...");
-            progressDialog.show();
 
             navigateTo(DiaryActivity.class);
 
@@ -478,7 +434,7 @@ public class HomeFragment extends BaseFragment {
 
     @OnClick(R.id.text_view_join)
     public void onJoin() {
-        mTracker.send(new HitBuilders.EventBuilder()
+        getTracker().send(new HitBuilders.EventBuilder()
                 .setCategory("Action")
                 .setAction("Survey Button")
                 .build());
