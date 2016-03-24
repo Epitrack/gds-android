@@ -97,6 +97,7 @@ dependencies {
     compile 'de.hdodenhof:circleimageview:1.3.0'
     compile 'com.edmodo:cropper:1.0.1'
     compile 'com.karumi:dexter:2.1.4'
+    compile 'org.apache.commons:commons-collections4:4.1'
     compile('com.crashlytics.sdk.android:crashlytics:2.5.5@aar') {
         transitive = true;
     }

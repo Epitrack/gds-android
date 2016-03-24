@@ -67,7 +67,6 @@ public class HomeFragment extends BaseFragment {
     @Bind(R.id.linear_layout_menu_home)
     LinearLayout linearLayoutMenuHome;
 
-    private Tracker mTracker;
     SingleUser singleUser = SingleUser.getInstance();
 
     @Override

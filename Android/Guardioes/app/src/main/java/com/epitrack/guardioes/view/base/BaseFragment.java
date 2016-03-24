@@ -1,3 +1,19 @@
+/*
+ * Copyright 2015 Igor Morais
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package com.epitrack.guardioes.view.base;
 
 import android.app.Activity;
@@ -6,9 +22,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 
 import com.epitrack.guardioes.R;
-import com.epitrack.guardioes.view.Navigate;
 import com.google.android.gms.analytics.GoogleAnalytics;
 import com.google.android.gms.analytics.Tracker;
 
@@ -17,52 +33,60 @@ import butterknife.ButterKnife;
 /**
  * @author Igor Morais
  */
-public class BaseFragment extends Fragment implements Navigate {
+public abstract class BaseFragment extends Fragment implements INavigate {
 
     private Tracker tracker;
 
     @Override
-    public void onCreate(final Bundle bundle) {
-        super.onCreate(bundle);
-
-        setDisplayTitle(true);
-        setDisplayLogo(false);
-    }
-
-    @Override
     public void onDestroyView() {
         super.onDestroyView();
-
+        
         ButterKnife.unbind(this);
+    }
+    
+    protected final void bind(final View view) {
+        ButterKnife.bind(this, view);
+    }
+
+    protected final ActionBar getSupportActionBar() {
+
+        if (getActivity() instanceof AppCompatActivity) {
+            return ((AppCompatActivity) getActivity()).getSupportActionBar();
+        }
+        
+        return null;
     }
 
     @Override
-    public void navigateTo(final Class<? extends Activity> activityClass) {
+    public final void navigateTo(final Class<? extends Activity> activityClass) {
         startActivity(new Intent(getActivity(), activityClass));
     }
 
     @Override
-    public void navigateTo(final Class<? extends Activity> activityClass, final int flags) {
+    public final void navigateTo(final Class<? extends Activity> activityClass, final int flags) {
 
         final Intent intent = new Intent(getActivity(), activityClass);
+        
         intent.setFlags(flags);
 
         startActivity(intent);
     }
 
     @Override
-    public void navigateTo(final Class<? extends Activity> activityClass, final Bundle bundle) {
+    public final void navigateTo(final Class<? extends Activity> activityClass, final Bundle bundle) {
 
         final Intent intent = new Intent(getActivity(), activityClass);
+        
         intent.putExtras(bundle);
 
         startActivity(intent);
     }
 
     @Override
-    public void navigateTo(final Class<? extends Activity> activityClass, final int flags, final Bundle bundle) {
+    public final void navigateTo(final Class<? extends Activity> activityClass, final int flags, final Bundle bundle) {
 
         final Intent intent = new Intent(getActivity(), activityClass);
+        
         intent.setFlags(flags);
         intent.putExtras(bundle);
 
@@ -70,54 +94,50 @@ public class BaseFragment extends Fragment implements Navigate {
     }
 
     @Override
-    public void navigateForResult(final Class<? extends Activity> activityClass, final int requestCode) {
+    public final void navigateForResult(final Class<? extends Activity> activityClass, final int requestCode) {
         startActivityForResult(new Intent(getActivity(), activityClass), requestCode);
     }
 
     @Override
-    public void navigateForResult(final Class<? extends Activity> activityClass, final int requestCode,
-                                  final int flags) {
+    public final void navigateForResult(final Class<? extends Activity> activityClass, final int requestCode, final int flags) {
 
         final Intent intent = new Intent(getActivity(), activityClass);
+        
         intent.setFlags(flags);
 
         startActivityForResult(intent, requestCode);
     }
 
     @Override
-    public void navigateForResult(final Class<? extends Activity> activityClass, final int requestCode,
-                                  final Bundle bundle) {
+    public final void navigateForResult(final Class<? extends Activity> activityClass, final int requestCode, final Bundle bundle) {
 
         final Intent intent = new Intent(getActivity(), activityClass);
+        
         intent.putExtras(bundle);
 
         startActivityForResult(intent, requestCode);
     }
 
     @Override
-    public void navigateForResult(final Class<? extends Activity> activityClass, final int requestCode,
-                                  final int flags, final Bundle bundle) {
+    public final void navigateForResult(final Class<? extends Activity> activityClass, final int requestCode, final int flags, final Bundle bundle) {
 
         final Intent intent = new Intent(getActivity(), activityClass);
+        
         intent.setFlags(flags);
         intent.putExtras(bundle);
 
         startActivityForResult(intent, requestCode);
     }
 
-    public final ActionBar getSupportActionBar() {
-        return ((AppCompatActivity) getActivity()).getSupportActionBar();
-    }
-
-    public final void setDisplayTitle(final boolean display) {
+    protected final void setDisplayTitle(final boolean display) {
         getSupportActionBar().setDisplayShowTitleEnabled(display);
     }
 
-    public final void setDisplayLogo(final boolean display) {
+    protected final void setDisplayLogo(final boolean display) {
         getSupportActionBar().setDisplayUseLogoEnabled(display);
     }
 
-    public Tracker getTracker() {
+    protected Tracker getTracker() {
 
         if (tracker == null) {
             tracker = GoogleAnalytics.getInstance(getActivity()).newTracker(R.xml.analytics);
@@ -125,4 +145,4 @@ public class BaseFragment extends Fragment implements Navigate {
 
         return tracker;
     }
- }
+}

@@ -31,6 +31,7 @@ import com.epitrack.guardioes.utility.LocationUtility;
 import com.epitrack.guardioes.utility.Mask;
 import com.epitrack.guardioes.view.HomeActivity;
 import com.epitrack.guardioes.view.base.BaseAppCompatActivity;
+import com.epitrack.guardioes.view.base.dialog.BaseDialogFragment;
 import com.epitrack.guardioes.view.menu.help.Term;
 import com.epitrack.guardioes.view.menu.profile.UserActivity;
 import com.epitrack.guardioes.view.welcome.TermsAction;
@@ -107,7 +108,6 @@ public class CreateAccountActivity extends BaseAppCompatActivity implements Soci
 
     private Bundle bundle;
     private String gcmToken;
-    private NotifyDialog notifyDialog;
 
     @Override
     protected void onCreate(final Bundle bundle) {
@@ -197,7 +197,7 @@ public class CreateAccountActivity extends BaseAppCompatActivity implements Soci
 
     public void onPrivacy(final MenuItem item) {
 
-        new NotifyDialog() {
+        new BaseDialogFragment() {
 
             @Override
             public int getLayout() {
@@ -217,7 +217,7 @@ public class CreateAccountActivity extends BaseAppCompatActivity implements Soci
                 });
             }
 
-        }.show(getFragmentManager(), NotifyDialog.TAG);
+        }.show(getFragmentManager(), BaseDialogFragment.TAG);
 
         // custom dialog
         /*final Dialog dialog = new Dialog(this);
