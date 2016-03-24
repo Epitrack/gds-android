@@ -36,6 +36,14 @@ public abstract class AbstractBaseMapActivity extends BaseAppCompatActivity impl
 
     private SingleDTO singleDTO = SingleDTO.getInstance();
 
+    public LocationManager getLocationHandler() {
+        return locationHandler;
+    }
+
+    public static long getDefaultZoom() {
+        return DEFAULT_ZOOM;
+    }
+
     @Override
     protected void onCreate(final Bundle bundle) {
         super.onCreate(bundle);
@@ -116,5 +124,9 @@ public abstract class AbstractBaseMapActivity extends BaseAppCompatActivity impl
 
     public final Marker getUserMarker() {
         return userMarker;
+    }
+
+    public void setUserMarker(Marker userMarker) {
+        this.userMarker = userMarker;
     }
 }

@@ -27,6 +27,7 @@ import com.epitrack.guardioes.utility.MySelectorDecoratorGood;
 import com.epitrack.guardioes.utility.MySelectorDecoratorOnlyBad;
 import com.epitrack.guardioes.utility.MySelectorDecoratorOnlyGood;
 import com.epitrack.guardioes.view.base.BaseAppCompatActivity;
+import com.epitrack.guardioes.view.dialog.LoadDialog;
 import com.epitrack.guardioes.view.survey.ParentListener;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.data.Entry;
@@ -143,7 +144,7 @@ public class DiaryActivity extends BaseAppCompatActivity implements ParentListen
 
     private DiaryActivity context;
     private CalendarDay calendarDay;
-
+    private final LoadDialog LOAD_DIALOG= new LoadDialog();
     @Override
     protected void onCreate(final Bundle bundle) {
         super.onCreate(bundle);
@@ -154,6 +155,16 @@ public class DiaryActivity extends BaseAppCompatActivity implements ParentListen
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
 
         context = this;
+
+
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        getTracker().setScreenName("Diary of Health Screen - " + this.getClass().getSimpleName());
+        getTracker().send(new HitBuilders.ScreenViewBuilder().build());
 
         final List<User> parentList = new ArrayList<>();
 
@@ -169,13 +180,10 @@ public class DiaryActivity extends BaseAppCompatActivity implements ParentListen
 
         recyclerView.setAdapter(new MemberAdapter(DiaryActivity.this, DiaryActivity.this, parentList));
 
-        simpleRequester.execute();
-
         simpleRequester.setListener(new RequestListener<String>() {
-
             @Override
             public void onStart() {
-
+                LOAD_DIALOG.show(getFragmentManager(), LOAD_DIALOG.TAG);
             }
 
             @Override
@@ -216,16 +224,10 @@ public class DiaryActivity extends BaseAppCompatActivity implements ParentListen
                 }
 
                 setDataLineChart();
+                LOAD_DIALOG.dismiss();
             }
         });
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-
-        getTracker().setScreenName("Diary of Health Screen - " + this.getClass().getSimpleName());
-        getTracker().send(new HitBuilders.ScreenViewBuilder().build());
+        simpleRequester.execute();
     }
 
     @Override
@@ -327,7 +329,7 @@ public class DiaryActivity extends BaseAppCompatActivity implements ParentListen
                     materialCalendarView.setTitleMonths(new String[]{"Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"});
                     calendarDay = CalendarDay.today();
 
-                    //new AsyncTaskRunner().execute();
+                    new AsyncTaskRunner().execute();
 
                     setTextTotalReport(null);
 
@@ -713,6 +715,7 @@ public class DiaryActivity extends BaseAppCompatActivity implements ParentListen
             }
 
         }
+
     }
 
     private class AsyncTaskRunner extends AsyncTask<Void, Void, Void> {
@@ -731,6 +734,7 @@ public class DiaryActivity extends BaseAppCompatActivity implements ParentListen
             materialCalendarView.removeDecorators();
             materialCalendarView.addDecorators(new MySelectorDecoratorGood(context, daysGood), new MySelectorDecoratorBad(context, daysBad), new DayDisableDecorator(daysZero),
                     new MySelectorDecoratorOnlyGood(context, daysOnlyGood), new MySelectorDecoratorOnlyBad(context, daysOnlyBad), new MySelectorDecoratorEquals(context, daysEquals));
+
         }
 
         @Override
