@@ -5,6 +5,7 @@ import android.content.IntentSender;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.multidex.MultiDex;
 import android.support.v7.app.ActionBar;
 import android.view.MenuItem;
 import android.view.View;
@@ -131,6 +132,7 @@ public class SocialLoginActivity extends BaseAppCompatActivity implements View.O
                     .build());
 
             TwitterAuthConfig authConfig = new TwitterAuthConfig(TWITTER_KEY, TWITTER_SECRET);
+            MultiDex.install(getBaseContext());
             Fabric.with(this, new Twitter(authConfig));
 
             buttonTwitter.setCallback(new Callback<TwitterSession>() {

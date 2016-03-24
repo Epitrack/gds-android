@@ -14,6 +14,7 @@ import android.support.design.widget.TextInputLayout;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewTreeObserver;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -38,8 +39,10 @@ import com.epitrack.guardioes.utility.DialogBuilder;
 import com.epitrack.guardioes.utility.LocationUtility;
 import com.epitrack.guardioes.utility.Mask;
 import com.epitrack.guardioes.view.HomeActivity;
+import com.epitrack.guardioes.view.HomeFragment;
 import com.epitrack.guardioes.view.base.BaseAppCompatActivity;
 import com.epitrack.guardioes.view.welcome.WelcomeActivity;
+import com.github.siyamed.shapeimageview.CircularImageView;
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
@@ -428,6 +431,7 @@ public class UserActivity extends BaseAppCompatActivity {
                 } else if (userAvatar > 0) {
                     jsonObject.put("picture", userAvatar);
                     singleUser.setPicture(String.valueOf(userAvatar));
+
                 } else {
                     if (newMenber) {
                         jsonObject.put("picture", "0");
@@ -672,8 +676,9 @@ public class UserActivity extends BaseAppCompatActivity {
                     userAvatar = avatar.getId();
 
                     if(userAvatar > 0) {
-                        imageViewImage.setImageResource(Avatar.getBy(Integer.parseInt(profileImage.getAvatar())).getSmall());
-                        userAvatar = Integer.parseInt(profileImage.getAvatar());
+                        profileImage.setAvatar(""+userAvatar);
+                        this.imageViewImage.setImageResource(Avatar.getBy(userAvatar).getLarge());
+                                               //userAvatar = Integer.parseInt(profileImage.getAvatar());
                     }
                 } else if (intent.hasExtra(Constants.Bundle.URI)) {
 

@@ -8,6 +8,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -90,7 +91,7 @@ public class HomeFragment extends BaseFragment {
     @Nullable
     @Override
     public View onCreateView(final LayoutInflater inflater, final ViewGroup viewGroup, Bundle bundle) {
-
+        singleUser = SingleUser.getInstance();
         final View view = inflater.inflate(R.layout.home_fragment, viewGroup, false);
 
         ButterKnife.bind(this, view);
@@ -172,6 +173,7 @@ public class HomeFragment extends BaseFragment {
 
     private void setDefaultAvatar() {
 
+        Log.e("",singleUser.toString());
         setImageViewSize(imageViewPhoto);
 
         int age = DateFormat.getDateDiff(singleUser.getDob());
@@ -289,9 +291,9 @@ public class HomeFragment extends BaseFragment {
                         .centerCrop()
                         .into(imageViewPhoto);*/
 
-                //loadImageProfile();
+                loadImageProfile();
 
-                if (singleUser.getPicture().equals("0")) {
+                if (!singleUser.getPicture().equals("0")) {
 
                     if (!singleUser.getFile().equals("")) {
                         Uri uri = Uri.parse(singleUser.getFile());
@@ -307,7 +309,8 @@ public class HomeFragment extends BaseFragment {
                         }
                     }
                 } else {
-                    imageViewPhoto.setImageResource(Avatar.getBy(Integer.parseInt("2")).getLarge());
+                    setDefaultAvatar();
+                    //imageViewPhoto.setImageResource(Avatar.getBy(Integer.parseInt("2")).getLarge());
                 }
 
                 view.getViewTreeObserver().removeOnGlobalLayoutListener(this);

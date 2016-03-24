@@ -9,6 +9,7 @@ import android.net.Uri;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.support.annotation.Nullable;
+import android.util.Log;
 
 import com.epitrack.guardioes.R;
 import com.epitrack.guardioes.view.menu.profile.Avatar;
@@ -394,6 +395,7 @@ public class User {
 
     public CircularImageView getImageProfile(CircularImageView imageView, User user) {
 
+
         if (user == null) {
             user = SingleUser.getInstance();
         }
@@ -401,6 +403,7 @@ public class User {
         if (user.getFile() == null) {
             user.setFile("");
         }
+
 
         if (user.getPicture() == null) {
             imageView.setImageResource(Avatar.getBy(Integer.parseInt("11")).getLarge());

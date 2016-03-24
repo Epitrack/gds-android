@@ -15,5 +15,24 @@
 #-keepclassmembers class fqcn.of.javascript.interface.for.webview {
 #   public *;
 #}
+
+-dontwarn com.squareup.okhttp.**
+-dontwarn com.google.appengine.api.urlfetch.**
+-dontwarn rx.**
+-dontwarn retrofit.**
+-keepattributes Signature
+-keepattributes *Annotation*
+-keep class com.squareup.okhttp.** { *; }
+-keep interface com.squareup.okhttp.** { *; }
+-keep class retrofit.** { *; }
+-keepclasseswithmembers class * {
+    @retrofit.http.* <methods>;
+}
+
 -keep class io.fabric.sdk.android.** { *; }
--keep class com.facebook.FacebookSdk
+-keep class io.fabric.sdk.android.services.concurrency.PriorityThreadPoolExecutor
+-keep class com.twitter.sdk.android.core.identity.TwitterLoginButton
+-keepattributes Exceptions, Signature, InnerClasses
+-keepclassmembers class * extends android.app.Activity {
+   public void *(android.view.View);
+}
