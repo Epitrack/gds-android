@@ -27,29 +27,16 @@ public class AboutFragment extends BaseFragment {
     @Bind(R.id.txt_version_build)
     TextView textViewVersionBuild;
 
-    @Override
-    public void onCreate(final Bundle bundle) {
-        super.onCreate(bundle);
-
-        getSupportActionBar().setTitle(R.string.about);
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-
-        getTracker().setScreenName("About Screen - " + this.getClass().getSimpleName());
-
-        getTracker().send(new HitBuilders.ScreenViewBuilder().build());
-    }
-
     @Nullable
     @Override
     public View onCreateView(final LayoutInflater inflater, final ViewGroup viewGroup, final Bundle bundle) {
+        return inflater.inflate(R.layout.about, viewGroup, false);
+    }
 
-        final View view = inflater.inflate(R.layout.about, viewGroup, false);
+    @Override
+    public void onViewCreated(final View view, @Nullable Bundle bundle) {
 
-        ButterKnife.bind(this, view);
+        bind(view);
 
         textViewVersionBuild.setText("Versão " + SingleUser.getInstance().getVersionBuild());
 
@@ -90,7 +77,21 @@ public class AboutFragment extends BaseFragment {
                 "<p>&nbsp;&nbsp;&#8226;&nbsp;Acesso aos serviços com custo: por meio de seu pacote de dados contratado;</p>\n" +
                 "\n" +
                 "<p>&nbsp;&nbsp;&#8226;&nbsp;Chamada telefônica: Os serviços públicos de referência descritos nos telefones úteis são oferecidos por meio de chamada gratuita, conforme informação do órgão responsável;</p>"));
+    }
 
-        return view;
+    @Override
+    public void onActivityCreated(final Bundle bundle) {
+        super.onActivityCreated(bundle);
+
+        getSupportActionBar().setTitle(R.string.about);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        getTracker().setScreenName("About Screen - " + this.getClass().getSimpleName());
+
+        getTracker().send(new HitBuilders.ScreenViewBuilder().build());
     }
 }

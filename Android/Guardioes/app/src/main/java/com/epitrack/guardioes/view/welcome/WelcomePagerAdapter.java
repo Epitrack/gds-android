@@ -33,7 +33,7 @@ public class WelcomePagerAdapter extends FragmentPagerAdapter {
 
         final Bundle bundle = new Bundle();
 
-        bundle.putInt(Constants.Bundle.WELCOME, Welcome.getBy(position + 1).getId());
+        bundle.putSerializable(Constants.Bundle.WELCOME, welcomeArray[position]);
 
         return Fragment.instantiate(context, WelcomePageFragment.class.getName(), bundle);
     }

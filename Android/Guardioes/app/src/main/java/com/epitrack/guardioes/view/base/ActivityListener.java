@@ -14,16 +14,14 @@
  * limitations under the License.
  */
 
-package com.epitrack.guardioes.view.base.dialog;
+package com.epitrack.guardioes.view.base;
 
 /**
  * @author Igor Morais
  */
-public interface DialogListener {
-
-    void onNegative(BaseDialogFragment dialog, int requestCode);
-
-    void onNeutral(BaseDialogFragment dialog, int requestCode);
-
-    void onPositive(BaseDialogFragment dialog, int requestCode);
+public interface ActivityListener {
+    
+    void onTheme();
+    
+    void onContentView();
 }

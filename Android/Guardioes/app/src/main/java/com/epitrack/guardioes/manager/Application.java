@@ -23,9 +23,5 @@ public final class Application extends android.app.Application {
         super.onCreate();
         TwitterAuthConfig authConfig = new TwitterAuthConfig(TWITTER_KEY, TWITTER_SECRET);
         Fabric.with(this, new Twitter(authConfig));
-
-        if (BuildConfig.DEBUG) {
-            LayoutCast.init(this);
-        }
     }
 }

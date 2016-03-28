@@ -18,8 +18,8 @@ public class WelcomePageFragment extends Fragment {
     @Override
     public View onCreateView(final LayoutInflater inflater, final ViewGroup viewGroup, final Bundle bundle) {
 
-        final int id = getArguments().getInt(Constants.Bundle.WELCOME, Integer.MIN_VALUE);
+        final Welcome welcome = (Welcome) getArguments().getSerializable(Constants.Bundle.WELCOME);
 
-        return inflater.inflate(Welcome.getBy(id).getLayout(), viewGroup, false);
+        return inflater.inflate(welcome.getLayout(), viewGroup, false);
     }
 }

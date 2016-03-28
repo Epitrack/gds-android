@@ -35,30 +35,16 @@ public class HelpFragment extends BaseFragment implements MenuListener {
     @Bind(R.id.list_view_report_error)
     ListView listViewReport;
 
-    @Override
-    public void onCreate(final Bundle bundle) {
-        super.onCreate(bundle);
-
-        getSupportActionBar().setTitle(R.string.help);
-
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-
-        getTracker().setScreenName("Help Screen - " + this.getClass().getSimpleName());
-
-        getTracker().send(new HitBuilders.ScreenViewBuilder().build());
-    }
-
     @Nullable
     @Override
     public View onCreateView(final LayoutInflater inflater, final ViewGroup viewGroup, final Bundle bundle) {
+        return inflater.inflate(R.layout.help, viewGroup, false);
+    }
 
-        final View view = inflater.inflate(R.layout.help, viewGroup, false);
+    @Override
+    public void onViewCreated(final View view, @Nullable Bundle bundle) {
 
-        ButterKnife.bind(this, view);
+        bind(view);
 
         listViewOption.setAdapter(new HelpAdapter(getActivity(), this, HelpOption.values()));
 
@@ -148,8 +134,22 @@ public class HelpFragment extends BaseFragment implements MenuListener {
                 }
             }
         });
+    }
 
-        return view;
+    @Override
+    public void onActivityCreated(final Bundle bundle) {
+        super.onActivityCreated(bundle);
+
+        getSupportActionBar().setTitle(R.string.help);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        getTracker().setScreenName("Help Screen - " + this.getClass().getSimpleName());
+
+        getTracker().send(new HitBuilders.ScreenViewBuilder().build());
     }
 
     @Override

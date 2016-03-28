@@ -22,25 +22,26 @@ public class ProfileFragment extends BaseFragment implements AdapterView.OnItemC
     @Bind(R.id.list_view)
     ListView listView;
 
-    @Override
-    public void onCreate(final Bundle bundle) {
-        super.onCreate(bundle);
-
-        getSupportActionBar().setTitle(R.string.profile);
-    }
-
     @Nullable
     @Override
     public View onCreateView(final LayoutInflater inflater, final ViewGroup viewGroup, final Bundle bundle) {
+        return inflater.inflate(R.layout.profile_fragment, viewGroup, false);
+    }
 
-        final View view = inflater.inflate(R.layout.profile_fragment, viewGroup, false);
+    @Override
+    public void onViewCreated(final View view, @Nullable Bundle bundle) {
 
-        ButterKnife.bind(this, view);
+        bind(view);
 
         listView.setAdapter(new ProfileAdapter(getActivity(), Profile.values()));
         listView.setOnItemClickListener(this);
+    }
 
-        return view;
+    @Override
+    public void onActivityCreated(final Bundle bundle) {
+        super.onActivityCreated(bundle);
+
+        getSupportActionBar().setTitle(R.string.profile);
     }
 
     @Override
