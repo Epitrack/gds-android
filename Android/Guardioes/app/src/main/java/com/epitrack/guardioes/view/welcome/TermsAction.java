@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
+import android.support.multidex.MultiDex;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -38,23 +39,23 @@ public class TermsAction extends BaseAppCompatActivity {
     @Override
     public void onCreate(final Bundle bundle) {
         super.onCreate(bundle);
-
         setContentView(R.layout.terms_of_use_action);
 
         // [START shared_tracker]
         // Obtain the shared Tracker instance.
-        AnalyticsApplication application = (AnalyticsApplication) getApplication();
-        mTracker = application.getDefaultTracker();
+        //try{
+       // AnalyticsApplication application = (AnalyticsApplication) getApplication();
+       // mTracker = application.getDefaultTracker();
         // [END shared_tracker]
 
     }
 
     @OnClick(R.id.btn_accept_terms)
     public void acceptTerms() {
-        mTracker.send(new HitBuilders.EventBuilder()
+       /* mTracker.send(new HitBuilders.EventBuilder()
                 .setCategory("Action")
                 .setAction("Accept Terms of Use")
-                .build());
+                .build());*/
 
         String bundle = getIntent().getStringExtra(Constants.Bundle.EMAIL);
 
@@ -74,10 +75,10 @@ public class TermsAction extends BaseAppCompatActivity {
 
     @OnClick(R.id.btn_not_accept_terms)
     public void notAcceptTerms() {
-        mTracker.send(new HitBuilders.EventBuilder()
+       /* mTracker.send(new HitBuilders.EventBuilder()
                 .setCategory("Action")
                 .setAction("Not Accept Terms of Use")
-                .build());
+                .build());*/
         super.onBackPressed();
     }
 
@@ -85,8 +86,8 @@ public class TermsAction extends BaseAppCompatActivity {
     @Override
     public void onResume() {
         super.onResume();
-        mTracker.setScreenName("Terms of Use Screen Action - " + this.getClass().getSimpleName());
-        mTracker.send(new HitBuilders.ScreenViewBuilder().build());
+       // mTracker.setScreenName("Terms of Use Screen Action - " + this.getClass().getSimpleName());
+      //  mTracker.send(new HitBuilders.ScreenViewBuilder().build());
     }
 
     @Override

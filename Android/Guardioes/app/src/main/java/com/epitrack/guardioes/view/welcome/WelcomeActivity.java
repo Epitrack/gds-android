@@ -1,6 +1,7 @@
 package com.epitrack.guardioes.view.welcome;
 
 import android.os.Bundle;
+import android.support.multidex.MultiDex;
 import android.support.v4.view.ViewPager;
 
 import com.epitrack.guardioes.R;
@@ -30,7 +31,7 @@ public class WelcomeActivity extends BaseFragmentActivity {
     @Override
     protected void onCreate(final Bundle bundle) {
         super.onCreate(bundle);
-
+        MultiDex.install(getBaseContext());
         setContentView(R.layout.welcome);
 
         final SimpleRequester simpleRequester = new SimpleRequester();
@@ -40,6 +41,7 @@ public class WelcomeActivity extends BaseFragmentActivity {
         viewPager.setAdapter(new WelcomePagerAdapter(getSupportFragmentManager(), this, Welcome.values()));
 
         pageIndicator.setViewPager(viewPager);
+
     }
 
     @OnClick(R.id.button_login)
