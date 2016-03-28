@@ -35,7 +35,6 @@ import com.github.mikephil.charting.data.PieDataSet;
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.LocationSource;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
@@ -276,7 +275,7 @@ public class MapSymptomActivity extends AbstractBaseMapActivity implements Searc
 
     private void load(final double latitude, final double longitude) {
 
-        Loader.with().getHandler().post(new Runnable() {
+        Loader.with().handler().post(new Runnable() {
 
             @Override
             public void run() {

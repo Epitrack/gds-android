@@ -196,7 +196,7 @@ public class MapPointActivity extends AbstractBaseMapActivity {
 
     private void load() {
 
-        Loader.with().getHandler().post(new Runnable() {
+        Loader.with().handler().post(new Runnable() {
 
             @Override
             public void run() {
