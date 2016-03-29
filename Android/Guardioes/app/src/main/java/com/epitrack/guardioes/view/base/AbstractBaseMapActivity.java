@@ -10,6 +10,7 @@ import com.epitrack.guardioes.model.SingleDTO;
 import com.epitrack.guardioes.utility.DialogBuilder;
 import com.epitrack.guardioes.utility.LocationUtility;
 import com.epitrack.guardioes.utility.Logger;
+import com.epitrack.guardioes.view.dialog.LoadDialog;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -43,12 +44,13 @@ public abstract class AbstractBaseMapActivity extends BaseAppCompatActivity impl
     public static long getDefaultZoom() {
         return DEFAULT_ZOOM;
     }
-
+    private final LoadDialog LOAD_DIALOG= new LoadDialog();
     @Override
     protected void onCreate(final Bundle bundle) {
         super.onCreate(bundle);
 
         locationHandler = new LocationManager(this, this);
+
     }
 
     @Override
@@ -57,7 +59,9 @@ public abstract class AbstractBaseMapActivity extends BaseAppCompatActivity impl
 
         if (locationHandler.isEnabled()) {
             locationHandler.connect();
+
         }
+
     }
 
     @Override
@@ -77,12 +81,14 @@ public abstract class AbstractBaseMapActivity extends BaseAppCompatActivity impl
     public void onLastLocation(final Location location) {
 
         final LatLng latLng = LocationUtility.toLatLng(location);
-
+        LOAD_DIALOG.show(getFragmentManager(), LOAD_DIALOG.TAG);
+        
         getMap().animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, DEFAULT_ZOOM), new GoogleMap.CancelableCallback() {
 
             @Override
             public void onFinish() {
                 userMarker = getMap().addMarker(loadMarkerOption().position(latLng));
+                LOAD_DIALOG.dismiss();
             }
 
             @Override

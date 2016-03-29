@@ -43,12 +43,19 @@ android {
         exclude 'META-INF/NOTICE.txt'
         exclude 'META-INF/LICENSE.txt'
     }
+
+    dexOptions {
+        incremental true
+        javaMaxHeapSize "4g"
+    }
 }
 
 repositories {
     maven { url "https://jitpack.io" }
     maven { url 'https://maven.fabric.io/public' }
 }
+
+
 
 dependencies {
 
@@ -105,6 +112,8 @@ dependencies {
     compile 'com.android.support:multidex:1.0.1'
 
     compile 'com.jpardogo.googleprogressbar:library:1.2.0'
+
+    compile 'com.github.mmin18.layoutcast:library:1.+@aar'
 }
 
 apply plugin: 'com.google.gms.google-services'
