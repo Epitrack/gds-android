@@ -1,5 +1,5 @@
-package com.epitrack.guardioes.manager;/*
- * Copyright 2015 Igor Morais
+/*
+ * Copyright 2016 Igor Morais
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,21 +13,21 @@ package com.epitrack.guardioes.manager;/*
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
-import android.content.Context;
+
+package com.epitrack.guardioes.manager;
 
 /**
  * @author Igor Morais
  */
-class BaseManager {
+public interface IBundle {
+    
+    boolean contain(String key);
+    
+    <T> T get(String key);
 
-    private final Context context;
+    <T> T put(String key, T type);
 
-    protected BaseManager(final Context context) {
-        this.context = context;
-    }
+    <T> T remove(String key);
 
-    public final Context getContext() {
-        return context;
-    }
+    void clear();
 }

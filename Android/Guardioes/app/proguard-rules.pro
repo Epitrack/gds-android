@@ -33,6 +33,8 @@
 -keep class io.fabric.sdk.android.services.concurrency.PriorityThreadPoolExecutor
 -keep class com.twitter.sdk.android.core.identity.TwitterLoginButton
 -keep class android.support.v7.widget.RecyclerView
+-keep class com.crashlytics.android.** { *; }
+
 -keep interface android.support.v7.** { *; }
 -keepattributes Exceptions, Signature, InnerClasses
 -keepclassmembers class * extends android.app.Activity {

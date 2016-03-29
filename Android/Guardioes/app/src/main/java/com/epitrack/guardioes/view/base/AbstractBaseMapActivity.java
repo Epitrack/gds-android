@@ -18,7 +18,6 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
-
 /**
  * @author Igor Morais
  */
@@ -82,7 +81,7 @@ public abstract class AbstractBaseMapActivity extends BaseAppCompatActivity impl
 
         final LatLng latLng = LocationUtility.toLatLng(location);
         LOAD_DIALOG.show(getFragmentManager(), LOAD_DIALOG.TAG);
-        
+
         getMap().animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, DEFAULT_ZOOM), new GoogleMap.CancelableCallback() {
 
             @Override
