@@ -1,23 +1,20 @@
 package com.epitrack.guardioes.view.menu.profile;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.widget.SwitchCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.CompoundButton;
 import android.widget.TextView;
 
 import com.epitrack.guardioes.R;
 import com.epitrack.guardioes.model.SingleUser;
-import com.epitrack.guardioes.request.Method;
-import com.epitrack.guardioes.request.Requester;
-import com.epitrack.guardioes.request.SimpleRequester;
+import com.epitrack.guardioes.request.base.Method;
+import com.epitrack.guardioes.request.old.Requester;
+import com.epitrack.guardioes.request.old.SimpleRequester;
 import com.epitrack.guardioes.utility.Constants;
-import com.epitrack.guardioes.view.HomeActivity;
 import com.epitrack.guardioes.view.IMenu;
 import com.epitrack.guardioes.view.MenuListener;
 

@@ -15,9 +15,9 @@ import android.util.Log;
 
 import com.epitrack.guardioes.R;
 import com.epitrack.guardioes.model.SingleUser;
-import com.epitrack.guardioes.request.Method;
-import com.epitrack.guardioes.request.Requester;
-import com.epitrack.guardioes.request.SimpleRequester;
+import com.epitrack.guardioes.request.base.Method;
+import com.epitrack.guardioes.request.old.Requester;
+import com.epitrack.guardioes.request.old.SimpleRequester;
 import com.epitrack.guardioes.service.QuickstartPreferences;
 import com.epitrack.guardioes.service.RegistrationIntentService;
 import com.epitrack.guardioes.utility.Constants;

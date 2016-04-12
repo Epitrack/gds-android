@@ -7,9 +7,9 @@ import android.widget.EditText;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.epitrack.guardioes.R;
-import com.epitrack.guardioes.request.Method;
-import com.epitrack.guardioes.request.Requester;
-import com.epitrack.guardioes.request.SimpleRequester;
+import com.epitrack.guardioes.request.base.Method;
+import com.epitrack.guardioes.request.old.Requester;
+import com.epitrack.guardioes.request.old.SimpleRequester;
 import com.epitrack.guardioes.utility.DialogBuilder;
 import com.epitrack.guardioes.view.base.BaseAppCompatActivity;
 import com.google.android.gms.analytics.HitBuilders;

@@ -20,23 +20,20 @@ import com.epitrack.guardioes.R;
 import com.epitrack.guardioes.model.Notice;
 import com.epitrack.guardioes.model.SingleUser;
 import com.epitrack.guardioes.model.User;
-import com.epitrack.guardioes.request.Method;
-import com.epitrack.guardioes.request.Requester;
-import com.epitrack.guardioes.request.SimpleRequester;
+import com.epitrack.guardioes.request.base.Method;
+import com.epitrack.guardioes.request.old.Requester;
+import com.epitrack.guardioes.request.old.SimpleRequester;
 import com.epitrack.guardioes.utility.DateFormat;
 import com.epitrack.guardioes.utility.DialogBuilder;
 import com.epitrack.guardioes.utility.NetworkUtility;
 import com.epitrack.guardioes.view.base.BaseFragment;
 import com.epitrack.guardioes.view.diary.DiaryActivity;
 import com.epitrack.guardioes.view.menu.profile.Avatar;
-import com.epitrack.guardioes.view.menu.profile.Profile;
 import com.epitrack.guardioes.view.menu.profile.ProfileActivity;
-import com.epitrack.guardioes.view.menu.profile.ProfileAdapter;
 import com.epitrack.guardioes.view.survey.SelectParticipantActivity;
 import com.epitrack.guardioes.view.tip.TipActivity;
 import com.github.siyamed.shapeimageview.CircularImageView;
 import com.google.android.gms.analytics.HitBuilders;
-import com.google.android.gms.analytics.Tracker;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -52,7 +49,6 @@ import java.util.Locale;
 import java.util.concurrent.ExecutionException;
 
 import butterknife.Bind;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
@@ -358,40 +354,14 @@ public class HomeFragment extends BaseFragment {
     }
 
     @OnClick(R.id.text_view_notice)
-    public void onNews() {
+    public void onNotice() {
+
         getTracker().send(new HitBuilders.EventBuilder()
-                .setCategory("Action")
-                .setAction("Notice Button")
-                .build());
+                    .setCategory("Action")
+                    .setAction("Notice Button")
+                    .build());
 
-        if (NetworkUtility.isOnline(getActivity().getApplication())) {
-
-            final ProgressDialog progressDialog;
-            progressDialog = new ProgressDialog(getActivity(), R.style.Theme_MyProgressDialog);
-            progressDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.rgb(30, 136, 229)));
-            progressDialog.setTitle(R.string.app_name);
-            progressDialog.setMessage("Carregando...");
-            progressDialog.show();
-
-            new Thread() {
-
-                @Override
-                public void run() {
-                    NoticeActivity.noticeList = getNoticeList();
-                    progressDialog.dismiss();
-                    navigateTo(NoticeActivity.class);
-                }
-
-            }.start();
-
-        } else {
-
-            new DialogBuilder(getActivity()).load()
-                    .title(R.string.attention)
-                    .content(R.string.network_fail)
-                    .positiveText(R.string.ok)
-                    .show();
-        }
+        navigateTo(NoticeActivity.class);
     }
 
     @OnClick(R.id.text_view_map)
@@ -534,57 +504,7 @@ public class HomeFragment extends BaseFragment {
         return userList;
     }
 
-    private List<Notice> getNoticeList() {
 
-        List<Notice> noticeList = new ArrayList<>();
-
-        SimpleRequester simpleRequester = new SimpleRequester();
-        simpleRequester.setMethod(Method.GET);
-        simpleRequester.setUrl(Requester.API_URL + "news/get");
-
-        try {
-            String jsonStr = simpleRequester.execute(simpleRequester).get();
-            JSONArray jsonArray = new JSONObject(jsonStr).getJSONObject("data").getJSONArray("statuses");
-
-            if (jsonArray.length() > 0) {
-                for (int i = 0; i < jsonArray.length(); i++) {
-                    JSONObject jsonObject = jsonArray.getJSONObject(i);
-
-                    Notice notice = new Notice();
-
-                    notice.setTitle(jsonObject.get("text").toString());
-                    notice.setLink("https://twitter.com/minsaude/status/" + jsonObject.get("id_str").toString());
-                    notice.setLike(" " + jsonObject.get("favorite_count").toString());
-
-                    final String TWITTER="EEE MMM dd HH:mm:ss ZZZZZ yyyy";
-                    SimpleDateFormat sf = new SimpleDateFormat(TWITTER, Locale.ENGLISH);
-                    sf.setLenient(true);
-
-                    Date twitterDate = sf.parse(jsonObject.get("created_at").toString());
-                    SimpleDateFormat userFormat = new SimpleDateFormat("dd/MM/yyyy");
-                    String strPubDate = userFormat.format(twitterDate);
-
-                    notice.setPublicationDate(strPubDate);
-
-                    userFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-                    strPubDate = userFormat.format(twitterDate);
-                    int clockHours = DateFormat.getDateDiff(strPubDate, 0);
-
-                    notice.setClock(" " + String.valueOf(clockHours) + "h");
-                    noticeList.add(notice);
-                }
-            }
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        } catch (JSONException e) {
-            e.printStackTrace();
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        return noticeList;
-    }
 
     private List<User> loadHaousehold() {
 
@@ -625,8 +545,9 @@ public class HomeFragment extends BaseFragment {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+
         parentList.add(new User(R.drawable.img_add_profile, "    Adicionar\nnovo membro", "", "-1", "", "", "", ""));
+
         return parentList;
     }
-
 }

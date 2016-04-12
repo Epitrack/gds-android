@@ -1,10 +1,11 @@
-package com.epitrack.guardioes.request;
+package com.epitrack.guardioes.request.old;
 
 import android.app.Activity;
 import android.content.Context;
 import android.os.AsyncTask;
 
 import com.epitrack.guardioes.model.SingleUser;
+import com.epitrack.guardioes.request.base.Method;
 import com.epitrack.guardioes.utility.Logger;
 import com.epitrack.guardioes.utility.MessageText;
 import com.epitrack.guardioes.utility.SingleContext;
@@ -41,7 +42,7 @@ import javax.net.ssl.TrustManagerFactory;
  */
 public class SimpleRequester extends AsyncTask<SimpleRequester, Object, String> {
 
-    private static final String TAG = Requester.class.getSimpleName();
+    private static final String TAG = "Requester";
     private String url;
     private JSONObject jsonObject;
     private Method method;

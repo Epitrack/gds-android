@@ -17,9 +17,9 @@ import android.widget.Toast;
 import com.epitrack.guardioes.R;
 import com.epitrack.guardioes.model.SingleUser;
 import com.epitrack.guardioes.model.User;
-import com.epitrack.guardioes.request.Method;
-import com.epitrack.guardioes.request.Requester;
-import com.epitrack.guardioes.request.SimpleRequester;
+import com.epitrack.guardioes.request.base.Method;
+import com.epitrack.guardioes.request.old.Requester;
+import com.epitrack.guardioes.request.old.SimpleRequester;
 import com.epitrack.guardioes.utility.Constants;
 import com.epitrack.guardioes.utility.DialogBuilder;
 import com.epitrack.guardioes.view.HomeActivity;
@@ -374,13 +374,13 @@ public class LoginActivity extends BaseAppCompatActivity implements SocialAccoun
                     JSONObject jsonObjectUser = jsonObject.getJSONObject("user");
 
                     SingleUser singleUser = SingleUser.getInstance();
-                    singleUser.setNick(jsonObjectUser.getString("nick").toString());
-                    singleUser.setEmail(jsonObjectUser.getString("email").toString());
-                    singleUser.setGender(jsonObjectUser.getString("gender").toString());
+                    singleUser.setNick(jsonObjectUser.getString("nick"));
+                    singleUser.setEmail(jsonObjectUser.getString("email"));
+                    singleUser.setGender(jsonObjectUser.getString("gender"));
                     //singleUser.setPicture(jsonObjectUser.getString("picture").toString());
-                    singleUser.setId(jsonObjectUser.getString("id").toString());
-                    singleUser.setRace(jsonObjectUser.getString("race").toString());
-                    singleUser.setDob(jsonObjectUser.getString("dob").toString());
+                    singleUser.setId(jsonObjectUser.getString("id"));
+                    singleUser.setRace(jsonObjectUser.getString("race"));
+                    singleUser.setDob(jsonObjectUser.getString("dob"));
                     singleUser.setUser_token(jsonObject.get("token").toString());
                     singleUser.setPicture(jsonObjectUser.get("picture").toString());
                     singleUser.setHashtags(jsonObjectUser.getJSONArray("hashtags"));
@@ -395,12 +395,6 @@ public class LoginActivity extends BaseAppCompatActivity implements SocialAccoun
                             Intent.FLAG_ACTIVITY_NEW_TASK);
                 }
 
-            } catch (JSONException e) {
-                Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
-            } catch (InterruptedException e) {
-                Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
-            } catch (ExecutionException e) {
-                Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
             } catch (Exception e) {
                 Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
             }

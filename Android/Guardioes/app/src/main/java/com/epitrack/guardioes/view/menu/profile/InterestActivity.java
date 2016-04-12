@@ -6,18 +6,10 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.epitrack.guardioes.R;
-import com.epitrack.guardioes.model.SingleUser;
-import com.epitrack.guardioes.request.Method;
-import com.epitrack.guardioes.request.SimpleRequester;
-import com.epitrack.guardioes.service.AnalyticsApplication;
 import com.epitrack.guardioes.view.base.BaseAppCompatActivity;
 import com.epitrack.guardioes.view.IMenu;
 import com.epitrack.guardioes.view.MenuListener;
 import com.google.android.gms.analytics.HitBuilders;
-import com.google.android.gms.analytics.Tracker;
-
-import org.json.JSONArray;
-import org.json.JSONException;
 
 import butterknife.Bind;
 

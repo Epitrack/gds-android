@@ -5,7 +5,7 @@ import android.support.multidex.MultiDex;
 import android.support.v4.view.ViewPager;
 
 import com.epitrack.guardioes.R;
-import com.epitrack.guardioes.request.SimpleRequester;
+import com.epitrack.guardioes.request.old.SimpleRequester;
 import com.epitrack.guardioes.utility.DialogBuilder;
 import com.epitrack.guardioes.utility.NetworkUtility;
 import com.epitrack.guardioes.view.account.CreateAccountActivity;

@@ -1,7 +1,6 @@
 package com.epitrack.guardioes.view.account;
 
 import android.content.Intent;
-import android.content.IntentSender;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -15,9 +14,9 @@ import com.afollestad.materialdialogs.MaterialDialog;
 import com.epitrack.guardioes.R;
 import com.epitrack.guardioes.model.DTO;
 import com.epitrack.guardioes.model.SingleUser;
-import com.epitrack.guardioes.request.Method;
-import com.epitrack.guardioes.request.Requester;
-import com.epitrack.guardioes.request.SimpleRequester;
+import com.epitrack.guardioes.request.base.Method;
+import com.epitrack.guardioes.request.old.Requester;
+import com.epitrack.guardioes.request.old.SimpleRequester;
 import com.epitrack.guardioes.utility.Constants;
 import com.epitrack.guardioes.utility.DialogBuilder;
 import com.epitrack.guardioes.view.HomeActivity;
@@ -61,7 +60,7 @@ import java.util.concurrent.ExecutionException;
 
 import butterknife.Bind;
 import io.fabric.sdk.android.Fabric;
-import io.fabric.sdk.android.services.concurrency.PriorityThreadPoolExecutor;
+
 /**
  * @author Miqueias Lopes
  */

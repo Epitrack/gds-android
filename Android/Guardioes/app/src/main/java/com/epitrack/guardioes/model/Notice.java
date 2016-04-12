@@ -1,7 +1,5 @@
 package com.epitrack.guardioes.model;
 
-import android.graphics.drawable.Drawable;
-
 public class Notice {
 
     private String title;

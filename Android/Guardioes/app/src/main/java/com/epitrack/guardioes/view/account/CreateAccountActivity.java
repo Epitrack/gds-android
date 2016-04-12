@@ -24,9 +24,9 @@ import com.epitrack.guardioes.R;
 import com.epitrack.guardioes.model.DTO;
 import com.epitrack.guardioes.model.SingleUser;
 import com.epitrack.guardioes.model.User;
-import com.epitrack.guardioes.request.Method;
-import com.epitrack.guardioes.request.Requester;
-import com.epitrack.guardioes.request.SimpleRequester;
+import com.epitrack.guardioes.request.base.Method;
+import com.epitrack.guardioes.request.old.Requester;
+import com.epitrack.guardioes.request.old.SimpleRequester;
 import com.epitrack.guardioes.utility.Constants;
 import com.epitrack.guardioes.utility.DateFormat;
 import com.epitrack.guardioes.utility.DialogBuilder;
@@ -572,14 +572,14 @@ public class CreateAccountActivity extends BaseAppCompatActivity implements Soci
                             JSONObject jsonObjectUser = jsonObject.getJSONObject("user");
 
                             SingleUser singleUser = SingleUser.getInstance();
-                            singleUser.setNick(jsonObjectUser.getString("nick").toString());
-                            singleUser.setEmail(jsonObjectUser.getString("email").toString());
-                            singleUser.setGender(jsonObjectUser.getString("gender").toString());
-                            singleUser.setPicture(jsonObjectUser.getString("picture").toString());
-                            singleUser.setId(jsonObjectUser.getString("id").toString());
-                            singleUser.setRace(jsonObjectUser.getString("race").toString());
-                            singleUser.setDob(jsonObjectUser.getString("dob").toString());
-                            singleUser.setUser_token(jsonObjectUser.getString("token").toString());
+                            singleUser.setNick(jsonObjectUser.getString("nick"));
+                            singleUser.setEmail(jsonObjectUser.getString("email"));
+                            singleUser.setGender(jsonObjectUser.getString("gender"));
+                            singleUser.setPicture(jsonObjectUser.getString("picture"));
+                            singleUser.setId(jsonObjectUser.getString("id"));
+                            singleUser.setRace(jsonObjectUser.getString("race"));
+                            singleUser.setDob(jsonObjectUser.getString("dob"));
+                            singleUser.setUser_token(jsonObjectUser.getString("token"));
 
                             sharedPreferences = getSharedPreferences(Constants.Pref.PREFS_NAME, 0);
                             SharedPreferences.Editor editor = sharedPreferences.edit();
