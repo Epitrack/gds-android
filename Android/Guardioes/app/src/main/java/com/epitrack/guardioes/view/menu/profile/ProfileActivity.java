@@ -187,7 +187,7 @@ public class ProfileActivity extends BaseAppCompatActivity implements UserListen
         }
 
         // TODO: Check if is main member..
-        if (singleUser.getId() == user.getId()) {
+        if (singleUser.getId().equals(user.getId())) {
             bundle.putBoolean(Constants.Bundle.MAIN_MEMBER, true);
         }
         navigateTo(UserActivity.class, bundle);

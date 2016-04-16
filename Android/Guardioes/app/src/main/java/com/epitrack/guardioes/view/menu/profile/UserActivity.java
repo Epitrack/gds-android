@@ -301,7 +301,7 @@ public class UserActivity extends BaseAppCompatActivity {
             if (userAvatar > 0) {
                 household.setPicture(String.valueOf(userAvatar));
                 household.setFile("");
-            } else if (!photoPath.equals("")){
+            } else if (!photoPath.equals("")) {
                 household.setPicture("0");
                 household.setFile(photoPath);
             } else {
@@ -331,7 +331,8 @@ public class UserActivity extends BaseAppCompatActivity {
                 .setCategory("Action")
                 .setAction("Create New Member/User Button")
                 .build());
-            User user = new User();
+
+        final User user = new User();
 
         user.setNick(editTextNickname.getText().toString().trim());
         user.setDob(editTextBirthDate.getText().toString().trim().toLowerCase());
@@ -577,20 +578,12 @@ public class UserActivity extends BaseAppCompatActivity {
                                     }
                                 }).show();
                     } else {
+
                         if (newMenber) {
                             lookup();
 
-                            new DialogBuilder(UserActivity.this).load()
-                                    .title(R.string.attention)
-                                    .content(R.string.new_member_ok)
-                                    .positiveText(R.string.ok)
-                                    .callback(new MaterialDialog.ButtonCallback() {
-                                        @Override
-                                        public void onPositive(MaterialDialog dialog) {
-                                            onBackPressed();
-                                        }
-                                    })
-                                    .show();
+                            onBackPressed();
+
                         } else if (mainMember) {
                             lookup();
 
@@ -624,11 +617,7 @@ public class UserActivity extends BaseAppCompatActivity {
                         //editTextBirthDate.setText("");
                     }
                 }
-            } catch (JSONException e) {
-                e.printStackTrace();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            } catch (ExecutionException e) {
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         }
@@ -648,10 +637,10 @@ public class UserActivity extends BaseAppCompatActivity {
                     //imageViewImage.setImageResource(avatar.getSmall());
                     userAvatar = avatar.getId();
 
-                    if(userAvatar > 0) {
-                        profileImage.setAvatar(""+userAvatar);
+                    if (userAvatar > 0) {
+                        profileImage.setAvatar("" + userAvatar);
                         this.imageViewImage.setImageResource(Avatar.getBy(userAvatar).getLarge());
-                                               //userAvatar = Integer.parseInt(profileImage.getAvatar());
+                        //userAvatar = Integer.parseInt(profileImage.getAvatar());
                     }
                 } else if (intent.hasExtra(Constants.Bundle.URI)) {
 
@@ -708,6 +697,7 @@ public class UserActivity extends BaseAppCompatActivity {
 
             if (jsonObject.get("error").toString().equals("true")) {
                 navigateTo(WelcomeActivity.class);
+
             } else {
 
                 JSONObject jsonObjectUser = jsonObject.getJSONObject("data");
@@ -727,12 +717,7 @@ public class UserActivity extends BaseAppCompatActivity {
                 }
                 //navigateTo(ProfileActivity.class);
             }
-        } catch (InterruptedException e) {
-            navigateTo(WelcomeActivity.class);
-        } catch (ExecutionException e) {
-            navigateTo(WelcomeActivity.class);
-        } catch (JSONException e) {
-            navigateTo(WelcomeActivity.class);
+        } catch (Exception e) {
         }
     }
 
@@ -742,7 +727,7 @@ public class UserActivity extends BaseAppCompatActivity {
         if (socialNew) {
             final Intent intent = new Intent(getApplicationContext(), WelcomeActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK |
-                    Intent.FLAG_ACTIVITY_NEW_TASK);
+                            Intent.FLAG_ACTIVITY_NEW_TASK);
 
             startActivity(intent);
         } else {
