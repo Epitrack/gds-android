@@ -18,6 +18,7 @@ package com.epitrack.guardioes.request.base;
  
 import android.content.Context;
 
+import com.epitrack.guardioes.model.SingleUser;
 import com.epitrack.guardioes.utility.Logger;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -34,8 +35,9 @@ public class BaseRequester {
     
     private static final String TAG = BaseRequester.class.getSimpleName();
 
-    protected static final int EMPTY = 0;
-    
+    private static final String TOKEN_APP = "app_token";
+    private static final String TOKEN_USER = "user_token";
+
     private final Context context;
     
     private final ObjectMapper mapper = new ObjectMapper();
@@ -93,7 +95,12 @@ public class BaseRequester {
         final Map<String, String> headerMap = new HashMap<>();
         
         headerMap.put(Header.CONTENT_TYPE, Header.ContentType.JSON);
-        headerMap.put(Header.AUTHORIZATION, "");
+
+        // TODO: Don't store user as singleton..
+        final SingleUser user = SingleUser.getInstance();
+
+        headerMap.put(TOKEN_APP, user.getAppToken());
+        headerMap.put(TOKEN_USER, user.getUserToken());
         
         return headerMap;
     }

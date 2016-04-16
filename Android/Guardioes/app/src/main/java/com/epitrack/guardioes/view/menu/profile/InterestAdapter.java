@@ -172,7 +172,7 @@ public class InterestAdapter extends ArrayAdapter<IMenu> {
 
                 SharedPreferences settings = context.getSharedPreferences(Constants.Pref.PREFS_NAME, 0);
                 SharedPreferences.Editor editor = settings.edit();
-                editor.putString(Constants.Pref.PREFS_NAME, singleUser.getUser_token());
+                editor.putString(Constants.Pref.PREFS_NAME, singleUser.getUserToken());
                 editor.commit();
 
             }

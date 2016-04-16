@@ -137,7 +137,7 @@ public class LoginActivity extends BaseAppCompatActivity implements SocialAccoun
 
                     SharedPreferences settings = getSharedPreferences(Constants.Pref.PREFS_NAME, 0);
                     SharedPreferences.Editor editor = settings.edit();
-                    editor.putString(Constants.Pref.PREFS_NAME, singleUser.getUser_token());
+                    editor.putString(Constants.Pref.PREFS_NAME, singleUser.getUserToken());
                     editor.commit();
 
                     navigateTo(HomeActivity.class, Intent.FLAG_ACTIVITY_CLEAR_TASK |
@@ -388,7 +388,7 @@ public class LoginActivity extends BaseAppCompatActivity implements SocialAccoun
                     sharedPreferences = getSharedPreferences(Constants.Pref.PREFS_NAME, 0);
                     SharedPreferences.Editor editor = sharedPreferences.edit();
 
-                    editor.putString(Constants.Pref.PREFS_NAME, singleUser.getUser_token());
+                    editor.putString(Constants.Pref.PREFS_NAME, singleUser.getUserToken());
                     editor.commit();
 
                     navigateTo(HomeActivity.class, Intent.FLAG_ACTIVITY_CLEAR_TASK |

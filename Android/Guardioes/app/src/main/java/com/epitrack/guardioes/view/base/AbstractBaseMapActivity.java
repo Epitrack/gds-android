@@ -34,8 +34,6 @@ public abstract class AbstractBaseMapActivity extends BaseAppCompatActivity impl
 
     private LocationManager locationHandler;
 
-    private SingleDTO singleDTO = SingleDTO.getInstance();
-
     public LocationManager getLocationHandler() {
         return locationHandler;
     }
@@ -43,7 +41,7 @@ public abstract class AbstractBaseMapActivity extends BaseAppCompatActivity impl
     public static long getDefaultZoom() {
         return DEFAULT_ZOOM;
     }
-    private final LoadDialog LOAD_DIALOG= new LoadDialog();
+
     @Override
     protected void onCreate(final Bundle bundle) {
         super.onCreate(bundle);
@@ -60,7 +58,6 @@ public abstract class AbstractBaseMapActivity extends BaseAppCompatActivity impl
             locationHandler.connect();
 
         }
-
     }
 
     @Override
@@ -80,14 +77,15 @@ public abstract class AbstractBaseMapActivity extends BaseAppCompatActivity impl
     public void onLastLocation(final Location location) {
 
         final LatLng latLng = LocationUtility.toLatLng(location);
-        LOAD_DIALOG.show(getFragmentManager(), LOAD_DIALOG.TAG);
 
         getMap().animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, DEFAULT_ZOOM), new GoogleMap.CancelableCallback() {
 
             @Override
             public void onFinish() {
+
                 userMarker = getMap().addMarker(loadMarkerOption().position(latLng));
-                LOAD_DIALOG.dismiss();
+
+                onAnimationEnd(latLng);
             }
 
             @Override
@@ -121,6 +119,10 @@ public abstract class AbstractBaseMapActivity extends BaseAppCompatActivity impl
         map.setOnMarkerClickListener(this);
 
         this.map = map;
+    }
+
+    protected void onAnimationEnd(final LatLng latLng) {
+
     }
 
     public final GoogleMap getMap() {

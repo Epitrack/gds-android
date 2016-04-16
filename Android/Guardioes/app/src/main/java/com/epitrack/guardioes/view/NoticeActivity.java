@@ -7,6 +7,7 @@ import android.support.annotation.NonNull;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
+import android.view.View;
 
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
@@ -29,6 +30,9 @@ public class NoticeActivity extends BaseAppCompatActivity implements NoticeListe
 
     @Bind(R.id.recycler_view)
     RecyclerView recyclerView;
+
+    @Bind(R.id.viewLoad)
+    View viewLoad;
 
     @Override
     protected void onCreate(final Bundle bundle) {
@@ -71,6 +75,7 @@ public class NoticeActivity extends BaseAppCompatActivity implements NoticeListe
 
         @Override
         public void onSuccess(final List<Notice> noticeList) {
+
             recyclerView.setAdapter(new NoticeAdapter(NoticeActivity.this, noticeList));
         }
     }

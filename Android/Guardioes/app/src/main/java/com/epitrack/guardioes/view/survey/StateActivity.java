@@ -74,11 +74,11 @@ public class StateActivity extends BaseAppCompatActivity {
             }
             jsonObject.put("lat", user.getLat());
             jsonObject.put("lon", user.getLon());
-            jsonObject.put("app_token", user.getApp_token());
+            jsonObject.put("app_token", user.getAppToken());
             jsonObject.put("platform", user.getPlatform());
             jsonObject.put("client", user.getClient());
             jsonObject.put("no_symptom", "Y");
-            jsonObject.put("token", singleUser.getUser_token());
+            jsonObject.put("token", singleUser.getUserToken());
 
             SimpleRequester sendPostRequest = new SimpleRequester();
             sendPostRequest.setUrl(Requester.API_URL + "survey/create");

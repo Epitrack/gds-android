@@ -9,9 +9,12 @@ import android.widget.TextView;
 import com.epitrack.guardioes.R;
 import com.epitrack.guardioes.model.SingleUser;
 import com.epitrack.guardioes.model.User;
+import com.epitrack.guardioes.request.UserRequester;
+import com.epitrack.guardioes.request.base.RequestListener;
 import com.epitrack.guardioes.utility.Constants;
 import com.epitrack.guardioes.utility.DateFormat;
 import com.epitrack.guardioes.view.base.BaseAppCompatActivity;
+import com.epitrack.guardioes.view.dialog.LoadDialog;
 import com.epitrack.guardioes.view.menu.profile.UserActivity;
 import com.github.siyamed.shapeimageview.CircularImageView;
 import com.google.android.gms.analytics.HitBuilders;
@@ -51,7 +54,6 @@ public class SelectParticipantActivity extends BaseAppCompatActivity implements 
 
         setContentView(R.layout.select_participant);
 
-        //Miquéias Lopes
         int j = DateFormat.getDateDiff(singleUser.getDob());
 
         textViewName.setText(singleUser.getNick());
@@ -76,6 +78,7 @@ public class SelectParticipantActivity extends BaseAppCompatActivity implements 
             width = 240;
             height = 240;
         }
+
         imageViewAvatar.getLayoutParams().width = width;
         imageViewAvatar.getLayoutParams().height = height;
 
@@ -88,72 +91,31 @@ public class SelectParticipantActivity extends BaseAppCompatActivity implements 
         loadHousehold();
     }
 
-    private void setDefaultAvatar() {
-        int age = DateFormat.getDateDiff(singleUser.getDob());
-
-        if (singleUser.getGender().equals("F")) {
-            if (singleUser.getRace().equals("preto") || singleUser.getRace().equals("indigena") || singleUser.getRace().equals("pardo")) {
-                if(age > 49) {
-                    imageViewAvatar.setImageResource(R.drawable.avatar_3);
-                } else if(age > 25) {
-                    imageViewAvatar.setImageResource(R.drawable.avatar_2);
-                } else {
-                    imageViewAvatar.setImageResource(R.drawable.avatar_1);
-                }
-            }
-            else if(singleUser.getRace().equals("amarelo"))
-            {
-                if(age > 49) {
-                    imageViewAvatar.setImageResource(R.drawable.avatar_9);
-                } else if(age > 25) {
-                    imageViewAvatar.setImageResource(R.drawable.avatar_8);
-                } else {
-                    imageViewAvatar.setImageResource(R.drawable.avatar_7);
-                }
-            }
-            else if(singleUser.getRace().equals("branco"))
-            {
-                if(age > 49) {
-                    imageViewAvatar.setImageResource(R.drawable.avatar_14);
-                } else if(age > 25) {
-                    imageViewAvatar.setImageResource(R.drawable.avatar_8);
-                } else {
-                    imageViewAvatar.setImageResource(R.drawable.avatar_13);
-                }
-            }
-        } else if (singleUser.getGender().equals("M")) {
-            if (singleUser.getRace().equals("preto") || singleUser.getRace().equals("indigena") || singleUser.getRace().equals("pardo")) {
-                if(age > 49) {
-                    imageViewAvatar.setImageResource(R.drawable.avatar_6);
-                } else if(age > 25) {
-                    imageViewAvatar.setImageResource(R.drawable.avatar_5);
-                } else {
-                    imageViewAvatar.setImageResource(R.drawable.avatar_4);
-                }
-            }
-            else if(singleUser.getRace().equals("amarelo"))
-            {
-                if(age > 49) {
-                    imageViewAvatar.setImageResource(R.drawable.avatar_12);
-                } else if(age > 25) {
-                    imageViewAvatar.setImageResource(R.drawable.avatar_11);
-                } else {
-                    imageViewAvatar.setImageResource(R.drawable.avatar_10);
-                }
-            } else if(singleUser.getRace().equals("branco")) {
-                if(age > 49) {
-                    imageViewAvatar.setImageResource(R.drawable.avatar_16);
-                } else if(age > 25) {
-                    imageViewAvatar.setImageResource(R.drawable.avatar_11);
-                } else {
-                    imageViewAvatar.setImageResource(R.drawable.avatar_15);
-                }
-            }
-        }
-    }
-
     private void loadHousehold() {
-        recyclerView.setAdapter(new ParentAdapter(getApplicationContext(), this, parentList));
+
+        new UserRequester(this).getAllHousehold(singleUser.getId(), new RequestListener<List<User>>() {
+
+            final LoadDialog loadDialog = new LoadDialog();
+
+            @Override
+            public void onStart() {
+                loadDialog.show(getFragmentManager(), LoadDialog.TAG);
+            }
+
+            @Override
+            public void onError(Exception e) {
+
+            }
+
+            @Override
+            public void onSuccess(final List<User> parentList) {
+                loadDialog.dismiss();
+
+                parentList.add(new User(R.drawable.img_add_profile, "    Adicionar\nnovo membro", "", "-1", "", "", "", ""));
+
+                recyclerView.setAdapter(new ParentAdapter(SelectParticipantActivity.this, SelectParticipantActivity.this, parentList));
+            }
+        });
     }
 
     @Override
@@ -162,14 +124,6 @@ public class SelectParticipantActivity extends BaseAppCompatActivity implements 
 
         getTracker().setScreenName("Select Participant Survey Screen - " + this.getClass().getSimpleName());
         getTracker().send(new HitBuilders.ScreenViewBuilder().build());
-
-        loadHousehold();
-    }
-
-    @Override
-    protected void onRestart() {
-        super.onRestart();
-        loadHousehold();
     }
 
     //@OnClick(R.id.button_add)
@@ -180,7 +134,6 @@ public class SelectParticipantActivity extends BaseAppCompatActivity implements 
                 .setAction("Survey Add New Member Button")
                 .build());
 
-        User user = new User();
         final Bundle bundle = new Bundle();
 
         bundle.putBoolean(Constants.Bundle.NEW_MEMBER, true);

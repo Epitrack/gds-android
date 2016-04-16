@@ -31,7 +31,7 @@ public final class RequesterConfig {
     
     public static class Api {
         
-        public static final String USER = "";
+        public static final String USER = "/user";
         public static final String NOTICE = "/news";
     }
 }

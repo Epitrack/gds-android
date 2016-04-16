@@ -4,7 +4,6 @@ import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
@@ -16,6 +15,7 @@ import android.widget.Toast;
 import com.epitrack.guardioes.R;
 import com.epitrack.guardioes.model.SingleUser;
 import com.epitrack.guardioes.model.User;
+import com.epitrack.guardioes.request.DiaryRequester;
 import com.epitrack.guardioes.request.base.Method;
 import com.epitrack.guardioes.request.old.RequestListener;
 import com.epitrack.guardioes.request.old.Requester;
@@ -27,7 +27,6 @@ import com.epitrack.guardioes.utility.MySelectorDecoratorGood;
 import com.epitrack.guardioes.utility.MySelectorDecoratorOnlyBad;
 import com.epitrack.guardioes.utility.MySelectorDecoratorOnlyGood;
 import com.epitrack.guardioes.view.base.BaseAppCompatActivity;
-import com.epitrack.guardioes.view.dialog.LoadDialog;
 import com.epitrack.guardioes.view.survey.ParentListener;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.data.Entry;
@@ -53,15 +52,12 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Executors;
 
 import butterknife.Bind;
@@ -127,24 +123,20 @@ public class DiaryActivity extends BaseAppCompatActivity implements ParentListen
     private double totalCountDetail = 0;
     private double goodCountDetail = 0;
     private double badCountDetail = 0;
-    private double goodPercentDetail = 0;
-    private double badPercentDetail = 0;
 
     private String idSelectedUser = "";
     SingleUser singleUser = SingleUser.getInstance();
-    private static final DateFormat FORMATTER = SimpleDateFormat.getDateInstance();
-    private ArrayList<Date> dateArrayList = new ArrayList<>();
-    private ArrayList<Integer> daysGood = null;
-    private ArrayList<Integer> daysBad = null;
-    private ArrayList<Integer> daysZero = null;
-    private ArrayList<Integer> daysOnlyGood = null;
-    private ArrayList<Integer> daysOnlyBad = null;
-    private ArrayList<Integer> daysEquals = null;
-    private ArrayList<Date> daysGoodAndBad = null;
 
-    private DiaryActivity context;
+    private List<Integer> daysGood = null;
+    private List<Integer> daysBad = null;
+    private List<Integer> daysZero = null;
+    private List<Integer> daysOnlyGood = null;
+    private List<Integer> daysOnlyBad = null;
+    private List<Integer> daysEquals = null;
+    private List<Date> daysGoodAndBad = null;
+
     private CalendarDay calendarDay;
-    private final LoadDialog LOAD_DIALOG= new LoadDialog();
+
     @Override
     protected void onCreate(final Bundle bundle) {
         super.onCreate(bundle);
@@ -154,9 +146,7 @@ public class DiaryActivity extends BaseAppCompatActivity implements ParentListen
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
 
-        context = this;
-
-
+        new AsyncTaskRunner().execute();
     }
 
     @Override
@@ -181,9 +171,10 @@ public class DiaryActivity extends BaseAppCompatActivity implements ParentListen
         recyclerView.setAdapter(new MemberAdapter(DiaryActivity.this, DiaryActivity.this, parentList));
 
         simpleRequester.setListener(new RequestListener<String>() {
+
             @Override
             public void onStart() {
-                LOAD_DIALOG.show(getFragmentManager(), LOAD_DIALOG.TAG);
+
             }
 
             @Override
@@ -224,37 +215,17 @@ public class DiaryActivity extends BaseAppCompatActivity implements ParentListen
                 }
 
                 setDataLineChart();
-                LOAD_DIALOG.dismiss();
             }
         });
+
         simpleRequester.execute();
     }
 
-    @Override
-    protected void onStop() {
-        super.onStop();
+    private void setupView(final String idHouseHold) {
 
+        final String url = idHouseHold == null || idHouseHold.equals(singleUser.getId()) ? "user/survey/summary" : "household/survey/summary?household_id=" + idHouseHold;
 
-    }
-
-    private void setupView(String idHouseHold) {
-
-        SimpleRequester simpleRequester = new SimpleRequester();
-
-        if (idHouseHold == singleUser.getId()) {
-            simpleRequester.setUrl(Requester.API_URL + "user/survey/summary");
-        } else if (idHouseHold == null) {
-            simpleRequester.setUrl(Requester.API_URL + "user/survey/summary");
-        } else {
-            simpleRequester.setUrl(Requester.API_URL + "household/survey/summary?household_id=" + idHouseHold);
-        }
-
-        simpleRequester.setJsonObject(null);
-        simpleRequester.setMethod(Method.GET);
-
-        simpleRequester.execute();
-
-        simpleRequester.setListener(new RequestListener<String>() {
+        new DiaryRequester(this).loadPieChart(url, new com.epitrack.guardioes.request.base.RequestListener<String>() {
 
             @Override
             public void onStart() {
@@ -271,8 +242,9 @@ public class DiaryActivity extends BaseAppCompatActivity implements ParentListen
 
                 try {
 
-                    JSONObject jsonObject = new JSONObject(result);
-                    JSONObject jsonObjectSympton = jsonObject.getJSONObject("data");
+                    final JSONObject jsonObject = new JSONObject(result);
+
+                    final JSONObject jsonObjectSympton = jsonObject.getJSONObject("data");
 
                     goodCount = Integer.parseInt(jsonObjectSympton.get("no_symptom").toString());
                     badCount = Integer.parseInt(jsonObjectSympton.get("symptom").toString());
@@ -280,22 +252,14 @@ public class DiaryActivity extends BaseAppCompatActivity implements ParentListen
 
                     textViewParticipation.setText((int) totalCount + " Participações");
 
-                    if (totalCount == 0) {
-                        goodPercent = 0;
-                    } else {
-                        goodPercent = goodCount / totalCount;
-                    }
+                    goodPercent = totalCount == 0 ? 0 : goodCount / totalCount;
 
                     String htmlStringGood = "<b>" + (int) (goodPercent * 100) + "%</b> Bem";
                     textViewGoodPercentage.setText(Html.fromHtml(htmlStringGood));
                     //textViewGoodPercentage.setText((int) (goodPercent * 100) + "% Bem");
                     textViewGoodReport.setText((int) goodCount + " Relatórios");
 
-                    if (totalCount == 0) {
-                        badPercent = 0;
-                    } else {
-                        badPercent = badCount / totalCount;
-                    }
+                    badPercent = totalCount == 0 ? 0 : badCount / totalCount;
 
                     String htmlStringBad = "<b>" + (int) (badPercent * 100) + "%</b> Mal";
                     textViewBadPercentage.setText(Html.fromHtml(htmlStringBad));
@@ -328,8 +292,6 @@ public class DiaryActivity extends BaseAppCompatActivity implements ParentListen
                     materialCalendarView.setWeekDayLabels(new String[]{"D", "S", "T", "Q", "Q", "S", "S"});
                     materialCalendarView.setTitleMonths(new String[]{"Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"});
                     calendarDay = CalendarDay.today();
-
-                    new AsyncTaskRunner().execute();
 
                     setTextTotalReport(null);
 
@@ -533,7 +495,7 @@ public class DiaryActivity extends BaseAppCompatActivity implements ParentListen
     }
 
 
-    public void onDateChanged(@NonNull MaterialCalendarView widget, @Nullable CalendarDay date) {
+    public void onDateChanged(@NonNull MaterialCalendarView widget, @NonNull CalendarDay date) {
         onDateSelected(widget, date, true);
     }
 
@@ -553,83 +515,76 @@ public class DiaryActivity extends BaseAppCompatActivity implements ParentListen
             layoutDetailBad.setVisibility(View.VISIBLE);
         }
 
-        if (date != null) {
-
-            if (daysGoodAndBad.size() > 0) {
-                for (int i = 0; i < daysGoodAndBad.size(); i++) {
-                    if (daysGoodAndBad.get(i).equals(date.getDate())) {
-                        widget.setDateSelected(daysGoodAndBad.get(i), true);
-                    }
+        if (daysGoodAndBad.size() > 0) {
+            for (int i = 0; i < daysGoodAndBad.size(); i++) {
+                if (daysGoodAndBad.get(i).equals(date.getDate())) {
+                    widget.setDateSelected(daysGoodAndBad.get(i), true);
                 }
             }
+        }
 
-            setTextTotalReport(date);
+        setTextTotalReport(date);
 
-            SimpleRequester simpleRequester = new SimpleRequester();
+        SimpleRequester simpleRequester = new SimpleRequester();
 
-            if (idSelectedUser == singleUser.getId()) {
-                simpleRequester.setUrl(Requester.API_URL + "user/calendar/day?day=" + date.getDay() + "&month=" + (date.getMonth() + 1) + "&year=" + date.getYear());
-            } else if (idSelectedUser.equals("")) {
-                simpleRequester.setUrl(Requester.API_URL + "user/calendar/day?day=" + date.getDay() + "&month=" + (date.getMonth() + 1) + "&year=" + date.getYear());
+        if (idSelectedUser == singleUser.getId()) {
+            simpleRequester.setUrl(Requester.API_URL + "user/calendar/day?day=" + date.getDay() + "&month=" + (date.getMonth() + 1) + "&year=" + date.getYear());
+        } else if (idSelectedUser.equals("")) {
+            simpleRequester.setUrl(Requester.API_URL + "user/calendar/day?day=" + date.getDay() + "&month=" + (date.getMonth() + 1) + "&year=" + date.getYear());
+        } else {
+            simpleRequester.setUrl(Requester.API_URL + "household/calendar/day?day=" + date.getDay() + "&month=" + (date.getMonth() + 1) + "&year=" + date.getYear() + "&household_id=" + idSelectedUser);
+        }
+
+        simpleRequester.setJsonObject(null);
+        simpleRequester.setMethod(Method.GET);
+
+        String jsonStr;
+        goodCountDetail = 0;
+        badCountDetail = 0;
+
+        try {
+            jsonStr = simpleRequester.execute(simpleRequester).get();
+
+            JSONObject jsonObject = new JSONObject(jsonStr);
+
+            if (jsonObject.get("error").toString() == "true") {
+                Toast.makeText(getApplicationContext(), jsonObject.get("message").toString(), Toast.LENGTH_SHORT).show();
             } else {
-                simpleRequester.setUrl(Requester.API_URL + "household/calendar/day?day=" + date.getDay() + "&month=" + (date.getMonth() + 1) + "&year=" + date.getYear() + "&household_id=" + idSelectedUser);
-            }
 
-            simpleRequester.setJsonObject(null);
-            simpleRequester.setMethod(Method.GET);
+                JSONArray jsonArray = jsonObject.getJSONArray("data");
 
-            String jsonStr;
-            goodCountDetail = 0;
-            badCountDetail = 0;
+                for (int i = 0; i < jsonArray.length(); i++) {
+                    JSONObject jsonObjectSymptom = jsonArray.getJSONObject(i);
+                    JSONObject jsonObjectDetail = jsonObjectSymptom.getJSONObject("_id");
 
-            try {
-                jsonStr = simpleRequester.execute(simpleRequester).get();
+                    if (jsonObjectDetail.get("no_symptom").toString().equals("N")) {
 
-                JSONObject jsonObject = new JSONObject(jsonStr);
+                        badCountDetail = Double.parseDouble(jsonObjectSymptom.get("count").toString());
 
-                if (jsonObject.get("error").toString() == "true") {
-                    Toast.makeText(getApplicationContext(), jsonObject.get("message").toString(), Toast.LENGTH_SHORT).show();
-                } else {
+                    } else if (jsonObjectDetail.get("no_symptom").toString().equals("Y")) {
 
-                    JSONArray jsonArray = jsonObject.getJSONArray("data");
-
-                    for (int i = 0; i < jsonArray.length(); i++) {
-                        JSONObject jsonObjectSymptom = jsonArray.getJSONObject(i);
-                        JSONObject jsonObjectDetail = jsonObjectSymptom.getJSONObject("_id");
-
-                        if (jsonObjectDetail.get("no_symptom").toString().equals("N")) {
-
-                            badCountDetail = Double.parseDouble(jsonObjectSymptom.get("count").toString());
-
-                        } else if (jsonObjectDetail.get("no_symptom").toString().equals("Y")) {
-
-                            goodCountDetail = Double.parseDouble(jsonObjectSymptom.get("count").toString());
-                        }
-                    }
-
-                    totalCountDetail = badCountDetail + goodCountDetail;
-
-                    if (badCountDetail == 0) {
-                        textViewBadReportDetail.setText("     0 Relatórios \"Estou Mal\"");
-                    } else {
-                        badPercentDetail = ((badCountDetail / totalCountDetail) * 100);
-                        textViewBadReportDetail.setText("     " + (int) badCountDetail + " Relatórios \"Estou Mal\"");
-                    }
-
-                    if (goodCountDetail == 0) {
-                        textViewGoodReportDetail.setText("     0 Relatórios \"Estou Bem\"");
-                    } else {
-                        goodPercentDetail = ((goodCountDetail / totalCountDetail) * 100);
-                        textViewGoodReportDetail.setText("     " + (int) goodCountDetail + " Relatórios \"Estou Bem\"");
+                        goodCountDetail = Double.parseDouble(jsonObjectSymptom.get("count").toString());
                     }
                 }
-            } catch (JSONException e) {
-                e.printStackTrace();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            } catch (ExecutionException e) {
-                e.printStackTrace();
+
+                totalCountDetail = badCountDetail + goodCountDetail;
+
+                if (badCountDetail == 0) {
+                    textViewBadReportDetail.setText("     0 Relatórios \"Estou Mal\"");
+                } else {
+                    textViewBadReportDetail.setText("     " + (int) badCountDetail + " Relatórios \"Estou Mal\"");
+                }
+
+                if (goodCountDetail == 0) {
+                    textViewGoodReportDetail.setText("     0 Relatórios \"Estou Bem\"");
+
+                } else {
+                    textViewGoodReportDetail.setText("     " + (int) goodCountDetail + " Relatórios \"Estou Bem\"");
+                }
             }
+
+        } catch (final Exception e) {
+            e.printStackTrace();
         }
     }
 
@@ -704,37 +659,35 @@ public class DiaryActivity extends BaseAppCompatActivity implements ParentListen
                         daysGoodAndBad.add(dateFormated);
                     }
                 }
-            } catch (JSONException e) {
-                e.printStackTrace();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            } catch (ExecutionException e) {
-                e.printStackTrace();
-            } catch (ParseException e) {
+            } catch (Exception e) {
                 e.printStackTrace();
             }
-
         }
-
     }
 
     private class AsyncTaskRunner extends AsyncTask<Void, Void, Void> {
 
-
         @Override
         protected Void doInBackground(Void... voids) {
             countTotalGoodAndBad(materialCalendarView, calendarDay);
+
             return null;
         }
 
         @Override
         protected void onPostExecute(Void voids) {
+
             // execution of result of Long time consuming operation
             onDateChanged(materialCalendarView, calendarDay);
-            materialCalendarView.removeDecorators();
-            materialCalendarView.addDecorators(new MySelectorDecoratorGood(context, daysGood), new MySelectorDecoratorBad(context, daysBad), new DayDisableDecorator(daysZero),
-                    new MySelectorDecoratorOnlyGood(context, daysOnlyGood), new MySelectorDecoratorOnlyBad(context, daysOnlyBad), new MySelectorDecoratorEquals(context, daysEquals));
 
+            materialCalendarView.removeDecorators();
+
+            materialCalendarView.addDecorators(new MySelectorDecoratorGood(DiaryActivity.this, daysGood),
+                    new MySelectorDecoratorBad(DiaryActivity.this, daysBad),
+                    new DayDisableDecorator(daysZero),
+                    new MySelectorDecoratorOnlyGood(DiaryActivity.this, daysOnlyGood),
+                    new MySelectorDecoratorOnlyBad(DiaryActivity.this, daysOnlyBad),
+                    new MySelectorDecoratorEquals(DiaryActivity.this, daysEquals));
         }
 
         @Override
@@ -746,9 +699,9 @@ public class DiaryActivity extends BaseAppCompatActivity implements ParentListen
 
 class DayDisableDecorator implements DayViewDecorator {
 
-    private ArrayList<Integer> days;
+    private List<Integer> days;
 
-    public DayDisableDecorator(ArrayList<Integer> days) {
+    public DayDisableDecorator(List<Integer> days) {
         this.days = days;
     }
 

@@ -168,7 +168,7 @@ public class User {
         this.gender = gender;
     }
 
-    public String getApp_token() {
+    public String getAppToken() {
         return app_token;
     }
 
@@ -240,7 +240,7 @@ public class User {
         this.picture = picture;
     }
 
-    public String getUser_token() {
+    public String getUserToken() {
         return user_token;
     }
 

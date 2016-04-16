@@ -533,7 +533,7 @@ public class CreateAccountActivity extends BaseAppCompatActivity implements Soci
                         jRoot.put("client", user.getClient());
                         jRoot.put("dob", DateFormat.getDate(user.getDob()));
                         jRoot.put("gender", user.getGender());
-                        jRoot.put("app_token", user.getApp_token());
+                        jRoot.put("app_token", user.getAppToken());
                         jRoot.put("race", user.getRace());
                         jRoot.put("platform", user.getPlatform());
                         jRoot.put("picture", "0");
@@ -584,7 +584,7 @@ public class CreateAccountActivity extends BaseAppCompatActivity implements Soci
                             sharedPreferences = getSharedPreferences(Constants.Pref.PREFS_NAME, 0);
                             SharedPreferences.Editor editor = sharedPreferences.edit();
 
-                            editor.putString(Constants.Pref.PREFS_NAME, singleUser.getUser_token());
+                            editor.putString(Constants.Pref.PREFS_NAME, singleUser.getUserToken());
                             editor.commit();
 
                             Toast.makeText(getApplicationContext(), "Cadastro realizado com sucesso!", Toast.LENGTH_SHORT).show();

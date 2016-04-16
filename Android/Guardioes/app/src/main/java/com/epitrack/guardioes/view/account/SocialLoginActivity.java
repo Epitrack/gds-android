@@ -470,7 +470,7 @@ public class SocialLoginActivity extends BaseAppCompatActivity implements View.O
                         SharedPreferences sharedPreferences = getSharedPreferences(Constants.Pref.PREFS_NAME, 0);
                         SharedPreferences.Editor editor = sharedPreferences.edit();
 
-                        editor.putString(Constants.Pref.PREFS_NAME, singleUser.getUser_token());
+                        editor.putString(Constants.Pref.PREFS_NAME, singleUser.getUserToken());
                         editor.apply();
 
                         navigateTo(HomeActivity.class, Intent.FLAG_ACTIVITY_CLEAR_TASK |

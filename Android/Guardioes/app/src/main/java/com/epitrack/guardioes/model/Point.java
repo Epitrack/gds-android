@@ -1,8 +1,5 @@
 package com.epitrack.guardioes.model;
 
-/**
- * Created by IgorMorais on 7/22/15.
- */
 public class Point {
 
     private String name;

@@ -169,8 +169,8 @@ public class SimpleRequester extends AsyncTask<SimpleRequester, Object, String> 
             Logger.logDebug(TAG, body + "' to " + url);
             bytes = body.getBytes();
             conn.setRequestProperty("Content-Type", "application/json");
-            conn.setRequestProperty("app_token", singleUser.getApp_token());
-            conn.setRequestProperty("user_token", singleUser.getUser_token());
+            conn.setRequestProperty("app_token", singleUser.getAppToken());
+            conn.setRequestProperty("user_token", singleUser.getUserToken());
 
             conn.setReadTimeout(10000);
             conn.setConnectTimeout(15000);
@@ -209,8 +209,8 @@ public class SimpleRequester extends AsyncTask<SimpleRequester, Object, String> 
                 urlConnection.setSSLSocketFactory(generateCertificate(context).getSocketFactory());
 
                 if (!otherAPI) {
-                    urlConnection.setRequestProperty("app_token", singleUser.getApp_token());
-                    urlConnection.setRequestProperty("user_token", singleUser.getUser_token());
+                    urlConnection.setRequestProperty("app_token", singleUser.getAppToken());
+                    urlConnection.setRequestProperty("user_token", singleUser.getUserToken());
                 }
                 br = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
             }

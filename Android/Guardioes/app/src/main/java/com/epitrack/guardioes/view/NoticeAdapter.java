@@ -81,13 +81,6 @@ public class NoticeAdapter extends RecyclerView.Adapter<NoticeAdapter.ViewHolder
         viewHolder.textViewLike.setText(notice.getLike());
         viewHolder.textViewDate.setText(notice.getPublicationDate());
 
-        /*viewHolder.imageViewImage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                listener.onNoticeSelect(notice);
-            }
-        });*/
-
         viewHolder.textViewTitle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

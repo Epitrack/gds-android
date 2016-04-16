@@ -18,6 +18,7 @@ import com.afollestad.materialdialogs.MaterialDialog;
 import com.epitrack.guardioes.R;
 import com.epitrack.guardioes.manager.Loader;
 import com.epitrack.guardioes.model.Point;
+import com.epitrack.guardioes.request.MapRequester;
 import com.epitrack.guardioes.request.base.Method;
 import com.epitrack.guardioes.request.old.RequestListener;
 import com.epitrack.guardioes.request.old.SimpleRequester;
@@ -65,7 +66,7 @@ public class MapPointActivity extends AbstractBaseMapActivity {
 
     private final Map<Marker, Point> pointMap = new HashMap<>();
 
-    private int tip;
+    private Tip tip;
 
     @Override
     protected void onCreate(final Bundle bundle) {
@@ -73,7 +74,7 @@ public class MapPointActivity extends AbstractBaseMapActivity {
 
         setContentView(R.layout.map_point);
 
-        tip = getIntent().getIntExtra(Constants.Bundle.TIP, 0);
+        tip = Tip.getBy(getIntent().getIntExtra(Constants.Bundle.TIP, 0));
 
         final MapFragment mapFragment = (MapFragment) getFragmentManager()
                 .findFragmentById(R.id.fragment_map);
@@ -85,7 +86,7 @@ public class MapPointActivity extends AbstractBaseMapActivity {
     public void onResume() {
         super.onResume();
 
-        if (Tip.getBy(tip) == Tip.PHARMACY) {
+        if (tip == Tip.PHARMACY) {
             getTracker().setScreenName("Pharmacy Screen - " + this.getClass().getSimpleName());
 
         } else {
@@ -96,12 +97,9 @@ public class MapPointActivity extends AbstractBaseMapActivity {
     }
 
     @Override
-    public void onLastLocation(final Location location) {
-        super.onLastLocation(location);
+    protected void onAnimationEnd(final LatLng latLng) {
 
-        final LatLng latLng = LocationUtility.toLatLng(location);
-
-        if (Tip.getBy(tip) == Tip.HOSPITAL) {
+        if (tip == Tip.HOSPITAL) {
             load();
 
         } else {
@@ -123,16 +121,7 @@ public class MapPointActivity extends AbstractBaseMapActivity {
 
     private void loadPharmacy(final double latitude, final double longitude) {
 
-        final SimpleRequester requester = new SimpleRequester();
-
-        requester.setJsonObject(null);
-        requester.setMethod(Method.GET);
-        requester.setOtherAPI(true);
-        requester.setUrl("https://maps.googleapis.com/maps/api/place/textsearch/json?query=pharmacy&location=" + latitude + "," + longitude + "&radius=10000&key=AIzaSyDYl7spN_NpAjAWL7Hi183SK2cApiIS3Eg");
-
-        requester.execute();
-
-        requester.setListener(new RequestListener<String>() {
+        new MapRequester(this).loadPharmacy(latitude, longitude, new com.epitrack.guardioes.request.base.RequestListener<List<Point>>() {
 
             @Override
             public void onStart() {
@@ -140,56 +129,13 @@ public class MapPointActivity extends AbstractBaseMapActivity {
             }
 
             @Override
-            public void onError(Exception e) {
+            public void onError(final Exception e) {
 
             }
 
             @Override
-            public void onSuccess(final String result) {
-
-                try {
-
-                    final List<Point> pointList = new ArrayList<>();
-
-                    JSONObject jsonObject = new JSONObject(result);
-
-                    if (!jsonObject.get("status").toString().toUpperCase().equals("OK")) {
-                        Toast.makeText(getApplicationContext(), R.string.generic_error, Toast.LENGTH_SHORT).show();
-
-                    } else {
-
-                        JSONArray jsonArray = jsonObject.getJSONArray("results");
-
-                        for (int i = 0; i < jsonArray.length(); i++) {
-
-                            jsonObject = jsonArray.getJSONObject(i);
-                            JSONObject jsonObjectGeometry = jsonObject.getJSONObject("geometry");
-                            JSONObject jsonObjectLocation = jsonObjectGeometry.getJSONObject("location");
-
-                            Point point = new Point();
-                            point.setLatitude(jsonObjectLocation.getDouble("lat"));
-                            point.setLongitude(jsonObjectLocation.getDouble("lng"));
-                            point.setLogradouro(jsonObject.getString("formatted_address"));
-                            point.setName(jsonObject.getString("name"));
-
-                            pointList.add(point);
-                        }
-
-                        if (!pointList.isEmpty()) {
-
-                            new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
-
-                                @Override
-                                public void run() {
-                                    addMarker(pointList);
-                                }
-
-                            }, 2000);
-                        }
-                    }
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+            public void onSuccess(final List<Point> pointList) {
+                addMarker(pointList);
             }
         });
     }
@@ -208,16 +154,9 @@ public class MapPointActivity extends AbstractBaseMapActivity {
                     final List<Point> pointList = new ObjectMapper().readValue(inputStream, new TypeReference<List<Point>>() {
                     });
 
-                    new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
+                    addMarker(pointList);
 
-                        @Override
-                        public void run() {
-                            addMarker(pointList);
-                        }
-
-                    }, 2000);
-
-                } catch (IOException e) {
+                } catch (final IOException e) {
                     e.printStackTrace();
                 }
             }
@@ -247,13 +186,13 @@ public class MapPointActivity extends AbstractBaseMapActivity {
 
     private MarkerOptions getMarkerOption() {
 
-        if (Tip.getBy(tip) == Tip.PHARMACY) {
+        if (tip == Tip.PHARMACY) {
 
             if (markerOption == null) {
                 markerOption = new MarkerOptions().icon(BitmapDescriptorFactory.fromResource(R.drawable.icon_marker_pharmacy));
             }
 
-        } else if (Tip.getBy(tip) == Tip.HOSPITAL) {
+        } else if (tip == Tip.HOSPITAL) {
 
             if (markerOption == null) {
                 markerOption = new MarkerOptions().icon(BitmapDescriptorFactory.fromResource(R.drawable.icon_marker_hospital));
@@ -316,8 +255,7 @@ public class MapPointActivity extends AbstractBaseMapActivity {
                             String label = point.getName();
                             String uriBegin = "geo:" + latitude + "," + longitude;
                             String query = latitude + "," + longitude + "(" + label + ")";
-                            String encodedQuery = Uri.encode(query);
-                            String uriString = uriBegin + "?q=" + encodedQuery + "&z=14";
+                            String uriString = uriBegin + "?q=" + Uri.encode(query) + "&z=14";
                             Uri uri = Uri.parse(uriString);
                             Intent intent = new Intent(android.content.Intent.ACTION_VIEW, uri);
                             startActivity(intent);

@@ -466,7 +466,7 @@ public class UserActivity extends BaseAppCompatActivity {
                     }
                 } else {
                     jsonObject.put("password", singleUser.getPassword());
-                    jsonObject.put("app_token", user.getApp_token());
+                    jsonObject.put("app_token", user.getAppToken());
                     jsonObject.put("platform", user.getPlatform());
                     jsonObject.put("gl", singleUser.getGl());
                     jsonObject.put("tw", singleUser.getTw());
@@ -555,7 +555,7 @@ public class UserActivity extends BaseAppCompatActivity {
                             sharedPreferences = getSharedPreferences(Constants.Pref.PREFS_NAME, 0);
                             SharedPreferences.Editor editor = sharedPreferences.edit();
 
-                            editor.putString(Constants.Pref.PREFS_NAME, singleUser.getUser_token());
+                            editor.putString(Constants.Pref.PREFS_NAME, singleUser.getUserToken());
                             editor.commit();
 
                             sharedPreferences = getSharedPreferences(Constants.Pref.PREFS_SOCIAL, 0);

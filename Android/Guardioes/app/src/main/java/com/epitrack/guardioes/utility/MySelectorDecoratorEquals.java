@@ -11,7 +11,7 @@ import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.DayViewDecorator;
 import com.prolificinteractive.materialcalendarview.DayViewFacade;
 
-import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author Miqueias Lopes
@@ -19,9 +19,9 @@ import java.util.ArrayList;
 public class MySelectorDecoratorEquals implements DayViewDecorator {
 
     private Drawable drawable = null;
-    private ArrayList<Integer> days;
+    private List<Integer> days;
 
-    public MySelectorDecoratorEquals(DiaryActivity context, ArrayList<Integer> days) {
+    public MySelectorDecoratorEquals(DiaryActivity context, List<Integer> days) {
         drawable = context.getResources().getDrawable(R.drawable.img_donut_50_calendar);
         this.days = days;
     }

@@ -41,7 +41,7 @@ public final class NoticeRequester extends BaseRequester {
 
         listener.onStart();
 
-        new Requester(getContext()).request(Method.GET, url, new FutureCallback<Response<String>>() {
+        new Requester(getContext()).request(Method.GET, url, getAuthHeaderMap(), new FutureCallback<Response<String>>() {
 
             @Override
             public void onCompleted(final Exception error, final Response<String> response) {
@@ -55,6 +55,12 @@ public final class NoticeRequester extends BaseRequester {
                         final JSONArray jsonArray = new JSONObject(response.getResult()).getJSONObject("data")
                                 .getJSONArray("statuses");
 
+                        final SimpleDateFormat format1 = new SimpleDateFormat("EEE MMM dd HH:mm:ss ZZZZZ yyyy", Locale.ENGLISH);
+                        final SimpleDateFormat format2 = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+                        final SimpleDateFormat format3 = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss", Locale.getDefault());
+
+                                format1.setLenient(true);
+
                         for (int i = 0; i < jsonArray.length(); i++) {
 
                             final JSONObject json = jsonArray.getJSONObject(i);
@@ -63,17 +69,13 @@ public final class NoticeRequester extends BaseRequester {
 
                             notice.setTitle(json.get("text").toString());
                             notice.setLink("https://twitter.com/minsaude/status/" + json.get("id_str").toString());
-                            notice.setLike(" " + json.get("favorite_count"));
+                            notice.setLike(json.getString("favorite_count"));
 
-                            final SimpleDateFormat format = new SimpleDateFormat("EEE MMM dd HH:mm:ss ZZZZZ yyyy", Locale.ENGLISH);
+                            final Date date = format1.parse(json.get("created_at").toString());
 
-                            format.setLenient(true);
+                            notice.setPublicationDate(format2.format(date));
 
-                            final Date date = format.parse(json.get("created_at").toString());
-
-                            notice.setPublicationDate(new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(date));
-
-                            final int hour = DateFormat.getDateDiff(new SimpleDateFormat("dd/MM/yyyy HH:mm:ss", Locale.getDefault()).format(date), 0);
+                            final int hour = DateFormat.getDateDiff(format3.format(date), 0);
 
                             notice.setClock(hour + "h");
 
