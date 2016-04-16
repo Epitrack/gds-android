@@ -2,6 +2,7 @@
 <resources>
 
     <string name="app_name">Guardiões da Saúde</string>
+    <string name="app_name_short">Guardiões</string>
 
     # Google
     <string name="google_client_id">997325640691-p7453ssirrdtkoh51tlphdmbb0lfdkg3.apps.googleusercontent.com</string>

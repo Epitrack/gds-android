@@ -37,7 +37,7 @@ public final class Application extends android.app.Application {
         loadAuth();
     }
 
-    private void loadAuth() {
+    public void loadAuth() {
 
         try {
 

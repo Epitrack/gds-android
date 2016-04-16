@@ -82,10 +82,6 @@ public class CreateAccountActivity extends BaseAppCompatActivity implements Soci
     @Bind(R.id.edit_text_password)
     EditText editTextPassword;
 
-    @ConfirmPassword(messageResId = R.string.validation_confirm_password)
-    @Bind(R.id.edit_text_confirm_password)
-    EditText editTextConfirmPassword;
-
     @Length(min = MIN_CHAR_NICKNAME, trim = true, messageResId = R.string.validation_length)
     @Bind(R.id.edit_text_name)
     EditText editTextNickname;
@@ -115,7 +111,6 @@ public class CreateAccountActivity extends BaseAppCompatActivity implements Soci
     @Override
     protected void onCreate(final Bundle bundle) {
         super.onCreate(bundle);
-        MultiDex.install(getBaseContext());
         setContentView(R.layout.create_account);
 
         final ActionBar actionBar = getSupportActionBar();
@@ -143,9 +138,9 @@ public class CreateAccountActivity extends BaseAppCompatActivity implements Soci
 
         editTextBirthDate.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             public void onFocusChange(View v, boolean hasFocus) {
-                if(hasFocus){
+                if (hasFocus) {
                     ((EditText) v).setHint(" ex: 01/01/1991");
-                }else{
+                } else {
                     ((EditText) v).setHint("");
                 }
             }
@@ -200,28 +195,6 @@ public class CreateAccountActivity extends BaseAppCompatActivity implements Soci
 
     public void onPrivacy(final MenuItem item) {
 
-        new BaseDialogFragment() {
-
-            @Override
-            public int getLayout() {
-                return R.layout.privacy;
-            }
-
-            @Override
-            public void findView(View view) {
-                super.findView(view);
-
-                view.findViewById(R.id.image_button_close).setOnClickListener(new View.OnClickListener() {
-
-                    @Override
-                    public void onClick(View view) {
-                        dismiss();
-                    }
-                });
-            }
-
-        }.show(getFragmentManager(), BaseDialogFragment.TAG);
-
         // custom dialog
         final Dialog dialog = new Dialog(this);
         dialog.setContentView(R.layout.privacy);
@@ -253,7 +226,7 @@ public class CreateAccountActivity extends BaseAppCompatActivity implements Soci
      * Hides the soft keyboard
      */
     public void hideSoftKeyboard() {
-        if(getCurrentFocus()!=null) {
+        if (getCurrentFocus() != null) {
             InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
             inputMethodManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
         }
@@ -480,7 +453,7 @@ public class CreateAccountActivity extends BaseAppCompatActivity implements Soci
                     dobIsFail = true;
                 } else if (DateFormat.getDateDiff(DateFormat.getDate(editTextBirthDate.getText().toString().trim())) < 12) {
                     dobIsFail = true;
-                } else if(DateFormat.getDateDiff(DateFormat.getDate(editTextBirthDate.getText().toString().trim())) > 120) {
+                } else if (DateFormat.getDateDiff(DateFormat.getDate(editTextBirthDate.getText().toString().trim())) > 120) {
                     dobIsFail = true;
                 } else {
                     dobIsFail = false;
@@ -620,7 +593,7 @@ public class CreateAccountActivity extends BaseAppCompatActivity implements Soci
 
     enum State {
 
-        SOCIAL (1), NEXT (2), CREATE (3);
+        SOCIAL(1), NEXT(2), CREATE(3);
 
         private final int id;
 

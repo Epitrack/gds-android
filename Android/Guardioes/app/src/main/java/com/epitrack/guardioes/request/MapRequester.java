@@ -6,6 +6,7 @@ import android.os.Looper;
 import android.widget.Toast;
 
 import com.epitrack.guardioes.R;
+import com.epitrack.guardioes.manager.Application;
 import com.epitrack.guardioes.model.Notice;
 import com.epitrack.guardioes.model.Point;
 import com.epitrack.guardioes.request.base.BaseRequester;
@@ -15,6 +16,7 @@ import com.epitrack.guardioes.request.base.Requester;
 import com.epitrack.guardioes.utility.DateFormat;
 import com.epitrack.guardioes.utility.Logger;
 import com.koushikdutta.async.future.FutureCallback;
+import com.koushikdutta.ion.Ion;
 import com.koushikdutta.ion.Response;
 
 import org.json.JSONArray;
@@ -37,7 +39,11 @@ public class MapRequester extends BaseRequester {
         super(context);
     }
 
+    // TODO: Removing self certificate, but on finish we add it. This is not the best way..
     public void loadPharmacy(final double latitude, final double longitude, final RequestListener<List<Point>> listener) {
+
+        Ion.getDefault(getContext()).getHttpClient().getSSLSocketMiddleware().setSSLContext(null);
+        Ion.getDefault(getContext()).getHttpClient().getSSLSocketMiddleware().setTrustManagers(null);
 
         final String url = "https://maps.googleapis.com/maps/api/place/textsearch/json?query=pharmacy&location=" + latitude + "," + longitude + "&radius=10000&key=AIzaSyDYl7spN_NpAjAWL7Hi183SK2cApiIS3Eg";
 
@@ -47,6 +53,11 @@ public class MapRequester extends BaseRequester {
 
             @Override
             public void onCompleted(final Exception error, final Response<String> response) {
+
+                // TODO: Removing self certificate, but on finish we add it. This is not the best way..
+                if (getContext().getApplicationContext() instanceof Application) {
+                    ((Application) getContext().getApplicationContext()).loadAuth();
+                }
 
                 if (error == null) {
 
