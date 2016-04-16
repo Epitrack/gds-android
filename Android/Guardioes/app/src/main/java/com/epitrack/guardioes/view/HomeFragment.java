@@ -322,35 +322,7 @@ public class HomeFragment extends BaseFragment {
 
     @OnClick(R.id.image_view_photo)
     public void showProfile() {
-
-        if (NetworkUtility.isOnline(getActivity().getApplication())) {
-
-            final ProgressDialog progressDialog;
-            progressDialog = new ProgressDialog(getActivity(), R.style.Theme_MyProgressDialog);
-            progressDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.rgb(30, 136, 229)));
-            progressDialog.setTitle(R.string.app_name);
-            progressDialog.setMessage("Carregando...");
-            progressDialog.show();
-
-            new Thread() {
-
-                @Override
-                public void run() {
-                    ProfileActivity.userArrayList = loadProfiles();
-                    progressDialog.dismiss();
-                    navigateTo(ProfileActivity.class);
-                }
-
-            }.start();
-
-        } else {
-
-            new DialogBuilder(getActivity()).load()
-                    .title(R.string.attention)
-                    .content(R.string.network_fail)
-                    .positiveText(R.string.ok)
-                    .show();
-        }
+        navigateTo(ProfileActivity.class);
     }
 
     @OnClick(R.id.text_view_notice)
@@ -403,66 +375,5 @@ public class HomeFragment extends BaseFragment {
                 .build());
 
         navigateTo(SelectParticipantActivity.class);
-    }
-
-    private ArrayList<User> loadProfiles() {
-        ArrayList<User> userList = new ArrayList<User>();
-
-        SingleUser singleUser = SingleUser.getInstance();
-
-        userList.add(new User(R.drawable.image_avatar_small_2, singleUser.getNick(), singleUser.getEmail(), singleUser.getId(),
-                singleUser.getDob(), singleUser.getRace(), singleUser.getGender(), singleUser.getPicture(), "", singleUser.getFile()));
-
-        SimpleRequester simpleRequester = new SimpleRequester();
-        simpleRequester.setUrl(Requester.API_URL + "user/household/" + singleUser.getId());
-        simpleRequester.setJsonObject(null);
-        simpleRequester.setMethod(Method.GET);
-
-        try {
-            String jsonStr = simpleRequester.execute(simpleRequester).get();
-
-            JSONObject jsonObject = new JSONObject(jsonStr);
-
-            if (jsonObject.get("error").toString() == "false") {
-
-                JSONArray jsonArray = jsonObject.getJSONArray("data");
-
-                if (jsonArray.length() > 0) {
-
-                    JSONObject jsonObjectHousehold;
-
-                    for (int i = 0; i < jsonArray.length(); i++) {
-
-                        jsonObjectHousehold = jsonArray.getJSONObject(i);
-
-                        User user = new User(R.drawable.image_avatar_small_8, jsonObjectHousehold.get("nick").toString(),
-                                "", jsonObjectHousehold.get("id").toString(),
-                                jsonObjectHousehold.get("dob").toString(), jsonObjectHousehold.get("race").toString(),
-                                jsonObjectHousehold.get("gender").toString(), jsonObjectHousehold.get("picture").toString());
-                        try {
-                            user.setRelationship(jsonObjectHousehold.get("relationship").toString());
-                        } catch (Exception e) {
-                            user.setRelationship("");
-                        }
-
-                        try {
-                            user.setEmail(jsonObjectHousehold.get("email").toString());
-                        } catch (Exception e) {
-                            user.setEmail("");
-                        }
-
-                        userList.add(user);
-                    }
-                }
-            }
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
-        return userList;
     }
 }

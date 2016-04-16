@@ -14,6 +14,7 @@ import com.epitrack.guardioes.model.User;
 import com.github.siyamed.shapeimageview.CircularImageView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author Igor Morais
@@ -22,9 +23,9 @@ public class UserAdapter extends ArrayAdapter<User> {
 
     private final UserListener listener;
     SingleUser singleUser = SingleUser.getInstance();
-    private ArrayList<User> userArrayList;
+    private List<User> userArrayList;
 
-    public UserAdapter(final Context context, final ArrayList<User> userList, final UserListener listener) {
+    public UserAdapter(final Context context, final List<User> userList, final UserListener listener) {
         super(context, 0, userList);
 
         this.userArrayList = userList;

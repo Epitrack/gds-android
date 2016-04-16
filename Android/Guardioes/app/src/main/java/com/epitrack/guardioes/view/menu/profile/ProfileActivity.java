@@ -1,11 +1,7 @@
 package com.epitrack.guardioes.view.menu.profile;
 
-import android.app.ProgressDialog;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
+
 import android.view.MenuItem;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -14,20 +10,21 @@ import com.afollestad.materialdialogs.MaterialDialog;
 import com.epitrack.guardioes.R;
 import com.epitrack.guardioes.model.SingleUser;
 import com.epitrack.guardioes.model.User;
+import com.epitrack.guardioes.request.UserRequester;
 import com.epitrack.guardioes.request.base.Method;
+import com.epitrack.guardioes.request.base.RequestListener;
 import com.epitrack.guardioes.request.old.Requester;
 import com.epitrack.guardioes.request.old.SimpleRequester;
 import com.epitrack.guardioes.utility.Constants;
 import com.epitrack.guardioes.utility.DialogBuilder;
 import com.epitrack.guardioes.view.base.BaseAppCompatActivity;
+import com.epitrack.guardioes.view.dialog.LoadDialog;
 import com.google.android.gms.analytics.HitBuilders;
 
-import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.concurrent.ExecutionException;
+import java.util.List;
 
 import butterknife.Bind;
 import butterknife.OnClick;
@@ -42,19 +39,11 @@ public class ProfileActivity extends BaseAppCompatActivity implements UserListen
 
     private SingleUser singleUser = SingleUser.getInstance();
 
-    public static ArrayList<User> userArrayList;
-
-    private ProgressDialog progressDialog;
-
     @Override
     protected void onCreate(final Bundle bundle) {
         super.onCreate(bundle);
 
         setContentView(R.layout.profile_activity);
-    }
-
-    private void back() {
-        super.onBackPressed();
     }
 
     @Override
@@ -64,33 +53,42 @@ public class ProfileActivity extends BaseAppCompatActivity implements UserListen
         getTracker().setScreenName("List Profile Screen - " + this.getClass().getSimpleName());
         getTracker().send(new HitBuilders.ScreenViewBuilder().build());
 
-        updateAdapter();
+        new UserRequester(this).getAllProfiles(SingleUser.getInstance().getId(), new UserHandler());
     }
 
-    private void updateAdapter() {
+    private class UserHandler implements RequestListener<List<User>> {
 
-        final ProfileActivity me = this;
+        private final LoadDialog loadDialog = new LoadDialog();
 
-        new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
+        @Override
+        public void onStart() {
+            loadDialog.show(getFragmentManager(), LoadDialog.TAG);
+        }
 
-            @Override
-            public void run() {
+        @Override
+        public void onError(Exception e) {
 
-                final ProgressDialog progressDialog = new ProgressDialog(ProfileActivity.this, R.style.Theme_MyProgressDialog);
+        }
 
-                progressDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.rgb(30, 136, 229)));
-                progressDialog.setTitle(R.string.app_name);
-                progressDialog.setMessage("Carregando...");
-                progressDialog.show();
+        @Override
+        public void onSuccess(final List<User> parentList) {
+            loadDialog.dismiss();
 
-                userArrayList = loadProfiles();
+            final SingleUser user = SingleUser.getInstance();
 
-                listView.setAdapter(new UserAdapter(ProfileActivity.this, userArrayList, me));
+            parentList.add(0, new User(R.drawable.image_avatar_small_2,
+                    user.getNick(),
+                    user.getEmail(),
+                    user.getId(),
+                    user.getDob(),
+                    user.getRace(),
+                    user.getGender(),
+                    user.getPicture(),
+                    "",
+                    user.getFile()));
 
-                progressDialog.dismiss();
-            }
-
-        }, 2000);
+            listView.setAdapter(new UserAdapter(ProfileActivity.this, parentList, ProfileActivity.this));
+        }
     }
 
     @Override
@@ -98,10 +96,11 @@ public class ProfileActivity extends BaseAppCompatActivity implements UserListen
 
         if (item.getItemId() == android.R.id.home) {
             onBackPressed();
-            //navigateTo(ProfileFragment.class);
+
         } else {
             super.onOptionsItemSelected(item);
         }
+
         return true;
     }
 
@@ -253,72 +252,13 @@ public class ProfileActivity extends BaseAppCompatActivity implements UserListen
     }
 
     private void refresh(boolean error) {
+
         if (error) {
             Toast.makeText(getApplicationContext(), R.string.generic_error, Toast.LENGTH_SHORT).show();
+
         } else {
             Toast.makeText(getApplicationContext(), R.string.delete_user, Toast.LENGTH_SHORT).show();
             listView.setAdapter(new UserAdapter(this, new ArrayList<User>(), this));
         }
-    }
-
-    private ArrayList<User> loadProfiles() {
-        ArrayList<User> userList = new ArrayList<>();
-
-        SingleUser singleUser = SingleUser.getInstance();
-
-        userList.add(new User(R.drawable.image_avatar_small_2, singleUser.getNick(), singleUser.getEmail(), singleUser.getId(),
-                singleUser.getDob(), singleUser.getRace(), singleUser.getGender(), singleUser.getPicture(), "", singleUser.getFile()));
-
-        SimpleRequester simpleRequester = new SimpleRequester();
-        simpleRequester.setUrl(Requester.API_URL + "user/household/" + singleUser.getId());
-        simpleRequester.setJsonObject(null);
-        simpleRequester.setMethod(Method.GET);
-
-        try {
-            String jsonStr = simpleRequester.execute(simpleRequester).get();
-
-            JSONObject jsonObject = new JSONObject(jsonStr);
-
-            if (jsonObject.get("error").toString().equals("false")) {
-
-                JSONArray jsonArray = jsonObject.getJSONArray("data");
-
-                if (jsonArray.length() > 0) {
-
-                    JSONObject jsonObjectHousehold;
-
-                    for (int i = 0; i < jsonArray.length(); i++) {
-
-                        jsonObjectHousehold = jsonArray.getJSONObject(i);
-
-                        User user = new User(R.drawable.image_avatar_small_8, jsonObjectHousehold.get("nick").toString(),
-                                "", jsonObjectHousehold.get("id").toString(),
-                                jsonObjectHousehold.get("dob").toString(), jsonObjectHousehold.get("race").toString(),
-                                jsonObjectHousehold.get("gender").toString(), jsonObjectHousehold.get("picture").toString());
-                        try {
-                            user.setRelationship(jsonObjectHousehold.get("relationship").toString());
-                        } catch (Exception e) {
-                            user.setRelationship("");
-                        }
-
-                        try {
-                            user.setEmail(jsonObjectHousehold.get("email").toString());
-                        } catch (Exception e) {
-                            user.setEmail("");
-                        }
-
-                        userList.add(user);
-                    }
-                }
-            }
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
-        return userList;
     }
 }

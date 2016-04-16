@@ -17,6 +17,7 @@ import com.epitrack.guardioes.request.NoticeRequester;
 import com.epitrack.guardioes.request.base.RequestListener;
 import com.epitrack.guardioes.utility.DialogBuilder;
 import com.epitrack.guardioes.view.base.BaseAppCompatActivity;
+import com.epitrack.guardioes.view.dialog.LoadDialog;
 import com.google.android.gms.analytics.HitBuilders;
 
 import java.util.List;
@@ -30,9 +31,6 @@ public class NoticeActivity extends BaseAppCompatActivity implements NoticeListe
 
     @Bind(R.id.recycler_view)
     RecyclerView recyclerView;
-
-    @Bind(R.id.viewLoad)
-    View viewLoad;
 
     @Override
     protected void onCreate(final Bundle bundle) {
@@ -63,9 +61,11 @@ public class NoticeActivity extends BaseAppCompatActivity implements NoticeListe
 
     private class NoticeHandler implements RequestListener<List<Notice>> {
 
+        private final LoadDialog loadDialog = new LoadDialog();
+
         @Override
         public void onStart() {
-
+            loadDialog.show(getFragmentManager(), LoadDialog.TAG);
         }
 
         @Override
@@ -75,6 +75,8 @@ public class NoticeActivity extends BaseAppCompatActivity implements NoticeListe
 
         @Override
         public void onSuccess(final List<Notice> noticeList) {
+
+            loadDialog.dismiss();
 
             recyclerView.setAdapter(new NoticeAdapter(NoticeActivity.this, noticeList));
         }

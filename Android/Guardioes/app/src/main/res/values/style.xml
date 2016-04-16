@@ -278,6 +278,8 @@
     <style name="LoadDialog" parent="Theme.AppCompat.Light.Dialog">
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowBackground">@android:color/transparent</item>
+
+        <item name="colorAccent">@color/primary</item>
     </style>
 
 </resources>
