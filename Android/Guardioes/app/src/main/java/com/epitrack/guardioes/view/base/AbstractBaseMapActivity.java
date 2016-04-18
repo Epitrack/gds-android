@@ -45,14 +45,14 @@ public abstract class AbstractBaseMapActivity extends BaseAppCompatActivity impl
     @Override
     protected void onCreate(final Bundle bundle) {
         super.onCreate(bundle);
+
+        locationHandler = new LocationManager(this, this);
     }
 
     @Override
     public void onMapReady(final GoogleMap map) {
         setMap(map);
-
-        locationHandler = new LocationManager(this, this);
-
+        
         if (locationHandler.isEnabled()) {
             locationHandler.connect();
         }
