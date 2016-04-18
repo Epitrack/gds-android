@@ -112,6 +112,7 @@ public class LoginActivity extends BaseAppCompatActivity implements SocialAccoun
 
                 if (jsonObject.get("error").toString() == "true") {
                     Toast.makeText(getApplicationContext(), "Erro ao fazer o login. - " + jsonObject.get("message").toString(), Toast.LENGTH_SHORT).show();
+
                 } else {
 
                     JSONObject jsonObjectUser = jsonObject.getJSONObject("data");
@@ -152,7 +153,8 @@ public class LoginActivity extends BaseAppCompatActivity implements SocialAccoun
 
         } else {
 
-            SimpleRequester sendPostRequest = new SimpleRequester();
+            final SimpleRequester sendPostRequest = new SimpleRequester();
+
             sendPostRequest.setContext(this);
             sendPostRequest.updateContext();
         }
@@ -227,6 +229,7 @@ public class LoginActivity extends BaseAppCompatActivity implements SocialAccoun
             jsonObject = new JSONObject(jsonStr);
 
             return jsonObject.get("message").toString();
+
         } catch (Exception e) {
             return "Não foi possível enviar o e-mail. Tente novamente em alguns minutos";
         }
@@ -330,9 +333,7 @@ public class LoginActivity extends BaseAppCompatActivity implements SocialAccoun
         @Override
         public void onValidationSucceeded() {
 
-            // TODO: Make request
-            //Miquéias Lopes
-            User user = new User();
+            final User user = new User();
 
             user.setEmail(editTextMail.getText().toString().trim().toLowerCase());
             user.setPassword(editTextPassword.getText().toString().trim());
@@ -344,7 +345,7 @@ public class LoginActivity extends BaseAppCompatActivity implements SocialAccoun
                 jsonObject.put("password", user.getPassword());
 
 
-                SimpleRequester sendPostRequest = new SimpleRequester();
+                final SimpleRequester sendPostRequest = new SimpleRequester();
                 sendPostRequest.setUrl(Requester.API_URL + "user/login");
                 sendPostRequest.setJsonObject(jsonObject);
                 sendPostRequest.setMethod(Method.POST);
@@ -353,7 +354,7 @@ public class LoginActivity extends BaseAppCompatActivity implements SocialAccoun
 
                 jsonObject = new JSONObject(jsonStr);
 
-                if (jsonObject.get("error").toString() == "true") {
+                if (jsonObject.getBoolean("error")) {
 
                     new DialogBuilder(LoginActivity.this).load()
                             .title(R.string.attention)
@@ -369,7 +370,6 @@ public class LoginActivity extends BaseAppCompatActivity implements SocialAccoun
                     singleUser.setNick(jsonObjectUser.getString("nick"));
                     singleUser.setEmail(jsonObjectUser.getString("email"));
                     singleUser.setGender(jsonObjectUser.getString("gender"));
-                    //singleUser.setPicture(jsonObjectUser.getString("picture").toString());
                     singleUser.setId(jsonObjectUser.getString("id"));
                     singleUser.setRace(jsonObjectUser.getString("race"));
                     singleUser.setDob(jsonObjectUser.getString("dob"));

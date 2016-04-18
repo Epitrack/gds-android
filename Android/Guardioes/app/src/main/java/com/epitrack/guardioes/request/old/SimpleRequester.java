@@ -188,11 +188,12 @@ public class SimpleRequester extends AsyncTask<SimpleRequester, Object, String> 
             }
 
             String convertStreamToString = "";
-            if (conn != null) {
-                convertStreamToString = convertStreamToString(conn.getInputStream(), /*HTTP.UTF_8*/"UTF-8");
-                conn.disconnect();
-            }
+
+            convertStreamToString = convertStreamToString(conn.getInputStream(), /*HTTP.UTF_8*/"UTF-8");
+            conn.disconnect();
+
             return convertStreamToString;
+
         } else if (method == Method.GET) {
 
             HttpsURLConnection urlConnection;
@@ -226,7 +227,6 @@ public class SimpleRequester extends AsyncTask<SimpleRequester, Object, String> 
             }
             br.close();
 
-            returnStr = jsonStr;
             return jsonStr;
         } else{
             return returnStr;
