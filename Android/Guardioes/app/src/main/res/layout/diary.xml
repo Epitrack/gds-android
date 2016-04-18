@@ -74,79 +74,39 @@
                 android:id="@+id/calendarView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:focusableInTouchMode="true"
                 android:layout_marginLeft="20dp"
-                />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginTop="-5dp"
-                android:text="@string/report_day"
-                android:textColor="@color/primary_light"
-                android:id="@+id/text_view_total_dia"
-                android:textSize="14dp" />
+                android:focusableInTouchMode="true" />
 
             <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/layout_detail_good"
-                android:layout_marginLeft="30dp"
-                android:layout_gravity="center_vertical">
-
-                <ImageView
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
-                    android:src="@drawable/icon_good"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true"
-                    android:layout_marginTop="5dp"
-                    android:id="@+id/imageViewDetail" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="13dp"
-                    android:id="@+id/text_view_good_report_2"
-                    android:textColor="@color/black_dark"
-                    android:layout_centerVertical="true"
-                    android:layout_marginTop="5dp"
-                    android:layout_toRightOf="@+id/imageViewDetail"
-                    android:layout_toEndOf="@+id/imageViewDetail" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="30dp"
                 android:id="@+id/layout_detail_bad"
-                android:layout_gravity="center_vertical" >
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="30dp">
 
                 <ImageView
+                    android:id="@+id/imageViewDetail2"
                     android:layout_width="35dp"
                     android:layout_height="35dp"
-                    android:src="@drawable/icon_bad"
-                    android:layout_alignParentTop="true"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
                     android:layout_marginTop="5dp"
-                    android:id="@+id/imageViewDetail2" />
+                    android:src="@drawable/icon_bad" />
 
                 <TextView
+                    android:id="@+id/text_view_bad_report_2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="13dp"
-                    android:id="@+id/text_view_bad_report_2"
-                    android:textColor="@color/black_dark"
                     android:layout_centerVertical="true"
                     android:layout_marginTop="5dp"
-                    android:layout_toRightOf="@+id/imageViewDetail2" />
+                    android:layout_toRightOf="@+id/imageViewDetail2"
+                    android:textColor="@color/black_dark"
+                    android:textSize="13dp" />
             </RelativeLayout>
 
             <TextView
+                android:id="@+id/frequency_report"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
@@ -154,21 +114,19 @@
                 android:layout_marginTop="30dp"
                 android:text="@string/frequency"
                 android:textColor="@color/primary_light"
-                android:id="@+id/frequency_report"
                 android:textSize="14dp" />
 
 
             <com.jjoe64.graphview.GraphView
                 android:id="@+id/line_chart"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
-                />
+                android:layout_height="200dp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:visibility="invisible"
-                android:textSize="14dp" />
+                android:textSize="14dp"
+                android:visibility="invisible" />
 
         </LinearLayout>
 

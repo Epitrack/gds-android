@@ -84,9 +84,6 @@ public class DiaryActivity extends BaseAppCompatActivity implements ParentListen
     @Bind(R.id.text_view_bad_report)
     TextView textViewBadReport;
 
-    @Bind(R.id.text_view_good_report_2)
-    TextView textViewGoodReportDetail;
-
     @Bind(R.id.text_view_bad_report_2)
     TextView textViewBadReportDetail;
 
@@ -96,17 +93,12 @@ public class DiaryActivity extends BaseAppCompatActivity implements ParentListen
     @Bind(R.id.pie_chart_diary)
     PieChart pieChart;
 
-    @Bind(R.id.layout_detail_good)
-    RelativeLayout layoutDetailGood;
 
     @Bind(R.id.layout_detail_bad)
     RelativeLayout layoutDetailBad;
 
     @Bind(R.id.calendarView)
     MaterialCalendarView materialCalendarView;
-
-    @Bind(R.id.text_view_total_dia)
-    TextView textViewTotalDia;
 
     @Bind(R.id.frequency_report)
     TextView textViewFrequencyReport;
@@ -120,7 +112,6 @@ public class DiaryActivity extends BaseAppCompatActivity implements ParentListen
     private double goodPercent = 0;
     private double badPercent = 0;
 
-    private double totalCountDetail = 0;
     private double goodCountDetail = 0;
     private double badCountDetail = 0;
 
@@ -153,6 +144,7 @@ public class DiaryActivity extends BaseAppCompatActivity implements ParentListen
         // Request Pie Chart..
         loadPieChart(null);
 
+        // TODO: Need to refactor this..
         // Calendar..
         //new AsyncTaskRunner().execute();
 
@@ -257,7 +249,6 @@ public class DiaryActivity extends BaseAppCompatActivity implements ParentListen
 
                     setData();
 
-                    layoutDetailGood.setVisibility(View.INVISIBLE);
                     layoutDetailBad.setVisibility(View.INVISIBLE);
 
                     //Calendar Config
@@ -268,8 +259,6 @@ public class DiaryActivity extends BaseAppCompatActivity implements ParentListen
                     materialCalendarView.setWeekDayLabels(new String[]{"D", "S", "T", "Q", "Q", "S", "S"});
                     materialCalendarView.setTitleMonths(new String[]{"Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"});
 
-                    setTextTotalReport(null);
-
                 } catch (Exception e) {
                     Logger.logError(TAG, e.getMessage());
                 }
@@ -277,28 +266,20 @@ public class DiaryActivity extends BaseAppCompatActivity implements ParentListen
         });
     }
 
-    private void setTextTotalReport(final CalendarDay date) {
-
-        final String today = date.getDay() + "/" + (date.getMonth() + 1) + "/" + date.getYear();
-
-        textViewTotalDia.setText("Total de envios no dia " + today);
-    }
-
     @Override
     public void onParentSelect(String id) {
         idSelectedUser = id;
 
-        new AsyncTaskRunner().execute();
-
         materialCalendarView.setSelectedDate(CalendarDay.today());
 
-        onDateChanged(materialCalendarView, CalendarDay.today());
+        // TODO: Need to refactor this..
+        //onDateChanged(materialCalendarView, CalendarDay.today());
 
-        requestLineChart();
-
-        setTextTotalReport(null);
+        // new AsyncTaskRunner().execute();
 
         loadPieChart(id);
+
+        requestLineChart();
     }
 
     private void setData() {
@@ -488,11 +469,6 @@ public class DiaryActivity extends BaseAppCompatActivity implements ParentListen
 
         widget.invalidateDecorators();
 
-        if (layoutDetailGood.getVisibility() == View.INVISIBLE) {
-            layoutDetailGood.setVisibility(View.VISIBLE);
-            layoutDetailBad.setVisibility(View.VISIBLE);
-        }
-
         if (daysGoodAndBad.size() > 0) {
             for (int i = 0; i < daysGoodAndBad.size(); i++) {
                 if (daysGoodAndBad.get(i).equals(date.getDate())) {
@@ -500,8 +476,6 @@ public class DiaryActivity extends BaseAppCompatActivity implements ParentListen
                 }
             }
         }
-
-        setTextTotalReport(date);
 
         SimpleRequester simpleRequester = new SimpleRequester();
 
@@ -545,19 +519,10 @@ public class DiaryActivity extends BaseAppCompatActivity implements ParentListen
                     }
                 }
 
-                totalCountDetail = badCountDetail + goodCountDetail;
-
                 if (badCountDetail == 0) {
                     textViewBadReportDetail.setText("     0 Relatórios \"Estou Mal\"");
                 } else {
                     textViewBadReportDetail.setText("     " + (int) badCountDetail + " Relatórios \"Estou Mal\"");
-                }
-
-                if (goodCountDetail == 0) {
-                    textViewGoodReportDetail.setText("     0 Relatórios \"Estou Bem\"");
-
-                } else {
-                    textViewGoodReportDetail.setText("     " + (int) goodCountDetail + " Relatórios \"Estou Bem\"");
                 }
             }
 
