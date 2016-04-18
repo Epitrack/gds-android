@@ -77,6 +77,9 @@ public class LoginActivity extends BaseAppCompatActivity implements SocialAccoun
 
         actionBar.setDisplayShowTitleEnabled(false);
 
+        validator = new Validator(this);
+        validator.setValidationListener(new ValidationHandler());
+
         shpGCMToken = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
 
         sharedPreferences = getSharedPreferences(Constants.Pref.PREFS_NAME, 0);
@@ -113,13 +116,13 @@ public class LoginActivity extends BaseAppCompatActivity implements SocialAccoun
 
                     JSONObject jsonObjectUser = jsonObject.getJSONObject("data");
 
-                    singleUser.setNick(jsonObjectUser.getString("nick").toString());
-                    singleUser.setEmail(jsonObjectUser.getString("email").toString());
-                    singleUser.setGender(jsonObjectUser.getString("gender").toString());
+                    singleUser.setNick(jsonObjectUser.getString("nick"));
+                    singleUser.setEmail(jsonObjectUser.getString("email"));
+                    singleUser.setGender(jsonObjectUser.getString("gender"));
                     //singleUser.setPicture(jsonObjectUser.getString("picture").toString());
-                    singleUser.setId(jsonObjectUser.getString("id").toString());
-                    singleUser.setRace(jsonObjectUser.getString("race").toString());
-                    singleUser.setDob(jsonObjectUser.getString("dob").toString());
+                    singleUser.setId(jsonObjectUser.getString("id"));
+                    singleUser.setRace(jsonObjectUser.getString("race"));
+                    singleUser.setDob(jsonObjectUser.getString("dob"));
                     singleUser.setUser_token(jsonObjectUser.get("token").toString());
                     jsonObject.put("gcm_token", shpGCMToken.getString(Constants.Push.SENDER_ID, ""));
 
@@ -143,27 +146,16 @@ public class LoginActivity extends BaseAppCompatActivity implements SocialAccoun
                     navigateTo(HomeActivity.class, Intent.FLAG_ACTIVITY_CLEAR_TASK |
                             Intent.FLAG_ACTIVITY_NEW_TASK);
                 }
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            } catch (ExecutionException e) {
-                e.printStackTrace();
-            } catch (JSONException e) {
+            } catch (Exception e) {
                 e.printStackTrace();
             }
 
         } else {
+
             SimpleRequester sendPostRequest = new SimpleRequester();
             sendPostRequest.setContext(this);
             sendPostRequest.updateContext();
-            validator = new Validator(this);
-            validator.setValidationListener(new ValidationHandler());
         }
-        // TODO: Check play service
-        // TODO: Register to GCM. Review soon..
-        // startService(new Intent(this, RegisterService.class));
-
-//        LocalBroadcastManager.getInstance(this).registerReceiver(mRegistrationBroadcastReceiver,
-//                new IntentFilter(QuickstartPreferences.REGISTRATION_COMPLETE));
     }
 
     @Override
@@ -319,11 +311,11 @@ public class LoginActivity extends BaseAppCompatActivity implements SocialAccoun
     public void onSuccess() {
 
         navigateTo(HomeActivity.class, Intent.FLAG_ACTIVITY_CLEAR_TASK |
-                                        Intent.FLAG_ACTIVITY_NEW_TASK);
+                                       Intent.FLAG_ACTIVITY_NEW_TASK);
     }
 
     @OnClick(R.id.button_login)
-    public void onLogin(final View view) {
+    public void onLogin() {
 
         getTracker().send(new HitBuilders.EventBuilder()
                 .setCategory("Action")
