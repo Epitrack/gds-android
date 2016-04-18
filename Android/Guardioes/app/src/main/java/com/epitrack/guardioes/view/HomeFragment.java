@@ -1,8 +1,5 @@
 package com.epitrack.guardioes.view;
 
-import android.app.ProgressDialog;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
@@ -17,15 +14,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.epitrack.guardioes.R;
-import com.epitrack.guardioes.model.Notice;
 import com.epitrack.guardioes.model.SingleUser;
-import com.epitrack.guardioes.model.User;
-import com.epitrack.guardioes.request.base.Method;
-import com.epitrack.guardioes.request.old.Requester;
-import com.epitrack.guardioes.request.old.SimpleRequester;
 import com.epitrack.guardioes.utility.DateFormat;
-import com.epitrack.guardioes.utility.DialogBuilder;
-import com.epitrack.guardioes.utility.NetworkUtility;
 import com.epitrack.guardioes.view.base.BaseFragment;
 import com.epitrack.guardioes.view.diary.DiaryActivity;
 import com.epitrack.guardioes.view.menu.profile.Avatar;
@@ -35,18 +25,7 @@ import com.epitrack.guardioes.view.tip.TipActivity;
 import com.github.siyamed.shapeimageview.CircularImageView;
 import com.google.android.gms.analytics.HitBuilders;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.io.File;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Locale;
-import java.util.concurrent.ExecutionException;
 
 import butterknife.Bind;
 import butterknife.OnClick;
@@ -70,9 +49,6 @@ public class HomeFragment extends BaseFragment {
     @Override
     public void onCreate(final Bundle bundle) {
         super.onCreate(bundle);
-
-        setDisplayTitle(false);
-        setDisplayLogo(true);
     }
 
     @Nullable
@@ -81,6 +57,14 @@ public class HomeFragment extends BaseFragment {
         singleUser = SingleUser.getInstance();
 
         return inflater.inflate(R.layout.home_fragment, viewGroup, false);
+    }
+
+    @Override
+    public void onActivityCreated(final Bundle bundle) {
+        super.onActivityCreated(bundle);
+
+        setShowTitle(false);
+        setShowLogo(true);
     }
 
     @Override

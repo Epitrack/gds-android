@@ -25,6 +25,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import com.epitrack.guardioes.R;
+import com.epitrack.guardioes.utility.Logger;
 import com.google.android.gms.analytics.GoogleAnalytics;
 import com.google.android.gms.analytics.Tracker;
 
@@ -34,6 +35,8 @@ import butterknife.ButterKnife;
  * @author Igor Morais
  */
 public abstract class BaseFragment extends Fragment implements INavigate {
+
+    private static final String TAG = BaseFragment.class.getSimpleName();
 
     private Tracker tracker;
 
@@ -129,12 +132,32 @@ public abstract class BaseFragment extends Fragment implements INavigate {
         startActivityForResult(intent, requestCode);
     }
 
-    protected final void setDisplayTitle(final boolean display) {
-        getSupportActionBar().setDisplayShowTitleEnabled(display);
+    protected final void setShowTitle(final boolean display) {
+
+        final ActionBar actionBar = getSupportActionBar();
+
+        if (actionBar == null) {
+
+            Logger.logError(TAG, "The actionBar is null.");
+
+        } else {
+
+            actionBar.setDisplayShowTitleEnabled(display);
+        }
     }
 
-    protected final void setDisplayLogo(final boolean display) {
-        getSupportActionBar().setDisplayUseLogoEnabled(display);
+    protected final void setShowLogo(final boolean display) {
+
+        final ActionBar actionBar = getSupportActionBar();
+
+        if (actionBar == null) {
+
+            Logger.logError(TAG, "The actionBar is null.");
+
+        } else {
+
+            actionBar.setDisplayUseLogoEnabled(display);
+        }
     }
 
     protected Tracker getTracker() {
