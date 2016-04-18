@@ -84,18 +84,11 @@ public class DiaryActivity extends BaseAppCompatActivity implements ParentListen
     @Bind(R.id.text_view_bad_report)
     TextView textViewBadReport;
 
-    @Bind(R.id.text_view_bad_report_2)
-    TextView textViewBadReportDetail;
-
     @Bind(R.id.recycler_view)
     RecyclerView recyclerView;
 
     @Bind(R.id.pie_chart_diary)
     PieChart pieChart;
-
-
-    @Bind(R.id.layout_detail_bad)
-    RelativeLayout layoutDetailBad;
 
     @Bind(R.id.calendarView)
     MaterialCalendarView materialCalendarView;
@@ -248,8 +241,6 @@ public class DiaryActivity extends BaseAppCompatActivity implements ParentListen
                     pieChart.setClickable(false);
 
                     setData();
-
-                    layoutDetailBad.setVisibility(View.INVISIBLE);
 
                     //Calendar Config
                     materialCalendarView.setSelectionMode(MaterialCalendarView.SELECTION_MODE_MULTIPLE);
@@ -518,12 +509,6 @@ public class DiaryActivity extends BaseAppCompatActivity implements ParentListen
                         goodCountDetail = Double.parseDouble(jsonObjectSymptom.get("count").toString());
                     }
                 }
-
-                if (badCountDetail == 0) {
-                    textViewBadReportDetail.setText("     0 Relatórios \"Estou Mal\"");
-                } else {
-                    textViewBadReportDetail.setText("     " + (int) badCountDetail + " Relatórios \"Estou Mal\"");
-                }
             }
 
         } catch (final Exception e) {
@@ -604,6 +589,7 @@ public class DiaryActivity extends BaseAppCompatActivity implements ParentListen
                         daysGoodAndBad.add(dateFormated);
                     }
                 }
+
             } catch (Exception e) {
                 e.printStackTrace();
             }

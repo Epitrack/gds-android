@@ -77,45 +77,16 @@
                 android:layout_marginLeft="20dp"
                 android:focusableInTouchMode="true" />
 
-            <RelativeLayout
-                android:id="@+id/layout_detail_bad"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="30dp">
-
-                <ImageView
-                    android:id="@+id/imageViewDetail2"
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentTop="true"
-                    android:layout_marginTop="5dp"
-                    android:src="@drawable/icon_bad" />
-
-                <TextView
-                    android:id="@+id/text_view_bad_report_2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginTop="5dp"
-                    android:layout_toRightOf="@+id/imageViewDetail2"
-                    android:textColor="@color/black_dark"
-                    android:textSize="13dp" />
-            </RelativeLayout>
-
             <TextView
                 android:id="@+id/frequency_report"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="5dp"
                 android:text="@string/frequency"
                 android:textColor="@color/primary_light"
                 android:textSize="14dp" />
-
 
             <com.jjoe64.graphview.GraphView
                 android:id="@+id/line_chart"
