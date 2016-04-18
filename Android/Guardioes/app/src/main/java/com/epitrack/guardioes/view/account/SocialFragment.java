@@ -12,10 +12,9 @@ import com.epitrack.guardioes.R;
 import com.epitrack.guardioes.model.DTO;
 import com.epitrack.guardioes.utility.Constants;
 import com.epitrack.guardioes.view.base.BaseFragment;
-import com.epitrack.guardioes.view.welcome.TermsAction;
+import com.epitrack.guardioes.view.welcome.TermActivity;
 
 import butterknife.Bind;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
@@ -71,7 +70,7 @@ public class SocialFragment extends BaseFragment {
            final Bundle bundle = new Bundle();
 
            bundle.putString(Constants.Bundle.GOOGLE, Constants.Bundle.GOOGLE);
-           navigateTo(TermsAction.class, bundle);
+           navigateTo(TermActivity.class, bundle);
        } else {
            navigateTo(SocialLoginActivity.class);
        }
@@ -87,7 +86,7 @@ public class SocialFragment extends BaseFragment {
             final Bundle bundle = new Bundle();
 
             bundle.putString(Constants.Bundle.TWITTER, Constants.Bundle.TWITTER);
-            navigateTo(TermsAction.class, bundle);
+            navigateTo(TermActivity.class, bundle);
         } else {
             navigateTo(SocialLoginActivity.class);
         }
@@ -103,7 +102,7 @@ public class SocialFragment extends BaseFragment {
             final Bundle bundle = new Bundle();
 
             bundle.putString(Constants.Bundle.FACEBOOK, Constants.Bundle.FACEBOOK);
-            navigateTo(TermsAction.class, bundle);
+            navigateTo(TermActivity.class, bundle);
         } else {
             navigateTo(SocialLoginActivity.class);
         }

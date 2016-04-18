@@ -52,7 +52,7 @@
             android:screenOrientation="portrait"
             android:theme="@style/Theme.NoActionBar" />
         <activity
-            android:name=".view.welcome.TermsAction"
+            android:name=".view.welcome.TermActivity"
             android:exported="false"
             android:label="@string/term"
             android:screenOrientation="portrait" />

@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.support.multidex.MultiDex;
 import android.support.v7.app.ActionBar;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -34,14 +33,12 @@ import com.epitrack.guardioes.utility.LocationUtility;
 import com.epitrack.guardioes.utility.Mask;
 import com.epitrack.guardioes.view.HomeActivity;
 import com.epitrack.guardioes.view.base.BaseAppCompatActivity;
-import com.epitrack.guardioes.view.base.dialog.BaseDialogFragment;
 import com.epitrack.guardioes.view.menu.help.Term;
 import com.epitrack.guardioes.view.menu.profile.UserActivity;
-import com.epitrack.guardioes.view.welcome.TermsAction;
+import com.epitrack.guardioes.view.welcome.TermActivity;
 import com.google.android.gms.analytics.HitBuilders;
 import com.mobsandgeeks.saripaar.ValidationError;
 import com.mobsandgeeks.saripaar.Validator;
-import com.mobsandgeeks.saripaar.annotation.ConfirmPassword;
 import com.mobsandgeeks.saripaar.annotation.Email;
 import com.mobsandgeeks.saripaar.annotation.Length;
 import com.mobsandgeeks.saripaar.annotation.NotEmpty;
@@ -274,7 +271,7 @@ public class CreateAccountActivity extends BaseAppCompatActivity implements Soci
         bundle = new Bundle();
 
         bundle.putString(Constants.Bundle.EMAIL, Constants.Bundle.EMAIL);
-        navigateTo(TermsAction.class, bundle);
+        navigateTo(TermActivity.class, bundle);
 
         //onNextAnimation(linearLayoutNext, linearLayoutSocial);
     }
