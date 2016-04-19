@@ -7,8 +7,6 @@ import android.support.annotation.NonNull;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
-import android.view.View;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -60,7 +58,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-import java.util.concurrent.Executors;
 
 import butterknife.Bind;
 
@@ -141,7 +138,7 @@ public class DiaryActivity extends BaseAppCompatActivity implements ParentListen
 
         // TODO: Need to refactor this..
         // Calendar..
-        new AsyncTaskRunner().execute();
+        loadCalendar(calendarDay);
 
         // Request line chart..
         requestLineChart();
@@ -267,8 +264,6 @@ public class DiaryActivity extends BaseAppCompatActivity implements ParentListen
 
         // TODO: Need to refactor this..
         onDateChanged(materialCalendarView, CalendarDay.today());
-
-        new AsyncTaskRunner().execute();
 
         loadPieChart(id);
 
@@ -454,7 +449,7 @@ public class DiaryActivity extends BaseAppCompatActivity implements ParentListen
     public void onMonthChanged(MaterialCalendarView materialCalendarView, CalendarDay date) {
         calendarDay = date;
 
-        new AsyncTaskRunner().execute();
+        loadCalendar(date);
     }
 
     @Override
@@ -518,7 +513,7 @@ public class DiaryActivity extends BaseAppCompatActivity implements ParentListen
         }
     }
 
-    private void countTotalGoodAndBad(final CalendarDay date) {
+    private void loadCalendar(final CalendarDay date) {
 
         daysGood = new ArrayList<>();
         daysBad = new ArrayList<>();
@@ -616,6 +611,21 @@ public class DiaryActivity extends BaseAppCompatActivity implements ParentListen
                         }
                     }
 
+                    // execution of result of Long time consuming operation
+                    onDateChanged(materialCalendarView, calendarDay);
+
+                    materialCalendarView.removeDecorators();
+
+                    materialCalendarView.addDecorators(new MySelectorDecoratorGood(DiaryActivity.this, daysGood),
+                            new MySelectorDecoratorBad(DiaryActivity.this, daysBad),
+                            new DayDisableDecorator(daysZero),
+                            new MySelectorDecoratorOnlyGood(DiaryActivity.this, daysOnlyGood),
+                            new MySelectorDecoratorOnlyBad(DiaryActivity.this, daysOnlyBad),
+                            new MySelectorDecoratorEquals(DiaryActivity.this, daysEquals));
+
+                    materialCalendarView.invalidate();
+                    materialCalendarView.requestLayout();
+
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -623,37 +633,6 @@ public class DiaryActivity extends BaseAppCompatActivity implements ParentListen
         });
 
         requester.execute();
-    }
-
-    private class AsyncTaskRunner extends AsyncTask<Void, Void, Void> {
-
-        @Override
-        protected Void doInBackground(Void... voids) {
-            countTotalGoodAndBad(calendarDay);
-
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(Void voids) {
-
-            // execution of result of Long time consuming operation
-            onDateChanged(materialCalendarView, calendarDay);
-
-            materialCalendarView.removeDecorators();
-
-            materialCalendarView.addDecorators(new MySelectorDecoratorGood(DiaryActivity.this, daysGood),
-                    new MySelectorDecoratorBad(DiaryActivity.this, daysBad),
-                    new DayDisableDecorator(daysZero),
-                    new MySelectorDecoratorOnlyGood(DiaryActivity.this, daysOnlyGood),
-                    new MySelectorDecoratorOnlyBad(DiaryActivity.this, daysOnlyBad),
-                    new MySelectorDecoratorEquals(DiaryActivity.this, daysEquals));
-        }
-
-        @Override
-        protected void onPreExecute() {
-
-        }
     }
 }
 
