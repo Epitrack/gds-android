@@ -28,6 +28,7 @@ import com.epitrack.guardioes.utility.MySelectorDecoratorGood;
 import com.epitrack.guardioes.utility.MySelectorDecoratorOnlyBad;
 import com.epitrack.guardioes.utility.MySelectorDecoratorOnlyGood;
 import com.epitrack.guardioes.view.base.BaseAppCompatActivity;
+import com.epitrack.guardioes.view.dialog.LoadDialog;
 import com.epitrack.guardioes.view.survey.ParentListener;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.data.Entry;
@@ -57,6 +58,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.concurrent.Executors;
 
@@ -139,7 +141,7 @@ public class DiaryActivity extends BaseAppCompatActivity implements ParentListen
 
         // TODO: Need to refactor this..
         // Calendar..
-        //new AsyncTaskRunner().execute();
+        new AsyncTaskRunner().execute();
 
         // Request line chart..
         requestLineChart();
@@ -264,9 +266,9 @@ public class DiaryActivity extends BaseAppCompatActivity implements ParentListen
         materialCalendarView.setSelectedDate(CalendarDay.today());
 
         // TODO: Need to refactor this..
-        //onDateChanged(materialCalendarView, CalendarDay.today());
+        onDateChanged(materialCalendarView, CalendarDay.today());
 
-        // new AsyncTaskRunner().execute();
+        new AsyncTaskRunner().execute();
 
         loadPieChart(id);
 
@@ -516,7 +518,7 @@ public class DiaryActivity extends BaseAppCompatActivity implements ParentListen
         }
     }
 
-    private void countTotalGoodAndBad(CalendarDay date) {
+    private void countTotalGoodAndBad(final CalendarDay date) {
 
         daysGood = new ArrayList<>();
         daysBad = new ArrayList<>();
@@ -526,74 +528,101 @@ public class DiaryActivity extends BaseAppCompatActivity implements ParentListen
         daysOnlyBad = new ArrayList<>();
         daysEquals = new ArrayList<>();
 
-        for (int j = 1; j <= 31; j++) {
+        final SimpleRequester requester = new SimpleRequester();
 
-            SimpleRequester simpleRequester = new SimpleRequester();
-
-            if (idSelectedUser.equals(singleUser.getId())) {
-                simpleRequester.setUrl(Requester.API_URL + "user/calendar/day?day=" + j + "&month=" + (date.getMonth() + 1) + "&year=" + date.getYear());
-            } else if (idSelectedUser.equals("")) {
-                simpleRequester.setUrl(Requester.API_URL + "user/calendar/day?day=" + j + "&month=" + (date.getMonth() + 1) + "&year=" + date.getYear());
-            } else {
-                simpleRequester.setUrl(Requester.API_URL + "household/calendar/day?day=" + j + "&month=" + (date.getMonth() + 1) + "&year=" + date.getYear() + "&household_id=" + idSelectedUser);
-            }
-
-            simpleRequester.setJsonObject(null);
-            simpleRequester.setMethod(Method.GET);
-
-            String jsonStr;
-            int goodCountTotal = 0;
-            int badCountTotal = 0;
-
-            try {
-                jsonStr = simpleRequester.execute(simpleRequester).get();
-
-                JSONObject jsonObject = new JSONObject(jsonStr);
-
-                if (jsonObject.get("error").toString().equals("false")) {
-                    JSONArray jsonArray = jsonObject.getJSONArray("data");
-
-                    for (int i = 0; i < jsonArray.length(); i++) {
-                        JSONObject jsonObjectSymptom = jsonArray.getJSONObject(i);
-                        JSONObject jsonObjectDetail = jsonObjectSymptom.getJSONObject("_id");
-
-                        if (jsonObjectDetail.get("no_symptom").toString().equals("N")) {
-
-                            badCountTotal = Integer.parseInt(jsonObjectSymptom.get("count").toString());
-
-                        } else if (jsonObjectDetail.get("no_symptom").toString().equals("Y")) {
-
-                            goodCountTotal = Integer.parseInt(jsonObjectSymptom.get("count").toString());
-                        }
-                    }
-
-                    if (goodCountTotal == 0 && badCountTotal == 0) {
-                        daysZero.add(j);
-
-                    } else {
-
-                        if (goodCountTotal == 0 && badCountTotal > 0) {
-                            daysOnlyBad.add(j);
-                        } else if (goodCountTotal > 0 && badCountTotal == 0) {
-                            daysOnlyGood.add(j);
-                        } else if (goodCountTotal > badCountTotal) {
-                            daysGood.add(j);
-                        } else if (goodCountTotal < badCountTotal) {
-                            daysBad.add(j);
-                        } else if (goodCountTotal == badCountTotal) {
-                            daysEquals.add(j);
-                        }
-
-                        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-                        Date dateFormated = format.parse(date.getYear() + "-" + (date.getMonth() + 1) + "-" + j);
-                        daysGoodAndBad.add(dateFormated);
-                    }
-                }
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+        if (idSelectedUser.equals(singleUser.getId())) {
+            requester.setUrl(Requester.API_URL + "user/calendar/month?&month=" + (date.getMonth() + 1) + "&year=" + date.getYear());
+        } else if (idSelectedUser.equals("")) {
+            requester.setUrl(Requester.API_URL + "user/calendar/month?&month=" + (date.getMonth() + 1) + "&year=" + date.getYear());
+        } else {
+            requester.setUrl(Requester.API_URL + "household/calendar/month?&month=" + (date.getMonth() + 1) + "&year=" + date.getYear() + "&household_id=" + idSelectedUser);
         }
+
+        requester.setJsonObject(null);
+        requester.setMethod(Method.GET);
+
+        requester.setListener(new RequestListener<String>() {
+
+            final LoadDialog loadDialog = new LoadDialog();
+
+            @Override
+            public void onStart() {
+                loadDialog.show(getFragmentManager(), LoadDialog.TAG);
+            }
+
+            @Override
+            public void onError(Exception e) {
+
+            }
+
+            @Override
+            public void onSuccess(final String result) {
+                loadDialog.dismiss();
+
+                int goodCountTotal = 0;
+                int badCountTotal = 0;
+
+                try {
+
+                    JSONObject jsonObject = new JSONObject(result);
+
+                    if (!jsonObject.getBoolean("error")) {
+
+                        final SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+
+                        final JSONArray jsonArray = jsonObject.getJSONArray("data");
+
+                        for (int i = 0; i < jsonArray.length(); i++) {
+
+                            final JSONObject jsonSympton = jsonArray.getJSONObject(i);
+                            final JSONObject jsonDetail = jsonSympton.getJSONObject("_id");
+
+                            if (jsonDetail.getString("no_symptom").equals("N")) {
+
+                                badCountTotal = Integer.parseInt(jsonSympton.getString("count"));
+
+                            } else if (jsonDetail.getString("no_symptom").equals("Y")) {
+
+                                goodCountTotal = Integer.parseInt(jsonSympton.getString("count"));
+                            }
+
+                            final int day = jsonDetail.getInt("day");
+
+                            if (goodCountTotal == 0 && badCountTotal == 0) {
+                                daysZero.add(day);
+
+                            } else {
+
+                                if (goodCountTotal == 0 && badCountTotal > 0) {
+                                    daysOnlyBad.add(day);
+
+                                } else if (goodCountTotal > 0 && badCountTotal == 0) {
+                                    daysOnlyGood.add(day);
+
+                                } else if (goodCountTotal > badCountTotal) {
+                                    daysGood.add(day);
+
+                                } else if (goodCountTotal < badCountTotal) {
+                                    daysBad.add(day);
+
+                                } else if (goodCountTotal == badCountTotal) {
+                                    daysEquals.add(day);
+                                }
+
+                                final Date formatted = format.parse(date.getYear() + "-" + (date.getMonth() + 1) + "-" + day);
+
+                                daysGoodAndBad.add(formatted);
+                            }
+                        }
+                    }
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        requester.execute();
     }
 
     private class AsyncTaskRunner extends AsyncTask<Void, Void, Void> {

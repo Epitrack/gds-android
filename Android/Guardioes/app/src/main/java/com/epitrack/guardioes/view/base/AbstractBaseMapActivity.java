@@ -52,7 +52,7 @@ public abstract class AbstractBaseMapActivity extends BaseAppCompatActivity impl
     @Override
     public void onMapReady(final GoogleMap map) {
         setMap(map);
-        
+
         if (locationHandler.isEnabled()) {
             locationHandler.connect();
         }
