@@ -103,6 +103,9 @@ public class SocialLoginActivity extends BaseAppCompatActivity implements View.O
     @Override
     protected void onCreate(Bundle bundle) {
         super.onCreate(bundle);
+
+        FacebookSdk.sdkInitialize(getApplicationContext());
+
         setContentView(R.layout.social_login);
 
         final ActionBar actionBar = getSupportActionBar();
@@ -133,7 +136,6 @@ public class SocialLoginActivity extends BaseAppCompatActivity implements View.O
                     TwitterSession session = result.data;
                     TwitterAuthToken authToken = session.getAuthToken();
                     String token = authToken.token;
-                    String secret = authToken.secret;
                     String user = session.getUserName();
 
                     singleUser.setTw(token);
@@ -191,7 +193,7 @@ public class SocialLoginActivity extends BaseAppCompatActivity implements View.O
                     .setAction("Facebook Button")
                     .build());
 
-            FacebookSdk.sdkInitialize(getApplicationContext());
+
             callbackManager = CallbackManager.Factory.create();
 
             LoginManager.getInstance().logInWithReadPermissions(SocialLoginActivity.this, Arrays.asList("public_profile", "email"));
