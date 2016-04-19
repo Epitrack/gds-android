@@ -28,8 +28,8 @@ public final class Application extends android.app.Application {
 
     private static final String NAME = "47b83fbefd5092a.crt";
 
-    private static final String TWITTER_KEY = "QiiN9HpeJCN9tTbYvd1PfA1eE";
-    private static final String TWITTER_SECRET = "JDNgByadEC8q7DtEZr24gWjZhT1kTiGGqJlPBRB6x6MgtGVZMU";
+    private static final String TWITTER_KEY = "btijYH36dtguxb6CcHTprkERG";
+    private static final String TWITTER_SECRET = "UJR1qUL7ReNnEnFulMKumaP84Ff9JUxffNybxbr5oyMdIo6wro";
 
     @Override
     public void onCreate() {
