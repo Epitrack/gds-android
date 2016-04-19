@@ -193,10 +193,10 @@ public class SocialLoginActivity extends BaseAppCompatActivity implements View.O
                     .setAction("Facebook Button")
                     .build());
 
-
             callbackManager = CallbackManager.Factory.create();
 
             LoginManager.getInstance().logInWithReadPermissions(SocialLoginActivity.this, Arrays.asList("public_profile", "email"));
+
             loginFacebook();
         }
     }

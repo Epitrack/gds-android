@@ -59,12 +59,10 @@ public class SplashActivity extends BaseActivity implements Runnable {
 
         setContentView(R.layout.splash);
 
-        PackageInfo pInfo = null;
         try {
-            pInfo = getPackageManager().getPackageInfo(getPackageName(), 0);
-            String version = pInfo.versionName;
+            PackageInfo pInfo = getPackageManager().getPackageInfo(getPackageName(), 0);
 
-            SingleUser.getInstance().setVersionBuild(version);
+            SingleUser.getInstance().setVersionBuild(pInfo.versionName);
 
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
@@ -104,8 +102,8 @@ public class SplashActivity extends BaseActivity implements Runnable {
         handler.removeCallbacks(this);
     }
 
-    private void registerReceiver(){
-        if(!isReceiverRegistered) {
+    private void registerReceiver() {
+        if (!isReceiverRegistered) {
             LocalBroadcastManager.getInstance(this).registerReceiver(mRegistrationBroadcastReceiver,
                     new IntentFilter(QuickstartPreferences.REGISTRATION_COMPLETE));
             isReceiverRegistered = true;
@@ -165,12 +163,12 @@ public class SplashActivity extends BaseActivity implements Runnable {
 
                     JSONObject jsonObjectUser = jsonObject.getJSONObject("data");
 
-                    singleUser.setNick(jsonObjectUser.getString("nick").toString());
-                    singleUser.setEmail(jsonObjectUser.getString("email").toString());
-                    singleUser.setGender(jsonObjectUser.getString("gender").toString());
-                    singleUser.setId(jsonObjectUser.getString("id").toString());
-                    singleUser.setRace(jsonObjectUser.getString("race").toString());
-                    singleUser.setDob(jsonObjectUser.getString("dob").toString());
+                    singleUser.setNick(jsonObjectUser.getString("nick"));
+                    singleUser.setEmail(jsonObjectUser.getString("email"));
+                    singleUser.setGender(jsonObjectUser.getString("gender"));
+                    singleUser.setId(jsonObjectUser.getString("id"));
+                    singleUser.setRace(jsonObjectUser.getString("race"));
+                    singleUser.setDob(jsonObjectUser.getString("dob"));
                     singleUser.setUser_token(jsonObjectUser.get("token").toString());
 
                     try {
@@ -199,11 +197,7 @@ public class SplashActivity extends BaseActivity implements Runnable {
                     navigateTo(HomeActivity.class, Intent.FLAG_ACTIVITY_CLEAR_TASK |
                             Intent.FLAG_ACTIVITY_NEW_TASK);
                 }
-            } catch (InterruptedException e) {
-                navigateTo(WelcomeActivity.class);
-            } catch (ExecutionException e) {
-                navigateTo(WelcomeActivity.class);
-            } catch (JSONException e) {
+            } catch (Exception e) {
                 navigateTo(WelcomeActivity.class);
             }
 

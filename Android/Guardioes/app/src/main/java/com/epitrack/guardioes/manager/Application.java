@@ -6,6 +6,8 @@ import com.crashlytics.android.Crashlytics;
 import com.epitrack.guardioes.request.base.AuthRequester;
 import com.epitrack.guardioes.utility.Logger;
 import com.koushikdutta.ion.Ion;
+import com.twitter.sdk.android.Twitter;
+import com.twitter.sdk.android.core.TwitterAuthConfig;
 
 import java.security.KeyStore;
 import java.security.cert.Certificate;
@@ -26,13 +28,16 @@ public final class Application extends android.app.Application {
 
     private static final String NAME = "47b83fbefd5092a.crt";
 
+    private static final String TWITTER_KEY = "QiiN9HpeJCN9tTbYvd1PfA1eE";
+    private static final String TWITTER_SECRET = "JDNgByadEC8q7DtEZr24gWjZhT1kTiGGqJlPBRB6x6MgtGVZMU";
+
     @Override
     public void onCreate() {
         super.onCreate();
 
         MultiDex.install(getBaseContext());
 
-        Fabric.with(this, new Crashlytics());
+        Fabric.with(this, new Crashlytics(), new Twitter(new TwitterAuthConfig(TWITTER_KEY, TWITTER_SECRET)));
 
         loadAuth();
     }
