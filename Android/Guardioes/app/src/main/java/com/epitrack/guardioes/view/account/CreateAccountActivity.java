@@ -44,7 +44,6 @@ import com.mobsandgeeks.saripaar.annotation.Length;
 import com.mobsandgeeks.saripaar.annotation.NotEmpty;
 import com.mobsandgeeks.saripaar.annotation.Password;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.List;
@@ -134,9 +133,12 @@ public class CreateAccountActivity extends BaseAppCompatActivity implements Soci
         gcmToken = sharedPreferences.getString(Constants.Push.SENDER_ID, "");
 
         editTextBirthDate.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            public void onFocusChange(View v, boolean hasFocus) {
+
+            public void onFocusChange(final View v, boolean hasFocus) {
+
                 if (hasFocus) {
                     ((EditText) v).setHint(" ex: 01/01/1991");
+
                 } else {
                     ((EditText) v).setHint("");
                 }
@@ -161,6 +163,7 @@ public class CreateAccountActivity extends BaseAppCompatActivity implements Soci
         getTracker().send(new HitBuilders.ScreenViewBuilder().build());
 
         String bundle = getIntent().getStringExtra(Constants.Bundle.EMAIL);
+
         if (bundle != null) {
 
             if (bundle.equals("email")) {
@@ -271,9 +274,8 @@ public class CreateAccountActivity extends BaseAppCompatActivity implements Soci
         bundle = new Bundle();
 
         bundle.putString(Constants.Bundle.EMAIL, Constants.Bundle.EMAIL);
-        navigateTo(TermActivity.class, bundle);
 
-        //onNextAnimation(linearLayoutNext, linearLayoutSocial);
+        navigateTo(TermActivity.class, bundle);
     }
 
     @OnClick(R.id.button_next)
@@ -431,10 +433,8 @@ public class CreateAccountActivity extends BaseAppCompatActivity implements Soci
                 .setAction("Register Yourself Button")
                 .build());
         // TODO: Uncomment this to validate
-        validator.validate();
 
-        /*navigateTo(HomeActivity.class, Intent.FLAG_ACTIVITY_CLEAR_TASK |
-                                       Intent.FLAG_ACTIVITY_NEW_TASK);*/
+        validator.validate();
     }
 
     private class ValidationHandler implements Validator.ValidationListener {
@@ -455,7 +455,6 @@ public class CreateAccountActivity extends BaseAppCompatActivity implements Soci
                 } else {
                     dobIsFail = false;
                 }
-
 
                 if (dobIsFail) {
                     new DialogBuilder(CreateAccountActivity.this).load()
@@ -497,6 +496,7 @@ public class CreateAccountActivity extends BaseAppCompatActivity implements Soci
                     final JSONObject jRoot = new JSONObject();
 
                     try {
+
                         jRoot.put("nick", user.getNick());
                         jRoot.put("email", user.getEmail());
                         jRoot.put("password", user.getPassword());
@@ -512,10 +512,12 @@ public class CreateAccountActivity extends BaseAppCompatActivity implements Soci
                         LocationUtility locationUtility = new LocationUtility(getApplicationContext());
 
                         try {
+
                             if (locationUtility.getLocation() != null) {
                                 jRoot.put("lat", locationUtility.getLatitude());
                                 jRoot.put("lon", locationUtility.getLongitude());
                             }
+
                         } catch (Exception e) {
                             jRoot.put("lat", -8.0464492);
                             jRoot.put("lon", -34.9324883);
@@ -527,16 +529,12 @@ public class CreateAccountActivity extends BaseAppCompatActivity implements Soci
                         simpleRequester.setMethod(Method.POST);
 
                         String jsonStr = simpleRequester.execute(simpleRequester).get();
-                        Toast.makeText(getApplicationContext(), jsonStr, Toast.LENGTH_SHORT).show();
+
                         JSONObject jsonObject = new JSONObject(jsonStr);
 
                         if (jsonObject.get("error").toString() == "true") {
+                            Toast.makeText(getApplicationContext(), R.string.erro_new_user, Toast.LENGTH_SHORT).show();
 
-                            new DialogBuilder(CreateAccountActivity.this).load()
-                                    .title(R.string.attention)
-                                    .content(R.string.erro_new_user)
-                                    .positiveText(R.string.ok)
-                                    .show();
                         } else {
 
                             JSONObject jsonObjectUser = jsonObject.getJSONObject("user");
@@ -557,15 +555,12 @@ public class CreateAccountActivity extends BaseAppCompatActivity implements Soci
                             editor.putString(Constants.Pref.PREFS_NAME, singleUser.getUserToken());
                             editor.commit();
 
-                            Toast.makeText(getApplicationContext(), "Cadastro realizado com sucesso!", Toast.LENGTH_SHORT).show();
                             navigateTo(HomeActivity.class, Intent.FLAG_ACTIVITY_CLEAR_TASK |
-                                    Intent.FLAG_ACTIVITY_NEW_TASK);
+                                                           Intent.FLAG_ACTIVITY_NEW_TASK);
                         }
 
-                    } catch (JSONException e) {
-                        Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
-                    } catch (Exception e) {
-                        Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                    } catch (final Exception e) {
+                        Toast.makeText(getApplicationContext(), R.string.erro_new_user, Toast.LENGTH_SHORT).show();
                     }
                 }
             }

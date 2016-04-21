@@ -10,20 +10,16 @@ import android.widget.TextView;
 
 import com.epitrack.guardioes.R;
 import com.epitrack.guardioes.view.IMenu;
-import com.epitrack.guardioes.view.MenuListener;
 
 /**
  * @author Igor Morais
  */
 public class HelpAdapter extends ArrayAdapter<IMenu> {
 
-    private final MenuListener listener;
     private ViewHolder viewHolder;
 
-    public HelpAdapter(final Context context, final MenuListener listener, final IMenu[] menuArray) {
+    public HelpAdapter(final Context context, final IMenu[] menuArray) {
         super(context, 0, menuArray);
-
-        this.listener = listener;
     }
 
     public static class ViewHolder {

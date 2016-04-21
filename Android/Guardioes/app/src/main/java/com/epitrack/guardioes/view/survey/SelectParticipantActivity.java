@@ -111,7 +111,7 @@ public class SelectParticipantActivity extends BaseAppCompatActivity implements 
             public void onSuccess(final List<User> parentList) {
                 loadDialog.dismiss();
 
-                parentList.add(new User(R.drawable.img_add_profile, "    Adicionar\nnovo membro", "", "-1", "", "", "", ""));
+                parentList.add(new User(R.drawable.img_add_profile, "    Adicionar\nnovo integrante", "", "-1", "", "", "", ""));
 
                 recyclerView.setAdapter(new ParentAdapter(SelectParticipantActivity.this, SelectParticipantActivity.this, parentList));
             }

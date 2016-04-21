@@ -96,11 +96,13 @@
     <string name="google_access_error">O Guardiões da Saúde não obteve permissão para acessar seus dados do Google. Verifique suas configurações.</string>
     <string name="twitter_fail">Não foi possível acessar o Guardiões da Saúde através do Twitter. Tente novamente em alguns minutos ou acesse através do seu e-mail.</string>
     <string name="new_user_social_media">Complete o cadastro a seguir para acessar o Guardiões da Saúde.</string>
-    <string name="cadastro_sucesso">Cadastro realizado com sucesso!</string>
+    <string name="register_fail">Ocorreu um erro ao cadastrar</string>
     <string name="user_exist">Cadastro realizado anterioremente com essa rede social ou e-mail.</string>
     <string name="delete_profile">Deseja remover o perfil definitivamente?</string>
     <string name="internet_fail">É preciso estar conectado a internet para continuar a utilizar o Guardiões da Saúde</string>
     <string name="network_fail">É necessário estar conectado para acessar esta função. Por Favor, verifique sua rede!</string>
+    <string name="cadastro_sucesso">Cadastro realizado com sucesso!</string>
+
     <string name="password_fail">A senha precisa ter pelo menos seis caracteres.</string>
     <string name="password_not_equal">As senhas precisam ser iguais.</string>
     <string name="open_google_maps">Deseja visualizar endereço no Google Maps?</string>
@@ -276,7 +278,7 @@
 
     # State
 
-    <string name="message_health_state">Como está sua saúde\nneste momento?</string>
+    <string name="message_health_state">Como está sua saúde\nnesse momento?</string>
     <string name="message_present_symptom">Alguns sinais e sintomas serão apresentados na\npróxima tela caso a opção \"Mal\" seja selecionada.</string>
 
     # Symptom

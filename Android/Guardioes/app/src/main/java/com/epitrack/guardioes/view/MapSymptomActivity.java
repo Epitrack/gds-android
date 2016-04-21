@@ -1,8 +1,5 @@
 package com.epitrack.guardioes.view;
 
-import android.app.SearchManager;
-import android.app.SearchableInfo;
-import android.content.Context;
 import android.graphics.Color;
 import android.location.Location;
 import android.os.Bundle;
@@ -10,8 +7,6 @@ import android.os.Handler;
 import android.os.Looper;
 import android.support.v7.widget.SearchView;
 import android.text.Html;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -21,10 +16,10 @@ import com.epitrack.guardioes.R;
 import com.epitrack.guardioes.manager.Loader;
 import com.epitrack.guardioes.model.Point;
 import com.epitrack.guardioes.model.SingleDTO;
+import com.epitrack.guardioes.request.base.Method;
 import com.epitrack.guardioes.request.old.RequestListener;
 import com.epitrack.guardioes.request.old.Requester;
 import com.epitrack.guardioes.request.old.SimpleRequester;
-import com.epitrack.guardioes.request.base.Method;
 import com.epitrack.guardioes.utility.DialogBuilder;
 import com.epitrack.guardioes.utility.LocationUtility;
 import com.epitrack.guardioes.view.base.AbstractBaseMapActivity;
@@ -143,6 +138,7 @@ public class MapSymptomActivity extends AbstractBaseMapActivity implements Searc
         final LatLng latLng = LocationUtility.toLatLng(location);
 
         load(latLng.latitude, latLng.longitude);
+
         setupView(latLng.latitude, latLng.longitude);
     }
 
@@ -212,7 +208,7 @@ public class MapSymptomActivity extends AbstractBaseMapActivity implements Searc
         });
     }
 
-    @Override
+    /*@Override
     public boolean onCreateOptionsMenu(final Menu menu) {
         getMenuInflater().inflate(R.menu.map, menu);
 
@@ -223,9 +219,9 @@ public class MapSymptomActivity extends AbstractBaseMapActivity implements Searc
         setupSearchView(searchItem);
 
         return true;
-    }
+    }*/
 
-    private void setupSearchView(MenuItem searchItem) {
+    /*private void setupSearchView(MenuItem searchItem) {
 
         if (isAlwaysExpanded()) {
             searchVieww.setIconifiedByDefault(false);
@@ -249,7 +245,7 @@ public class MapSymptomActivity extends AbstractBaseMapActivity implements Searc
         }
 
         searchVieww.setOnQueryTextListener(this);
-    }
+    }*/
 
     @OnClick(R.id.syndromes)
     public void onSyndromes() {
@@ -266,10 +262,11 @@ public class MapSymptomActivity extends AbstractBaseMapActivity implements Searc
 
         if (slidingPanel.getPanelState() == SlidingUpPanelLayout.PanelState.COLLAPSED) {
             slidingPanel.setPanelState(SlidingUpPanelLayout.PanelState.EXPANDED);
-            buttonExpand.setBackground(this.getResources().getDrawable(R.drawable.fab_close));
+            buttonExpand.setBackgroundResource(R.drawable.fab_close);
+
         } else {
             slidingPanel.setPanelState(SlidingUpPanelLayout.PanelState.COLLAPSED);
-            buttonExpand.setBackground(this.getResources().getDrawable(R.drawable.fab_open));
+            buttonExpand.setBackgroundResource(R.drawable.fab_open);
         }
     }
 
@@ -322,7 +319,7 @@ public class MapSymptomActivity extends AbstractBaseMapActivity implements Searc
                                 final JSONObject jsonObject = new JSONObject(result);
 
                                 if (jsonObject.get("error").toString() == "true") {
-                                    Toast.makeText(getApplicationContext(), "Erro: " + jsonObject.get("message").toString(), Toast.LENGTH_SHORT).show();
+
 
                                 } else {
 
@@ -397,8 +394,6 @@ public class MapSymptomActivity extends AbstractBaseMapActivity implements Searc
 
     private void setupView(final double latitude, final double longitude) {
 
-
-
         SimpleRequester simpleRequester = new SimpleRequester();
         simpleRequester.setJsonObject(null);
         simpleRequester.setMethod(Method.GET);
@@ -440,26 +435,31 @@ public class MapSymptomActivity extends AbstractBaseMapActivity implements Searc
 
                     if (jsonObject.get("error").toString() == "true") {
                         Toast.makeText(getApplicationContext(), "Erro: " + jsonObject.get("message").toString(), Toast.LENGTH_SHORT).show();
+
                     } else {
+
                         JSONObject jsonObjectData = jsonObject.getJSONObject("data");
                         JSONObject jsonObjectLocation = jsonObjectData.getJSONObject("location");
 
                         try {
                             textViewCity.setText(jsonObjectLocation.get("city").toString());
+
                         } catch (Exception e) {
+
                             try {
                                 String formattedAddress = jsonObjectLocation.get("formattedAddress").toString();
                                 String formattedAddressParts[] = formattedAddress.split(",");
                                 String cityUf = formattedAddressParts[2];
                                 String cityUfParts[] = cityUf.split("-");
                                 textViewCity.setText(cityUfParts[0].trim());
+
                             } catch (Exception e1) {
                                 textViewCity.setText("");
                             }
                         }
 
                         textViewState.setText(getStateDescription(jsonObjectLocation.get("state").toString().toUpperCase()));
-                        textViewParticipation.setText(jsonObjectData.get("total_surveys").toString() + " Participações essa semana.");
+                        textViewParticipation.setText(jsonObjectData.getString("total_surveys") + " Participações essa semana.");
 
                         double totalNoSympton = Double.parseDouble(jsonObjectData.get("total_no_symptoms").toString());
                         double goodPercent = 0;
@@ -471,37 +471,34 @@ public class MapSymptomActivity extends AbstractBaseMapActivity implements Searc
                         String htmlStringGood = "<b>" + (int) (goodPercent * 100) + "%</b> Bem";
                         textViewGoodPercentage.setText(Html.fromHtml(htmlStringGood));
                         //textViewGoodPercentage.setText((int)(goodPercent * 100) + "% Bem");
-                        textViewGoodReport.setText(jsonObjectData.get("total_no_symptoms").toString() + " Relatórios");
+                        textViewGoodReport.setText(jsonObjectData.getString("total_no_symptoms") + " Relatórios");
 
-                        double totalSympton = Double.parseDouble(jsonObjectData.get("total_symptoms").toString());
+                        double totalSympton = jsonObjectData.getDouble("total_symptoms");
                         double badPercent = 0;
 
                         if (totalNoSympton > 0) {
-                            badPercent = (totalSympton / Double.parseDouble(jsonObjectData.get("total_surveys").toString()));
+                            badPercent = (totalSympton / jsonObjectData.getDouble("total_surveys"));
                         }
 
                         String htmlStringBad = "<b>" + (int) (badPercent * 100) + "%</b> Mal";
                         textViewBadPercentage.setText(Html.fromHtml(htmlStringBad));
                         //textViewBadPercentage.setText((int)(badPercent * 100) + "% Mal");
-                        textViewBadReport.setText(jsonObjectData.get("total_symptoms").toString() + " Relatórios");
+                        textViewBadReport.setText(jsonObjectData.getString("total_symptoms") + " Relatórios");
 
-                        JSONObject jsonObjectDiseases = jsonObjectData.getJSONObject("diseases");
+                        JSONObject json = jsonObjectData.getJSONObject("diseases");
 
                         int total = (int)totalNoSympton + (int)totalSympton;
-                        double diarreica = 0;
 
                         if (total > 0) {
                             Double d;
 
-                            diarreica = ((Integer.parseInt(jsonObjectDiseases.get("diarreica").toString()) * 100) / total);
+                            double diarreica = ((Integer.parseInt(json.get("diarreica").toString()) * 100) / total);
                             d = new Double(diarreica);
 
                             textViewPercentage1.setText(Math.round(diarreica) + "%");
                             progressBar1.setProgress(d.intValue());
 
-                            double exantematica = 0;
-
-                            exantematica = ((Integer.parseInt(jsonObjectDiseases.get("exantematica").toString()) * 100) / total);
+                            double exantematica = ((Integer.parseInt(json.get("exantematica").toString()) * 100) / total);
                             d = new Double(exantematica);
 
                             textViewPercentage2.setText(Math.round(exantematica) + "%");
@@ -509,11 +506,12 @@ public class MapSymptomActivity extends AbstractBaseMapActivity implements Searc
 
                             double respiratoria = 0;
 
-                            respiratoria = ((Integer.parseInt(jsonObjectDiseases.get("respiratoria").toString()) * 100) / total);
+                            respiratoria = ((Integer.parseInt(json.get("respiratoria").toString()) * 100) / total);
                             d = new Double(respiratoria);
 
                             textViewPercentage3.setText(Math.round(respiratoria) + "%");
                             progressBar3.setProgress(d.intValue());
+
                         } else {
                             textViewPercentage1.setText("0%");
                             progressBar1.setProgress(0);

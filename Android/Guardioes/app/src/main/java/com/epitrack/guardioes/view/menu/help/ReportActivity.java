@@ -25,7 +25,7 @@ import butterknife.OnClick;
 /**
  * @author Miqueias Lopes
  */
-public class Report extends BaseAppCompatActivity {
+public class ReportActivity extends BaseAppCompatActivity {
 
     @Bind(R.id.txt_report_subject)
     EditText txtSubject;
@@ -47,7 +47,7 @@ public class Report extends BaseAppCompatActivity {
     public void onResume() {
         super.onResume();
 
-        getTracker().setScreenName("Report Problem Screen - " + this.getClass().getSimpleName());
+        getTracker().setScreenName("ReportActivity Problem Screen - " + this.getClass().getSimpleName());
         getTracker().send(new HitBuilders.ScreenViewBuilder().build());
     }
 
@@ -56,19 +56,14 @@ public class Report extends BaseAppCompatActivity {
 
         getTracker().send(new HitBuilders.EventBuilder()
                 .setCategory("Action")
-                .setAction("Send Report Button")
+                .setAction("Send ReportActivity Button")
                 .build());
 
-        boolean isError = false;
-
-        if (txtSubject.getText().toString().trim().equals("")) {
-            isError = true;
-        } else if (txtMessage.getText().toString().trim().equals("")) {
-            isError = true;
-        }
+        boolean isError = txtSubject.getText().toString().trim().isEmpty() || txtMessage.getText().toString().trim().isEmpty();
 
         if (isError) {
-            new DialogBuilder(Report.this).load()
+
+            new DialogBuilder(ReportActivity.this).load()
                     .title(R.string.attention)
                     .content(R.string.email_null)
                     .positiveText(R.string.ok)
@@ -76,6 +71,7 @@ public class Report extends BaseAppCompatActivity {
         } else {
 
             try {
+
                 JSONObject jsonPost = new JSONObject();
                 jsonPost.put("title", txtSubject.getText().toString().trim());
                 jsonPost.put("text", txtMessage.getText().toString().trim());
@@ -103,13 +99,13 @@ public class Report extends BaseAppCompatActivity {
                 isError = true;
             } finally {
                 if (isError) {
-                    new DialogBuilder(Report.this).load()
+                    new DialogBuilder(ReportActivity.this).load()
                             .title(R.string.attention)
                             .content(R.string.email_not_send)
                             .positiveText(R.string.ok)
                             .show();
                 } else {
-                    new DialogBuilder(Report.this).load()
+                    new DialogBuilder(ReportActivity.this).load()
                             .title(R.string.app_name)
                             .content(R.string.email_send)
                             .positiveText(R.string.ok)
