@@ -44,7 +44,7 @@ public class HomeFragment extends BaseFragment {
     @Bind(R.id.linear_layout_menu_home)
     LinearLayout linearLayoutMenuHome;
 
-    SingleUser singleUser = SingleUser.getInstance();
+    final SingleUser singleUser = SingleUser.getInstance();
 
     @Override
     public void onCreate(final Bundle bundle) {
@@ -54,8 +54,6 @@ public class HomeFragment extends BaseFragment {
     @Nullable
     @Override
     public View onCreateView(final LayoutInflater inflater, final ViewGroup viewGroup, Bundle bundle) {
-        singleUser = SingleUser.getInstance();
-
         return inflater.inflate(R.layout.home_fragment, viewGroup, false);
     }
 
@@ -75,9 +73,7 @@ public class HomeFragment extends BaseFragment {
         //loadImageProfile();
         //loadImage(imageViewPhoto);
 
-        String text = getString(R.string.message_hello);
-        text = text.replace("{0}", singleUser.getNick());
-        textViewName.setText(text);
+        textViewName.setText(getString(R.string.message_hello, singleUser.getNick()));
 
         resizeBackgroundMenu();
 
