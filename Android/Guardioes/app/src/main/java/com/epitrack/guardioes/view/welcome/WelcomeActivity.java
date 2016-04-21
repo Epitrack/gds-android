@@ -6,8 +6,6 @@ import android.support.v4.view.ViewPager;
 
 import com.epitrack.guardioes.R;
 import com.epitrack.guardioes.request.old.SimpleRequester;
-import com.epitrack.guardioes.utility.DialogBuilder;
-import com.epitrack.guardioes.utility.NetworkUtility;
 import com.epitrack.guardioes.view.account.CreateAccountActivity;
 import com.epitrack.guardioes.view.account.LoginActivity;
 import com.epitrack.guardioes.view.base.BaseFragmentActivity;
@@ -41,7 +39,6 @@ public class WelcomeActivity extends BaseFragmentActivity {
         viewPager.setAdapter(new WelcomePagerAdapter(getSupportFragmentManager(), this, Welcome.values()));
 
         pageIndicator.setViewPager(viewPager);
-
     }
 
     @OnClick(R.id.button_login)
@@ -52,19 +49,7 @@ public class WelcomeActivity extends BaseFragmentActivity {
                 .setAction("Welcome Enter Button")
                 .build());
 
-        if (NetworkUtility.isOnline(getApplicationContext())) {
-
-            navigateTo(LoginActivity.class);
-
-        } else {
-
-            new DialogBuilder(WelcomeActivity.this).load()
-                    .title(R.string.attention)
-                    .content(R.string.internet_fail)
-                    .positiveText(R.string.ok)
-                    .show();
-
-        }
+        navigateTo(LoginActivity.class);
     }
 
     @Override
@@ -83,17 +68,6 @@ public class WelcomeActivity extends BaseFragmentActivity {
                 .setAction("Welcome Create Account Button")
                 .build());
 
-        if (NetworkUtility.isOnline(getApplicationContext())) {
-
-            navigateTo(CreateAccountActivity.class);
-
-        } else {
-
-            new DialogBuilder(WelcomeActivity.this).load()
-                    .title(R.string.attention)
-                    .content(R.string.internet_fail)
-                    .positiveText(R.string.ok)
-                    .show();
-        }
+        navigateTo(CreateAccountActivity.class);
     }
 }

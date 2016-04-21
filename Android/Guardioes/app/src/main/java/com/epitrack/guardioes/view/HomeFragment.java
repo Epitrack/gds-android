@@ -288,18 +288,6 @@ public class HomeFragment extends BaseFragment {
         });
     }
 
-
-    public void onResume() {
-        super.onResume();
-        //mTracker.setScreenName("Home Screen - " + this.getClass().getSimpleName());
-        //mTracker.send(new HitBuilders.ScreenViewBuilder().build());
-        String text = getString(R.string.message_hello);
-        text = text.replace("{0}", singleUser.getNick());
-        textViewName.setText(text);
-        //loadImageProfile();
-        loadImage(imageViewPhoto);
-    }
-
     @OnClick(R.id.image_view_photo)
     public void showProfile() {
         navigateTo(ProfileActivity.class);
