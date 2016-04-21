@@ -3,7 +3,6 @@ package com.epitrack.guardioes.manager;
 import android.support.multidex.MultiDex;
 
 import com.crashlytics.android.Crashlytics;
-import com.epitrack.guardioes.request.base.AuthRequester;
 import com.epitrack.guardioes.utility.Logger;
 import com.koushikdutta.ion.Ion;
 import com.twitter.sdk.android.Twitter;
@@ -14,7 +13,6 @@ import java.security.cert.Certificate;
 import java.security.cert.CertificateFactory;
 
 import javax.net.ssl.SSLContext;
-import javax.net.ssl.SSLHandshakeException;
 import javax.net.ssl.TrustManagerFactory;
 
 import io.fabric.sdk.android.Fabric;

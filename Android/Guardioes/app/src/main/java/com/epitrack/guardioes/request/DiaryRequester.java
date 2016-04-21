@@ -36,4 +36,67 @@ public class DiaryRequester extends BaseRequester {
             }
         });
     }
+
+    public void loadCalendar(final String url, final RequestListener<String> listener) {
+
+        listener.onStart();
+
+        new Requester(getContext()).request(Method.GET, RequesterConfig.URL + "/" + url, getAuthHeaderMap(), new FutureCallback<Response<String>>() {
+
+            @Override
+            public void onCompleted(final Exception e, Response<String> response) {
+
+                if (e == null) {
+
+                    listener.onSuccess(response.getResult());
+
+                } else {
+
+                    listener.onError(e);
+                }
+            }
+        });
+    }
+
+    public void requestLineChart(final String url, final RequestListener<String> listener) {
+
+        listener.onStart();
+
+        new Requester(getContext()).request(Method.GET, RequesterConfig.URL + "/" + url, getAuthHeaderMap(), new FutureCallback<Response<String>>() {
+
+            @Override
+            public void onCompleted(final Exception e, Response<String> response) {
+
+                if (e == null) {
+
+                    listener.onSuccess(response.getResult());
+
+                } else {
+
+                    listener.onError(e);
+                }
+            }
+        });
+    }
+
+    public void requestCalandarDate(final String url, final RequestListener<String> listener) {
+
+        listener.onStart();
+
+        new Requester(getContext()).request(Method.GET, RequesterConfig.URL + "/" + url, getAuthHeaderMap(), new FutureCallback<Response<String>>() {
+
+            @Override
+            public void onCompleted(final Exception e, Response<String> response) {
+
+                if (e == null) {
+
+                    listener.onSuccess(response.getResult());
+
+                } else {
+
+                    listener.onError(e);
+                }
+            }
+        });
+    }
 }
