@@ -99,7 +99,7 @@ public class SymptomActivity extends BaseAppCompatActivity {
 
                         AlertDialog.Builder builderSingle = new AlertDialog.Builder(SymptomActivity.this);
 
-                        final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
+                        final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(
                                 SymptomActivity.this,
                                 R.layout.select_dialog_singlechoice_gds);
                         arrayAdapter.add("Afeganistão");
@@ -137,7 +137,6 @@ public class SymptomActivity extends BaseAppCompatActivity {
                         arrayAdapter.add("Bolívia");
                         arrayAdapter.add("Bósnia e Herzegovina");
                         arrayAdapter.add("Botsuana");
-                        arrayAdapter.add("Brasil");
                         arrayAdapter.add("Brunei");
                         arrayAdapter.add("Bulgária");
                         arrayAdapter.add("Burquina Faso");
