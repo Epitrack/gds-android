@@ -15,7 +15,7 @@ import android.widget.TextView;
 
 import com.epitrack.guardioes.R;
 import com.epitrack.guardioes.model.SingleUser;
-import com.epitrack.guardioes.utility.DateFormat;
+import com.epitrack.guardioes.helper.DateFormat;
 import com.epitrack.guardioes.view.base.BaseFragment;
 import com.epitrack.guardioes.view.diary.DiaryActivity;
 import com.epitrack.guardioes.view.menu.profile.Avatar;

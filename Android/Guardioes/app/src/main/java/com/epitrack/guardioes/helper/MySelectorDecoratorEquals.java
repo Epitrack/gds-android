@@ -1,4 +1,4 @@
-package com.epitrack.guardioes.utility;
+package com.epitrack.guardioes.helper;
 
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
@@ -15,19 +15,19 @@ import java.util.List;
 /**
  * @author Miqueias Lopes
  */
-public class MySelectorDecoratorBad implements DayViewDecorator {
+public class MySelectorDecoratorEquals implements DayViewDecorator {
 
     private Drawable drawable = null;
     private List<Integer> days;
 
-    public MySelectorDecoratorBad(DiaryActivity context, List<Integer> days) {
-        drawable = context.getResources().getDrawable(R.drawable.img_donut_25_calendar);
+    public MySelectorDecoratorEquals(DiaryActivity context, List<Integer> days) {
+        drawable = context.getResources().getDrawable(R.drawable.img_donut_50_calendar);
         this.days = days;
     }
 
     @Override
     public boolean shouldDecorate(CalendarDay day) {
-        if (!days.isEmpty()) {
+        if (days.size() > 0) {
             for (int i = 0; i < days.size(); i++) {
                 if (days.get(i) == day.getDay()) {
                     return true;

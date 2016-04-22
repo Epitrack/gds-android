@@ -25,7 +25,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import com.epitrack.guardioes.R;
-import com.epitrack.guardioes.utility.Logger;
+import com.epitrack.guardioes.helper.Logger;
 import com.google.android.gms.analytics.GoogleAnalytics;
 import com.google.android.gms.analytics.Tracker;
 

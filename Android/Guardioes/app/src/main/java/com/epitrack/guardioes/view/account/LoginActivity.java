@@ -20,8 +20,8 @@ import com.epitrack.guardioes.model.User;
 import com.epitrack.guardioes.request.base.Method;
 import com.epitrack.guardioes.request.old.Requester;
 import com.epitrack.guardioes.request.old.SimpleRequester;
-import com.epitrack.guardioes.utility.Constants;
-import com.epitrack.guardioes.utility.DialogBuilder;
+import com.epitrack.guardioes.helper.Constants;
+import com.epitrack.guardioes.helper.DialogBuilder;
 import com.epitrack.guardioes.view.HomeActivity;
 import com.epitrack.guardioes.view.base.BaseAppCompatActivity;
 import com.google.android.gms.analytics.HitBuilders;
@@ -30,11 +30,9 @@ import com.mobsandgeeks.saripaar.Validator;
 import com.mobsandgeeks.saripaar.annotation.Email;
 import com.mobsandgeeks.saripaar.annotation.Password;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.List;
-import java.util.concurrent.ExecutionException;
 
 import butterknife.Bind;
 import butterknife.OnClick;

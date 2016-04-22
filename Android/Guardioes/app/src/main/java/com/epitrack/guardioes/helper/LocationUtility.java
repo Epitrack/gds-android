@@ -1,4 +1,4 @@
-package com.epitrack.guardioes.utility;
+package com.epitrack.guardioes.helper;
 
 import android.app.Service;
 import android.content.Context;

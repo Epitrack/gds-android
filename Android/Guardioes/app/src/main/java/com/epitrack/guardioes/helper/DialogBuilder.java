@@ -1,8 +1,6 @@
-package com.epitrack.guardioes.utility;
+package com.epitrack.guardioes.helper;
 
 import android.content.Context;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.epitrack.guardioes.R;

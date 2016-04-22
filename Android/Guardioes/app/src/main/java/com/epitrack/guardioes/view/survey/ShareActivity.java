@@ -11,10 +11,10 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.epitrack.guardioes.R;
-import com.epitrack.guardioes.utility.Constants;
-import com.epitrack.guardioes.utility.DialogBuilder;
-import com.epitrack.guardioes.utility.SocialShare;
-import com.epitrack.guardioes.utility.ViewUtility;
+import com.epitrack.guardioes.helper.Constants;
+import com.epitrack.guardioes.helper.DialogBuilder;
+import com.epitrack.guardioes.helper.SocialShare;
+import com.epitrack.guardioes.helper.ViewUtility;
 import com.epitrack.guardioes.view.HomeActivity;
 import com.epitrack.guardioes.view.base.BaseActivity;
 import com.facebook.CallbackManager;

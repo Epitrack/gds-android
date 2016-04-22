@@ -1,10 +1,5 @@
-package com.epitrack.guardioes.utility;
+package com.epitrack.guardioes.helper;
 
-
-import android.service.textservice.SpellCheckerService;
-
-import java.net.PasswordAuthentication;
-import java.util.Properties;
 
 /**
  * @author Miqueias Lopes on 31/10/15.

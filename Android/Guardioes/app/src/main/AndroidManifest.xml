@@ -79,6 +79,11 @@
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.Transparent.ActionBar" />
+        <activity
+            android:name=".view.base.ImageEditActivity"
+            android:exported="false"
+            android:label="@string/crop_photo"
+            android:screenOrientation="portrait" />
         # Help
         <activity
             android:name=".view.menu.help.Term"
@@ -118,12 +123,6 @@
             android:name=".view.menu.profile.InterestActivity"
             android:exported="false"
             android:label="@string/interest"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".view.menu.ImageActivity"
-            android:exported="false"
-            android:label="@string/take_photo"
-            android:parentActivityName=".view.menu.profile.UserActivity"
             android:screenOrientation="portrait" />
         # Home
         <activity

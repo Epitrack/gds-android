@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import com.epitrack.guardioes.R;
 import com.epitrack.guardioes.model.User;
-import com.epitrack.guardioes.utility.DateFormat;
+import com.epitrack.guardioes.helper.DateFormat;
 import com.epitrack.guardioes.view.menu.profile.Avatar;
 
 import java.util.ArrayList;

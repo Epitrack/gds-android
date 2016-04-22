@@ -10,7 +10,7 @@ import android.widget.Button;
 
 import com.epitrack.guardioes.R;
 import com.epitrack.guardioes.model.DTO;
-import com.epitrack.guardioes.utility.Constants;
+import com.epitrack.guardioes.helper.Constants;
 import com.epitrack.guardioes.view.base.BaseFragment;
 import com.epitrack.guardioes.view.welcome.TermActivity;
 

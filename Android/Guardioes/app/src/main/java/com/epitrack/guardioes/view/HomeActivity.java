@@ -3,6 +3,7 @@ package com.epitrack.guardioes.view;
 import android.app.Fragment;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.NavigationView.OnNavigationItemSelectedListener;
@@ -17,9 +18,9 @@ import com.afollestad.materialdialogs.MaterialDialog;
 import com.epitrack.guardioes.R;
 import com.epitrack.guardioes.manager.PrefManager;
 import com.epitrack.guardioes.model.SingleUser;
-import com.epitrack.guardioes.utility.Constants;
-import com.epitrack.guardioes.utility.DialogBuilder;
-import com.epitrack.guardioes.view.menu.HomeMenu;
+import com.epitrack.guardioes.helper.Constants;
+import com.epitrack.guardioes.helper.DialogBuilder;
+import com.epitrack.guardioes.view.menu.Home;
 import com.epitrack.guardioes.view.welcome.WelcomeActivity;
 import com.google.android.gms.analytics.GoogleAnalytics;
 import com.google.android.gms.analytics.HitBuilders;
@@ -147,9 +148,39 @@ public class HomeActivity extends AppCompatActivity implements OnNavigationItemS
 
         drawerLayout.closeDrawer(GravityCompat.START);
 
-        final HomeMenu homeMenu = HomeMenu.getBy(menuItem);
+        final Home home = Home.getBy(menuItem);
 
-        if (homeMenu.getId() == HomeMenu.EXIT.getId()) {
+        if (home == Home.FACEBOOK) {
+
+            getTracker().send(new HitBuilders.EventBuilder()
+                    .setCategory("Action")
+                    .setAction("Help Contact Facebook Button")
+                    .build());
+
+            final Intent intent = new Intent(Intent.ACTION_VIEW);
+
+            intent.setData(Uri.parse("https://www.facebook.com/minsaude"));
+
+            startActivity(intent);
+
+            return false;
+
+        } else if (home == Home.TWITTER) {
+
+            getTracker().send(new HitBuilders.EventBuilder()
+                    .setCategory("Action")
+                    .setAction("Help Contact Twitter Button")
+                    .build());
+
+            final Intent intent = new Intent(Intent.ACTION_VIEW);
+
+            intent.setData(Uri.parse("https://twitter.com/minsaude"));
+
+            startActivity(intent);
+
+            return false;
+
+        } else if (home == Home.EXIT) {
 
             new DialogBuilder(HomeActivity.this).load()
                     .title(R.string.attention)
@@ -185,18 +216,22 @@ public class HomeActivity extends AppCompatActivity implements OnNavigationItemS
 
                     }).show();
 
-        } else if (homeMenu.isFragment()) {
+        } else if (home.isFragment()) {
 
-            if (!homeMenu.getTag().equals(getCurrentFragment().getTag())) {
+            if (!home.getTag().equals(getCurrentFragment().getTag())) {
 
-                replaceFragment(homeMenu.getMenuClass(), homeMenu.getTag());
+                replaceFragment(home.getMenuClass(), home.getTag());
+
+                if (home == Home.PROFILE) {
+                    return false;
+                }
             }
 
-        } else if (homeMenu.isActivity()) {
-            startActivity(new Intent(this, homeMenu.getMenuClass()));
-        }
+            menuItem.setChecked(true);
 
-        menuItem.setChecked(true);
+        } else if (home.isActivity()) {
+            startActivity(new Intent(this, home.getMenuClass()));
+        }
 
         return true;
     }
@@ -210,8 +245,8 @@ public class HomeActivity extends AppCompatActivity implements OnNavigationItemS
         final Fragment fragment = Fragment.instantiate(this, fragmentClass.getName());
 
         getFragmentManager().beginTransaction()
-                            .add(R.id.frame_layout, fragment, tag)
-                            .commit();
+                .add(R.id.frame_layout, fragment, tag)
+                .commit();
 
         fragmentMap.put(tag, fragment);
     }
@@ -228,8 +263,8 @@ public class HomeActivity extends AppCompatActivity implements OnNavigationItemS
         }
 
         getFragmentManager().beginTransaction()
-                            .replace(R.id.frame_layout, fragment, tag)
-                            .commit();
+                .replace(R.id.frame_layout, fragment, tag)
+                .commit();
     }
 
     @Override

@@ -14,7 +14,7 @@ import com.epitrack.guardioes.model.SingleUser;
 import com.epitrack.guardioes.request.base.Method;
 import com.epitrack.guardioes.request.old.Requester;
 import com.epitrack.guardioes.request.old.SimpleRequester;
-import com.epitrack.guardioes.utility.Constants;
+import com.epitrack.guardioes.helper.Constants;
 import com.epitrack.guardioes.view.IMenu;
 import com.epitrack.guardioes.view.MenuListener;
 

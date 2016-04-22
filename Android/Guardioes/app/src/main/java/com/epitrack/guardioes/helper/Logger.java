@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.epitrack.guardioes.utility;
+package com.epitrack.guardioes.helper;
 
 import android.util.Log;
 

@@ -1,7 +1,4 @@
-package com.epitrack.guardioes.utility;
-
-import android.app.Dialog;
-import android.content.Context;
+package com.epitrack.guardioes.helper;
 
 
 import com.afollestad.materialdialogs.MaterialDialog;

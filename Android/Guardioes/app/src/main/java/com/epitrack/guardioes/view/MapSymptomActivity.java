@@ -13,6 +13,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.epitrack.guardioes.R;
+import com.epitrack.guardioes.helper.DialogBuilder;
+import com.epitrack.guardioes.helper.LocationUtility;
 import com.epitrack.guardioes.manager.Loader;
 import com.epitrack.guardioes.model.Point;
 import com.epitrack.guardioes.model.SingleDTO;
@@ -20,8 +22,6 @@ import com.epitrack.guardioes.request.base.Method;
 import com.epitrack.guardioes.request.old.RequestListener;
 import com.epitrack.guardioes.request.old.Requester;
 import com.epitrack.guardioes.request.old.SimpleRequester;
-import com.epitrack.guardioes.utility.DialogBuilder;
-import com.epitrack.guardioes.utility.LocationUtility;
 import com.epitrack.guardioes.view.base.AbstractBaseMapActivity;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.data.Entry;

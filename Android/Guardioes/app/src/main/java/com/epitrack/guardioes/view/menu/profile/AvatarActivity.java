@@ -1,10 +1,9 @@
 package com.epitrack.guardioes.view.menu.profile;
 
+import android.Manifest;
 import android.content.Intent;
-import android.content.pm.ActivityInfo;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
 import android.provider.MediaStore;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -12,20 +11,24 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
 
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.epitrack.guardioes.BuildConfig;
 import com.epitrack.guardioes.R;
+import com.epitrack.guardioes.helper.Constants;
+import com.epitrack.guardioes.helper.Extension;
+import com.epitrack.guardioes.helper.FileHandler;
+import com.epitrack.guardioes.helper.Logger;
 import com.epitrack.guardioes.model.ProfileImage;
-import com.epitrack.guardioes.model.SingleUser;
-import com.epitrack.guardioes.utility.Constants;
-import com.epitrack.guardioes.utility.Extension;
-import com.epitrack.guardioes.utility.Logger;
-import com.epitrack.guardioes.utility.MediaUtility;
 import com.epitrack.guardioes.view.base.BaseAppCompatActivity;
 import com.google.android.gms.analytics.HitBuilders;
+import com.karumi.dexter.Dexter;
+import com.karumi.dexter.MultiplePermissionsReport;
+import com.karumi.dexter.PermissionToken;
+import com.karumi.dexter.listener.PermissionRequest;
+import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
 
 import java.io.File;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.util.List;
 
 import butterknife.Bind;
 import butterknife.OnClick;
@@ -37,15 +40,23 @@ public class AvatarActivity extends BaseAppCompatActivity implements AdapterView
 
     private static final String TAG = AvatarActivity.class.getSimpleName();
 
+    private static final String PHOTO = "Photo";
+
+    private static final int CAMERA = 0;
+    private static final int GALLERY = 1;
+
+    private static final int REQUEST_CODE_CAMERA = 7777;
+    private static final int REQUEST_CODE_GALLERY = 8888;
+    private static final int REQUEST_CODE_CROP_PHOTO = 9999;
+
     @Bind(R.id.grid_view)
     GridView gridView;
 
-    private File photoFile;
-
     private final SelectHandler handler = new SelectHandler();
 
-    static final int REQUEST_IMAGE_CAPTURE = 1;
     private ProfileImage profileImage = ProfileImage.getInstance();
+
+    private File tempImage = new FileHandler().loadFile(PHOTO, Extension.PNG);
 
     @Override
     protected void onCreate(final Bundle bundle) {
@@ -59,13 +70,6 @@ public class AvatarActivity extends BaseAppCompatActivity implements AdapterView
         gridView.setAdapter(new AvatarAdapter(this, Avatar.values()));
 
         gridView.setOnItemClickListener(this);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(final MenuItem item) {
-
-        onBackPressed();
-        return true;
     }
 
     @Override
@@ -90,38 +94,59 @@ public class AvatarActivity extends BaseAppCompatActivity implements AdapterView
 
     public void onPhoto(final MenuItem menuItem) {
 
-        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+        if (!Dexter.isRequestOngoing()) {
 
-            getTracker().send(new HitBuilders.EventBuilder()
-                    .setCategory("Action")
-                    .setAction("Take Photo Button")
-                    .build());
+            Dexter.checkPermissions(new MultiplePermissionsListener() {
 
-            String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+                @Override
+                public void onPermissionsChecked(final MultiplePermissionsReport permissionReport) {
 
-            File imagesFolder = new File(Environment.getExternalStorageDirectory(), "GDS_Images");
-            imagesFolder.mkdirs();
+                    if (permissionReport.areAllPermissionsGranted()) {
 
-            File image = new File(imagesFolder, "GDS_" + timeStamp + ".png");
-            Uri uriSavedImage = Uri.fromFile(image);
+                        getPhoto();
+                    }
+                }
 
-            takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, uriSavedImage);
-            takePictureIntent.putExtra(MediaStore.EXTRA_SCREEN_ORIENTATION, ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-            startActivityForResult(takePictureIntent, Constants.RequestCode.IMAGE);
-            SingleUser.getInstance().setUri(uriSavedImage);
-            profileImage.setUri(uriSavedImage);
+                @Override
+                public void onPermissionRationaleShouldBeShown(final List<PermissionRequest> permissionList, final PermissionToken permissionToken) {
+                    permissionToken.continuePermissionRequest();
+                }
 
-            final Intent intent = new Intent();
-
-            intent.putExtra(Constants.Bundle.URI, "");
-            setResult(RESULT_OK, intent);
-            finish();
+            }, Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE);
         }
+    }
+
+    private void getPhoto() {
+
+        new MaterialDialog.Builder(this)
+                .items(R.array.image_array)
+                .itemsCallback(new MaterialDialog.ListCallback() {
+
+                    @Override
+                    public void onSelection(final MaterialDialog dialog, final View view, final int which, final CharSequence text) {
+
+                        if (which == CAMERA) {
+
+                            final Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+
+                            intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(tempImage));
+
+                            startActivityForResult(intent, REQUEST_CODE_CAMERA);
+
+                        } else if (which == GALLERY) {
+
+                            final Intent intent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+
+                            startActivityForResult(intent, REQUEST_CODE_GALLERY);
+                        }
+                    }
+
+                }).show();
     }
 
     @OnClick(R.id.button_photo)
     public void onSave() {
+
         getTracker().send(new HitBuilders.EventBuilder()
                 .setCategory("Action")
                 .setAction("Select Avatar Button")
@@ -152,16 +177,6 @@ public class AvatarActivity extends BaseAppCompatActivity implements AdapterView
         if (requestCode == Constants.RequestCode.IMAGE && resultCode == RESULT_OK) {
             finish();
         }
-    }
-
-    private File getPhotoFile() {
-
-        // TODO: we need to put the name of the user.
-        if (photoFile == null) {
-            photoFile = MediaUtility.createTempFile("teste1", Extension.PNG, Environment.DIRECTORY_PICTURES);
-        }
-
-        return photoFile;
     }
 
     private class SelectHandler {

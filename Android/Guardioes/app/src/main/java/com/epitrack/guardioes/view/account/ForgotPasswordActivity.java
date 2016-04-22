@@ -10,7 +10,7 @@ import com.epitrack.guardioes.R;
 import com.epitrack.guardioes.request.base.Method;
 import com.epitrack.guardioes.request.old.Requester;
 import com.epitrack.guardioes.request.old.SimpleRequester;
-import com.epitrack.guardioes.utility.DialogBuilder;
+import com.epitrack.guardioes.helper.DialogBuilder;
 import com.epitrack.guardioes.view.base.BaseAppCompatActivity;
 import com.google.android.gms.analytics.HitBuilders;
 

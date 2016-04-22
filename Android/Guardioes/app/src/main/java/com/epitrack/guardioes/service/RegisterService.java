@@ -3,8 +3,8 @@ package com.epitrack.guardioes.service;
 import android.app.IntentService;
 import android.content.Intent;
 
-import com.epitrack.guardioes.utility.Constants;
-import com.epitrack.guardioes.utility.Logger;
+import com.epitrack.guardioes.helper.Constants;
+import com.epitrack.guardioes.helper.Logger;
 import com.google.android.gms.gcm.GoogleCloudMessaging;
 import com.google.android.gms.iid.InstanceID;
 

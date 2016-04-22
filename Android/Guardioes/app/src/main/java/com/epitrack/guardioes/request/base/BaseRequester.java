@@ -19,7 +19,7 @@ package com.epitrack.guardioes.request.base;
 import android.content.Context;
 
 import com.epitrack.guardioes.model.SingleUser;
-import com.epitrack.guardioes.utility.Logger;
+import com.epitrack.guardioes.helper.Logger;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.koushikdutta.ion.Response;

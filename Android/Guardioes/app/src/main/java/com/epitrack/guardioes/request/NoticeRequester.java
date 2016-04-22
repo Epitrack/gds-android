@@ -8,8 +8,8 @@ import com.epitrack.guardioes.request.base.Method;
 import com.epitrack.guardioes.request.base.RequestListener;
 import com.epitrack.guardioes.request.base.Requester;
 import com.epitrack.guardioes.request.base.RequesterConfig;
-import com.epitrack.guardioes.utility.DateFormat;
-import com.epitrack.guardioes.utility.Logger;
+import com.epitrack.guardioes.helper.DateFormat;
+import com.epitrack.guardioes.helper.Logger;
 import com.koushikdutta.async.future.FutureCallback;
 import com.koushikdutta.ion.Response;
 

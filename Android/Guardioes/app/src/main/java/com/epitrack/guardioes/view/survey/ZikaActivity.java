@@ -4,7 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.epitrack.guardioes.R;
-import com.epitrack.guardioes.utility.Constants;
+import com.epitrack.guardioes.helper.Constants;
 import com.epitrack.guardioes.view.HomeActivity;
 import com.epitrack.guardioes.view.base.BaseActivity;
 import com.epitrack.guardioes.view.tip.Tip;

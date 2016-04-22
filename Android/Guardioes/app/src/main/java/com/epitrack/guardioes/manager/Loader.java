@@ -19,7 +19,7 @@ package com.epitrack.guardioes.manager;
 import android.os.Handler;
 import android.os.HandlerThread;
 
-import com.epitrack.guardioes.utility.Logger;
+import com.epitrack.guardioes.helper.Logger;
 
 /**
  * @author Igor Morais

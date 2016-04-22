@@ -7,7 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.epitrack.guardioes.utility.Constants;
+import com.epitrack.guardioes.helper.Constants;
 
 /**
  * @author Igor Morais

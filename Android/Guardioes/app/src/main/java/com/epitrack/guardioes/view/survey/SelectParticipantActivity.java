@@ -11,8 +11,9 @@ import com.epitrack.guardioes.model.SingleUser;
 import com.epitrack.guardioes.model.User;
 import com.epitrack.guardioes.request.UserRequester;
 import com.epitrack.guardioes.request.base.RequestListener;
-import com.epitrack.guardioes.utility.Constants;
-import com.epitrack.guardioes.utility.DateFormat;
+import com.epitrack.guardioes.helper.Constants;
+import com.epitrack.guardioes.helper.DateFormat;
+import com.epitrack.guardioes.helper.DialogBuilder;
 import com.epitrack.guardioes.view.base.BaseAppCompatActivity;
 import com.epitrack.guardioes.view.dialog.LoadDialog;
 import com.epitrack.guardioes.view.menu.profile.UserActivity;
@@ -134,11 +135,23 @@ public class SelectParticipantActivity extends BaseAppCompatActivity implements 
                 .setAction("Survey Add New Member Button")
                 .build());
 
-        final Bundle bundle = new Bundle();
+        if (recyclerView.getAdapter().getItemCount() == Constants.MAX_USER) {
 
-        bundle.putBoolean(Constants.Bundle.NEW_MEMBER, true);
-        bundle.putBoolean(Constants.Bundle.SOCIAL_NEW, false);
-        navigateTo(UserActivity.class, bundle);
+            new DialogBuilder(this).load()
+                    .title(R.string.app_name)
+                    .content(R.string.message_user_max)
+                    .positiveText(R.string.ok)
+                    .show();
+
+        } else {
+
+            final Bundle bundle = new Bundle();
+
+            bundle.putBoolean(Constants.Bundle.NEW_MEMBER, true);
+            bundle.putBoolean(Constants.Bundle.SOCIAL_NEW, false);
+
+            navigateTo(UserActivity.class, bundle);
+        }
     }
 
     @OnClick(R.id.image_view_photo)

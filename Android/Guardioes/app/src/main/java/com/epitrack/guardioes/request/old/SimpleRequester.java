@@ -6,9 +6,9 @@ import android.os.AsyncTask;
 
 import com.epitrack.guardioes.model.SingleUser;
 import com.epitrack.guardioes.request.base.Method;
-import com.epitrack.guardioes.utility.Logger;
-import com.epitrack.guardioes.utility.MessageText;
-import com.epitrack.guardioes.utility.SingleContext;
+import com.epitrack.guardioes.helper.Logger;
+import com.epitrack.guardioes.helper.MessageText;
+import com.epitrack.guardioes.helper.SingleContext;
 import com.epitrack.guardioes.view.dialog.LoadDialog;
 
 import org.json.JSONException;

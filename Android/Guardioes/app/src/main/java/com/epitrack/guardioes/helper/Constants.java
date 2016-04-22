@@ -1,4 +1,4 @@
-package com.epitrack.guardioes.utility;
+package com.epitrack.guardioes.helper;
 
 /**
  * @author Igor Morais
@@ -8,6 +8,10 @@ public final class Constants {
     private Constants() {
 
     }
+
+    public static final int MAX_USER = 10;
+
+    public static final String DIRECTORY_TEMP = "Temp";
 
     public static class Google {
 
@@ -76,6 +80,9 @@ public final class Constants {
         public static final String TWITTER = "twitter";
         public static final String EMAIL = "email";
         public static final String ACCESS_SOCIAL = "access_social";
+        public static final String PATH = "Path";
+        public static final String NAME = "Name";
+        public static final String DELETE = "Delete";
     }
 
     public static class Pref {

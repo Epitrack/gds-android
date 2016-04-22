@@ -1,4 +1,4 @@
-package com.epitrack.guardioes.utility;
+package com.epitrack.guardioes.helper;
 
 /**
  * @author Miquéias Lopes on 09/09/15.

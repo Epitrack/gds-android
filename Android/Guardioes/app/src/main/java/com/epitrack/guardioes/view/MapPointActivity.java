@@ -1,7 +1,6 @@
 package com.epitrack.guardioes.view;
 
 import android.content.Intent;
-import android.location.Location;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -12,19 +11,14 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.epitrack.guardioes.R;
+import com.epitrack.guardioes.helper.Constants;
+import com.epitrack.guardioes.helper.DialogBuilder;
 import com.epitrack.guardioes.manager.Loader;
 import com.epitrack.guardioes.model.Point;
 import com.epitrack.guardioes.request.MapRequester;
-import com.epitrack.guardioes.request.base.Method;
-import com.epitrack.guardioes.request.old.RequestListener;
-import com.epitrack.guardioes.request.old.SimpleRequester;
-import com.epitrack.guardioes.utility.Constants;
-import com.epitrack.guardioes.utility.DialogBuilder;
-import com.epitrack.guardioes.utility.LocationUtility;
 import com.epitrack.guardioes.view.base.AbstractBaseMapActivity;
 import com.epitrack.guardioes.view.tip.Tip;
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -36,12 +30,8 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
-
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;

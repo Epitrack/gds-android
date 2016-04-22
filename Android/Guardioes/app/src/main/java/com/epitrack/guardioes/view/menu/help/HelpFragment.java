@@ -9,8 +9,8 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.epitrack.guardioes.R;
-import com.epitrack.guardioes.utility.DialogBuilder;
-import com.epitrack.guardioes.utility.NetworkUtility;
+import com.epitrack.guardioes.helper.DialogBuilder;
+import com.epitrack.guardioes.helper.NetworkUtility;
 import com.epitrack.guardioes.view.base.BaseFragment;
 import com.google.android.gms.analytics.HitBuilders;
 

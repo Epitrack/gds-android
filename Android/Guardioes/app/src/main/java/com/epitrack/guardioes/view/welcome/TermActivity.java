@@ -3,7 +3,7 @@ package com.epitrack.guardioes.view.welcome;
 import android.os.Bundle;
 
 import com.epitrack.guardioes.R;
-import com.epitrack.guardioes.utility.Constants;
+import com.epitrack.guardioes.helper.Constants;
 import com.epitrack.guardioes.view.account.CreateAccountActivity;
 import com.epitrack.guardioes.view.account.SocialLoginActivity;
 import com.epitrack.guardioes.view.base.BaseAppCompatActivity;

@@ -15,8 +15,8 @@ import com.epitrack.guardioes.request.base.Method;
 import com.epitrack.guardioes.request.base.RequestListener;
 import com.epitrack.guardioes.request.old.Requester;
 import com.epitrack.guardioes.request.old.SimpleRequester;
-import com.epitrack.guardioes.utility.Constants;
-import com.epitrack.guardioes.utility.DialogBuilder;
+import com.epitrack.guardioes.helper.Constants;
+import com.epitrack.guardioes.helper.DialogBuilder;
 import com.epitrack.guardioes.view.base.BaseAppCompatActivity;
 import com.epitrack.guardioes.view.dialog.LoadDialog;
 import com.google.android.gms.analytics.HitBuilders;
@@ -113,11 +113,23 @@ public class ProfileActivity extends BaseAppCompatActivity implements UserListen
                 .setAction("Add New Member Button")
                 .build());
 
-        final Bundle bundle = new Bundle();
+        if (listView.getAdapter().getCount() == Constants.MAX_USER) {
 
-        bundle.putBoolean(Constants.Bundle.NEW_MEMBER, true);
-        bundle.putBoolean(Constants.Bundle.SOCIAL_NEW, false);
-        navigateTo(UserActivity.class, bundle);
+            new DialogBuilder(this).load()
+                    .title(R.string.app_name)
+                    .content(R.string.message_user_max)
+                    .positiveText(R.string.ok)
+                    .show();
+
+        } else {
+
+            final Bundle bundle = new Bundle();
+
+            bundle.putBoolean(Constants.Bundle.NEW_MEMBER, true);
+            bundle.putBoolean(Constants.Bundle.SOCIAL_NEW, false);
+
+            navigateTo(UserActivity.class, bundle);
+        }
     }
 
     @Override

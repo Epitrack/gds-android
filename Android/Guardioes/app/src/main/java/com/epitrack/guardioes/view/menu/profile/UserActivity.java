@@ -23,21 +23,18 @@ import com.epitrack.guardioes.model.User;
 import com.epitrack.guardioes.request.base.Method;
 import com.epitrack.guardioes.request.old.Requester;
 import com.epitrack.guardioes.request.old.SimpleRequester;
-import com.epitrack.guardioes.utility.Constants;
-import com.epitrack.guardioes.utility.DateFormat;
-import com.epitrack.guardioes.utility.DialogBuilder;
-import com.epitrack.guardioes.utility.LocationUtility;
-import com.epitrack.guardioes.utility.Mask;
+import com.epitrack.guardioes.helper.Constants;
+import com.epitrack.guardioes.helper.DateFormat;
+import com.epitrack.guardioes.helper.DialogBuilder;
+import com.epitrack.guardioes.helper.LocationUtility;
+import com.epitrack.guardioes.helper.Mask;
 import com.epitrack.guardioes.view.HomeActivity;
 import com.epitrack.guardioes.view.base.BaseAppCompatActivity;
 import com.epitrack.guardioes.view.welcome.WelcomeActivity;
 import com.github.siyamed.shapeimageview.CircularImageView;
 import com.google.android.gms.analytics.HitBuilders;
 
-import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.util.concurrent.ExecutionException;
 
 import butterknife.Bind;
 import butterknife.OnClick;
@@ -727,7 +724,7 @@ public class UserActivity extends BaseAppCompatActivity {
         if (socialNew) {
             final Intent intent = new Intent(getApplicationContext(), WelcomeActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK |
-                            Intent.FLAG_ACTIVITY_NEW_TASK);
+                    Intent.FLAG_ACTIVITY_NEW_TASK);
 
             startActivity(intent);
         } else {

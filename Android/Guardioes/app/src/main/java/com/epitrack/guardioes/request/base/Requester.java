@@ -20,7 +20,7 @@ import android.content.Context;
 import android.util.Log;
 
 import com.epitrack.guardioes.BuildConfig;
-import com.epitrack.guardioes.utility.Logger;
+import com.epitrack.guardioes.helper.Logger;
 import com.koushikdutta.async.future.FutureCallback;
 import com.koushikdutta.ion.Ion;
 import com.koushikdutta.ion.Response;

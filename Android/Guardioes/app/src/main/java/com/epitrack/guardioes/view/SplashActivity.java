@@ -20,7 +20,7 @@ import com.epitrack.guardioes.request.old.Requester;
 import com.epitrack.guardioes.request.old.SimpleRequester;
 import com.epitrack.guardioes.service.QuickstartPreferences;
 import com.epitrack.guardioes.service.RegistrationIntentService;
-import com.epitrack.guardioes.utility.Constants;
+import com.epitrack.guardioes.helper.Constants;
 import com.epitrack.guardioes.view.base.BaseActivity;
 import com.epitrack.guardioes.view.welcome.WelcomeActivity;
 import com.google.android.gms.analytics.HitBuilders;
@@ -28,10 +28,7 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.gms.gcm.GoogleCloudMessaging;
 
-import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.util.concurrent.ExecutionException;
 
 /**
  * @author Igor Morais

@@ -1,6 +1,5 @@
-package com.epitrack.guardioes.utility;
+package com.epitrack.guardioes.helper;
 
-import com.epitrack.guardioes.view.menu.profile.InterestActivity;
 import com.prolificinteractive.materialcalendarview.CalendarDay;
 
 import java.text.ParseException;

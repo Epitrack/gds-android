@@ -25,6 +25,16 @@
             android:title="@string/about" />
 
         <item
+            android:id="@+id/facebook"
+            android:icon="@drawable/icon_facebook"
+            android:title="@string/facebook" />
+
+        <item
+            android:id="@+id/twitter"
+            android:icon="@drawable/icon_twitter"
+            android:title="@string/twitter" />
+
+        <item
             android:id="@+id/help"
             android:icon="@drawable/icon_help"
             android:title="@string/help" />

@@ -9,24 +9,24 @@ import com.epitrack.guardioes.R;
 import com.epitrack.guardioes.view.HomeFragment;
 import com.epitrack.guardioes.view.menu.help.HelpFragment;
 import com.epitrack.guardioes.view.menu.profile.ProfileActivity;
-import com.epitrack.guardioes.view.menu.profile.ProfileFragment;
 
 /**
  * @author Igor Morais
  */
-public enum HomeMenu {
+public enum Home {
 
     HOME        (R.id.home, HomeFragment.class),
     PROFILE     (R.id.profile, ProfileActivity.class),
-    //SETTINGS    (R.id.setting, SettingFragment.class),
     ABOUT       (R.id.about, AboutFragment.class),
+    FACEBOOK    (R.id.facebook, AboutFragment.class),
+    TWITTER     (R.id.twitter, AboutFragment.class),
     HELP        (R.id.help, HelpFragment.class),
     EXIT        (R.id.exit, null);
 
     private final int id;
     private final Class<?> menuClass;
 
-    HomeMenu(final int id, final Class<?> menuClass) {
+    Home(final int id, final Class<?> menuClass) {
         this.id = id;
         this.menuClass = menuClass;
     }
@@ -55,27 +55,27 @@ public enum HomeMenu {
         return Activity.class.isAssignableFrom(menuClass);
     }
 
-    public static HomeMenu getBy(final int id) {
+    public static Home getBy(final int id) {
 
-        for (final HomeMenu menu : HomeMenu.values()) {
+        for (final Home menu : Home.values()) {
 
             if (menu.getId() == id) {
                 return menu;
             }
         }
 
-        throw new IllegalArgumentException("The HomeMenu has not found.");
+        throw new IllegalArgumentException("The Home has not found.");
     }
 
-    public static HomeMenu getBy(final MenuItem menuItem) {
+    public static Home getBy(final MenuItem menuItem) {
 
-        for (final HomeMenu menu : HomeMenu.values()) {
+        for (final Home menu : Home.values()) {
 
             if (menu.getId() == menuItem.getItemId()) {
                 return menu;
             }
         }
 
-        throw new IllegalArgumentException("The HomeMenu has not found.");
+        throw new IllegalArgumentException("The Home has not found.");
     }
 }

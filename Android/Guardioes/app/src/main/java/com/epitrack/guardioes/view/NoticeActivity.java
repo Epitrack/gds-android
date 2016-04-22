@@ -7,7 +7,6 @@ import android.support.annotation.NonNull;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
-import android.view.View;
 
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
@@ -15,7 +14,7 @@ import com.epitrack.guardioes.R;
 import com.epitrack.guardioes.model.Notice;
 import com.epitrack.guardioes.request.NoticeRequester;
 import com.epitrack.guardioes.request.base.RequestListener;
-import com.epitrack.guardioes.utility.DialogBuilder;
+import com.epitrack.guardioes.helper.DialogBuilder;
 import com.epitrack.guardioes.view.base.BaseAppCompatActivity;
 import com.epitrack.guardioes.view.dialog.LoadDialog;
 import com.google.android.gms.analytics.HitBuilders;

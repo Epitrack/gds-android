@@ -1,20 +1,14 @@
 package com.epitrack.guardioes.request;
 
 import android.content.Context;
-import android.os.Handler;
-import android.os.Looper;
-import android.widget.Toast;
 
-import com.epitrack.guardioes.R;
 import com.epitrack.guardioes.manager.Application;
-import com.epitrack.guardioes.model.Notice;
 import com.epitrack.guardioes.model.Point;
 import com.epitrack.guardioes.request.base.BaseRequester;
 import com.epitrack.guardioes.request.base.Method;
 import com.epitrack.guardioes.request.base.RequestListener;
 import com.epitrack.guardioes.request.base.Requester;
-import com.epitrack.guardioes.utility.DateFormat;
-import com.epitrack.guardioes.utility.Logger;
+import com.epitrack.guardioes.helper.Logger;
 import com.koushikdutta.async.future.FutureCallback;
 import com.koushikdutta.ion.Ion;
 import com.koushikdutta.ion.Response;
@@ -22,11 +16,8 @@ import com.koushikdutta.ion.Response;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 
 /**
  * @author Igor Morais

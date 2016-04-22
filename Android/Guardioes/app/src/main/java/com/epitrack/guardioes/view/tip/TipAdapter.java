@@ -10,8 +10,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.epitrack.guardioes.R;
-import com.epitrack.guardioes.utility.Logger;
-import com.epitrack.guardioes.utility.ViewUtility;
+import com.epitrack.guardioes.helper.Logger;
+import com.epitrack.guardioes.helper.ViewUtility;
 import com.epitrack.guardioes.view.IMenu;
 
 import java.util.Map;
