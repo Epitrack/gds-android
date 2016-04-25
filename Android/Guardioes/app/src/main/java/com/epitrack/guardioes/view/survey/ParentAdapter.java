@@ -9,9 +9,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.epitrack.guardioes.R;
-import com.epitrack.guardioes.model.User;
+import com.epitrack.guardioes.helper.AvatarHelper;
 import com.epitrack.guardioes.helper.DateFormat;
-import com.epitrack.guardioes.view.menu.profile.Avatar;
+import com.epitrack.guardioes.model.User;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,16 +28,6 @@ public class ParentAdapter extends RecyclerView.Adapter<ParentAdapter.ViewHolder
     private Context context;
 
     private List<User> parentList = new ArrayList<>();
-
-    public ParentAdapter(final ParentListener listener, final List<User> parentList) {
-
-        if (listener == null) {
-            throw new IllegalArgumentException("The listener cannot be null.");
-        }
-
-        this.listener = listener;
-        this.parentList = parentList;
-    }
 
     public ParentAdapter(final Context context, final ParentListener listener, final List<User> parentList) {
 
@@ -63,7 +53,7 @@ public class ParentAdapter extends RecyclerView.Adapter<ParentAdapter.ViewHolder
         @Bind(R.id.text_view_age)
         TextView textViewAge;
 
-        @Bind(R.id.image_view_photo)
+        @Bind(R.id.image_view_image)
         ImageView imageViewPhoto;
 
         @Bind(R.id.text_view_id_parent)
@@ -87,7 +77,7 @@ public class ParentAdapter extends RecyclerView.Adapter<ParentAdapter.ViewHolder
     public ViewHolder onCreateViewHolder(final ViewGroup viewGroup, final int viewType) {
 
         final View view = LayoutInflater.from(viewGroup.getContext())
-                                        .inflate(R.layout.parent_item, viewGroup, false);
+                .inflate(R.layout.parent_item, viewGroup, false);
         return new ViewHolder(view);
     }
 
@@ -102,34 +92,13 @@ public class ParentAdapter extends RecyclerView.Adapter<ParentAdapter.ViewHolder
             viewHolder.textViewName.setGravity(View.TEXT_ALIGNMENT_CENTER);
             viewHolder.textViewAge.setText("");
             viewHolder.textViewId.setText(parent.getId());
+
         } else {
             viewHolder.textViewName.setText(parent.getNick());
             viewHolder.textViewAge.setText(DateFormat.getDateDiff(parent.getDob()) + " Anos");
             viewHolder.textViewId.setText(parent.getId());
 
-            if (parent.getPicture().length() > 2) {
-                parent.setPicture("0");
-            }
-
-            if (Integer.parseInt(parent.getPicture()) == 0) {
-                if (parent.getGender().equals("M")) {
-
-                    if (parent.getRace().equals("branco") || parent.getRace().equals("amarelo")) {
-                        viewHolder.imageViewPhoto.setImageResource(R.drawable.image_avatar_6);
-                    } else {
-                        viewHolder.imageViewPhoto.setImageResource(R.drawable.image_avatar_4);
-                    }
-                } else {
-
-                    if (parent.getRace().equals("branco") || parent.getRace().equals("amarelo")) {
-                        viewHolder.imageViewPhoto.setImageResource(R.drawable.image_avatar_8);
-                    } else {
-                        viewHolder.imageViewPhoto.setImageResource(R.drawable.image_avatar_7);
-                    }
-                }
-            } else {
-                viewHolder.imageViewPhoto.setImageResource(Avatar.getBy(Integer.parseInt(parent.getPicture())).getLarge());
-            }
+            new AvatarHelper().loadImage(context, viewHolder.imageViewPhoto, parent);
         }
     }
 

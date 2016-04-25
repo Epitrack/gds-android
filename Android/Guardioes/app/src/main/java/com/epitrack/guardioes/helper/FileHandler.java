@@ -1,6 +1,5 @@
 package com.epitrack.guardioes.helper;
 
-import android.content.Context;
 import android.graphics.Bitmap;
 import android.os.Environment;
 
@@ -18,12 +17,6 @@ public final class FileHandler {
     private static final String TAG = FileHandler.class.getSimpleName();
 
     private static final int EMPTY = 0;
-
-    private static final String DIRECTORY = "Temp";
-
-    public static final String PATH_INTERNAL = Environment.getExternalStorageDirectory().getPath() + "/" + DIRECTORY;
-
-    public static final String PATH_TEMP = Environment.getExternalStorageDirectory().getPath() + "/" + Constants.DIRECTORY_TEMP;
 
     public boolean createDirectory(final String name) {
 
@@ -134,66 +127,5 @@ public final class FileHandler {
         }
 
         return null;
-    }
-
-    public static class Internal {
-
-        private final Context context;
-
-        public Internal(final Context context) {
-            this.context = context;
-        }
-
-        public boolean createDirectory(final String name) {
-
-            final File directory = new File(context.getFilesDir(), name);
-
-            return createDirectory(directory);
-        }
-
-        public boolean createDirectory(final File directory) {
-            return directory.exists() || directory.mkdirs();
-        }
-
-        public boolean deleteDirectory(final String name) {
-            return new File(context.getFilesDir(), name).delete();
-        }
-
-        public File loadTempFile(final String name, final Extension extension) {
-            return new File(PATH_INTERNAL, name + extension.getExtension());
-        }
-
-        public File loadFile(final String name, final Extension extension) {
-            return new File(PATH_INTERNAL, name + extension.getExtension());
-        }
-
-        public File loadFile(final String directory, final String name, final Extension extension) {
-            return new File(PATH_INTERNAL + "/" + directory, name + extension.getExtension());
-        }
-
-        public File loadFile(final File directory, final String name, final Extension extension) {
-            return new File(directory, name + extension.getExtension());
-        }
-
-        public boolean save(final String name, final Extension extension, final Bitmap bitmap) {
-
-            try {
-
-                final File file = loadFile(name, extension);
-
-                final FileOutputStream stream = new FileOutputStream(file);
-
-                stream.write(ImageHelper.toByteArray(bitmap));
-
-                stream.close();
-
-            } catch (final IOException e) {
-                Logger.logError(TAG, e.getMessage());
-
-                return false;
-            }
-
-            return true;
-        }
     }
 }

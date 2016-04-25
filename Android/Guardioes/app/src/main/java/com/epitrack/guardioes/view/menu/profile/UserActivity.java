@@ -2,8 +2,6 @@ package com.epitrack.guardioes.view.menu.profile;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.drawable.Drawable;
-import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.design.widget.TextInputLayout;
@@ -17,22 +15,23 @@ import android.widget.Toast;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.epitrack.guardioes.R;
-import com.epitrack.guardioes.model.ProfileImage;
+import com.epitrack.guardioes.helper.AvatarHelper;
+import com.epitrack.guardioes.helper.Constants;
+import com.epitrack.guardioes.helper.DateFormat;
+import com.epitrack.guardioes.helper.DialogBuilder;
+import com.epitrack.guardioes.helper.Mask;
 import com.epitrack.guardioes.model.SingleUser;
 import com.epitrack.guardioes.model.User;
 import com.epitrack.guardioes.request.base.Method;
 import com.epitrack.guardioes.request.old.Requester;
 import com.epitrack.guardioes.request.old.SimpleRequester;
-import com.epitrack.guardioes.helper.Constants;
-import com.epitrack.guardioes.helper.DateFormat;
-import com.epitrack.guardioes.helper.DialogBuilder;
-import com.epitrack.guardioes.helper.LocationUtility;
-import com.epitrack.guardioes.helper.Mask;
 import com.epitrack.guardioes.view.HomeActivity;
 import com.epitrack.guardioes.view.base.BaseAppCompatActivity;
 import com.epitrack.guardioes.view.welcome.WelcomeActivity;
 import com.github.siyamed.shapeimageview.CircularImageView;
 import com.google.android.gms.analytics.HitBuilders;
+import com.squareup.picasso.MemoryPolicy;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONObject;
 
@@ -84,20 +83,20 @@ public class UserActivity extends BaseAppCompatActivity {
     @Bind(R.id.label_relationship)
     TextView textViewRelationship;
 
-    boolean socialNew;
-    boolean newMenber;
-    boolean mainMember;
-    SingleUser singleUser = SingleUser.getInstance();
-    private int userAvatar = 0;
-    String photoPath = "";
-    private ProfileImage profileImage = ProfileImage.getInstance();
+    private boolean socialNew;
+    private boolean newMenber;
+    private boolean mainMember;
+
+    private SingleUser singleUser = SingleUser.getInstance();
+
+    private String path;
+    private int image = Integer.MIN_VALUE;
+
     private SharedPreferences shpGCMToken;
 
     @Override
     protected void onCreate(final Bundle bundle) {
         super.onCreate(bundle);
-
-        profileImage = ProfileImage.getInstance();
 
         socialNew = getIntent().getBooleanExtra(Constants.Bundle.SOCIAL_NEW, false);
         newMenber = getIntent().getBooleanExtra(Constants.Bundle.NEW_MEMBER, false);
@@ -143,8 +142,6 @@ public class UserActivity extends BaseAppCompatActivity {
 
         getTracker().setScreenName("User Form Screen - " + this.getClass().getSimpleName());
         getTracker().send(new HitBuilders.ScreenViewBuilder().build());
-
-        loadUser();
     }
 
     private void loadUser() {
@@ -153,9 +150,8 @@ public class UserActivity extends BaseAppCompatActivity {
         String gender;
         String race;
         String email;
-        String picture;
+        int image;
         String relationship;
-        String file;
 
         if (socialNew) {
             nick = singleUser.getNick();
@@ -163,18 +159,17 @@ public class UserActivity extends BaseAppCompatActivity {
             gender = singleUser.getGender();
             race = singleUser.getRace();
             email = singleUser.getEmail();
-            picture = singleUser.getPicture();
+            image = singleUser.getImage();
             relationship = null;
-            file = "";
+
         } else {
             nick = getIntent().getStringExtra("nick");
             dob = getIntent().getStringExtra("dob");
             gender = getIntent().getStringExtra("gender");
             race = getIntent().getStringExtra("race");
             email = getIntent().getStringExtra("email");
-            picture = getIntent().getStringExtra("picture");
+            image = getIntent().getIntExtra("picture", 0);
             relationship = getIntent().getStringExtra("relationship");
-            file = getIntent().getStringExtra("file");
         }
 
         if (!newMenber || socialNew) {
@@ -275,13 +270,14 @@ public class UserActivity extends BaseAppCompatActivity {
         }
 
         if (mainMember) {
+
             textViewMessage.setText(R.string.message_fields);
             textLayoutMail.setVisibility(View.VISIBLE);
             linearLayoutPassword.setVisibility(View.VISIBLE);
             editTextMail.setEnabled(true);
             editTextMail.setVisibility(View.VISIBLE);
 
-            imageViewImage = singleUser.getImageProfile(imageViewImage, singleUser);
+            new AvatarHelper().loadImage(this, imageViewImage, singleUser);
 
         } else if (socialNew) {
             if (singleUser.getEmail() == null) {
@@ -295,14 +291,15 @@ public class UserActivity extends BaseAppCompatActivity {
             editTextMail.setVisibility(View.VISIBLE);
             User household = new User();
 
-            if (userAvatar > 0) {
-                household.setPicture(String.valueOf(userAvatar));
-                household.setFile("");
-            } else if (!photoPath.equals("")) {
-                household.setPicture("0");
-                household.setFile(photoPath);
+            if (image == Integer.MIN_VALUE) {
+
+                household.setPath(path);
+                household.setImage(Integer.MIN_VALUE);
+
             } else {
-                household.setPicture(picture);
+
+                household.setPath(null);
+                household.setImage(image);
             }
 
             household.setNick(nick);
@@ -312,7 +309,7 @@ public class UserActivity extends BaseAppCompatActivity {
             household.setEmail(email);
             household.setRelationship(relationship);
 
-            imageViewImage = singleUser.getImageProfile(imageViewImage, household);
+            new AvatarHelper().loadImage(this, imageViewImage, household);
         }
     }
 
@@ -384,29 +381,36 @@ public class UserActivity extends BaseAppCompatActivity {
                 jsonObject.put("relationship", user.getRelationship());
                 jsonObject.put("email", user.getEmail());
 
-                LocationUtility locationUtility;
-                try {
-                    locationUtility = new LocationUtility(getApplicationContext());
+//                LocationUtility locationUtility;
+//                try {
+//                    locationUtility = new LocationUtility(getApplicationContext());
+//
+//                    if (locationUtility.getLocation() != null) {
+//                        jsonObject.put("lat", locationUtility.getLatitude());
+//                        jsonObject.put("lon", locationUtility.getLongitude());
+//                    }
+//                } catch (Exception e) {
+//
+//                }
 
-                    if (locationUtility.getLocation() != null) {
-                        jsonObject.put("lat", locationUtility.getLatitude());
-                        jsonObject.put("lon", locationUtility.getLongitude());
-                    }
-                } catch (Exception e) {
+                if (image == Integer.MIN_VALUE) {
 
-                }
-                if (!photoPath.equals("")) {
-                    singleUser.setPicture(photoPath);
-                    jsonObject.put("file", photoPath);
+                    singleUser.setPath(path);
+                    singleUser.setImage(Integer.MIN_VALUE);
+
+                    jsonObject.put("file", path);
                     jsonObject.put("picture", "0");
-                } else if (userAvatar > 0) {
-                    jsonObject.put("picture", userAvatar);
-                    singleUser.setPicture(String.valueOf(userAvatar));
 
                 } else {
-                    if (newMenber) {
-                        jsonObject.put("picture", "0");
-                    }
+
+                    singleUser.setPath(null);
+                    singleUser.setImage(image);
+
+                    jsonObject.put("picture", image);
+                }
+
+                if (newMenber) {
+                    jsonObject.put("picture", "0");
                 }
 
                 if (!socialNew) {
@@ -414,9 +418,9 @@ public class UserActivity extends BaseAppCompatActivity {
                         String password = editTextPassword.getText().toString().trim();
                         String confirmPassword = editTextConfirmPassword.getText().toString().trim();
 
-                        if (!password.trim().equals("") || !confirmPassword.trim().equals("")) {
+                        if (!password.isEmpty() || !confirmPassword.isEmpty()) {
 
-                            if ((password.trim().length() < 6) || (confirmPassword.trim().length() < 6)) {
+                            if ((password.length() < 6) || (confirmPassword.length() < 6)) {
 
                                 new DialogBuilder(UserActivity.this).load()
                                         .title(R.string.attention)
@@ -472,7 +476,7 @@ public class UserActivity extends BaseAppCompatActivity {
                     jsonObject.put("picture", "0");
                     jsonObject.put("gcm_token", shpGCMToken.getString(Constants.Push.SENDER_ID, ""));
 
-                    try {
+                   /* try {
                         locationUtility = new LocationUtility(getApplicationContext());
 
                         if (locationUtility.getLocation() != null) {
@@ -481,7 +485,7 @@ public class UserActivity extends BaseAppCompatActivity {
                         }
                     } catch (Exception e) {
 
-                    }
+                    }*/
 
                     if (singleUser.getEmail() == null || singleUser.getEmail() == "") {
                         jsonObject.put("email", editTextMail.getText().toString().toLowerCase());
@@ -515,14 +519,14 @@ public class UserActivity extends BaseAppCompatActivity {
 
                         JSONObject jsonObjectUser = jsonObject.getJSONObject("user");
 
-                        singleUser.setNick(jsonObjectUser.getString("nick").toString());
-                        singleUser.setEmail(jsonObjectUser.getString("email").toString());
-                        singleUser.setGender(jsonObjectUser.getString("gender").toString());
-                        singleUser.setPicture("0");
-                        singleUser.setId(jsonObjectUser.getString("id").toString());
-                        singleUser.setPassword(jsonObjectUser.getString("email").toString());
-                        singleUser.setRace(jsonObjectUser.getString("race").toString());
-                        singleUser.setDob(jsonObjectUser.getString("dob").toString());
+                        singleUser.setNick(jsonObjectUser.getString("nick"));
+                        singleUser.setEmail(jsonObjectUser.getString("email"));
+                        singleUser.setGender(jsonObjectUser.getString("gender"));
+                        singleUser.setImage(0);
+                        singleUser.setId(jsonObjectUser.getString("id"));
+                        singleUser.setPassword(jsonObjectUser.getString("email"));
+                        singleUser.setRace(jsonObjectUser.getString("race"));
+                        singleUser.setDob(jsonObjectUser.getString("dob"));
                         try {
                             singleUser.setHashtags(jsonObjectUser.getJSONArray("hashtags"));
                         } catch (Exception e) {
@@ -581,22 +585,10 @@ public class UserActivity extends BaseAppCompatActivity {
 
                             onBackPressed();
 
-                        } else if (mainMember) {
+                        } else {
+
                             lookup();
 
-                            new DialogBuilder(UserActivity.this).load()
-                                    .title(R.string.attention)
-                                    .content(R.string.generic_update_data_ok)
-                                    .positiveText(R.string.ok)
-                                    .callback(new MaterialDialog.ButtonCallback() {
-                                        @Override
-                                        public void onPositive(MaterialDialog dialog) {
-                                            onBackPressed();
-                                        }
-                                    })
-                                    .show();
-                        } else {
-                            lookup();
                             new DialogBuilder(UserActivity.this).load()
                                     .title(R.string.attention)
                                     .content(R.string.generic_update_data_ok)
@@ -614,6 +606,7 @@ public class UserActivity extends BaseAppCompatActivity {
                         //editTextBirthDate.setText("");
                     }
                 }
+
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -631,35 +624,24 @@ public class UserActivity extends BaseAppCompatActivity {
 
                     final Avatar avatar = (Avatar) intent.getSerializableExtra(Constants.Bundle.AVATAR);
 
-                    //imageViewImage.setImageResource(avatar.getSmall());
-                    userAvatar = avatar.getId();
+                    image = avatar.getId();
 
-                    if (userAvatar > 0) {
-                        profileImage.setAvatar("" + userAvatar);
-                        this.imageViewImage.setImageResource(Avatar.getBy(userAvatar).getLarge());
-                        //userAvatar = Integer.parseInt(profileImage.getAvatar());
-                    }
-                } else if (intent.hasExtra(Constants.Bundle.URI)) {
+                    imageViewImage.setImageResource(avatar.getSmall());
 
-                    photoPath = "";
+                } else if (intent.hasExtra(Constants.Bundle.PATH)) {
 
-                    final Uri uri = intent.getParcelableExtra(Constants.Bundle.URI);
+                    final String path = intent.getStringExtra(Constants.Bundle.PATH);
+
+                    this.path = path;
 
                     final int width = imageViewImage.getWidth();
                     final int height = imageViewImage.getHeight();
 
-                    //imageViewImage.setImageBitmap(BitmapUtility.scale(width, height, profileImage.getUri().toString()));
-                    if (profileImage.getUri() != null) {
-                        imageViewImage.getLayoutParams().width = width;
-                        imageViewImage.getLayoutParams().height = height;
-                        imageViewImage.setImageURI(profileImage.getUri());
-
-                        Drawable drawable = imageViewImage.getDrawable();
-                        imageViewImage.setImageDrawable(drawable);
-                        imageViewImage.setBackground(drawable);
-
-                        photoPath = profileImage.getUri().toString();
-                    }
+                    Picasso.with(this).load(Constants.PATH + path)
+                            .memoryPolicy(MemoryPolicy.NO_CACHE)
+                            .resize(width, height)
+                            .centerCrop()
+                            .into(imageViewImage);
                 }
             }
         }
@@ -708,9 +690,9 @@ public class UserActivity extends BaseAppCompatActivity {
                 singleUser.setUser_token(jsonObjectUser.get("token").toString());
 
                 try {
-                    singleUser.setPicture(jsonObjectUser.get("picture").toString());
+                    singleUser.setImage(jsonObjectUser.getInt("picture"));
+
                 } catch (Exception e) {
-                    singleUser.setPicture("0");
                 }
                 //navigateTo(ProfileActivity.class);
             }
@@ -722,12 +704,15 @@ public class UserActivity extends BaseAppCompatActivity {
     public void onBackPressed() {
 
         if (socialNew) {
-            final Intent intent = new Intent(getApplicationContext(), WelcomeActivity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK |
-                    Intent.FLAG_ACTIVITY_NEW_TASK);
+
+            final Intent intent = new Intent(this, WelcomeActivity.class);
+
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
 
             startActivity(intent);
+
         } else {
+
             super.onBackPressed();
         }
     }

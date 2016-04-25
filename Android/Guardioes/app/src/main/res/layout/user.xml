@@ -38,9 +38,7 @@
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:layout_gravity="center_vertical"
-                android:src="@drawable/mask"
-                app:siBorderColor="@color/white"
-                app:siBorderWidth="0dp" />
+                app:siBorderColor="@color/white" />
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="0dp"

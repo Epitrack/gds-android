@@ -2,6 +2,7 @@ package com.epitrack.guardioes.view.menu.profile;
 
 import android.Manifest;
 import android.content.Intent;
+import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -20,6 +21,7 @@ import com.epitrack.guardioes.helper.FileHandler;
 import com.epitrack.guardioes.helper.Logger;
 import com.epitrack.guardioes.model.ProfileImage;
 import com.epitrack.guardioes.view.base.BaseAppCompatActivity;
+import com.epitrack.guardioes.view.base.ImageEditActivity;
 import com.google.android.gms.analytics.HitBuilders;
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.MultiplePermissionsReport;
@@ -52,11 +54,11 @@ public class AvatarActivity extends BaseAppCompatActivity implements AdapterView
     @Bind(R.id.grid_view)
     GridView gridView;
 
+    private File temp = new FileHandler().loadFile(PHOTO, Extension.PNG);
+
     private final SelectHandler handler = new SelectHandler();
 
     private ProfileImage profileImage = ProfileImage.getInstance();
-
-    private File tempImage = new FileHandler().loadFile(PHOTO, Extension.PNG);
 
     @Override
     protected void onCreate(final Bundle bundle) {
@@ -65,7 +67,7 @@ public class AvatarActivity extends BaseAppCompatActivity implements AdapterView
         setContentView(R.layout.avatar);
 
         profileImage.setAvatar("");
-        profileImage.setUri(null);
+        profileImage.setPath(null);
 
         gridView.setAdapter(new AvatarAdapter(this, Avatar.values()));
 
@@ -81,7 +83,7 @@ public class AvatarActivity extends BaseAppCompatActivity implements AdapterView
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
+    public boolean onCreateOptionsMenu(final Menu menu) {
         getMenuInflater().inflate(R.menu.avatar, menu);
 
         return true;
@@ -92,7 +94,7 @@ public class AvatarActivity extends BaseAppCompatActivity implements AdapterView
         handler.update(view, (Avatar) adapterView.getItemAtPosition(position));
     }
 
-    public void onPhoto(final MenuItem menuItem) {
+    public void onPhoto(final MenuItem item) {
 
         if (!Dexter.isRequestOngoing()) {
 
@@ -129,7 +131,7 @@ public class AvatarActivity extends BaseAppCompatActivity implements AdapterView
 
                             final Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 
-                            intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(tempImage));
+                            intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(temp));
 
                             startActivityForResult(intent, REQUEST_CODE_CAMERA);
 
@@ -144,6 +146,75 @@ public class AvatarActivity extends BaseAppCompatActivity implements AdapterView
                 }).show();
     }
 
+    @Override
+    protected void onActivityResult(final int requestCode, final int resultCode, final Intent intent) {
+
+        if (requestCode == Constants.RequestCode.IMAGE) {
+
+            if (resultCode == RESULT_OK) {
+                finish();
+            }
+
+        } else if (requestCode == REQUEST_CODE_CAMERA) {
+
+            if (resultCode == RESULT_OK) {
+
+                final Bundle bundle = new Bundle();
+
+                bundle.putBoolean(Constants.Bundle.DELETE, true);
+
+                bundle.putString(Constants.Bundle.PATH, temp.getPath());
+
+                navigateForResult(ImageEditActivity.class, REQUEST_CODE_CROP_PHOTO, bundle);
+            }
+
+        } else if (requestCode == REQUEST_CODE_GALLERY) {
+
+            if (resultCode == RESULT_OK) {
+
+                final Bundle bundle = new Bundle();
+
+                bundle.putString(Constants.Bundle.PATH, getPath(intent.getData()));
+
+                navigateForResult(ImageEditActivity.class, REQUEST_CODE_CROP_PHOTO, bundle);
+            }
+
+        } else if (requestCode == REQUEST_CODE_CROP_PHOTO) {
+
+            if (resultCode == RESULT_OK) {
+
+                final String path = intent.getStringExtra(Constants.Bundle.PATH);
+
+                final Intent i = new Intent();
+
+                i.putExtra(Constants.Bundle.PATH, path);
+
+                setResult(RESULT_OK, i);
+
+                finish();
+            }
+        }
+    }
+
+    private String getPath(final Uri uri) {
+
+        final String[] projection = { MediaStore.Images.Media.DATA };
+
+        final Cursor cursor = getContentResolver().query(uri, projection, null, null, null);
+
+        if (cursor == null) {
+            return null;
+
+        } else {
+
+            final String path = cursor.moveToFirst() ? cursor.getString(cursor.getColumnIndex(MediaStore.Images.Media.DATA)) : null;
+
+            cursor.close();
+
+            return path;
+        }
+    }
+
     @OnClick(R.id.button_photo)
     public void onSave() {
 
@@ -152,31 +223,13 @@ public class AvatarActivity extends BaseAppCompatActivity implements AdapterView
                 .setAction("Select Avatar Button")
                 .build());
 
-        if (handler.getAvatar() == null) {
+        final Intent intent = new Intent();
 
-            // Mostrar messagem
-            profileImage.setAvatar("");
+        intent.putExtra(Constants.Bundle.AVATAR, handler.getAvatar());
 
-        } else {
+        setResult(RESULT_OK, intent);
 
-            profileImage.setAvatar(String.valueOf(handler.getAvatar().getId()));
-
-            final Intent intent = new Intent();
-
-            intent.putExtra(Constants.Bundle.AVATAR, handler.getAvatar());
-
-            setResult(RESULT_OK, intent);
-
-            finish();
-        }
-    }
-
-    @Override
-    protected void onActivityResult(final int requestCode, final int resultCode, final Intent intent) {
-
-        if (requestCode == Constants.RequestCode.IMAGE && resultCode == RESULT_OK) {
-            finish();
-        }
+        finish();
     }
 
     private class SelectHandler {

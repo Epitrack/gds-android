@@ -5,22 +5,22 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 
+import com.epitrack.guardioes.BuildConfig;
 import com.epitrack.guardioes.R;
+import com.epitrack.guardioes.helper.Constants;
+import com.epitrack.guardioes.helper.FileHandler;
 import com.epitrack.guardioes.model.SingleUser;
 import com.epitrack.guardioes.request.base.Method;
 import com.epitrack.guardioes.request.old.Requester;
 import com.epitrack.guardioes.request.old.SimpleRequester;
 import com.epitrack.guardioes.service.QuickstartPreferences;
 import com.epitrack.guardioes.service.RegistrationIntentService;
-import com.epitrack.guardioes.helper.Constants;
 import com.epitrack.guardioes.view.base.BaseActivity;
 import com.epitrack.guardioes.view.welcome.WelcomeActivity;
 import com.google.android.gms.analytics.HitBuilders;
@@ -56,14 +56,9 @@ public class SplashActivity extends BaseActivity implements Runnable {
 
         setContentView(R.layout.splash);
 
-        try {
-            PackageInfo pInfo = getPackageManager().getPackageInfo(getPackageName(), 0);
+        loadDirectory();
 
-            SingleUser.getInstance().setVersionBuild(pInfo.versionName);
-
-        } catch (PackageManager.NameNotFoundException e) {
-            e.printStackTrace();
-        }
+        SingleUser.getInstance().setVersionBuild(BuildConfig.VERSION_NAME);
 
         mRegistrationBroadcastReceiver = new BroadcastReceiver() {
             @Override
@@ -129,12 +124,6 @@ public class SplashActivity extends BaseActivity implements Runnable {
         sharedPreferences = getSharedPreferences(Constants.Pref.PREFS_NAME, 0);
         String prefUserToken = sharedPreferences.getString(Constants.Pref.PREFS_NAME, "");
 
-        sharedPreferences = getSharedPreferences(Constants.Pref.PREFS_IMAGE, 0);
-        String preImage = sharedPreferences.getString(Constants.Pref.PREFS_IMAGE, "");
-
-        sharedPreferences = getSharedPreferences(Constants.Pref.PREFS_IMAGE_USER_TOKEN, 0);
-        String prefImagUserToken = sharedPreferences.getString(Constants.Pref.PREFS_IMAGE_USER_TOKEN, "");
-
         if (!prefUserToken.equals("")) {
 
             SingleUser singleUser = SingleUser.getInstance();
@@ -166,22 +155,17 @@ public class SplashActivity extends BaseActivity implements Runnable {
                     singleUser.setId(jsonObjectUser.getString("id"));
                     singleUser.setRace(jsonObjectUser.getString("race"));
                     singleUser.setDob(jsonObjectUser.getString("dob"));
-                    singleUser.setUser_token(jsonObjectUser.get("token").toString());
+                    singleUser.setUser_token(jsonObjectUser.getString("token"));
 
                     try {
-                        singleUser.setFile(jsonObjectUser.get("file").toString());
+                        singleUser.setPath(jsonObjectUser.getString("file"));
                     } catch (Exception e) {
-                        singleUser.setFile("");
                     }
 
-                    if (prefUserToken == prefImagUserToken) {
-                        singleUser.setPicture(prefUserToken);
-                    } else {
-                        try {
-                            singleUser.setPicture(jsonObjectUser.get("picture").toString());
-                        } catch (Exception e) {
-                            singleUser.setPicture("0");
-                        }
+                    try {
+                        singleUser.setImage(jsonObjectUser.getInt("picture"));
+                    } catch (Exception e) {
+
                     }
 
                     singleUser.setHashtags(jsonObjectUser.getJSONArray("hashtags"));
@@ -201,5 +185,12 @@ public class SplashActivity extends BaseActivity implements Runnable {
         } else {
             navigateTo(WelcomeActivity.class);
         }
+    }
+
+    private void loadDirectory() {
+
+        getExternalCacheDir();
+
+        new FileHandler().createDirectory(Constants.DIRECTORY_TEMP);
     }
 }

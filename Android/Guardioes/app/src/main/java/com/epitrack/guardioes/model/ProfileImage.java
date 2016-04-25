@@ -1,7 +1,5 @@
 package com.epitrack.guardioes.model;
 
-import android.net.Uri;
-
 /**
  * @author Miqueias Lopes on 11/01/16.
  */
@@ -10,7 +8,7 @@ public class ProfileImage {
     private static ProfileImage instance;
 
     private String avatar;
-    private android.net.Uri uri;
+    private String path;
 
     private ProfileImage() {
 
@@ -34,11 +32,11 @@ public class ProfileImage {
         this.avatar = avatar;
     }
 
-    public Uri getUri() {
-        return uri;
+    public String getPath() {
+        return path;
     }
 
-    public void setUri(Uri uri) {
-        this.uri = uri;
+    public void setPath(String path) {
+        this.path = path;
     }
 }

@@ -24,7 +24,7 @@
         android:layout_weight="4"
         />-->
     <com.github.siyamed.shapeimageview.CircularImageView
-        android:id="@+id/image_view_photo"
+        android:id="@+id/image_view_image"
         android:layout_width="120dp"
         android:layout_height="120dp"
         android:layout_gravity="center_horizontal"

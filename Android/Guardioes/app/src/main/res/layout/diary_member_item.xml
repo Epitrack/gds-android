@@ -20,7 +20,7 @@
         android:layout_marginRight="8dp" />-->
 
     <com.github.siyamed.shapeimageview.CircularImageView
-        android:id="@+id/image_view_photo"
+        android:id="@+id/image_view_image"
         android:layout_width="68dp"
         android:layout_height="68dp"
         android:layout_marginLeft="8dp"

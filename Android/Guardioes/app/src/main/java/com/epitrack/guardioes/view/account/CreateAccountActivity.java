@@ -543,7 +543,7 @@ public class CreateAccountActivity extends BaseAppCompatActivity implements Soci
                             singleUser.setNick(jsonObjectUser.getString("nick"));
                             singleUser.setEmail(jsonObjectUser.getString("email"));
                             singleUser.setGender(jsonObjectUser.getString("gender"));
-                            singleUser.setPicture(jsonObjectUser.getString("picture"));
+                            singleUser.setImage(jsonObjectUser.getInt("picture"));
                             singleUser.setId(jsonObjectUser.getString("id"));
                             singleUser.setRace(jsonObjectUser.getString("race"));
                             singleUser.setDob(jsonObjectUser.getString("dob"));

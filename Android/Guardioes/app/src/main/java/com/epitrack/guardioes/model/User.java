@@ -1,34 +1,15 @@
 package com.epitrack.guardioes.model;
 
-import android.graphics.Bitmap;
-
 import org.json.JSONArray;
 
-import android.graphics.drawable.Drawable;
-import android.net.Uri;
-import android.os.Parcel;
-import android.os.Parcelable;
-import android.support.annotation.Nullable;
-import android.util.Log;
-
-import com.epitrack.guardioes.R;
-import com.epitrack.guardioes.view.menu.profile.Avatar;
-import com.github.siyamed.shapeimageview.CircularImageView;
-
-import java.io.File;
-
-import butterknife.Bind;
-
 public class User {
-
-    // TODO: This is for stub only.
-    private int mData;
 
     private int image;
     private String nick;
     private String email;
     private String password;
     private String client = "api";
+    private String path;
     private String dob;
     private String gender;
     private String app_token = "d41d8cd98f00b204e9800998ecf8427e";
@@ -39,31 +20,18 @@ public class User {
     private String type;
     private String zip;
     private String id;
-    private String picture;
     private String user_token;
     private String tw;
     private String fb;
     private String gl;
-    private String imageResource;
-    private Bitmap bitmapImage;
     private String avatar;
     private JSONArray hashtags;
-    private int widthImageProfile;
-    private int heightImageProfile;
-    private Uri uri;
     private String relationship;
     private String versionBuild;
     private String gcmToken;
-    private String file;
 
     public User() {
 
-    }
-
-    public User(int image, String nick, String email) {
-        this.image = image;
-        this.nick = nick;
-        this.email = email;
     }
 
     public User(int image, String nick, String email, String id, String dob, String race, String gender) {
@@ -76,7 +44,7 @@ public class User {
         this.gender = gender;
     }
 
-    public User(int image, String nick, String email, String id, String dob, String race, String gender, String picture) {
+    public User(int image, String nick, String email, String id, String dob, String race, String gender, String relationship) {
         this.image = image;
         this.nick = nick;
         this.email = email;
@@ -84,32 +52,7 @@ public class User {
         this.dob = dob;
         this.race = race;
         this.gender = gender;
-        this.picture = picture;
-    }
-
-    public User(int image, String nick, String email, String id, String dob, String race, String gender, String picture, String relationship) {
-        this.image = image;
-        this.nick = nick;
-        this.email = email;
-        this.id = id;
-        this.dob = dob;
-        this.race = race;
-        this.gender = gender;
-        this.picture = picture;
         this.relationship = relationship;
-    }
-
-    public User(int image, String nick, String email, String id, String dob, String race, String gender, String picture, String relationship, String file) {
-        this.image = image;
-        this.nick = nick;
-        this.email = email;
-        this.id = id;
-        this.dob = dob;
-        this.race = race;
-        this.gender = gender;
-        this.picture = picture;
-        this.relationship = relationship;
-        this.file = file;
     }
 
     public int getImage() {
@@ -172,10 +115,6 @@ public class User {
         return app_token;
     }
 
-    public void setApp_token(String app_token) {
-        this.app_token = app_token;
-    }
-
     public double getLat() {
         return lat;
     }
@@ -216,28 +155,12 @@ public class User {
         this.type = type;
     }
 
-    public String getZip() {
-        return zip;
-    }
-
-    public void setZip(String zip) {
-        this.zip = zip;
-    }
-
     public String getId() {
         return id;
     }
 
     public void setId(String id) {
         this.id = id;
-    }
-
-    public String getPicture() {
-        return picture;
-    }
-
-    public void setPicture(String picture) {
-        this.picture = picture;
     }
 
     public String getUserToken() {
@@ -272,22 +195,6 @@ public class User {
         this.tw = tw;
     }
 
-    public String getImageResource() {
-        return imageResource;
-    }
-
-    public void setImageResource(String imageResource) {
-        this.imageResource = imageResource;
-    }
-
-    public Bitmap getBitmapImage() {
-        return bitmapImage;
-    }
-
-    public void setBitmapImage(Bitmap bitmapImage) {
-        this.bitmapImage = bitmapImage;
-    }
-
     public String getAvatar() {
         return avatar;
     }
@@ -304,28 +211,12 @@ public class User {
         this.hashtags = hashtags;
     }
 
-    public int getWidthImageProfile() {
-        return widthImageProfile;
+    public String getPath() {
+        return path;
     }
 
-    public void setWidthImageProfile(int widthImageProfile) {
-        this.widthImageProfile = widthImageProfile;
-    }
-
-    public int getHeightImageProfile() {
-        return heightImageProfile;
-    }
-
-    public void setHeightImageProfile(int heightImageProfile) {
-        this.heightImageProfile = heightImageProfile;
-    }
-
-    public Uri getUri() {
-        return uri;
-    }
-
-    public void setUri(Uri uri) {
-        this.uri = uri;
+    public void setPath(String path) {
+        this.path = path;
     }
 
     public String getRelationship() {
@@ -360,109 +251,13 @@ public class User {
         this.type = "";
         this.zip = "";
         this.id = "";
-        this.picture = "";
         this.user_token = "";
         this.tw = "";
         this.fb = "";
         this.gl = "";
-        this.imageResource = "";
-        this.bitmapImage = null;
         this.avatar = "";
         this.hashtags = null;
-        this.widthImageProfile = 0;
-        this.heightImageProfile = 0;
-        this.uri = null;
         this.relationship = "";
         this.versionBuild = "";
     }
-
-    public String getGcmToken() {
-        return gcmToken;
-    }
-
-    public void setGcmToken(String gcmToken) {
-        this.gcmToken = gcmToken;
-    }
-
-    public String getFile() {
-        return file;
-    }
-
-    public void setFile(String file) {
-        this.file = file;
-    }
-
-
-    public CircularImageView getImageProfile(CircularImageView imageView, User user) {
-
-
-        if (user == null) {
-            user = SingleUser.getInstance();
-        }
-
-        if (user.getFile() == null) {
-            user.setFile("");
-        }
-
-
-        if (user.getPicture() == null) {
-            imageView.setImageResource(Avatar.getBy(Integer.parseInt("11")).getLarge());
-        } else {
-
-            if (user.getPicture().equals("0") && !user.getFile().equals("")) {
-
-                File file = new File(user.getFile());
-
-                if (!file.exists()) {
-                    Uri uri = Uri.parse(user.getFile());
-                    imageView.setImageURI(uri);
-                    Drawable drawable = imageView.getDrawable();
-                    imageView.setImageDrawable(drawable);
-                }
-            } else if (user.getPicture().equals("0")) {
-                if (user.getGender().equals("F")) {
-                    switch (user.getRace()) {
-                        case "branco":
-                            imageView.setImageResource(Avatar.getBy(Integer.parseInt("8")).getLarge());
-                            break;
-                        case "preto":
-                            imageView.setImageResource(Avatar.getBy(Integer.parseInt("1")).getLarge());
-                            break;
-                        case "pardo":
-                            imageView.setImageResource(Avatar.getBy(Integer.parseInt("2")).getLarge());
-                            break;
-                        case "amarelo":
-                            imageView.setImageResource(Avatar.getBy(Integer.parseInt("7")).getLarge());
-                            break;
-                        case "indigena":
-                            imageView.setImageResource(Avatar.getBy(Integer.parseInt("8")).getLarge());
-                            break;
-                    }
-                } else {
-                    switch (user.getRace()) {
-                        case "branco":
-                            imageView.setImageResource(Avatar.getBy(Integer.parseInt("11")).getLarge());
-                            break;
-                        case "preto":
-                            imageView.setImageResource(Avatar.getBy(Integer.parseInt("5")).getLarge());
-                            break;
-                        case "pardo":
-                            imageView.setImageResource(Avatar.getBy(Integer.parseInt("4")).getLarge());
-                            break;
-                        case "amarelo":
-                            imageView.setImageResource(Avatar.getBy(Integer.parseInt("10")).getLarge());
-                            break;
-                        case "indigena":
-                            imageView.setImageResource(Avatar.getBy(Integer.parseInt("4")).getLarge());
-                            break;
-                    }
-                }
-            } else {
-                imageView.setImageResource(Avatar.getBy(Integer.parseInt(user.getPicture())).getLarge());
-            }
-        }
-
-        return imageView;
-    }
-
 }

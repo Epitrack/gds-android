@@ -12,13 +12,13 @@ import android.widget.Toast;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.epitrack.guardioes.R;
+import com.epitrack.guardioes.helper.Constants;
+import com.epitrack.guardioes.helper.DialogBuilder;
 import com.epitrack.guardioes.model.DTO;
 import com.epitrack.guardioes.model.SingleUser;
 import com.epitrack.guardioes.request.base.Method;
 import com.epitrack.guardioes.request.old.Requester;
 import com.epitrack.guardioes.request.old.SimpleRequester;
-import com.epitrack.guardioes.helper.Constants;
-import com.epitrack.guardioes.helper.DialogBuilder;
 import com.epitrack.guardioes.view.HomeActivity;
 import com.epitrack.guardioes.view.base.BaseAppCompatActivity;
 import com.epitrack.guardioes.view.menu.profile.UserActivity;
@@ -56,7 +56,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.Arrays;
-import java.util.concurrent.ExecutionException;
 
 import butterknife.Bind;
 import io.fabric.sdk.android.Fabric;
@@ -116,7 +115,7 @@ public class SocialLoginActivity extends BaseAppCompatActivity implements View.O
 
         actionBar.setDisplayShowTitleEnabled(false);
 
-        modeSociaLogin = (String)DTO.object;
+        modeSociaLogin = (String) DTO.object;
 
         if (modeSociaLogin == Constants.Bundle.TWITTER) {
 
@@ -160,7 +159,7 @@ public class SocialLoginActivity extends BaseAppCompatActivity implements View.O
                 }
             });
 
-             buttonTwitter.callOnClick();
+            buttonTwitter.callOnClick();
         } else if (modeSociaLogin == Constants.Bundle.GOOGLE) {
 
             getTracker().send(new HitBuilders.EventBuilder()
@@ -229,7 +228,7 @@ public class SocialLoginActivity extends BaseAppCompatActivity implements View.O
                             /* make the API call */
                             new GraphRequest(
                                     AccessToken.getCurrentAccessToken(),
-                                    "/"+ AccessToken.getCurrentAccessToken().getUserId() +"/ids_for_business",
+                                    "/" + AccessToken.getCurrentAccessToken().getUserId() + "/ids_for_business",
                                     null,
                                     HttpMethod.GET,
                                     new GraphRequest.Callback() {
@@ -340,22 +339,17 @@ public class SocialLoginActivity extends BaseAppCompatActivity implements View.O
             String personId = acct.getId();
             int genderInt = 0;//0 for male, and 1 for female
 
-            updateUI(true);
             singleUser.setGl(personId);
             singleUser.setEmail(personEmail);
             singleUser.setPassword(personEmail);
             singleUser.setNick(personName);
-
-            if (genderInt == 0) {
-                singleUser.setGender("M");
-            } else {
-                singleUser.setGender("F");
-            }
+            singleUser.setGender("M");
 
             userExistSocial(personId, Constants.Bundle.GOOGLE);
+
         } else {
             // Signed out, show unauthenticated UI.
-            updateUI(false);
+
             new DialogBuilder(SocialLoginActivity.this).load()
                     .title(R.string.attention)
                     .content("Status: " + result.getStatus() + "Status Code: " + result.getStatus().getStatusCode() + "Status Message: " + result.getStatus().getStatusMessage())
@@ -420,8 +414,8 @@ public class SocialLoginActivity extends BaseAppCompatActivity implements View.O
 
                     JSONObject jsonObjectUser = jsonArray.getJSONObject(0);
 
-                    String email = jsonObjectUser.getString("email").toString();
-                    String password = jsonObjectUser.getString("email").toString();
+                    String email = jsonObjectUser.getString("email");
+                    String password = jsonObjectUser.getString("password");
 
                     jsonObject = new JSONObject();
                     jsonObject.put("email", email);
@@ -454,19 +448,18 @@ public class SocialLoginActivity extends BaseAppCompatActivity implements View.O
                                 }).show();
 
                     } else {
-                        singleUser.setNick(jsonObjectUser.getString("nick").toString());
-                        singleUser.setEmail(jsonObjectUser.getString("email").toString());
-                        singleUser.setGender(jsonObjectUser.getString("gender").toString());
+                        singleUser.setNick(jsonObjectUser.getString("nick"));
+                        singleUser.setEmail(jsonObjectUser.getString("email"));
+                        singleUser.setGender(jsonObjectUser.getString("gender"));
 
                         try {
-                            singleUser.setPicture(jsonObjectUser.getString("picture").toString());
+                            singleUser.setPath(jsonObjectUser.getString("picture"));
                         } catch (Exception e) {
-                            singleUser.setPicture("0");
                         }
 
-                        singleUser.setId(jsonObjectUser.getString("id").toString());
-                        singleUser.setRace(jsonObjectUser.getString("race").toString());
-                        singleUser.setDob(jsonObjectUser.getString("dob").toString());
+                        singleUser.setId(jsonObjectUser.getString("id"));
+                        singleUser.setRace(jsonObjectUser.getString("race"));
+                        singleUser.setDob(jsonObjectUser.getString("dob"));
                         singleUser.setUser_token(jsonObject.get("token").toString());
 
                         SharedPreferences sharedPreferences = getSharedPreferences(Constants.Pref.PREFS_NAME, 0);
@@ -481,23 +474,19 @@ public class SocialLoginActivity extends BaseAppCompatActivity implements View.O
                     }
                 } else {
                     //if (type != Constants.Bundle.FACEBOOK) {
-                        Bundle dtoBundle = new Bundle();
+                    Bundle dtoBundle = new Bundle();
 
-                        dtoBundle.putBoolean(Constants.Bundle.SOCIAL_NEW, true);
-                        dtoBundle.putBoolean(Constants.Bundle.NEW_MEMBER, false);
-                        dtoBundle.putBoolean(Constants.Bundle.MAIN_MEMBER, false);
+                    dtoBundle.putBoolean(Constants.Bundle.SOCIAL_NEW, true);
+                    dtoBundle.putBoolean(Constants.Bundle.NEW_MEMBER, false);
+                    dtoBundle.putBoolean(Constants.Bundle.MAIN_MEMBER, false);
 
-                        DTO.object = null;
-                        navigateTo(UserActivity.class, dtoBundle);
+                    DTO.object = null;
+                    navigateTo(UserActivity.class, dtoBundle);
                     //}
                 }
             }
 
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        } catch (JSONException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -530,10 +519,6 @@ public class SocialLoginActivity extends BaseAppCompatActivity implements View.O
 
     @Override
     public void onConnectionFailed(ConnectionResult result) {
-
-    }
-
-    private void updateUI(boolean isSignedIn) {
 
     }
 

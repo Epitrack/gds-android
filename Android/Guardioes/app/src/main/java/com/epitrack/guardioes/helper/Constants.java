@@ -11,7 +11,8 @@ public final class Constants {
 
     public static final int MAX_USER = 10;
 
-    public static final String DIRECTORY_TEMP = "Temp";
+    public static final String PATH = "file://";
+    public static final String DIRECTORY_TEMP = "Guardioes";
 
     public static class Google {
 
@@ -67,10 +68,11 @@ public final class Constants {
 
     public static class Bundle {
 
-        public static final String WELCOME = "welcome";
-        public static final String TIP = "tip";
-        public static final String AVATAR = "avatar";
-        public static final String URI = "uri";
+        public static final String WELCOME = "Welcome";
+        public static final String TIP = "Tip";
+        public static final String AVATAR = "Avatar";
+        public static final String IMAGE = "Image";
+        public static final String URI = "Uri";
         public static final String MAIN_MEMBER = "main_member";
         public static final String BAD_STATE = "has_bad_state";
         public static final String NEW_MEMBER = "new_member";
@@ -78,7 +80,7 @@ public final class Constants {
         public static final String GOOGLE = "google";
         public static final String FACEBOOK = "facebook";
         public static final String TWITTER = "twitter";
-        public static final String EMAIL = "email";
+        public static final String EMAIL = "Email";
         public static final String ACCESS_SOCIAL = "access_social";
         public static final String PATH = "Path";
         public static final String NAME = "Name";

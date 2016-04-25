@@ -9,11 +9,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.epitrack.guardioes.R;
+import com.epitrack.guardioes.helper.AvatarHelper;
 import com.epitrack.guardioes.model.SingleUser;
 import com.epitrack.guardioes.model.User;
 import com.github.siyamed.shapeimageview.CircularImageView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -22,13 +22,12 @@ import java.util.List;
 public class UserAdapter extends ArrayAdapter<User> {
 
     private final UserListener listener;
+
     SingleUser singleUser = SingleUser.getInstance();
-    private List<User> userArrayList;
 
     public UserAdapter(final Context context, final List<User> userList, final UserListener listener) {
         super(context, 0, userList);
 
-        this.userArrayList = userList;
         this.listener = listener;
     }
 
@@ -43,7 +42,7 @@ public class UserAdapter extends ArrayAdapter<User> {
     @Override
     public View getView(final int position, final View convertView, final ViewGroup viewGroup) {
         View view = convertView;
-        User user;
+
         ViewHolder viewHolder;
 
         if (view == null) {
@@ -83,7 +82,7 @@ public class UserAdapter extends ArrayAdapter<User> {
             viewHolder = (ViewHolder) view.getTag();
         }
 
-        user = userArrayList.get(position); //getItem(position);
+        final User user = getItem(position);
 
         if (user.getId().equals(singleUser.getId())) {
             viewHolder.imageTrash = (ImageView) view.findViewById(R.id.image_view_trash);
@@ -92,7 +91,8 @@ public class UserAdapter extends ArrayAdapter<User> {
 
         viewHolder.textViewName.setText(user.getNick());
         viewHolder.textViewType.setText(user.getType());
-        viewHolder.imageViewImage = SingleUser.getInstance().getImageProfile(viewHolder.imageViewImage, user);
+
+        new AvatarHelper().loadImage(viewGroup.getContext(), viewHolder.imageViewImage, user);
 
         return view;
     }

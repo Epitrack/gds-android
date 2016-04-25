@@ -221,14 +221,13 @@ public class DiaryActivity extends BaseAppCompatActivity implements ParentListen
         public void onSuccess(final List<User> parentList) {
             loadDialog.dismiss();
 
-            parentList.add(0, new User(R.drawable.image_avatar_small_8,
+            parentList.add(0, new User(singleUser.getImage(),
                     singleUser.getNick(),
                     singleUser.getEmail(),
                     singleUser.getId(),
                     singleUser.getDob(),
                     singleUser.getRace(),
-                    singleUser.getGender(),
-                    singleUser.getPicture()));
+                    singleUser.getGender()));
 
             recyclerView.setAdapter(new MemberAdapter(DiaryActivity.this, DiaryActivity.this, parentList));
         }

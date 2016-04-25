@@ -3,17 +3,17 @@ package com.epitrack.guardioes.view.survey;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.DisplayMetrics;
 import android.widget.TextView;
 
 import com.epitrack.guardioes.R;
+import com.epitrack.guardioes.helper.AvatarHelper;
+import com.epitrack.guardioes.helper.Constants;
+import com.epitrack.guardioes.helper.DateFormat;
+import com.epitrack.guardioes.helper.DialogBuilder;
 import com.epitrack.guardioes.model.SingleUser;
 import com.epitrack.guardioes.model.User;
 import com.epitrack.guardioes.request.UserRequester;
 import com.epitrack.guardioes.request.base.RequestListener;
-import com.epitrack.guardioes.helper.Constants;
-import com.epitrack.guardioes.helper.DateFormat;
-import com.epitrack.guardioes.helper.DialogBuilder;
 import com.epitrack.guardioes.view.base.BaseAppCompatActivity;
 import com.epitrack.guardioes.view.dialog.LoadDialog;
 import com.epitrack.guardioes.view.menu.profile.UserActivity;
@@ -37,7 +37,7 @@ public class SelectParticipantActivity extends BaseAppCompatActivity implements 
     @Bind(R.id.text_view_age)
     TextView textViewAge;
 
-    @Bind(R.id.image_view_photo)
+    @Bind(R.id.image_view_image)
     CircularImageView imageViewAvatar;
 
     @Bind(R.id.recycler_view)
@@ -61,29 +61,7 @@ public class SelectParticipantActivity extends BaseAppCompatActivity implements 
         textViewAge.setText(j + " Anos");
         textViewId.setText(singleUser.getId());
 
-        DisplayMetrics metrics = getResources().getDisplayMetrics();
-        int densityDpi = (int) (metrics.density * 160f);
-        int width = 0;
-        int height = 0;
-
-        if (densityDpi == DisplayMetrics.DENSITY_LOW) {
-            width = 90;
-            height = 90;
-        } else if (densityDpi == DisplayMetrics.DENSITY_MEDIUM) {
-            width = 120;
-            height = 120;
-        } else if (densityDpi == DisplayMetrics.DENSITY_HIGH) {
-            width = 180;
-            height = 180;
-        } else if (densityDpi >= DisplayMetrics.DENSITY_XHIGH) {
-            width = 240;
-            height = 240;
-        }
-
-        imageViewAvatar.getLayoutParams().width = width;
-        imageViewAvatar.getLayoutParams().height = height;
-
-        imageViewAvatar = singleUser.getImageProfile(imageViewAvatar, null);
+        new AvatarHelper().loadImage(this, imageViewAvatar, singleUser);
 
         recyclerView.setHasFixedSize(true);
 
@@ -135,7 +113,7 @@ public class SelectParticipantActivity extends BaseAppCompatActivity implements 
                 .setAction("Survey Add New Member Button")
                 .build());
 
-        if (recyclerView.getAdapter().getItemCount() == Constants.MAX_USER) {
+        if (recyclerView.getAdapter().getItemCount() - 1 == Constants.MAX_USER) {
 
             new DialogBuilder(this).load()
                     .title(R.string.app_name)
@@ -154,7 +132,7 @@ public class SelectParticipantActivity extends BaseAppCompatActivity implements 
         }
     }
 
-    @OnClick(R.id.image_view_photo)
+    @OnClick(R.id.image_view_image)
     public void onUserSelect() {
 
         getTracker().send(new HitBuilders.EventBuilder()

@@ -126,12 +126,12 @@ public class LoginActivity extends BaseAppCompatActivity implements SocialAccoun
                     jsonObject.put("gcm_token", shpGCMToken.getString(Constants.Push.SENDER_ID, ""));
 
                     if (prefUserToken == prefImagUserToken) {
-                        singleUser.setPicture(prefUserToken);
+                        //singleUser.setImage(prefUserToken);
                     } else {
                         try {
-                            singleUser.setPicture(jsonObjectUser.get("picture").toString());
+                            singleUser.setImage(jsonObjectUser.getInt("picture"));
                         } catch (Exception e) {
-                            singleUser.setPicture("0");
+                            singleUser.setImage(0);
                         }
                     }
 
@@ -372,7 +372,7 @@ public class LoginActivity extends BaseAppCompatActivity implements SocialAccoun
                     singleUser.setRace(jsonObjectUser.getString("race"));
                     singleUser.setDob(jsonObjectUser.getString("dob"));
                     singleUser.setUser_token(jsonObject.get("token").toString());
-                    singleUser.setPicture(jsonObjectUser.get("picture").toString());
+                    singleUser.setImage(jsonObjectUser.getInt("picture"));
                     singleUser.setHashtags(jsonObjectUser.getJSONArray("hashtags"));
 
                     sharedPreferences = getSharedPreferences(Constants.Pref.PREFS_NAME, 0);

@@ -76,16 +76,13 @@ public class ProfileActivity extends BaseAppCompatActivity implements UserListen
 
             final SingleUser user = SingleUser.getInstance();
 
-            parentList.add(0, new User(R.drawable.image_avatar_small_2,
+            parentList.add(0, new User(user.getImage(),
                     user.getNick(),
                     user.getEmail(),
                     user.getId(),
                     user.getDob(),
                     user.getRace(),
-                    user.getGender(),
-                    user.getPicture(),
-                    "",
-                    user.getFile()));
+                    user.getGender()));
 
             listView.setAdapter(new UserAdapter(ProfileActivity.this, parentList, ProfileActivity.this));
         }
@@ -151,11 +148,10 @@ public class ProfileActivity extends BaseAppCompatActivity implements UserListen
         bundle.putString("email", user.getEmail());
         bundle.putString("password", user.getPassword());
         bundle.putString("id", user.getId());
-        bundle.putString("picture", user.getPicture());
+        bundle.putInt("picture", user.getImage());
         bundle.putString("relationship", user.getRelationship());
-        bundle.putString("file", user.getFile());
 
-        if (user.getPicture().equals("0")) {
+        if (user.getImage() == 0) {
             if (user.getGender().equals("F")) {
                 switch (user.getRace()) {
                     case "branco":
@@ -195,7 +191,7 @@ public class ProfileActivity extends BaseAppCompatActivity implements UserListen
             }
 
         } else {
-            bundle.putString("picture", user.getPicture());
+            bundle.putInt("picture", user.getImage());
         }
 
         // TODO: Check if is main member..

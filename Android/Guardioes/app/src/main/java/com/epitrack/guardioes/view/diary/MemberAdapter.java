@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.epitrack.guardioes.R;
+import com.epitrack.guardioes.helper.AvatarHelper;
 import com.epitrack.guardioes.model.SingleUser;
 import com.epitrack.guardioes.model.User;
 import com.epitrack.guardioes.helper.ViewUtility;
@@ -34,10 +35,9 @@ public class MemberAdapter extends RecyclerView.Adapter<MemberAdapter.ViewHolder
 
     private final ParentListener listener;
 
-    private List<User> usertList = new ArrayList<>();
+    private List<User> userList = new ArrayList<>();
 
     private Context context;
-    private String userId;
     private SingleUser singleUser = SingleUser.getInstance();
 
     public MemberAdapter(final Context context, final ParentListener listener, final List<User> parentList) {
@@ -47,7 +47,7 @@ public class MemberAdapter extends RecyclerView.Adapter<MemberAdapter.ViewHolder
         }
 
         this.listener = listener;
-        this.usertList = parentList;
+        this.userList = parentList;
         this.context = context;
     }
 
@@ -56,7 +56,7 @@ public class MemberAdapter extends RecyclerView.Adapter<MemberAdapter.ViewHolder
         @Bind(R.id.text_view_name)
         TextView textViewName;
 
-        @Bind(R.id.image_view_photo)
+        @Bind(R.id.image_view_image)
         CircularImageView imageViewPhoto;
 
         @Bind(R.id.view_select)
@@ -102,7 +102,7 @@ public class MemberAdapter extends RecyclerView.Adapter<MemberAdapter.ViewHolder
     @Override
     public void onBindViewHolder(final ViewHolder viewHolder, final int position) {
 
-        final User parent = usertList.get(position);
+        final User parent = userList.get(position);
 
         if (position == SELECT) {
 
@@ -131,68 +131,14 @@ public class MemberAdapter extends RecyclerView.Adapter<MemberAdapter.ViewHolder
 
         viewHolder.textViewName.setText(parent.getNick());
 
-        userId = parent.getId();
-        viewHolder.textViewId.setText(userId);
+        viewHolder.textViewId.setText(parent.getId());
 
-        viewHolder.imageViewPhoto = singleUser.getImageProfile(viewHolder.imageViewPhoto, parent);
-
-        /*if (parent.getPicture().equals("")) {
-            parent.setPicture("0");
-        }
-
-        viewHolder.imageViewPhoto = singleUser.getImageProfile(viewHolder.imageViewPhoto, parent);
-
-        if (parent.getPicture().length() > 2) {
-            String url = parent.getPicture();
-            if (url.substring(0, 4).toLowerCase().equals("http")) {
-                parent.setPicture("0");
-                if (parent.getGender().equals("M")) {
-
-                    if (parent.getRace().equals("branco") || parent.getRace().equals("amarelo")) {
-                        viewHolder.imageViewPhoto.setImageResource(R.drawable.image_avatar_6);
-                    } else {
-                        viewHolder.imageViewPhoto.setImageResource(R.drawable.image_avatar_4);
-                    }
-                } else {
-
-                    if (parent.getRace().equals("branco") || parent.getRace().equals("amarelo")) {
-                        viewHolder.imageViewPhoto.setImageResource(R.drawable.image_avatar_8);
-                    } else {
-                        viewHolder.imageViewPhoto.setImageResource(R.drawable.image_avatar_7);
-                    }
-                }
-            } else {
-                Uri uri = Uri.parse(parent.getPicture());
-                viewHolder.imageViewPhoto.setImageURI(uri);
-            }
-        } else {
-            if (Integer.parseInt(parent.getPicture()) == 0) {
-
-                if (parent.getGender().equals("M")) {
-
-                    if (parent.getRace().equals("branco") || parent.getRace().equals("amarelo")) {
-                        viewHolder.imageViewPhoto.setImageResource(R.drawable.image_avatar_6);
-                    } else {
-                        viewHolder.imageViewPhoto.setImageResource(R.drawable.image_avatar_4);
-                    }
-                } else {
-
-                    if (parent.getRace().equals("branco") || parent.getRace().equals("amarelo")) {
-                        viewHolder.imageViewPhoto.setImageResource(R.drawable.image_avatar_8);
-                    } else {
-                        viewHolder.imageViewPhoto.setImageResource(R.drawable.image_avatar_7);
-                    }
-                }
-            } else {
-                viewHolder.imageViewPhoto.setImageResource(Avatar.getBy(Integer.parseInt(parent.getPicture())).getLarge());
-            }
-        }*/
-
+        new AvatarHelper().loadImage(context, viewHolder.imageViewPhoto, singleUser);
     }
 
     @Override
     public int getItemCount() {
-        return usertList.size();
+        return userList.size();
     }
 
 }
