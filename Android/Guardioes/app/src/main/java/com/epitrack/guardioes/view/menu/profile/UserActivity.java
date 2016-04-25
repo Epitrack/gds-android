@@ -701,8 +701,8 @@ public class UserActivity extends BaseAppCompatActivity {
                 singleUser.setRace(jsonObjectUser.getString("race"));
                 singleUser.setDob(jsonObjectUser.getString("dob"));
                 singleUser.setUserToken(jsonObjectUser.get("token").toString());
-                singleUser.setPath(this.singleUser.getPath());
-
+                singleUser.setPath(mainMember ? path : this.singleUser.getPath());
+                
                 try {
                     singleUser.setImage(jsonObjectUser.getInt("picture"));
 
