@@ -121,6 +121,7 @@ public class UserActivity extends BaseAppCompatActivity {
 
         if (socialNew) {
             imageViewImage.setVisibility(View.INVISIBLE);
+
             new DialogBuilder(UserActivity.this).load()
                     .title(R.string.attention)
                     .content(R.string.new_user_social_media)
@@ -132,7 +133,9 @@ public class UserActivity extends BaseAppCompatActivity {
                         }
                     }).show();
         } else {
+
             imageViewImage.setVisibility(View.VISIBLE);
+
             loadUser();
         }
     }
@@ -308,7 +311,48 @@ public class UserActivity extends BaseAppCompatActivity {
 
     @OnClick(R.id.image_view_image)
     public void onImage() {
-        navigateForResult(AvatarActivity.class, Constants.RequestCode.IMAGE);
+
+        final Bundle bundle = new Bundle();
+
+        bundle.putBoolean(Constants.Bundle.MAIN_MEMBER, mainMember);
+
+        navigateForResult(AvatarActivity.class, Constants.RequestCode.IMAGE, bundle);
+    }
+
+    private boolean validate(final User user) {
+
+        if (!DateFormat.isDate(user.getDob())) {
+
+            new DialogBuilder(UserActivity.this).load()
+                    .title(R.string.attention)
+                    .content(R.string.dob_invalid)
+                    .positiveText(R.string.ok)
+                    .show();
+
+            return false;
+
+        } else if (DateFormat.getDateDiff(DateFormat.getDate(editTextBirthDate.getText().toString().trim())) > 120) {
+
+            new DialogBuilder(UserActivity.this).load()
+                    .title(R.string.attention)
+                    .content(R.string.dob_invalid)
+                    .positiveText(R.string.ok)
+                    .show();
+
+            return false;
+
+        } else if (DateFormat.getDateDiff(DateFormat.getDate(editTextBirthDate.getText().toString().trim())) < 0) {
+
+            new DialogBuilder(UserActivity.this).load()
+                    .title(R.string.attention)
+                    .content(R.string.dob_invalid)
+                    .positiveText(R.string.ok)
+                    .show();
+
+            return false;
+        }
+
+        return true;
     }
 
     @OnClick(R.id.button_add)
@@ -336,30 +380,7 @@ public class UserActivity extends BaseAppCompatActivity {
 
         user.setRelationship(relationship.toLowerCase());
 
-        if (!DateFormat.isDate(user.getDob())) {
-
-            new DialogBuilder(UserActivity.this).load()
-                    .title(R.string.attention)
-                    .content(R.string.dob_invalid)
-                    .positiveText(R.string.ok)
-                    .show();
-
-        } else if (DateFormat.getDateDiff(DateFormat.getDate(editTextBirthDate.getText().toString().trim())) > 120) {
-
-            new DialogBuilder(UserActivity.this).load()
-                    .title(R.string.attention)
-                    .content(R.string.dob_invalid)
-                    .positiveText(R.string.ok)
-                    .show();
-
-        } else if (DateFormat.getDateDiff(DateFormat.getDate(editTextBirthDate.getText().toString().trim())) < 0) {
-
-            new DialogBuilder(UserActivity.this).load()
-                    .title(R.string.attention)
-                    .content(R.string.dob_invalid)
-                    .positiveText(R.string.ok)
-                    .show();
-        } else {
+        if (validate(user)) {
 
             JSONObject jsonObject = new JSONObject();
             SimpleRequester simpleRequester = new SimpleRequester();
@@ -450,13 +471,14 @@ public class UserActivity extends BaseAppCompatActivity {
                     }
 
                 } else {
+
                     jsonObject.put("password", singleUser.getPassword());
                     jsonObject.put("app_token", user.getAppToken());
                     jsonObject.put("platform", user.getPlatform());
                     jsonObject.put("gl", singleUser.getGl());
                     jsonObject.put("tw", singleUser.getTw());
                     jsonObject.put("fb", singleUser.getFb());
-                    jsonObject.put("picture", "0");
+                    jsonObject.put("picture", singleUser.getImage());
                     jsonObject.put("gcm_token", shpGCMToken.getString(Constants.Push.SENDER_ID, ""));
 
                    /* try {
@@ -679,7 +701,7 @@ public class UserActivity extends BaseAppCompatActivity {
                 singleUser.setRace(jsonObjectUser.getString("race"));
                 singleUser.setDob(jsonObjectUser.getString("dob"));
                 singleUser.setUserToken(jsonObjectUser.get("token").toString());
-                singleUser.setPath(path);
+                singleUser.setPath(this.singleUser.getPath());
 
                 try {
                     singleUser.setImage(jsonObjectUser.getInt("picture"));
