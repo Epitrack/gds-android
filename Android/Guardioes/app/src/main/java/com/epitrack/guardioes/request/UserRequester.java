@@ -2,7 +2,6 @@ package com.epitrack.guardioes.request;
 
 import android.content.Context;
 
-import com.epitrack.guardioes.R;
 import com.epitrack.guardioes.model.User;
 import com.epitrack.guardioes.request.base.BaseRequester;
 import com.epitrack.guardioes.request.base.Method;
@@ -51,14 +50,13 @@ public class UserRequester extends BaseRequester {
 
                                 final JSONObject jsonObject = jsonArray.getJSONObject(i);
 
-                                final User user = new User(R.drawable.image_avatar_small_2,
+                                final User user = new User(json.getInt("picture"),
                                         jsonObject.getString("nick"),
                                         "",
                                         jsonObject.getString("id"),
                                         jsonObject.getString("dob"),
                                         jsonObject.getString("race"),
-                                        jsonObject.getString("gender"),
-                                        jsonObject.getString("picture"));
+                                        jsonObject.getString("gender"));
 
                                 try {
 
@@ -121,14 +119,13 @@ public class UserRequester extends BaseRequester {
 
                                 final JSONObject jsonObject = jsonArray.getJSONObject(i);
 
-                                final User user = new User(R.drawable.image_avatar_small_8,
+                                final User user = new User(json.getInt("picture"),
                                         jsonObject.getString("nick"),
                                         "",
                                         jsonObject.getString("id"),
                                         jsonObject.getString("dob"),
                                         jsonObject.getString("race"),
-                                        jsonObject.getString("gender"),
-                                        jsonObject.getString("picture"));
+                                        jsonObject.getString("gender"));
 
                                 parentList.add(user);
                             }

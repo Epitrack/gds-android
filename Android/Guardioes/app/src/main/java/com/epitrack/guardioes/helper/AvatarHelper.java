@@ -1,6 +1,7 @@
 package com.epitrack.guardioes.helper;
 
 import android.content.Context;
+import android.view.ViewTreeObserver;
 import android.widget.ImageView;
 
 import com.epitrack.guardioes.R;
@@ -18,14 +19,25 @@ public class AvatarHelper {
 
         } else {
 
-            final int width = view.getWidth();
-            final int height = view.getHeight();
+            view.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
 
-            Picasso.with(context).load(Constants.PATH + user.getPath())
-                    .memoryPolicy(MemoryPolicy.NO_CACHE)
-                    .resize(width, height)
-                    .centerCrop()
-                    .into(view);
+                @Override
+                public void onGlobalLayout() {
+
+                    final ImageView imageViewPhoto = (ImageView) view.findViewById(R.id.image_view);
+
+                    final int width = view.getWidth();
+                    final int height = view.getHeight();
+
+                    Picasso.with(context).load(Constants.PATH + user.getPath())
+                            .memoryPolicy(MemoryPolicy.NO_CACHE)
+                            .resize(width, height)
+                            .centerCrop()
+                            .into(view);
+
+                    view.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+                }
+            });
         }
     }
 

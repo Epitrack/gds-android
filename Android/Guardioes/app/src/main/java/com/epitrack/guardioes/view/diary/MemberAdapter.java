@@ -9,9 +9,9 @@ import android.widget.TextView;
 
 import com.epitrack.guardioes.R;
 import com.epitrack.guardioes.helper.AvatarHelper;
+import com.epitrack.guardioes.helper.ViewUtility;
 import com.epitrack.guardioes.model.SingleUser;
 import com.epitrack.guardioes.model.User;
-import com.epitrack.guardioes.helper.ViewUtility;
 import com.epitrack.guardioes.view.survey.ParentListener;
 import com.github.siyamed.shapeimageview.CircularImageView;
 
