@@ -1,13 +1,14 @@
 package com.epitrack.guardioes.view.menu.profile;
 
 import android.os.Bundle;
-
 import android.view.MenuItem;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.epitrack.guardioes.R;
+import com.epitrack.guardioes.helper.Constants;
+import com.epitrack.guardioes.helper.DialogBuilder;
 import com.epitrack.guardioes.model.SingleUser;
 import com.epitrack.guardioes.model.User;
 import com.epitrack.guardioes.request.UserRequester;
@@ -15,15 +16,12 @@ import com.epitrack.guardioes.request.base.Method;
 import com.epitrack.guardioes.request.base.RequestListener;
 import com.epitrack.guardioes.request.old.Requester;
 import com.epitrack.guardioes.request.old.SimpleRequester;
-import com.epitrack.guardioes.helper.Constants;
-import com.epitrack.guardioes.helper.DialogBuilder;
 import com.epitrack.guardioes.view.base.BaseAppCompatActivity;
 import com.epitrack.guardioes.view.dialog.LoadDialog;
 import com.google.android.gms.analytics.HitBuilders;
 
 import org.json.JSONObject;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.Bind;
@@ -152,7 +150,6 @@ public class ProfileActivity extends BaseAppCompatActivity implements UserListen
         bundle.putString("email", user.getEmail());
         bundle.putString("password", user.getPassword());
         bundle.putString("id", user.getId());
-        bundle.putInt("picture", user.getImage());
         bundle.putString("relationship", user.getRelationship());
 
         if (user.getImage() == 0) {
@@ -202,6 +199,7 @@ public class ProfileActivity extends BaseAppCompatActivity implements UserListen
         if (singleUser.getId().equals(user.getId())) {
             bundle.putBoolean(Constants.Bundle.MAIN_MEMBER, true);
         }
+
         navigateTo(UserActivity.class, bundle);
     }
 
@@ -269,8 +267,10 @@ public class ProfileActivity extends BaseAppCompatActivity implements UserListen
             Toast.makeText(getApplicationContext(), R.string.generic_error, Toast.LENGTH_SHORT).show();
 
         } else {
+
             Toast.makeText(getApplicationContext(), R.string.delete_user, Toast.LENGTH_SHORT).show();
-            listView.setAdapter(new UserAdapter(this, new ArrayList<User>(), this));
+
+            new UserRequester(this).getAllProfiles(SingleUser.getInstance().getId(), new UserHandler());
         }
     }
 }
