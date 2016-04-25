@@ -78,7 +78,10 @@ public class AvatarActivity extends BaseAppCompatActivity implements AdapterView
 
     @Override
     public boolean onCreateOptionsMenu(final Menu menu) {
-        getMenuInflater().inflate(R.menu.avatar, menu);
+
+        if (getIntent().getBooleanExtra(Constants.Bundle.MAIN_MEMBER, false)) {
+            getMenuInflater().inflate(R.menu.avatar, menu);
+        }
 
         return true;
     }
@@ -212,8 +215,6 @@ public class AvatarActivity extends BaseAppCompatActivity implements AdapterView
                 .build());
 
         final Intent intent = new Intent();
-
-        Avatar a = handler.getAvatar();
 
         intent.putExtra(Constants.Bundle.AVATAR, handler.getAvatar());
 
