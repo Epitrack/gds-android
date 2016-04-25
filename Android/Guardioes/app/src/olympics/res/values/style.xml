@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Theme.Home" parent="Theme.AppCompat.Light">
+        <item name="colorPrimary">@color/primary_light</item>
+        <item name="colorPrimaryDark">@color/primary_dark</item>
+
+        <item name="actionBarTheme">@style/Theme.ActionBar</item>
+        <item name="actionBarStyle">@style/Theme.Style.ActionBar</item>
+        <item name="drawerArrowStyle">@style/Theme.DrawerArrow</item>
+
+        <item name="colorAccent">@color/blue_light</item>
+
+        <item name="bottomSheetStyle">@style/BottomSheet.Share</item>
+
+        <item name="buttonStyle">@style/Theme.Button</item>
+
+        <item name="android:dialogTheme">@style/Theme.NotifyDialog</item>
+
+        <item name="android:textColor">@android:color/white</item>
+
+        <item name="actionMenuTextColor">@android:color/white</item>
+        <item name="android:actionMenuTextAppearance">@style/TextMenu</item>
+    </style>
+
+    <style name="TextMenu" parent="TextAppearance.AppCompat.Menu">
+        <item name="android:fontFamily">sans-serif-light</item>
+    </style>
+
+    <style name="Theme.ActionBar" parent="ThemeOverlay.AppCompat.ActionBar">
+        <item name="colorControlNormal">@android:color/white</item>
+    </style>
+
+    <style name="Theme.Style.ActionBar" parent="Widget.AppCompat.Light.ActionBar.Solid">
+        <item name="titleTextStyle">@style/Theme.ActionBar.Text</item>
+    </style>
+
+    <style name="Theme.Style.ActionBar.Logo" parent="Widget.AppCompat.Light.ActionBar.Solid">
+        <item name="titleTextStyle">@style/Theme.ActionBar.Text</item>
+        <item name="icon">@drawable/image_logo_small</item>
+        <item name="displayOptions">useLogo|showHome</item>
+    </style>
+
+    <style name="Theme.ActionBar.Text" parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="Theme.DrawerArrow" parent="Widget.AppCompat.DrawerArrowToggle">
+        <item name="color">@android:color/white</item>
+    </style>
+
+    <style name="Theme.Button" parent="Widget.AppCompat.Button">
+        <item name="android:textAllCaps">false</item>
+    </style>
+
+    <style name="Theme.NotifyDialog" parent="Theme.AppCompat.Light.Dialog">
+        <item name="android:windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.Survey" parent="Theme.AppCompat.Light">
+        <item name="colorPrimary">@android:color/transparent</item>
+        <item name="colorPrimaryDark">@color/translucent_black_light</item>
+        <item name="windowActionBarOverlay">true</item>
+        <item name="android:windowBackground">@drawable/background_blue</item>
+
+        <item name="actionBarTheme">@style/Theme.ActionBar</item>
+        <item name="actionBarStyle">@style/Theme.Style.ActionBar.Logo</item>
+        <item name="drawerArrowStyle">@style/Theme.DrawerArrow</item>
+
+        <item name="android:textAllCaps">false</item>
+
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="Theme.ActionBar.Survey" parent="Theme.AppCompat.Light">
+        <item name="colorPrimary">@color/primary_light</item>
+        <item name="colorPrimaryDark">@color/primary_dark</item>
+
+        <item name="android:windowBackground">@drawable/background_blue</item>
+
+        <item name="actionBarTheme">@style/Theme.ActionBar</item>
+        <item name="actionBarStyle">@style/Theme.Style.ActionBar.Logo</item>
+        <item name="drawerArrowStyle">@style/Theme.DrawerArrow</item>
+
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="Theme.ActionBar.Profile" parent="Theme.AppCompat.Light">
+        <item name="colorPrimary">@android:color/transparent</item>
+        <item name="colorPrimaryDark">@color/translucent_black_light</item>
+        <item name="windowActionBarOverlay">true</item>
+        <item name="android:windowBackground">@drawable/background_blue</item>
+
+        <item name="actionBarTheme">@style/Theme.ActionBar</item>
+        <item name="actionBarStyle">@style/Theme.Style.ActionBar.Logo</item>
+        <item name="drawerArrowStyle">@style/Theme.DrawerArrow</item>
+
+        <item name="android:editTextStyle">@style/Theme.EditText.Grey</item>
+        <item name="android:spinnerStyle">@style/Theme.Spinner</item>
+
+        <item name="colorControlNormal">@color/translucent_black_bright</item>
+        <item name="colorControlActivated">@color/translucent_black_bright</item>
+
+        <item name="android:textAllCaps">false</item>
+
+        <item name="android:textColor">@color/grey_dark</item>
+    </style>
+
+    <style name="Text.EditText.Label" parent="@android:style/TextAppearance">
+        <item name="android:textSize">13dp</item>
+        <item name="android:textColor">@color/bluish</item>
+    </style>
+
+    <style name="TextHeader">
+        <item name="android:textSize">30dp</item>
+        <item name="android:layout_marginTop">25dp</item>
+    </style>
+
+    <style name="Theme.NoActionBar" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimaryDark">@color/translucent_black_light</item>
+        <item name="android:windowBackground">@drawable/background_map</item>
+
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="Theme.NoActionBar.Share" parent="Theme.NoActionBar">
+        <item name="windowActionBarOverlay">true</item>
+        <item name="android:windowBackground">@drawable/background_blue</item>
+    </style>
+
+    <style name="Theme.Transparent.ActionBar" parent="Theme.AppCompat.Light">
+        <item name="colorPrimary">@android:color/transparent</item>
+        <item name="colorPrimaryDark">@color/translucent_black_light</item>
+        <item name="windowActionBarOverlay">true</item>
+        <item name="android:windowBackground">@drawable/background_map</item>
+
+        <item name="actionBarTheme">@style/Theme.ActionBar</item>
+        <item name="drawerArrowStyle">@style/Theme.DrawerArrow</item>
+
+        <item name="android:editTextStyle">@style/Theme.EditText.White</item>
+        <item name="android:spinnerStyle">@style/Theme.Spinner</item>
+        <item name="android:spinnerItemStyle">@style/Theme.Spinner.Item</item>
+
+        <item name="colorControlNormal">@android:color/white</item>
+        <item name="colorControlActivated">@android:color/white</item>
+        <item name="colorControlHighlight">@android:color/white</item>
+
+        <item name="android:textSize">17dp</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+
+    <style name="Theme.Transparent.ActionBarTutorial" parent="Theme.AppCompat.Light">
+        <item name="colorPrimary">@android:color/transparent</item>
+        <item name="colorPrimaryDark">@color/translucent_black_light</item>
+        <item name="windowActionBarOverlay">true</item>
+        <item name="android:windowBackground">@drawable/background_map</item>
+
+        <item name="actionBarTheme">@style/Theme.ActionBar</item>
+        <item name="drawerArrowStyle">@style/Theme.DrawerArrow</item>
+
+        <item name="android:editTextStyle">@style/Theme.EditText.White</item>
+        <item name="android:spinnerStyle">@style/Theme.Spinner</item>
+        <item name="android:spinnerItemStyle">@style/Theme.Spinner.Item</item>
+
+        <item name="colorControlNormal">@android:color/white</item>
+        <item name="colorControlActivated">@android:color/white</item>
+        <item name="colorControlHighlight">@android:color/white</item>
+
+        <item name="android:textSize">17dp</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="Notice" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="windowActionBarOverlay">true</item>
+        <item name="colorPrimaryDark">@color/translucent_black_light</item>
+    </style>
+
+    <style name="EditText" parent="Widget.AppCompat.EditText">
+        <item name="android:paddingLeft">7dp</item>
+        <item name="android:paddingRight">7dp</item>
+        <item name="android:textSize">15dp</item>
+        <item name="android:maxLines">1</item>
+    </style>
+
+    <style name="Theme.EditText.White" parent="EditText">
+
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textColorHint">@color/translucent_white_light</item>
+    </style>
+
+    <style name="Theme.EditText.Grey" parent="EditText">
+        <item name="android:textColor">@color/grey_dark</item>
+        <item name="android:textColorHint">@color/grey_dark</item>
+    </style>
+
+    <style name="Theme.Spinner" parent="Widget.AppCompat.Spinner.Underlined">
+
+    </style>
+
+    <style name="Theme.Spinner.Item" parent="android:Widget.TextView.SpinnerItem">
+        <item name="android:textAppearance">@style/Theme.Spinner.Text</item>
+    </style>
+
+    <style name="Theme.Spinner.Text" parent="android:TextAppearance.Widget.TextView.SpinnerItem">
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="Theme.Menu" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryDark">@color/primary_dark</item>
+        <item name="colorAccent">@color/blue_light</item>
+
+        <item name="drawerArrowStyle">@style/Theme.DrawerArrow</item>
+    </style>
+
+    <style name="ActionBarMenu">
+        <item name="android:textColorPrimary">@android:color/white</item>
+    </style>
+
+    <style name="TextHint">
+        <item name="android:textSize">15dp</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="TextHome">
+        <item name="android:textSize">15dp</item>
+        <item name="android:fontFamily">sans-serif-light</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:layout_gravity">center</item>
+    </style>
+
+    <style name="TextHintLight">
+        <item name="android:textSize">15dp</item>
+        <item name="android:textColor">@color/translucent_white_light</item>
+    </style>
+
+    <style name="TextWelcomeName">
+        <item name="android:textSize">21dp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="TextWelcomeMessage">
+        <item name="android:textSize">15dp</item>
+        <item name="android:fontFamily">sans-serif-light</item>
+    </style>
+
+    <style name="BottomSheet.Share" parent="BottomSheet.Dialog">
+        <item name="android:textColorPrimary">@color/translucent_black_dark</item>
+        <item name="android:textColorSecondary">@color/translucent_black_dark</item>
+        <item name="android:textColorHint">@color/translucent_black_dark</item>
+    </style>
+
+    <style name="Theme.MyProgressDialog" parent="@style/Theme.NotifyDialog">
+        <item name="android:textColor">@color/white_dark</item>
+        <item name="android:colorBackground">@color/blue_dark</item>
+        <item name="android:textSize">15dp</item>
+        <item name="android:fontFamily">sans-serif-light</item>
+    </style>
+
+    <style name="StyledIndicators" parent="@android:style/Theme.Light">
+        <item name="vpiCirclePageIndicatorStyle">@style/CustomLinePageIndicator</item>
+    </style>
+
+    <style name="CustomLinePageIndicator">
+        <item name="strokeWidth">4dp</item>
+        <item name="lineWidth">30dp</item>
+        <item name="unselectedColor">#FF888888</item>
+        <item name="selectedColor">#FF880000</item>
+    </style>
+
+    <style name="Theme.Base.Dialog" parent="Theme.AppCompat.Light.Dialog">
+        <item name="android:windowNoTitle">true</item>
+    </style>
+
+    <style name="LoadDialog" parent="Theme.AppCompat.Light.Dialog">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+
+        <item name="colorAccent">@color/primary</item>
+    </style>
+
+</resources>

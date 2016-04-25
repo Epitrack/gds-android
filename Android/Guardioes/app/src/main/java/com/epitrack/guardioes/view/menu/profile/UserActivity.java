@@ -702,7 +702,7 @@ public class UserActivity extends BaseAppCompatActivity {
                 singleUser.setDob(jsonObjectUser.getString("dob"));
                 singleUser.setUserToken(jsonObjectUser.get("token").toString());
                 singleUser.setPath(mainMember ? path : this.singleUser.getPath());
-                
+
                 try {
                     singleUser.setImage(jsonObjectUser.getInt("picture"));
 

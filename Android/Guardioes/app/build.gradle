@@ -16,6 +16,19 @@ android {
         multiDexEnabled true
     }
 
+    productFlavors {
+
+        normal {
+
+            applicationId = "com.epitrack.guardioes"
+        }
+
+        olympics {
+
+            applicationId = "com.epitrack.guardioes"
+        }
+    }
+
     buildTypes {
 
         release {
