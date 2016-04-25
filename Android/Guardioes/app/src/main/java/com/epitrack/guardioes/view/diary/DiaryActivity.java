@@ -231,6 +231,8 @@ public class DiaryActivity extends BaseAppCompatActivity implements ParentListen
 
             user.setPath(singleUser.getPath());
 
+            parentList.add(0, user);
+
             recyclerView.setAdapter(new MemberAdapter(DiaryActivity.this, DiaryActivity.this, parentList));
         }
     }
