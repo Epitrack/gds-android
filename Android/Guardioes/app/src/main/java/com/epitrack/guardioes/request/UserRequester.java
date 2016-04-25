@@ -2,6 +2,7 @@ package com.epitrack.guardioes.request;
 
 import android.content.Context;
 
+import com.epitrack.guardioes.helper.Logger;
 import com.epitrack.guardioes.model.User;
 import com.epitrack.guardioes.request.base.BaseRequester;
 import com.epitrack.guardioes.request.base.Method;
@@ -18,6 +19,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UserRequester extends BaseRequester {
+
+    private static final String TAG = UserRequester.class.getSimpleName();
 
     public UserRequester(final Context context) {
         super(context);
@@ -59,10 +62,10 @@ public class UserRequester extends BaseRequester {
 
                                 try {
 
-                                    user.setImage(json.getInt("picture"));
+                                    user.setImage(jsonObject.getInt("picture"));
 
                                 } catch (Exception e) {
-
+                                    Logger.logError(TAG, e.getMessage());
                                 }
 
                                 try {
@@ -78,7 +81,6 @@ public class UserRequester extends BaseRequester {
                                     user.setEmail(jsonObject.getString("email"));
 
                                 } catch (Exception e) {
-                                    user.setEmail("");
                                 }
 
                                 parentList.add(user);
@@ -136,7 +138,7 @@ public class UserRequester extends BaseRequester {
 
                                 try {
 
-                                    user.setImage(json.getInt("picture"));
+                                    user.setImage(jsonObject.getInt("picture"));
 
                                 } catch (Exception e) {
 
