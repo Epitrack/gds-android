@@ -19,7 +19,6 @@ import com.epitrack.guardioes.helper.Constants;
 import com.epitrack.guardioes.helper.Extension;
 import com.epitrack.guardioes.helper.FileHandler;
 import com.epitrack.guardioes.helper.Logger;
-import com.epitrack.guardioes.model.ProfileImage;
 import com.epitrack.guardioes.view.base.BaseAppCompatActivity;
 import com.epitrack.guardioes.view.base.ImageEditActivity;
 import com.google.android.gms.analytics.HitBuilders;
@@ -58,16 +57,11 @@ public class AvatarActivity extends BaseAppCompatActivity implements AdapterView
 
     private final SelectHandler handler = new SelectHandler();
 
-    private ProfileImage profileImage = ProfileImage.getInstance();
-
     @Override
     protected void onCreate(final Bundle bundle) {
         super.onCreate(bundle);
 
         setContentView(R.layout.avatar);
-
-        profileImage.setAvatar("");
-        profileImage.setPath(null);
 
         gridView.setAdapter(new AvatarAdapter(this, Avatar.values()));
 
@@ -149,13 +143,7 @@ public class AvatarActivity extends BaseAppCompatActivity implements AdapterView
     @Override
     protected void onActivityResult(final int requestCode, final int resultCode, final Intent intent) {
 
-        if (requestCode == Constants.RequestCode.IMAGE) {
-
-            if (resultCode == RESULT_OK) {
-                finish();
-            }
-
-        } else if (requestCode == REQUEST_CODE_CAMERA) {
+        if (requestCode == REQUEST_CODE_CAMERA) {
 
             if (resultCode == RESULT_OK) {
 
@@ -224,6 +212,8 @@ public class AvatarActivity extends BaseAppCompatActivity implements AdapterView
                 .build());
 
         final Intent intent = new Intent();
+
+        Avatar a = handler.getAvatar();
 
         intent.putExtra(Constants.Bundle.AVATAR, handler.getAvatar());
 

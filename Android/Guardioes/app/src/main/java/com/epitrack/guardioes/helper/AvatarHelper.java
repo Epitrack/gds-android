@@ -6,6 +6,7 @@ import android.widget.ImageView;
 
 import com.epitrack.guardioes.R;
 import com.epitrack.guardioes.model.User;
+import com.epitrack.guardioes.view.menu.profile.Avatar;
 import com.squareup.picasso.MemoryPolicy;
 import com.squareup.picasso.Picasso;
 
@@ -13,9 +14,15 @@ public class AvatarHelper {
 
     public void loadImage(final Context context, final ImageView view, final User user) {
 
-        if (user.getImage() != 0) {
+        if (user.getPath() == null) {
 
-            view.setImageResource(user.getImage());
+            if (user.getImage() == 0) {
+                setAvatar(view, user);
+
+            } else {
+
+                view.setImageResource(Avatar.getBy(user.getImage()).getLarge());
+            }
 
         } else {
 
@@ -23,8 +30,6 @@ public class AvatarHelper {
 
                 @Override
                 public void onGlobalLayout() {
-
-                    final ImageView imageViewPhoto = (ImageView) view.findViewById(R.id.image_view);
 
                     final int width = view.getWidth();
                     final int height = view.getHeight();
@@ -41,7 +46,7 @@ public class AvatarHelper {
         }
     }
 
-    public void setAvatar(final ImageView imageView, final User user) {
+    private void setAvatar(final ImageView imageView, final User user) {
 
         final int age = DateFormat.getDateDiff(user.getDob());
 

@@ -94,7 +94,7 @@ public class LoginActivity extends BaseAppCompatActivity implements SocialAccoun
             SingleUser singleUser = SingleUser.getInstance();
             JSONObject jsonObject = new JSONObject();
 
-            singleUser.setUser_token(prefUserToken);
+            singleUser.setUserToken(prefUserToken);
 
             SimpleRequester sendPostRequest = new SimpleRequester();
             sendPostRequest.setUrl(Requester.API_URL + "user/lookup/");
@@ -122,7 +122,7 @@ public class LoginActivity extends BaseAppCompatActivity implements SocialAccoun
                     singleUser.setId(jsonObjectUser.getString("id"));
                     singleUser.setRace(jsonObjectUser.getString("race"));
                     singleUser.setDob(jsonObjectUser.getString("dob"));
-                    singleUser.setUser_token(jsonObjectUser.get("token").toString());
+                    singleUser.setUserToken(jsonObjectUser.get("token").toString());
                     jsonObject.put("gcm_token", shpGCMToken.getString(Constants.Push.SENDER_ID, ""));
 
                     if (prefUserToken == prefImagUserToken) {
@@ -371,7 +371,7 @@ public class LoginActivity extends BaseAppCompatActivity implements SocialAccoun
                     singleUser.setId(jsonObjectUser.getString("id"));
                     singleUser.setRace(jsonObjectUser.getString("race"));
                     singleUser.setDob(jsonObjectUser.getString("dob"));
-                    singleUser.setUser_token(jsonObject.get("token").toString());
+                    singleUser.setUserToken(jsonObject.get("token").toString());
                     singleUser.setImage(jsonObjectUser.getInt("picture"));
                     singleUser.setHashtags(jsonObjectUser.getJSONArray("hashtags"));
 

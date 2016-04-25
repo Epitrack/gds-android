@@ -24,7 +24,6 @@ public class User {
     private String tw;
     private String fb;
     private String gl;
-    private String avatar;
     private JSONArray hashtags;
     private String relationship;
     private String versionBuild;
@@ -34,8 +33,7 @@ public class User {
 
     }
 
-    public User(int image, String nick, String email, String id, String dob, String race, String gender) {
-        this.image = image;
+    public User(String nick, String email, String id, String dob, String race, String gender) {
         this.nick = nick;
         this.email = email;
         this.id = id;
@@ -44,8 +42,7 @@ public class User {
         this.gender = gender;
     }
 
-    public User(int image, String nick, String email, String id, String dob, String race, String gender, String relationship) {
-        this.image = image;
+    public User(String nick, String email, String id, String dob, String race, String gender, String relationship) {
         this.nick = nick;
         this.email = email;
         this.id = id;
@@ -53,6 +50,16 @@ public class User {
         this.race = race;
         this.gender = gender;
         this.relationship = relationship;
+    }
+
+    public User(String nick, String email, String id, String dob, String race, String gender, int image) {
+        this.nick = nick;
+        this.email = email;
+        this.id = id;
+        this.dob = dob;
+        this.race = race;
+        this.gender = gender;
+        this.image = image;
     }
 
     public int getImage() {
@@ -167,7 +174,7 @@ public class User {
         return user_token;
     }
 
-    public void setUser_token(String user_token) {
+    public void setUserToken(String user_token) {
         this.user_token = user_token;
     }
 
@@ -193,14 +200,6 @@ public class User {
 
     public void setTw(String tw) {
         this.tw = tw;
-    }
-
-    public String getAvatar() {
-        return avatar;
-    }
-
-    public void setAvatar(String avatar) {
-        this.avatar = avatar;
     }
 
     public JSONArray getHashtags() {
@@ -255,7 +254,6 @@ public class User {
         this.tw = "";
         this.fb = "";
         this.gl = "";
-        this.avatar = "";
         this.hashtags = null;
         this.relationship = "";
         this.versionBuild = "";

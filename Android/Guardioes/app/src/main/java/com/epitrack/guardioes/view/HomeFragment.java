@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.epitrack.guardioes.R;
+import com.epitrack.guardioes.helper.AvatarHelper;
 import com.epitrack.guardioes.model.SingleUser;
 import com.epitrack.guardioes.view.base.BaseFragment;
 import com.epitrack.guardioes.view.diary.DiaryActivity;
@@ -58,6 +59,13 @@ public class HomeFragment extends BaseFragment {
         bind(view);
 
         textViewName.setText(getString(R.string.message_hello, singleUser.getNick()));
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        new AvatarHelper().loadImage(getActivity(), imageViewImage, SingleUser.getInstance());
     }
 
     @OnClick(R.id.image_view_image)

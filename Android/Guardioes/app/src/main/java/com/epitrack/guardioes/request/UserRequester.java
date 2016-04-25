@@ -50,13 +50,20 @@ public class UserRequester extends BaseRequester {
 
                                 final JSONObject jsonObject = jsonArray.getJSONObject(i);
 
-                                final User user = new User(json.getInt("picture"),
-                                        jsonObject.getString("nick"),
+                                final User user = new User(jsonObject.getString("nick"),
                                         "",
                                         jsonObject.getString("id"),
                                         jsonObject.getString("dob"),
                                         jsonObject.getString("race"),
                                         jsonObject.getString("gender"));
+
+                                try {
+
+                                    user.setImage(json.getInt("picture"));
+
+                                } catch (Exception e) {
+
+                                }
 
                                 try {
 
@@ -119,13 +126,21 @@ public class UserRequester extends BaseRequester {
 
                                 final JSONObject jsonObject = jsonArray.getJSONObject(i);
 
-                                final User user = new User(json.getInt("picture"),
+                                final User user = new User(
                                         jsonObject.getString("nick"),
                                         "",
                                         jsonObject.getString("id"),
                                         jsonObject.getString("dob"),
                                         jsonObject.getString("race"),
                                         jsonObject.getString("gender"));
+
+                                try {
+
+                                    user.setImage(json.getInt("picture"));
+
+                                } catch (Exception e) {
+
+                                }
 
                                 parentList.add(user);
                             }

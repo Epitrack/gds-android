@@ -460,7 +460,7 @@ public class SocialLoginActivity extends BaseAppCompatActivity implements View.O
                         singleUser.setId(jsonObjectUser.getString("id"));
                         singleUser.setRace(jsonObjectUser.getString("race"));
                         singleUser.setDob(jsonObjectUser.getString("dob"));
-                        singleUser.setUser_token(jsonObject.get("token").toString());
+                        singleUser.setUserToken(jsonObject.get("token").toString());
 
                         SharedPreferences sharedPreferences = getSharedPreferences(Constants.Pref.PREFS_NAME, 0);
                         SharedPreferences.Editor editor = sharedPreferences.edit();

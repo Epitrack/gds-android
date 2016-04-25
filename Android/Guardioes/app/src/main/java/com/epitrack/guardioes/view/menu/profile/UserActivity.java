@@ -89,8 +89,8 @@ public class UserActivity extends BaseAppCompatActivity {
 
     private SingleUser singleUser = SingleUser.getInstance();
 
+    private int image;
     private String path;
-    private int image = Integer.MIN_VALUE;
 
     private SharedPreferences shpGCMToken;
 
@@ -289,18 +289,11 @@ public class UserActivity extends BaseAppCompatActivity {
             textLayoutMail.setVisibility(View.VISIBLE);
             editTextMail.setEnabled(true);
             editTextMail.setVisibility(View.VISIBLE);
+
             User household = new User();
 
-            if (image == Integer.MIN_VALUE) {
-
-                household.setPath(path);
-                household.setImage(Integer.MIN_VALUE);
-
-            } else {
-
-                household.setPath(null);
-                household.setImage(image);
-            }
+            household.setPath(path);
+            household.setImage(image);
 
             household.setNick(nick);
             household.setDob(dob);
@@ -320,7 +313,7 @@ public class UserActivity extends BaseAppCompatActivity {
 
     @OnClick(R.id.button_add)
     public void onAdd() {
-        //Miquéias Lopes
+
         getTracker().send(new HitBuilders.EventBuilder()
                 .setCategory("Action")
                 .setAction("Create New Member/User Button")
@@ -330,11 +323,11 @@ public class UserActivity extends BaseAppCompatActivity {
 
         user.setNick(editTextNickname.getText().toString().trim());
         user.setDob(editTextBirthDate.getText().toString().trim().toLowerCase());
-        String gender = spinnerGender.getSelectedItem().toString();
-        gender = gender.substring(0, 1);
-        user.setGender(gender.toUpperCase());
+        user.setGender(spinnerGender.getSelectedItem().toString().substring(0, 1).toUpperCase());
         user.setRace(spinnerRace.getSelectedItem().toString().toLowerCase());
         user.setEmail(editTextMail.getText().toString().toLowerCase().trim());
+        user.setPath(path);
+        user.setImage(image);
 
         String relationship = spinnerRelationship.getSelectedItem().toString().toLowerCase();
         relationship = relationship.replace("ô", "o");
@@ -372,6 +365,7 @@ public class UserActivity extends BaseAppCompatActivity {
             SimpleRequester simpleRequester = new SimpleRequester();
 
             try {
+
                 jsonObject.put("nick", user.getNick());
                 jsonObject.put("dob", DateFormat.getDate(user.getDob()));
                 jsonObject.put("gender", user.getGender());
@@ -380,6 +374,7 @@ public class UserActivity extends BaseAppCompatActivity {
                 jsonObject.put("race", user.getRace());
                 jsonObject.put("relationship", user.getRelationship());
                 jsonObject.put("email", user.getEmail());
+                jsonObject.put("picture", user.getImage());
 
 //                LocationUtility locationUtility;
 //                try {
@@ -393,28 +388,10 @@ public class UserActivity extends BaseAppCompatActivity {
 //
 //                }
 
-                if (image == Integer.MIN_VALUE) {
-
-                    singleUser.setPath(path);
-                    singleUser.setImage(Integer.MIN_VALUE);
-
-                    jsonObject.put("file", path);
-                    jsonObject.put("picture", "0");
-
-                } else {
-
-                    singleUser.setPath(null);
-                    singleUser.setImage(image);
-
-                    jsonObject.put("picture", image);
-                }
-
-                if (newMenber) {
-                    jsonObject.put("picture", "0");
-                }
-
                 if (!socialNew) {
+
                     if (mainMember) {
+
                         String password = editTextPassword.getText().toString().trim();
                         String confirmPassword = editTextConfirmPassword.getText().toString().trim();
 
@@ -451,9 +428,12 @@ public class UserActivity extends BaseAppCompatActivity {
 
                     if (newMenber) {
                         jsonObject.put("user", singleUser.getId());
+
                     } else if (mainMember) {
+
                         jsonObject.put("gcm_token", shpGCMToken.getString(Constants.Push.SENDER_ID, ""));
                         jsonObject.put("id", singleUser.getId());
+
                     } else {
                         jsonObject.put("gcm_token", shpGCMToken.getString(Constants.Push.SENDER_ID, ""));
                         jsonObject.put("id", getIntent().getStringExtra("id"));
@@ -461,11 +441,14 @@ public class UserActivity extends BaseAppCompatActivity {
 
                     if (newMenber) {
                         simpleRequester.setUrl(Requester.API_URL + "household/create");
+
                     } else if (mainMember) {
                         simpleRequester.setUrl(Requester.API_URL + "user/update");
+
                     } else {
                         simpleRequester.setUrl(Requester.API_URL + "household/update");
                     }
+
                 } else {
                     jsonObject.put("password", singleUser.getPassword());
                     jsonObject.put("app_token", user.getAppToken());
@@ -515,6 +498,7 @@ public class UserActivity extends BaseAppCompatActivity {
                             .show();
 
                 } else {
+
                     if (socialNew) {
 
                         JSONObject jsonObjectUser = jsonObject.getJSONObject("user");
@@ -527,8 +511,11 @@ public class UserActivity extends BaseAppCompatActivity {
                         singleUser.setPassword(jsonObjectUser.getString("email"));
                         singleUser.setRace(jsonObjectUser.getString("race"));
                         singleUser.setDob(jsonObjectUser.getString("dob"));
+
                         try {
+
                             singleUser.setHashtags(jsonObjectUser.getJSONArray("hashtags"));
+
                         } catch (Exception e) {
 
                         }
@@ -551,8 +538,10 @@ public class UserActivity extends BaseAppCompatActivity {
 
                         if (jsonObject.get("error").toString() == "true") {
                             Toast.makeText(getApplicationContext(), "Erro - " + jsonObject.get("message").toString(), Toast.LENGTH_SHORT).show();
+
                         } else {
-                            singleUser.setUser_token(jsonObject.get("token").toString());
+
+                            singleUser.setUserToken(jsonObject.get("token").toString());
 
                             sharedPreferences = getSharedPreferences(Constants.Pref.PREFS_NAME, 0);
                             SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -581,6 +570,7 @@ public class UserActivity extends BaseAppCompatActivity {
                     } else {
 
                         if (newMenber) {
+
                             lookup();
 
                             onBackPressed();
@@ -624,7 +614,8 @@ public class UserActivity extends BaseAppCompatActivity {
 
                     final Avatar avatar = (Avatar) intent.getSerializableExtra(Constants.Bundle.AVATAR);
 
-                    image = avatar.getId();
+                    this.path = null;
+                    this.image = avatar.getId();
 
                     imageViewImage.setImageResource(avatar.getSmall());
 
@@ -632,6 +623,7 @@ public class UserActivity extends BaseAppCompatActivity {
 
                     final String path = intent.getStringExtra(Constants.Bundle.PATH);
 
+                    this.image = 0;
                     this.path = path;
 
                     final int width = imageViewImage.getWidth();
@@ -675,7 +667,6 @@ public class UserActivity extends BaseAppCompatActivity {
             jsonObject = new JSONObject(jsonStr);
 
             if (jsonObject.get("error").toString().equals("true")) {
-                navigateTo(WelcomeActivity.class);
 
             } else {
 
@@ -687,7 +678,8 @@ public class UserActivity extends BaseAppCompatActivity {
                 singleUser.setId(jsonObjectUser.getString("id"));
                 singleUser.setRace(jsonObjectUser.getString("race"));
                 singleUser.setDob(jsonObjectUser.getString("dob"));
-                singleUser.setUser_token(jsonObjectUser.get("token").toString());
+                singleUser.setUserToken(jsonObjectUser.get("token").toString());
+                singleUser.setPath(path);
 
                 try {
                     singleUser.setImage(jsonObjectUser.getInt("picture"));

@@ -547,7 +547,7 @@ public class CreateAccountActivity extends BaseAppCompatActivity implements Soci
                             singleUser.setId(jsonObjectUser.getString("id"));
                             singleUser.setRace(jsonObjectUser.getString("race"));
                             singleUser.setDob(jsonObjectUser.getString("dob"));
-                            singleUser.setUser_token(jsonObjectUser.getString("token"));
+                            singleUser.setUserToken(jsonObjectUser.getString("token"));
 
                             sharedPreferences = getSharedPreferences(Constants.Pref.PREFS_NAME, 0);
                             SharedPreferences.Editor editor = sharedPreferences.edit();

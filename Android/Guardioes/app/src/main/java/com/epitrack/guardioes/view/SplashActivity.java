@@ -129,7 +129,7 @@ public class SplashActivity extends BaseActivity implements Runnable {
             SingleUser singleUser = SingleUser.getInstance();
             JSONObject jsonObject = new JSONObject();
 
-            singleUser.setUser_token(prefUserToken);
+            singleUser.setUserToken(prefUserToken);
 
             SimpleRequester sendPostRequest = new SimpleRequester();
             sendPostRequest.setUrl(Requester.API_URL + "user/lookup/");
@@ -155,7 +155,7 @@ public class SplashActivity extends BaseActivity implements Runnable {
                     singleUser.setId(jsonObjectUser.getString("id"));
                     singleUser.setRace(jsonObjectUser.getString("race"));
                     singleUser.setDob(jsonObjectUser.getString("dob"));
-                    singleUser.setUser_token(jsonObjectUser.getString("token"));
+                    singleUser.setUserToken(jsonObjectUser.getString("token"));
 
                     try {
                         singleUser.setPath(jsonObjectUser.getString("file"));

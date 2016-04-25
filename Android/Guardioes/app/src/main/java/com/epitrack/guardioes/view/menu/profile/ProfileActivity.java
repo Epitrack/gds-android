@@ -74,15 +74,19 @@ public class ProfileActivity extends BaseAppCompatActivity implements UserListen
         public void onSuccess(final List<User> parentList) {
             loadDialog.dismiss();
 
-            final SingleUser user = SingleUser.getInstance();
+            final SingleUser single = SingleUser.getInstance();
 
-            parentList.add(0, new User(user.getImage(),
-                    user.getNick(),
-                    user.getEmail(),
-                    user.getId(),
-                    user.getDob(),
-                    user.getRace(),
-                    user.getGender()));
+            final User user = new User(single.getNick(),
+                    single.getEmail(),
+                    single.getId(),
+                    single.getDob(),
+                    single.getRace(),
+                    single.getGender(),
+                    single.getImage());
+
+            user.setPath(single.getPath());
+
+            parentList.add(0, user);
 
             listView.setAdapter(new UserAdapter(ProfileActivity.this, parentList, ProfileActivity.this));
         }
