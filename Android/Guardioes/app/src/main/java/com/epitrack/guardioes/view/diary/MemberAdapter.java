@@ -102,8 +102,6 @@ public class MemberAdapter extends RecyclerView.Adapter<MemberAdapter.ViewHolder
     @Override
     public void onBindViewHolder(final ViewHolder viewHolder, final int position) {
 
-        final User parent = userList.get(position);
-
         if (position == SELECT) {
 
             ViewUtility.setMarginLeft(viewHolder.imageViewPhoto,
@@ -129,11 +127,12 @@ public class MemberAdapter extends RecyclerView.Adapter<MemberAdapter.ViewHolder
                                        ViewUtility.toPixel(viewHolder.itemView.getContext(), MARGIN_SMALL));
         }
 
-        viewHolder.textViewName.setText(parent.getNick());
+        final User user = userList.get(position);
 
-        viewHolder.textViewId.setText(parent.getId());
+        viewHolder.textViewId.setText(user.getId());
+        viewHolder.textViewName.setText(user.getNick());
 
-        new AvatarHelper().loadImage(context, viewHolder.imageViewPhoto, singleUser);
+        new AvatarHelper().loadImage(context, viewHolder.imageViewPhoto, user);
     }
 
     @Override
