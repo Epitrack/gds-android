@@ -16,16 +16,33 @@ android {
         multiDexEnabled true
     }
 
+    signingConfigs {
+
+        release {
+
+            Properties properties = new Properties()
+
+            properties.load(project.rootProject.file('local.properties').newDataInputStream())
+
+            def password = properties.getProperty('key.password')
+
+            storeFile file("key.keystore")
+            storePassword password
+            keyAlias "gds"
+            keyPassword password
+        }
+    }
+
     productFlavors {
 
         normal {
 
-            applicationId = "com.epitrack.guardioes"
+            applicationId "com.epitrack.guardioes"
         }
 
         olympics {
 
-            applicationId = "com.epitrack.guardioes"
+            applicationId "com.epitrack.guardioes"
         }
     }
 

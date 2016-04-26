@@ -1,30 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.epitrack.guardioes">
+          package="com.epitrack.guardioes">
 
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
 
-    <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 
-    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
-    <uses-permission android:name="android.permission.USE_CREDENTIALS" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS"/>
+    <uses-permission android:name="android.permission.USE_CREDENTIALS"/>
 
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
 
-    <uses-permission android:name="android.permission.WAKE_LOCK" />
-    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
-    <uses-permission android:name="com.epitrack.guardioes.permission.C2D_MESSAGE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE"/>
+    <uses-permission android:name="com.epitrack.guardioes.permission.C2D_MESSAGE"/>
 
     <uses-feature
         android:name="android.hardware.camera"
-        android:required="true" />
+        android:required="true"/>
 
     <uses-feature
         android:glEsVersion="0x00020000"
-        android:required="true" />
+        android:required="true"/>
 
     <application
         android:name=".manager.Application"
@@ -40,201 +40,231 @@
             android:screenOrientation="portrait"
             android:theme="@style/Theme.NoActionBar">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.MAIN"/>
 
-                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+
         <activity
             android:name="com.facebook.FacebookActivity"
             android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
             android:label="@string/app_name"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
+
         <activity
             android:name=".view.welcome.WelcomeActivity"
             android:exported="false"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.NoActionBar" />
+            android:theme="@style/Theme.NoActionBar"/>
+
         <activity
             android:name=".view.welcome.TermActivity"
             android:exported="false"
             android:label="@string/term"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"/>
+
         <activity
             android:name=".view.account.LoginActivity"
             android:exported="false"
             android:parentActivityName=".view.welcome.WelcomeActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.Transparent.ActionBar" />
+            android:theme="@style/Theme.Transparent.ActionBar"/>
+
         <activity
             android:name=".view.account.ForgotPasswordActivity"
             android:exported="false"
             android:parentActivityName=".view.account.LoginActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.Transparent.ActionBar" />
+            android:theme="@style/Theme.Transparent.ActionBar"/>
+
         <activity
             android:name=".view.account.CreateAccountActivity"
             android:exported="false"
             android:parentActivityName=".view.welcome.WelcomeActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.Transparent.ActionBar" />
+            android:theme="@style/Theme.Transparent.ActionBar"/>
+
         <activity
             android:name=".view.account.SocialLoginActivity"
             android:exported="false"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.Transparent.ActionBar" />
+            android:theme="@style/Theme.Transparent.ActionBar"/>
+
         <activity
             android:name=".view.base.ImageEditActivity"
             android:exported="false"
             android:label="@string/crop_photo"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"/>
+
         # Help
         <activity
             android:name=".view.menu.help.Term"
             android:exported="false"
             android:label="@string/term"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"/>
+
         <activity
             android:name=".view.menu.help.ReportActivity"
             android:exported="false"
             android:label="@string/report"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"/>
+
         <activity
             android:name=".view.menu.help.TutorialActivity"
             android:exported="false"
             android:label=" "
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.Transparent.ActionBarTutorial" />
+            android:theme="@style/Theme.Transparent.ActionBarTutorial"/>
+
         # Profile
         <activity
             android:name=".view.menu.profile.ProfileActivity"
             android:exported="false"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.ActionBar.Profile" />
+            android:theme="@style/Theme.ActionBar.Profile"/>
+
         <activity
             android:name=".view.menu.profile.UserActivity"
             android:exported="false"
             android:parentActivityName=".view.menu.profile.ProfileActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.ActionBar.Profile" />
+            android:theme="@style/Theme.ActionBar.Profile"/>
+
         <activity
             android:name=".view.menu.profile.AvatarActivity"
             android:exported="false"
             android:label="@string/avatar"
             android:parentActivityName=".view.menu.profile.UserActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"/>
+
         <activity
             android:name=".view.menu.profile.InterestActivity"
             android:exported="false"
             android:label="@string/interest"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"/>
+
         # Home
         <activity
             android:name=".view.HomeActivity"
             android:exported="false"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.Menu" />
+            android:theme="@style/Theme.Menu"/>
+
         <activity
             android:name=".view.NoticeActivity"
             android:exported="false"
             android:label="@string/notice"
             android:parentActivityName=".view.HomeActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"/>
+
         <activity
             android:name=".view.MapSymptomActivity"
             android:exported="false"
             android:label="@string/map_health"
             android:parentActivityName=".view.HomeActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"/>
+
         <activity
             android:name=".view.tip.TipActivity"
             android:exported="false"
             android:label="@string/tip_health"
             android:parentActivityName=".view.HomeActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"/>
+
         <activity
             android:name=".view.tip.UsefulPhonesActivity"
             android:exported="false"
             android:label="@string/useful_phones"
             android:parentActivityName=".view.tip.TipActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"/>
+
         <activity
             android:name=".view.tip.VaccineActivity"
             android:exported="false"
             android:label="@string/vaccine"
             android:parentActivityName=".view.tip.TipActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"/>
+
         <activity
             android:name=".view.tip.CareActivity"
             android:exported="false"
             android:label="@string/care"
             android:parentActivityName=".view.tip.TipActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"/>
+
         <activity
             android:name=".view.tip.PreventionActivity"
             android:exported="false"
             android:label="@string/prevention"
             android:parentActivityName=".view.tip.TipActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"/>
+
         <activity
             android:name=".view.tip.ZikaTipActivity"
             android:exported="false"
             android:label="@string/zika"
             android:parentActivityName=".view.tip.TipActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"/>
+
         <activity
             android:name=".view.diary.DiaryActivity"
             android:exported="false"
             android:label="@string/diary_health"
             android:parentActivityName=".view.HomeActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"/>
+
         <activity
             android:name=".view.MapPointActivity"
             android:exported="false"
             android:parentActivityName=".view.HomeActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"/>
+
         # Survey
         <activity
             android:name=".view.survey.SelectParticipantActivity"
             android:exported="false"
             android:parentActivityName=".view.HomeActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.ActionBar.Survey" />
+            android:theme="@style/Theme.ActionBar.Survey"/>
+
         <activity
             android:name=".view.survey.StateActivity"
             android:exported="false"
             android:parentActivityName=".view.survey.SelectParticipantActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.Survey" />
+            android:theme="@style/Theme.Survey"/>
+
         <activity
             android:name=".view.survey.SymptomActivity"
             android:exported="false"
             android:parentActivityName=".view.survey.StateActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.Survey" />
+            android:theme="@style/Theme.Survey"/>
+
         <activity
             android:name=".view.survey.ShareActivity"
             android:exported="false"
             android:noHistory="true"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.NoActionBar.Share" />
+            android:theme="@style/Theme.NoActionBar.Share"/>
+
         <activity
             android:name=".view.survey.ZikaActivity"
             android:exported="false"
             android:noHistory="true"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.NoActionBar.Share" />
+            android:theme="@style/Theme.NoActionBar.Share"/>
 
-        <!-- [START gcm_receiver] -->
         <receiver
             android:name="com.google.android.gms.gcm.GcmReceiver"
             android:exported="true"
             android:permission="com.google.android.c2dm.permission.SEND">
             <intent-filter>
-                <action android:name="com.google.android.c2dm.intent.REGISTRATION" />
-                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+                <action android:name="com.google.android.c2dm.intent.REGISTRATION"/>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE"/>
 
-                <category android:name="com.epitrack.guardioes" />
+                <category android:name="com.epitrack.guardioes"/>
             </intent-filter>
         </receiver>
         <!-- [END gcm_receiver] -->
@@ -244,7 +274,7 @@
             android:name=".service.MyGcmListenerService"
             android:exported="false">
             <intent-filter>
-                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+                <action android:name="com.google.android.c2dm.intent.RECEIVE"/>
             </intent-filter>
         </service>
         <!-- [END gcm_listener] -->
@@ -253,33 +283,33 @@
             android:name=".service.MyInstanceIDListenerService"
             android:exported="false">
             <intent-filter>
-                <action android:name="com.google.android.gms.iid.InstanceID" />
+                <action android:name="com.google.android.gms.iid.InstanceID"/>
             </intent-filter>
         </service>
         <!-- [END instanceId_listener] -->
         <service
             android:name=".service.RegistrationIntentService"
-            android:exported="false" />
+            android:exported="false"/>
 
         <meta-data
             android:name="io.fabric.ApiKey"
-            android:value="5931d287cbfce12c3e44e6bb88852265abf68b4b" />
+            android:value="5931d287cbfce12c3e44e6bb88852265abf68b4b"/>
 
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
-            android:value="@string/key_facebook" />
+            android:value="@string/key_facebook"/>
 
         <provider
             android:name="com.facebook.FacebookContentProvider"
             android:authorities="com.facebook.app.FacebookContentProvider961547147258065"
-            android:exported="true" />
+            android:exported="true"/>
 
         <meta-data
             android:name="com.google.android.gms.version"
-            android:value="@integer/google_play_services_version" />
+            android:value="@integer/google_play_services_version"/>
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyB6qqXlbHm5O3JEsD9hTc383FQC8HElyVk" />
+            android:value="AIzaSyB6qqXlbHm5O3JEsD9hTc383FQC8HElyVk"/>
 
     </application>
 
