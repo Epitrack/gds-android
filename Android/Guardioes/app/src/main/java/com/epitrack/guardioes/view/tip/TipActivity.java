@@ -67,7 +67,7 @@ public class TipActivity extends BaseAppCompatActivity implements ExpandableList
 
         if (tip.isActivity()) {
 
-            final Intent intent = new Intent(this, tip.getMenuClass());
+            final Intent intent = new Intent(this, tip.getType());
 
             if (tip == Tip.HOSPITAL || tip == Tip.PHARMACY) {
 

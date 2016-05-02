@@ -35,6 +35,32 @@ public enum InterestCategory implements IMenu {
         return 0;
     }
 
+    @Override
+    public String getTag() {
+        return null;
+    }
+
+    @Override
+    public boolean isDialogFragment() {
+        return false;
+    }
+
+    @Override
+    public boolean isFragment() {
+        return false;
+    }
+
+    @Override
+    public boolean isActivity() {
+        return false;
+    }
+
+    @Override
+    public Class<?> getType() {
+        return null;
+    }
+
+
     public static InterestCategory getBy(final int id) {
 
         for (final InterestCategory category : InterestCategory.values()) {

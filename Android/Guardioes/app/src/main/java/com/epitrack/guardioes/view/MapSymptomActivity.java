@@ -5,9 +5,9 @@ import android.location.Location;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.SearchView;
 import android.text.Html;
-import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -97,11 +97,8 @@ public class MapSymptomActivity extends AbstractBaseMapActivity implements Searc
     @Bind(R.id.pie_chart_diary)
     PieChart pieChart;
 
-    @Bind(R.id.syndromes)
-    TextView txtSyndromes;
-
-    @Bind(R.id.button_expand)
-    Button buttonExpand;
+    @Bind(R.id.actionButton)
+    FloatingActionButton actionButton;
 
     private MarkerOptions badMarkerOption;
     private MarkerOptions goodMarkerOption;
@@ -257,16 +254,16 @@ public class MapSymptomActivity extends AbstractBaseMapActivity implements Searc
                 .show();
     }
 
-    @OnClick(R.id.button_expand)
+    @OnClick(R.id.actionButton)
     public void onExpand() {
 
         if (slidingPanel.getPanelState() == SlidingUpPanelLayout.PanelState.COLLAPSED) {
             slidingPanel.setPanelState(SlidingUpPanelLayout.PanelState.EXPANDED);
-            buttonExpand.setBackgroundResource(R.drawable.fab_close);
+            actionButton.setBackgroundResource(R.drawable.fab_close);
 
         } else {
             slidingPanel.setPanelState(SlidingUpPanelLayout.PanelState.COLLAPSED);
-            buttonExpand.setBackgroundResource(R.drawable.fab_open);
+            actionButton.setBackgroundResource(R.drawable.fab_open);
         }
     }
 

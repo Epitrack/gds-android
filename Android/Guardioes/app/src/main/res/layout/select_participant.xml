@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -15,7 +15,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/message_who_participate"
-            android:textSize="28dp" />
+            android:textSize="28sp"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -23,7 +23,7 @@
             android:layout_gravity="center_horizontal"
             android:gravity="center_horizontal"
             android:text="@string/message_select_join"
-            android:textSize="13dp" />
+            android:textSize="13sp"/>
 
     </LinearLayout>
 
@@ -35,32 +35,13 @@
         android:layout_marginTop="105dp"
         android:orientation="vertical">
 
-
-        <!--<de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/image_view_photo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/image_avatar_3" />
-
-        <com.pkmmte.view.CircularImageView
-            android:id="@+id/image_view_photo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/image_avatar_3" />
-
-        <ImageView
-            android:id="@+id/image_view_photo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/image_avatar_3" />-->
-
         <com.github.siyamed.shapeimageview.CircularImageView
             android:id="@+id/image_view_image"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/image_avatar_3"
             app:siBorderColor="@color/primary_dark"
-            app:siBorderWidth="0dp" />
+            app:siBorderWidth="0dp"/>
 
         <TextView
             android:id="@+id/text_view_name"
@@ -68,8 +49,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="5dp"
-            android:textSize="20dp"
-            android:textStyle="bold" />
+            android:textSize="20sp"
+            android:textStyle="bold"/>
 
         <TextView
             android:id="@+id/text_view_age"
@@ -77,25 +58,26 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:text="@string/message_age"
-            android:textSize="20dp" />
+            android:textSize="20sp"/>
 
         <TextView
             android:id="@+id/text_view_id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:textSize="5dp"
-            android:visibility="invisible" />
+            android:textSize="5sp"
+            android:visibility="invisible"/>
 
     </LinearLayout>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/linearLayout2"
+        android:layout_above="@+id/recycler_view"
         android:layout_centerHorizontal="true"
+        android:layout_marginBottom="25dp"
         android:text="@string/message_home_member"
-        android:textSize="18dp" />
+        android:textSize="18sp"/>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_view"
@@ -103,6 +85,6 @@
         android:layout_height="150dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
-        android:scrollbars="horizontal" />
+        android:scrollbars="horizontal"/>
 
 </RelativeLayout>

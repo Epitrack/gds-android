@@ -35,6 +35,31 @@ public enum HelpReport implements IMenu {
         return icon;
     }
 
+    @Override
+    public String getTag() {
+        return null;
+    }
+
+    @Override
+    public boolean isDialogFragment() {
+        return false;
+    }
+
+    @Override
+    public boolean isFragment() {
+        return false;
+    }
+
+    @Override
+    public boolean isActivity() {
+        return false;
+    }
+
+    @Override
+    public Class<?> getType() {
+        return null;
+    }
+
     public static HelpReport getBy(final int id) {
 
         for (final HelpReport help : HelpReport.values()) {

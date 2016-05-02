@@ -7,42 +7,37 @@
             android:id="@+id/home"
             android:checked="true"
             android:icon="@drawable/icon_home"
-            android:title="@string/home" />
+            android:title="@string/home"/>
 
         <item
             android:id="@+id/profile"
             android:icon="@drawable/icon_profile"
-            android:title="@string/profile" />
-
-        <!--<item
-            android:id="@+id/setting"
-            android:icon="@drawable/icon_setting"
-            android:title="@string/setting" />-->
+            android:title="@string/profile"/>
 
         <item
             android:id="@+id/about"
             android:icon="@drawable/icon_about"
-            android:title="@string/about" />
+            android:title="@string/about"/>
 
         <item
             android:id="@+id/facebook"
             android:icon="@drawable/icon_facebook"
-            android:title="@string/facebook" />
+            android:title="@string/facebook"/>
 
         <item
             android:id="@+id/twitter"
             android:icon="@drawable/icon_twitter"
-            android:title="@string/twitter" />
+            android:title="@string/twitter"/>
 
         <item
             android:id="@+id/help"
             android:icon="@drawable/icon_help"
-            android:title="@string/help" />
+            android:title="@string/help"/>
 
         <item
             android:id="@+id/exit"
             android:icon="@drawable/icon_exit"
-            android:title="@string/exit" />
+            android:title="@string/exit"/>
 
     </group>
 

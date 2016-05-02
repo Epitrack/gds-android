@@ -59,7 +59,7 @@ public class ZikaActivity extends BaseActivity {
                 .build());
 
         final Tip tip = Tip.getBy(1);
-        final Intent intent = new Intent(this, tip.getMenuClass());
+        final Intent intent = new Intent(this, tip.getType());
         intent.putExtra(Constants.Bundle.TIP, tip.getId());
         startActivity(intent);
     }

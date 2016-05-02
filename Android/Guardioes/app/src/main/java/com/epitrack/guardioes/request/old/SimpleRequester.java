@@ -187,9 +187,8 @@ public class SimpleRequester extends AsyncTask<SimpleRequester, Object, String> 
                 return MessageText.ERROR_SERVER.toString();
             }
 
-            String convertStreamToString = "";
 
-            convertStreamToString = convertStreamToString(conn.getInputStream(), /*HTTP.UTF_8*/"UTF-8");
+            String convertStreamToString = convertStreamToString(conn.getInputStream(), /*HTTP.UTF_8*/"UTF-8");
             conn.disconnect();
 
             return convertStreamToString;

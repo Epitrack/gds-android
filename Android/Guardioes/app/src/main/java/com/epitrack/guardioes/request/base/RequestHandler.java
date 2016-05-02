@@ -16,7 +16,10 @@
 
 package com.epitrack.guardioes.request.base;
 
+import android.app.Activity;
 import android.content.Context;
+
+import com.epitrack.guardioes.view.dialog.LoadDialog;
 
 import java.net.UnknownHostException;
 
@@ -27,6 +30,8 @@ public abstract class RequestHandler<T> implements RequestListener<T> {
 
     private final Context context;
 
+    private final LoadDialog loadDialog = new LoadDialog();
+
     public RequestHandler(final Context context) {
         this.context = context;
     }
@@ -34,10 +39,15 @@ public abstract class RequestHandler<T> implements RequestListener<T> {
     @Override
     public void onStart() {
 
+        if (context instanceof Activity) {
+            loadDialog.show(((Activity) context).getFragmentManager(), LoadDialog.TAG);
+        }
     }
 
     @Override
     public void onError(final Exception e) {
+
+        loadDialog.dismiss();
 
         if (e instanceof UnknownHostException) {
 
@@ -48,6 +58,7 @@ public abstract class RequestHandler<T> implements RequestListener<T> {
 
     @Override
     public void onSuccess(final T type) {
+        loadDialog.dismiss();
 
     }
 }

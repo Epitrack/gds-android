@@ -24,14 +24,14 @@ public enum Tip implements IMenu {
     private final int id;
     private final int name;
     private final int icon;
-    private final Class<?> menuClass;
+    private final Class<?> type;
 
-    Tip(final int id, final int name, final int icon, final Class<?> menuClass) {
+    Tip(final int id, final int name, final int icon, final Class<?> type) {
 
         this.id = id;
         this.name = name;
         this.icon = icon;
-        this.menuClass = menuClass;
+        this.type = type;
     }
 
     @Override
@@ -49,24 +49,30 @@ public enum Tip implements IMenu {
         return icon;
     }
 
-    public final Class<?> getMenuClass() {
-        return menuClass;
+    public final String getTag() {
+        return type.getSimpleName();
     }
 
-    public final String getTag() {
-        return menuClass.getSimpleName();
+    @Override
+    public boolean isDialogFragment() {
+        return false;
     }
 
     public final boolean isDialog() {
-        return DialogFragment.class.isAssignableFrom(menuClass);
+        return DialogFragment.class.isAssignableFrom(type);
     }
 
     public final boolean isFragment() {
-        return Fragment.class.isAssignableFrom(menuClass);
+        return Fragment.class.isAssignableFrom(type);
     }
 
     public final boolean isActivity() {
-        return Activity.class.isAssignableFrom(menuClass);
+        return Activity.class.isAssignableFrom(type);
+    }
+
+    @Override
+    public Class<?> getType() {
+        return null;
     }
 
     public static Tip getBy(final long id) {

@@ -11,16 +11,15 @@ import android.widget.Toast;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.epitrack.guardioes.R;
+import com.epitrack.guardioes.helper.Constants;
+import com.epitrack.guardioes.helper.DialogBuilder;
+import com.epitrack.guardioes.helper.SocialShare;
 import com.epitrack.guardioes.model.SingleUser;
 import com.epitrack.guardioes.model.SymptomList;
 import com.epitrack.guardioes.model.User;
 import com.epitrack.guardioes.request.base.Method;
 import com.epitrack.guardioes.request.old.Requester;
 import com.epitrack.guardioes.request.old.SimpleRequester;
-import com.epitrack.guardioes.helper.Constants;
-import com.epitrack.guardioes.helper.DialogBuilder;
-import com.epitrack.guardioes.helper.LocationUtility;
-import com.epitrack.guardioes.helper.SocialShare;
 import com.epitrack.guardioes.view.HomeActivity;
 import com.epitrack.guardioes.view.base.BaseAppCompatActivity;
 import com.google.android.gms.analytics.HitBuilders;
@@ -40,15 +39,16 @@ import butterknife.Bind;
  */
 public class SymptomActivity extends BaseAppCompatActivity {
 
-    boolean isExantematica = false;
-    boolean isTravelLocation = false;
-    String country = "";
+    private boolean isExantematica = false;
+    private boolean isTravelLocation = false;
+
+    private String country = "";
 
     @Bind(R.id.list_view)
     ListView listView;
 
-    List<SymptomList> symptomArray = new ArrayList<>();
-    String id;
+    private List<SymptomList> symptomArray = new ArrayList<>();
+    private String id;
 
     @Override
     protected void onCreate(final Bundle bundle) {
@@ -450,12 +450,12 @@ public class SymptomActivity extends BaseAppCompatActivity {
 
         JSONObject jsonObject = new JSONObject();
 
-        User user = new User();
-        LocationUtility locationUtility = new LocationUtility(getApplicationContext());
+        final User user = new User();
 
         user.setId(id);
-        user.setLat(locationUtility.getLatitude());
-        user.setLon(locationUtility.getLongitude());
+
+        final double latitude = getIntent().getDoubleExtra("latitude", 0);
+        final double longitude = getIntent().getDoubleExtra("longitude", 0);
 
         SingleUser singleUser = SingleUser.getInstance();
 
@@ -464,8 +464,8 @@ public class SymptomActivity extends BaseAppCompatActivity {
         if (!(user.getId().equals(singleUser.getId()))) {
             jsonObject.put("household_id", user.getId());
         }
-        jsonObject.put("lat", user.getLat());
-        jsonObject.put("lon", user.getLon());
+        jsonObject.put("lat", latitude);
+        jsonObject.put("lon", longitude);
         jsonObject.put("app_token", user.getAppToken());
         jsonObject.put("platform", user.getPlatform());
         jsonObject.put("client", user.getClient());

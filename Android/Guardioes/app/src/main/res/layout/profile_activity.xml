@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/background_blue">
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/background_blue">
 
     <TextView
         android:id="@+id/text_view"
@@ -13,7 +13,7 @@
         android:layout_marginTop="70dp"
         android:gravity="center_horizontal"
         android:text="@string/message_select_profile"
-        android:textColor="@android:color/white" />
+        android:textColor="@android:color/white"/>
 
     <ListView
         android:id="@+id/list_view"
@@ -23,7 +23,7 @@
         android:layout_below="@id/text_view"
         android:background="@android:color/white"
         android:divider="@color/translucent_black_light"
-        android:dividerHeight="1dp" />
+        android:dividerHeight="1dp"/>
 
     <Button
         android:id="@+id/button_add"
@@ -36,6 +36,6 @@
         android:layout_marginTop="15dp"
         android:background="@drawable/selector_button_white_dark"
         android:text="@string/add_member"
-        android:textColor="@color/primary_light" />
+        android:textColor="@color/primary_light"/>
 
 </RelativeLayout>

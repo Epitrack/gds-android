@@ -9,6 +9,7 @@ import com.epitrack.guardioes.manager.LocationManager;
 import com.epitrack.guardioes.helper.DialogBuilder;
 import com.epitrack.guardioes.helper.LocationUtility;
 import com.epitrack.guardioes.helper.Logger;
+import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -100,6 +101,21 @@ public abstract class AbstractBaseMapActivity extends BaseAppCompatActivity impl
         } else {
             userMarker.setPosition(LocationUtility.toLatLng(location));
         }
+    }
+
+    @Override
+    public void onConnect(final Bundle bundle) {
+
+    }
+
+    @Override
+    public void onSuspend(final int i) {
+
+    }
+
+    @Override
+    public void onFail(final ConnectionResult connectionResult) {
+
     }
 
     private MarkerOptions loadMarkerOption() {

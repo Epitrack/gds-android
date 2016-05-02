@@ -33,6 +33,10 @@ public class User {
 
     }
 
+    public User(String id) {
+        this.id = id;
+    }
+
     public User(String nick, String email, String id, String dob, String race, String gender) {
         this.nick = nick;
         this.email = email;

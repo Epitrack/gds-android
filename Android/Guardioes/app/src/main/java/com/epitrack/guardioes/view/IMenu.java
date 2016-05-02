@@ -10,4 +10,14 @@ public interface IMenu {
     int getName();
 
     int getIcon();
+
+    String getTag();
+
+    boolean isDialogFragment();
+
+    boolean isFragment();
+
+    boolean isActivity();
+
+    Class<?> getType();
 }

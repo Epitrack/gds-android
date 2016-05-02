@@ -5,6 +5,12 @@
     <color name="primary_light">#1e88e5</color>
     <color name="primary_dark">#226db6</color>
 
+    <color name="primary_normal">#008dec</color>
+    <color name="primary_olympics">#ffc903</color>
+
+    <color name="marigold">#ffc903</color>
+    <color name="dusty_orange">#f47821</color>
+
     <color name="dark_sky_blue">#2a88e5</color>
 
     <color name="bluish">#2072cc</color>

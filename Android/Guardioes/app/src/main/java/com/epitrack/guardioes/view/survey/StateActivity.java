@@ -1,27 +1,30 @@
 package com.epitrack.guardioes.view.survey;
 
+import android.content.Intent;
+import android.location.Location;
 import android.os.Bundle;
+import android.provider.Settings;
+import android.support.annotation.NonNull;
 import android.widget.Toast;
 
+import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.epitrack.guardioes.R;
-import com.epitrack.guardioes.model.SingleUser;
-import com.epitrack.guardioes.model.User;
-import com.epitrack.guardioes.request.base.Method;
-import com.epitrack.guardioes.request.old.Requester;
-import com.epitrack.guardioes.request.old.SimpleRequester;
 import com.epitrack.guardioes.helper.Constants;
 import com.epitrack.guardioes.helper.DialogBuilder;
-import com.epitrack.guardioes.helper.LocationUtility;
+import com.epitrack.guardioes.helper.LocationHelper;
 import com.epitrack.guardioes.helper.SocialShare;
+import com.epitrack.guardioes.manager.LocationListener;
+import com.epitrack.guardioes.model.SingleUser;
+import com.epitrack.guardioes.model.User;
+import com.epitrack.guardioes.request.SurveyRequester;
+import com.epitrack.guardioes.request.base.RequestListener;
 import com.epitrack.guardioes.view.HomeActivity;
 import com.epitrack.guardioes.view.base.BaseAppCompatActivity;
+import com.epitrack.guardioes.view.dialog.LoadDialog;
 import com.google.android.gms.analytics.HitBuilders;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.util.concurrent.ExecutionException;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.maps.model.LatLng;
 
 import butterknife.OnClick;
 
@@ -30,8 +33,9 @@ import butterknife.OnClick;
  */
 public class StateActivity extends BaseAppCompatActivity {
 
-    String id;
-    SingleUser singleUser = SingleUser.getInstance();
+    private String id;
+
+    private final SingleUser singleUser = SingleUser.getInstance();
 
     @Override
     protected void onCreate(final Bundle bundle) {
@@ -39,12 +43,7 @@ public class StateActivity extends BaseAppCompatActivity {
 
         final boolean mainMember = getIntent().getBooleanExtra(Constants.Bundle.MAIN_MEMBER, false);
 
-        if (mainMember) {
-
-            id = singleUser.getId();
-        } else {
-            id = getIntent().getStringExtra("id_user");
-        }
+        id = mainMember ? singleUser.getId() : getIntent().getStringExtra("id_user");
 
         setContentView(R.layout.state);
     }
@@ -57,49 +56,83 @@ public class StateActivity extends BaseAppCompatActivity {
                 .setAction("Survey State Good Button")
                 .build());
 
-        JSONObject jsonObject = new JSONObject();
+        final LocationHelper locationHelper = new LocationHelper(this);
 
-        User user = new User();
-        LocationUtility locationUtility = new LocationUtility(getApplicationContext());
+        if (locationHelper.isEnabled()) {
 
-        user.setId(id);
-        user.setLat(locationUtility.getLatitude());
-        user.setLon(locationUtility.getLongitude());
+            final LoadDialog loadDialog = new LoadDialog();
 
-        try {
-            jsonObject.put("user_id", singleUser.getId());
+            loadDialog.show(getFragmentManager(), LoadDialog.TAG);
 
-            if (user.getId() != singleUser.getId()) {
-                jsonObject.put("household_id", user.getId());
-            }
-            jsonObject.put("lat", user.getLat());
-            jsonObject.put("lon", user.getLon());
-            jsonObject.put("app_token", user.getAppToken());
-            jsonObject.put("platform", user.getPlatform());
-            jsonObject.put("client", user.getClient());
-            jsonObject.put("no_symptom", "Y");
-            jsonObject.put("token", singleUser.getUserToken());
+            locationHelper.addListener(new LocationListener() {
 
-            SimpleRequester sendPostRequest = new SimpleRequester();
-            sendPostRequest.setUrl(Requester.API_URL + "survey/create");
-            sendPostRequest.setJsonObject(jsonObject);
-            sendPostRequest.setMethod(Method.POST);
+                @Override
+                public void onConnect(final Bundle bundle) {
 
-            String jsonStr = sendPostRequest.execute(sendPostRequest).get();
+                }
 
-            JSONObject jsonObjectSurvey = new JSONObject(jsonStr);
+                @Override
+                public void onSuspend(final int i) {
 
-            if (jsonObjectSurvey.get("error").toString().equals("true")) {
-                Toast.makeText(getApplicationContext(), jsonObjectSurvey.get("message").toString(), Toast.LENGTH_SHORT).show();
-            }
-        } catch (JSONException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
+                }
+
+                @Override
+                public void onFail(final ConnectionResult connectionResult) {
+
+                }
+
+                @Override
+                public void onLastLocation(final Location location) {
+
+                    locationHelper.disconnect();
+
+                    new SurveyRequester(StateActivity.this).saveSurveyGood(new User(id), new LatLng(location.getLatitude(), location.getLongitude()), new RequestListener<Boolean>() {
+
+                        @Override
+                        public void onStart() {
+
+                        }
+
+                        @Override
+                        public void onError(final Exception e) {
+                            loadDialog.dismiss();
+
+                            Toast.makeText(StateActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+
+                        @Override
+                        public void onSuccess(final Boolean result) {
+                            loadDialog.dismiss();
+
+                            navigateTo(ShareActivity.class);
+                        }
+                    });
+                }
+
+                @Override
+                public void onLocation(final Location location) {
+
+                }
+            });
+
+            locationHelper.connect();
+
+        } else {
+
+            new DialogBuilder(this).load()
+                    .content(R.string.location_disabled)
+                    .cancelable(false)
+                    .negativeText(R.string.not_now)
+                    .positiveText(R.string.setting_upper)
+                    .onPositive(new MaterialDialog.SingleButtonCallback() {
+
+                        @Override
+                        public void onClick(@NonNull final MaterialDialog dialog, @NonNull final DialogAction which) {
+                            startActivity(new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS));
+                        }
+
+                    }).show();
         }
-        navigateTo(ShareActivity.class);
     }
 
     @OnClick(R.id.text_view_state_bad)
@@ -110,10 +143,71 @@ public class StateActivity extends BaseAppCompatActivity {
                 .setAction("Survey State Bad Button")
                 .build());
 
-        final Bundle bundle = new Bundle();
+        final LocationHelper locationHelper = new LocationHelper(this);
 
-        bundle.putString("id_user", id);
-        navigateTo(SymptomActivity.class, bundle);
+        if (locationHelper.isEnabled()) {
+
+            final LoadDialog loadDialog = new LoadDialog();
+
+            loadDialog.show(getFragmentManager(), LoadDialog.TAG);
+
+            locationHelper.addListener(new LocationListener() {
+
+                @Override
+                public void onConnect(final Bundle bundle) {
+
+                }
+
+                @Override
+                public void onSuspend(final int i) {
+
+                }
+
+                @Override
+                public void onFail(final ConnectionResult connectionResult) {
+
+                }
+
+                @Override
+                public void onLastLocation(final Location location) {
+
+                    locationHelper.disconnect();
+
+                    loadDialog.dismiss();
+
+                    final Bundle bundle = new Bundle();
+
+                    bundle.putString("id_user", id);
+                    bundle.putDouble("latitude", location.getLatitude());
+                    bundle.putDouble("longitude", location.getLongitude());
+
+                    navigateTo(SymptomActivity.class, bundle);
+                }
+
+                @Override
+                public void onLocation(final Location location) {
+
+                }
+            });
+
+            locationHelper.connect();
+
+        } else {
+
+            new DialogBuilder(this).load()
+                    .content(R.string.location_disabled)
+                    .cancelable(false)
+                    .negativeText(R.string.not_now)
+                    .positiveText(R.string.setting_upper)
+                    .onPositive(new MaterialDialog.SingleButtonCallback() {
+
+                        @Override
+                        public void onClick(@NonNull final MaterialDialog dialog, @NonNull final DialogAction which) {
+                            startActivity(new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS));
+                        }
+
+                    }).show();
+        }
     }
 
     @Override
@@ -121,16 +215,19 @@ public class StateActivity extends BaseAppCompatActivity {
         super.onRestart();
 
         if (SocialShare.getInstance().isShared()) {
+
             new DialogBuilder(StateActivity.this).load()
                     .title(R.string.app_name)
                     .content(R.string.share_ok)
                     .positiveText(R.string.ok)
                     .callback(new MaterialDialog.ButtonCallback() {
+
                         @Override
                         public void onPositive(final MaterialDialog dialog) {
                             SocialShare.getInstance().setIsShared(false);
                             navigateTo(HomeActivity.class);
                         }
+
                     }).show();
         }
     }

@@ -19,6 +19,7 @@ import com.epitrack.guardioes.helper.DialogBuilder;
 import com.epitrack.guardioes.manager.Loader;
 import com.epitrack.guardioes.model.Point;
 import com.epitrack.guardioes.request.MapRequester;
+import com.epitrack.guardioes.request.base.RequestListener;
 import com.epitrack.guardioes.view.base.AbstractBaseMapActivity;
 import com.epitrack.guardioes.view.tip.Tip;
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -111,7 +112,7 @@ public class MapPointActivity extends AbstractBaseMapActivity {
 
     private void loadPharmacy(final double latitude, final double longitude) {
 
-        new MapRequester(this).loadPharmacy(latitude, longitude, new com.epitrack.guardioes.request.base.RequestListener<List<Point>>() {
+        new MapRequester(this).loadPharmacy(latitude, longitude, new RequestListener<List<Point>>() {
 
             @Override
             public void onStart() {
@@ -127,6 +128,8 @@ public class MapPointActivity extends AbstractBaseMapActivity {
             public void onSuccess(final List<Point> pointList) {
                 addMarker(pointList);
             }
+
+
         });
     }
 

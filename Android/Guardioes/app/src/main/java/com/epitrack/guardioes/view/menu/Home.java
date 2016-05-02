@@ -7,52 +7,72 @@ import android.view.MenuItem;
 
 import com.epitrack.guardioes.R;
 import com.epitrack.guardioes.view.HomeFragment;
+import com.epitrack.guardioes.view.IMenu;
 import com.epitrack.guardioes.view.menu.help.HelpFragment;
-import com.epitrack.guardioes.view.menu.profile.ProfileActivity;
 
 /**
  * @author Igor Morais
  */
-public enum Home {
+public enum Home implements IMenu {
 
-    HOME        (R.id.home, HomeFragment.class),
-    PROFILE     (R.id.profile, ProfileActivity.class),
-    ABOUT       (R.id.about, AboutFragment.class),
-    FACEBOOK    (R.id.facebook, AboutFragment.class),
-    TWITTER     (R.id.twitter, AboutFragment.class),
-    HELP        (R.id.help, HelpFragment.class),
-    EXIT        (R.id.exit, null);
+    HOME        (R.id.home, R.string.home, R.drawable.icon_home, HomeFragment.class),
+    PROFILE     (R.id.profile, R.string.profile, R.drawable.icon_profile, null),
+    ABOUT       (R.id.about, R.string.about, R.drawable.icon_about, AboutFragment.class),
+    FACEBOOK    (R.id.facebook, R.string.facebook, R.drawable.icon_facebook, null),
+    TWITTER     (R.id.twitter, R.string.twitter, R.drawable.icon_twitter, null),
+    HELP        (R.id.help, R.string.help, R.drawable.icon_help, HelpFragment.class),
+    EXIT        (R.id.exit, R.string.exit, R.drawable.icon_exit, null);
 
     private final int id;
-    private final Class<?> menuClass;
+    private final int name;
+    private final int icon;
+    private final Class<? extends Fragment> type;
 
-    Home(final int id, final Class<?> menuClass) {
+    Home(final int id, final int name, final int icon, final Class<? extends Fragment> type) {
         this.id = id;
-        this.menuClass = menuClass;
+        this.name = name;
+        this.icon = icon;
+        this.type = type;
     }
 
+    @Override
     public final int getId() {
         return id;
     }
 
-    public final Class<?> getMenuClass() {
-        return menuClass;
+    @Override
+    public final int getName() {
+        return name;
     }
 
+    @Override
+    public final int getIcon() {
+        return icon;
+    }
+
+    @Override
     public final String getTag() {
-        return menuClass.getSimpleName();
+        return type.getSimpleName();
     }
 
-    public final boolean isDialog() {
-        return DialogFragment.class.isAssignableFrom(menuClass);
+    @Override
+    public final boolean isDialogFragment() {
+        return DialogFragment.class.isAssignableFrom(type);
     }
 
+    @Override
     public final boolean isFragment() {
-        return Fragment.class.isAssignableFrom(menuClass);
+        return Fragment.class.isAssignableFrom(type);
     }
 
+    @Override
     public final boolean isActivity() {
-        return Activity.class.isAssignableFrom(menuClass);
+        return Activity.class.isAssignableFrom(type);
+    }
+
+    @Override
+    public final Class<? extends Fragment> getType() {
+        return type;
     }
 
     public static Home getBy(final int id) {
@@ -67,12 +87,12 @@ public enum Home {
         throw new IllegalArgumentException("The Home has not found.");
     }
 
-    public static Home getBy(final MenuItem menuItem) {
+    public static Home getBy(final MenuItem item) {
 
-        for (final Home menu : Home.values()) {
+        for (final Home home : Home.values()) {
 
-            if (menu.getId() == menuItem.getItemId()) {
-                return menu;
+            if (home.getId() == item.getItemId()) {
+                return home;
             }
         }
 

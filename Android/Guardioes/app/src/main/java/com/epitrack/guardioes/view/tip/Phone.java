@@ -40,6 +40,32 @@ public enum Phone implements IMenu {
         return 0;
     }
 
+    @Override
+    public String getTag() {
+        return null;
+    }
+
+    @Override
+    public boolean isDialogFragment() {
+        return false;
+    }
+
+    @Override
+    public boolean isFragment() {
+        return false;
+    }
+
+    @Override
+    public boolean isActivity() {
+        return false;
+    }
+
+    @Override
+    public Class<?> getType() {
+        return null;
+    }
+
+
     public final String getNumber() {
         return number;
     }

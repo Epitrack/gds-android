@@ -69,7 +69,7 @@ public class HomeFragment extends BaseFragment {
     }
 
     @OnClick(R.id.image_view_image)
-    public void showProfile() {
+    public void onProfile() {
         navigateTo(ProfileActivity.class);
     }
 
@@ -77,15 +77,16 @@ public class HomeFragment extends BaseFragment {
     public void onNotice() {
 
         getTracker().send(new HitBuilders.EventBuilder()
-                    .setCategory("Action")
-                    .setAction("Notice Button")
-                    .build());
+                .setCategory("Action")
+                .setAction("Notice Button")
+                .build());
 
         navigateTo(NoticeActivity.class);
     }
 
     @OnClick(R.id.text_view_map)
     public void onMap() {
+
         getTracker().send(new HitBuilders.EventBuilder()
                 .setCategory("Action")
                 .setAction("Map Button")
@@ -96,6 +97,7 @@ public class HomeFragment extends BaseFragment {
 
     @OnClick(R.id.text_view_tip)
     public void onTip() {
+
         getTracker().send(new HitBuilders.EventBuilder()
                 .setCategory("Action")
                 .setAction("Tip Button")
@@ -106,6 +108,7 @@ public class HomeFragment extends BaseFragment {
 
     @OnClick(R.id.text_view_diary)
     public void onDiary() {
+
         getTracker().send(new HitBuilders.EventBuilder()
                 .setCategory("Action")
                 .setAction("Diary of Health Button")
@@ -114,7 +117,8 @@ public class HomeFragment extends BaseFragment {
         navigateTo(DiaryActivity.class);
     }
 
-    @OnClick(R.id.text_view_join)
+    @Nullable
+    @OnClick({ R.id.text_view_join, R.id.relative_layout})
     public void onJoin() {
 
         getTracker().send(new HitBuilders.EventBuilder()
@@ -123,5 +127,15 @@ public class HomeFragment extends BaseFragment {
                 .build());
 
         navigateTo(SelectParticipantActivity.class);
+    }
+
+    @Nullable
+    @OnClick(R.id.text_view_game)
+    public void onGame() {
+
+        getTracker().send(new HitBuilders.EventBuilder()
+                .setCategory("Action")
+                .setAction("Game Button")
+                .build());
     }
 }

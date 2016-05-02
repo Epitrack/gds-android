@@ -12,7 +12,7 @@
         android:layout_marginLeft="25dp"
         android:layout_marginRight="25dp"
         android:layout_marginTop="15dp"
-        android:background="@drawable/selector_button_white_dark"
+        android:background="@drawable/selector_button_gold_white"
         android:text="@string/confirm"
         android:textColor="@color/primary_light" />
 
