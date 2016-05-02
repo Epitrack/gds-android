@@ -9,14 +9,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:scaleType="fitXY"
-        android:src="@drawable/home_top"/>
+        android:src="@drawable/image_home_top"/>
 
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:scaleType="fitXY"
-        android:src="@drawable/home_bottom"/>
+        android:src="@drawable/image_home_bottom"/>
 
     <com.github.siyamed.shapeimageview.CircularImageView
         android:id="@+id/image_view_image"
