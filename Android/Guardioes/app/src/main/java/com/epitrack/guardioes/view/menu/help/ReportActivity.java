@@ -2,15 +2,14 @@ package com.epitrack.guardioes.view.menu.help;
 
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.widget.Button;
 import android.widget.EditText;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.epitrack.guardioes.R;
+import com.epitrack.guardioes.helper.DialogBuilder;
 import com.epitrack.guardioes.request.base.Method;
 import com.epitrack.guardioes.request.old.Requester;
 import com.epitrack.guardioes.request.old.SimpleRequester;
-import com.epitrack.guardioes.helper.DialogBuilder;
 import com.epitrack.guardioes.view.base.BaseAppCompatActivity;
 import com.google.android.gms.analytics.HitBuilders;
 
@@ -32,9 +31,6 @@ public class ReportActivity extends BaseAppCompatActivity {
 
     @Bind(R.id.report_message)
     EditText txtMessage;
-
-    @Bind(R.id.button_send_email)
-    Button buttonSendEmail;
 
     @Override
     public void onCreate(Bundle bundle) {

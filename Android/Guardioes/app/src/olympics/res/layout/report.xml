@@ -7,7 +7,7 @@
         android:id="@+id/text_view_message"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/primary"
+        android:background="@color/marigold"
         android:gravity="center_horizontal"
         android:paddingBottom="25dp"
         android:paddingEnd="27dp"
@@ -59,9 +59,9 @@
             android:layout_marginLeft="25dp"
             android:layout_marginRight="25dp"
             android:layout_marginTop="15dp"
-            android:background="@drawable/selector_button_white_dark"
+            android:background="@drawable/selector_button_gold_white"
             android:text="@string/send"
-            android:textColor="@color/selector_blue_white"/>
+            android:textColor="@color/selector_white_blue"/>
 
     </LinearLayout>
 
