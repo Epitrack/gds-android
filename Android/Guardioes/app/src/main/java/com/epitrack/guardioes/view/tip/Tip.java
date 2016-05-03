@@ -16,7 +16,7 @@ public enum Tip implements IMenu {
     ZIKA            (1, R.string.zika, R.drawable.icon_zika, ZikaTipActivity.class),
     HOSPITAL        (2, R.string.hospital, R.drawable.icon_hospital, MapPointActivity.class),
     VACCINE         (3, R.string.vaccine, R.drawable.icon_vaccine, VaccineActivity.class),
-    TELEPHONE       (4, R.string.phone, R.drawable.icon_phone, Fragment.class),
+    TELEPHONE       (4, R.string.phone, R.drawable.icon_phone, null),
     PHARMACY        (5, R.string.pharmacy, R.drawable.icon_pharmacy, MapPointActivity.class),
     CARE            (6, R.string.care, R.drawable.icon_care, CareActivity.class),
     PREVENTION      (7, R.string.prevention, R.drawable.icon_prevention, PreventionActivity.class);
@@ -58,14 +58,29 @@ public enum Tip implements IMenu {
     }
 
     public final boolean isDialog() {
+
+        if (type == null) {
+            return false;
+        }
+
         return DialogFragment.class.isAssignableFrom(type);
     }
 
     public final boolean isFragment() {
+
+        if (type == null) {
+            return false;
+        }
+
         return Fragment.class.isAssignableFrom(type);
     }
 
     public final boolean isActivity() {
+
+        if (type == null) {
+            return false;
+        }
+
         return Activity.class.isAssignableFrom(type);
     }
 

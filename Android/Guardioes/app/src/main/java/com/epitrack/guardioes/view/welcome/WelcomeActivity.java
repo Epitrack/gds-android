@@ -29,7 +29,9 @@ public class WelcomeActivity extends BaseFragmentActivity {
     @Override
     protected void onCreate(final Bundle bundle) {
         super.onCreate(bundle);
+
         MultiDex.install(getBaseContext());
+
         setContentView(R.layout.welcome);
 
         final SimpleRequester simpleRequester = new SimpleRequester();

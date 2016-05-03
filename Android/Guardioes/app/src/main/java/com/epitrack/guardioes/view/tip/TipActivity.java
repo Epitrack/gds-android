@@ -52,10 +52,12 @@ public class TipActivity extends BaseAppCompatActivity implements ExpandableList
     public boolean onChildClick(final ExpandableListView listView, final View view, final int groupPosition, final int childPosition, final long id) {
 
         final int phone = Phone.getBy(id).getId();
+
         final Bundle bundle = new Bundle();
 
         bundle.putInt("phone_id", phone);
-        navigateTo(UsefulPhonesActivity.class, bundle);
+
+        navigateTo(PhoneActivity.class, bundle);
 
         return false;
     }

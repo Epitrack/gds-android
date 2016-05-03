@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:src="@drawable/image_logo_white"/>
+
+    <LinearLayout
+        android:id="@+id/linear_layout_social_login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="200dp"
+        android:orientation="vertical">
+
+        <TextView
+            style="@style/TextHint"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="7dp"
+            android:text="@string/message_login_enter"
+            android:textColor="@android:color/white"/>
+
+        <fragment
+            class="com.epitrack.guardioes.view.account.SocialFragment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:tag="social_fragment"/>
+
+        <TextView
+            style="@style/TextHint"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="20dp"
+            android:text="@string/message_use_mail"/>
+
+        <Button
+            android:id="@+id/button_mail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:background="@drawable/selector_button_mail"
+            android:text="E-mail"
+            android:textColor="#ffffff"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linear_layout_login"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        android:layout_marginTop="200dp"
+        android:orientation="vertical"
+        android:visibility="invisible">
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/edit_text_mail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/hint_mail"
+                android:inputType="textEmailAddress"
+                android:maxLength="50"
+                android:textColor="@android:color/white"
+                android:textColorHint="@color/translucent_white_light"/>
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/edit_text_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/hint_password_short"
+                android:inputType="textPassword"
+                android:maxLength="16"
+                android:textColor="@android:color/white"
+                android:textColorHint="@color/translucent_white_light"/>
+
+        </android.support.design.widget.TextInputLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:id="@+id/button_login"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/text_view_forgot_password"
+                android:layout_marginBottom="35dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:background="@drawable/selector_button_gold_white"
+                android:text="@string/login"
+                android:textColor="@android:color/white"/>
+
+            <TextView
+                android:id="@+id/text_view_forgot_password"
+                style="@style/TextHintLight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="30dp"
+                android:text="@string/message_forgot_password"/>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

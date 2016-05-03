@@ -44,7 +44,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/text_view_name"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="45dp">
+        android:layout_marginTop="35dp">
 
         <ImageView
             android:id="@+id/image_view_join"
@@ -130,7 +130,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/relative_layout"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="37dp"
+        android:layout_marginTop="30dp"
         android:drawableTop="@drawable/icon_game"
         android:gravity="center_horizontal"
         android:padding="5dp"

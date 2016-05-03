@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:gravity="center_horizontal"
-    android:orientation="vertical">
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:gravity="center_horizontal"
+              android:orientation="vertical">
 
     <TextView
         style="@style/TextWelcomeName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="35dp"
-        android:text="@string/tip_health" />
+        android:text="@string/tip_health"/>
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
-        android:src="@drawable/walktrought_health_tips" />
+        android:src="@drawable/walktrought_health_tips"/>
 
     <TextView
         style="@style/TextWelcomeMessage"
@@ -24,6 +24,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
         android:gravity="center_horizontal"
-        android:text="@string/message_prevent" />
+        android:text="@string/message_prevent"/>
 
 </LinearLayout>

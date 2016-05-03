@@ -99,7 +99,7 @@
 
         # Help
         <activity
-            android:name=".view.menu.help.Term"
+            android:name=".view.menu.help.TermActivity"
             android:exported="false"
             android:label="@string/term"
             android:screenOrientation="portrait"/>
@@ -173,7 +173,7 @@
             android:screenOrientation="portrait"/>
 
         <activity
-            android:name=".view.tip.UsefulPhonesActivity"
+            android:name=".view.tip.PhoneActivity"
             android:exported="false"
             android:label="@string/useful_phones"
             android:parentActivityName=".view.tip.TipActivity"

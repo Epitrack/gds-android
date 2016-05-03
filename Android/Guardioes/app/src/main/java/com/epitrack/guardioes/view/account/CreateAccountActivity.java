@@ -9,6 +9,7 @@ import android.support.v7.app.ActionBar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.inputmethod.InputMethodManager;
@@ -20,22 +21,21 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.epitrack.guardioes.R;
+import com.epitrack.guardioes.helper.Constants;
+import com.epitrack.guardioes.helper.DateFormat;
+import com.epitrack.guardioes.helper.DialogBuilder;
+import com.epitrack.guardioes.helper.LocationUtility;
+import com.epitrack.guardioes.helper.Mask;
 import com.epitrack.guardioes.model.DTO;
 import com.epitrack.guardioes.model.SingleUser;
 import com.epitrack.guardioes.model.User;
 import com.epitrack.guardioes.request.base.Method;
 import com.epitrack.guardioes.request.old.Requester;
 import com.epitrack.guardioes.request.old.SimpleRequester;
-import com.epitrack.guardioes.helper.Constants;
-import com.epitrack.guardioes.helper.DateFormat;
-import com.epitrack.guardioes.helper.DialogBuilder;
-import com.epitrack.guardioes.helper.LocationUtility;
-import com.epitrack.guardioes.helper.Mask;
 import com.epitrack.guardioes.view.HomeActivity;
 import com.epitrack.guardioes.view.base.BaseAppCompatActivity;
-import com.epitrack.guardioes.view.menu.help.Term;
+import com.epitrack.guardioes.view.menu.help.TermActivity;
 import com.epitrack.guardioes.view.menu.profile.UserActivity;
-import com.epitrack.guardioes.view.welcome.TermActivity;
 import com.google.android.gms.analytics.HitBuilders;
 import com.mobsandgeeks.saripaar.ValidationError;
 import com.mobsandgeeks.saripaar.Validator;
@@ -89,7 +89,6 @@ public class CreateAccountActivity extends BaseAppCompatActivity implements Soci
     @Bind(R.id.button_mail)
     Button buttonMail;
 
-    //Miquéias Lopes
     @Bind(R.id.spinner_race)
     Spinner spinnerRace;
 
@@ -144,8 +143,6 @@ public class CreateAccountActivity extends BaseAppCompatActivity implements Soci
                 }
             }
         });
-
-
     }
 
     @Override
@@ -166,7 +163,7 @@ public class CreateAccountActivity extends BaseAppCompatActivity implements Soci
 
         if (bundle != null) {
 
-            if (bundle.equals("email")) {
+            if (bundle.equals("Email")) {
                 onNextAnimation(linearLayoutNext, linearLayoutSocial);
             }
         }
@@ -197,6 +194,7 @@ public class CreateAccountActivity extends BaseAppCompatActivity implements Soci
 
         // custom dialog
         final Dialog dialog = new Dialog(this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.privacy);
         ImageButton dialogButton = (ImageButton) dialog.findViewById(R.id.image_button_close);
         dialogButton.setOnClickListener(new View.OnClickListener() {
@@ -219,7 +217,7 @@ public class CreateAccountActivity extends BaseAppCompatActivity implements Soci
 
     @OnClick(R.id.text_view_term)
     public void onTerm() {
-        navigateTo(Term.class);
+        navigateTo(TermActivity.class);
     }
 
     /**
@@ -432,7 +430,6 @@ public class CreateAccountActivity extends BaseAppCompatActivity implements Soci
                 .setCategory("Action")
                 .setAction("Register Yourself Button")
                 .build());
-        // TODO: Uncomment this to validate
 
         validator.validate();
     }
@@ -469,9 +466,6 @@ public class CreateAccountActivity extends BaseAppCompatActivity implements Soci
 
             } else {
 
-                // TODO: Make request
-
-                // Miquéias Lopes
                 User user = new User();
 
                 user.setNick(editTextNickname.getText().toString().trim());

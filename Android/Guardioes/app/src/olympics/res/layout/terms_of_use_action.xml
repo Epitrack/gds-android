@@ -58,7 +58,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="7"
-        android:background="@color/white_dark"
+        android:background="@color/marigold"
         android:orientation="vertical">
 
         <RelativeLayout
@@ -73,7 +73,7 @@
                 android:layout_alignTop="@+id/btn_not_accept_terms"
                 android:background="@android:color/transparent"
                 android:text="ACEITO"
-                android:textColor="@color/blue_dark"/>
+                android:textColor="@android:color/white"/>
 
             <Button
                 android:id="@+id/btn_not_accept_terms"
@@ -83,7 +83,7 @@
                 android:layout_toStartOf="@+id/btn_accept_terms"
                 android:background="@android:color/transparent"
                 android:text="NÃO ACEITO"
-                android:textColor="@color/blue_dark"/>
+                android:textColor="@android:color/white"/>
 
         </RelativeLayout>
 

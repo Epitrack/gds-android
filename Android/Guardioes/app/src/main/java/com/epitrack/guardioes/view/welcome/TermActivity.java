@@ -49,7 +49,7 @@ public class TermActivity extends BaseAppCompatActivity {
 
         } else {
 
-            if (mail.equals("email")) {
+            if (mail.equals(Constants.Bundle.EMAIL)) {
 
                 final Bundle bundle = new Bundle();
                 bundle.putString(Constants.Bundle.EMAIL, Constants.Bundle.EMAIL);

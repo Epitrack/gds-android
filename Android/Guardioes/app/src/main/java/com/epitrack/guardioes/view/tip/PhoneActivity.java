@@ -14,7 +14,7 @@ import com.google.android.gms.analytics.HitBuilders;
 import butterknife.Bind;
 import butterknife.OnClick;
 
-public class UsefulPhonesActivity extends BaseAppCompatActivity {
+public class PhoneActivity extends BaseAppCompatActivity {
     int phoneId;
 
     @Bind(R.id.button_call)
@@ -24,7 +24,7 @@ public class UsefulPhonesActivity extends BaseAppCompatActivity {
     public void onCreate(final Bundle bundle) {
         super.onCreate(bundle);
 
-        setContentView(R.layout.useful_phones);
+        setContentView(R.layout.phone);
 
         phoneId = getIntent().getIntExtra("phone_id", 1);
         ImageView imageView = (ImageView) findViewById(R.id.image_call);
@@ -108,7 +108,6 @@ public class UsefulPhonesActivity extends BaseAppCompatActivity {
                     .build());
         }
 
-        Intent intent;
         Uri uri = null;
 
         if (phoneId == Phone.EMERGENCY.getId()) {
@@ -123,7 +122,7 @@ public class UsefulPhonesActivity extends BaseAppCompatActivity {
             uri = Uri.parse("tel:136");
         }
 
-        intent = new Intent(Intent.ACTION_DIAL);
+        Intent intent = new Intent(Intent.ACTION_DIAL);
         intent.setData(uri);
         startActivity(intent);
     }

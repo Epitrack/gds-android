@@ -26,7 +26,6 @@ import com.epitrack.guardioes.view.welcome.WelcomeActivity;
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
-import com.google.android.gms.gcm.GoogleCloudMessaging;
 
 import org.json.JSONObject;
 
@@ -43,9 +42,6 @@ public class SplashActivity extends BaseActivity implements Runnable {
 
     private BroadcastReceiver mRegistrationBroadcastReceiver;
     private boolean isReceiverRegistered;
-    private GoogleCloudMessaging gcm;
-    private String regId;
-    private static String SENDER_ID = "997325640691";
     private static final int PLAY_SERVICES_RESOLUTION_REQUEST = 9000;
     private static final String TAG = "SplashActivity";
     private String gcmToken;

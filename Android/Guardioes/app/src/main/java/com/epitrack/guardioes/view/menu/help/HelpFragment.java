@@ -52,7 +52,7 @@ public class HelpFragment extends BaseFragment {
                             .setAction("Terms Button")
                             .build());
 
-                    navigateTo(Term.class);
+                    navigateTo(TermActivity.class);
 
                 } else if (HelpOption.getBy(position + 1).getId() == HelpOption.TUTORIAL.getId()) {
 
