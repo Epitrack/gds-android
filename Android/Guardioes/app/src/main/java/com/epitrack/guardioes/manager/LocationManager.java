@@ -22,11 +22,11 @@ public class LocationManager extends BaseManager implements GoogleApiClient.Conn
 
     private static final long INTERVAL = 1000;
     private static final long FASTEST_INTERVAL = 5000;
-    private static final int  PRIORITY = LocationRequest.PRIORITY_HIGH_ACCURACY;
+    private static final int PRIORITY = LocationRequest.PRIORITY_HIGH_ACCURACY;
 
     private static final LocationRequest LOCATION_REQUEST = new LocationRequest().setInterval(INTERVAL)
-                                                                                 .setFastestInterval(FASTEST_INTERVAL)
-                                                                                 .setPriority(PRIORITY);
+            .setFastestInterval(FASTEST_INTERVAL)
+            .setPriority(PRIORITY);
 
     private final Handler handler = new Handler();
 
@@ -47,19 +47,26 @@ public class LocationManager extends BaseManager implements GoogleApiClient.Conn
     @Override
     public void onConnected(final Bundle bundle) {
 
-        try {
+        // TODO: Refactor this.
 
-            handler.post(new Runnable() {
+        handler.post(new Runnable() {
 
-                @Override
-                public void run() {
+            @Override
+            public void run() {
 
-                    //TODO: Refactor
+                try {
+
                     final Location location = LocationServices.FusedLocationApi.getLastLocation(locationHandler);
 
                     listener.onLastLocation(location);
+
+                } catch (SecurityException e) {
+                    e.printStackTrace();
                 }
-            });
+            }
+        });
+
+        try {
 
             LocationServices.FusedLocationApi.requestLocationUpdates(locationHandler, LOCATION_REQUEST, this);
 

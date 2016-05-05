@@ -12,13 +12,13 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/img_news_point"/>
+            android:src="@drawable/icon_point"/>
 
         <View
             android:layout_width="2dp"
             android:layout_height="match_parent"
             android:layout_gravity="center_horizontal"
-            android:background="@color/primary_light"/>
+            android:background="@color/dusty_orange"/>
 
     </LinearLayout>
 

@@ -23,6 +23,9 @@
     <color name="grey">#757575</color>
     <color name="grey_dark">#444444</color>
 
+    <color name="greyish_brown">#4a4a4a</color>
+    <color name="warm_grey">#8c8c8c</color>
+
     <color name="black">#2f2f2f</color>
     <color name="black_dark">#4c4c4c</color>
 
