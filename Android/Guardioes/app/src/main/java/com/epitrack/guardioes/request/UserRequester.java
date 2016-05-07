@@ -33,7 +33,7 @@ public class UserRequester extends BaseRequester {
         super(context);
     }
 
-    public void login(final String mail, final String password, final RequestListener<User> listener) {
+    public void login(final String mail, final String password, final String hash, final RequestListener<User> listener) {
 
         final String url = RequesterConfig.URL + "/user/login";
 
@@ -41,6 +41,7 @@ public class UserRequester extends BaseRequester {
 
         bodyMap.put("email", mail);
         bodyMap.put("password", password);
+        bodyMap.put("gcm_token", hash);
 
         listener.onStart();
 

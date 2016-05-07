@@ -2,9 +2,9 @@ package com.epitrack.guardioes.view.account;
 
 import android.app.Dialog;
 import android.content.Intent;
-import android.content.SharedPreferences;
+import android.content.IntentFilter;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.ActionBar;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -27,10 +27,13 @@ import com.epitrack.guardioes.helper.DialogBuilder;
 import com.epitrack.guardioes.helper.Mask;
 import com.epitrack.guardioes.model.DTO;
 import com.epitrack.guardioes.model.User;
+import com.epitrack.guardioes.push.HashReceiver;
+import com.epitrack.guardioes.push.RegisterService;
 import com.epitrack.guardioes.request.UserRequester;
 import com.epitrack.guardioes.request.base.RequestHandler;
 import com.epitrack.guardioes.view.HomeActivity;
 import com.epitrack.guardioes.view.base.BaseAppCompatActivity;
+import com.epitrack.guardioes.view.dialog.LoadDialog;
 import com.epitrack.guardioes.view.menu.help.TermActivity;
 import com.epitrack.guardioes.view.menu.profile.UserActivity;
 import com.google.android.gms.analytics.HitBuilders;
@@ -93,10 +96,10 @@ public class CreateAccountActivity extends BaseAppCompatActivity implements Soci
     private SocialFragment socialFragment;
     private Validator validator;
     private State state = State.SOCIAL;
-    private SharedPreferences sharedPreferences = null;
 
     private Bundle bundle;
-    private String gcmToken;
+
+    private final LoadDialog loadDialog = new LoadDialog();
 
     @Override
     protected void onCreate(final Bundle bundle) {
@@ -123,9 +126,6 @@ public class CreateAccountActivity extends BaseAppCompatActivity implements Soci
         getSocialFragment().setEnable(true);
         getSocialFragment().isIsCreateAccount(true);
 
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-        gcmToken = sharedPreferences.getString(Constants.Push.SENDER_ID, "");
-
         editTextBirthDate.setOnFocusChangeListener(new View.OnFocusChangeListener() {
 
             public void onFocusChange(final View v, boolean hasFocus) {
@@ -151,6 +151,8 @@ public class CreateAccountActivity extends BaseAppCompatActivity implements Soci
     public void onResume() {
         super.onResume();
 
+        LocalBroadcastManager.getInstance(this).registerReceiver(receiver, new IntentFilter(HashReceiver.HASH_RECEIVER));
+
         getTracker().setScreenName("Create Account Screen - " + this.getClass().getSimpleName());
         getTracker().send(new HitBuilders.ScreenViewBuilder().build());
 
@@ -162,6 +164,14 @@ public class CreateAccountActivity extends BaseAppCompatActivity implements Soci
                 onNextAnimation(linearLayoutNext, linearLayoutSocial);
             }
         }
+    }
+
+    @Override
+    protected void onPause() {
+
+        LocalBroadcastManager.getInstance(this).unregisterReceiver(receiver);
+
+        super.onPause();
     }
 
     @Override
@@ -428,6 +438,52 @@ public class CreateAccountActivity extends BaseAppCompatActivity implements Soci
         validator.validate();
     }
 
+    private HashReceiver receiver = new HashReceiver() {
+
+        public void onHash(final String hash) {
+
+            final User user = new User();
+
+            user.setNick(editTextNickname.getText().toString().trim());
+            user.setDob(editTextBirthDate.getText().toString().trim().toLowerCase());
+            String gender = spinnerGender.getSelectedItem().toString().substring(0, 1);
+            user.setGender(gender.toUpperCase());
+            user.setRace(spinnerRace.getSelectedItem().toString().toLowerCase());
+            user.setEmail(editTextMail.getText().toString().trim().toLowerCase());
+            user.setPassword(editTextPassword.getText().toString().trim());
+            user.setGcmToken(hash);
+
+            if (user.getPassword().length() <= 5) {
+
+                new DialogBuilder(CreateAccountActivity.this).load()
+                        .title(R.string.attention)
+                        .content(R.string.password_fail)
+                        .positiveText(R.string.ok)
+                        .show();
+
+            } else {
+
+                new UserRequester(CreateAccountActivity.this).createAccount(user, new RequestHandler<User>(CreateAccountActivity.this) {
+
+                    @Override
+                    public void onError(final Exception error) {
+                        super.onError(error);
+
+                        Toast.makeText(CreateAccountActivity.this, R.string.erro_new_user, Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onSuccess(final User user) {
+                        super.onSuccess(user);
+
+                        navigateTo(HomeActivity.class, Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                                                       Intent.FLAG_ACTIVITY_NEW_TASK);
+                    }
+                });
+            }
+        }
+    };
+
     private class ValidationHandler implements Validator.ValidationListener {
 
         @Override
@@ -435,7 +491,7 @@ public class CreateAccountActivity extends BaseAppCompatActivity implements Soci
 
             if (state == State.NEXT) {
 
-                boolean dobIsFail;
+                boolean dobIsFail = false;
 
                 if (!DateFormat.isDate(editTextBirthDate.getText().toString().trim().toLowerCase())) {
                     dobIsFail = true;
@@ -443,8 +499,6 @@ public class CreateAccountActivity extends BaseAppCompatActivity implements Soci
                     dobIsFail = true;
                 } else if (DateFormat.getDateDiff(DateFormat.getDate(editTextBirthDate.getText().toString().trim())) > 120) {
                     dobIsFail = true;
-                } else {
-                    dobIsFail = false;
                 }
 
                 if (dobIsFail) {
@@ -460,45 +514,9 @@ public class CreateAccountActivity extends BaseAppCompatActivity implements Soci
 
             } else {
 
-                User user = new User();
+                loadDialog.show(getFragmentManager(), LoadDialog.TAG);
 
-                user.setNick(editTextNickname.getText().toString().trim());
-                user.setDob(editTextBirthDate.getText().toString().trim().toLowerCase());
-                String gender = spinnerGender.getSelectedItem().toString();
-                gender = gender.substring(0, 1);
-                user.setGender(gender.toUpperCase());
-                user.setRace(spinnerRace.getSelectedItem().toString().toLowerCase());
-                user.setEmail(editTextMail.getText().toString().trim().toLowerCase());
-                user.setPassword(editTextPassword.getText().toString().trim());
-
-                if (user.getPassword().length() <= 5) {
-
-                    new DialogBuilder(CreateAccountActivity.this).load()
-                            .title(R.string.attention)
-                            .content(R.string.password_fail)
-                            .positiveText(R.string.ok)
-                            .show();
-
-                } else {
-
-                    new UserRequester(CreateAccountActivity.this).createAccount(user, new RequestHandler<User>(CreateAccountActivity.this) {
-
-                        @Override
-                        public void onError(final Exception error) {
-                            super.onError(error);
-
-                            Toast.makeText(getApplicationContext(), R.string.erro_new_user, Toast.LENGTH_SHORT).show();
-                        }
-
-                        @Override
-                        public void onSuccess(final User user) {
-                            super.onSuccess(user);
-
-                            navigateTo(HomeActivity.class, Intent.FLAG_ACTIVITY_CLEAR_TASK |
-                                                           Intent.FLAG_ACTIVITY_NEW_TASK);
-                        }
-                    });
-                }
+                startService(new Intent(CreateAccountActivity.this, RegisterService.class));
             }
         }
 

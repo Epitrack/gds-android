@@ -1,8 +1,9 @@
 package com.epitrack.guardioes.view.account;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
+import android.content.IntentFilter;
 import android.os.Bundle;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.ActionBar;
 import android.view.MenuItem;
 import android.view.View;
@@ -16,10 +17,13 @@ import android.widget.Toast;
 import com.epitrack.guardioes.R;
 import com.epitrack.guardioes.helper.DialogBuilder;
 import com.epitrack.guardioes.model.User;
+import com.epitrack.guardioes.push.HashReceiver;
+import com.epitrack.guardioes.push.RegisterService;
 import com.epitrack.guardioes.request.UserRequester;
-import com.epitrack.guardioes.request.base.RequestHandler;
+import com.epitrack.guardioes.request.base.RequestListener;
 import com.epitrack.guardioes.view.HomeActivity;
 import com.epitrack.guardioes.view.base.BaseAppCompatActivity;
+import com.epitrack.guardioes.view.dialog.LoadDialog;
 import com.google.android.gms.analytics.HitBuilders;
 import com.mobsandgeeks.saripaar.ValidationError;
 import com.mobsandgeeks.saripaar.Validator;
@@ -51,9 +55,10 @@ public class LoginActivity extends BaseAppCompatActivity implements SocialAccoun
     EditText editTextPassword;
 
     private boolean inLogin;
+
     private Validator validator;
-    SharedPreferences sharedPreferences = null;
-    private SharedPreferences shpGCMToken;
+
+    private final LoadDialog loadDialog = new LoadDialog();
 
     @Override
     protected void onCreate(final Bundle bundle) {
@@ -77,8 +82,18 @@ public class LoginActivity extends BaseAppCompatActivity implements SocialAccoun
     public void onResume() {
         super.onResume();
 
+        LocalBroadcastManager.getInstance(this).registerReceiver(receiver, new IntentFilter(HashReceiver.HASH_RECEIVER));
+
         getTracker().setScreenName("Login Screen - " + this.getClass().getSimpleName());
         getTracker().send(new HitBuilders.ScreenViewBuilder().build());
+    }
+
+    @Override
+    protected void onPause() {
+
+        LocalBroadcastManager.getInstance(this).unregisterReceiver(receiver);
+
+        super.onPause();
     }
 
     @Override
@@ -215,19 +230,22 @@ public class LoginActivity extends BaseAppCompatActivity implements SocialAccoun
         validator.validate();
     }
 
-    private class ValidationHandler implements Validator.ValidationListener {
+    private HashReceiver receiver = new HashReceiver() {
 
-        @Override
-        public void onValidationSucceeded() {
+        public void onHash(final String hash) {
 
             final String mail = editTextMail.getText().toString().toLowerCase().trim();
             final String password = editTextPassword.getText().toString().trim();
 
-            new UserRequester(LoginActivity.this).login(mail, password, new RequestHandler<User>(LoginActivity.this) {
+            new UserRequester(LoginActivity.this).login(mail, password, hash, new RequestListener<User>() {
+
+                @Override
+                public void onStart() {
+
+                }
 
                 @Override
                 public void onError(final Exception e) {
-                    super.onError(e);
 
                     new DialogBuilder(LoginActivity.this).load()
                             .title(R.string.attention)
@@ -238,12 +256,22 @@ public class LoginActivity extends BaseAppCompatActivity implements SocialAccoun
 
                 @Override
                 public void onSuccess(final User user) {
-                    super.onSuccess(user);
 
                     navigateTo(HomeActivity.class, Intent.FLAG_ACTIVITY_CLEAR_TASK |
                                                    Intent.FLAG_ACTIVITY_NEW_TASK);
                 }
             });
+        }
+    };
+
+    private class ValidationHandler implements Validator.ValidationListener {
+
+        @Override
+        public void onValidationSucceeded() {
+
+            loadDialog.show(getFragmentManager(), LoadDialog.TAG);
+
+            startService(new Intent(LoginActivity.this, RegisterService.class));
         }
 
         @Override
