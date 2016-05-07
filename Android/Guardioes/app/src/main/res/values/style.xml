@@ -222,6 +222,11 @@
         <item name="drawerArrowStyle">@style/Theme.DrawerArrow</item>
     </style>
 
+    <style name="Toolbar" parent="@style/ThemeOverlay.AppCompat">
+        <item name="android:textColorPrimary">@android:color/white</item>
+        <item name="drawerArrowStyle">@style/Theme.DrawerArrow</item>
+    </style>
+
     <style name="ActionBarMenu">
         <item name="android:textColorPrimary">@android:color/white</item>
     </style>

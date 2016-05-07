@@ -41,7 +41,7 @@ public class ProfileActivity extends BaseAppCompatActivity implements UserListen
     protected void onCreate(final Bundle bundle) {
         super.onCreate(bundle);
 
-        setContentView(R.layout.profile_activity);
+        setContentView(R.layout.profile);
     }
 
     @Override
@@ -104,7 +104,7 @@ public class ProfileActivity extends BaseAppCompatActivity implements UserListen
     }
 
     @Override
-    @OnClick(R.id.button_add)
+    @OnClick(R.id.button_save)
     public void onAdd() {
 
         getTracker().send(new HitBuilders.EventBuilder()

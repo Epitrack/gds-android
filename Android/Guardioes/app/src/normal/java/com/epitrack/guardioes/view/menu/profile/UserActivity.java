@@ -80,7 +80,7 @@ public class UserActivity extends BaseAppCompatActivity {
     @Bind(R.id.spinner_relationship)
     Spinner spinnerRelationship;
 
-    @Bind(R.id.label_relationship)
+    @Bind(R.id.text_view_relationship)
     TextView textViewRelationship;
 
     private boolean socialNew;
@@ -355,7 +355,7 @@ public class UserActivity extends BaseAppCompatActivity {
         return true;
     }
 
-    @OnClick(R.id.button_add)
+    @OnClick(R.id.button_save)
     public void onAdd() {
 
         getTracker().send(new HitBuilders.EventBuilder()
@@ -396,19 +396,7 @@ public class UserActivity extends BaseAppCompatActivity {
                 jsonObject.put("relationship", user.getRelationship());
                 jsonObject.put("email", user.getEmail());
                 jsonObject.put("picture", user.getImage());
-
-//                LocationUtility locationUtility;
-//                try {
-//                    locationUtility = new LocationUtility(getApplicationContext());
-//
-//                    if (locationUtility.getLocation() != null) {
-//                        jsonObject.put("lat", locationUtility.getLatitude());
-//                        jsonObject.put("lon", locationUtility.getLongitude());
-//                    }
-//                } catch (Exception e) {
-//
-//                }
-
+                
                 if (!socialNew) {
 
                     if (mainMember) {

@@ -169,6 +169,10 @@
         <item>Outros</item>
     </string-array>
 
+    <string name="not_now">AGORA NÃO</string>
+    <string name="setting_upper">CONFIGURAÇÕES</string>
+    <string name="location_disabled">Não estamos conseguindo obter sua localização. Verifique se os serviços estão habilitados no aparelho.</string>
+
     <string name="generic_error">Não foi possível executar a operação. Tente novamente em alguns instantes.</string>
     <string name="generic_error_login">Não foi possível executar a operação. Verifique se todos os campos estão preenchidos corretamente ou se o e-mail utilizado já está em uso.</string>
     <string name="erro_new_user">Não foi possível realizar o cadastro. Verifique se todos os campos estão preenchidos corretamente ou se o e-mail utilizado já está em uso.</string>
@@ -254,7 +258,7 @@
 
     # Profile Activity
 
-    <string name="message_select_profile">Selecione um dos perfis abaixo para\npoder editar.</string>
+    <string name="message_select_profile">Selecione um dos perfis\nabaixo parapoder editar.</string>
     <string name="add_member">Adicionar novo integrante</string>
     <string name="not_remove_member">Você não pode remover seu perfil.</string>
     <string name="delete_user">Integrante excluído com sucesso.</string>
@@ -269,7 +273,7 @@
     <string name="message_interest">Selecione as categorias e hashtags que você deseja seguir</string>
 
     # User
-    <string name="message_new_member">Preencha todos os campos abaixo\npara adicionar um novo membro.</string>
+    <string name="message_new_member">Preencha todos os campos abaixo\npara adicionar um novo integrante.</string>
     <string name="message_fields">Apenas os campos habilitados\npoderão ser alterados.</string>
 
     # Interest

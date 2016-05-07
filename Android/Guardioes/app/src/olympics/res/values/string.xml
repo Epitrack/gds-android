@@ -130,6 +130,9 @@
 
     <string name="message_user_max">Só é possível adicionar 10 integrantes!</string>
 
+    <string name="residence_state">Estado de Residência</string>
+    <string name="residence_country">País de Residência</string>
+
     <string-array name="image_array">
         <item>Camera</item>
         <item>Gallery</item>
@@ -168,6 +171,20 @@
         <item>Enteado</item>
         <item>Cônjuge</item>
         <item>Outros</item>
+    </string-array>
+
+    <string-array name="array_state">
+        <item>Acre</item>
+    </string-array>
+
+    <string-array name="array_country">
+        <item>Brasil</item>
+    </string-array>
+
+    <string-array name="array_profile">
+        <item>Atleta/Delegação</item>
+        <item>Trabalhador/Voluntário</item>
+        <item>Fã/Espectador</item>
     </string-array>
 
     <string name="not_now">AGORA NÃO</string>
@@ -259,7 +276,7 @@
 
     # Profile Activity
 
-    <string name="message_select_profile">Selecione um dos perfis abaixo para\npoder editar.</string>
+    <string name="message_select_profile">Selecione qual dos perfis\nabaixo quer editar.</string>
     <string name="add_member">Adicionar novo integrante</string>
     <string name="not_remove_member">Você não pode remover seu perfil.</string>
     <string name="delete_user">Integrante excluído com sucesso.</string>
@@ -274,7 +291,7 @@
     <string name="message_interest">Selecione as categorias e hashtags que você deseja seguir</string>
 
     # User
-    <string name="message_new_member">Preencha todos os campos abaixo\npara adicionar um novo membro.</string>
+    <string name="message_new_member">Preencha todos os campos abaixo\npara adicionar um novo integrante.</string>
     <string name="message_fields">Apenas os campos habilitados\npoderão ser alterados.</string>
 
     # Interest
