@@ -3,6 +3,7 @@ package com.epitrack.guardioes.request;
 import android.content.Context;
 
 import com.epitrack.guardioes.helper.Constants;
+import com.epitrack.guardioes.helper.DateFormat;
 import com.epitrack.guardioes.helper.Logger;
 import com.epitrack.guardioes.manager.PrefManager;
 import com.epitrack.guardioes.model.User;
@@ -75,6 +76,83 @@ public class UserRequester extends BaseRequester {
                                 user.setUserToken(json.getString("token"));
                                 user.setImage(jsonObjectUser.getInt("picture"));
                                 user.setHashtags(jsonObjectUser.getJSONArray("hashtags"));
+
+                                if (new PrefManager(getContext()).put(Constants.Pref.USER, user)) {
+
+                                    listener.onSuccess(user);
+                                }
+                            }
+
+                        } catch (final JSONException e) {
+                            Logger.logDebug(TAG, e.getMessage());
+
+                            listener.onError(new RequestException());
+                        }
+
+                    } else {
+
+                        listener.onError(new RequestException());
+                    }
+
+                } else {
+
+                    listener.onError(error);
+                }
+            }
+        });
+    }
+
+    public void createAccount(final User user, final RequestListener<User> listener) {
+
+        final String url = RequesterConfig.URL + "user/create";
+
+        final Map<String, Object> bodyMap = new HashMap<>();
+
+        bodyMap.put("nick", user.getNick());
+        bodyMap.put("email", user.getEmail());
+        bodyMap.put("password", user.getPassword());
+        bodyMap.put("client", user.getClient());
+        bodyMap.put("dob", DateFormat.getDate(user.getDob()));
+        bodyMap.put("gender", user.getGender());
+        bodyMap.put("app_token", user.getAppToken());
+        bodyMap.put("race", user.getRace());
+        bodyMap.put("platform", user.getPlatform());
+        bodyMap.put("picture", "0");
+        bodyMap.put("gcm_token", user.getGcmToken());
+
+        listener.onStart();
+
+        new Requester(getContext()).request(Method.POST, url, getHeaderMap(), bodyMap, new FutureCallback<Response<String>>() {
+
+            @Override
+            public void onCompleted(final Exception error, final Response<String> response) {
+
+                if (error == null) {
+
+                    if (isSuccess(response)) {
+
+                        try {
+
+                            final JSONObject json = new JSONObject(response.getResult());
+
+                            if (json.getBoolean("error")) {
+
+                                listener.onError(new RequestException());
+
+                            } else {
+
+                                final User user = new User();
+
+                                JSONObject jsonObjectUser = json.getJSONObject("user");
+
+                                user.setNick(jsonObjectUser.getString("nick"));
+                                user.setEmail(jsonObjectUser.getString("email"));
+                                user.setGender(jsonObjectUser.getString("gender"));
+                                user.setImage(jsonObjectUser.getInt("picture"));
+                                user.setId(jsonObjectUser.getString("id"));
+                                user.setRace(jsonObjectUser.getString("race"));
+                                user.setDob(jsonObjectUser.getString("dob"));
+                                user.setUserToken(jsonObjectUser.getString("token"));
 
                                 if (new PrefManager(getContext()).put(Constants.Pref.USER, user)) {
 

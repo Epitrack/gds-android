@@ -238,6 +238,14 @@ public class User {
         this.versionBuild = versionBuild;
     }
 
+    public String getGcmToken() {
+        return gcmToken;
+    }
+
+    public void setGcmToken(String gcmToken) {
+        this.gcmToken = gcmToken;
+    }
+
     public void clean() {
         this.image = 0;
         this.nick = "";

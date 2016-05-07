@@ -24,14 +24,11 @@ import com.epitrack.guardioes.R;
 import com.epitrack.guardioes.helper.Constants;
 import com.epitrack.guardioes.helper.DateFormat;
 import com.epitrack.guardioes.helper.DialogBuilder;
-import com.epitrack.guardioes.helper.LocationUtility;
 import com.epitrack.guardioes.helper.Mask;
 import com.epitrack.guardioes.model.DTO;
-import com.epitrack.guardioes.model.SingleUser;
 import com.epitrack.guardioes.model.User;
-import com.epitrack.guardioes.request.base.Method;
-import com.epitrack.guardioes.request.old.Requester;
-import com.epitrack.guardioes.request.old.SimpleRequester;
+import com.epitrack.guardioes.request.UserRequester;
+import com.epitrack.guardioes.request.base.RequestHandler;
 import com.epitrack.guardioes.view.HomeActivity;
 import com.epitrack.guardioes.view.base.BaseAppCompatActivity;
 import com.epitrack.guardioes.view.menu.help.TermActivity;
@@ -43,8 +40,6 @@ import com.mobsandgeeks.saripaar.annotation.Email;
 import com.mobsandgeeks.saripaar.annotation.Length;
 import com.mobsandgeeks.saripaar.annotation.NotEmpty;
 import com.mobsandgeeks.saripaar.annotation.Password;
-
-import org.json.JSONObject;
 
 import java.util.List;
 
@@ -192,7 +187,6 @@ public class CreateAccountActivity extends BaseAppCompatActivity implements Soci
 
     public void onPrivacy(final MenuItem item) {
 
-        // custom dialog
         final Dialog dialog = new Dialog(this);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.privacy);
@@ -487,75 +481,23 @@ public class CreateAccountActivity extends BaseAppCompatActivity implements Soci
 
                 } else {
 
-                    final JSONObject jRoot = new JSONObject();
+                    new UserRequester(CreateAccountActivity.this).createAccount(user, new RequestHandler<User>(CreateAccountActivity.this) {
 
-                    try {
+                        @Override
+                        public void onError(final Exception error) {
+                            super.onError(error);
 
-                        jRoot.put("nick", user.getNick());
-                        jRoot.put("email", user.getEmail());
-                        jRoot.put("password", user.getPassword());
-                        jRoot.put("client", user.getClient());
-                        jRoot.put("dob", DateFormat.getDate(user.getDob()));
-                        jRoot.put("gender", user.getGender());
-                        jRoot.put("app_token", user.getAppToken());
-                        jRoot.put("race", user.getRace());
-                        jRoot.put("platform", user.getPlatform());
-                        jRoot.put("picture", "0");
-                        jRoot.put("gcm_token", gcmToken);
-
-                        LocationUtility locationUtility = new LocationUtility(getApplicationContext());
-
-                        try {
-
-                            if (locationUtility.getLocation() != null) {
-                                jRoot.put("lat", locationUtility.getLatitude());
-                                jRoot.put("lon", locationUtility.getLongitude());
-                            }
-
-                        } catch (Exception e) {
-                            jRoot.put("lat", -8.0464492);
-                            jRoot.put("lon", -34.9324883);
+                            Toast.makeText(getApplicationContext(), R.string.erro_new_user, Toast.LENGTH_SHORT).show();
                         }
 
-                        SimpleRequester simpleRequester = new SimpleRequester();
-                        simpleRequester.setUrl(Requester.API_URL + "user/create");
-                        simpleRequester.setJsonObject(jRoot);
-                        simpleRequester.setMethod(Method.POST);
-
-                        String jsonStr = simpleRequester.execute(simpleRequester).get();
-
-                        JSONObject jsonObject = new JSONObject(jsonStr);
-
-                        if (jsonObject.get("error").toString() == "true") {
-                            Toast.makeText(getApplicationContext(), R.string.erro_new_user, Toast.LENGTH_SHORT).show();
-
-                        } else {
-
-                            JSONObject jsonObjectUser = jsonObject.getJSONObject("user");
-
-                            SingleUser singleUser = SingleUser.getInstance();
-                            singleUser.setNick(jsonObjectUser.getString("nick"));
-                            singleUser.setEmail(jsonObjectUser.getString("email"));
-                            singleUser.setGender(jsonObjectUser.getString("gender"));
-                            singleUser.setImage(jsonObjectUser.getInt("picture"));
-                            singleUser.setId(jsonObjectUser.getString("id"));
-                            singleUser.setRace(jsonObjectUser.getString("race"));
-                            singleUser.setDob(jsonObjectUser.getString("dob"));
-                            singleUser.setUserToken(jsonObjectUser.getString("token"));
-
-                            sharedPreferences = getSharedPreferences(Constants.Pref.PREFS_NAME, 0);
-                            SharedPreferences.Editor editor = sharedPreferences.edit();
-
-                            editor.putString(Constants.Pref.PREFS_NAME, singleUser.getUserToken());
-                            editor.commit();
+                        @Override
+                        public void onSuccess(final User user) {
+                            super.onSuccess(user);
 
                             navigateTo(HomeActivity.class, Intent.FLAG_ACTIVITY_CLEAR_TASK |
                                                            Intent.FLAG_ACTIVITY_NEW_TASK);
                         }
-
-                    } catch (final Exception e) {
-                        Toast.makeText(getApplicationContext(), R.string.erro_new_user, Toast.LENGTH_SHORT).show();
-                    }
+                    });
                 }
             }
         }
