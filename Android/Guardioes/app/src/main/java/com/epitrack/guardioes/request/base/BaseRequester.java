@@ -18,8 +18,10 @@ package com.epitrack.guardioes.request.base;
  
 import android.content.Context;
 
-import com.epitrack.guardioes.model.SingleUser;
+import com.epitrack.guardioes.helper.Constants;
 import com.epitrack.guardioes.helper.Logger;
+import com.epitrack.guardioes.manager.PrefManager;
+import com.epitrack.guardioes.model.User;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.koushikdutta.ion.Response;
@@ -96,11 +98,16 @@ public class BaseRequester {
         
         headerMap.put(Header.CONTENT_TYPE, Header.ContentType.JSON);
 
-        // TODO: Don't store user as singleton..
-        final SingleUser user = SingleUser.getInstance();
+        final User user = new PrefManager(getContext()).get(Constants.Pref.USER, User.class);
 
-        headerMap.put(TOKEN_APP, user.getAppToken());
-        headerMap.put(TOKEN_USER, user.getUserToken());
+        if (user == null) {
+
+
+        } else {
+
+            headerMap.put(TOKEN_APP, user.getAppToken());
+            headerMap.put(TOKEN_USER, user.getUserToken());
+        }
         
         return headerMap;
     }

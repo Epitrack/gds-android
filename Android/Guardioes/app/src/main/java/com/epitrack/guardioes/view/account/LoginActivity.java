@@ -3,7 +3,6 @@ package com.epitrack.guardioes.view.account;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.support.v7.app.ActionBar;
 import android.view.MenuItem;
 import android.view.View;
@@ -15,13 +14,10 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.epitrack.guardioes.R;
-import com.epitrack.guardioes.model.SingleUser;
-import com.epitrack.guardioes.model.User;
-import com.epitrack.guardioes.request.base.Method;
-import com.epitrack.guardioes.request.old.Requester;
-import com.epitrack.guardioes.request.old.SimpleRequester;
-import com.epitrack.guardioes.helper.Constants;
 import com.epitrack.guardioes.helper.DialogBuilder;
+import com.epitrack.guardioes.model.User;
+import com.epitrack.guardioes.request.UserRequester;
+import com.epitrack.guardioes.request.base.RequestHandler;
 import com.epitrack.guardioes.view.HomeActivity;
 import com.epitrack.guardioes.view.base.BaseAppCompatActivity;
 import com.google.android.gms.analytics.HitBuilders;
@@ -29,8 +25,6 @@ import com.mobsandgeeks.saripaar.ValidationError;
 import com.mobsandgeeks.saripaar.Validator;
 import com.mobsandgeeks.saripaar.annotation.Email;
 import com.mobsandgeeks.saripaar.annotation.Password;
-
-import org.json.JSONObject;
 
 import java.util.List;
 
@@ -77,85 +71,6 @@ public class LoginActivity extends BaseAppCompatActivity implements SocialAccoun
 
         validator = new Validator(this);
         validator.setValidationListener(new ValidationHandler());
-
-        shpGCMToken = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-
-        sharedPreferences = getSharedPreferences(Constants.Pref.PREFS_NAME, 0);
-        String prefUserToken = sharedPreferences.getString(Constants.Pref.PREFS_NAME, "");
-
-        sharedPreferences = getSharedPreferences(Constants.Pref.PREFS_IMAGE, 0);
-        String preImage = sharedPreferences.getString(Constants.Pref.PREFS_IMAGE, "");
-
-        sharedPreferences = getSharedPreferences(Constants.Pref.PREFS_IMAGE_USER_TOKEN, 0);
-        String prefImagUserToken = sharedPreferences.getString(Constants.Pref.PREFS_IMAGE_USER_TOKEN, "");
-
-        if (!prefUserToken.equals("")) {
-
-            SingleUser singleUser = SingleUser.getInstance();
-            JSONObject jsonObject = new JSONObject();
-
-            singleUser.setUserToken(prefUserToken);
-
-            SimpleRequester sendPostRequest = new SimpleRequester();
-            sendPostRequest.setUrl(Requester.API_URL + "user/lookup/");
-            sendPostRequest.setJsonObject(jsonObject);
-            sendPostRequest.setMethod(Method.GET);
-            sendPostRequest.setContext(this);
-
-            String jsonStr;
-            try {
-                jsonStr = sendPostRequest.execute(sendPostRequest).get();
-
-                jsonObject = new JSONObject(jsonStr);
-
-                if (jsonObject.get("error").toString() == "true") {
-                    Toast.makeText(getApplicationContext(), "Erro ao fazer o login. - " + jsonObject.get("message").toString(), Toast.LENGTH_SHORT).show();
-
-                } else {
-
-                    JSONObject jsonObjectUser = jsonObject.getJSONObject("data");
-
-                    singleUser.setNick(jsonObjectUser.getString("nick"));
-                    singleUser.setEmail(jsonObjectUser.getString("email"));
-                    singleUser.setGender(jsonObjectUser.getString("gender"));
-                    //singleUser.setPicture(jsonObjectUser.getString("picture").toString());
-                    singleUser.setId(jsonObjectUser.getString("id"));
-                    singleUser.setRace(jsonObjectUser.getString("race"));
-                    singleUser.setDob(jsonObjectUser.getString("dob"));
-                    singleUser.setUserToken(jsonObjectUser.get("token").toString());
-                    jsonObject.put("gcm_token", shpGCMToken.getString(Constants.Push.SENDER_ID, ""));
-
-                    if (prefUserToken == prefImagUserToken) {
-                        //singleUser.setImage(prefUserToken);
-                    } else {
-                        try {
-                            singleUser.setImage(jsonObjectUser.getInt("picture"));
-                        } catch (Exception e) {
-                            singleUser.setImage(0);
-                        }
-                    }
-
-                    singleUser.setHashtags(jsonObjectUser.getJSONArray("hashtags"));
-
-                    SharedPreferences settings = getSharedPreferences(Constants.Pref.PREFS_NAME, 0);
-                    SharedPreferences.Editor editor = settings.edit();
-                    editor.putString(Constants.Pref.PREFS_NAME, singleUser.getUserToken());
-                    editor.commit();
-
-                    navigateTo(HomeActivity.class, Intent.FLAG_ACTIVITY_CLEAR_TASK |
-                            Intent.FLAG_ACTIVITY_NEW_TASK);
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-
-        } else {
-
-            final SimpleRequester sendPostRequest = new SimpleRequester();
-
-            sendPostRequest.setContext(this);
-            sendPostRequest.updateContext();
-        }
     }
 
     @Override
@@ -205,32 +120,6 @@ public class LoginActivity extends BaseAppCompatActivity implements SocialAccoun
                 .build());
 
         navigateTo(ForgotPasswordActivity.class);
-    }
-
-
-    private String forgotPassword(String email) {
-
-        try {
-
-            JSONObject jsonObject = new JSONObject();
-
-            jsonObject.put("email", email);
-
-            SimpleRequester sendPostRequest = new SimpleRequester();
-            sendPostRequest.setUrl(Requester.API_URL + "user/forgot-password");
-            sendPostRequest.setJsonObject(jsonObject);
-            sendPostRequest.setMethod(Method.POST);
-            sendPostRequest.setContext(this);
-
-            String jsonStr = sendPostRequest.execute(sendPostRequest).get();
-
-            jsonObject = new JSONObject(jsonStr);
-
-            return jsonObject.get("message").toString();
-
-        } catch (Exception e) {
-            return "Não foi possível enviar o e-mail. Tente novamente em alguns minutos";
-        }
     }
 
     @OnClick(R.id.button_mail)
@@ -300,7 +189,7 @@ public class LoginActivity extends BaseAppCompatActivity implements SocialAccoun
 
     @Override
     public void onError() {
-        Toast.makeText(this, "Houston, we have a problem", Toast.LENGTH_SHORT).show();
+
     }
 
     @Override
@@ -312,7 +201,7 @@ public class LoginActivity extends BaseAppCompatActivity implements SocialAccoun
     public void onSuccess() {
 
         navigateTo(HomeActivity.class, Intent.FLAG_ACTIVITY_CLEAR_TASK |
-                                       Intent.FLAG_ACTIVITY_NEW_TASK);
+                Intent.FLAG_ACTIVITY_NEW_TASK);
     }
 
     @OnClick(R.id.button_login)
@@ -331,63 +220,30 @@ public class LoginActivity extends BaseAppCompatActivity implements SocialAccoun
         @Override
         public void onValidationSucceeded() {
 
-            final User user = new User();
+            final String mail = editTextMail.getText().toString().toLowerCase().trim();
+            final String password = editTextPassword.getText().toString().trim();
 
-            user.setEmail(editTextMail.getText().toString().trim().toLowerCase());
-            user.setPassword(editTextPassword.getText().toString().trim());
+            new UserRequester(LoginActivity.this).login(mail, password, new RequestHandler<User>(LoginActivity.this) {
 
-            JSONObject jsonObject = new JSONObject();
-
-            try {
-                jsonObject.put("email", user.getEmail());
-                jsonObject.put("password", user.getPassword());
-
-
-                final SimpleRequester sendPostRequest = new SimpleRequester();
-                sendPostRequest.setUrl(Requester.API_URL + "user/login");
-                sendPostRequest.setJsonObject(jsonObject);
-                sendPostRequest.setMethod(Method.POST);
-
-                String jsonStr = sendPostRequest.execute(sendPostRequest).get();
-
-                jsonObject = new JSONObject(jsonStr);
-
-                if (jsonObject.getBoolean("error")) {
+                @Override
+                public void onError(final Exception e) {
+                    super.onError(e);
 
                     new DialogBuilder(LoginActivity.this).load()
                             .title(R.string.attention)
                             .content(R.string.generic_error_login)
                             .positiveText(R.string.ok)
                             .show();
-
-                } else {
-
-                    JSONObject jsonObjectUser = jsonObject.getJSONObject("user");
-
-                    SingleUser singleUser = SingleUser.getInstance();
-                    singleUser.setNick(jsonObjectUser.getString("nick"));
-                    singleUser.setEmail(jsonObjectUser.getString("email"));
-                    singleUser.setGender(jsonObjectUser.getString("gender"));
-                    singleUser.setId(jsonObjectUser.getString("id"));
-                    singleUser.setRace(jsonObjectUser.getString("race"));
-                    singleUser.setDob(jsonObjectUser.getString("dob"));
-                    singleUser.setUserToken(jsonObject.get("token").toString());
-                    singleUser.setImage(jsonObjectUser.getInt("picture"));
-                    singleUser.setHashtags(jsonObjectUser.getJSONArray("hashtags"));
-
-                    sharedPreferences = getSharedPreferences(Constants.Pref.PREFS_NAME, 0);
-                    SharedPreferences.Editor editor = sharedPreferences.edit();
-
-                    editor.putString(Constants.Pref.PREFS_NAME, singleUser.getUserToken());
-                    editor.commit();
-
-                    navigateTo(HomeActivity.class, Intent.FLAG_ACTIVITY_CLEAR_TASK |
-                            Intent.FLAG_ACTIVITY_NEW_TASK);
                 }
 
-            } catch (Exception e) {
-                Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
-            }
+                @Override
+                public void onSuccess(final User user) {
+                    super.onSuccess(user);
+
+                    navigateTo(HomeActivity.class, Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                                                   Intent.FLAG_ACTIVITY_NEW_TASK);
+                }
+            });
         }
 
         @Override

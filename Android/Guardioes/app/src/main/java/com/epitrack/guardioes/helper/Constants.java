@@ -71,8 +71,6 @@ public final class Constants {
         public static final String WELCOME = "Welcome";
         public static final String TIP = "Tip";
         public static final String AVATAR = "Avatar";
-        public static final String IMAGE = "Image";
-        public static final String URI = "Uri";
         public static final String MAIN_MEMBER = "main_member";
         public static final String BAD_STATE = "has_bad_state";
         public static final String NEW_MEMBER = "new_member";
