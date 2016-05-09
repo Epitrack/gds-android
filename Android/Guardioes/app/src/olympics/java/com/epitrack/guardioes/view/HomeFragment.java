@@ -12,6 +12,7 @@ import com.epitrack.guardioes.helper.AvatarHelper;
 import com.epitrack.guardioes.model.SingleUser;
 import com.epitrack.guardioes.view.base.BaseFragment;
 import com.epitrack.guardioes.view.diary.DiaryActivity;
+import com.epitrack.guardioes.view.game.welcome.WelcomeGameActivity;
 import com.epitrack.guardioes.view.menu.profile.ProfileActivity;
 import com.epitrack.guardioes.view.survey.SelectParticipantActivity;
 import com.epitrack.guardioes.view.tip.TipActivity;
@@ -117,8 +118,7 @@ public class HomeFragment extends BaseFragment {
         navigateTo(DiaryActivity.class);
     }
 
-    @Nullable
-    @OnClick({ R.id.text_view_join, R.id.relative_layout})
+    @OnClick(R.id.relative_layout)
     public void onJoin() {
 
         getTracker().send(new HitBuilders.EventBuilder()
@@ -129,7 +129,6 @@ public class HomeFragment extends BaseFragment {
         navigateTo(SelectParticipantActivity.class);
     }
 
-    @Nullable
     @OnClick(R.id.text_view_game)
     public void onGame() {
 
@@ -137,5 +136,7 @@ public class HomeFragment extends BaseFragment {
                 .setCategory("Action")
                 .setAction("Game Button")
                 .build());
+
+        navigateTo(WelcomeGameActivity.class);
     }
 }
