@@ -2,12 +2,10 @@
 <resources>
 
     <color name="primary">#008dec</color>
-    <color name="primary_light">#1e88e5</color>
+    <color name="dark_sky_blue">#1e88e5</color>
     <color name="primary_dark">#226db6</color>
 
     <color name="secondary">#008dec</color>
-
-    <color name="dark_sky_blue">#2a88e5</color>
 
     <color name="bluish">#2072cc</color>
 
@@ -29,20 +27,13 @@
     <color name="black">#2f2f2f</color>
     <color name="black_dark">#4c4c4c</color>
 
-    <color name="translucent_black_bright">#1A000000</color>
-    <color name="translucent_black_light">#33000000</color>
-    <color name="translucent_black_dark">#80000000</color>
+    <color name="black_10">#1A000000</color>
+    <color name="black_20">#33000000</color>
+    <color name="black_50">#80000000</color>
 
     <color name="translucent_blue">#b32c8cec</color>
 
     <color name="translucent_white_light">#80ffffff</color>
     <color name="translucent_white">#ccffffff</color>
-
-    <array name="load_dialog">
-        <item>@color/primary</item>
-        <item>@color/primary</item>
-        <item>@android:color/white</item>
-        <item>@android:color/white</item>
-    </array>
 
 </resources>

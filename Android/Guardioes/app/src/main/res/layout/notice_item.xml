@@ -18,7 +18,7 @@
             android:layout_width="2dp"
             android:layout_height="match_parent"
             android:layout_gravity="center_horizontal"
-            android:background="@color/primary_light"/>
+            android:background="@color/dark_sky_blue"/>
 
     </LinearLayout>
 

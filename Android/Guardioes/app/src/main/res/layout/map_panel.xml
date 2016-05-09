@@ -50,7 +50,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@color/translucent_black_light"/>
+            android:background="@color/black_20"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -59,7 +59,7 @@
             android:layout_marginRight="20dp"
             android:layout_marginTop="20dp"
             android:text="@string/general"
-            android:textColor="@color/primary_light"
+            android:textColor="@color/dark_sky_blue"
             android:textSize="14sp"/>
 
         <include
@@ -78,7 +78,7 @@
             android:drawablePadding="10dp"
             android:drawableRight="@drawable/icon_info"
             android:text="@string/syndromes"
-            android:textColor="@color/primary_light"
+            android:textColor="@color/dark_sky_blue"
             android:textSize="14dp"/>
 
         <LinearLayout

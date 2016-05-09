@@ -35,13 +35,13 @@
         android:layout_height="3dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="10dp"
-        android:background="@color/primary_light"
+        android:background="@color/dark_sky_blue"
         android:visibility="invisible" />
 
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@color/primary_light" />
+        android:background="@color/dark_sky_blue" />
 
     <TextView
         android:id="@+id/text_view_name"
