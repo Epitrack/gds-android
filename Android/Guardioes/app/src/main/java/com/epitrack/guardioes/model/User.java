@@ -1,6 +1,9 @@
 package com.epitrack.guardioes.model;
 
-import org.json.JSONArray;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class User {
 
@@ -18,13 +21,12 @@ public class User {
     private String race;
     private String platform = "android";
     private String type;
-    private String zip;
     private String id;
     private String user_token;
     private String tw;
     private String fb;
     private String gl;
-    private JSONArray hashtags;
+    private List<String> hashtags = new ArrayList<>();
     private String relationship;
     private String versionBuild;
     private String gcmToken;
@@ -122,6 +124,7 @@ public class User {
         this.gender = gender;
     }
 
+    @JsonIgnore
     public String getAppToken() {
         return app_token;
     }
@@ -152,10 +155,6 @@ public class User {
 
     public String getPlatform() {
         return platform;
-    }
-
-    public void setPlatform(String platform) {
-        this.platform = platform;
     }
 
     public String getType() {
@@ -206,11 +205,11 @@ public class User {
         this.tw = tw;
     }
 
-    public JSONArray getHashtags() {
+    public List<String> getHashtags() {
         return hashtags;
     }
 
-    public void setHashtags(JSONArray hashtags) {
+    public void setHashtags(final List<String> hashtags) {
         this.hashtags = hashtags;
     }
 
@@ -260,7 +259,6 @@ public class User {
         this.race = "";
         this.platform = "android";
         this.type = "";
-        this.zip = "";
         this.id = "";
         this.user_token = "";
         this.tw = "";

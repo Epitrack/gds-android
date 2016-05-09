@@ -10,18 +10,19 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.epitrack.guardioes.R;
+import com.epitrack.guardioes.helper.Constants;
+import com.epitrack.guardioes.helper.Utility;
 import com.epitrack.guardioes.model.SingleUser;
 import com.epitrack.guardioes.request.base.Method;
 import com.epitrack.guardioes.request.old.Requester;
 import com.epitrack.guardioes.request.old.SimpleRequester;
-import com.epitrack.guardioes.helper.Constants;
 import com.epitrack.guardioes.view.IMenu;
 import com.epitrack.guardioes.view.MenuListener;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 /**
@@ -32,7 +33,7 @@ public class InterestAdapter extends ArrayAdapter<IMenu> {
     private final MenuListener listener;
     private Context context;
     SingleUser singleUser = SingleUser.getInstance();
-    JSONArray hashtags = singleUser.getHashtags();
+    private List<String> hashtags = singleUser.getHashtags();
     SharedPreferences sharedPreferences = null;
     boolean bError = false;
 
@@ -58,7 +59,7 @@ public class InterestAdapter extends ArrayAdapter<IMenu> {
         if (view == null) {
 
             view = LayoutInflater.from(viewGroup.getContext())
-                                 .inflate(R.layout.interest_item, viewGroup, false);
+                    .inflate(R.layout.interest_item, viewGroup, false);
 
             viewHolder = new ViewHolder();
 
@@ -121,12 +122,13 @@ public class InterestAdapter extends ArrayAdapter<IMenu> {
             viewHolder = (ViewHolder) view.getTag();
         }
 
-
         viewHolder.switchInterest.setChecked(false);
-        if (hashtags.length() > 0) {
-            for (int i = 0; i < hashtags.length(); i++) {
+
+        if (!hashtags.isEmpty()) {
+
+            for (int i = 0; i < hashtags.size(); i++) {
                 try {
-                    JSONObject jsonObjectHashtah = new JSONObject(hashtags.getString(i));
+                    JSONObject jsonObjectHashtah = new JSONObject(hashtags.get(i));
                     if (jsonObjectHashtah.get("id").toString().equals(InterestTag.getBy(1).getIdApi())) {
                         if (position == 0) {
                             viewHolder.switchInterest.setChecked(true);
@@ -167,7 +169,7 @@ public class InterestAdapter extends ArrayAdapter<IMenu> {
                 sharedPreferences = context.getSharedPreferences(Constants.Pref.PREFS_NAME, 0);
 
                 JSONObject jsonObjectUser = jsonObject.getJSONObject("data");
-                singleUser.setHashtags(jsonObjectUser.getJSONArray("hashtags"));
+                singleUser.setHashtags(Utility.toList(jsonObjectUser.getJSONArray("hashtags")));
                 hashtags = singleUser.getHashtags();
 
                 SharedPreferences settings = context.getSharedPreferences(Constants.Pref.PREFS_NAME, 0);

@@ -20,6 +20,7 @@ import android.content.Context;
 
 import com.epitrack.guardioes.helper.Constants;
 import com.epitrack.guardioes.helper.Logger;
+import com.epitrack.guardioes.helper.Utility;
 import com.epitrack.guardioes.manager.PrefManager;
 import com.epitrack.guardioes.model.SingleUser;
 import com.epitrack.guardioes.model.User;
@@ -122,7 +123,13 @@ public final class AuthRequester extends BaseRequester {
 
             }
 
-            user.setHashtags(json.getJSONArray("hashtags"));
+            try {
+
+                user.setHashtags(Utility.toList(json.getJSONArray("hashtags")));
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
 
         } catch (JSONException e) {
             e.printStackTrace();

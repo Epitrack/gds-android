@@ -5,6 +5,7 @@ import android.content.Context;
 import com.epitrack.guardioes.helper.Constants;
 import com.epitrack.guardioes.helper.DateFormat;
 import com.epitrack.guardioes.helper.Logger;
+import com.epitrack.guardioes.helper.Utility;
 import com.epitrack.guardioes.manager.PrefManager;
 import com.epitrack.guardioes.model.User;
 import com.epitrack.guardioes.request.base.BaseRequester;
@@ -76,7 +77,14 @@ public class UserRequester extends BaseRequester {
                                 user.setDob(jsonObjectUser.getString("dob"));
                                 user.setUserToken(json.getString("token"));
                                 user.setImage(jsonObjectUser.getInt("picture"));
-                                user.setHashtags(jsonObjectUser.getJSONArray("hashtags"));
+
+                                try {
+
+                                    user.setHashtags(Utility.toList(jsonObjectUser.getJSONArray("hashtags")));
+
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
 
                                 if (new PrefManager(getContext()).put(Constants.Pref.USER, user)) {
 
