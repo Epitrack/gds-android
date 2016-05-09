@@ -23,7 +23,7 @@
         android:layout_above="@+id/button_save"
         android:layout_below="@id/text_view"
         android:background="@android:color/white"
-        android:divider="@color/translucent_black_light"
+        android:divider="@color/black_20"
         android:dividerHeight="1dp"/>
 
     <Button
