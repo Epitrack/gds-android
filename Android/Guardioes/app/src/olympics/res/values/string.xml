@@ -481,4 +481,13 @@ Por favor, leia estes termos legais de uso antes de utilizar o GUARDIÕES DA SA�
     <string name="zika_title_01">Dengue, Zika e Chikungunya</string>
     <string name="zika_content_01">Os vírus da Dengue, Zika e Chikungunya são transmitidos pelo mosquito <i>Aedes aegypti</i> e apresentam sinais e sintomas parecidos.\n\n
     É importante que você procure o serviço de saúde mais próximo quando apresentar febre, manchas vermelhas pelo corpo seguida de febre, dores no corpo, dor nas juntas (articulações) ou coceira.\n\n</string>
+
+    # Game
+    <string name="welcome_game_welcome">Bem-vindo a nossa pista de corrida! Arraste para saber mais sobre como jogar.</string>
+    <string name="welcome_game_point">Para jogar, é preciso ter pontos de energia. Participe diariamente do Guardiões da Saúde para ganhá-los!</string>
+    <string name="welcome_game_phase">Nossa pista de corrida é formada por fases. Conclua cada fase para chegar mais longe na corrida!</string>
+    <string name="welcome_game_play">Cada fase contém um quebra-cabeça. Complete-o para passar de fase.</string>
+    <string name="welcome_game_answer">Responda corretamente as perguntas sobre saúde para revelar peças.</string>
+    <string name="welcome_game_card">Colecione figurinhas dos esportes olímpicos após concluir cada fase!</string>
+
 </resources>

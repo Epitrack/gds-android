@@ -4,8 +4,8 @@ import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 
 import com.epitrack.guardioes.R;
-import com.epitrack.guardioes.view.account.LoginActivity;
 import com.epitrack.guardioes.view.base.BaseAppCompatActivity;
+import com.epitrack.guardioes.view.game.GameMapActivity;
 import com.viewpagerindicator.CirclePageIndicator;
 
 import butterknife.Bind;
@@ -14,7 +14,7 @@ import butterknife.OnClick;
 /**
  * @author Igor Morais
  */
-public class WelcomeActivity extends BaseAppCompatActivity {
+public class WelcomeGameActivity extends BaseAppCompatActivity {
 
     @Bind(R.id.view_pager)
     ViewPager viewPager;
@@ -28,13 +28,13 @@ public class WelcomeActivity extends BaseAppCompatActivity {
 
         setContentView(R.layout.welcome_game);
 
-        viewPager.setAdapter(new WelcomePagerAdapter(getSupportFragmentManager(), this, Welcome.values()));
+        viewPager.setAdapter(new WelcomeGamePagerAdapter(getSupportFragmentManager(), this, WelcomeGame.values()));
 
         pageIndicator.setViewPager(viewPager);
     }
 
-    @OnClick(R.id.button_login)
+    @OnClick(R.id.button_next)
     public void onNext() {
-        navigateTo(LoginActivity.class);
+        navigateTo(GameMapActivity.class);
     }
 }

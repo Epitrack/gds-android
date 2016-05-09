@@ -18,12 +18,12 @@ import butterknife.ButterKnife;
 /**
  * @author Igor Morais
  */
-public class WelcomePageFragment extends Fragment {
+public class WelcomeGamePageFragment extends Fragment {
 
-    @Bind(R.id.text_view_message)
+    @Bind(R.id.text_view)
     TextView textViewMessage;
 
-    @Bind(R.id.image_view)
+    @Bind(R.id.image_view_map)
     ImageView imageView;
 
     @Nullable
@@ -37,14 +37,14 @@ public class WelcomePageFragment extends Fragment {
 
         bind(view);
 
-        final Welcome welcome = (Welcome) getArguments().getSerializable(Constants.Bundle.WELCOME);
+        final WelcomeGame welcomeGame = (WelcomeGame) getArguments().getSerializable(Constants.Bundle.WELCOME_GAME);
 
-        if (welcome == null) {
-            throw new IllegalArgumentException("The welcome cannot be null.");
+        if (welcomeGame == null) {
+            throw new IllegalArgumentException("The welcomeGame cannot be null.");
         }
 
-        textViewMessage.setText(welcome.getMessage());
-        imageView.setBackgroundResource(welcome.getImage());
+        textViewMessage.setText(welcomeGame.getMessage());
+        imageView.setBackgroundResource(welcomeGame.getImage());
     }
 
     @Override

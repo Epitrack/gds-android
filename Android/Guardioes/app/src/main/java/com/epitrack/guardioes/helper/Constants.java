@@ -69,6 +69,7 @@ public final class Constants {
     public static class Bundle {
 
         public static final String WELCOME = "Welcome";
+        public static final String WELCOME_GAME = "WelcomeGame";
         public static final String TIP = "Tip";
         public static final String AVATAR = "Avatar";
         public static final String MAIN_MEMBER = "main_member";

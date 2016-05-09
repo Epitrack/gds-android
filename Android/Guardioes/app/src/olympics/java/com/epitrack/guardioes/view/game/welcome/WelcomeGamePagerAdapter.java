@@ -11,21 +11,21 @@ import com.epitrack.guardioes.helper.Constants;
 /**
  * @author Igor Morais
  */
-public class WelcomePagerAdapter extends FragmentPagerAdapter {
+public class WelcomeGamePagerAdapter extends FragmentPagerAdapter {
 
     private final Context context;
-    private final Welcome[] welcomeArray;
+    private final WelcomeGame[] welcomeGameArray;
 
-    public WelcomePagerAdapter(final FragmentManager fragmentManager, final Context context, final Welcome[] welcomeArray) {
+    public WelcomeGamePagerAdapter(final FragmentManager fragmentManager, final Context context, final WelcomeGame[] welcomeGameArray) {
         super(fragmentManager);
 
         this.context = context;
-        this.welcomeArray = welcomeArray;
+        this.welcomeGameArray = welcomeGameArray;
     }
 
     @Override
     public int getCount() {
-        return welcomeArray.length;
+        return welcomeGameArray.length;
     }
 
     @Override
@@ -33,8 +33,8 @@ public class WelcomePagerAdapter extends FragmentPagerAdapter {
 
         final Bundle bundle = new Bundle();
 
-        bundle.putSerializable(Constants.Bundle.WELCOME, Welcome.getBy(position + 1));
+        bundle.putSerializable(Constants.Bundle.WELCOME_GAME, WelcomeGame.getBy(position + 1));
 
-        return Fragment.instantiate(context, WelcomePageFragment.class.getName(), bundle);
+        return Fragment.instantiate(context, WelcomeGamePageFragment.class.getName(), bundle);
     }
 }
