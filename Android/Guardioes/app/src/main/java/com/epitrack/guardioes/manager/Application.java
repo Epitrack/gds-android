@@ -3,11 +3,11 @@ package com.epitrack.guardioes.manager;
 import android.support.multidex.MultiDex;
 
 import com.crashlytics.android.Crashlytics;
+import com.crashlytics.android.core.CrashlyticsCore;
+import com.epitrack.guardioes.BuildConfig;
 import com.epitrack.guardioes.helper.Logger;
 import com.karumi.dexter.Dexter;
 import com.koushikdutta.ion.Ion;
-import com.twitter.sdk.android.Twitter;
-import com.twitter.sdk.android.core.TwitterAuthConfig;
 
 import java.security.KeyStore;
 import java.security.cert.Certificate;
@@ -36,7 +36,7 @@ public final class Application extends android.app.Application {
 
         MultiDex.install(getBaseContext());
 
-        Fabric.with(this, new Crashlytics(), new Twitter(new TwitterAuthConfig(TWITTER_KEY, TWITTER_SECRET)));
+        Fabric.with(this, new Crashlytics.Builder().core(new CrashlyticsCore.Builder().disabled(BuildConfig.DEBUG).build()).build());
 
         Dexter.initialize(this);
 
