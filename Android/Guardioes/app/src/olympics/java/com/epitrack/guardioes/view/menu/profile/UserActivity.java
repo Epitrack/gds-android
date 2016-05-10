@@ -119,6 +119,10 @@ public class UserActivity extends BaseAppCompatActivity {
             textLayoutMail.setVisibility(View.VISIBLE);
             editTextMail.setEnabled(true);
             editTextMail.setVisibility(View.VISIBLE);
+
+        } else {
+            editTextMail.setEnabled(false);
+            editTextMail.setFocusable(false);
         }
 
         if (socialNew) {
