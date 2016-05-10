@@ -394,7 +394,7 @@ public class DiaryActivity extends BaseAppCompatActivity implements ParentListen
                         }
 
                         graph.setDrawDataPoints(true);
-                        graph.setBackgroundColor(R.color.blue_dark);
+                        graph.setBackgroundColor(R.color.nice_blue);
                         graph.setDataPointsRadius(5);
 
                         graph.setOnDataPointTapListener(new OnDataPointTapListener() {

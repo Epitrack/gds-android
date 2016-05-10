@@ -20,6 +20,7 @@ import com.epitrack.guardioes.helper.Constants;
 import com.epitrack.guardioes.helper.DateFormat;
 import com.epitrack.guardioes.helper.DialogBuilder;
 import com.epitrack.guardioes.helper.Mask;
+import com.epitrack.guardioes.helper.Utility;
 import com.epitrack.guardioes.model.SingleUser;
 import com.epitrack.guardioes.model.User;
 import com.epitrack.guardioes.request.base.Method;
@@ -524,7 +525,7 @@ public class UserActivity extends BaseAppCompatActivity {
 
                         try {
 
-                            singleUser.setHashtags(jsonObjectUser.getJSONArray("hashtags"));
+                            singleUser.setHashtags(Utility.toList(jsonObjectUser.getJSONArray("hashtags")));
 
                         } catch (Exception e) {
 

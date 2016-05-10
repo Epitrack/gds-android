@@ -13,8 +13,6 @@
 
         <item name="colorAccent">@color/blue_light</item>
 
-        <item name="bottomSheetStyle">@style/BottomSheet.Share</item>
-
         <item name="buttonStyle">@style/Theme.Button</item>
 
         <item name="android:dialogTheme">@style/Theme.NotifyDialog</item>
@@ -253,6 +251,10 @@
         <item name="android:textStyle">bold</item>
     </style>
 
+    <style name="Game" parent="Theme.AppCompat.Light">
+
+    </style>
+
     <style name="TextWelcomeMessage">
         <item name="android:textSize">15dp</item>
         <item name="android:fontFamily">sans-serif-light</item>
@@ -260,7 +262,7 @@
 
     <style name="Theme.MyProgressDialog" parent="@style/Theme.NotifyDialog">
         <item name="android:textColor">@color/white_dark</item>
-        <item name="android:colorBackground">@color/blue_dark</item>
+        <item name="android:colorBackground">@color/nice_blue</item>
         <item name="android:textSize">15dp</item>
         <item name="android:fontFamily">sans-serif-light</item>
     </style>

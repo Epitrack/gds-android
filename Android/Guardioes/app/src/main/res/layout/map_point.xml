@@ -36,7 +36,7 @@
             android:fontFamily="sans-serif-medium"
             android:singleLine="true"
             android:text="Hospital da Restauração"
-            android:textColor="@color/blue_dark"
+            android:textColor="@color/nice_blue"
             android:inputType="textCapSentences"
             android:textSize="24dp"/>
 

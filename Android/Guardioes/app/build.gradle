@@ -50,6 +50,8 @@ android {
 
         release {
 
+            signingConfig signingConfigs.release
+
             minifyEnabled false
             proguardFiles 'proguard-rules.pro'
         }

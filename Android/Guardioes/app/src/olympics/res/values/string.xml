@@ -13,7 +13,7 @@
 
     <string name="exit_message">Tem certeza que deseja sair?</string>
     <string name="permission_location_rationale">A permissão a sua localização é necessária para exibir o mapa.</string>
-    <string name="permision_available_location">Permissão a sua localização liberada.</string>
+    <string name="permission_available_location">Permissão a sua localização liberada.</string>
     <string name="permissions_not_granted">Permissão a sua localização negada!</string>
     <string name="about">Sobre</string>
     <string name="alert">Alertas</string>
@@ -489,5 +489,16 @@ Por favor, leia estes termos legais de uso antes de utilizar o GUARDIÕES DA SA�
     <string name="welcome_game_play">Cada fase contém um quebra-cabeça. Complete-o para passar de fase.</string>
     <string name="welcome_game_answer">Responda corretamente as perguntas sobre saúde para revelar peças.</string>
     <string name="welcome_game_card">Colecione figurinhas dos esportes olímpicos após concluir cada fase!</string>
+    
+    <string name="my_trophies">Meus Troféus</string>
+    
+    <string name="general_ranking">Ranking Geral</string>
+
+    <string name="pointing">Pontuação</string>
+
+    <string name="pointing_message">A pontuação é equivalente a cada fase desbloqueada por todos os usuários levando em conta sua nacionalidade.</string>
+
+    <string name="level">Nível %s</string>
+
 
 </resources>

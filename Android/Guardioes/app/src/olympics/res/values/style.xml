@@ -269,7 +269,7 @@
 
     <style name="Theme.MyProgressDialog" parent="@style/Theme.NotifyDialog">
         <item name="android:textColor">@color/white_dark</item>
-        <item name="android:colorBackground">@color/blue_dark</item>
+        <item name="android:colorBackground">@color/nice_blue</item>
         <item name="android:textSize">15sp</item>
         <item name="android:fontFamily">sans-serif-light</item>
     </style>
