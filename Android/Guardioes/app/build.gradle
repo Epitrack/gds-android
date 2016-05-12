@@ -27,9 +27,9 @@ android {
             def password = properties.getProperty('key.password')
 
             storeFile file("key.keystore")
-            storePassword "password"
+            storePassword "epitrack"
             keyAlias "gds"
-            keyPassword "password"
+            keyPassword "epitrack"
         }
     }
 
