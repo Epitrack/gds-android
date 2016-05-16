@@ -20,7 +20,7 @@ import com.afollestad.materialdialogs.MaterialDialog;
 import com.epitrack.guardioes.R;
 import com.epitrack.guardioes.helper.DialogBuilder;
 import com.epitrack.guardioes.manager.PrefManager;
-import com.epitrack.guardioes.push.RegisterService;
+import com.epitrack.guardioes.push.DeleteService;
 import com.epitrack.guardioes.view.menu.Home;
 import com.epitrack.guardioes.view.menu.profile.ProfileActivity;
 import com.epitrack.guardioes.view.welcome.WelcomeActivity;
@@ -55,7 +55,6 @@ public class HomeActivity extends AppCompatActivity implements AdapterView.OnIte
     private ActionBarDrawerToggle drawerToggle;
 
     private final Map<String, Fragment> fragmentMap = new HashMap<>();
-    public static final String PREFS_NAME = "preferences_user_token";
 
     private Tracker tracker;
 
@@ -216,7 +215,7 @@ public class HomeActivity extends AppCompatActivity implements AdapterView.OnIte
                     @Override
                     public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
 
-                        startService(new Intent(HomeActivity.this, RegisterService.class));
+                        startService(new Intent(HomeActivity.this, DeleteService.class));
 
                         if (new PrefManager(HomeActivity.this).clear()) {
 
