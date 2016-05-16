@@ -244,28 +244,4 @@ public class User {
     public void setGcmToken(String gcmToken) {
         this.gcmToken = gcmToken;
     }
-
-    public void clean() {
-        this.image = 0;
-        this.nick = "";
-        this.email = "";
-        this.password = "";
-        this.client = "api";
-        this.dob = "";
-        this.gender = "";
-        this.app_token = "d41d8cd98f00b204e9800998ecf8427e";
-        this.lon = 0;
-        this.lat = 0;
-        this.race = "";
-        this.platform = "android";
-        this.type = "";
-        this.id = "";
-        this.user_token = "";
-        this.tw = "";
-        this.fb = "";
-        this.gl = "";
-        this.hashtags = null;
-        this.relationship = "";
-        this.versionBuild = "";
-    }
 }

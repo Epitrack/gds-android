@@ -7,6 +7,7 @@ import com.epitrack.guardioes.helper.DateFormat;
 import com.epitrack.guardioes.helper.Logger;
 import com.epitrack.guardioes.helper.Utility;
 import com.epitrack.guardioes.manager.PrefManager;
+import com.epitrack.guardioes.model.SingleUser;
 import com.epitrack.guardioes.model.User;
 import com.epitrack.guardioes.request.base.BaseRequester;
 import com.epitrack.guardioes.request.base.Method;
@@ -88,6 +89,9 @@ public class UserRequester extends BaseRequester {
 
                                 if (new PrefManager(getContext()).put(Constants.Pref.USER, user)) {
 
+                                    // TODO: Remove this singleton..
+                                    loadUser(user);
+
                                     listener.onSuccess(user);
                                 }
                             }
@@ -164,6 +168,9 @@ public class UserRequester extends BaseRequester {
                                 user.setUserToken(jsonObjectUser.getString("token"));
 
                                 if (new PrefManager(getContext()).put(Constants.Pref.USER, user)) {
+
+                                    // TODO: Remove this singleton..
+                                    loadUser(user);
 
                                     listener.onSuccess(user);
                                 }
@@ -322,5 +329,20 @@ public class UserRequester extends BaseRequester {
                 }
             }
         });
+    }
+
+    // TODO: Refactor soon..
+    private void loadUser(final User type) {
+
+        final SingleUser singleUser = SingleUser.getInstance();
+
+        singleUser.setNick(type.getNick());
+        singleUser.setEmail(type.getEmail());
+        singleUser.setGender(type.getGender());
+        singleUser.setImage(type.getImage());
+        singleUser.setId(type.getId());
+        singleUser.setRace(type.getRace());
+        singleUser.setDob(type.getDob());
+        singleUser.setUserToken(type.getUserToken());
     }
 }
