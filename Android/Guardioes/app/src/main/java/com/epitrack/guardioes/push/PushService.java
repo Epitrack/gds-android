@@ -7,6 +7,7 @@ import android.support.v4.app.NotificationCompat;
 
 import com.epitrack.guardioes.R;
 import com.epitrack.guardioes.helper.Logger;
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.android.gms.gcm.GcmListenerService;
 
@@ -19,17 +20,18 @@ public class PushService extends GcmListenerService {
 
     private static final String TAG = PushService.class.getSimpleName();
 
-    private static final int ID = 0;
+    private static final String TITLE = "title";
     private static final String MESSAGE = "message";
+    private static final String NOTIFICATION = "notification";
 
     @Override
     public void onMessageReceived(final String sender, final Bundle bundle) {
 
-        final String message = bundle.getString(MESSAGE);
-
         try {
 
-            notify(new ObjectMapper().readValue(message, Message.class));
+            final JsonNode json = new ObjectMapper().readTree(bundle.getString(NOTIFICATION));
+
+            notify(new Message(json.get(TITLE).asText(), json.get(MESSAGE).asText()));
 
         } catch (final IOException e) {
             Logger.logDebug(TAG, e.getMessage());
@@ -41,30 +43,35 @@ public class PushService extends GcmListenerService {
         final NotificationCompat.Builder builder = new NotificationCompat.Builder(this)
                 .setSmallIcon(R.mipmap.icon)
                 .setContentTitle(message.getTitle())
-                .setContentText(message.getBody());
+                .setContentText(message.getMessage());
 
-        ((NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE)).notify(ID, builder.build());
+        ((NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE)).notify(0, builder.build());
     }
 
     private class Message {
 
         private String title;
-        private String body;
+        private String message;
+
+        public Message(final String title, final String message) {
+            this.title = title;
+            this.message = message;
+        }
 
         public String getTitle() {
             return title;
         }
 
-        public void setTitle(String title) {
+        public void setTitle(final String title) {
             this.title = title;
         }
 
-        public String getBody() {
-            return body;
+        public String getMessage() {
+            return message;
         }
 
-        public void setBody(String body) {
-            this.body = body;
+        public void setMessage(final String message) {
+            this.message = message;
         }
     }
 }
