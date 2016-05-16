@@ -2,7 +2,6 @@ package com.epitrack.guardioes.view;
 
 import android.app.Fragment;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -19,10 +18,9 @@ import android.widget.ListView;
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.epitrack.guardioes.R;
-import com.epitrack.guardioes.helper.Constants;
 import com.epitrack.guardioes.helper.DialogBuilder;
 import com.epitrack.guardioes.manager.PrefManager;
-import com.epitrack.guardioes.model.SingleUser;
+import com.epitrack.guardioes.push.RegisterService;
 import com.epitrack.guardioes.view.menu.Home;
 import com.epitrack.guardioes.view.menu.profile.ProfileActivity;
 import com.epitrack.guardioes.view.welcome.WelcomeActivity;
@@ -40,6 +38,8 @@ import butterknife.ButterKnife;
  * @author Igor Morais
  */
 public class HomeActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
+
+    private static final String TAG = HomeActivity.class.getSimpleName();
 
     private static final Class<? extends Fragment> HOME_FRAGMENT = HomeFragment.class;
 
@@ -216,14 +216,9 @@ public class HomeActivity extends AppCompatActivity implements AdapterView.OnIte
                     @Override
                     public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
 
-                        if (new PrefManager(getApplicationContext()).remove(Constants.Pref.USER)) {
+                        startService(new Intent(HomeActivity.this, RegisterService.class));
 
-                            SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
-                            SharedPreferences.Editor editor = settings.edit();
-                            editor.putString("preferences_user_token", "");
-                            editor.commit();
-
-                            SingleUser.getInstance().clean();
+                        if (new PrefManager(HomeActivity.this).clear()) {
 
                             final Intent intent = new Intent(HomeActivity.this, WelcomeActivity.class);
 
