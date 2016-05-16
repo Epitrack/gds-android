@@ -216,7 +216,7 @@ public class LoginActivity extends BaseAppCompatActivity implements SocialAccoun
     public void onSuccess() {
 
         navigateTo(HomeActivity.class, Intent.FLAG_ACTIVITY_CLEAR_TASK |
-                Intent.FLAG_ACTIVITY_NEW_TASK);
+                                       Intent.FLAG_ACTIVITY_NEW_TASK);
     }
 
     @OnClick(R.id.button_login)
