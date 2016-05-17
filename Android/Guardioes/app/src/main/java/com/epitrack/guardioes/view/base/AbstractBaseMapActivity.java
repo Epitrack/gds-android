@@ -1,8 +1,14 @@
 package com.epitrack.guardioes.view.base;
 
+import android.Manifest;
+import android.content.Intent;
 import android.location.Location;
 import android.os.Bundle;
+import android.provider.Settings;
+import android.support.annotation.NonNull;
 
+import com.afollestad.materialdialogs.DialogAction;
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.epitrack.guardioes.R;
 import com.epitrack.guardioes.manager.LocationListener;
 import com.epitrack.guardioes.manager.LocationManager;
@@ -17,6 +23,14 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.karumi.dexter.Dexter;
+import com.karumi.dexter.MultiplePermissionsReport;
+import com.karumi.dexter.PermissionToken;
+import com.karumi.dexter.listener.PermissionRequest;
+import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
+
+import java.util.List;
+
 /**
  * @author Igor Morais
  */
@@ -27,7 +41,7 @@ public abstract class AbstractBaseMapActivity extends BaseAppCompatActivity impl
     private static final long DEFAULT_ZOOM = 12;
 
     private MarkerOptions markerOption;
-    private Marker userMarker;
+    private Marker marker;
 
     private GoogleMap map;
 
@@ -50,23 +64,31 @@ public abstract class AbstractBaseMapActivity extends BaseAppCompatActivity impl
 
     @Override
     public void onMapReady(final GoogleMap map) {
-        setMap(map);
 
-        if (locationHandler.isEnabled()) {
-            locationHandler.connect();
-        }
+        hasPermission();
+
+        setMap(map);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
 
-        if (!locationHandler.isEnabled()) {
+        if (LocationUtility.hasPermission(this)) {
 
-            new DialogBuilder(this).load()
-                    .title(R.string.attention)
-                    .content(R.string.network_disable)
-                    .positiveText(R.string.ok).show();
+            if (LocationUtility.isEnabled(this)) {
+
+                locationHandler.connect();
+            }
+        }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        if (locationHandler.isConnected()) {
+            locationHandler.disconnect();
         }
     }
 
@@ -80,7 +102,7 @@ public abstract class AbstractBaseMapActivity extends BaseAppCompatActivity impl
             @Override
             public void onFinish() {
 
-                userMarker = getMap().addMarker(loadMarkerOption().position(latLng));
+                marker = getMap().addMarker(loadMarkerOption().position(latLng));
 
                 onAnimationEnd(latLng);
             }
@@ -95,11 +117,11 @@ public abstract class AbstractBaseMapActivity extends BaseAppCompatActivity impl
     @Override
     public void onLocation(final Location location) {
 
-        if (userMarker == null) {
+        if (marker == null) {
             Logger.logDebug(TAG, "The user marker is null.");
 
         } else {
-            userMarker.setPosition(LocationUtility.toLatLng(location));
+            marker.setPosition(LocationUtility.toLatLng(location));
         }
     }
 
@@ -141,11 +163,49 @@ public abstract class AbstractBaseMapActivity extends BaseAppCompatActivity impl
         return map;
     }
 
-    public final Marker getUserMarker() {
-        return userMarker;
+    public final Marker getMarker() {
+        return marker;
     }
 
-    public void setUserMarker(Marker userMarker) {
-        this.userMarker = userMarker;
+    private void hasPermission() {
+
+        if (!Dexter.isRequestOngoing()) {
+
+            Dexter.checkPermissions(new MultiplePermissionsListener() {
+
+                @Override
+                public void onPermissionsChecked(final MultiplePermissionsReport permissionReport) {
+
+                    if (permissionReport.areAllPermissionsGranted()) {
+
+                        if (LocationUtility.isEnabled(AbstractBaseMapActivity.this)) {
+                            locationHandler.connect();
+
+                        } else {
+
+                            new DialogBuilder(AbstractBaseMapActivity.this).load()
+                                    .content(R.string.location_disabled)
+                                    .cancelable(false)
+                                    .negativeText(R.string.not_now)
+                                    .positiveText(R.string.setting_upper)
+                                    .onPositive(new MaterialDialog.SingleButtonCallback() {
+
+                                        @Override
+                                        public void onClick(@NonNull final MaterialDialog dialog, @NonNull final DialogAction which) {
+                                            startActivity(new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS));
+                                        }
+
+                                    }).show();
+                        }
+                    }
+                }
+
+                @Override
+                public void onPermissionRationaleShouldBeShown(final List<PermissionRequest> permissionList, final PermissionToken permissionToken) {
+
+                }
+
+            }, Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION);
+        }
     }
 }

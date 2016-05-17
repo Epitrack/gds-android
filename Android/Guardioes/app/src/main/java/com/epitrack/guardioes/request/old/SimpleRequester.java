@@ -49,6 +49,7 @@ public class SimpleRequester extends AsyncTask<SimpleRequester, Object, String> 
     private boolean otherAPI = false;
     private Context context;
     private String strReturn;
+    private boolean showDialog;
 
     private RequestListener<String> listener;
 
@@ -82,14 +83,14 @@ public class SimpleRequester extends AsyncTask<SimpleRequester, Object, String> 
         this.listener = listener;
     }
 
-    public String getStrReturn() {
-        return this.strReturn;
+    public void setShowDialog(boolean showDialog) {
+        this.showDialog = showDialog;
     }
 
     @Override
     protected void onPreExecute() {
 
-        if (context != null) {
+        if (context != null && showDialog) {
             loadDialog.show(((Activity) context).getFragmentManager(), LoadDialog.TAG);
         }
 
