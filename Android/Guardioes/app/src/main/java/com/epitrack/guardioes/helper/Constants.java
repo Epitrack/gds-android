@@ -91,13 +91,10 @@ public final class Constants {
         public static final String USER = "user";
         public static final String PREFS_NAME = "preferences_user_token";
         public static final String PREFS_SOCIAL = "preferences_social";
-        public static final String PREFS_IMAGE = "preferences_image";
-        public static final String PREFS_IMAGE_USER_TOKEN = "preferences_image_user_token";
     }
 
     public static class Push {
 
-        public static final String SENDER = "1008511817333";
         public static final String SENDER_ID = "SENDER_ID";
     }
 }

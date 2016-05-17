@@ -66,21 +66,21 @@
             android:layout_height="match_parent">
 
             <Button
-                android:id="@+id/btn_accept_terms"
+                android:id="@+id/button_accept"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
-                android:layout_alignTop="@+id/btn_not_accept_terms"
+                android:layout_alignTop="@+id/button_no"
                 android:background="@android:color/transparent"
                 android:text="ACEITO"
                 android:textColor="@color/nice_blue"/>
 
             <Button
-                android:id="@+id/btn_not_accept_terms"
+                android:id="@+id/button_no"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_toStartOf="@+id/btn_accept_terms"
+                android:layout_toStartOf="@+id/button_accept"
                 android:background="@android:color/transparent"
                 android:text="NÃO ACEITO"
                 android:textColor="@color/nice_blue"/>

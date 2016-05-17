@@ -23,8 +23,8 @@ public class TermActivity extends BaseAppCompatActivity {
         setContentView(R.layout.terms_of_use_action);
     }
 
-    @OnClick(R.id.btn_not_accept_terms)
-    public void notAcceptTerms() {
+    @OnClick(R.id.button_no)
+    public void onNoAccept() {
 
         getTracker().send(new HitBuilders.EventBuilder()
                 .setCategory("Action")
@@ -34,8 +34,8 @@ public class TermActivity extends BaseAppCompatActivity {
         finish();
     }
 
-    @OnClick(R.id.btn_accept_terms)
-    public void acceptTerms() {
+    @OnClick(R.id.button_accept)
+    public void onAccept() {
 
         getTracker().send(new HitBuilders.EventBuilder()
                 .setCategory("Action")

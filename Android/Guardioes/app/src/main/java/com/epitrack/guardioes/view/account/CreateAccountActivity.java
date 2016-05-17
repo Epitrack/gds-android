@@ -34,8 +34,8 @@ import com.epitrack.guardioes.request.base.RequestHandler;
 import com.epitrack.guardioes.view.HomeActivity;
 import com.epitrack.guardioes.view.base.BaseAppCompatActivity;
 import com.epitrack.guardioes.view.dialog.LoadDialog;
-import com.epitrack.guardioes.view.menu.help.TermActivity;
 import com.epitrack.guardioes.view.menu.profile.UserActivity;
+import com.epitrack.guardioes.view.welcome.TermActivity;
 import com.google.android.gms.analytics.HitBuilders;
 import com.mobsandgeeks.saripaar.ValidationError;
 import com.mobsandgeeks.saripaar.Validator;
@@ -128,13 +128,13 @@ public class CreateAccountActivity extends BaseAppCompatActivity implements Soci
 
         editTextBirthDate.setOnFocusChangeListener(new View.OnFocusChangeListener() {
 
-            public void onFocusChange(final View v, boolean hasFocus) {
+            public void onFocusChange(final View view, final boolean hasFocus) {
 
                 if (hasFocus) {
-                    ((EditText) v).setHint(" ex: 01/01/1991");
+                    ((EditText) view).setHint(" ex: 01/01/1991");
 
                 } else {
-                    ((EditText) v).setHint("");
+                    ((EditText) view).setHint("");
                 }
             }
         });
@@ -156,13 +156,10 @@ public class CreateAccountActivity extends BaseAppCompatActivity implements Soci
         getTracker().setScreenName("Create Account Screen - " + this.getClass().getSimpleName());
         getTracker().send(new HitBuilders.ScreenViewBuilder().build());
 
-        String bundle = getIntent().getStringExtra(Constants.Bundle.EMAIL);
+        if (getIntent().hasExtra(Constants.Bundle.EMAIL)) {
+            getIntent().removeExtra(Constants.Bundle.EMAIL);
 
-        if (bundle != null) {
-
-            if (bundle.equals("Email")) {
-                onNextAnimation(linearLayoutNext, linearLayoutSocial);
-            }
+            onNextAnimation(linearLayoutNext, linearLayoutSocial);
         }
     }
 
@@ -477,7 +474,7 @@ public class CreateAccountActivity extends BaseAppCompatActivity implements Soci
                         super.onSuccess(user);
 
                         navigateTo(HomeActivity.class, Intent.FLAG_ACTIVITY_CLEAR_TASK |
-                                                       Intent.FLAG_ACTIVITY_NEW_TASK);
+                                Intent.FLAG_ACTIVITY_NEW_TASK);
                     }
                 });
             }
