@@ -1,7 +1,6 @@
 package com.epitrack.guardioes.view;
 
 import android.graphics.Color;
-import android.location.Location;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -14,7 +13,6 @@ import android.widget.Toast;
 
 import com.epitrack.guardioes.R;
 import com.epitrack.guardioes.helper.DialogBuilder;
-import com.epitrack.guardioes.helper.LocationUtility;
 import com.epitrack.guardioes.manager.Loader;
 import com.epitrack.guardioes.model.Point;
 import com.epitrack.guardioes.model.SingleDTO;
@@ -119,6 +117,13 @@ public class MapSymptomActivity extends AbstractBaseMapActivity implements Searc
     }
 
     @Override
+    public void onMapReady(final GoogleMap map) {
+        super.onMapReady(map);
+
+        map.getUiSettings().setZoomGesturesEnabled(false);
+    }
+
+    @Override
     public void onResume() {
         super.onResume();
 
@@ -128,11 +133,7 @@ public class MapSymptomActivity extends AbstractBaseMapActivity implements Searc
     }
 
     @Override
-    public void onLastLocation(final Location location) {
-
-        super.onLastLocation(location);
-
-        final LatLng latLng = LocationUtility.toLatLng(location);
+    protected void onAnimationEnd(final LatLng latLng) {
 
         load(latLng.latitude, latLng.longitude);
 
@@ -177,6 +178,7 @@ public class MapSymptomActivity extends AbstractBaseMapActivity implements Searc
 
                         final LatLng latLng = new LatLng(jsonObjectLocation.getDouble("lat"), jsonObjectLocation.getDouble("lng"));
                         singleDTO.setLatLng(latLng);
+
                         if (getLocationHandler().isConnected()) {
                             getLocationHandler().disconnect();
                         }
@@ -186,8 +188,7 @@ public class MapSymptomActivity extends AbstractBaseMapActivity implements Searc
                             @Override
                             public void onFinish() {
 
-                                getUserMarker().setPosition(latLng);
-
+                                getMarker().setPosition(latLng);
                             }
 
                             @Override
@@ -279,6 +280,11 @@ public class MapSymptomActivity extends AbstractBaseMapActivity implements Searc
                     final List<Point> pointList = new ArrayList<>();
 
                     SimpleRequester requester = new SimpleRequester();
+
+                    requester.setShowDialog(false);
+                    requester.setContext(MapSymptomActivity.this);
+
+                    requester.updateContext();
 
                     requester.setJsonObject(null);
                     requester.setMethod(Method.GET);
@@ -396,14 +402,19 @@ public class MapSymptomActivity extends AbstractBaseMapActivity implements Searc
         simpleRequester.setMethod(Method.GET);
 
         if (singleDTO.getDto() != null) {
+
             if (!singleDTO.getDto().equals("")) {
                 simpleRequester.setUrl(Requester.API_URL + "surveys/summary/?q=" + singleDTO.getDto());
+
             } else {
                 simpleRequester.setUrl(Requester.API_URL + "surveys/summary/?lon=" + longitude + "&lat=" + latitude);
             }
+
         } else {
+
             if (singleDTO.getLatLng() != null) {
                 simpleRequester.setUrl(Requester.API_URL + "surveys/summary/?lon=" + longitude + "&lat=" + latitude);
+
             } else {
                 simpleRequester.setUrl(Requester.API_URL + "surveys/summary/?lon=" + longitude + "&lat=" + latitude);
             }
@@ -484,7 +495,7 @@ public class MapSymptomActivity extends AbstractBaseMapActivity implements Searc
 
                         JSONObject json = jsonObjectData.getJSONObject("diseases");
 
-                        int total = (int)totalNoSympton + (int)totalSympton;
+                        int total = (int) totalNoSympton + (int) totalSympton;
 
                         if (total > 0) {
                             Double d;
@@ -545,8 +556,8 @@ public class MapSymptomActivity extends AbstractBaseMapActivity implements Searc
 
     private void setData(double badPercent, double goodPercent) {
 
-        float[] yData = { (int)(badPercent * 100), (int)(goodPercent * 100)};
-        String[] xData = { "Mal", "Bem" };
+        float[] yData = {(int) (badPercent * 100), (int) (goodPercent * 100)};
+        String[] xData = {"Mal", "Bem"};
 
         ArrayList<Entry> yVals1 = new ArrayList<Entry>();
 
@@ -562,7 +573,7 @@ public class MapSymptomActivity extends AbstractBaseMapActivity implements Searc
         dataSet.setSliceSpace(2);
         dataSet.setSelectionShift(2);
 
-        int colors[] = {Color.parseColor("#FF0000"),Color.parseColor("#CCCC00")};
+        int colors[] = {Color.parseColor("#FF0000"), Color.parseColor("#CCCC00")};
 
         dataSet.setColors(colors);
 
@@ -602,7 +613,7 @@ public class MapSymptomActivity extends AbstractBaseMapActivity implements Searc
     public boolean onQueryTextSubmit(String query) {
 
         if (query.equals("")) {
-            if(!this.getLocationHandler().isConnected()){
+            if (!this.getLocationHandler().isConnected()) {
                 this.getLocationHandler().connect();
             }
         } else {
@@ -610,10 +621,6 @@ public class MapSymptomActivity extends AbstractBaseMapActivity implements Searc
             setLocationBySearch();
 
         }
-
-        //startActivity(getIntent());
-
-        //finish();
 
         return false;
     }
@@ -623,70 +630,66 @@ public class MapSymptomActivity extends AbstractBaseMapActivity implements Searc
         return false;
     }
 
-    protected boolean isAlwaysExpanded() {
-        return false;
-    }
-
     private String getStateDescription(String uf) {
 
-            String stateDiscription = "";
+        String stateDiscription = "";
 
-            if (uf.equals("AC")) {
-                stateDiscription = "Acre";
-            } else if (uf.equals("AL")) {
-                stateDiscription = "Alagoas";
-            } else if (uf.equals("AP")) {
-                stateDiscription = "Amapá";
-            } else if (uf.equals("AM")) {
-                stateDiscription = "Amazonas";
-            } else if (uf.equals("BA")) {
-                stateDiscription = "Bahia";
-            } else if (uf.equals("CE")) {
-                stateDiscription = "Ceará";
-            } else if (uf.equals("DF")) {
-                stateDiscription = "Distrito Federal";
-            } else if (uf.equals("ES")) {
-                stateDiscription = "Espirito Santo";
-            } else if (uf.equals("GO")) {
-                stateDiscription = "Goiás";
-            } else if (uf.equals("MA")) {
-                stateDiscription = "Maranhão";
-            } else if (uf.equals("MT")) {
-                stateDiscription = "Mato Grosso";
-            } else if (uf.equals("MS")) {
-                stateDiscription = "Mato Grosso do Sul";
-            } else if (uf.equals("MG")) {
-                stateDiscription = "Minas Gerais";
-            } else if (uf.equals("PR")) {
-                stateDiscription = "Paraná";
-            } else if (uf.equals("PB")) {
-                stateDiscription = "Paraiba";
-            } else if (uf.equals("PA")) {
-                stateDiscription = "Pará";
-            } else if (uf.equals("PE")) {
-                stateDiscription = "Pernambuco";
-            } else if (uf.equals("PI")) {
-                stateDiscription = "Piauí";
-            } else if (uf.equals("RJ")) {
-                stateDiscription = "Rio de Janeiro";
-            } else if (uf.equals("RN")) {
-                stateDiscription = "Rio Grande do Norte";
-            } else if (uf.equals("RS")) {
-                stateDiscription = "Rio Grande do Sul";
-            } else if (uf.equals("RO")) {
-                stateDiscription = "Rondônia";
-            } else if (uf.equals("RR")) {
-                stateDiscription = "Roraima";
-            } else if (uf.equals("SC")) {
-                stateDiscription = "Santa Catarina";
-            } else if (uf.equals("SE")) {
-                stateDiscription = "Sergipe";
-            } else if (uf.equals("SP")) {
-                stateDiscription = "São Paulo";
-            } else if (uf.equals("TO")) {
-                stateDiscription = "Tocantins";
-            }
+        if (uf.equals("AC")) {
+            stateDiscription = "Acre";
+        } else if (uf.equals("AL")) {
+            stateDiscription = "Alagoas";
+        } else if (uf.equals("AP")) {
+            stateDiscription = "Amapá";
+        } else if (uf.equals("AM")) {
+            stateDiscription = "Amazonas";
+        } else if (uf.equals("BA")) {
+            stateDiscription = "Bahia";
+        } else if (uf.equals("CE")) {
+            stateDiscription = "Ceará";
+        } else if (uf.equals("DF")) {
+            stateDiscription = "Distrito Federal";
+        } else if (uf.equals("ES")) {
+            stateDiscription = "Espirito Santo";
+        } else if (uf.equals("GO")) {
+            stateDiscription = "Goiás";
+        } else if (uf.equals("MA")) {
+            stateDiscription = "Maranhão";
+        } else if (uf.equals("MT")) {
+            stateDiscription = "Mato Grosso";
+        } else if (uf.equals("MS")) {
+            stateDiscription = "Mato Grosso do Sul";
+        } else if (uf.equals("MG")) {
+            stateDiscription = "Minas Gerais";
+        } else if (uf.equals("PR")) {
+            stateDiscription = "Paraná";
+        } else if (uf.equals("PB")) {
+            stateDiscription = "Paraiba";
+        } else if (uf.equals("PA")) {
+            stateDiscription = "Pará";
+        } else if (uf.equals("PE")) {
+            stateDiscription = "Pernambuco";
+        } else if (uf.equals("PI")) {
+            stateDiscription = "Piauí";
+        } else if (uf.equals("RJ")) {
+            stateDiscription = "Rio de Janeiro";
+        } else if (uf.equals("RN")) {
+            stateDiscription = "Rio Grande do Norte";
+        } else if (uf.equals("RS")) {
+            stateDiscription = "Rio Grande do Sul";
+        } else if (uf.equals("RO")) {
+            stateDiscription = "Rondônia";
+        } else if (uf.equals("RR")) {
+            stateDiscription = "Roraima";
+        } else if (uf.equals("SC")) {
+            stateDiscription = "Santa Catarina";
+        } else if (uf.equals("SE")) {
+            stateDiscription = "Sergipe";
+        } else if (uf.equals("SP")) {
+            stateDiscription = "São Paulo";
+        } else if (uf.equals("TO")) {
+            stateDiscription = "Tocantins";
+        }
 
-            return stateDiscription;
+        return stateDiscription;
     }
 }
