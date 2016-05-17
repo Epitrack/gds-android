@@ -7,11 +7,7 @@ import android.support.v4.app.NotificationCompat;
 
 import com.epitrack.guardioes.R;
 import com.epitrack.guardioes.helper.Logger;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.android.gms.gcm.GcmListenerService;
-
-import java.io.IOException;
 
 /**
  * @author Igor Morais
@@ -27,14 +23,14 @@ public class PushService extends GcmListenerService {
     @Override
     public void onMessageReceived(final String sender, final Bundle bundle) {
 
-        try {
+        final Bundle message = bundle.getBundle(NOTIFICATION);
 
-            final JsonNode json = new ObjectMapper().readTree(bundle.getString(NOTIFICATION));
+        if (message == null) {
+            Logger.logDebug(TAG, "The bundle is null.");
 
-            notify(new Message(json.get(TITLE).asText(), json.get(MESSAGE).asText()));
+        } else {
 
-        } catch (final IOException e) {
-            Logger.logDebug(TAG, e.getMessage());
+            notify(new Message(message.getString(TITLE), message.getString(MESSAGE)));
         }
     }
 
