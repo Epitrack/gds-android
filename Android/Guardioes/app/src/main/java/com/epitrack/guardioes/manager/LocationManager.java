@@ -1,11 +1,14 @@
 package com.epitrack.guardioes.manager;
 
 import android.content.Context;
+import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.provider.Settings;
+import android.support.annotation.NonNull;
+import android.support.v4.content.ContextCompat;
 
 import com.epitrack.guardioes.helper.Logger;
 import com.google.android.gms.common.ConnectionResult;
@@ -25,7 +28,7 @@ public class LocationManager extends BaseManager implements GoogleApiClient.Conn
     private static final int PRIORITY = LocationRequest.PRIORITY_HIGH_ACCURACY;
 
     private static final LocationRequest LOCATION_REQUEST = new LocationRequest().setInterval(INTERVAL)
-            .setFastestInterval(FASTEST_INTERVAL)
+                                                                    .setFastestInterval(FASTEST_INTERVAL)
             .setPriority(PRIORITY);
 
     private final Handler handler = new Handler();
@@ -44,34 +47,47 @@ public class LocationManager extends BaseManager implements GoogleApiClient.Conn
         this.listener = listener;
     }
 
+    private boolean hasPermission() {
+
+        return ContextCompat.checkSelfPermission(getContext(), android.Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED ||
+                ContextCompat.checkSelfPermission(getContext(), android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED;
+    }
+
     @Override
     public void onConnected(final Bundle bundle) {
-
-        // TODO: Refactor this.
 
         handler.post(new Runnable() {
 
             @Override
             public void run() {
 
-                try {
-
-                    final Location location = LocationServices.FusedLocationApi.getLastLocation(locationHandler);
-
-                    listener.onLastLocation(location);
-
-                } catch (SecurityException e) {
-                    e.printStackTrace();
-                }
+                listener.onConnect(bundle);
             }
         });
 
-        try {
+        if (hasPermission()) {
 
-            LocationServices.FusedLocationApi.requestLocationUpdates(locationHandler, LOCATION_REQUEST, this);
+            handler.post(new Runnable() {
 
-        } catch (final SecurityException e) {
-            e.printStackTrace();
+                @Override
+                public void run() {
+
+                    try {
+
+                        final Location location = LocationServices.FusedLocationApi.getLastLocation(locationHandler);
+
+                        listener.onLastLocation(location);
+
+                        if (locationHandler.isConnected()) {
+
+                            LocationServices.FusedLocationApi.requestLocationUpdates(locationHandler, LOCATION_REQUEST, LocationManager.this);
+                        }
+
+                    } catch (final SecurityException e) {
+                        Logger.logDebug(TAG, "The listener is null.");
+                    }
+                }
+            });
         }
     }
 
@@ -81,7 +97,7 @@ public class LocationManager extends BaseManager implements GoogleApiClient.Conn
     }
 
     @Override
-    public void onConnectionFailed(final ConnectionResult connectionResult) {
+    public void onConnectionFailed(@NonNull final ConnectionResult connectionResult) {
 
     }
 
