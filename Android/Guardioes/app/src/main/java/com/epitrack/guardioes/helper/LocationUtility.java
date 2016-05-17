@@ -1,151 +1,56 @@
 package com.epitrack.guardioes.helper;
 
-import android.app.Service;
 import android.content.Context;
-import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.location.Location;
-import android.location.LocationListener;
-import android.location.LocationManager;
-import android.os.Bundle;
-import android.os.IBinder;
-import android.support.annotation.Nullable;
+import android.os.Build;
+import android.provider.Settings;
+import android.support.v4.content.ContextCompat;
 
 import com.google.android.gms.maps.model.LatLng;
 
 /**
  * @author Miqueias Lopes
  */
-public final class LocationUtility extends Service implements LocationListener {
+public final class LocationUtility {
 
-    Context context;
-    boolean isGPSEnabled = false;
-    boolean isNetworkEnabled = false;
-    boolean canGetLocation = false;
-    Location location;
-    double latitude;
-    double longitude;
-
-    private static final long MIN_DISTANCE_CHANGE_FOR_UPDATES = 10;
-    private static final long MIN_TIME_BW_UPDATES = 1000 * 60 * 1;
-
-    protected LocationManager locationManager;
+    private static final String TAG = LocationHelper.class.getSimpleName();
 
     private LocationUtility() {
 
     }
 
-    @Nullable
-    @Override
-    public IBinder onBind(Intent intent) {
-        return null;
-    }
-
-    public LocationUtility(Context context) {
-        this.context = context;
-        getLocation();
+    public static LatLng toLatLng(final double latitude, final double longitude) {
+        return new LatLng(latitude, longitude);
     }
 
     public static LatLng toLatLng(final Location location) {
-        if (location != null) {
-            return new LatLng(location.getLatitude(), location.getLongitude());
+        return new LatLng(location.getLatitude(), location.getLongitude());
+    }
+
+    public static boolean isEnabled(final Context context) {
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+
+            try {
+
+                return !(Settings.Secure.getInt(context.getContentResolver(), Settings.Secure.LOCATION_MODE) == Settings.Secure.LOCATION_MODE_OFF);
+
+            } catch (final Settings.SettingNotFoundException e) {
+                Logger.logError(TAG, e.getMessage());
+            }
+
         } else {
-            return null;
-        }
-    }
 
-    public double getLatitude(){
-        if(location != null){
-            latitude = location.getLatitude();
-        }
-        return latitude;
-    }
-
-    public double getLongitude(){
-        if(location != null){
-            longitude = location.getLongitude();
-        }
-        return longitude;
-    }
-
-    public Location getLocation() {
-        try {
-            locationManager = (LocationManager) context
-                    .getSystemService(LOCATION_SERVICE);
-
-            isGPSEnabled = locationManager
-                    .isProviderEnabled(LocationManager.GPS_PROVIDER);
-
-            isNetworkEnabled = locationManager
-                    .isProviderEnabled(LocationManager.NETWORK_PROVIDER);
-
-            if (!isGPSEnabled && !isNetworkEnabled) {
-                return null;
-            }
-            this.canGetLocation = true;
-            if (isNetworkEnabled) {
-                locationManager.requestLocationUpdates(
-                        LocationManager.NETWORK_PROVIDER,
-                        MIN_TIME_BW_UPDATES,
-                        MIN_DISTANCE_CHANGE_FOR_UPDATES, this);
-                Logger.logDebug("Network", "Network");
-                if (locationManager != null) {
-                    location = locationManager
-                            .getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
-                    if (location != null) {
-                        latitude = location.getLatitude();
-                        longitude = location.getLongitude();
-                    }
-                }
-            }
-            if (isGPSEnabled) {
-                if (location == null) {
-                    locationManager.requestLocationUpdates(
-                            LocationManager.GPS_PROVIDER,
-                            MIN_TIME_BW_UPDATES,
-                            MIN_DISTANCE_CHANGE_FOR_UPDATES, this);
-                    Logger.logDebug("GPS Enabled", "GPS Enabled");
-                    if (locationManager != null) {
-                        location = locationManager
-                                .getLastKnownLocation(LocationManager.GPS_PROVIDER);
-                        if (location != null) {
-                            latitude = location.getLatitude();
-                            longitude = location.getLongitude();
-                        }
-                    }
-                }
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
+            return !Settings.Secure.getString(context.getContentResolver(), Settings.Secure.LOCATION_PROVIDERS_ALLOWED).isEmpty();
         }
 
-        return location;
+        return true;
     }
 
-    @Override
-    public void onLocationChanged(Location location) {
+    public static boolean hasPermission(final Context context) {
 
-    }
-
-    @Override
-    public void onStatusChanged(String provider, int status, Bundle extras) {
-
-    }
-
-    @Override
-    public void onProviderEnabled(String provider) {
-
-    }
-
-    @Override
-    public void onProviderDisabled(String provider) {
-
-    }
-
-    public void setLatitude(double latitude) {
-        this.latitude = latitude;
-    }
-
-    public void setLongitude(double longitude) {
-        this.longitude = longitude;
+        return ContextCompat.checkSelfPermission(context, android.Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED ||
+                ContextCompat.checkSelfPermission(context, android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED;
     }
 }
