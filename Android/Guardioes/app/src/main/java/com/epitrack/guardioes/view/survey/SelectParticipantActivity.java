@@ -20,7 +20,6 @@ import com.epitrack.guardioes.view.menu.profile.UserActivity;
 import com.github.siyamed.shapeimageview.CircularImageView;
 import com.google.android.gms.analytics.HitBuilders;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.Bind;
@@ -46,7 +45,6 @@ public class SelectParticipantActivity extends BaseAppCompatActivity implements 
     @Bind(R.id.text_view_id)
     TextView textViewId;
 
-    public static List<User> parentList = new ArrayList<>();
     SingleUser singleUser = SingleUser.getInstance();
 
     @Override

@@ -41,9 +41,9 @@ public class PushService extends GcmListenerService {
     private void notify(final Message message) {
 
         final NotificationCompat.Builder builder = new NotificationCompat.Builder(this)
-                .setSmallIcon(R.mipmap.icon)
                 .setContentTitle(message.getTitle())
-                .setContentText(message.getMessage());
+                .setContentText(message.getMessage())
+                .setSmallIcon(R.mipmap.icon);
 
         ((NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE)).notify(0, builder.build());
     }
