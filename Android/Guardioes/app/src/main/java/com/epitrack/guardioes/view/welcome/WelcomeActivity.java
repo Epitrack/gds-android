@@ -1,7 +1,6 @@
 package com.epitrack.guardioes.view.welcome;
 
 import android.os.Bundle;
-import android.support.multidex.MultiDex;
 import android.support.v4.view.ViewPager;
 
 import com.epitrack.guardioes.R;
@@ -29,8 +28,6 @@ public class WelcomeActivity extends BaseFragmentActivity {
     @Override
     protected void onCreate(final Bundle bundle) {
         super.onCreate(bundle);
-
-        MultiDex.install(getBaseContext());
 
         setContentView(R.layout.welcome);
 
