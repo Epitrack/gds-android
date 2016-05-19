@@ -37,10 +37,9 @@
 
         <com.github.siyamed.shapeimageview.CircularImageView
             android:id="@+id/image_view_image"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/image_avatar_3"
-            layout:siBorderColor="@android:color/transparent"
+            android:layout_width="125dp"
+            android:layout_height="125dp"
+            layout:siBorderAlpha="0.0"
             layout:siBorderWidth="0dp"/>
 
         <TextView
@@ -59,14 +58,6 @@
             android:layout_gravity="center_horizontal"
             android:text="@string/message_age"
             android:textSize="20sp"/>
-
-        <TextView
-            android:id="@+id/text_view_id"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:textSize="5sp"
-            android:visibility="invisible"/>
 
     </LinearLayout>
 

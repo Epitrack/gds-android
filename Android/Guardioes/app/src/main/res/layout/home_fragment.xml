@@ -13,9 +13,7 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="15dp"
         android:layout_weight="0"
-        android:adjustViewBounds="true"
-        android:src="@drawable/image_avatar_3"
-        layout:siBorderColor="@android:color/transparent"
+        layout:siBorderAlpha="0.0"
         layout:siBorderWidth="0dp"/>
 
     <TextView

@@ -40,6 +40,8 @@ public class BaseRequester {
     private static final String TOKEN_APP = "app_token";
     private static final String TOKEN_USER = "user_token";
 
+    private static final String TOKEN = "d41d8cd98f00b204e9800998ecf8427e";
+
     private final Context context;
     
     private final ObjectMapper mapper = new ObjectMapper();
@@ -88,7 +90,8 @@ public class BaseRequester {
         final Map<String, String> headerMap = new HashMap<>();
         
         headerMap.put(Header.CONTENT_TYPE, Header.ContentType.JSON);
-        
+        headerMap.put(TOKEN_APP, TOKEN);
+
         return headerMap;
     }
     

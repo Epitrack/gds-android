@@ -117,7 +117,7 @@ public class UserRequester extends BaseRequester {
 
     public void createAccount(final User user, final RequestListener<User> listener) {
 
-        final String url = RequesterConfig.URL + "user/create";
+        final String url = RequesterConfig.URL + "/user/create";
 
         final Map<String, Object> bodyMap = new HashMap<>();
 
