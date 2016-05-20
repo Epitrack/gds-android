@@ -9,10 +9,10 @@ android {
     defaultConfig {
 
         applicationId "com.epitrack.guardioes"
-        minSdkVersion 19
+        minSdkVersion 17
         targetSdkVersion 23
-        versionCode 36
-        versionName "1.2.5"
+        versionCode 38
+        versionName "1.5.0"
         multiDexEnabled true
     }
 
