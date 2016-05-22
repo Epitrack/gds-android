@@ -15,6 +15,7 @@
             android:id="@+id/image_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:contentDescription="@null"
             android:src="@drawable/image_banner_level"/>
 
         <TextView
@@ -24,17 +25,11 @@
             android:layout_alignBottom="@+id/image_view"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="12dp"
-            android:text="@string/level"
             android:textColor="@color/nice_blue"
             android:textSize="22sp"
             android:textStyle="bold"/>
 
     </RelativeLayout>
-
-    <ImageView
-
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
 
     <GridView
         android:id="@+id/grid_view"
@@ -42,7 +37,19 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/relative_layout"
         android:layout_centerHorizontal="true"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
         android:layout_marginTop="20dp"
-        android:numColumns="3"/>
+        android:horizontalSpacing="15dp"
+        android:numColumns="3"
+        android:verticalSpacing="15dp"/>
+
+    <fragment
+        android:name="com.epitrack.guardioes.view.game.EnergyFragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="30dp"
+        android:tag="energy_fragment"/>
 
 </RelativeLayout>

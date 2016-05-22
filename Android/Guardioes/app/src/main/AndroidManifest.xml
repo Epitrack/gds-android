@@ -258,6 +258,13 @@
         <activity
             android:name=".view.game.welcome.WelcomeGameActivity"
             android:exported="false"
+            android:parentActivityName=".view.HomeActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Game"/>
+
+        <activity
+            android:name=".view.game.GameActivity"
+            android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/Game"/>
 
