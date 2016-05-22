@@ -42,9 +42,6 @@ public class SelectParticipantActivity extends BaseAppCompatActivity implements 
     @Bind(R.id.recycler_view)
     RecyclerView recyclerView;
 
-    @Bind(R.id.text_view_id)
-    TextView textViewId;
-
     SingleUser singleUser = SingleUser.getInstance();
 
     @Override
@@ -57,7 +54,6 @@ public class SelectParticipantActivity extends BaseAppCompatActivity implements 
 
         textViewName.setText(singleUser.getNick());
         textViewAge.setText(j + " Anos");
-        textViewId.setText(singleUser.getId());
 
         new AvatarHelper().loadImage(this, imageViewAvatar, singleUser);
 

@@ -16,8 +16,6 @@ import com.epitrack.guardioes.view.IMenu;
  */
 public class HelpAdapter extends ArrayAdapter<IMenu> {
 
-    private ViewHolder viewHolder;
-
     public HelpAdapter(final Context context, final IMenu[] menuArray) {
         super(context, 0, menuArray);
     }
@@ -31,6 +29,8 @@ public class HelpAdapter extends ArrayAdapter<IMenu> {
     @Override
     public View getView(final int position, final View convertView, final ViewGroup viewGroup) {
         View view = convertView;
+
+        ViewHolder viewHolder;
 
         if (view == null) {
 
