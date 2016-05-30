@@ -1,15 +1,42 @@
 package com.epitrack.guardioes.view.game.dialog;
 
+import android.app.DialogFragment;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+
 import com.epitrack.guardioes.R;
-import com.epitrack.guardioes.view.base.dialog.BaseDialogFragment;
 
 /**
  * @author Igor Morais
  */
-public class AnswerDialog extends BaseDialogFragment {
+public class AnswerDialog extends DialogFragment implements View.OnClickListener {
+
+    public static final String TAG = AnswerDialog.class.getSimpleName();
 
     @Override
-    public int getLayout() {
-        return R.layout.dialog_answer;
+    public void onCreate(final Bundle bundle) {
+        super.onCreate(bundle);
+
+        setStyle(STYLE_NORMAL, R.style.Theme_Dialog_FullScreen);
+    }
+
+    @Nullable
+    @Override
+    public View onCreateView(final LayoutInflater inflater, final ViewGroup viewGroup, final Bundle bundle) {
+        return inflater.inflate(R.layout.dialog_answer, viewGroup, false);
+    }
+
+    @Override
+    public void onViewCreated(final View view, @Nullable final Bundle bundle) {
+
+        view.findViewById(R.id.image_button_close).setOnClickListener(this);
+    }
+
+    @Override
+    public void onClick(final View view) {
+        dismiss();
     }
 }

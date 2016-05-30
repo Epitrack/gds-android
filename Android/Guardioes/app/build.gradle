@@ -114,6 +114,8 @@ dependencies {
     compile 'com.edmodo:cropper:1.0.1'
     compile 'com.karumi:dexter:2.1.4'
 
+    compile 'com.liulishuo.magicprogresswidget:library:1.0.9'
+
     compile 'org.apache.commons:commons-collections4:4.1'
 
     compile 'com.github.siyamed:android-shape-imageview:0.9.3@aar'

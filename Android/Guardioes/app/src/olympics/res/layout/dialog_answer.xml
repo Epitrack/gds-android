@@ -3,12 +3,155 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-    <ImageView
+    <RelativeLayout
+        android:id="@+id/relative_layout_answer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="30dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="50dp">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/image_answer"
+            android:contentDescription="@null"/>
+
+        <TextView
+            android:id="@+id/text_view_question"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginEnd="30dp"
+            android:layout_marginStart="30dp"
+            android:gravity="center"
+            android:text="Qual tipo de micro-organismo é responsável pela dengue?"
+            android:textColor="@color/nice_blue"
+            android:textSize="20sp"
+            android:textStyle="italic|bold"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/relative_layout_answer_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/relative_layout_answer"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="-35dp">
+
+        <ImageButton
+            android:id="@+id/button_answer_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button_answer_green"
+            android:contentDescription="@null"/>
+
+        <TextView
+            android:id="@+id/text_view_answer_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="Vírus"
+            android:textColor="@android:color/white"
+            android:textSize="20sp"
+            android:textStyle="bold"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/relative_layout_answer_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/relative_layout_answer_1"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="-50dp">
+
+        <ImageButton
+            android:id="@+id/button_answer_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button_answer_red"
+            android:contentDescription="@null"/>
+
+        <TextView
+            android:id="@+id/text_view_answer_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="Bactéria"
+            android:textColor="@android:color/white"
+            android:textSize="20sp"
+            android:textStyle="bold"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/relative_layout_answer_3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/relative_layout_answer_2"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="-50dp">
+
+        <ImageButton
+            android:id="@+id/button_answer_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button_answer_grey"
+            android:contentDescription="@null"/>
+
+        <TextView
+            android:id="@+id/text_view_answer_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="Fungo"
+            android:textColor="@android:color/white"
+            android:textSize="20sp"
+            android:textStyle="bold"/>
+
+    </RelativeLayout>
+
+    <include
+        layout="@layout/view_timer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="115dp"
-        android:contentDescription="@null"
-        android:src="@drawable/image_answer"/>
+        android:layout_marginTop="30dp"/>
+
+    <ImageButton
+        android:id="@+id/image_button_close"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="7dp"
+        android:background="@drawable/button_close"
+        android:contentDescription="@null"/>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="50dp">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@null"
+            android:src="@drawable/image_energy"/>
+
+        <TextView
+            android:id="@+id/text_view_energy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:textColor="@color/nice_blue"
+            android:textSize="15sp"
+            android:textStyle="bold"/>
+
+    </RelativeLayout>
 
 </RelativeLayout>
