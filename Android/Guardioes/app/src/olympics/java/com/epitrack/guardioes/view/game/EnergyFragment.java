@@ -8,6 +8,8 @@ import android.view.ViewGroup;
 
 import com.epitrack.guardioes.R;
 import com.epitrack.guardioes.view.base.BaseFragment;
+import com.epitrack.guardioes.view.game.dialog.ScoreDialog;
+import com.epitrack.guardioes.view.game.dialog.TrophyDialog;
 
 import butterknife.OnClick;
 
@@ -30,11 +32,11 @@ public class EnergyFragment extends BaseFragment {
 
     @OnClick(R.id.button_medal)
     public void onMedal() {
-
+        new ScoreDialog().show(getFragmentManager(), ScoreDialog.TAG);
     }
 
     @OnClick(R.id.button_trophy)
     public void onTrophy() {
-
+        new TrophyDialog().show(getFragmentManager(), TrophyDialog.TAG);
     }
 }
