@@ -33,6 +33,9 @@
 
     <color name="translucent_blue">#b32c8cec</color>
 
+    <color name="white_grey">#d6d6d6</color>
+    <color name="warm_grey_two">#9b9b9b</color>
+
     <color name="translucent_white_light">#80ffffff</color>
     <color name="translucent_white">#ccffffff</color>
 
