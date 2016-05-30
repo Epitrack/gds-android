@@ -115,7 +115,7 @@
     </RelativeLayout>
 
     <include
-        layout="@layout/view_timer"
+        layout="@layout/layout_timer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
