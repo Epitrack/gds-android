@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true">
+
+        <ImageView
+            android:id="@+id/image_view_bar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@null"
+            android:src="@drawable/image_bar_play"/>
+
+        <ImageButton
+            android:id="@+id/button_reload"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="@+id/image_view_bar"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="50dp"
+            android:background="@drawable/image_reload"
+            android:contentDescription="@null"/>
+
+        <ImageButton
+            android:id="@+id/button_game"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignEnd="@+id/image_view_bar"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="50dp"
+            android:background="@drawable/image_game"
+            android:contentDescription="@null"/>
+
+    </RelativeLayout>
+
+    <ImageButton
+        android:id="@+id/button_play"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/button_play"
+        android:contentDescription="@null"/>
+
+</RelativeLayout>
