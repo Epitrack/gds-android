@@ -18,7 +18,7 @@ import java.util.ArrayList;
  */
 public class ScoreDialog extends DialogFragment implements View.OnClickListener {
 
-    public static final String TAG = TrophyDialog.class.getSimpleName();
+    public static final String TAG = ScoreDialog.class.getSimpleName();
 
     @Override
     public void onCreate(final Bundle bundle) {
