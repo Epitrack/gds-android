@@ -10,8 +10,10 @@ import android.widget.ListView;
 
 import com.epitrack.guardioes.R;
 import com.epitrack.guardioes.view.game.ScoreAdapter;
+import com.epitrack.guardioes.view.game.model.Score;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author Igor Morais
@@ -19,6 +21,8 @@ import java.util.ArrayList;
 public class ScoreDialog extends DialogFragment implements View.OnClickListener {
 
     public static final String TAG = ScoreDialog.class.getSimpleName();
+
+    private List<Score> scoreList = new ArrayList<>();
 
     @Override
     public void onCreate(final Bundle bundle) {
@@ -38,7 +42,7 @@ public class ScoreDialog extends DialogFragment implements View.OnClickListener 
 
         final ListView listView = (ListView) view.findViewById(R.id.list_view);
 
-        listView.setAdapter(new ScoreAdapter(getActivity(), new ArrayList<String>(10)));
+        listView.setAdapter(new ScoreAdapter(getActivity(), scoreList));
 
         view.findViewById(R.id.image_button_close).setOnClickListener(this);
     }
@@ -46,5 +50,11 @@ public class ScoreDialog extends DialogFragment implements View.OnClickListener 
     @Override
     public void onClick(final View view) {
         dismiss();
+    }
+
+    public ScoreDialog setScoreList(final List<Score> scoreList) {
+        this.scoreList = scoreList;
+
+        return this;
     }
 }
