@@ -9,13 +9,15 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.epitrack.guardioes.R;
+import com.epitrack.guardioes.view.game.model.Score;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-public class ScoreAdapter extends ArrayAdapter<String> {
+public class ScoreAdapter extends ArrayAdapter<Score> {
 
-    public ScoreAdapter(final Context context, final List<String> tagList) {
-        super(context, 0, tagList);
+    public ScoreAdapter(final Context context, final List<Score> scoreList) {
+        super(context, 0, scoreList);
     }
 
     private static class ViewHolder {
@@ -23,11 +25,6 @@ public class ScoreAdapter extends ArrayAdapter<String> {
         TextView textViewName;
         TextView textViewNumber;
         ImageView imageViewImage;
-    }
-
-    @Override
-    public int getCount() {
-        return 10;
     }
 
     @Override
@@ -40,7 +37,7 @@ public class ScoreAdapter extends ArrayAdapter<String> {
         if (view == null) {
 
             view = LayoutInflater.from(viewGroup.getContext())
-                    .inflate(R.layout.score_item, viewGroup, false);
+                                 .inflate(R.layout.score_item, viewGroup, false);
 
             viewHolder = new ViewHolder();
 
@@ -54,6 +51,15 @@ public class ScoreAdapter extends ArrayAdapter<String> {
 
             viewHolder = (ViewHolder) view.getTag();
         }
+
+        final Score score = getItem(position);
+
+        viewHolder.textViewName.setText(score.getCountry());
+        viewHolder.textViewNumber.setText(String.valueOf(score.getPosition()));
+
+        Picasso.with(viewGroup.getContext())
+                .load(score.getUrl())
+                .into(viewHolder.imageViewImage);
 
         return view;
     }
