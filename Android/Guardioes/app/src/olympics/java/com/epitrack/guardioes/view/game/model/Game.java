@@ -1,4 +1,4 @@
-package com.epitrack.guardioes.view.game;
+package com.epitrack.guardioes.view.game.model;
 
 import com.epitrack.guardioes.R;
 
