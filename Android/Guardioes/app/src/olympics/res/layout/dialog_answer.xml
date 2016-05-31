@@ -39,13 +39,13 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/relative_layout_answer"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="-35dp">
+        android:layout_marginTop="-10dp">
 
         <ImageButton
             android:id="@+id/button_answer_1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/button_answer_green"
+            android:background="@drawable/button_answer"
             android:contentDescription="@null"/>
 
         <TextView
@@ -66,13 +66,13 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/relative_layout_answer_1"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="-50dp">
+        android:layout_marginTop="10dp">
 
         <ImageButton
             android:id="@+id/button_answer_2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/button_answer_red"
+            android:background="@drawable/button_answer"
             android:contentDescription="@null"/>
 
         <TextView
@@ -93,13 +93,13 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/relative_layout_answer_2"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="-50dp">
+        android:layout_marginTop="10dp">
 
         <ImageButton
             android:id="@+id/button_answer_3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/button_answer_grey"
+            android:background="@drawable/button_answer"
             android:contentDescription="@null"/>
 
         <TextView
