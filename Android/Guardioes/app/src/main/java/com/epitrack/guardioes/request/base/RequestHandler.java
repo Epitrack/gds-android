@@ -59,6 +59,5 @@ public abstract class RequestHandler<T> implements RequestListener<T> {
     @Override
     public void onSuccess(final T type) {
         loadDialog.dismiss();
-
     }
 }

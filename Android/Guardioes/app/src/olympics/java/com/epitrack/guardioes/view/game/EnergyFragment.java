@@ -7,9 +7,14 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.epitrack.guardioes.R;
+import com.epitrack.guardioes.request.GameRequester;
+import com.epitrack.guardioes.request.base.RequestHandler;
 import com.epitrack.guardioes.view.base.BaseFragment;
 import com.epitrack.guardioes.view.game.dialog.ScoreDialog;
 import com.epitrack.guardioes.view.game.dialog.TrophyDialog;
+import com.epitrack.guardioes.view.game.model.Score;
+
+import java.util.List;
 
 import butterknife.OnClick;
 
@@ -25,18 +30,29 @@ public class EnergyFragment extends BaseFragment {
     }
 
     @Override
-    public void onViewCreated(final View view, @Nullable Bundle bundle) {
+    public void onViewCreated(final View view, @Nullable final Bundle bundle) {
 
         bind(view);
     }
 
     @OnClick(R.id.button_medal)
     public void onMedal() {
-        new ScoreDialog().show(getFragmentManager(), ScoreDialog.TAG);
+
+        new GameRequester(getActivity()).getScore(new RequestHandler<List<Score>>(getActivity()) {
+
+            @Override
+            public void onSuccess(final List<Score> scoreList) {
+                super.onSuccess(scoreList);
+
+                new ScoreDialog().setScoreList(scoreList)
+                        .show(getFragmentManager(), ScoreDialog.TAG);
+            }
+        });
     }
 
     @OnClick(R.id.button_trophy)
     public void onTrophy() {
+
         new TrophyDialog().show(getFragmentManager(), TrophyDialog.TAG);
     }
 }

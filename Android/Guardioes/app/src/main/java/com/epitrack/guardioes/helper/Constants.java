@@ -14,56 +14,22 @@ public final class Constants {
     public static final String PATH = "file://";
     public static final String DIRECTORY_TEMP = "Guardioes";
 
-    public static class Google {
-
-        public static final String KEY_API_MAPS = "AIzaSyDYl7spN_NpAjAWL7Hi183SK2cApiIS3Eg";
-        public static final int  API_UNAVAILABLE = 16;
-        public static final int  CANCELED = 13;
-        public static final int  DEVELOPER_ERROR = 10;
-        public static final int  INTERNAL_ERROR = 8;
-        public static final int  INTERRUPTED = 15;
-        public static final int  INVALID_ACCOUNT = 5;
-        public static final int  LICENSE_CHECK_FAILED = 11;
-        public static final int  NETWORK_ERROR = 7;
-        public static final int  RESOLUTION_REQUIRED = 6;
-        public static final int  SERVICE_DISABLED = 3;
-        public static final int  SERVICE_INVALID = 9;
-        public static final int  SERVICE_MISSING = 1;
-        public static final int  SERVICE_MISSING_PERMISSION = 19;
-        public static final int  SERVICE_UPDATING = 18;
-        public static final int  SERVICE_VERSION_UPDATE_REQUIRED = 2;
-        public static final int  SIGN_IN_FAILED = 17;
-        public static final int  SIGN_IN_REQUIRED = 4;
-        public static final int  SUCCESS = 0;
-        public static final int  TIMEOUT = 14;
-
-    }
-
-    public static class General {
-
-        public static final String ADD = "ADD";
-        public static final String REMOVE = "REMOVE";
-    }
-
-    public static class Twitter {
-
-        public static final String KEY = "btijYH36dtguxb6CcHTprkERG";
-        public static final String SECRET = "UJR1qUL7ReNnEnFulMKumaP84Ff9JUxffNybxbr5oyMdIo6wro";
-    }
-
-    public static class Config {
-
-    }
-
-    public static class State {
-
-        public static final String GOOD = "GOOD";
-        public static final String BAD = "BAD";
-    }
-
     public static class RequestCode {
 
         public static final int IMAGE = 5000;
+    }
+
+    public static class Json {
+
+        public static final String COUNTRY = "country";
+        public static final String POSITION = "position";
+        public static final String URL = "flagUrl";
+
+        public static final String TITLE = "title";
+        public static final String OPTION = "option";
+        public static final String CORRECT = "correct";
+        public static final String QUESTION_LIST = "questions";
+        public static final String OPTION_LIST = "alternatives";
     }
 
     public static class Bundle {
