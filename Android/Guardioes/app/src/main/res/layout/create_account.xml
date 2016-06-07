@@ -46,233 +46,153 @@
             android:layout_margin="5dp"
             android:background="@drawable/selector_button_mail"
             android:text="E-mail"
-            android:textColor="#ffffff" />
+            android:textColor="@android:color/white" />
+
+    </LinearLayout>
+
+    <ScrollView
+        android:id="@+id/linear_layout_account"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="200dp"
+        android:descendantFocusability="beforeDescendants"
+        android:focusableInTouchMode="true"
+        android:visibility="invisible">
 
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="35dp"
-            android:visibility="gone">
-
-            <CheckBox
-                android:id="@+id/check_box_term"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="15dp"
-                android:button="@drawable/selector_check_box_white" />
-
-            <TextView
-                style="@style/TextHintLight"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="3dp"
-                android:text="@string/message_agree" />
-
-            <TextView
-                android:id="@+id/text_view_term"
-                style="@style/TextHintLight"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/message_term" />
-
-        </LinearLayout>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/linear_layout_next"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginLeft="25dp"
-        android:layout_marginRight="25dp"
-        android:layout_marginTop="200dp"
-        android:orientation="vertical"
-        android:visibility="invisible">
-
-        <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <EditText
-                android:id="@+id/edit_text_name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textCapSentences"
-                android:textColor="@android:color/white"
-                android:textColorHint="@color/white_dark"
-                android:hint="@string/hint_nickname"
-                android:maxLength="10" />
-
-        </android.support.design.widget.TextInputLayout>
-
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <EditText
-                android:id="@+id/edit_text_birth_date"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColorHint="@color/white_dark"
-                android:hint="@string/hint_birth_date"
-                android:textColor="@android:color/white"
-                android:inputType="date" />
-
-        </android.support.design.widget.TextInputLayout>
-
-        <GridLayout
-            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:baselineAligned="true"
-            android:rowCount="1"
-            android:columnCount="2"
-            android:alignmentMode="alignMargins"
-            android:rowOrderPreserved="false">
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="25dp"
+            android:orientation="vertical">
 
-            <LinearLayout
-                android:layout_width="170dp"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_row="0">
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-                <TextView
-                    android:layout_width="wrap_content"
+                <EditText
+                    android:id="@+id/edit_text_name"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
-                    android:text="@string/gender"
+                    android:hint="@string/hint_nickname"
+                    android:inputType="textCapSentences"
+                    android:maxLength="10"
                     android:textColor="@android:color/white"
                     android:textColorHint="@color/white_dark"
                     android:textSize="13sp" />
 
-                <Spinner
-                    android:id="@+id/spinner_gender"
-                    android:layout_width="fill_parent"
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/edit_text_birth_date"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:entries="@array/gender_array" />
+                    android:hint="@string/hint_birth_date"
+                    android:inputType="date"
+                    android:textColor="@android:color/white"
+                    android:textColorHint="@color/white_dark"
+                    android:textSize="13sp" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="5dp"
+                        android:text="@string/gender"
+                        android:textColor="@android:color/white"
+                        android:textSize="13sp" />
+
+                    <Spinner
+                        android:id="@+id/spinner_gender"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="33dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="5dp"
+                        android:text="@string/race"
+                        android:textColor="@android:color/white"
+                        android:textSize="13sp" />
+
+                    <Spinner
+                        android:id="@+id/spinner_race"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
 
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="170dp"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-                <TextView
-                    android:layout_width="wrap_content"
+                <EditText
+                    android:id="@+id/edit_text_mail"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
-                    android:textColorHint="@color/white_dark"
-                    android:text="@string/race"
+                    android:hint="@string/hint_mail"
+                    android:inputType="textEmailAddress"
+                    android:maxLength="50"
                     android:textColor="@android:color/white"
                     android:textSize="13sp" />
 
-                <Spinner
-                    android:id="@+id/spinner_race"
-                    android:layout_width="fill_parent"
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/edit_text_password"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:entries="@array/race_array" />
+                    android:hint="@string/hint_password"
+                    android:inputType="textPassword"
+                    android:maxLength="16"
+                    android:textColor="@android:color/white"
+                    android:textColorHint="@color/white_dark"
+                    android:textSize="13sp" />
 
-            </LinearLayout>
-
-        </GridLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <Button
-                android:id="@+id/button_next"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_marginBottom="35dp"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"
-                android:background="@drawable/selector_button_white_dark"
-                android:text="@string/next"
-                android:textColor="@color/dark_sky_blue" />
-
-        </RelativeLayout>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/linear_layout_create"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginLeft="25dp"
-        android:layout_marginRight="25dp"
-        android:layout_marginTop="200dp"
-        android:orientation="vertical"
-        android:visibility="invisible">
-
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <EditText
-                android:id="@+id/edit_text_mail"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/hint_mail"
-                android:inputType="textEmailAddress"
-                android:textColor="@android:color/white"
-                android:maxLength="50" />
-
-        </android.support.design.widget.TextInputLayout>
-
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <EditText
-                android:id="@+id/edit_text_password"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColorHint="@color/white_dark"
-                android:hint="@string/hint_password"
-                android:inputType="textPassword"
-                android:textColor="@android:color/white"
-                android:maxLength="16" />
-
-        </android.support.design.widget.TextInputLayout>
-
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <EditText
-                android:id="@+id/edit_text_confirm_password"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/hint_repeat_password"
-                android:inputType="textPassword"
-                android:textColorHint="@color/white_dark"
-                android:textColor="@android:color/white"
-                android:maxLength="16" />
-
-        </android.support.design.widget.TextInputLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            </android.support.design.widget.TextInputLayout>
 
             <Button
                 android:id="@+id/button_create_account"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_marginBottom="35dp"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"
+                android:layout_marginBottom="25dp"
+                android:layout_marginTop="25dp"
                 android:background="@drawable/selector_button_white_dark"
                 android:text="@string/register"
                 android:textColor="@color/dark_sky_blue" />
 
-        </RelativeLayout>
+        </LinearLayout>
 
-    </LinearLayout>
+    </ScrollView>
 
 </RelativeLayout>

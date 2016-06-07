@@ -1,10 +1,13 @@
 package com.epitrack.guardioes.view.game;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
 
-import com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView;
 import com.epitrack.guardioes.R;
 import com.epitrack.guardioes.view.base.BaseAppCompatActivity;
+import com.epitrack.guardioes.view.game.model.Phase;
 
 import butterknife.Bind;
 
@@ -13,8 +16,8 @@ import butterknife.Bind;
  */
 public class GameMapActivity extends BaseAppCompatActivity {
 
-    @Bind(R.id.image_view_map)
-    SubsamplingScaleImageView imageViewMap;
+    @Bind(R.id.relative_layout)
+    RelativeLayout relativeLayout;
 
     @Override
     protected void onCreate(final Bundle bundle) {
@@ -22,6 +25,15 @@ public class GameMapActivity extends BaseAppCompatActivity {
 
         setContentView(R.layout.game_map);
 
-        imageViewMap.setMinimumScaleType(SubsamplingScaleImageView.SCALE_TYPE_CENTER_CROP);
+            imageView.setOnClickListener(new View.OnClickListener() {
+
+                @Override
+                public void onClick(final View view) {
+                    navigateTo(GameActivity.class);
+                }
+            });
+
+            relativeLayout.addView(imageView);
+        }
     }
 }

@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.multidex.MultiDex;
-import android.support.v7.app.ActionBar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
@@ -21,18 +20,8 @@ import com.epitrack.guardioes.request.old.SimpleRequester;
 import com.epitrack.guardioes.view.HomeActivity;
 import com.epitrack.guardioes.view.base.BaseAppCompatActivity;
 import com.epitrack.guardioes.view.menu.profile.UserActivity;
-import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
-import com.facebook.FacebookCallback;
-import com.facebook.FacebookException;
-import com.facebook.FacebookSdk;
-import com.facebook.GraphRequest;
-import com.facebook.GraphResponse;
-import com.facebook.HttpMethod;
 import com.facebook.ProfileTracker;
-import com.facebook.login.LoginManager;
-import com.facebook.login.LoginResult;
-import com.facebook.login.widget.LoginButton;
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -51,10 +40,7 @@ import com.twitter.sdk.android.core.TwitterSession;
 import com.twitter.sdk.android.core.identity.TwitterLoginButton;
 
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.util.Arrays;
 
 import butterknife.Bind;
 import io.fabric.sdk.android.Fabric;
@@ -63,9 +49,6 @@ import io.fabric.sdk.android.Fabric;
  * @author Miqueias Lopes
  */
 public class SocialLoginActivity extends BaseAppCompatActivity implements View.OnClickListener, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
-
-    @Bind(R.id.fragment_button_facebook)
-    LoginButton buttonFaceBook;
 
     @Bind(R.id.button_google)
     SignInButton buttonGoogle;
@@ -101,20 +84,6 @@ public class SocialLoginActivity extends BaseAppCompatActivity implements View.O
     @Override
     protected void onCreate(Bundle bundle) {
         super.onCreate(bundle);
-
-        FacebookSdk.sdkInitialize(getApplicationContext());
-
-        setContentView(R.layout.social_login);
-
-        final ActionBar actionBar = getSupportActionBar();
-
-        if (actionBar == null) {
-            throw new IllegalArgumentException("The actionBar is null.");
-        }
-
-        actionBar.setDisplayShowTitleEnabled(false);
-
-        modeSociaLogin = (String) DTO.object;
 
         if (modeSociaLogin == Constants.Bundle.TWITTER) {
 
@@ -186,112 +155,11 @@ public class SocialLoginActivity extends BaseAppCompatActivity implements View.O
             signIn();
         } else if (modeSociaLogin == Constants.Bundle.FACEBOOK) {
 
-            getTracker().send(new HitBuilders.EventBuilder()
-                    .setCategory("Action")
-                    .setAction("Facebook Button")
-                    .build());
-
-            callbackManager = CallbackManager.Factory.create();
-
-            LoginManager.getInstance().logInWithReadPermissions(SocialLoginActivity.this, Arrays.asList("public_profile", "email"));
-
-            loginFacebook();
         }
     }
 
     private void loginFacebook() {
-        buttonFaceBook.setReadPermissions(Arrays.asList("public_profile", "email", "token_for_business"));
-        LoginManager.getInstance().registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
-            @Override
-            public void onSuccess(final LoginResult loginResult) {
 
-                GraphRequest request = GraphRequest.newMeRequest(loginResult.getAccessToken(), new GraphRequest.GraphJSONObjectCallback() {
-                    @Override
-                    public void onCompleted(JSONObject object, GraphResponse response) {
-
-                        final JSONObject jsonObject = response.getJSONObject();
-
-                        try {
-
-                            String user = jsonObject.getString("name");
-                            try {
-                                singleUser.setEmail(object.getString("email"));
-                            } catch (Exception ex) {
-
-                            }
-                            singleUser.setNick(user);
-
-                            Bundle bundle = new Bundle();
-                            bundle.putString("fields", "token_for_business");
-
-                            /* make the API call */
-                            new GraphRequest(
-                                    AccessToken.getCurrentAccessToken(),
-                                    "/" + AccessToken.getCurrentAccessToken().getUserId() + "/ids_for_business",
-                                    null,
-                                    HttpMethod.GET,
-                                    new GraphRequest.Callback() {
-                                        public void onCompleted(GraphResponse response) {
-                                        /* handle the result */
-                                            JSONObject jsonObjectBusiness = response.getJSONObject();
-                                            try {
-                                                JSONObject jsonObject1 = jsonObjectBusiness.getJSONArray("data").getJSONObject(0);
-                                                singleUser.setFb(jsonObject1.getString("id"));
-                                                userExistSocial(jsonObject1.getString("id"), Constants.Bundle.FACEBOOK);
-                                            } catch (JSONException e) {
-                                                e.printStackTrace();
-                                            }
-                                        }
-                                    }
-                            ).executeAsync();
-                            if (singleUser.getFb() != "") {
-                                userExistSocial(singleUser.getFb(), Constants.Bundle.FACEBOOK);
-                            }
-
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                });
-                request.executeAsync();
-            }
-
-            @Override
-            public void onCancel() {
-                new DialogBuilder(SocialLoginActivity.this).load()
-                        .title(R.string.attention)
-                        .content(R.string.facebook_cancel)
-                        .positiveText(R.string.ok)
-                        .callback(new MaterialDialog.ButtonCallback() {
-                            @Override
-                            public void onPositive(final MaterialDialog dialog) {
-                                onBackPressed();
-                            }
-                        }).show();
-            }
-
-            @Override
-            public void onError(FacebookException exception) {
-                new DialogBuilder(SocialLoginActivity.this).load()
-                        .title(R.string.attention)
-                        .content(exception.getMessage())
-                        .positiveText(R.string.ok)
-                        .callback(new MaterialDialog.ButtonCallback() {
-                            @Override
-                            public void onPositive(final MaterialDialog dialog) {
-                                onBackPressed();
-                            }
-                        }).show();
-            }
-        });
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-
-        getTracker().setScreenName("Social Access Screen - " + this.getClass().getSimpleName());
-        getTracker().send(new HitBuilders.ScreenViewBuilder().build());
     }
 
     @Override

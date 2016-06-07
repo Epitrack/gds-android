@@ -10,8 +10,8 @@ import com.epitrack.guardioes.R;
 import com.epitrack.guardioes.request.GameRequester;
 import com.epitrack.guardioes.request.base.RequestHandler;
 import com.epitrack.guardioes.view.base.BaseFragment;
+import com.epitrack.guardioes.view.game.dialog.EnergyDialog;
 import com.epitrack.guardioes.view.game.dialog.ScoreDialog;
-import com.epitrack.guardioes.view.game.dialog.TrophyDialog;
 import com.epitrack.guardioes.view.game.model.Score;
 
 import java.util.List;
@@ -53,6 +53,6 @@ public class EnergyFragment extends BaseFragment {
     @OnClick(R.id.button_trophy)
     public void onTrophy() {
 
-        new TrophyDialog().show(getFragmentManager(), TrophyDialog.TAG);
+        new EnergyDialog().show(getFragmentManager(), EnergyDialog.TAG);
     }
 }

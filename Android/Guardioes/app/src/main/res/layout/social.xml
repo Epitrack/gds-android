@@ -13,7 +13,6 @@
         android:layout_marginTop="5dp"
         android:background="@drawable/selector_button_facebook" />
 
-
     <Button
         android:id="@+id/button_google"
         android:layout_width="wrap_content"
@@ -29,16 +28,5 @@
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
         android:background="@drawable/selector_button_twitter" />
-
-    <!--<Button
-        android:id="@+id/button_access_social"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
-        android:layout_marginTop="5dp"
-        android:text="Acesso por Redes Sociais"/>-->
-
-
 
 </LinearLayout>

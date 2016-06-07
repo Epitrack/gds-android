@@ -205,7 +205,7 @@
     <string name="hint_birth_date_dt">Nascimento</string>
     <string name="hint_mail">E-mail</string>
     <string name="hint_nickname">Apelido</string>
-    <string name="hint_password">Senha - Mínimo de 6 caracteres</string>
+    <string name="hint_password">Senha</string>
     <string name="hint_password_short">Senha</string>
     <string name="hint_repeat_password">Repetir senha</string>
     <string name="hint_redefine_password">Redefinir senha</string>

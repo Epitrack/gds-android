@@ -2,7 +2,7 @@ package com.epitrack.guardioes.view.game.model;
 
 public enum Phase {
 
-    ONE (1, 0, 9);
+    ONE (1, 500, 500);
 
     private final int id;
     private final int x;

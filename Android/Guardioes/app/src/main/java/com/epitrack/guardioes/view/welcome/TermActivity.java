@@ -1,5 +1,6 @@
 package com.epitrack.guardioes.view.welcome;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.epitrack.guardioes.R;
@@ -45,18 +46,27 @@ public class TermActivity extends BaseAppCompatActivity {
         final String mail = getIntent().getStringExtra(Constants.Bundle.EMAIL);
 
         if (mail == null) {
-            navigateTo(SocialLoginActivity.class);
+
+            final Intent intent = new Intent();
+
+            intent.putExtra(Constants.Bundle.TYPE, getIntent().getIntExtra(Constants.Bundle.TYPE, 0));
+
+            setResult(RESULT_OK, intent);
+
+            finish();
 
         } else {
 
             if (mail.equals(Constants.Bundle.EMAIL)) {
 
                 final Bundle bundle = new Bundle();
+
                 bundle.putString(Constants.Bundle.EMAIL, Constants.Bundle.EMAIL);
 
                 navigateTo(CreateAccountActivity.class, bundle);
 
             } else {
+
                 navigateTo(SocialLoginActivity.class);
             }
         }

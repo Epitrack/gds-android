@@ -19,19 +19,6 @@ public final class Constants {
         public static final int IMAGE = 5000;
     }
 
-    public static class Json {
-
-        public static final String COUNTRY = "country";
-        public static final String POSITION = "position";
-        public static final String URL = "flagUrl";
-
-        public static final String TITLE = "title";
-        public static final String OPTION = "option";
-        public static final String CORRECT = "correct";
-        public static final String QUESTION_LIST = "questions";
-        public static final String OPTION_LIST = "alternatives";
-    }
-
     public static class Bundle {
 
         public static final String WELCOME = "Welcome";
@@ -42,25 +29,21 @@ public final class Constants {
         public static final String BAD_STATE = "has_bad_state";
         public static final String NEW_MEMBER = "new_member";
         public static final String SOCIAL_NEW = "social_new";
-        public static final String GOOGLE = "google";
-        public static final String FACEBOOK = "facebook";
-        public static final String TWITTER = "twitter";
+        public static final String GOOGLE = "Google";
+        public static final String FACEBOOK = "Facebook";
+        public static final String TWITTER = "Twitter";
         public static final String EMAIL = "Email";
-        public static final String ACCESS_SOCIAL = "access_social";
+        public static final String TYPE = "TYPE";
         public static final String PATH = "Path";
-        public static final String NAME = "Name";
         public static final String DELETE = "Delete";
+        public static final String NAME = "Name";
+        public static final String MAIL = "Mail";
+        public static final String DATE = "Date";
     }
 
     public static class Pref {
 
         public static final String USER = "user";
         public static final String PREFS_NAME = "preferences_user_token";
-        public static final String PREFS_SOCIAL = "preferences_social";
-    }
-
-    public static class Push {
-
-        public static final String SENDER_ID = "SENDER_ID";
     }
 }

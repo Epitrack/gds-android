@@ -57,8 +57,10 @@ android {
 
         release {
 
+            debuggable true
+
             minifyEnabled false
-            proguardFiles 'proguard-rules.pro'
+            //proguardFiles 'proguard-rules.pro'
 
             signingConfig signingConfigs.release
         }

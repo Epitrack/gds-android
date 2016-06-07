@@ -1,5 +1,8 @@
 package com.epitrack.guardioes.view.game;
 
+import android.animation.Animator;
+import android.animation.AnimatorInflater;
+import android.animation.AnimatorSet;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
@@ -36,5 +39,39 @@ public class GameActivity extends BaseAppCompatActivity implements AdapterView.O
     @Override
     public void onItemClick(final AdapterView<?> adapterView, final View view, final int position, final long id) {
 
+        final AnimatorSet animator = (AnimatorSet) AnimatorInflater.loadAnimator(this, R.animator.flip_out);
+
+        animator.setTarget(view);
+
+        animator.addListener(new Animator.AnimatorListener() {
+
+            @Override
+            public void onAnimationStart(final Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(final Animator animation) {
+
+                final AnimatorSet animator = (AnimatorSet) AnimatorInflater.loadAnimator(GameActivity.this, R.animator.flip_out);
+
+
+
+            }
+
+            @Override
+            public void onAnimationCancel(final Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationRepeat(final Animator animation) {
+
+            }
+        });
+
+        animator.start();
+
+        //new AnswerDialog().show(getFragmentManager(), AnswerDialog.TAG);
     }
 }

@@ -5,18 +5,16 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.v4.content.LocalBroadcastManager;
-import android.support.v7.app.ActionBar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.view.inputmethod.InputMethodManager;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -25,16 +23,15 @@ import com.epitrack.guardioes.helper.Constants;
 import com.epitrack.guardioes.helper.DateFormat;
 import com.epitrack.guardioes.helper.DialogBuilder;
 import com.epitrack.guardioes.helper.Mask;
-import com.epitrack.guardioes.model.DTO;
 import com.epitrack.guardioes.model.User;
 import com.epitrack.guardioes.push.HashReceiver;
 import com.epitrack.guardioes.push.RegisterService;
 import com.epitrack.guardioes.request.UserRequester;
-import com.epitrack.guardioes.request.base.RequestHandler;
+import com.epitrack.guardioes.request.base.RequestListener;
 import com.epitrack.guardioes.view.HomeActivity;
+import com.epitrack.guardioes.view.ItemAdapter;
 import com.epitrack.guardioes.view.base.BaseAppCompatActivity;
 import com.epitrack.guardioes.view.dialog.LoadDialog;
-import com.epitrack.guardioes.view.menu.profile.UserActivity;
 import com.epitrack.guardioes.view.welcome.TermActivity;
 import com.google.android.gms.analytics.HitBuilders;
 import com.mobsandgeeks.saripaar.ValidationError;
@@ -47,13 +44,12 @@ import com.mobsandgeeks.saripaar.annotation.Password;
 import java.util.List;
 
 import butterknife.Bind;
-import butterknife.OnCheckedChanged;
 import butterknife.OnClick;
 
 /**
  * @author Igor Morais
  */
-public class CreateAccountActivity extends BaseAppCompatActivity implements SocialAccountListener {
+public class CreateAccountActivity extends BaseAppCompatActivity {
 
     private static final int MIN_CHAR_NICKNAME = 3;
 
@@ -62,11 +58,8 @@ public class CreateAccountActivity extends BaseAppCompatActivity implements Soci
     @Bind(R.id.linear_layout_social_account)
     LinearLayout linearLayoutSocial;
 
-    @Bind(R.id.linear_layout_next)
-    LinearLayout linearLayoutNext;
-
-    @Bind(R.id.linear_layout_create)
-    LinearLayout linearLayoutCreate;
+    @Bind(R.id.linear_layout_account)
+    ScrollView layoutAccount;
 
     @Email(messageResId = R.string.validation_mail)
     @Bind(R.id.edit_text_mail)
@@ -84,9 +77,6 @@ public class CreateAccountActivity extends BaseAppCompatActivity implements Soci
     @Bind(R.id.edit_text_birth_date)
     EditText editTextBirthDate;
 
-    @Bind(R.id.button_mail)
-    Button buttonMail;
-
     @Bind(R.id.spinner_race)
     Spinner spinnerRace;
 
@@ -97,47 +87,29 @@ public class CreateAccountActivity extends BaseAppCompatActivity implements Soci
     private Validator validator;
     private State state = State.SOCIAL;
 
-    private Bundle bundle;
-
     private final LoadDialog loadDialog = new LoadDialog();
 
     @Override
     protected void onCreate(final Bundle bundle) {
         super.onCreate(bundle);
+
         setContentView(R.layout.create_account);
 
-        final ActionBar actionBar = getSupportActionBar();
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
 
-        if (actionBar == null) {
-            throw new IllegalArgumentException("The actionBar is null.");
-        }
-
-        actionBar.setDisplayShowTitleEnabled(false);
-
-        buttonMail.setEnabled(true);
-
-        getSocialFragment().setEnable(false);
+        load();
 
         validator = new Validator(this);
         validator.setValidationListener(new ValidationHandler());
+    }
+
+    private void load() {
 
         editTextBirthDate.addTextChangedListener(Mask.insert("##/##/####", editTextBirthDate));
 
-        getSocialFragment().setEnable(true);
-        getSocialFragment().isIsCreateAccount(true);
+        spinnerGender.setAdapter(new ItemAdapter(this, getResources().getStringArray(R.array.gender_array)));
 
-        editTextBirthDate.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-
-            public void onFocusChange(final View view, final boolean hasFocus) {
-
-                if (hasFocus) {
-                    ((EditText) view).setHint(" ex: 01/01/1991");
-
-                } else {
-                    ((EditText) view).setHint("");
-                }
-            }
-        });
+        spinnerRace.setAdapter(new ItemAdapter(this, getResources().getStringArray(R.array.race_array)));
     }
 
     @Override
@@ -159,7 +131,8 @@ public class CreateAccountActivity extends BaseAppCompatActivity implements Soci
         if (getIntent().hasExtra(Constants.Bundle.EMAIL)) {
             getIntent().removeExtra(Constants.Bundle.EMAIL);
 
-            onNextAnimation(linearLayoutNext, linearLayoutSocial);
+            linearLayoutSocial.setVisibility(View.INVISIBLE);
+            layoutAccount.setVisibility(View.VISIBLE);
         }
     }
 
@@ -174,18 +147,18 @@ public class CreateAccountActivity extends BaseAppCompatActivity implements Soci
     @Override
     public boolean onOptionsItemSelected(final MenuItem item) {
 
-        hideSoftKeyboard();
-
         if (item.getItemId() == android.R.id.home) {
 
             if (state == State.SOCIAL) {
                 return super.onOptionsItemSelected(item);
 
             } else {
+
                 handlerState();
             }
 
         } else {
+
             return super.onOptionsItemSelected(item);
         }
 
@@ -208,33 +181,8 @@ public class CreateAccountActivity extends BaseAppCompatActivity implements Soci
         dialog.show();
     }
 
-    @OnCheckedChanged(R.id.check_box_term)
-    public void onCheck(final boolean checked) {
-
-        buttonMail.setEnabled(checked);
-
-        getSocialFragment().setEnable(checked);
-    }
-
-    @OnClick(R.id.text_view_term)
-    public void onTerm() {
-        navigateTo(TermActivity.class);
-    }
-
-    /**
-     * Hides the soft keyboard
-     */
-    public void hideSoftKeyboard() {
-        if (getCurrentFocus() != null) {
-            InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
-            inputMethodManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
-        }
-    }
-
     @Override
     public void onBackPressed() {
-
-        hideSoftKeyboard();
 
         if (state == State.SOCIAL) {
             super.onBackPressed();
@@ -254,11 +202,8 @@ public class CreateAccountActivity extends BaseAppCompatActivity implements Soci
 
     private void handlerState() {
 
-        if (state == State.NEXT) {
-            onPreviousAnimation(linearLayoutSocial, linearLayoutNext);
-
-        } else if (state == State.CREATE) {
-            onPreviousAnimation(linearLayoutNext, linearLayoutCreate);
+        if (state == State.ACCOUNT) {
+            onPreviousAnimation(linearLayoutSocial, layoutAccount);
         }
     }
 
@@ -270,14 +215,14 @@ public class CreateAccountActivity extends BaseAppCompatActivity implements Soci
                 .setAction("Create Account by Email Button")
                 .build());
 
-        bundle = new Bundle();
+        final Bundle bundle = new Bundle();
 
-        bundle.putString(Constants.Bundle.EMAIL, Constants.Bundle.EMAIL);
+        bundle.putString(Constants.Bundle.TYPE, Constants.Bundle.EMAIL);
 
         navigateTo(TermActivity.class, bundle);
     }
 
-    @OnClick(R.id.button_next)
+    @OnClick(R.id.button_create_account)
     public void onNext() {
         validator.validate();
     }
@@ -348,49 +293,22 @@ public class CreateAccountActivity extends BaseAppCompatActivity implements Soci
         invisibleView.startAnimation(slideOut);
     }
 
-    @Override
-    public void onError() {
+    private class AccountHandler implements AccountListener {
 
-        if (DTO.object != null) {
-            if (DTO.object instanceof Bundle) {
+        @Override
+        public void onCancel() {
 
-                Bundle bundle = (Bundle) DTO.object;
-
-                String typeBundle = bundle.getString(Constants.Bundle.ACCESS_SOCIAL);
-
-                if (typeBundle == Constants.Bundle.GOOGLE) {
-
-                    new DialogBuilder(CreateAccountActivity.this).load()
-                            .title(R.string.attention)
-                            .content(R.string.google_fail)
-                            .positiveText(R.string.ok)
-                            .show();
-
-                } else if (typeBundle == Constants.Bundle.FACEBOOK) {
-
-                    new DialogBuilder(CreateAccountActivity.this).load()
-                            .title(R.string.attention)
-                            .content(R.string.facebook_fail)
-                            .positiveText(R.string.ok)
-                            .show();
-
-                } else if (typeBundle == Constants.Bundle.TWITTER) {
-
-                    new DialogBuilder(CreateAccountActivity.this).load()
-                            .title(R.string.attention)
-                            .content(R.string.twitter_fail)
-                            .positiveText(R.string.ok)
-                            .show();
-                }
-
-                DTO.object = null;
-            }
         }
-    }
 
-    @Override
-    public void onCancel() {
-        Toast.makeText(this, "Cancel..", Toast.LENGTH_SHORT).show();
+        @Override
+        public void onError() {
+
+        }
+
+        @Override
+        public void onSuccess(final Bundle bundle) {
+
+        }
     }
 
     private SocialFragment getSocialFragment() {
@@ -400,28 +318,6 @@ public class CreateAccountActivity extends BaseAppCompatActivity implements Soci
         }
 
         return socialFragment;
-    }
-
-    @Override
-    public void onSuccess() {
-
-        if (DTO.object != null) {
-            if (DTO.object instanceof Bundle) {
-
-                Bundle dtoBundle = new Bundle();
-
-                dtoBundle.putBoolean(Constants.Bundle.SOCIAL_NEW, true);
-                dtoBundle.putBoolean(Constants.Bundle.NEW_MEMBER, false);
-                dtoBundle.putBoolean(Constants.Bundle.MAIN_MEMBER, false);
-
-                DTO.object = null;
-
-                navigateTo(UserActivity.class, dtoBundle);
-            }
-        } else {
-            navigateTo(HomeActivity.class, Intent.FLAG_ACTIVITY_CLEAR_TASK |
-                    Intent.FLAG_ACTIVITY_NEW_TASK);
-        }
     }
 
     @OnClick(R.id.button_create_account)
@@ -450,34 +346,30 @@ public class CreateAccountActivity extends BaseAppCompatActivity implements Soci
             user.setPassword(editTextPassword.getText().toString().trim());
             user.setGcmToken(hash);
 
-            if (user.getPassword().length() <= 5) {
+            new UserRequester(CreateAccountActivity.this).createAccount(user, new RequestListener<User>() {
 
-                new DialogBuilder(CreateAccountActivity.this).load()
-                        .title(R.string.attention)
-                        .content(R.string.password_fail)
-                        .positiveText(R.string.ok)
-                        .show();
+                @Override
+                public void onStart() {
 
-            } else {
+                }
 
-                new UserRequester(CreateAccountActivity.this).createAccount(user, new RequestHandler<User>(CreateAccountActivity.this) {
+                @Override
+                public void onError(final Exception e) {
 
-                    @Override
-                    public void onError(final Exception error) {
-                        super.onError(error);
+                    loadDialog.dismiss();
 
-                        Toast.makeText(CreateAccountActivity.this, R.string.erro_new_user, Toast.LENGTH_SHORT).show();
-                    }
+                    Toast.makeText(CreateAccountActivity.this, R.string.erro_new_user, Toast.LENGTH_SHORT).show();
+                }
 
-                    @Override
-                    public void onSuccess(final User user) {
-                        super.onSuccess(user);
+                @Override
+                public void onSuccess(final User type) {
 
-                        navigateTo(HomeActivity.class, Intent.FLAG_ACTIVITY_CLEAR_TASK |
-                                Intent.FLAG_ACTIVITY_NEW_TASK);
-                    }
-                });
-            }
+                    loadDialog.dismiss();
+
+                    navigateTo(HomeActivity.class, Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                            Intent.FLAG_ACTIVITY_NEW_TASK);
+                }
+            });
         }
     };
 
@@ -486,7 +378,7 @@ public class CreateAccountActivity extends BaseAppCompatActivity implements Soci
         @Override
         public void onValidationSucceeded() {
 
-            if (state == State.NEXT) {
+            if (state == State.ACCOUNT) {
 
                 boolean dobIsFail = false;
 
@@ -505,15 +397,11 @@ public class CreateAccountActivity extends BaseAppCompatActivity implements Soci
                             .positiveText(R.string.ok)
                             .show();
                 } else {
-                    onNextAnimation(linearLayoutCreate, linearLayoutNext);
+
+                    loadDialog.show(getFragmentManager(), LoadDialog.TAG);
+
+                    startService(new Intent(CreateAccountActivity.this, RegisterService.class));
                 }
-
-
-            } else {
-
-                loadDialog.show(getFragmentManager(), LoadDialog.TAG);
-
-                startService(new Intent(CreateAccountActivity.this, RegisterService.class));
             }
         }
 
@@ -536,7 +424,7 @@ public class CreateAccountActivity extends BaseAppCompatActivity implements Soci
 
     enum State {
 
-        SOCIAL(1), NEXT(2), CREATE(3);
+        SOCIAL(1), ACCOUNT(2);
 
         private final int id;
 

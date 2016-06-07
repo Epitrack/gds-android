@@ -38,7 +38,7 @@ import butterknife.OnClick;
 /**
  * @author Igor Morais
  */
-public class LoginActivity extends BaseAppCompatActivity implements SocialAccountListener {
+public class LoginActivity extends BaseAppCompatActivity implements AccountListener {
 
     @Bind(R.id.linear_layout_social_login)
     LinearLayout linearLayoutSocialLogin;
@@ -213,7 +213,7 @@ public class LoginActivity extends BaseAppCompatActivity implements SocialAccoun
     }
 
     @Override
-    public void onSuccess() {
+    public void onSuccess(final Bundle bundle) {
 
         navigateTo(HomeActivity.class, Intent.FLAG_ACTIVITY_CLEAR_TASK |
                                        Intent.FLAG_ACTIVITY_NEW_TASK);

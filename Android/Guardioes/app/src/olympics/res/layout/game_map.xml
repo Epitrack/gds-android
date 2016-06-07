@@ -1,15 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:layout="http://schemas.android.com/apk/res-auto"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-    <com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView
-        android:id="@+id/image_view_map"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        layout:assetName="image_map.png"
-        layout:zoomEnabled="false"/>
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:id="@+id/relative_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/image_view_map"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:contentDescription="@null"
+                android:src="@drawable/image_map"/>
+
+        </RelativeLayout>
+
+    </ScrollView>
 
     <fragment
         android:name="com.epitrack.guardioes.view.game.EnergyFragment"
