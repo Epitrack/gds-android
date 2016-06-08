@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:layout="http://schemas.android.com/apk/res-auto"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/background_blue">
+    xmlns:layout="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_blue">
 
     <TextView
         android:id="@+id/text_view_message"
@@ -15,7 +15,7 @@
         android:gravity="center_horizontal"
         android:text="@string/message_new_member"
         android:textColor="@android:color/white"
-        android:textSize="18sp"/>
+        android:textSize="18sp" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -37,7 +37,7 @@
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:layout_gravity="center_vertical"
-                layout:siBorderColor="@color/white"/>
+                layout:siBorderColor="@color/white" />
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="0dp"
@@ -54,7 +54,8 @@
                     android:hint="@string/hint_nickname"
                     android:inputType="textCapSentences"
                     android:maxLength="10"
-                    android:textColor="@color/grey_light"/>
+                    android:textColor="@color/bluish"
+                    android:textColorHint="@color/bluish" />
 
             </android.support.design.widget.TextInputLayout>
 
@@ -67,47 +68,45 @@
             android:baselineAligned="false">
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:orientation="vertical">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
+                    android:layout_marginStart="5dp"
                     android:text="@string/gender"
                     android:textColor="@color/bluish"
-                    android:textSize="13sp"/>
+                    android:textSize="13sp" />
 
                 <Spinner
                     android:id="@+id/spinner_gender"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:entries="@array/gender_array"
-                    android:textColor="@color/grey_light"/>
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
 
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="50dp"
+                android:layout_marginStart="33dp"
+                android:layout_weight="1"
                 android:orientation="vertical">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
+                    android:layout_marginStart="5dp"
                     android:text="@string/race"
                     android:textColor="@color/bluish"
-                    android:textSize="13sp"/>
+                    android:textSize="13sp" />
 
                 <Spinner
                     android:id="@+id/spinner_race"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:entries="@array/race_array"
-                    android:textColor="@color/grey_light"/>
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
 
             </LinearLayout>
 
@@ -131,94 +130,54 @@
                     android:layout_height="wrap_content"
                     android:hint="@string/hint_birth_date_dt"
                     android:inputType="date"
-                    android:textColor="@color/grey_light"/>
+                    android:textColor="@color/bluish"
+                    android:textColorHint="@color/bluish" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="33dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/text_view_relationship"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
+                    android:layout_marginStart="5dp"
                     android:text="@string/relationship"
                     android:textColor="@color/bluish"
-                    android:textSize="13sp"/>
+                    android:textSize="13sp" />
 
                 <Spinner
-                    android:id="@+id/spinner_relationship"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:entries="@array/relationship_array"
-                    android:textColor="@color/grey_light"/>
-
-            </android.support.design.widget.TextInputLayout>
-
-            <android.support.design.widget.TextInputLayout
-                android:id="@+id/text_layout_mail"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="25dp"
-                android:layout_weight="1"
-                android:visibility="invisible"
-                layout:hintTextAppearance="@style/Text.EditText.Label">
-
-                <android.support.v7.widget.AppCompatEditText
-                    android:id="@+id/edit_text_mail"
+                    android:id="@+id/spinner_parent"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/hint_mail"
-                    android:inputType="textEmailAddress"
-                    android:maxLength="50"
-                    android:singleLine="true"
-                    android:textColor="@color/grey_light"
-                    android:visibility="invisible"/>
+                    android:layout_height="wrap_content" />
 
-            </android.support.design.widget.TextInputLayout>
+            </LinearLayout>
 
         </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/linear_layout_password"
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/text_layout_mail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:baselineAligned="false"
-            android:visibility="invisible">
+            layout:hintTextAppearance="@style/Text.EditText.Label">
 
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="0dp"
+            <android.support.v7.widget.AppCompatEditText
+                android:id="@+id/edit_text_mail"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                layout:hintTextAppearance="@style/Text.EditText.Label">
+                android:hint="@string/hint_mail"
+                android:inputType="textEmailAddress"
+                android:lines="1"
+                android:maxLength="50"
+                android:textColor="@color/grey_light"
+                android:visibility="invisible" />
 
-                <android.support.v7.widget.AppCompatEditText
-                    android:id="@+id/edit_text_password"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/hint_redefine_password"
-                    android:inputType="textPassword"
-                    android:maxLength="16"
-                    android:textColor="@color/grey_light"/>
-
-            </android.support.design.widget.TextInputLayout>
-
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="25dp"
-                android:layout_weight="1"
-                layout:hintTextAppearance="@style/Text.EditText.Label">
-
-                <android.support.v7.widget.AppCompatEditText
-                    android:id="@+id/edit_text_confirm_password"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/hint_repeat_password"
-                    android:inputType="textPassword"
-                    android:maxLength="16"
-                    android:textColor="@color/grey_light"/>
-
-            </android.support.design.widget.TextInputLayout>
-
-        </LinearLayout>
+        </android.support.design.widget.TextInputLayout>
 
     </LinearLayout>
 
@@ -233,6 +192,6 @@
         android:layout_marginTop="15dp"
         android:background="@drawable/selector_button_white_dark"
         android:text="@string/save"
-        android:textColor="@color/dark_sky_blue"/>
+        android:textColor="@color/dark_sky_blue" />
 
 </RelativeLayout>
