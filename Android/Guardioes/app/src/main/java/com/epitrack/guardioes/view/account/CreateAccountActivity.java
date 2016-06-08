@@ -19,7 +19,6 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.epitrack.guardioes.R;
-import com.epitrack.guardioes.helper.Constants;
 import com.epitrack.guardioes.helper.DateFormat;
 import com.epitrack.guardioes.helper.DialogBuilder;
 import com.epitrack.guardioes.helper.Mask;
@@ -50,6 +49,8 @@ import butterknife.OnClick;
  * @author Igor Morais
  */
 public class CreateAccountActivity extends BaseAppCompatActivity {
+
+    private static final int REQUEST_MAIL = 6669;
 
     private static final int MIN_CHAR_NICKNAME = 3;
 
@@ -131,13 +132,6 @@ public class CreateAccountActivity extends BaseAppCompatActivity {
 
         getTracker().setScreenName("Create Account Screen - " + this.getClass().getSimpleName());
         getTracker().send(new HitBuilders.ScreenViewBuilder().build());
-
-        if (getIntent().hasExtra(Constants.Bundle.EMAIL)) {
-            getIntent().removeExtra(Constants.Bundle.EMAIL);
-
-            linearLayoutSocial.setVisibility(View.INVISIBLE);
-            layoutAccount.setVisibility(View.VISIBLE);
-        }
     }
 
     @Override
@@ -219,11 +213,7 @@ public class CreateAccountActivity extends BaseAppCompatActivity {
                 .setAction("Create Account by Email Button")
                 .build());
 
-        final Bundle bundle = new Bundle();
-
-        bundle.putString(Constants.Bundle.TYPE, Constants.Bundle.EMAIL);
-
-        navigateTo(TermActivity.class, bundle);
+        navigateForResult(TermActivity.class, REQUEST_MAIL);
     }
 
     @OnClick(R.id.button_create_account)
@@ -474,6 +464,17 @@ public class CreateAccountActivity extends BaseAppCompatActivity {
 
     @Override
     protected void onActivityResult(final int requestCode, final int resultCode, final Intent intent) {
-        getSocialFragment().onActivityResult(requestCode, resultCode, intent);
+
+        if (requestCode == REQUEST_MAIL) {
+
+            if (resultCode == RESULT_OK) {
+                linearLayoutSocial.setVisibility(View.INVISIBLE);
+                layoutAccount.setVisibility(View.VISIBLE);
+            }
+
+        } else {
+
+            getSocialFragment().onActivityResult(requestCode, resultCode, intent);
+        }
     }
 }

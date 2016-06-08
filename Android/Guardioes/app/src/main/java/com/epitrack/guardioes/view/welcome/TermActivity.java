@@ -5,7 +5,6 @@ import android.os.Bundle;
 
 import com.epitrack.guardioes.R;
 import com.epitrack.guardioes.helper.Constants;
-import com.epitrack.guardioes.view.account.CreateAccountActivity;
 import com.epitrack.guardioes.view.base.BaseAppCompatActivity;
 import com.google.android.gms.analytics.HitBuilders;
 
@@ -42,28 +41,12 @@ public class TermActivity extends BaseAppCompatActivity {
                 .setAction("Accept Terms of Use")
                 .build());
 
-        final String mail = getIntent().getStringExtra(Constants.Bundle.EMAIL);
+        final Intent intent = new Intent();
 
-        if (mail == null) {
+        intent.putExtra(Constants.Bundle.TYPE, getIntent().getIntExtra(Constants.Bundle.TYPE, Integer.MIN_VALUE));
 
-            final Intent intent = new Intent();
+        setResult(RESULT_OK, intent);
 
-            intent.putExtra(Constants.Bundle.TYPE, getIntent().getIntExtra(Constants.Bundle.TYPE, 0));
-
-            setResult(RESULT_OK, intent);
-
-            finish();
-
-        } else {
-
-            if (mail.equals(Constants.Bundle.EMAIL)) {
-
-                final Bundle bundle = new Bundle();
-
-                bundle.putString(Constants.Bundle.EMAIL, Constants.Bundle.EMAIL);
-
-                navigateTo(CreateAccountActivity.class, bundle);
-            }
-        }
+        finish();
     }
 }
