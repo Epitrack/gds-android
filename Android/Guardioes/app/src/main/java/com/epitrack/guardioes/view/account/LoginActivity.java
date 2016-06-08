@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.v4.content.LocalBroadcastManager;
-import android.support.v7.app.ActionBar;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.Animation;
@@ -12,7 +11,6 @@ import android.view.animation.Animation.AnimationListener;
 import android.view.animation.AnimationUtils;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import com.epitrack.guardioes.R;
 import com.epitrack.guardioes.helper.DialogBuilder;
@@ -38,7 +36,9 @@ import butterknife.OnClick;
 /**
  * @author Igor Morais
  */
-public class LoginActivity extends BaseAppCompatActivity implements AccountListener {
+public class LoginActivity extends BaseAppCompatActivity {
+
+    private static final String SOCIAL_FRAGMENT = "social_fragment";
 
     @Bind(R.id.linear_layout_social_login)
     LinearLayout linearLayoutSocialLogin;
@@ -54,9 +54,15 @@ public class LoginActivity extends BaseAppCompatActivity implements AccountListe
     @Bind(R.id.edit_text_password)
     EditText editTextPassword;
 
+    private SocialFragment socialFragment;
+
     private boolean inLogin;
 
     private Validator validator;
+
+    private boolean socialLogin;
+
+    private User user;
 
     private final LoadDialog loadDialog = new LoadDialog();
 
@@ -66,16 +72,12 @@ public class LoginActivity extends BaseAppCompatActivity implements AccountListe
 
         setContentView(R.layout.login);
 
-        final ActionBar actionBar = getSupportActionBar();
-
-        if (actionBar == null) {
-            throw new IllegalArgumentException("The actionBar is null.");
-        }
-
-        actionBar.setDisplayShowTitleEnabled(false);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         validator = new Validator(this);
         validator.setValidationListener(new ValidationHandler());
+
+        getSocialFragment().setListener(new AccountHandler());
     }
 
     @Override
@@ -105,10 +107,12 @@ public class LoginActivity extends BaseAppCompatActivity implements AccountListe
                 handlerAnimation();
 
             } else {
+
                 return super.onOptionsItemSelected(item);
             }
 
         } else {
+
             return super.onOptionsItemSelected(item);
         }
 
@@ -202,23 +206,6 @@ public class LoginActivity extends BaseAppCompatActivity implements AccountListe
         linearLayoutLogin.startAnimation(slideOut);
     }
 
-    @Override
-    public void onError() {
-
-    }
-
-    @Override
-    public void onCancel() {
-        Toast.makeText(this, "Cancel..", Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
-    public void onSuccess(final Bundle bundle) {
-
-        navigateTo(HomeActivity.class, Intent.FLAG_ACTIVITY_CLEAR_TASK |
-                                       Intent.FLAG_ACTIVITY_NEW_TASK);
-    }
-
     @OnClick(R.id.button_login)
     public void onLogin() {
 
@@ -230,12 +217,60 @@ public class LoginActivity extends BaseAppCompatActivity implements AccountListe
         validator.validate();
     }
 
+    private class AccountHandler implements AccountListener {
+
+        @Override
+        public void onCancel() {
+
+        }
+
+        @Override
+        public void onError() {
+
+        }
+
+        @Override
+        public void onNotFound(final User user) {
+
+            new DialogBuilder(LoginActivity.this).load()
+                    .title(R.string.attention)
+                    .content(R.string.dont_have_account)
+                    .positiveText(R.string.ok)
+                    .show();
+        }
+
+        @Override
+        public void onSuccess(final User user) {
+
+            socialLogin = true;
+
+            setUser(user);
+
+            loadDialog.show(getFragmentManager(), LoadDialog.TAG);
+
+            startService(new Intent(LoginActivity.this, RegisterService.class));
+        }
+    }
+
+    public void setUser(final User user) {
+        this.user = user;
+    }
+
+    private SocialFragment getSocialFragment() {
+
+        if (socialFragment == null) {
+            socialFragment = (SocialFragment) getFragmentManager().findFragmentByTag(SOCIAL_FRAGMENT);
+        }
+
+        return socialFragment;
+    }
+
     private HashReceiver receiver = new HashReceiver() {
 
         public void onHash(final String hash) {
 
-            final String mail = editTextMail.getText().toString().toLowerCase().trim();
-            final String password = editTextPassword.getText().toString().trim();
+            final String mail = socialLogin ? user.getEmail() : editTextMail.getText().toString().toLowerCase().trim();
+            final String password = socialLogin ? user.getPassword() : editTextPassword.getText().toString().trim();
 
             new UserRequester(LoginActivity.this).login(mail, password, hash, new RequestListener<User>() {
 
@@ -246,6 +281,7 @@ public class LoginActivity extends BaseAppCompatActivity implements AccountListe
 
                 @Override
                 public void onError(final Exception e) {
+                    loadDialog.dismiss();
 
                     new DialogBuilder(LoginActivity.this).load()
                             .title(R.string.attention)
