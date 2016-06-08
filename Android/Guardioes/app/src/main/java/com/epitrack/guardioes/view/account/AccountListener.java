@@ -1,6 +1,6 @@
 package com.epitrack.guardioes.view.account;
 
-import android.os.Bundle;
+import com.epitrack.guardioes.model.User;
 
 /**
  * @author Igor Morais
@@ -11,5 +11,7 @@ public interface AccountListener {
 
     void onError();
 
-    void onSuccess(final Bundle bundle);
+    void onNotFound(User user);
+
+    void onSuccess(User user);
 }

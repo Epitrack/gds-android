@@ -10,6 +10,9 @@ import android.view.ViewGroup;
 
 import com.epitrack.guardioes.R;
 import com.epitrack.guardioes.helper.Constants;
+import com.epitrack.guardioes.model.User;
+import com.epitrack.guardioes.request.UserRequester;
+import com.epitrack.guardioes.request.base.RequestListener;
 import com.epitrack.guardioes.view.base.BaseFragment;
 import com.epitrack.guardioes.view.welcome.TermActivity;
 import com.facebook.CallbackManager;
@@ -21,6 +24,7 @@ import com.facebook.GraphResponse;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.google.android.gms.auth.api.Auth;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -48,11 +52,15 @@ public class SocialFragment extends BaseFragment implements GoogleApiClient.OnCo
     private static final int REQUEST_TWITTER = 6663;
     private static final int REQUEST_GOOGLE = 6664;
 
-    private static final String NAME = "Name";
-    private static final String MAIL = "Mail";
-    private static final String DATE = "Date";
+    private int request;
+
+    private static final String ID = "id";
+    private static final String NAME = "name";
+    private static final String MAIL = "email";
 
     private AccountListener listener;
+
+    private TwitterAuthClient authClient = new TwitterAuthClient();
 
     private GoogleApiClient apiClient;
 
@@ -63,6 +71,8 @@ public class SocialFragment extends BaseFragment implements GoogleApiClient.OnCo
         super.onCreate(bundle);
 
         FacebookSdk.sdkInitialize(getActivity());
+
+        loadFacebook();
     }
 
     @Nullable
@@ -106,14 +116,161 @@ public class SocialFragment extends BaseFragment implements GoogleApiClient.OnCo
         navigateForResult(TermActivity.class, REQUEST_TERM, bundle);
     }
 
+    public void setRequest(final int request) {
+        this.request = request;
+    }
+
+    private void loadTwitter() {
+
+        authClient.authorize(getActivity(), new Callback<TwitterSession>() {
+
+            @Override
+            public void success(final Result<TwitterSession> result) {
+
+                final String name = result.data.getUserName();
+                final String token = result.data.getAuthToken().token;
+
+                new UserRequester(getActivity()).validateSocialAccount("user/get?tw=", token, new RequestListener<User>() {
+
+                    @Override
+                    public void onStart() {
+
+                    }
+
+                    @Override
+                    public void onError(final Exception error) {
+                        listener.onError();
+                    }
+
+                    @Override
+                    public void onSuccess(final User type) {
+
+                        if (type == null) {
+
+                            authClient.requestEmail(result.data, new Callback<String>() {
+
+                                @Override
+                                public void success(final Result<String> result) {
+
+                                    final User user = new User();
+
+                                    user.setNick(name);
+                                    user.setTw(token);
+
+                                    listener.onNotFound(user);
+
+                                }
+
+                                @Override
+                                public void failure(final TwitterException e) {
+                                    e.getMessage();
+
+                                }
+                            });
+
+                        } else {
+
+                            listener.onSuccess(type);
+                        }
+                    }
+                });
+            }
+
+            @Override
+            public void failure(final TwitterException e) {
+                listener.onError();
+            }
+        });
+    }
+
+    private void loadFacebook() {
+
+        LoginManager.getInstance().registerCallback(manager, new FacebookCallback<LoginResult>() {
+
+            @Override
+            public void onSuccess(final LoginResult loginResult) {
+
+                final GraphRequest request = GraphRequest.newMeRequest(loginResult.getAccessToken(), new GraphRequest.GraphJSONObjectCallback() {
+
+                    @Override
+                    public void onCompleted(final JSONObject json, final GraphResponse response) {
+
+                        try {
+
+                            final String id = json.getString(ID);
+                            final String name = json.getString(NAME);
+                            final String mail = json.getString(MAIL);
+
+                            new UserRequester(getActivity()).validateSocialAccount("user/get?fb=", id, new RequestListener<User>() {
+
+                                @Override
+                                public void onStart() {
+
+                                }
+
+                                @Override
+                                public void onError(final Exception error) {
+                                    listener.onError();
+                                }
+
+                                @Override
+                                public void onSuccess(final User type) {
+
+                                    if (type == null) {
+
+                                        final User user = new User();
+
+                                        user.setNick(name);
+                                        user.setEmail(mail);
+                                        user.setPassword(mail);
+                                        user.setFb(id);
+
+                                        listener.onNotFound(user);
+
+                                    } else {
+
+                                        listener.onSuccess(type);
+                                    }
+                                }
+                            });
+
+                        } catch (final JSONException e) {
+                            listener.onError();
+                        }
+                    }
+
+                });
+
+                final Bundle bundle = new Bundle();
+
+                bundle.putString("fields", ID + "," + NAME + "," + MAIL);
+
+                request.setParameters(bundle);
+
+                request.executeAsync();
+            }
+
+            @Override
+            public void onCancel() {
+                listener.onCancel();
+            }
+
+            @Override
+            public void onError(final FacebookException error) {
+                listener.onError();
+            }
+        });
+    }
+
     @Override
     public void onActivityResult(final int requestCode, final int resultCode, final Intent intent) {
+        super.onActivityResult(requestCode, resultCode, intent);
 
         if (requestCode == REQUEST_TERM) {
 
-            final int type = intent.getIntExtra(Constants.Bundle.TYPE, Integer.MIN_VALUE);
+            setRequest(intent.getIntExtra(Constants.Bundle.TYPE, Integer.MIN_VALUE));
 
-            if (type == REQUEST_GOOGLE) {
+            if (request == REQUEST_GOOGLE) {
 
                 final GoogleSignInOptions option = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                         .requestIdToken(getString(R.string.google_client_id))
@@ -124,80 +281,79 @@ public class SocialFragment extends BaseFragment implements GoogleApiClient.OnCo
                         .addApi(Auth.GOOGLE_SIGN_IN_API, option)
                         .build();
 
-            } else if (type == REQUEST_TWITTER) {
+                startActivityForResult(Auth.GoogleSignInApi.getSignInIntent(apiClient), REQUEST_GOOGLE);
 
-                new TwitterAuthClient().authorize(getActivity(), new Callback<TwitterSession>() {
+            } else if (request == REQUEST_TWITTER) {
 
-                    @Override
-                    public void success(final Result<TwitterSession> result) {
+                loadTwitter();
 
-                        final String user = result.data.getUserName();
-                        final String token = result.data.getAuthToken().token;
-
-                    }
-
-                    @Override
-                    public void failure(final TwitterException e) {
-                        listener.onError();
-                    }
-                });
-
-            } else if (type == REQUEST_FACEBOOK) {
+            } else if (request == REQUEST_FACEBOOK) {
 
                 LoginManager.getInstance().logInWithReadPermissions(getActivity(), Arrays.asList("public_profile", "email"));
-
-                LoginManager.getInstance().registerCallback(manager, new FacebookCallback<LoginResult>() {
-
-                    @Override
-                    public void onSuccess(final LoginResult loginResult) {
-
-                        GraphRequest.newMeRequest(loginResult.getAccessToken(), new GraphRequest.GraphJSONObjectCallback() {
-
-                            @Override
-                            public void onCompleted(final JSONObject json, final GraphResponse response) {
-
-                                try {
-
-                                    final Bundle bundle = new Bundle();
-
-                                    bundle.putString(Constants.Bundle.NAME, json.getString(NAME));
-                                    bundle.putString(Constants.Bundle.MAIL, json.getString(MAIL));
-                                    bundle.putString(Constants.Bundle.DATE, json.getString(DATE));
-
-                                    listener.onSuccess(bundle);
-
-                                } catch (final JSONException e) {
-
-                                }
-                            }
-
-                        }).executeAsync();
-                    }
-
-                    @Override
-                    public void onCancel() {
-                        listener.onCancel();
-                    }
-
-                    @Override
-                    public void onError(final FacebookException error) {
-                        listener.onError();
-                    }
-                });
             }
 
-        } else if (resultCode == REQUEST_GOOGLE) {
+        } else if (request == REQUEST_GOOGLE) {
 
-        } else if (resultCode == REQUEST_TWITTER) {
+            final GoogleSignInAccount account = Auth.GoogleSignInApi.getSignInResultFromIntent(intent).getSignInAccount();
 
-        } else if (resultCode == REQUEST_FACEBOOK) {
+            onGoogle(account);
+
+        } else if (request == REQUEST_TWITTER) {
+
+            authClient.onActivityResult(requestCode, resultCode, intent);
+
+        } else if (request == REQUEST_FACEBOOK) {
 
             manager.onActivityResult(requestCode, resultCode, intent);
         }
     }
 
+    private void onGoogle(final GoogleSignInAccount account) {
+
+        final String id = account.getId();
+        final String name = account.getDisplayName();
+        final String mail = account.getEmail();
+
+        new UserRequester(getActivity()).validateSocialAccount("user/get?gl=", id, new RequestListener<User>() {
+
+            @Override
+            public void onStart() {
+
+            }
+
+            @Override
+            public void onError(final Exception error) {
+                listener.onError();
+            }
+
+            @Override
+            public void onSuccess(final User type) {
+
+                if (type == null) {
+
+                    final User user = new User();
+
+                    user.setNick(name);
+                    user.setEmail(mail);
+                    user.setPassword(mail);
+                    user.setGl(id);
+
+                    listener.onNotFound(user);
+
+                } else {
+
+                    listener.onSuccess(type);
+                }
+            }
+        });
+    }
+
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
 
+    }
+
+    public void setListener(final AccountListener listener) {
+        this.listener = listener;
     }
 }

@@ -174,9 +174,13 @@
     <string name="location_disabled">Não estamos conseguindo obter sua localização. Verifique se os serviços estão habilitados no aparelho.</string>
 
     <string name="generic_error">Não foi possível executar a operação. Tente novamente em alguns instantes.</string>
-    <string name="generic_error_login">Não foi possível executar a operação. Verifique se todos os campos estão preenchidos corretamente ou se o e-mail utilizado já está em uso.</string>
+    <string name="generic_error_login">E-mail ou senha inválidos.</string>
     <string name="erro_new_user">Não foi possível realizar o cadastro. Verifique se todos os campos estão preenchidos corretamente ou se o e-mail utilizado já está em uso.</string>
     <string name="generic_update_data_ok">Dados alterados com sucesso.</string>
+
+    <string name="already_registered">Você já possui uma conta, por favor faça login.</string>
+
+    <string name="dont_have_account">Você não possui conta. Por favor cadastre-se.</string>
 
     # Tip
 

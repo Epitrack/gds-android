@@ -195,6 +195,64 @@ public class UserRequester extends BaseRequester {
         });
     }
 
+    public void validateSocialAccount(final String path, final String token, final RequestListener<User> listener) {
+
+        final String url = RequesterConfig.URL + "/" + path + token;
+
+        listener.onStart();
+
+        new Requester(getContext()).request(Method.GET, url, getHeaderMap(), new FutureCallback<Response<String>>() {
+
+            @Override
+            public void onCompleted(final Exception error, final Response<String> response) {
+
+                if (error == null) {
+
+                    try {
+
+                        final JSONObject jsonObject = new JSONObject(response.getResult());
+
+                        if (!jsonObject.getBoolean("error")) {
+
+                            final JSONArray jsonArray = jsonObject.getJSONArray("data");
+
+                            if (jsonArray.length() > 0) {
+
+                                final JSONObject json = jsonArray.getJSONObject(0);
+
+                                final String email = json.getString("email");
+                                final String password = json.getString("password");
+
+                                final User user = new User();
+
+                                user.setEmail(email);
+                                user.setPassword(password);
+
+                                listener.onSuccess(user);
+
+                            } else {
+
+                                listener.onSuccess(null);
+                            }
+
+                        } else {
+
+                            listener.onError(new RequestException());
+                        }
+
+                    } catch (final JSONException e) {
+
+                        listener.onError(e);
+                    }
+
+                } else {
+
+                    listener.onError(error);
+                }
+            }
+        });
+    }
+
     public void getAllProfiles(final String id, final RequestListener<List<User>> listener) {
 
         final String url = RequesterConfig.URL + RequesterConfig.Api.USER + "/household/" + id;

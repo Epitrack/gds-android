@@ -89,6 +89,8 @@ public class CreateAccountActivity extends BaseAppCompatActivity {
 
     private final LoadDialog loadDialog = new LoadDialog();
 
+    private User user = new User();
+
     @Override
     protected void onCreate(final Bundle bundle) {
         super.onCreate(bundle);
@@ -101,6 +103,8 @@ public class CreateAccountActivity extends BaseAppCompatActivity {
 
         validator = new Validator(this);
         validator.setValidationListener(new ValidationHandler());
+
+        getSocialFragment().setListener(new AccountHandler());
     }
 
     private void load() {
@@ -306,8 +310,25 @@ public class CreateAccountActivity extends BaseAppCompatActivity {
         }
 
         @Override
-        public void onSuccess(final Bundle bundle) {
+        public void onNotFound(final User user) {
 
+            editTextNickname.setText(user.getNick());
+            editTextMail.setText(user.getEmail());
+
+            linearLayoutSocial.setVisibility(View.INVISIBLE);
+            layoutAccount.setVisibility(View.VISIBLE);
+
+            setUser(user);
+        }
+
+        @Override
+        public void onSuccess(final User user) {
+
+            new DialogBuilder(CreateAccountActivity.this).load()
+                    .title(R.string.attention)
+                    .content(R.string.already_registered)
+                    .positiveText(R.string.ok)
+                    .show();
         }
     }
 
@@ -334,8 +355,6 @@ public class CreateAccountActivity extends BaseAppCompatActivity {
     private HashReceiver receiver = new HashReceiver() {
 
         public void onHash(final String hash) {
-
-            final User user = new User();
 
             user.setNick(editTextNickname.getText().toString().trim());
             user.setDob(editTextBirthDate.getText().toString().trim().toLowerCase());
@@ -414,12 +433,16 @@ public class CreateAccountActivity extends BaseAppCompatActivity {
 
                 final View view = error.getView();
 
-                if (view.getVisibility() == View.VISIBLE && view instanceof EditText) {
+                if (view instanceof EditText) {
 
                     ((EditText) view).setError(message);
                 }
             }
         }
+    }
+
+    public void setUser(final User user) {
+        this.user = user;
     }
 
     enum State {
@@ -447,5 +470,10 @@ public class CreateAccountActivity extends BaseAppCompatActivity {
 
             throw new IllegalArgumentException("The State has not found.");
         }
+    }
+
+    @Override
+    protected void onActivityResult(final int requestCode, final int resultCode, final Intent intent) {
+        getSocialFragment().onActivityResult(requestCode, resultCode, intent);
     }
 }
