@@ -48,6 +48,7 @@ public class SurveyRequester extends BaseRequester {
         bodyMap.put("app_token", user.getAppToken());
         bodyMap.put("platform", user.getPlatform());
         bodyMap.put("client", user.getClient());
+        bodyMap.put("app_token", user.getAppToken());
         bodyMap.put("no_symptom", "Y");
         bodyMap.put("token", singleUser.getUserToken());
 
