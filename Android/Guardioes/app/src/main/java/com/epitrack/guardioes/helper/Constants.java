@@ -29,9 +29,6 @@ public final class Constants {
         public static final String BAD_STATE = "has_bad_state";
         public static final String NEW_MEMBER = "new_member";
         public static final String SOCIAL_NEW = "social_new";
-        public static final String GOOGLE = "Google";
-        public static final String FACEBOOK = "Facebook";
-        public static final String TWITTER = "Twitter";
         public static final String EMAIL = "Email";
         public static final String TYPE = "TYPE";
         public static final String PATH = "Path";
@@ -39,6 +36,7 @@ public final class Constants {
         public static final String NAME = "Name";
         public static final String MAIL = "Mail";
         public static final String DATE = "Date";
+        public static final String USER = "User";
     }
 
     public static class Pref {
