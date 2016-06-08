@@ -6,7 +6,6 @@ import android.os.Bundle;
 import com.epitrack.guardioes.R;
 import com.epitrack.guardioes.helper.Constants;
 import com.epitrack.guardioes.view.account.CreateAccountActivity;
-import com.epitrack.guardioes.view.account.SocialLoginActivity;
 import com.epitrack.guardioes.view.base.BaseAppCompatActivity;
 import com.google.android.gms.analytics.HitBuilders;
 
@@ -64,10 +63,6 @@ public class TermActivity extends BaseAppCompatActivity {
                 bundle.putString(Constants.Bundle.EMAIL, Constants.Bundle.EMAIL);
 
                 navigateTo(CreateAccountActivity.class, bundle);
-
-            } else {
-
-                navigateTo(SocialLoginActivity.class);
             }
         }
     }

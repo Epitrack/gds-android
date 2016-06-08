@@ -85,12 +85,6 @@
             android:theme="@style/Theme.Transparent.ActionBar"/>
 
         <activity
-            android:name=".view.account.SocialLoginActivity"
-            android:exported="false"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.Transparent.ActionBar"/>
-
-        <activity
             android:name=".view.base.ImageEditActivity"
             android:exported="false"
             android:label="@string/crop_photo"
