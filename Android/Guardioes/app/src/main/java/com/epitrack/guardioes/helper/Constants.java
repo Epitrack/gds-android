@@ -19,6 +19,19 @@ public final class Constants {
         public static final int IMAGE = 5000;
     }
 
+    public static class Json {
+
+        public static final String COUNTRY = "country";
+        public static final String POSITION = "position";
+        public static final String URL = "flagUrl";
+
+        public static final String TITLE = "title";
+        public static final String OPTION = "option";
+        public static final String CORRECT = "correct";
+        public static final String QUESTION_LIST = "questions";
+        public static final String OPTION_LIST = "alternatives";
+    }
+
     public static class Bundle {
 
         public static final String WELCOME = "Welcome";
