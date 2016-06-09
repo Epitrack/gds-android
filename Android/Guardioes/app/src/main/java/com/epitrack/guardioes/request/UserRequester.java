@@ -389,6 +389,75 @@ public class UserRequester extends BaseRequester {
         });
     }
 
+    public void addOrUpdate(final String url, final User user, final String mainId, final RequestListener<String> listener) {
+
+        final Map<String, Object> bodyMap = new HashMap<>();
+
+        bodyMap.put("nick", user.getNick());
+        bodyMap.put("email", user.getEmail());
+        bodyMap.put("password", user.getPassword());
+        bodyMap.put("client", user.getClient());
+        bodyMap.put("dob", DateFormat.getDate(user.getDob()));
+        bodyMap.put("gender", user.getGender());
+        bodyMap.put("app_token", user.getAppToken());
+        bodyMap.put("race", user.getRace());
+        bodyMap.put("platform", user.getPlatform());
+        bodyMap.put("picture", user.getImage());
+        bodyMap.put("relationship", user.getRelationship());
+
+        if (mainId == null) {
+            bodyMap.put("id", user.getId());
+
+        } else {
+            bodyMap.put("user", mainId);
+        }
+
+        listener.onStart();
+
+        new Requester(getContext()).request(Method.POST, RequesterConfig.URL + url, getAuthHeaderMap(), bodyMap, new FutureCallback<Response<String>>() {
+
+            @Override
+            public void onCompleted(final Exception error, Response<String> response) {
+
+                if (error == null) {
+
+                    if (isSuccess(response)) {
+
+                        try {
+
+                            final JSONObject json = new JSONObject(response.getResult());
+
+                            if (json.getBoolean("error")) {
+
+                                listener.onError(new RequestException());
+
+                            } else {
+
+                                final String message = json.getString("message");
+
+                                listener.onSuccess(message);
+                            }
+
+                        } catch (final JSONException e) {
+                            Logger.logDebug(TAG, e.getMessage());
+
+                            listener.onError(new RequestException());
+                        }
+
+                    } else {
+
+                        listener.onError(new RequestException());
+                    }
+
+                } else {
+
+                    listener.onError(error);
+                }
+            }
+        });
+
+    }
+
     // TODO: Refactor soon..
     private void loadUser(final User type) {
 

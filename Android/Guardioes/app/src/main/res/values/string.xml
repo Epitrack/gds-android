@@ -276,6 +276,9 @@
     <string name="message_profile">Atualize as informações do seu perfil e dos membros domicíliar</string>
     <string name="message_interest">Selecione as categorias e hashtags que você deseja seguir</string>
 
+    <string name="member_added">Membro adicionado</string>
+    <string name="member_updated">Perfil atualizado</string>
+
     # User
     <string name="message_new_member">Preencha todos os campos abaixo\npara adicionar um novo integrante.</string>
     <string name="message_fields">Apenas os campos habilitados\npoderão ser alterados.</string>

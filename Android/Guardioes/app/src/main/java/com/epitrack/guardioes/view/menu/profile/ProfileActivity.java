@@ -21,6 +21,7 @@ import com.epitrack.guardioes.view.dialog.LoadDialog;
 import com.google.android.gms.analytics.HitBuilders;
 
 import org.json.JSONObject;
+import org.parceler.Parcels;
 
 import java.util.List;
 
@@ -122,12 +123,7 @@ public class ProfileActivity extends BaseAppCompatActivity implements UserListen
 
         } else {
 
-            final Bundle bundle = new Bundle();
-
-            bundle.putBoolean(Constants.Bundle.NEW_MEMBER, true);
-            bundle.putBoolean(Constants.Bundle.SOCIAL_NEW, false);
-
-            navigateTo(UserActivity.class, bundle);
+            navigateTo(UserActivity.class);
         }
     }
 
@@ -141,61 +137,8 @@ public class ProfileActivity extends BaseAppCompatActivity implements UserListen
 
         final Bundle bundle = new Bundle();
 
-        bundle.putBoolean(Constants.Bundle.SOCIAL_NEW, false);
-        bundle.putBoolean(Constants.Bundle.NEW_MEMBER, false);
-        bundle.putString("nick", user.getNick());
-        bundle.putString("dob", user.getDob());
-        bundle.putString("gender", user.getGender());
-        bundle.putString("race", user.getRace());
-        bundle.putString("email", user.getEmail());
-        bundle.putString("password", user.getPassword());
-        bundle.putString("id", user.getId());
-        bundle.putString("relationship", user.getRelationship());
+        bundle.putParcelable(Constants.Bundle.USER, Parcels.wrap(user));
 
-        if (user.getImage() == 0) {
-            if (user.getGender().equals("F")) {
-                switch (user.getRace()) {
-                    case "branco":
-                        bundle.putString("picture", "8");
-                        break;
-                    case "preto":
-                        bundle.putString("picture", "1");
-                        break;
-                    case "pardo":
-                        bundle.putString("picture", "2");
-                        break;
-                    case "amarelo":
-                        bundle.putString("picture", "7");
-                        break;
-                    case "indigena":
-                        bundle.putString("picture", "8");
-                        break;
-                }
-            } else {
-                switch (user.getGender()) {
-                    case "branco":
-                        bundle.putString("picture", "11");
-                        break;
-                    case "preto":
-                        bundle.putString("picture", "5");
-                        break;
-                    case "pardo":
-                        bundle.putString("picture", "4");
-                        break;
-                    case "amarelo":
-                        bundle.putString("picture", "10");
-                        break;
-                    case "indigena":
-                        bundle.putString("picture", "4");
-                        break;
-                }
-            }
-
-        } else {
-            bundle.putInt("picture", user.getImage());
-        }
-
-        // TODO: Check if is main member..
         if (singleUser.getId().equals(user.getId())) {
             bundle.putBoolean(Constants.Bundle.MAIN_MEMBER, true);
         }

@@ -2,9 +2,12 @@ package com.epitrack.guardioes.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import org.parceler.Parcel;
+
 import java.util.ArrayList;
 import java.util.List;
 
+@Parcel(Parcel.Serialization.BEAN)
 public class User {
 
     private int image;

@@ -55,7 +55,8 @@
                     android:inputType="textCapSentences"
                     android:maxLength="10"
                     android:textColor="@color/bluish"
-                    android:textColorHint="@color/bluish" />
+                    android:textColorHint="@color/bluish"
+                    android:textSize="13sp" />
 
             </android.support.design.widget.TextInputLayout>
 
@@ -121,6 +122,7 @@
             <android.support.design.widget.TextInputLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
                 android:layout_weight="1"
                 layout:hintTextAppearance="@style/Text.EditText.Label">
 
@@ -131,11 +133,13 @@
                     android:hint="@string/hint_birth_date_dt"
                     android:inputType="date"
                     android:textColor="@color/bluish"
-                    android:textColorHint="@color/bluish" />
+                    android:textColorHint="@color/bluish"
+                    android:textSize="13sp" />
 
             </android.support.design.widget.TextInputLayout>
 
             <LinearLayout
+                android:id="@+id/linear_layout_parent"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="33dp"
@@ -164,12 +168,14 @@
             android:id="@+id/text_layout_mail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:visibility="invisible"
             layout:hintTextAppearance="@style/Text.EditText.Label">
 
             <android.support.v7.widget.AppCompatEditText
                 android:id="@+id/edit_text_mail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:enabled="false"
                 android:hint="@string/hint_mail"
                 android:inputType="textEmailAddress"
                 android:lines="1"

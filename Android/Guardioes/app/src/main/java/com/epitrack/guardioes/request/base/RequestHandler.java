@@ -47,7 +47,9 @@ public abstract class RequestHandler<T> implements RequestListener<T> {
     @Override
     public void onError(final Exception e) {
 
-        loadDialog.dismiss();
+        if (loadDialog != null) {
+            loadDialog.dismiss();
+        }
 
         if (e instanceof UnknownHostException) {
 
