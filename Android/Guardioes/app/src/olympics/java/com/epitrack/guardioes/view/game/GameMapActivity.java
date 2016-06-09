@@ -1,13 +1,10 @@
 package com.epitrack.guardioes.view.game;
 
 import android.os.Bundle;
-import android.view.View;
-import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 import com.epitrack.guardioes.R;
 import com.epitrack.guardioes.view.base.BaseAppCompatActivity;
-import com.epitrack.guardioes.view.game.model.Phase;
 
 import butterknife.Bind;
 
@@ -25,7 +22,7 @@ public class GameMapActivity extends BaseAppCompatActivity {
 
         setContentView(R.layout.game_map);
 
-            imageView.setOnClickListener(new View.OnClickListener() {
+           /* findViewById(R.id.image_view_map).setOnClickListener(new View.OnClickListener() {
 
                 @Override
                 public void onClick(final View view) {
@@ -33,7 +30,7 @@ public class GameMapActivity extends BaseAppCompatActivity {
                 }
             });
 
-            relativeLayout.addView(imageView);
-        }
+            relativeLayout.addView(imageView);*/
+        //}
     }
 }
