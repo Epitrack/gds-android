@@ -53,6 +53,7 @@ public class SocialFragment extends BaseFragment implements GoogleApiClient.OnCo
     private static final int REQUEST_GOOGLE = 6664;
 
     private int request;
+    private boolean login;
 
     private static final String ID = "id";
     private static final String NAME = "name";
@@ -89,31 +90,58 @@ public class SocialFragment extends BaseFragment implements GoogleApiClient.OnCo
     @OnClick(R.id.button_google)
     public void onGoogle() {
 
-        final Bundle bundle = new Bundle();
+        if (login) {
 
-        bundle.putInt(Constants.Bundle.TYPE, REQUEST_GOOGLE);
+            setRequest(REQUEST_GOOGLE);
 
-        navigateForResult(TermActivity.class, REQUEST_TERM, bundle);
+            loadGoogle();
+
+        } else {
+
+            final Bundle bundle = new Bundle();
+
+            bundle.putInt(Constants.Bundle.TYPE, REQUEST_GOOGLE);
+
+            navigateForResult(TermActivity.class, REQUEST_TERM, bundle);
+        }
     }
 
     @OnClick(R.id.button_twitter)
     public void onTwitter() {
 
-        final Bundle bundle = new Bundle();
+        if (login) {
 
-        bundle.putInt(Constants.Bundle.TYPE, REQUEST_TWITTER);
+            setRequest(REQUEST_TWITTER);
 
-        navigateForResult(TermActivity.class, REQUEST_TERM, bundle);
+            loadTwitter();
+
+        } else {
+
+            final Bundle bundle = new Bundle();
+
+            bundle.putInt(Constants.Bundle.TYPE, REQUEST_TWITTER);
+
+            navigateForResult(TermActivity.class, REQUEST_TERM, bundle);
+        }
     }
 
     @OnClick(R.id.fragment_button_facebook)
     public void onFaceBook() {
 
-        final Bundle bundle = new Bundle();
+        if (login) {
 
-        bundle.putInt(Constants.Bundle.TYPE, REQUEST_FACEBOOK);
+            setRequest(REQUEST_FACEBOOK);
 
-        navigateForResult(TermActivity.class, REQUEST_TERM, bundle);
+            LoginManager.getInstance().logInWithReadPermissions(getActivity(), Arrays.asList("public_profile", "email"));
+
+        } else {
+
+            final Bundle bundle = new Bundle();
+
+            bundle.putInt(Constants.Bundle.TYPE, REQUEST_FACEBOOK);
+
+            navigateForResult(TermActivity.class, REQUEST_TERM, bundle);
+        }
     }
 
     public void setRequest(final int request) {
@@ -248,6 +276,20 @@ public class SocialFragment extends BaseFragment implements GoogleApiClient.OnCo
         });
     }
 
+    private void loadGoogle() {
+
+        final GoogleSignInOptions option = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken(getString(R.string.google_client_id))
+                .requestEmail()
+                .build();
+
+        apiClient = new GoogleApiClient.Builder(getActivity())
+                .addApi(Auth.GOOGLE_SIGN_IN_API, option)
+                .build();
+
+        startActivityForResult(Auth.GoogleSignInApi.getSignInIntent(apiClient), REQUEST_GOOGLE);
+    }
+
     @Override
     public void onActivityResult(final int requestCode, final int resultCode, final Intent intent) {
         super.onActivityResult(requestCode, resultCode, intent);
@@ -258,16 +300,7 @@ public class SocialFragment extends BaseFragment implements GoogleApiClient.OnCo
 
             if (request == REQUEST_GOOGLE) {
 
-                final GoogleSignInOptions option = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                        .requestIdToken(getString(R.string.google_client_id))
-                        .requestEmail()
-                        .build();
-
-                apiClient = new GoogleApiClient.Builder(getActivity())
-                        .addApi(Auth.GOOGLE_SIGN_IN_API, option)
-                        .build();
-
-                startActivityForResult(Auth.GoogleSignInApi.getSignInIntent(apiClient), REQUEST_GOOGLE);
+                loadGoogle();
 
             } else if (request == REQUEST_TWITTER) {
 
@@ -337,6 +370,10 @@ public class SocialFragment extends BaseFragment implements GoogleApiClient.OnCo
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
 
+    }
+
+    public void setLogin(final boolean login) {
+        this.login = login;
     }
 
     public void setListener(final AccountListener listener) {

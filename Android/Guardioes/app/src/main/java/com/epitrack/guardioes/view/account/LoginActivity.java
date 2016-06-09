@@ -77,6 +77,7 @@ public class LoginActivity extends BaseAppCompatActivity {
         validator = new Validator(this);
         validator.setValidationListener(new ValidationHandler());
 
+        getSocialFragment().setLogin(true);
         getSocialFragment().setListener(new AccountHandler());
     }
 
@@ -325,5 +326,10 @@ public class LoginActivity extends BaseAppCompatActivity {
                 }
             }
         }
+    }
+
+    @Override
+    protected void onActivityResult(final int requestCode, final int resultCode, final Intent intent) {
+        getSocialFragment().onActivityResult(requestCode, resultCode, intent);
     }
 }
