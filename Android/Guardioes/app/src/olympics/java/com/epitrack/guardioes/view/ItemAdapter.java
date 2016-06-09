@@ -1,4 +1,4 @@
-package com.epitrack.guardioes.view.menu.profile;
+package com.epitrack.guardioes.view;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -30,7 +30,7 @@ public class ItemAdapter extends ArrayAdapter<String> {
         if (view == null) {
 
             view = LayoutInflater.from(viewGroup.getContext())
-                    .inflate(R.layout.item_preview, viewGroup, false);
+                    .inflate(R.layout.item_preview_white, viewGroup, false);
 
             viewHolder = new ViewHolder();
 
