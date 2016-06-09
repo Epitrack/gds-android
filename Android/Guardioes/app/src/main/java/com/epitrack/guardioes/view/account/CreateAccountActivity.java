@@ -28,9 +28,9 @@ import com.epitrack.guardioes.push.RegisterService;
 import com.epitrack.guardioes.request.UserRequester;
 import com.epitrack.guardioes.request.base.RequestListener;
 import com.epitrack.guardioes.view.HomeActivity;
+import com.epitrack.guardioes.view.ItemAdapter;
 import com.epitrack.guardioes.view.base.BaseAppCompatActivity;
 import com.epitrack.guardioes.view.dialog.LoadDialog;
-import com.epitrack.guardioes.view.menu.profile.ItemAdapter;
 import com.epitrack.guardioes.view.welcome.TermActivity;
 import com.google.android.gms.analytics.HitBuilders;
 import com.mobsandgeeks.saripaar.ValidationError;
@@ -308,6 +308,8 @@ public class CreateAccountActivity extends BaseAppCompatActivity {
             linearLayoutSocial.setVisibility(View.INVISIBLE);
             layoutAccount.setVisibility(View.VISIBLE);
 
+            findViewById(R.id.text_layout_password).setVisibility(View.INVISIBLE);
+
             setUser(user);
         }
 
@@ -352,7 +354,14 @@ public class CreateAccountActivity extends BaseAppCompatActivity {
             user.setGender(gender.toUpperCase());
             user.setRace(spinnerRace.getSelectedItem().toString().toLowerCase());
             user.setEmail(editTextMail.getText().toString().trim().toLowerCase());
-            user.setPassword(editTextPassword.getText().toString().trim());
+
+            if (user.getTw() != null || user.getFb() != null || user.getGl() != null) {
+                user.setPassword(user.getEmail());
+
+            } else {
+                user.setPassword(editTextPassword.getText().toString().trim());
+            }
+
             user.setGcmToken(hash);
 
             new UserRequester(CreateAccountActivity.this).createAccount(user, new RequestListener<User>() {
