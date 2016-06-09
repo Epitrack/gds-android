@@ -424,11 +424,9 @@ public class UserActivity extends BaseAppCompatActivity {
 
                     } else if (mainMember) {
 
-                        jsonObject.put("gcm_token", shpGCMToken.getString(Constants.Push.SENDER_ID, ""));
                         jsonObject.put("id", singleUser.getId());
 
                     } else {
-                        jsonObject.put("gcm_token", shpGCMToken.getString(Constants.Push.SENDER_ID, ""));
                         jsonObject.put("id", getIntent().getStringExtra("id"));
                     }
 
@@ -451,7 +449,6 @@ public class UserActivity extends BaseAppCompatActivity {
                     jsonObject.put("tw", singleUser.getTw());
                     jsonObject.put("fb", singleUser.getFb());
                     jsonObject.put("picture", singleUser.getImage());
-                    jsonObject.put("gcm_token", shpGCMToken.getString(Constants.Push.SENDER_ID, ""));
 
                    /* try {
                         locationUtility = new LocationUtility(getApplicationContext());
@@ -543,7 +540,6 @@ public class UserActivity extends BaseAppCompatActivity {
                             editor.putString(Constants.Pref.PREFS_NAME, singleUser.getUserToken());
                             editor.commit();
 
-                            sharedPreferences = getSharedPreferences(Constants.Pref.PREFS_SOCIAL, 0);
                             SharedPreferences.Editor editorSocial = sharedPreferences.edit();
 
                             editorSocial.putString(Constants.Pref.PREFS_NAME, "true");
