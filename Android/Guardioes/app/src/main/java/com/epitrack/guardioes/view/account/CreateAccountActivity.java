@@ -28,9 +28,9 @@ import com.epitrack.guardioes.push.RegisterService;
 import com.epitrack.guardioes.request.UserRequester;
 import com.epitrack.guardioes.request.base.RequestListener;
 import com.epitrack.guardioes.view.HomeActivity;
-import com.epitrack.guardioes.view.ItemAdapter;
 import com.epitrack.guardioes.view.base.BaseAppCompatActivity;
 import com.epitrack.guardioes.view.dialog.LoadDialog;
+import com.epitrack.guardioes.view.menu.profile.ItemAdapter;
 import com.epitrack.guardioes.view.welcome.TermActivity;
 import com.google.android.gms.analytics.HitBuilders;
 import com.mobsandgeeks.saripaar.ValidationError;
@@ -376,7 +376,7 @@ public class CreateAccountActivity extends BaseAppCompatActivity {
                     loadDialog.dismiss();
 
                     navigateTo(HomeActivity.class, Intent.FLAG_ACTIVITY_CLEAR_TASK |
-                            Intent.FLAG_ACTIVITY_NEW_TASK);
+                                                   Intent.FLAG_ACTIVITY_NEW_TASK);
                 }
             });
         }
