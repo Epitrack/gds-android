@@ -147,26 +147,12 @@ public class SocialFragment extends BaseFragment implements GoogleApiClient.OnCo
 
                         if (type == null) {
 
-                            authClient.requestEmail(result.data, new Callback<String>() {
+                            final User user = new User();
 
-                                @Override
-                                public void success(final Result<String> result) {
+                            user.setNick(name);
+                            user.setTw(token);
 
-                                    final User user = new User();
-
-                                    user.setNick(name);
-                                    user.setTw(token);
-
-                                    listener.onNotFound(user);
-
-                                }
-
-                                @Override
-                                public void failure(final TwitterException e) {
-                                    e.getMessage();
-
-                                }
-                            });
+                            listener.onNotFound(user);
 
                         } else {
 
