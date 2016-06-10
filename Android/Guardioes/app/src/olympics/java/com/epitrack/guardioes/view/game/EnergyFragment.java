@@ -5,23 +5,28 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.epitrack.guardioes.R;
 import com.epitrack.guardioes.request.GameRequester;
 import com.epitrack.guardioes.request.base.RequestHandler;
 import com.epitrack.guardioes.view.base.BaseFragment;
-import com.epitrack.guardioes.view.game.dialog.EnergyDialog;
 import com.epitrack.guardioes.view.game.dialog.ScoreDialog;
+import com.epitrack.guardioes.view.game.dialog.TrophyDialog;
 import com.epitrack.guardioes.view.game.model.Score;
 
 import java.util.List;
 
+import butterknife.Bind;
 import butterknife.OnClick;
 
 /**
  * @author Igor Morais
  */
 public class EnergyFragment extends BaseFragment {
+
+    @Bind(R.id.text_view_energy)
+    TextView textViewEnergy;
 
     @Nullable
     @Override
@@ -52,7 +57,10 @@ public class EnergyFragment extends BaseFragment {
 
     @OnClick(R.id.button_trophy)
     public void onTrophy() {
+        new TrophyDialog().show(getFragmentManager(), TrophyDialog.TAG);
+    }
 
-        new EnergyDialog().show(getFragmentManager(), EnergyDialog.TAG);
+    public void setEnergy(final int energy) {
+        textViewEnergy.setText(getString(R.string.energy, energy));
     }
 }

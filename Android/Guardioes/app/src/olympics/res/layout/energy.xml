@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
 
     <ImageView
         android:id="@+id/image_view_bar"
@@ -9,7 +9,7 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:contentDescription="@null"
-        android:src="@drawable/image_bar"/>
+        android:src="@drawable/image_bar" />
 
     <RelativeLayout
         android:layout_width="wrap_content"
@@ -20,7 +20,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:contentDescription="@null"
-            android:src="@drawable/image_energy"/>
+            android:src="@drawable/image_energy" />
 
         <TextView
             android:id="@+id/text_view_energy"
@@ -29,7 +29,7 @@
             android:layout_centerInParent="true"
             android:textColor="@color/nice_blue"
             android:textSize="15sp"
-            android:textStyle="bold"/>
+            android:textStyle="bold" />
 
     </RelativeLayout>
 
@@ -39,7 +39,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:background="@drawable/button_medal"
-        android:contentDescription="@null"/>
+        android:contentDescription="@null" />
 
     <ImageButton
         android:id="@+id/button_trophy"
@@ -47,6 +47,6 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:background="@drawable/button_trophy"
-        android:contentDescription="@null"/>
+        android:contentDescription="@null" />
 
 </RelativeLayout>
