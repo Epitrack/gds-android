@@ -319,14 +319,6 @@
 
     <string name="message_about_title_01">Sobre o “Guardiões da Saúde”\n</string>
 
-    <string name="message_about_content_01">O GUARDIÕES DA SAÚDE é um aplicativo projetado para dispositivos móveis e faz parte do projeto inovador de aprimoramento da vigilância em saúde no Sistema Único de Saúde (SUS), denominado Vigilância Participativa.\n\nÉ um processo simples que conta com a participação voluntária de visitantes ou residentes no Brasil, informando sobre sua condição de saúde. O GUARDIÕES DA SAÚDE foi desenvolvido em português para ser um canal complementar de informação de saúde e de serviços aos usuários, permitindo a participação de todos. Para isso, basta ter 13 anos de idade ou mais e aceitar os Termos de Participação e Uso, informando regularmente sua condição de saúde, conforme instruções disponíveis no aplicativo.\n\nEste projeto é uma iniciativa da Secretaria de Vigilância em Saúde, do Ministério da Saúde, em parceria com as Secretarias de Saúde das sedes dos jogos e outras instituições nacionais e internacionais.\n\nUtilizada pela primeira vez no Brasil, a implementação da estratégia de Vigilância Participativa ocorrerá sem investimento público no desenvolvimento do software. Para isso, por meio de parceria, o aplicativo GUARDIÕES DA SAÚDE está sendo desenvolvido como software livre por meio de investimento da Skoll Global Threats Fund e apoio operacional da Training in Public Health Intervention Network (Tephinet). Ambas são Organizações não-governamentais sem fins lucrativos que atuam no aprimoramento da vigilância em saúde no mundo e em técnicas de Detecção Digital de Doenças. O desenvolvimento tecnológico do aplicativo é realizado por meio da startup Epitrack, sediada em Recife/Pernambuco.\n\n
-Esta parceria também contempla o apoio técnico e a troca de experiências com outras iniciativas adotadas no mundo, como Flu Near You (flunearyou.org) e Salud Boricua (saludboricua.org), criados e administrados pela ONG HealthMap (healthmap.org) do Hospital da Criança de Boston em colaboração com a Associação Americana de Saúde Pública (apha.org) e pela Skoll Global Threats Fund (skollglobalthreats.org). Estas estratégias visam o monitoramento de síndrome gripal nos Estados Unidos da América (EUA) e Canadá e a ocorrência de dengue, leptospirose e síndrome gripal em Porto Rico.\n\n
-<b>Saiba mais sobre a Vigilância Participativa</b>\n\nSua participação é uma gentil contribuição para o aprimoramento da vigilância em saúde no Brasil. No cadastro, não há registro nominal e a privacidade do e-mail está garantida. Não haverá nenhum contato do sistema de saúde com você, em decorrência da participação, e a comunicação de sua condição de saúde não significa que estará realizando uma consulta médica.\n\nÉ importante destacar que caso você informe que não está se sentindo bem, é recomendável que consulte um médico de referência ou serviço de saúde mais próximo de você. Para isso, está disponível no aplicativo um atalho com pesquisa pré-configurada de serviços de saúde e farmácias mais próximos de você, com base no serviço de geolocalização do seu dispositivo móvel no Google Maps. Além disso, você dispõe dos telefones úteis incluindo o do SAMU (Serviço de Atendimento Móvel de Urgência), cuja a ligação é gratuita e funciona 24 horas por dia atendendo solicitações de atendimento de urgência para ocorrências de natureza traumática, clínica, pediátrica, cirúrgica, gineco-obstétrica e de saúde mental, em residências, locais de trabalho e vias públicas.\n\n
-<b>Veja os benefícios de sua participação</b>\n\nParticipar ativamente das ações de vigilância em saúde que visam a prevenção de doenças na comunidade;\n\nAcessar os contatos de serviços públicos úteis sem precisar alterar sua agenda de telefones;\n\nAcessar facilmente informações úteis sobre cuidados de saúde;\n\n
-Usufruir de facilidades como a pesquisa pré-configurada por Unidades de Pronto Atendimento e farmácias próximas (20 km) no Google Maps, sem necessidade de abrir outro aplicativo;\n\n
-Acompanhar o perfil de saúde dos participantes por meio do website www.guardioesdasaude.org;\n\n
-<b>Custo</b>\n\nDownload e participação: não há nenhum custo para obter e participar do GUARDIÕES DA SAÚDE;\n\nAcesso aos serviços sem custo: por meio de acesso gratuito em pontos wi-fi na cidade;\n\nAcesso aos serviços com custo: por meio de seu pacote de dados contratado;\n\nChamada telefônica: Os serviços públicos de referência descritos nos telefones úteis são oferecidos por meio de chamada gratuita, conforme informação do órgão responsável;\n\n </string>
-
     # Diary
 
     <string name="message_select_member">Selecione um membro</string>
@@ -505,5 +497,55 @@ Por favor, leia estes termos legais de uso antes de utilizar o GUARDIÕES DA SA�
     <string name="join_now">Participe agora!</string>
     
     <string name="congratulations">Parabéns</string>
+    
+    <string name="about_text">SOBRE O APLICATIVO “GUARDIÕES DA SAÚDE”
+
+\n\nO aplicativo “Guardiões da Saúde”, desenvolvido para celulares, tablets e computadores, faz parte da iniciativa do Ministério da Saúde, em parceria com a Organização Não-Governamental Skoll Global Threats Fund, dos Estados Unidos da América, visando avaliar o potencial uso de aplicativos para dispositivos móveis como parte da estratégia de fortalecimento da capacidade de detecção de surtos e emergências em saúde pública, no âmbito do Sistema Único de Saúde (SUS), principalmente durante eventos de massa, como nos Jogos Olímpicos e Paralímpicos de 2016.
+
+
+\n\nEsta estratégia é a evolução do projeto realizado com a mesma instituição, denominado “Saúde na Copa” e lançado exclusivamente para o período dos jogos da Copa do Mundo FIFA Brasil 2014®, cujos resultados mostraram-se promissores e foram mantidos os interesses de ambas as instituições para a realização de uma nova estratégia para os Jogos Olímpicos e Paralímpicos em 2016.
+
+\n\nA primeira versão do aplicativo Guardiões da Saúde já está disponível para os sistemas operacionais iOS da Apple e Android da Google e também por meio do site http://guardioesdasaude.org/.
+Inicialmente desenvolvido no idioma português, nas próximas versões, o aplicativo “Guardiões da Saúde” estará disponível também nos idiomas oficiais das Nações Unidas, sendo um instrumento complementar para orientações aos viajantes internacionais ao Brasil, principalmente com destino às sedes dos Jogos Olímpicos e Paralímpicos de 2016.
+
+\n\nA participação na iniciativa está restrita aos usuários com 13 anos ou mais de idade. Além disso, é fundamental que antes de se cadastrar, os usuários leiam e aceitem os “Termos de Uso” e preenchimento de cadastro simplificado, contendo apelido, endereço de e-mail, data de nascimento, raça/cor, sexo e senha de acesso. A participação é voluntária, sigilosa e os dados fornecidos estão protegidos no âmbito Lei nº 12.527, de 18 de novembro de 2011.
+
+\n\nOs resultados do projeto serão utilizados pela vigilância em saúde dos Estados, Municípios e Governo Federal, visando detectar e prevenir surtos e emergências em saúde pública, por meio da adoção de medidas de prevenção e controle oportunas. A divulgação dos resultados do projeto será realizada de modo agregado e anonimizado , visando descrever o perfil da condição de saúde dos voluntários, a partir das informações repassadas por meio do aplicativo.
+
+\n\nSobre a participação voluntária
+
+\n\nSua participação é voluntária e uma gentil contribuição para o aprimoramento da vigilância em saúde no Brasil. O preenchimento do formulário sobre a condição de saúde não representa consulta médica, não garante acesso diferenciado aos serviços de saúde e o usuário não receberá o contato de nenhum profissional ou serviço de saúde para obter informações, seja por e-mail ou qualquer outro meio de contato.
+
+\n\nDurante a participação, mensagens de texto poderão ser enviadas aos usuários, apenas pelo aplicativo, por meio da tecnologia Push (Push Notification), contendo orientações sobre cuidados de saúde ou orientações dos órgãos de vigilância.
+
+\n\nÉ importante destacar que caso você informe que não está se sentindo bem, é recomendável que consulte um médico de referência ou serviço de saúde mais próximo de você. Para isso, está disponível no aplicativo um atalho com pesquisa pré-configurada de serviços de saúde e farmácias mais próximos de você, com base no serviço de geolocalização do seu dispositivo móvel no Google Maps. Essa funcionalidade não faz parte do aplicativo. Por esse motivo, será direcionado ao aplicativo de mapas de seu aparelho e recomenda-se cuidado ao transitar por áreas desconhecidas e evitar zonas de risco. Para isso, procure informações junto aos órgãos governamentais locais.
+
+\n\nO aplicativo foi configurado com um conjunto de telefones úteis incluindo o do SAMU (Serviço de Atendimento Móvel de Urgência), cuja ligação é gratuita e funciona 24 horas por dia atendendo solicitações de atendimento de urgência para ocorrências de natureza traumática, clínica, pediátrica, cirúrgica, gineco-obstétrica e de saúde mental, em residências, locais de trabalho e vias públicas.
+
+\n\nBenefícios da participação\n
+	\n•	Participar ativamente das ações de vigilância em saúde que visam à prevenção de doenças na comunidade;
+	\n•	Acessar os contatos de serviços públicos úteis sem precisar alterar sua agenda de telefones;
+	\n•	Acessar facilmente informações úteis sobre cuidados de saúde e medidas de prevenção contra doenças;
+	\n•	Usufruir de facilidades, como a pesquisa pré-configurada por Unidades de Pronto Atendimento e farmácias próximas (20 km) no Google Maps;
+	\n•	Acompanhar os resultados do projeto, por meio do website www.guardioesdasaude.org;
+
+\n\nSaiba mais sobre o uso do aplicativo
+
+
+\n\nO aplicativo “Guardiões da Saúde” está disponível gratuitamente para download e utilização em sistemas operacionais iOS, Android e navegadores de internet. Em várias cidades há pontos de internet para uso gratuito ou o usuário poderá utilizar o seu próprio pacote de dados contratado.
+
+
+\n\nInforma-se que as chamadas telefônicas para os serviços públicos de referência registrados no aplicativo necessitam de plano de telefonia contratado. Portanto, consulte sua operadora antes de utilizar essa funcionalidade. Esse serviço não funcionará sem a presença da função de telefone no aparelho. Essa informação deve ser observada, principalmente por usuários de outros países.
+
+\n\nSobre a parceria
+
+\n\nA iniciativa pioneira é da Secretaria de Vigilância em Saúde do Ministério da Saúde em parceria com as cidades sedes dos Jogos Olímpicos e Paralímpicos. Na parceria, a Organização Não Governamental (ONG) Skoll Global Threats Fund ficou responsável pelos custos de contratação e desenvolvimento do software, sob supervisão da Associação Brasileira de Profissionais de Epidemiologia de Campo (ProEpi), ambas são Organizações Não Governamentais, sem fins lucrativos, que atuam no aprimoramento da vigilância em saúde no Brasil e no mundo.
+
+
+\n\nA ProEpi é responsável por garantir que os requisitos estabelecidos pelo Ministério da Saúde e pela Skoll Global Threats Fund sejam cumpridos, conforme previsto no projeto: privacidade dos dados dos usuários, transparência e publicidade dos resultados públicos do projeto e disponibilidade do código fonte e documentação em ambiente de livre acesso para download, adequação e uso do aplicativo por serviços de saúde do Brasil e de países interessados, desde que garantida a finalidade sem fins lucrativos.
+
+\n\nAgradecimento
+\nAs instituições organizadoras agradecem a todos os voluntários, profissionais de saúde e gestores do Sistema Único de Saúde por acreditarem no projeto piloto e apoiarem essa iniciativa pioneira na saúde pública internacional.
+Agradecimento especial às Secretarias de Saúde dos Municípios Sedes dos Jogos Olímpicos e Paralímpicos (Belo Horizonte, Distrito Federal, Manaus, Rio de Janeiro, Salvador e São Paulo).</string>
 
 </resources>
