@@ -337,79 +337,28 @@
     <string name="message_register_no_symptom">Escolha algum sintoma antes de confirmar.</string>
 
     #Prevention
-    <string name="prevention_title_01">Prevenção\n\n</string>
-    <string name="prevention_content_01">Malária:\n\n
-
-\tNo Brasil, a transmissão concentra-se na Região Amazônica, composta pelos estados do Acre, Amapá, Amazonas, Maranhão, Mato Grosso, Pará, Rondônia, Roraima e Tocantins;\n\n
-
-\tEm áreas de transmissão de malária, é fundamental que o viajante tenha conhecimento sobre o horário de maior atividade de mosquitos vetores de malária, do pôr-do-sol ao amanhecer;\n\n
-
-\tUse roupas claras e com manga longa, durante atividades de exposição elevada;\n\n
-
-\tAplique repelente nas áreas expostas da pele, seguindo a orientação do fabricante. Em crianças com idade inferior a dois anos, não é recomendado o uso de repelente sem orientação médica;\n\n
-
-\tEm áreas de transmissão de malária é imprescindível que o viajante fique atento ao surgimento de sintomas da doença, como febre, dor no corpo e dor de cabeça;\n\n
-
-\tEm caso de manifestação de algum sintoma da doença, procure uma unidade de saúde especializada mais próxima, o ideal é que este atendimento seja feito o quanto antes, em até 48 horas após os primeiros sintomas;\n\n
-
-\tO Brasil conta com uma rede pública de saúde estruturada para diagnosticar e tratar os pacientes, de forma oportuna e adequada;\n\n
-
-\tCaso você queira adquirir mais informações acerca da malária antes de realizar a sua viagem, busque orientações em um dos Centros de Referência.\n\n
-
-Previna-se contra doenças de transmissão respiratória:\n\n
-
-\tLavar as mãos com água e sabonete antes das refeições, de tocar os olhos, a boca e o nariz e após tossir, espirrar ou usar o banheiro;\n\n
-
-\tIndivíduos doentes devem ficar em repouso, consumir alimentação balanceada, aumentar a ingestão de líquidos e evitar aglomerações e ambientes fechados;\n\n
-
-\tMantenha os ambientes ventilados;\n\n
-
-\tEsteja sempre atento ao apresentar sintomas respiratórios de maior gravidade e procure imediatamente assistência médica.\n\n
-
-\tConsuma alimentos e bebidas de forma saudável:\n\n
-
-\tEvite consumir alimentos cujas condições higiênicas, de preparo e acondicionamento, são precárias;\n\n
-
-\tPrefira alimentos que contenham baixo teor de açúcares, gorduras e sal;\n\n
-
-\tBeba bastante líquido, preferencialmente água ou suco. Evite alimentos crus ou mal cozidos, principalmente os frutos do mar;\n\n
-
-\tAlimentos embalados devem conter no rótulo a identificação do produtor, data de validade e a embalagem deve estar íntegra;\n\n
-
-\tDurante o turismo rural, dê preferência aos alimentos que podem ficar sem refrigeração e não estraguem com o calor;\n\n
-
-\tCaso tenha diarreia e vômitos por conta da ingestão de alimentos e bebidas, é preciso cuidado redobrado com a desidratação. Recomenda-se a ingestão de sal de reidratação oral, disponibilizado gratuitamente pelo Sistema Único de Saúde, ou outras soluções do tipo. As bebidas esportivas não compensam corretamente as perdas e não devem ser utilizadas para tratamento de doença diarreica.\n\n
-
-Pratique sexo de forma segura:\n\n
-
-\tNo Brasil, a camisinha é distribuída gratuitamente pelo governo e está disponível em postos de saúde, unidades de pronto atendimento, albergues, Centros de Atendimento ao Turista e em outros pontos de distribuição espalhados pelas cidades. Leve sempre consigo os preservativos para facilitar a sua utilização e a prevenção de doenças sexualmente transmissíveis.\n
-    </string>
-    <string name="prevention_title_02">Previna-se contra doenças de transmissão respiratória\n\n</string>
-    <string name="prevention_content_02">- Lavar as mãos com água e sabonete antes das refeições, de tocar os olhos, a boca e o nariz e após tossir, espirrar ou usar o banheiro;\n\n
-
-- Lavar as mãos com água e sabonete antes das refeições, de tocar os olhos, a boca e o nariz e após tossir, espirrar ou usar o banheiro;\n\n
-
-- Indivíduos doentes devem ficar em repouso, consumir alimentação balanceada, aumentar a ingestão de líquidos e evitar aglomerações e ambientes fechados;\n\n
-
-- Mantenha os ambientes ventilados;\n\n
-
-- Esteja sempre atento ao apresentar sintomas respiratórios de maior gravidade e procure imediatamente assistência médica.\n\n
-</string>
-    <string name="prevention_title_03">Consuma alimentos e bebidas de forma saudável\n\n</string>
-    <string name="prevention_content_03">- Evite consumir alimentos cujas condições higiênicas, de preparo e acondicionamento, são precárias;\n\n
-
-- Prefira alimentos que contenham baixo teor de açúcares, gorduras e sal;\n\n
-
-- Beba bastante líquido, preferencialmente água ou suco. Evite alimentos crus ou mal cozidos, principalmente os frutos do mar;\n\n
-
-- Alimentos embalados devem conter no rótulo a identificação do produtor, data de validade e a embalagem deve estar íntegra;\n\n
-
-- Durante o turismo rural, dê preferência aos alimentos que podem ficar sem refrigeração e não estraguem com o calor;\n\n
-
-- Caso tenha diarreia e vômitos por conta da ingestão de alimentos e bebidas, é preciso cuidado redobrado com a desidratação. Recomenda-se a ingestão de sal de reidratação oral, disponibilizado gratuitamente pelo Sistema Único de Saúde, ou outras soluções do tipo. As bebidas esportivas não compensam corretamente as perdas e não devem ser utilizadas para tratamento de doença diarreica.\n\n
-</string>
-    <string name="prevention_title_04">Pratique sexo de forma segura\n\n</string>
-    <string name="prevention_content_04">- No Brasil, a camisinha é distribuída gratuitamente pelo governo e está disponível em postos de saúde, unidades de pronto atendimento, albergues, Centros de Atendimento ao Turista e em outros pontos de distribuição espalhados pelas cidades. \nLeve sempre consigo os preservativos para facilitar a sua utilização e a prevenção de doenças sexualmente transmissíveis\n\n</string>
+    <string name="prevention_title_01">Prevenção</string>
+    <string name="prevention_content_01"><b>Malária:</b>
+	\n\n•	No Brasil, a transmissão concentra-se na Região Amazônica, composta pelos estados do Acre, Amapá, Amazonas, Maranhão, Mato Grosso, Pará, Rondônia, Roraima e Tocantins;
+	\n\n•	Em áreas de transmissão de malária, é fundamental que o viajante tenha conhecimento sobre o horário de maior atividade de mosquitos vetores de malária, do pôr-do-sol ao amanhecer;
+	\n\n•	Use roupas claras e com manga longa, durante atividades de exposição elevada;
+	\n\n•	Aplique repelente nas áreas expostas da pele, seguindo a orientação do fabricante. Em crianças com idade inferior a dois anos, não é recomendado o uso de repelente sem orientação médica;
+	\n\n•	Em áreas de transmissão de malária é imprescindível que o viajante fique atento ao surgimento de sintomas da doença, como febre, dor no corpo e dor de cabeça;
+	\n\n•	Em caso de manifestação de algum sintoma da doença, procure uma unidade de saúde especializada mais próxima. O ideal é que este atendimento seja feito o quanto antes, em até 48 horas após os primeiros sintomas;
+	\n\n•	O Brasil conta com uma rede pública de saúde estruturada para diagnosticar e tratar os pacientes, de forma oportuna e adequada;
+	\n\n•	Caso você queira adquirir mais informações acerca da malária, antes de realizar a sua viagem, busque orientações em um dos Centros de Referência.
+\n\n<b>Previna-se contra doenças de transmissão respiratória:</b>
+	\n\n•	Lavar as mãos com água e sabonete antes das refeições, de tocar os olhos, a boca e o nariz e após tossir, espirrar ou usar o banheiro;
+	\n\n•	Indivíduos doentes devem ficar em repouso, consumir alimentação balanceada, aumentar a ingestão de líquidos e evitar aglomerações e ambientes fechados;
+	\n\n•	Mantenha os ambientes ventilados;
+	\n\n•	Esteja sempre atento ao apresentar sintomas respiratórios de maior gravidade e procure imediatamente assistência médica.
+\n\n<b>Consuma alimentos e bebidas de forma saudável:</b>
+	\n\n•	Evite consumir alimentos cujas condições higiênicas, de preparo e acondicionamento, são precárias;
+	\n\n•	Prefira alimentos que contenham baixo teor de açúcares, gorduras e sal;
+	\n\n•	Beba bastante líquido, preferencialmente água ou suco. Evite alimentos crus ou mal cozidos, principalmente os frutos do mar;
+	\n\n•	Alimentos embalados devem conter no rótulo a identificação do produtor, data de validade e a embalagem deve estar íntegra;
+	\n\n•	Durante o turismo rural, dê preferência aos alimentos que podem ficar sem refrigeração e não estraguem com o calor;
+	\n\n•	Caso tenha diarreia e vômitos por conta da ingestão de alimentos e bebidas, é preciso cuidado redobrado com a desidratação. Recomenda-se a ingestão de sal de reidratação oral, disponibilizado gratuitamente pelo Sistema Único de Saúde, ou outras soluções do tipo. As bebidas esportivas não compensam corretamente as perdas e não devem ser utilizadas para tratamento de doença diarreica.</string>
 
     #Care
 
