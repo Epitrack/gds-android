@@ -413,31 +413,20 @@ Pratique sexo de forma segura:\n\n
 
     #Care
 
-    <string name="care_title_01">Cuidados básicos\n\n</string>
-    <string name="care_content_01">- Procure seu médico, preferencialmente, entre 4 e 8 semanas antes da viagem para informar seu roteiro. Peça orientações sobre cuidados para proteção contra doenças e lesões;\n\n
-
-- Você pode ter dificuldade ou não encontrar os medicamentos que utiliza habitualmente durante a viagem. Peça orientação ao seu médico sobre quais medicamentos e em que quantidade deve levar durante a viagem, incluindo a bagagem de mão;\n\n
-
-- Carregue com você os seus documentos de identificação, de preferência em inglês e português, com informações de contatos pessoais, tipo sanguíneo, se tem alergias, diabetes ou outras doenças que possam requerer particular atenção;\n\n
-
-- Toda gestante deve consultar seu médico antes da viagem, pois estará sujeita a vários riscos e a viagem pode afetar sua segurança e conforto;\n\n
-
-- Antes de viajar consulte a empresa de transporte sobre as regras específicas para gestantes;\n\n
-
-- O Brasil é um país de clima tropical. Recomenda-se ao viajante a ingestão constante de líquidos para evitar a desidratação;\n\n
-
-- Use roupas e calçados confortáveis. Eles lhe darão segurança e proteção contra torções, picadas de insetos e acidentes com animais peçonhentos;\n\n
-
-- Para se proteger do sol, cubra-se com roupas apropriadas, utilize chapéu ou boné e óculos escuros. Evite a exposição direta ao sol entre 10 horas da manhã e 4 horas da tarde;\n\n
-
-- Use protetor solar com fator de proteção adequado à cor de sua pele, de acordo com as orientações do fabricante. Mesmo em locais mais frios, sua pele ficará protegida dos raios solares;\n\n
-
-- Use repelentes quando houver necessidade\n\n
-
-- Lave as mãos com água e sabão várias vezes ao dia, principalmente antes de ingerir alimentos, após utilizar conduções públicas, visitar mercados ou locais com grande fluxo de pessoas.\n\n
-
-- No Brasil, é proibido por lei dirigir após o consumo de bebida alcoólica, mesmo em pequenas quantidades\n\n
-</string>
+    <string name="care_title_01">Cuidados básicos</string>
+    <string name="care_content_01">Saúde do Viajante:
+	\n\n•	Procure seu médico, preferencialmente, entre 4 e 8 semanas antes da viagem para informar seu roteiro. Peça orientações sobre cuidados para proteção contra doenças e lesões;
+	\n\n•	Você pode ter dificuldade ou não encontrar os medicamentos que utiliza habitualmente, durante a viagem. Peça orientação ao seu médico sobre quais medicamentos e em que quantidade deve levar, incluindo a bagagem de mão;
+	\n\n•	Carregue com você os seus documentos de identificação, de preferência em inglês e português, com informações de contatos pessoais, tipo sanguíneo, se tem alergias, diabetes ou outras doenças que possam requerer particular atenção;
+	\n\n•	Toda gestante deve consultar seu médico antes da viagem, pois estará sujeita a vários riscos e a viagem pode afetar sua segurança e conforto;
+	\n\n•	Antes de viajar consulte a empresa de transporte sobre as regras específicas para gestantes;
+	\n\n•	O Brasil é um país de clima tropical. Recomenda-se ao viajante a ingestão constante de líquidos para evitar a desidratação;
+	\n\n•	Use roupas e calçados confortáveis. Eles lhe darão segurança e proteção contra torções, picadas de insetos e acidentes com animais peçonhentos;
+	\n\n•	Para se proteger do sol, cubra-se com roupas apropriadas, utilize chapéu ou boné e óculos escuros. Evite a exposição direta ao sol entre 10 horas da manhã e 4 horas da tarde;
+	\n\n•	Use protetor solar com fator de proteção adequado à cor de sua pele, de acordo com as orientações do fabricante. Mesmo em locais mais frios, sua pele ficará protegida dos raios solares;
+	\n\n•	Use repelentes quando houver necessidade;
+	\n\n•	Lave as mãos com água e sabão várias vezes ao dia, principalmente antes de ingerir alimentos, após utilizar conduções públicas, visitar mercados ou locais com grande fluxo de pessoas;
+	\n\n•	No Brasil, é proibido por lei dirigir após o consumo de bebida alcoólica, mesmo em pequenas quantidades.</string>
 
     #Vacinne
     <string name="vacinne_title_01">Vacinas\n\n</string>
@@ -521,8 +510,50 @@ Reservamo-nos o direito de usar esta informação internamente e, neste âmbito,
 \nO acesso ao serviço representa a aceitação expressa e irrestrita dos Termos de Uso acima descritos. Ao concordar com esses termos você concede uma licença perpétua, isenta de royalties, licença incondicional para o aplicativo “Guardiões da Saúde”, Ministério da Saúde e todas as organizações sucessoras, para publicar a sua contribuição de forma agregada, na própria aplicação, bem como divulgá-las aos serviços de vigilância em saúde pública relacionados. Você também concorda que o aplicativo “Guardiões da Saúde” tem o direito, mas não a obrigação, de editar ou remover qualquer contribuição a critério exclusivo da equipe do aplicativo.</string>
 
     <string name="zika_title_01">Dengue, Zika e Chikungunya</string>
-    <string name="zika_content_01">Os vírus da Dengue, Zika e Chikungunya são transmitidos pelo mosquito <i>Aedes aegypti</i> e apresentam sinais e sintomas parecidos.\n\n
-    É importante que você procure o serviço de saúde mais próximo quando apresentar febre, manchas vermelhas pelo corpo seguida de febre, dores no corpo, dor nas juntas (articulações) ou coceira.\n\n</string>
+
+    <string name="zika_content_01" formatted="false">•	Os vírus da Dengue, Zika e Chikungunya são transmitidos pelo mosquito Aedes aegypti e apresentam sinais e sintomas parecidos. 
+	\n\n•	É importante que você procure o serviço de saúde mais próximo, quando apresentar febre, manchas vermelhas pelo corpo, dores no corpo ou dor nas juntas (articulações) ou coceira. 
+	\n\n•	Procure se informar se no seu bairro ou cidade estão acontecendo casos de Dengue, Zika ou Chikungunya. 
+	\n\n•	Se estiver com suspeita de Dengue, Zika ou Chikungunya, tome líquidos em abundância.
+	\n\n•	A principal medida de prevenção é evitar a reprodução dos mosquitos Aedes aegypti, transmissores das três doenças.
+	\n\n•	Os repelentes para uso sobre a pele podem ser utilizados por gestantes, desde que estejam devidamente registrados na ANVISA e que sejam seguidas as instruções de uso descritas no rótulo. Produtos à base de DEET, Icaridin (Picaridin), EBAAP (IR3535) são considerados seguros para serem utilizados por gestantes. 
+	\n\n•	Produtos à base DEET não devem ser usados em crianças menores de 2 anos. Em crianças entre 2 e 12 anos, a concentração dever ser no máximo 10% e a aplicação deve se restringir a 3 vezes por dia. Para maiores de 12 anos, são permitidas as concentrações superiores a 10%.
+	\n\n•	Os repelentes de ambiente, como aqueles de parede (aparelhos elétricos) ou espirais não devem ser utilizados em locais com pouca ventilação nem na presença de pessoas asmáticas ou com alergias respiratórias. Estes podem ser utilizados em qualquer ambiente da casa, desde que estejam, no mínimo, a dois metros de distância das pessoas. 
+Dengue
+	\n\n•	A Dengue é a doença mais comum entre as três, já sendo bem conhecida pela população brasileira. 
+	\n\n•	Não usar medicamentos à base de ácido acetilsalicílico (ex.: AAS, Aspirina entre outros) e nem anti-inflamatórios, em função do risco aumentado de complicações hemorrágicas (sangramento) no caso de doenças como a Dengue. 
+	\n\n•	Atenção para sinais que podem indicar agravamento da Dengue: falta de ar, tontura, dores abdominais ou sangramentos.
+	\n\n•	Ao apresentar qualquer sinal ou sintoma de Dengue, procure um serviço de saúde imediatamente. 
+Chikungunya
+	\n\n•	Os primeiros casos de infecção pelo Chikungunya ocorreram em 2014.
+	\n\n•	Ao apresentar qualquer sinal ou sintoma de Chikungunya, procure um serviço de saúde imediatamente. 
+Zika
+	\n\n•	Os primeiros casos de infecção pelo vírus Zika ocorreram em fevereiro de 2015.
+	\n\n•	No caso da infecção pelo vírus Zika, a maior parte das pessoas (mais de 80%) não apresenta sinais e sintomas.
+\n\nAs complicações causadas pela infecção pelo vírus Zika são pouco conhecidas. Manifestações neurológicas (paralisia facial, fraqueza nas pernas e Síndrome de Guillain-Barré), raramente, podem ocorrer alguns dias depois do quadro agudo. A infecção durante a gestação pode levar a malformações congênitas graves, em especial a microcefalia. 
+\n\nNão existe tratamento específico para a infecção pelo vírus Zika. 
+\n\nAo apresentar qualquer sinal ou sintoma de Zika, procure um serviço de saúde imediatamente. 
+\n\nCombata o mosquito periodicamente:
+	\n\n•	Mantenha bem tampados tonéis e barris de água.
+	\n\n•	Lave semanalmente por dentro com escova e sabão os tanques utilizados para armazenar água.
+	\n\n•	Mantenha a caixa-d’água bem fechada. Coloque também uma tela no ladrão da caixa-d’água.
+	\n\n•	Remova folhas, galhos e tudo que possa impedir a água de correr pelas calhas.
+	\n\n•	Não deixe água acumulada sobre a laje.
+	\n\n•	Encha os pratinhos de vasos de plantas com areia até a borda.
+	\n\n•	Outra opção para os pratinhos de plantas é lavar uma vez por semana.
+	\n\n•	Troque a água dos vasos de plantas aquáticas e lave-os com escova, água e sabão uma vez por semana.
+	\n\n•	Coloque o lixo em sacos plásticos e mantenha a lixeira bem fechada.
+	\n\n•	Feche bem os sacos de lixo e deixe-os fora do alcance de animais.
+	\n\n•	Mantenha as garrafas com a boca virada para baixo, evitando o acúmulo de água.
+	\n\n•	Pneus devem ser acondicionados em locais cobertos.
+	\n\n•	Faça sempre a manutenção de piscinas ou fontes utilizando os produtos químicos apropriados.
+	\n\n•	Se o ralo não for de abrir e fechar, coloque uma tela fina para impedir o acesso do mosquito à água.
+	\n\n•	Coloque areia dentro de todos os cacos que possam acumular água.
+	\n\n•	Não deixe água acumulada em folhas secas e tampas de garrafas.
+	\n\n•	Os vasos sanitários fora de uso ou de uso eventual devem ser tampados e verificados semanalmente.
+	\n\n•	Limpe sempre a bandeja do ar-condicionado para evitar o acúmulo de água.
+	\n\n•	Lonas usadas para cobrir objetos ou entulhos devem ser bem esticadas para evitar poças-d’água.
+\n\nPara dúvidas referentes à Dengue, Zika e Chikungunya, favor ligar para o Disque Saúde, por meio do número <b><a href="tel:136">136</a></b> e digitar a opção 3. </string>
 
     # Game
     <string name="welcome_game_welcome">Bem-vindo a nossa pista de corrida! Arraste para saber mais sobre como jogar.</string>
