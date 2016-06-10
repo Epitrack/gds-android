@@ -429,29 +429,16 @@ Pratique sexo de forma segura:\n\n
 	\n\n•	No Brasil, é proibido por lei dirigir após o consumo de bebida alcoólica, mesmo em pequenas quantidades.</string>
 
     #Vacinne
-    <string name="vacinne_title_01">Vacinas\n\n</string>
-    <string name="vacinne_content_01">- A Organização Mundial da Saúde (OMS) informa que não há calendário internacional de vacinação para todos os viajantes. Para cada viajante, será adotada recomendação personalizada de acordo com os países a serem visitados, dependendo do tipo, duração e tempo disponível para aplicação da vacina antes da partida;\n\n
-
-- O Brasil não exige o Certificado Internacional de Vacinação ou Profilaxia para entrada no país;\n\n
-
-- Certifique-se de que suas vacinas de rotina estejam em dia, de acordo com as recomendações de seu país de origem, pois é uma medida eficaz e segura para a prevenção de várias doenças;\n\n
-
-- Devido a circulação do sarampo na Europa, África e Ásia recomenda-se que pessoas com origem ou destino a países com ocorrência dessa doença estejam vacinados previamente;\n\n
-
-- A preparação para a viagem é uma boa oportunidade para verificar o estado vacinal de bebês, crianças, adolescentes, adultos e idosos.\n\n
-
-        - Todo morador ou visitante de qualquer cidade brasileira tem disponível também as vacinas para influenza e Pólio que são enfermidades relacionadas a possíveis emergências de saúde pública de importância internacional para a Organização Mundial de Saúde.\n\n
-\n\n
-    <b>Prevenção contra febre amarela</b>\n\n
-
-    - Previna-se contra febre amarela tomando a vacina 10 dias antes de visitar áreas de mata ou de praticar turismo ecológico ou rural.\n\n
-
-- Procure seu medico, pois ele poderá lhe ajudar a decidir se a vacina é necessária, com base em seu plano de viagem;\n\n</string>
-    <string name="vacinne_title_02">Prevenção contra febre amarela\n\n</string>
-    <string name="vacinne_content_02">- Previna-se contra febre amarela tomando a vacina 10 dias antes de visitar áreas de mata ou de praticar turismo ecológico ou rural.\n\n
-
-- Procure seu medico, pois ele poderá lhe ajudar a decidir se a vacina é necessária, com base em seu plano de viagem;\n\n
-\n</string>
+    <string name="vacinne_title_01">Vacinas</string>
+    <string name="vacinne_content_01">•	A Organização Mundial da Saúde (OMS) informa que não há calendário internacional de vacinação para todos os viajantes. Para cada viajante, será adotada recomendação personalizada, de acordo com os países a serem visitados, dependendo do tipo, duração e tempo disponível para aplicação da vacina antes da partida.
+	\n\n•	O Brasil não exige o Certificado Internacional de Vacinação ou Profilaxia para entrada no país.
+	\n\n•	Certifique-se de que suas vacinas de rotina estejam em dia, de acordo com as recomendações de seu país de origem, pois é uma medida eficaz e segura para a prevenção de várias doenças.
+	\n\n•	Devido à circulação do sarampo na Europa, África e Ásia recomenda-se que pessoas com origem ou destino a países com ocorrência dessa doença sejam vacinados previamente.
+	\n\n•	A preparação para a viagem é uma boa oportunidade para verificar o estado vacinal de bebês, crianças, adolescentes, adultos e idosos.
+	\n\n•	Todo morador ou visitante de qualquer cidade brasileira tem disponível também as vacinas para influenza e Pólio, que são enfermidades relacionadas a possíveis emergências de saúde pública de importância internacional para a Organização Mundial de Saúde.
+\n\nPrevenção contra febre amarela:
+	\n\n•	Previna-se contra febre amarela tomando a vacina 10 dias antes de visitar áreas de mata ou de praticar turismo ecológico ou rural.
+	\n\n•	Procure seu médico, pois ele poderá lhe ajudar a decidir se a vacina é necessária, com base em seu plano de viagem.</string>
 
     #Terms of use
     <string name="terms_title_01">POLÍTICA DE PRIVACIDADE E TERMOS DE USO</string>
