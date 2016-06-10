@@ -17,8 +17,6 @@ import butterknife.OnClick;
  */
 public class ZikaActivity extends BaseActivity {
 
-    private static final float MARGIN_TOP = 25;
-
     @Override
     protected void onCreate(final Bundle bundle) {
         super.onCreate(bundle);
