@@ -467,7 +467,7 @@ public class MapSymptomActivity extends AbstractBaseMapActivity implements Searc
                         }
 
                         textViewState.setText(getStateDescription(jsonObjectLocation.get("state").toString().toUpperCase()));
-                        textViewParticipation.setText(jsonObjectData.getString("total_surveys") + " Participações essa semana.");
+                        textViewParticipation.setText(jsonObjectData.getString("total_surveys") + " Participações nos últimos dias");
 
                         double totalNoSympton = Double.parseDouble(jsonObjectData.get("total_no_symptoms").toString());
                         double goodPercent = 0;
