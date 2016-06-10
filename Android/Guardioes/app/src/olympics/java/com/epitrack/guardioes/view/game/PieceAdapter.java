@@ -8,25 +8,19 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 
 import com.epitrack.guardioes.R;
-import com.epitrack.guardioes.view.game.model.Answer;
 
 /**
  * @author Igor Morais
  */
-public class AnswerAdapter extends ArrayAdapter<Answer> {
+public class PieceAdapter extends ArrayAdapter<Integer> {
 
-    public AnswerAdapter(final Context context) {
-        super(context, 0);
+    public PieceAdapter(final Context context, final Integer[] pieceArray) {
+        super(context, 0, pieceArray);
     }
 
-    @Override
-    public int getCount() {
-        return 9;
-    }
+    private static class ViewHolder {
 
-    public static class ViewHolder {
-
-        ImageView imageViewAnswer;
+        ImageView imageViewPiece;
     }
 
     @Override
@@ -39,11 +33,11 @@ public class AnswerAdapter extends ArrayAdapter<Answer> {
         if (view == null) {
 
             view = LayoutInflater.from(viewGroup.getContext())
-                                 .inflate(R.layout.answer_item, viewGroup, false);
+                                 .inflate(R.layout.piece_item, viewGroup, false);
 
             viewHolder = new ViewHolder();
 
-            viewHolder.imageViewAnswer = (ImageView) view.findViewById(R.id.answer);
+            viewHolder.imageViewPiece = (ImageView) view.findViewById(R.id.piece);
 
             view.setTag(viewHolder);
 
@@ -52,6 +46,7 @@ public class AnswerAdapter extends ArrayAdapter<Answer> {
             viewHolder = (ViewHolder) view.getTag();
         }
 
+        // viewHolder.imageViewPiece.setImageResource(getItem(position));
 
         return view;
     }
