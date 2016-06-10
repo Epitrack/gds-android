@@ -50,6 +50,7 @@ public final class Constants {
         public static final String MAIL = "Mail";
         public static final String DATE = "Date";
         public static final String USER = "User";
+        public static final String PHASE = "Phase";
     }
 
     public static class Pref {
