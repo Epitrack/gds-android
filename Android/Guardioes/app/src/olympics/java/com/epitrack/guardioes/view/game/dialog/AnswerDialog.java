@@ -7,21 +7,41 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.epitrack.guardioes.R;
+import com.epitrack.guardioes.view.game.IAnswer;
+import com.epitrack.guardioes.view.game.model.Option;
+import com.epitrack.guardioes.view.game.model.Question;
 import com.liulishuo.magicprogresswidget.MagicProgressCircle;
+
+import java.util.List;
 
 /**
  * @author Igor Morais
  */
-public class AnswerDialog extends DialogFragment implements View.OnClickListener {
+public class AnswerDialog extends DialogFragment implements View.OnClickListener{
 
     public static final String TAG = AnswerDialog.class.getSimpleName();
+
+    public static final int OPTION_1 = 0;
+    public static final int OPTION_2 = 1;
+    public static final int OPTION_3 = 2;
 
     private static final int TIME = 15;
     private static final int DELAY = 1000;
     private static final float FACTOR = 15 / 1f;
+
+    private TextView textViewQuestion;
+
+    private TextView textViewAnswer1;
+    private TextView textViewAnswer2;
+    private TextView textViewAnswer3;
+
+    private ImageButton buttonAnswer1;
+    private ImageButton buttonAnswer2;
+    private ImageButton buttonAnswer3;
 
     private TextView textViewTime;
     private MagicProgressCircle progressCircle;
@@ -29,6 +49,10 @@ public class AnswerDialog extends DialogFragment implements View.OnClickListener
     private final Handler handler = new Handler();
 
     private TimerHandler timer;
+
+    private Question question;
+
+    private IAnswer listener;
 
     @Override
     public void onCreate(final Bundle bundle) {
@@ -46,15 +70,31 @@ public class AnswerDialog extends DialogFragment implements View.OnClickListener
     @Override
     public void onViewCreated(final View view, @Nullable final Bundle bundle) {
 
+        textViewQuestion = (TextView) view.findViewById(R.id.text_view_question);
+
+        textViewAnswer1 = (TextView) view.findViewById(R.id.text_view_answer_1);
+        textViewAnswer2 = (TextView) view.findViewById(R.id.text_view_answer_2);
+        textViewAnswer3 = (TextView) view.findViewById(R.id.text_view_answer_3);
+
+        buttonAnswer1 = (ImageButton) view.findViewById(R.id.button_answer_1);
+        buttonAnswer2 = (ImageButton) view.findViewById(R.id.button_answer_2);
+        buttonAnswer3 = (ImageButton) view.findViewById(R.id.button_answer_3);
+
         textViewTime = (TextView) view.findViewById(R.id.text_view_time);
 
         progressCircle = (MagicProgressCircle) view.findViewById(R.id.progress_timer);
 
-        view.findViewById(R.id.image_button_close).setOnClickListener(this);
+        view.findViewById(R.id.image_button_close).setOnClickListener(new View.OnClickListener() {
 
-        textViewTime.setText(String.valueOf(TIME));
+            @Override
+            public void onClick(final View element) {
+                dismiss();
+            }
+        });
 
         load();
+
+        startTimer();
     }
 
     @Override
@@ -64,7 +104,7 @@ public class AnswerDialog extends DialogFragment implements View.OnClickListener
         handler.removeCallbacks(timer);
     }
 
-    private void load() {
+    private void startTimer() {
 
         timer = new TimerHandler(TIME);
 
@@ -73,7 +113,55 @@ public class AnswerDialog extends DialogFragment implements View.OnClickListener
 
     @Override
     public void onClick(final View view) {
-        dismiss();
+
+        final Option option = (Option) view.getTag();
+
+        if (option.isCorrect()) {
+
+            view.setBackgroundResource(R.drawable.button_answer_correct);
+
+            listener.onCorrect();
+
+        } else {
+
+            view.setBackgroundResource(R.drawable.button_answer_incorrect);
+
+            listener.onWrong();
+        }
+    }
+
+    private void load() {
+
+        textViewQuestion.setText(question.getTitle());
+
+        final List<Option> optionList = question.getOptionList();
+
+        textViewAnswer1.setText(optionList.get(OPTION_1).getOption());
+        textViewAnswer2.setText(optionList.get(OPTION_2).getOption());
+        textViewAnswer3.setText(optionList.get(OPTION_3).getOption());
+
+        buttonAnswer1.setTag(optionList.get(OPTION_1));
+        buttonAnswer1.setOnClickListener(this);
+
+        buttonAnswer2.setTag(optionList.get(OPTION_2));
+        buttonAnswer2.setOnClickListener(this);
+
+        buttonAnswer3.setTag(optionList.get(OPTION_3));
+        buttonAnswer3.setOnClickListener(this);
+
+        textViewTime.setText(String.valueOf(TIME));
+    }
+
+    public AnswerDialog setQuestion(final Question question) {
+        this.question = question;
+
+        return this;
+    }
+
+    public AnswerDialog setListener(final IAnswer listener) {
+        this.listener = listener;
+
+        return this;
     }
 
     private class TimerHandler implements Runnable {
