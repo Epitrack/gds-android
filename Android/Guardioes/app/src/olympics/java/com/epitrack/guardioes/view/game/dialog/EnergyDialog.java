@@ -1,6 +1,7 @@
 package com.epitrack.guardioes.view.game.dialog;
 
 import android.app.DialogFragment;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -8,11 +9,12 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.epitrack.guardioes.R;
+import com.epitrack.guardioes.view.survey.SelectParticipantActivity;
 
 /**
  * @author Igor Morais
  */
-public class EnergyDialog extends DialogFragment implements View.OnClickListener {
+public class EnergyDialog extends DialogFragment {
 
     public static final String TAG = EnergyDialog.class.getSimpleName();
 
@@ -32,12 +34,26 @@ public class EnergyDialog extends DialogFragment implements View.OnClickListener
     @Override
     public void onViewCreated(final View view, @Nullable final Bundle bundle) {
 
+        view.findViewById(R.id.image_button_join).setOnClickListener(new View.OnClickListener() {
 
-        view.findViewById(R.id.image_button_close).setOnClickListener(this);
-    }
+            @Override
+            public void onClick(final View element) {
 
-    @Override
-    public void onClick(final View view) {
-        dismiss();
+                final Intent intent = new Intent();
+
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                                Intent.FLAG_ACTIVITY_NEW_TASK);
+
+                getActivity().startActivity(new Intent(getActivity(), SelectParticipantActivity.class));
+            }
+        });
+
+        view.findViewById(R.id.image_button_close).setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(final View element) {
+                dismiss();
+            }
+        });
     }
 }
