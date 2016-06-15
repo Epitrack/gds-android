@@ -14,7 +14,13 @@ import android.widget.TextView;
 import com.epitrack.guardioes.R;
 import com.epitrack.guardioes.helper.Constants;
 import com.epitrack.guardioes.view.base.BaseAppCompatActivity;
+import com.epitrack.guardioes.view.game.dialog.AnswerDialog;
 import com.epitrack.guardioes.view.game.model.Phase;
+import com.epitrack.guardioes.view.game.model.Question;
+import com.epitrack.guardioes.view.game.model.QuestionHandler;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import butterknife.Bind;
 
@@ -35,6 +41,8 @@ public class GameActivity extends BaseAppCompatActivity implements AdapterView.O
 
     private EnergyFragment energyFragment;
 
+    private final Map<Integer, Boolean> pieceMap = getPieceMap();
+
     @Override
     protected void onCreate(@Nullable final Bundle bundle) {
         super.onCreate(bundle);
@@ -54,9 +62,32 @@ public class GameActivity extends BaseAppCompatActivity implements AdapterView.O
     @Override
     public void onItemClick(final AdapterView<?> adapterView, final View view, final int position, final long id) {
 
-        flip(position, view);
+        if (!pieceMap.get(position)) {
 
-        //new AnswerDialog().show(getFragmentManager(), AnswerDialog.TAG);
+            QuestionHandler.with().requestQuestion(this, new IQuestion() {
+
+                @Override
+                public void onQuestion(final Question question) {
+
+                    new AnswerDialog().setQuestion(question).setListener(new IAnswer() {
+
+                        @Override
+                        public void onWrong() {
+
+                        }
+
+                        @Override
+                        public void onCorrect() {
+
+                            pieceMap.put(position, true);
+
+                            flip(position, view);
+                        }
+
+                    }).show(getFragmentManager(), AnswerDialog.TAG);
+                }
+            });
+        }
     }
 
     private void flip(final int position, final View view) {
@@ -105,5 +136,22 @@ public class GameActivity extends BaseAppCompatActivity implements AdapterView.O
         }
 
         return energyFragment;
+    }
+
+    private Map<Integer, Boolean> getPieceMap() {
+
+        final Map<Integer, Boolean> pieceMap = new HashMap<>(9);
+
+        pieceMap.put(0, false);
+        pieceMap.put(1, false);
+        pieceMap.put(2, false);
+        pieceMap.put(3, false);
+        pieceMap.put(4, false);
+        pieceMap.put(5, false);
+        pieceMap.put(6, false);
+        pieceMap.put(7, false);
+        pieceMap.put(8, false);
+
+        return pieceMap;
     }
 }

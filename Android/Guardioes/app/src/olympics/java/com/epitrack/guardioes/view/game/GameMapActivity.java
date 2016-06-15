@@ -1,5 +1,6 @@
 package com.epitrack.guardioes.view.game;
 
+import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
@@ -9,7 +10,12 @@ import android.widget.RelativeLayout;
 
 import com.epitrack.guardioes.R;
 import com.epitrack.guardioes.helper.Constants;
+import com.epitrack.guardioes.manager.PrefManager;
+import com.epitrack.guardioes.model.User;
+import com.epitrack.guardioes.request.GameRequester;
+import com.epitrack.guardioes.request.base.RequestHandler;
 import com.epitrack.guardioes.view.base.BaseAppCompatActivity;
+import com.epitrack.guardioes.view.game.dialog.EnergyDialog;
 import com.epitrack.guardioes.view.game.model.Phase;
 
 import butterknife.Bind;
@@ -34,6 +40,10 @@ public class GameMapActivity extends BaseAppCompatActivity implements View.OnCli
         super.onCreate(bundle);
 
         setContentView(R.layout.game_map);
+
+        final User user = new PrefManager(this).get(Constants.Pref.USER, User.class);
+
+        new GameRequester(this).update(0, 0, null, user, new UserHandler(this));
 
         load();
 
@@ -74,14 +84,33 @@ public class GameMapActivity extends BaseAppCompatActivity implements View.OnCli
         });
     }
 
+    private class UserHandler extends RequestHandler<User> {
+
+        public UserHandler(final Context context) {
+            super(context);
+        }
+
+        @Override
+        public void onSuccess(User type) {
+            super.onSuccess(type);
+        }
+    }
+
     @Override
     public void onClick(final View view) {
 
-        final Bundle bundle = new Bundle();
+        if (false) {
 
-        bundle.putSerializable(Constants.Bundle.PHASE, (Phase) view.getTag());
+            new EnergyDialog().show(getFragmentManager(), EnergyDialog.TAG);
 
-        navigateTo(GameActivity.class, bundle);
+        } else {
+
+            final Bundle bundle = new Bundle();
+
+            bundle.putSerializable(Constants.Bundle.PHASE, (Phase) view.getTag());
+
+            navigateTo(GameActivity.class, bundle);
+        }
     }
 
     private EnergyFragment getEnergyFragment() {
