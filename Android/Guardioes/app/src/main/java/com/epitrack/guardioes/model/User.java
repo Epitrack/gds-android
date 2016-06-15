@@ -5,7 +5,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.parceler.Parcel;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Parcel(Parcel.Serialization.BEAN)
 public class User {
@@ -33,6 +35,10 @@ public class User {
     private String relationship;
     private String versionBuild;
     private String gcmToken;
+
+    private int energy;
+    private int level;
+    private Map<Integer, Boolean> pieceMap = new HashMap<>();
 
     public User() {
 
@@ -246,5 +252,29 @@ public class User {
 
     public void setGcmToken(String gcmToken) {
         this.gcmToken = gcmToken;
+    }
+
+    public int getEnergy() {
+        return energy;
+    }
+
+    public void setEnergy(final int energy) {
+        this.energy = energy;
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
+    public void setLevel(final int level) {
+        this.level = level;
+    }
+
+    public Map<Integer, Boolean> getPieceMap() {
+        return pieceMap;
+    }
+
+    public void setPieceMap(final Map<Integer, Boolean> pieceMap) {
+        this.pieceMap = pieceMap;
     }
 }
