@@ -216,11 +216,6 @@ public class CreateAccountActivity extends BaseAppCompatActivity {
         navigateForResult(TermActivity.class, REQUEST_MAIL);
     }
 
-    @OnClick(R.id.button_create_account)
-    public void onNext() {
-        validator.validate();
-    }
-
     private void onPreviousAnimation(final View visibleView, final View invisibleView) {
 
         final Animation slideIn = AnimationUtils.loadAnimation(this, R.anim.slide_in_right);
@@ -301,6 +296,8 @@ public class CreateAccountActivity extends BaseAppCompatActivity {
 
         @Override
         public void onNotFound(final User user) {
+
+            next();
 
             editTextNickname.setText(user.getNick());
             editTextMail.setText(user.getEmail());
@@ -477,6 +474,9 @@ public class CreateAccountActivity extends BaseAppCompatActivity {
         if (requestCode == REQUEST_MAIL) {
 
             if (resultCode == RESULT_OK) {
+
+                next();
+
                 linearLayoutSocial.setVisibility(View.INVISIBLE);
                 layoutAccount.setVisibility(View.VISIBLE);
             }
