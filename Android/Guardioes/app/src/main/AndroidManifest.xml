@@ -201,6 +201,20 @@
             android:screenOrientation="portrait"/>
 
         <activity
+            android:name=".view.tip.TravelerActivity"
+            android:exported="false"
+            android:label="@string/traveler_health"
+            android:parentActivityName=".view.tip.TipActivity"
+            android:screenOrientation="portrait"/>
+
+        <activity
+            android:name=".view.tip.SafeSexActivity"
+            android:exported="false"
+            android:label="@string/safe_sex"
+            android:parentActivityName=".view.tip.TipActivity"
+            android:screenOrientation="portrait"/>
+
+        <activity
             android:name=".view.diary.DiaryActivity"
             android:exported="false"
             android:label="@string/diary_health"
