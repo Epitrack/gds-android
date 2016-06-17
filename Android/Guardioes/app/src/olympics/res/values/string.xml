@@ -133,6 +133,9 @@
     <string name="residence_state">Estado de Residência</string>
     <string name="residence_country">País de Residência</string>
 
+    <string name="traveler_health">Saúde do viajante</string>
+    <string name="safe_sex">Pratique sexo de forma segura</string>
+
     <string-array name="image_array">
         <item>Camera</item>
         <item>Gallery</item>
@@ -498,6 +501,30 @@ Zika
     <string name="welcome_game_play">Cada fase contém um quebra-cabeça. Complete-o para passar de fase.</string>
     <string name="welcome_game_answer">Responda corretamente as perguntas sobre saúde para revelar peças.</string>
     <string name="welcome_game_card">Colecione figurinhas dos esportes olímpicos após concluir cada fase!</string>
+
+    <string name="safe_sex_title">Pratique sexo de forma segura</string>
+    <string name="safe_sex_content">Camisinha
+	\n\n•	A camisinha é a maneira prática para se proteger contra o HIV/ aids, as hepatites virais e as infecções sexualmente transmissíveis (IST), como a sífilis e a gonorreia.
+	\n\n•	Use e descarte corretamente o preservativo.
+	\n\n•	Se a camisinha “estourou” ou você transou sem camisinha, pode ser necessário o uso de profilaxia pós-exposição de risco ao HIV , conhecida como PEP.
+	\n\n•	PEP
+	\n\n•	A PEP é um tratamento com medicamento antirretroviral que evita a infecção pelo vírus HIV, causador da aids. Está indicada para as pessoas que apresentaram exposição de risco ao HIV, como sexo ocasional, violência sexual e acidente ocupacional com material biológico.
+	\n\n•	Caso seja indicado pelo médico, o tratamento de PEP dura 28 dias e deve ser iniciado em até 72 horas após o contato sexual desprotegido.
+	\n\n•	Onde encontrar PEP? (Link direto para o aplicativo e/ou site)  http://pep.aids.gov.br
+\n\nImportante
+	\n\n•	Todos têm direito à informação e ao atendimento sem preconceito, estigma e discriminação.
+	\n\n•	No Brasil, as camisinhas feminina e masculina e o gel lubrificante são distribuídos gratuitamente em unidades de saúde, albergues, Centros de Atendimento ao Turista e outros.  Informe-se sobre os pontos de distribuição mais próximos.
+	\n\n•	Se precisar de medicamentos contra o HIV (perdeu ou esqueceu), procure a unidade de saúde mais próxima, levando algum documento de identificação. Turista estrangeiro, informe-se com seu seguro de saúde (health insurance).
+\n\nLembre-se
+	\n\n•	Evite a infeção pelas hepatites virais. Se fizer tatuagens ou colocar piercing, escolha lugares com alvará/ licença sanitária expedida pela Vigilância Sanitária local. Exija essa certificação, se não estiver visível no local.
+	\n\n•	Exija que o material utilizado seja esterilizado ou descartável.
+	\n\n•	Não compartilhe seus objetos de uso pessoal, como alicates de cutícula, lâminas de barbear, escova de dente, agulhas e seringas com outras pessoas.
+	\n\n•	Se observar qualquer sinal ou sintoma, como corrimentos ou feridas,  ou algum outro problema de saúde, procure orientação do profissional de saúde.
+\n\nVocê sabia?
+	\n\n•	Muitas pessoas vivem com o HIV e hepatites virais e não sabem.
+	\n\n•	A única maneira de tomar conhecimento é fazendo o teste. Os testes anti-HIV e das hepatites são gratuitos e oferecidos na rede pública de saúde. Turista estrangeiro, informe-se com seu seguro de saúde (health insurance).
+	\n\n•	Existe vacina para Hepatite B. Deve ser tomada em 3 doses em períodos diferentes. Informe-se onde está disponível.
+</string>
     
     <string name="my_trophies">Meus Troféus</string>
     
