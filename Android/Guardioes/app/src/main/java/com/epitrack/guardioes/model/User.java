@@ -36,8 +36,8 @@ public class User {
     private String versionBuild;
     private String gcmToken;
 
-    private int energy;
-    private int level;
+    private int energy = 10;
+    private int level = 1;
     private Map<Integer, Boolean> pieceMap = new HashMap<>();
 
     public User() {
