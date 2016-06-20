@@ -111,6 +111,8 @@ public class GameRequester extends BaseRequester {
 
                                 final Question question = new Question();
 
+                                question.setId(jsonNode.get(Constants.Json.ID).asText());
+
                                 question.setTitle(jsonNode.get(Constants.Json.TITLE).asText());
 
                                 for (final JsonNode json : jsonNode.get(Constants.Json.OPTION_LIST)) {
@@ -141,7 +143,44 @@ public class GameRequester extends BaseRequester {
         });
     }
 
-    public void update(final int energy, final int level, final Map<Integer, Boolean> pieceMap, final User user, final RequestListener<User> listener) {
+    public void update(final String id, final int energy, final int level, final Map<Integer, Boolean> pieceMap, final RequestListener<Boolean> listener) {
+
+        final String url = "http://rest.guardioesdasaude.org/game/";
+
+        final Map<String, Object> bodyMap = new HashMap<>();
+
+        bodyMap.put("questionId", id);
+        bodyMap.put("xp", energy);
+        bodyMap.put("level", level);
+        bodyMap.put("puzzleMatriz", toIntArray(pieceMap));
+
+        listener.onStart();
+
+        new Requester(getContext()).request(Method.POST, url, getAuthHeaderMap(), bodyMap, new FutureCallback<Response<String>>() {
+
+            @Override
+            public void onCompleted(final Exception error, final Response<String> response) {
+
+                if (error == null) {
+
+                    if (isSuccess(response)) {
+
+                        listener.onSuccess(true);
+
+                    } else {
+
+                        listener.onError(new RequestException());
+                    }
+
+                } else {
+
+                    listener.onError(error);
+                }
+            }
+        });
+    }
+
+    public void updateUser(final int energy, final int level, final Map<Integer, Boolean> pieceMap, final User user, final RequestListener<User> listener) {
 
         final String url = "http://rest.guardioesdasaude.org/user/lookup/";
 
