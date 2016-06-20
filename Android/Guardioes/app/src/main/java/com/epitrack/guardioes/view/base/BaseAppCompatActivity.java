@@ -137,10 +137,12 @@ public abstract class BaseAppCompatActivity extends AppCompatActivity implements
 
         if (fragment == null) {
 
-            fragment = Fragment.instantiate(this, fragmentClass.getName(), bundle);
+            fragment = Fragment.instantiate(this, fragmentClass.getName());
 
             fragmentMap.put(tag, fragment);
         }
+
+        fragment.setArguments(bundle);
 
         if (addToBackStack) {
 
@@ -199,10 +201,12 @@ public abstract class BaseAppCompatActivity extends AppCompatActivity implements
 
         if (fragment == null) {
 
-            fragment = Fragment.instantiate(this, fragmentClass.getName(), bundle);
+            fragment = Fragment.instantiate(this, fragmentClass.getName());
 
             fragmentMap.put(tag, fragment);
         }
+
+        fragment.setArguments(bundle);
 
         if (addToBackStack) {
 
