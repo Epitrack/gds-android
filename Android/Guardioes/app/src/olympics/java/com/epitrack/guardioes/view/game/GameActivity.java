@@ -1,47 +1,32 @@
 package com.epitrack.guardioes.view.game;
 
-import android.animation.Animator;
-import android.animation.AnimatorInflater;
-import android.animation.AnimatorSet;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.GridView;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.epitrack.guardioes.R;
 import com.epitrack.guardioes.helper.Constants;
+import com.epitrack.guardioes.manager.PrefManager;
+import com.epitrack.guardioes.model.User;
 import com.epitrack.guardioes.view.base.BaseAppCompatActivity;
-import com.epitrack.guardioes.view.game.dialog.AnswerDialog;
 import com.epitrack.guardioes.view.game.model.Phase;
-import com.epitrack.guardioes.view.game.model.Question;
-import com.epitrack.guardioes.view.game.model.QuestionHandler;
-
-import java.util.HashMap;
-import java.util.Map;
-
-import butterknife.Bind;
 
 /**
  * @author Igor Morais
  */
-public class GameActivity extends BaseAppCompatActivity implements AdapterView.OnItemClickListener {
+public class GameActivity extends BaseAppCompatActivity {
 
+    private static final String TAG = GameActivity.class.getSimpleName();
+
+    private static final String GAME_FRAGMENT = "game_fragment";
+    private static final String PLAY_FRAGMENT = "play_fragment";
     private static final String ENERGY_FRAGMENT = "energy_fragment";
 
-    @Bind(R.id.text_view_level)
-    TextView textViewLevel;
-
-    @Bind(R.id.grid_view)
-    GridView gridView;
-
-    private Phase phase;
-
+    private GameFragment gameFragment;
+    private PlayFragment playFragment;
     private EnergyFragment energyFragment;
 
-    private final Map<Integer, Boolean> pieceMap = getPieceMap();
+    private Phase phase;
+    private User user;
 
     @Override
     protected void onCreate(@Nullable final Bundle bundle) {
@@ -49,84 +34,27 @@ public class GameActivity extends BaseAppCompatActivity implements AdapterView.O
 
         setContentView(R.layout.game);
 
-        phase = (Phase) getIntent().getSerializableExtra(Constants.Bundle.PHASE);
+        getEnergyFragment().setEnergy(getUser().getEnergy());
 
-        textViewLevel.setText(getString(R.string.level, phase.getId()));
-
-        gridView.setAdapter(new PieceAdapter(this, phase.getPieceArray()));
-        gridView.setOnItemClickListener(this);
-
-        getEnergyFragment().setEnergy(10);
+        getFragmentManager().beginTransaction().hide(getPlayFragment()).commit();
     }
 
-    @Override
-    public void onItemClick(final AdapterView<?> adapterView, final View view, final int position, final long id) {
+    private GameFragment getGameFragment() {
 
-        if (!pieceMap.get(position)) {
-
-            QuestionHandler.with().requestQuestion(this, new IQuestion() {
-
-                @Override
-                public void onQuestion(final Question question) {
-
-                    new AnswerDialog().setQuestion(question).setListener(new IAnswer() {
-
-                        @Override
-                        public void onWrong() {
-
-                        }
-
-                        @Override
-                        public void onCorrect() {
-
-                            pieceMap.put(position, true);
-
-                            flip(position, view);
-                        }
-
-                    }).show(getFragmentManager(), AnswerDialog.TAG);
-                }
-            });
+        if (gameFragment == null) {
+            gameFragment = (GameFragment) getFragmentManager().findFragmentByTag(GAME_FRAGMENT);
         }
+
+        return gameFragment;
     }
 
-    private void flip(final int position, final View view) {
+    private PlayFragment getPlayFragment() {
 
-        final AnimatorSet animator = (AnimatorSet) AnimatorInflater.loadAnimator(this, R.animator.flip);
+        if (playFragment == null) {
+            playFragment = (PlayFragment) getFragmentManager().findFragmentByTag(PLAY_FRAGMENT);
+        }
 
-        animator.setTarget(view);
-
-        animator.addListener(new Animator.AnimatorListener() {
-
-            @Override
-            public void onAnimationStart(final Animator animation) {
-
-            }
-
-            @Override
-            public void onAnimationEnd(final Animator animation) {
-
-                ((ImageView) view).setImageResource(phase.getPieceArray()[position]);
-
-                final AnimatorSet animator = (AnimatorSet) AnimatorInflater.loadAnimator(GameActivity.this, R.animator.alpha);
-
-                animator.setTarget(view);
-
-                animator.start();
-            }
-
-            @Override
-            public void onAnimationCancel(final Animator animation) {
-
-            }
-
-            @Override
-            public void onAnimationRepeat(final Animator animation) {
-
-            }
-        });
-
-        animator.start();
+        return playFragment;
     }
 
     private EnergyFragment getEnergyFragment() {
@@ -138,20 +66,28 @@ public class GameActivity extends BaseAppCompatActivity implements AdapterView.O
         return energyFragment;
     }
 
-    private Map<Integer, Boolean> getPieceMap() {
+    public User getUser() {
 
-        final Map<Integer, Boolean> pieceMap = new HashMap<>(9);
+        if (user == null) {
+            user = new PrefManager(this).get(Constants.Pref.USER, User.class);
+        }
 
-        pieceMap.put(0, false);
-        pieceMap.put(1, false);
-        pieceMap.put(2, false);
-        pieceMap.put(3, false);
-        pieceMap.put(4, false);
-        pieceMap.put(5, false);
-        pieceMap.put(6, false);
-        pieceMap.put(7, false);
-        pieceMap.put(8, false);
+        return user;
+    }
 
-        return pieceMap;
+    public final Phase getPhase() {
+
+        if (phase == null) {
+            phase = (Phase) getIntent().getSerializableExtra(Constants.Bundle.PHASE);
+        }
+
+        return phase;
+    }
+
+    public void onCorrect(final int piece) {
+
+        getPlayFragment().setPiece(piece);
+
+        getFragmentManager().beginTransaction().hide(getGameFragment()).show(getPlayFragment()).commit();
     }
 }
