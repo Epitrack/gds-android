@@ -21,6 +21,7 @@ public final class Constants {
 
     public static class Json {
 
+        public static final String ID = "id";
         public static final String COUNTRY = "country";
         public static final String POSITION = "position";
         public static final String URL = "flagUrl";
