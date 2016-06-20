@@ -50,7 +50,7 @@ public class EnergyFragment extends BaseFragment {
                 super.onSuccess(scoreList);
 
                 new ScoreDialog().setScoreList(scoreList)
-                        .show(getFragmentManager(), ScoreDialog.TAG);
+                                 .show(getFragmentManager(), ScoreDialog.TAG);
             }
         });
     }
