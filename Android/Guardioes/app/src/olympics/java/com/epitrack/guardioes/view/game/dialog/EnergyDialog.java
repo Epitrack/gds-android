@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.epitrack.guardioes.R;
 import com.epitrack.guardioes.view.survey.SelectParticipantActivity;
@@ -17,6 +18,8 @@ import com.epitrack.guardioes.view.survey.SelectParticipantActivity;
 public class EnergyDialog extends DialogFragment {
 
     public static final String TAG = EnergyDialog.class.getSimpleName();
+
+    TextView textViewEnergy;
 
     @Override
     public void onCreate(final Bundle bundle) {
@@ -33,6 +36,8 @@ public class EnergyDialog extends DialogFragment {
 
     @Override
     public void onViewCreated(final View view, @Nullable final Bundle bundle) {
+
+        textViewEnergy = (TextView) view.findViewById(R.id.text_view_energy);
 
         view.findViewById(R.id.image_button_join).setOnClickListener(new View.OnClickListener() {
 
@@ -55,5 +60,11 @@ public class EnergyDialog extends DialogFragment {
                 dismiss();
             }
         });
+    }
+
+    public EnergyDialog setEnergy(final int energy) {
+        textViewEnergy.setText(getString(R.string.energy, energy));
+
+        return this;
     }
 }
