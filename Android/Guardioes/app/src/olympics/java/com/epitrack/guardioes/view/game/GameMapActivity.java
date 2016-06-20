@@ -1,21 +1,19 @@
 package com.epitrack.guardioes.view.game;
 
-import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 
 import com.epitrack.guardioes.R;
 import com.epitrack.guardioes.helper.Constants;
+import com.epitrack.guardioes.helper.Logger;
 import com.epitrack.guardioes.manager.PrefManager;
 import com.epitrack.guardioes.model.User;
-import com.epitrack.guardioes.request.GameRequester;
-import com.epitrack.guardioes.request.base.RequestHandler;
 import com.epitrack.guardioes.view.base.BaseAppCompatActivity;
-import com.epitrack.guardioes.view.game.dialog.EnergyDialog;
 import com.epitrack.guardioes.view.game.model.Phase;
 
 import butterknife.Bind;
@@ -25,7 +23,12 @@ import butterknife.Bind;
  */
 public class GameMapActivity extends BaseAppCompatActivity implements View.OnClickListener {
 
+    private static final String TAG = GameMapActivity.class.getSimpleName();
+
     private static final String ENERGY_FRAGMENT = "energy_fragment";
+
+    @Bind(R.id.scroll_view)
+    ScrollView scrollView;
 
     @Bind(R.id.relative_layout)
     RelativeLayout relativeLayout;
@@ -43,19 +46,22 @@ public class GameMapActivity extends BaseAppCompatActivity implements View.OnCli
 
         final User user = new PrefManager(this).get(Constants.Pref.USER, User.class);
 
-        new GameRequester(this).update(0, 0, null, user, new UserHandler(this));
+        if (user == null) {
 
-        load();
+            Logger.logDebug(TAG, "The user is null.");
 
-        getEnergyFragment().setEnergy(10);
+        } else {
+
+            load(user.getLevel());
+
+            getEnergyFragment().setEnergy(user.getEnergy());
+        }
     }
 
-    private void load() {
+    private void load(final int level) {
 
-        final Drawable drawable = getResources().getDrawable(R.drawable.icon_phase);
-
-        final int widthSize = drawable.getIntrinsicWidth() / 2;
-        final int heightSize = drawable.getIntrinsicHeight() - 25;
+        final Drawable iconPhase = getResources().getDrawable(R.drawable.icon_phase);
+        final Drawable iconPhaseCurrent = getResources().getDrawable(R.drawable.icon_phase_current);
 
         imageView.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
 
@@ -65,18 +71,40 @@ public class GameMapActivity extends BaseAppCompatActivity implements View.OnCli
                 final int width = imageView.getWidth();
                 final int height = imageView.getHeight();
 
+                final ImageView imageView = new ImageView(GameMapActivity.this);
+
                 for (final Phase phase : Phase.values()) {
 
-                    final ImageView imageView = new ImageView(GameMapActivity.this);
+                    if (phase.getId() == level) {
 
-                    imageView.setX(phase.getX(width) - widthSize);
-                    imageView.setY(phase.getY(height) - heightSize);
+                        final int widthSize = iconPhaseCurrent.getIntrinsicWidth() / 2;
+                        final int heightSize = iconPhaseCurrent.getIntrinsicHeight() - 25;
 
-                    imageView.setTag(phase);
-                    imageView.setImageDrawable(drawable);
-                    imageView.setOnClickListener(GameMapActivity.this);
+                        imageView.setX(phase.getX(width) - widthSize);
+                        imageView.setY(phase.getY(height) - heightSize);
 
-                    relativeLayout.addView(imageView);
+                        imageView.setImageDrawable(iconPhaseCurrent);
+                        imageView.setTag(phase);
+                        imageView.setOnClickListener(GameMapActivity.this);
+
+                        relativeLayout.addView(imageView);
+
+                        break;
+
+                    } else {
+
+                        final int widthSize = iconPhase.getIntrinsicWidth() / 2;
+                        final int heightSize = iconPhase.getIntrinsicHeight() - 25;
+
+                        imageView.setX(phase.getX(width) - widthSize);
+                        imageView.setY(phase.getY(height) - heightSize);
+
+                        imageView.setImageDrawable(iconPhase);
+                        imageView.setTag(phase);
+                        imageView.setOnClickListener(GameMapActivity.this);
+
+                        relativeLayout.addView(imageView);
+                    }
                 }
 
                 imageView.getViewTreeObserver().removeOnGlobalLayoutListener(this);
@@ -84,33 +112,14 @@ public class GameMapActivity extends BaseAppCompatActivity implements View.OnCli
         });
     }
 
-    private class UserHandler extends RequestHandler<User> {
-
-        public UserHandler(final Context context) {
-            super(context);
-        }
-
-        @Override
-        public void onSuccess(User type) {
-            super.onSuccess(type);
-        }
-    }
-
     @Override
     public void onClick(final View view) {
 
-        if (false) {
+        final Bundle bundle = new Bundle();
 
-            new EnergyDialog().show(getFragmentManager(), EnergyDialog.TAG);
+        bundle.putSerializable(Constants.Bundle.PHASE, (Phase) view.getTag());
 
-        } else {
-
-            final Bundle bundle = new Bundle();
-
-            bundle.putSerializable(Constants.Bundle.PHASE, (Phase) view.getTag());
-
-            navigateTo(GameActivity.class, bundle);
-        }
+        navigateTo(GameActivity.class, bundle);
     }
 
     private EnergyFragment getEnergyFragment() {
