@@ -1,8 +1,14 @@
 package com.epitrack.guardioes.view.game;
 
+import com.epitrack.guardioes.view.game.dialog.AnswerDialog;
+
 public interface IAnswer {
 
-    void onWrong();
+    void onTimeOver(AnswerDialog dialog, int energy);
 
-    void onCorrect();
+    void onEnergyOver(AnswerDialog dialog, int energy);
+
+    void onWrong(AnswerDialog dialog, int energy);
+
+    void onCorrect(AnswerDialog dialog, int energy);
 }
