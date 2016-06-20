@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.epitrack.guardioes.R;
@@ -25,13 +26,15 @@ public class AnswerDialog extends DialogFragment implements View.OnClickListener
 
     public static final String TAG = AnswerDialog.class.getSimpleName();
 
+    public static final int ZERO = 0;
+
     public static final int OPTION_1 = 0;
     public static final int OPTION_2 = 1;
     public static final int OPTION_3 = 2;
 
     private static final int TIME = 15;
     private static final int DELAY = 1000;
-    private static final float FACTOR = 15 / 1f;
+    private static final float FACTOR = TIME / 1f;
 
     private TextView textViewQuestion;
 
@@ -43,12 +46,18 @@ public class AnswerDialog extends DialogFragment implements View.OnClickListener
     private ImageButton buttonAnswer2;
     private ImageButton buttonAnswer3;
 
+    private ImageView imageViewAnswer;
+
+    private TextView textViewEnergy;
+
     private TextView textViewTime;
     private MagicProgressCircle progressCircle;
 
     private final Handler handler = new Handler();
 
     private TimerHandler timer;
+
+    private int energy;
 
     private Question question;
 
@@ -79,6 +88,10 @@ public class AnswerDialog extends DialogFragment implements View.OnClickListener
         buttonAnswer1 = (ImageButton) view.findViewById(R.id.button_answer_1);
         buttonAnswer2 = (ImageButton) view.findViewById(R.id.button_answer_2);
         buttonAnswer3 = (ImageButton) view.findViewById(R.id.button_answer_3);
+
+        imageViewAnswer = (ImageView) view.findViewById(R.id.image_view_answer);
+
+        textViewEnergy = (TextView) view.findViewById(R.id.text_view_energy);
 
         textViewTime = (TextView) view.findViewById(R.id.text_view_time);
 
@@ -114,19 +127,33 @@ public class AnswerDialog extends DialogFragment implements View.OnClickListener
     @Override
     public void onClick(final View view) {
 
-        final Option option = (Option) view.getTag();
+        if (energy == ZERO) {
 
-        if (option.isCorrect()) {
-
-            view.setBackgroundResource(R.drawable.button_answer_correct);
-
-            listener.onCorrect();
+            listener.onEnergyOver(this, energy);
 
         } else {
 
-            view.setBackgroundResource(R.drawable.button_answer_incorrect);
+            final Option option = (Option) view.getTag();
 
-            listener.onWrong();
+            energy--;
+
+            if (option.isCorrect()) {
+
+                textViewEnergy.setText(getString(R.string.energy, energy));
+
+                view.setBackgroundResource(R.drawable.button_answer_correct);
+                imageViewAnswer.setImageResource(R.drawable.image_answer_green);
+
+                listener.onCorrect(this, energy);
+
+            } else {
+
+                textViewEnergy.setText(getString(R.string.energy, energy));
+
+                view.setBackgroundResource(R.drawable.button_answer_incorrect);
+
+                listener.onWrong(this, energy);
+            }
         }
     }
 
@@ -149,7 +176,15 @@ public class AnswerDialog extends DialogFragment implements View.OnClickListener
         buttonAnswer3.setTag(optionList.get(OPTION_3));
         buttonAnswer3.setOnClickListener(this);
 
+        textViewEnergy.setText(getString(R.string.energy, energy));
+
         textViewTime.setText(String.valueOf(TIME));
+    }
+
+    public AnswerDialog setEnergy(final int energy) {
+        this.energy = energy;
+
+        return this;
     }
 
     public AnswerDialog setQuestion(final Question question) {
@@ -186,6 +221,10 @@ public class AnswerDialog extends DialogFragment implements View.OnClickListener
                 progressCircle.setSmoothPercent((TIME - time) / FACTOR, DELAY);
 
                 handler.postDelayed(timer, DELAY);
+
+            } else {
+
+                listener.onTimeOver(AnswerDialog.this, energy--);
             }
         }
     }
