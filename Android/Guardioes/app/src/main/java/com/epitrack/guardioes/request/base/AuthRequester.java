@@ -123,6 +123,18 @@ public final class AuthRequester extends BaseRequester {
 
             }
 
+            if (json.has("country")) {
+                user.setCountry(json.getString("country"));
+            }
+
+            if (json.has("state")) {
+                user.setState(json.getString("state"));
+            }
+
+            if (json.has("role")) {
+                user.setProfile(json.getInt("role"));
+            }
+
             try {
 
                 user.setHashtags(Utility.toList(json.getJSONArray("hashtags")));

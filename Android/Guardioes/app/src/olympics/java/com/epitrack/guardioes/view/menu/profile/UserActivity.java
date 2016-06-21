@@ -1,39 +1,37 @@
 package com.epitrack.guardioes.view.menu.profile;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
+import android.support.annotation.NonNull;
 import android.support.design.widget.TextInputLayout;
+import android.support.v7.widget.AppCompatEditText;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.epitrack.guardioes.R;
 import com.epitrack.guardioes.helper.AvatarHelper;
 import com.epitrack.guardioes.helper.Constants;
 import com.epitrack.guardioes.helper.DateFormat;
 import com.epitrack.guardioes.helper.DialogBuilder;
+import com.epitrack.guardioes.helper.Helper;
 import com.epitrack.guardioes.helper.Mask;
-import com.epitrack.guardioes.helper.Utility;
 import com.epitrack.guardioes.model.SingleUser;
 import com.epitrack.guardioes.model.User;
-import com.epitrack.guardioes.request.base.Method;
-import com.epitrack.guardioes.request.old.Requester;
-import com.epitrack.guardioes.request.old.SimpleRequester;
-import com.epitrack.guardioes.view.HomeActivity;
+import com.epitrack.guardioes.request.UserRequester;
+import com.epitrack.guardioes.request.base.AuthRequester;
+import com.epitrack.guardioes.request.base.RequestHandler;
+import com.epitrack.guardioes.request.base.RequestListener;
 import com.epitrack.guardioes.view.base.BaseAppCompatActivity;
-import com.epitrack.guardioes.view.welcome.WelcomeActivity;
 import com.github.siyamed.shapeimageview.CircularImageView;
 import com.google.android.gms.analytics.HitBuilders;
 import com.squareup.picasso.MemoryPolicy;
 import com.squareup.picasso.Picasso;
 
-import org.json.JSONObject;
+import org.parceler.Parcels;
 
 import butterknife.Bind;
 import butterknife.OnClick;
@@ -47,11 +45,20 @@ public class UserActivity extends BaseAppCompatActivity {
     @Bind(R.id.text_view_message)
     TextView textViewMessage;
 
-    @Bind(R.id.edit_text_nickname)
-    EditText editTextNickname;
-
     @Bind(R.id.image_view_image)
     CircularImageView imageViewImage;
+
+    @Bind(R.id.edit_text_nickname)
+    AppCompatEditText editTextNickname;
+
+    @Bind(R.id.text_layout_mail)
+    TextInputLayout textLayoutMail;
+
+    @Bind(R.id.edit_text_mail)
+    AppCompatEditText editTextMail;
+
+    @Bind(R.id.edit_text_birth_date)
+    AppCompatEditText editTextBirthDate;
 
     @Bind(R.id.spinner_gender)
     Spinner spinnerGender;
@@ -59,106 +66,129 @@ public class UserActivity extends BaseAppCompatActivity {
     @Bind(R.id.spinner_race)
     Spinner spinnerRace;
 
-    @Bind(R.id.edit_text_date)
-    EditText editTextBirthDate;
-
-    @Bind(R.id.text_layout_mail)
-    TextInputLayout textLayoutMail;
-
-    @Bind(R.id.edit_text_mail)
-    EditText editTextMail;
-
-    @Bind(R.id.spinner_relationship)
+    @Bind(R.id.spinner_parent)
     Spinner spinnerParent;
-
-    @Bind(R.id.spinner_state)
-    Spinner spinnerState;
 
     @Bind(R.id.spinner_country)
     Spinner spinnerCountry;
 
+    @Bind(R.id.spinner_state)
+    Spinner spinnerState;
+
     @Bind(R.id.spinner_profile)
     Spinner spinnerProfile;
-
-    @Bind(R.id.text_view_relationship)
-    TextView textViewRelationship;
-
-    private boolean socialNew;
-    private boolean newMenber;
-    private boolean mainMember;
-
-    private SingleUser singleUser = SingleUser.getInstance();
 
     private int image;
     private String path;
 
-    private SharedPreferences shpGCMToken;
+    private User user;
+    private boolean main;
+    private boolean create;
 
     @Override
     protected void onCreate(final Bundle bundle) {
         super.onCreate(bundle);
 
-        socialNew = getIntent().getBooleanExtra(Constants.Bundle.SOCIAL_NEW, false);
-        newMenber = getIntent().getBooleanExtra(Constants.Bundle.NEW_MEMBER, false);
-        mainMember = getIntent().getBooleanExtra(Constants.Bundle.MAIN_MEMBER, false);
-
         setContentView(R.layout.user);
 
-        load();
+        main = getIntent().getBooleanExtra(Constants.Bundle.MAIN_MEMBER, false);
+        user = Parcels.unwrap(getIntent().getParcelableExtra(Constants.Bundle.USER));
 
-        shpGCMToken = PreferenceManager.getDefaultSharedPreferences(UserActivity.this);
+        setCreate(user == null);
 
-        editTextBirthDate.addTextChangedListener(Mask.insert("##/##/####", editTextBirthDate));
+        loadView();
 
-        if (mainMember || socialNew) {
-            textViewRelationship.setVisibility(View.INVISIBLE);
-            spinnerParent.setVisibility(View.INVISIBLE);
-        }
-
-        if (newMenber || socialNew) {
-            textLayoutMail.setVisibility(View.VISIBLE);
-            editTextMail.setEnabled(true);
-            editTextMail.setVisibility(View.VISIBLE);
+        if (create) {
+            user = new User();
 
         } else {
-            editTextMail.setEnabled(false);
-            editTextMail.setFocusable(false);
-        }
-
-        if (socialNew) {
-            imageViewImage.setVisibility(View.INVISIBLE);
-
-            new DialogBuilder(UserActivity.this).load()
-                    .title(R.string.attention)
-                    .content(R.string.new_user_social_media)
-                    .positiveText(R.string.ok)
-                    .callback(new MaterialDialog.ButtonCallback() {
-                        @Override
-                        public void onPositive(final MaterialDialog dialog) {
-                            loadUser();
-                        }
-                    }).show();
-        } else {
-
-            imageViewImage.setVisibility(View.VISIBLE);
-
-            loadUser();
+            load(user, main);
         }
     }
 
-    private void load() {
+    private void load(final User user, final boolean main) {
+
+        editTextNickname.setText(user.getNick());
+
+        spinnerGender.setSelection(user.getGender().equalsIgnoreCase("M") ? 0 : 1);
+
+        final String[] raceArray = getResources().getStringArray(R.array.race_array);
+
+        for (int i = 0; i < raceArray.length; i++) {
+
+            if (user.getRace().equalsIgnoreCase(raceArray[i])) {
+                spinnerRace.setSelection(i);
+            }
+        }
+
+        final String format = DateFormat.getDate(user.getDob(), "dd/MM/yyyy");
+
+        editTextBirthDate.setText(format);
+
+        new AvatarHelper().loadImage(this, imageViewImage, user);
+
+        if (main) {
+            editTextMail.setText(user.getEmail());
+
+        } else {
+
+            final String[] parentArray = getResources().getStringArray(R.array.relationship_array);
+
+            for (int i = 0; i < parentArray.length; i++) {
+
+                if (user.getRelationship().equalsIgnoreCase(parentArray[i])) {
+                    spinnerParent.setSelection(i);
+                }
+            }
+        }
+
+        if (user.getCountry() != null) {
+
+            final String[] countryArray = Helper.loadCountry().toArray(new String[0]);
+
+            for (int i = 0; i < countryArray.length; i++) {
+
+                if (user.getCountry().equalsIgnoreCase(countryArray[i])) {
+                    spinnerCountry.setSelection(i);
+                }
+            }
+        }
+
+        if (user.getState() != null) {
+
+            final String[] stateArray = getResources().getStringArray(R.array.array_state);
+
+            for (int i = 0; i < stateArray.length; i++) {
+
+                if (user.getState().equalsIgnoreCase(stateArray[i])) {
+                    spinnerState.setSelection(i);
+                }
+            }
+        }
+
+        spinnerProfile.setSelection(user.getProfile());
+    }
+
+    private void loadView() {
+
+        editTextBirthDate.addTextChangedListener(Mask.insert("##/##/####", editTextBirthDate));
 
         spinnerGender.setAdapter(new ItemAdapter(this, getResources().getStringArray(R.array.gender_array)));
-
         spinnerRace.setAdapter(new ItemAdapter(this, getResources().getStringArray(R.array.race_array)));
-
         spinnerParent.setAdapter(new ItemAdapter(this, getResources().getStringArray(R.array.relationship_array)));
-
+        spinnerCountry.setAdapter(new ItemAdapter(this, Helper.loadCountry().toArray(new String[0])));
         spinnerState.setAdapter(new ItemAdapter(this, getResources().getStringArray(R.array.array_state)));
-
-        spinnerCountry.setAdapter(new ItemAdapter(this, getResources().getStringArray(R.array.array_country)));
-
         spinnerProfile.setAdapter(new ItemAdapter(this, getResources().getStringArray(R.array.array_profile)));
+
+        if (main) {
+
+            textViewMessage.setText(R.string.message_fields);
+
+            findViewById(R.id.linear_layout_parent).setVisibility(View.GONE);
+
+            textLayoutMail.setVisibility(View.VISIBLE);
+            editTextMail.setVisibility(View.VISIBLE);
+        }
     }
 
     public void onResume() {
@@ -168,211 +198,14 @@ public class UserActivity extends BaseAppCompatActivity {
         getTracker().send(new HitBuilders.ScreenViewBuilder().build());
     }
 
-    private void loadUser() {
-        String nick;
-        String dob;
-        String gender;
-        String race;
-        String email;
-        int image;
-        String relationship;
-
-        if (socialNew) {
-            nick = singleUser.getNick();
-            dob = singleUser.getDob();
-            gender = singleUser.getGender();
-            race = singleUser.getRace();
-            email = singleUser.getEmail();
-            image = singleUser.getImage();
-            relationship = null;
-
-        } else {
-            nick = getIntent().getStringExtra("nick");
-            dob = getIntent().getStringExtra("dob");
-            gender = getIntent().getStringExtra("gender");
-            race = getIntent().getStringExtra("race");
-            email = getIntent().getStringExtra("email");
-            image = getIntent().getIntExtra("picture", 0);
-            relationship = getIntent().getStringExtra("relationship");
-        }
-
-        if (!newMenber || socialNew) {
-            editTextNickname.setText(nick);
-
-            if (dob != null) {
-                String dateFormat = DateFormat.getDate(dob, "dd/MM/yyyy");
-                editTextBirthDate.setText(dateFormat);
-            }
-            editTextMail.setText(email);
-
-            if (race != null) {
-                if (race.equals("branco")) {
-                    spinnerRace.setSelection(0);
-                } else if (race.equals("preto")) {
-                    spinnerRace.setSelection(1);
-                } else if (race.equals("pardo")) {
-                    spinnerRace.setSelection(2);
-                } else if (race.equals("amarelo")) {
-                    spinnerRace.setSelection(3);
-                } else if (race.equals("indígena")) {
-                    spinnerRace.setSelection(4);
-                }
-            }
-
-            if (relationship != null) {
-                switch (relationship) {
-                    case "pai":
-                        spinnerParent.setSelection(0);
-                        break;
-                    case "mae":
-                        spinnerParent.setSelection(1);
-                        break;
-                    case "filho":
-                        spinnerParent.setSelection(2);
-                        break;
-                    case "irmao":
-                        spinnerParent.setSelection(3);
-                        break;
-                    case "avo":
-                        spinnerParent.setSelection(4);
-                        break;
-                    case "neto":
-                        spinnerParent.setSelection(5);
-                        break;
-                    case "tio":
-                        spinnerParent.setSelection(6);
-                        break;
-                    case "sobrinho":
-                        spinnerParent.setSelection(7);
-                        break;
-                    case "bisavo":
-                        spinnerParent.setSelection(8);
-                        break;
-                    case "bisneto":
-                        spinnerParent.setSelection(9);
-                        break;
-                    case "primo":
-                        spinnerParent.setSelection(10);
-                        break;
-                    case "sogro":
-                        spinnerParent.setSelection(11);
-                        break;
-                    case "genro":
-                        spinnerParent.setSelection(12);
-                        break;
-                    case "nora":
-                        spinnerParent.setSelection(13);
-                        break;
-                    case "padrasto":
-                        spinnerParent.setSelection(14);
-                        break;
-                    case "madrasta":
-                        spinnerParent.setSelection(15);
-                        break;
-                    case "enteado":
-                        spinnerParent.setSelection(16);
-                        break;
-                    case "conjuge":
-                        spinnerParent.setSelection(17);
-                        break;
-                    case "outros":
-                        spinnerParent.setSelection(18);
-                        break;
-                    default:
-                        spinnerParent.setSelection(18);
-                        break;
-                }
-            }
-
-            if (gender != null) {
-                if (gender.equals("M")) {
-                    spinnerGender.setSelection(0);
-                } else {
-                    spinnerGender.setSelection(1);
-                }
-            }
-        }
-
-        if (mainMember) {
-
-            textViewMessage.setText(R.string.message_fields);
-            textLayoutMail.setVisibility(View.VISIBLE);
-            editTextMail.setEnabled(true);
-            editTextMail.setVisibility(View.VISIBLE);
-
-            new AvatarHelper().loadImage(this, imageViewImage, singleUser);
-
-        } else if (socialNew) {
-            if (singleUser.getEmail() == null) {
-                textLayoutMail.setVisibility(View.VISIBLE);
-                editTextMail.setEnabled(true);
-                editTextMail.setVisibility(View.VISIBLE);
-            }
-        } else {
-            textLayoutMail.setVisibility(View.VISIBLE);
-            editTextMail.setEnabled(true);
-            editTextMail.setVisibility(View.VISIBLE);
-
-            User household = new User();
-
-            household.setPath(path);
-            household.setImage(image);
-
-            household.setNick(nick);
-            household.setDob(dob);
-            household.setGender(gender);
-            household.setRace(race);
-            household.setEmail(email);
-            household.setRelationship(relationship);
-
-            new AvatarHelper().loadImage(this, imageViewImage, household);
-        }
-    }
-
     @OnClick(R.id.image_view_image)
     public void onImage() {
 
         final Bundle bundle = new Bundle();
 
-        bundle.putBoolean(Constants.Bundle.MAIN_MEMBER, mainMember);
+        bundle.putBoolean(Constants.Bundle.MAIN_MEMBER, main);
 
         navigateForResult(AvatarActivity.class, Constants.RequestCode.IMAGE, bundle);
-    }
-
-    private boolean validate(final User user) {
-
-        if (!DateFormat.isDate(user.getDob())) {
-
-            new DialogBuilder(UserActivity.this).load()
-                    .title(R.string.attention)
-                    .content(R.string.dob_invalid)
-                    .positiveText(R.string.ok)
-                    .show();
-
-            return false;
-
-        } else if (DateFormat.getDateDiff(DateFormat.getDate(editTextBirthDate.getText().toString().trim())) > 120) {
-
-            new DialogBuilder(UserActivity.this).load()
-                    .title(R.string.attention)
-                    .content(R.string.dob_invalid)
-                    .positiveText(R.string.ok)
-                    .show();
-
-            return false;
-
-        } else if (DateFormat.getDateDiff(DateFormat.getDate(editTextBirthDate.getText().toString().trim())) < 0) {
-
-            new DialogBuilder(UserActivity.this).load()
-                    .title(R.string.attention)
-                    .content(R.string.dob_invalid)
-                    .positiveText(R.string.ok)
-                    .show();
-
-            return false;
-        }
-
-        return true;
     }
 
     @OnClick(R.id.button_save)
@@ -383,214 +216,7 @@ public class UserActivity extends BaseAppCompatActivity {
                 .setAction("Create New Member/User Button")
                 .build());
 
-        final User user = new User();
-
-        user.setNick(editTextNickname.getText().toString().trim());
-        user.setDob(editTextBirthDate.getText().toString().trim().toLowerCase());
-        user.setGender(spinnerGender.getSelectedItem().toString().substring(0, 1).toUpperCase());
-        user.setRace(spinnerRace.getSelectedItem().toString().toLowerCase());
-        user.setEmail(editTextMail.getText().toString().toLowerCase().trim());
-        user.setPath(path);
-        user.setImage(image);
-
-        String relationship = spinnerParent.getSelectedItem().toString().toLowerCase();
-        relationship = relationship.replace("ô", "o");
-        relationship = relationship.replace("ã", "a");
-        relationship = relationship.replace("ã", "a");
-
-        user.setRelationship(relationship.toLowerCase());
-
-        if (validate(user)) {
-
-            JSONObject jsonObject = new JSONObject();
-            SimpleRequester simpleRequester = new SimpleRequester();
-
-            try {
-
-                jsonObject.put("nick", user.getNick());
-                jsonObject.put("dob", DateFormat.getDate(user.getDob()));
-                jsonObject.put("gender", user.getGender());
-                jsonObject.put("race", user.getRace());
-                jsonObject.put("client", user.getClient());
-                jsonObject.put("race", user.getRace());
-                jsonObject.put("relationship", user.getRelationship());
-                jsonObject.put("email", user.getEmail());
-                jsonObject.put("picture", user.getImage());
-
-                if (!socialNew) {
-
-                    if (newMenber) {
-                        jsonObject.put("user", singleUser.getId());
-
-                    } else if (mainMember) {
-
-                        jsonObject.put("id", singleUser.getId());
-
-                    } else {
-                        jsonObject.put("id", getIntent().getStringExtra("id"));
-                    }
-
-                    if (newMenber) {
-                        simpleRequester.setUrl(Requester.API_URL + "household/create");
-
-                    } else if (mainMember) {
-                        simpleRequester.setUrl(Requester.API_URL + "user/update");
-
-                    } else {
-                        simpleRequester.setUrl(Requester.API_URL + "household/update");
-                    }
-
-                } else {
-
-                    jsonObject.put("password", singleUser.getPassword());
-                    jsonObject.put("app_token", user.getAppToken());
-                    jsonObject.put("platform", user.getPlatform());
-                    jsonObject.put("gl", singleUser.getGl());
-                    jsonObject.put("tw", singleUser.getTw());
-                    jsonObject.put("fb", singleUser.getFb());
-                    jsonObject.put("picture", singleUser.getImage());
-
-                   /* try {
-                        locationUtility = new LocationUtility(getApplicationContext());
-
-                        if (locationUtility.getLocation() != null) {
-                            jsonObject.put("lat", locationUtility.getLatitude());
-                            jsonObject.put("lon", locationUtility.getLongitude());
-                        }
-                    } catch (Exception e) {
-
-                    }*/
-
-                    if (singleUser.getEmail() == null || singleUser.getEmail() == "") {
-                        jsonObject.put("email", editTextMail.getText().toString().toLowerCase());
-                        jsonObject.put("password", editTextMail.getText().toString().toLowerCase());
-
-                    } else {
-                        jsonObject.put("email", singleUser.getEmail());
-                    }
-
-                    simpleRequester.setUrl(Requester.API_URL + "user/create");
-                }
-
-                simpleRequester.setJsonObject(jsonObject);
-                simpleRequester.setMethod(Method.POST);
-
-                String jsonStr = simpleRequester.execute(simpleRequester).get();
-
-                jsonObject = new JSONObject(jsonStr);
-
-                if (jsonObject.get("error").toString() == "true") {
-                    //Toast.makeText(getApplicationContext(), jsonObject.get("message").toString(), Toast.LENGTH_SHORT).show();
-                    //R.string.error_add_new_member
-                    new DialogBuilder(UserActivity.this).load()
-                            .title(R.string.attention)
-                            .content(R.string.error_add_new_member)
-                            .positiveText(R.string.ok)
-                            .show();
-
-                } else {
-
-                    if (socialNew) {
-
-                        JSONObject jsonObjectUser = jsonObject.getJSONObject("user");
-
-                        singleUser.setNick(jsonObjectUser.getString("nick"));
-                        singleUser.setEmail(jsonObjectUser.getString("email"));
-                        singleUser.setGender(jsonObjectUser.getString("gender"));
-                        singleUser.setImage(0);
-                        singleUser.setId(jsonObjectUser.getString("id"));
-                        singleUser.setPassword(jsonObjectUser.getString("email"));
-                        singleUser.setRace(jsonObjectUser.getString("race"));
-                        singleUser.setDob(jsonObjectUser.getString("dob"));
-
-                        try {
-
-                            singleUser.setHashtags(Utility.toList(jsonObjectUser.getJSONArray("hashtags")));
-
-                        } catch (Exception e) {
-
-                        }
-
-                        SharedPreferences sharedPreferences = null;
-
-                        jsonObject = new JSONObject();
-
-                        jsonObject.put("email", singleUser.getEmail());
-                        jsonObject.put("password", singleUser.getPassword());
-
-                        simpleRequester = new SimpleRequester();
-                        simpleRequester.setUrl(Requester.API_URL + "user/login");
-                        simpleRequester.setJsonObject(jsonObject);
-                        simpleRequester.setMethod(Method.POST);
-
-                        jsonStr = simpleRequester.execute(simpleRequester).get();
-
-                        jsonObject = new JSONObject(jsonStr);
-
-                        if (jsonObject.get("error").toString() == "true") {
-                            Toast.makeText(getApplicationContext(), "Erro - " + jsonObject.get("message").toString(), Toast.LENGTH_SHORT).show();
-
-                        } else {
-
-                            singleUser.setUserToken(jsonObject.get("token").toString());
-
-                            sharedPreferences = getSharedPreferences(Constants.Pref.PREFS_NAME, 0);
-                            SharedPreferences.Editor editor = sharedPreferences.edit();
-
-                            editor.putString(Constants.Pref.PREFS_NAME, singleUser.getUserToken());
-                            editor.commit();
-
-                            SharedPreferences.Editor editorSocial = sharedPreferences.edit();
-
-                            editorSocial.putString(Constants.Pref.PREFS_NAME, "true");
-                            editor.commit();
-                        }
-
-                        new DialogBuilder(UserActivity.this).load()
-                                .title(R.string.attention)
-                                .content(R.string.cadastro_sucesso)
-                                .positiveText(R.string.ok)
-                                .callback(new MaterialDialog.ButtonCallback() {
-                                    @Override
-                                    public void onPositive(final MaterialDialog dialog) {
-                                        navigateTo(HomeActivity.class, Intent.FLAG_ACTIVITY_CLEAR_TASK |
-                                                Intent.FLAG_ACTIVITY_NEW_TASK);
-                                    }
-                                }).show();
-                    } else {
-
-                        if (newMenber) {
-
-                            lookup();
-
-                            onBackPressed();
-
-                        } else {
-
-                            lookup();
-
-                            new DialogBuilder(UserActivity.this).load()
-                                    .title(R.string.attention)
-                                    .content(R.string.generic_update_data_ok)
-                                    .positiveText(R.string.ok)
-                                    .callback(new MaterialDialog.ButtonCallback() {
-                                        @Override
-                                        public void onPositive(MaterialDialog dialog) {
-                                            onBackPressed();
-                                        }
-                                    })
-                                    .show();
-                        }
-
-                        //editTextNickname.setText("");
-                        //editTextBirthDate.setText("");
-                    }
-                }
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
+        add();
     }
 
     @Override
@@ -636,66 +262,118 @@ public class UserActivity extends BaseAppCompatActivity {
             onBackPressed();
 
         } else {
+
             super.onOptionsItemSelected(item);
         }
+
         return true;
     }
 
-    private void lookup() {
-        SingleUser singleUser = SingleUser.getInstance();
-        JSONObject jsonObject = new JSONObject();
+    private void add() {
 
-        SimpleRequester sendPostRequest = new SimpleRequester();
-        sendPostRequest.setUrl(Requester.API_URL + "user/lookup/");
-        sendPostRequest.setJsonObject(jsonObject);
-        sendPostRequest.setMethod(Method.GET);
+        user.setNick(editTextNickname.getText().toString().trim());
+        user.setDob(editTextBirthDate.getText().toString().trim());
+        user.setGender(spinnerGender.getSelectedItem().toString().substring(0, 1).toUpperCase());
+        user.setRace(spinnerRace.getSelectedItem().toString().toLowerCase());
+        user.setEmail(editTextMail.getText().toString().toLowerCase().trim());
+        user.setCountry(spinnerCountry.getSelectedItem().toString().toLowerCase());
+        user.setState(spinnerState.getSelectedItem().toString().toLowerCase());
+        user.setProfile(spinnerProfile.getSelectedItemPosition());
+        user.setPath(path);
+        user.setImage(image);
 
-        String jsonStr;
-        try {
-            jsonStr = sendPostRequest.execute(sendPostRequest).get();
+        final String parent = spinnerParent.getSelectedItem()
+                .toString()
+                .toLowerCase()
+                .replace("ô", "o")
+                .replace("ã", "a")
+                .replace("ã", "a");
 
-            jsonObject = new JSONObject(jsonStr);
+        user.setRelationship(parent);
 
-            if (jsonObject.get("error").toString().equals("true")) {
+        if (validate(user)) {
 
-            } else {
+            final String url = main ? "/user/update" : create ? "/household/create" : "/household/update";
 
-                JSONObject jsonObjectUser = jsonObject.getJSONObject("data");
+            new UserRequester(this).addOrUpdate(url, user, create ? SingleUser.getInstance().getId() : null, new RequestHandler<String>(this) {
 
-                singleUser.setNick(jsonObjectUser.getString("nick"));
-                singleUser.setEmail(jsonObjectUser.getString("email"));
-                singleUser.setGender(jsonObjectUser.getString("gender"));
-                singleUser.setId(jsonObjectUser.getString("id"));
-                singleUser.setRace(jsonObjectUser.getString("race"));
-                singleUser.setDob(jsonObjectUser.getString("dob"));
-                singleUser.setUserToken(jsonObjectUser.get("token").toString());
-                singleUser.setPath(mainMember ? path : this.singleUser.getPath());
+                @Override
+                public void onError(final Exception e) {
+                    super.onError(e);
 
-                try {
-                    singleUser.setImage(jsonObjectUser.getInt("picture"));
-
-                } catch (Exception e) {
+                    new DialogBuilder(UserActivity.this).load()
+                            .title(R.string.attention)
+                            .content(R.string.error_add_new_member)
+                            .positiveText(R.string.ok)
+                            .show();
                 }
-                //navigateTo(ProfileActivity.class);
-            }
-        } catch (Exception e) {
+
+                @Override
+                public void onSuccess(final String message) {
+                    super.onSuccess(message);
+
+                    new AuthRequester(UserActivity.this).loadAuth(new RequestListener<User>() {
+
+                        @Override
+                        public void onStart() {
+
+                        }
+
+                        @Override
+                        public void onError(Exception e) {
+
+                        }
+
+                        @Override
+                        public void onSuccess(User type) {
+
+                            new DialogBuilder(UserActivity.this).load()
+                                    .title(R.string.attention)
+                                    .content(create ? R.string.member_added : R.string.member_updated)
+                                    .positiveText(R.string.ok)
+                                    .onPositive(new MaterialDialog.SingleButtonCallback() {
+
+                                        @Override
+                                        public void onClick(@NonNull final MaterialDialog dialog, @NonNull final DialogAction which) {
+                                            finish();
+                                        }
+
+                                    }).show();
+                        }
+                    });
+                }
+            });
         }
     }
 
-    @Override
-    public void onBackPressed() {
+    private boolean validate(final User user) {
 
-        if (socialNew) {
+        final String name = user.getNick();
 
-            final Intent intent = new Intent(this, WelcomeActivity.class);
+        if (name.trim().length() == 0) {
 
-            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+            editTextNickname.setError(getString(R.string.validation_empty));
 
-            startActivity(intent);
-
-        } else {
-
-            super.onBackPressed();
+            return false;
         }
+
+        final int date = DateFormat.getDateDiff(DateFormat.getDate(editTextBirthDate.getText().toString()));
+
+        if (!DateFormat.isDate(user.getDob()) || date < 0 || date > 120) {
+
+            new DialogBuilder(UserActivity.this).load()
+                    .title(R.string.attention)
+                    .content(R.string.dob_invalid)
+                    .positiveText(R.string.ok)
+                    .show();
+
+            return false;
+        }
+
+        return true;
+    }
+
+    private void setCreate(final boolean create) {
+        this.create = create;
     }
 }

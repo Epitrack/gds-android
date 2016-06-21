@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:layout="http://schemas.android.com/apk/res-auto"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/background_blue">
+    xmlns:layout="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_blue">
 
     <TextView
         android:id="@+id/text_view_message"
@@ -15,7 +15,7 @@
         android:gravity="center_horizontal"
         android:text="@string/message_new_member"
         android:textColor="@android:color/white"
-        android:textSize="18sp"/>
+        android:textSize="18sp" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -41,7 +41,7 @@
                     android:layout_width="60dp"
                     android:layout_height="60dp"
                     android:layout_gravity="center_vertical"
-                    layout:siBorderColor="@color/white"/>
+                    layout:siBorderColor="@color/white" />
 
                 <android.support.design.widget.TextInputLayout
                     android:layout_width="0dp"
@@ -58,7 +58,7 @@
                         android:hint="@string/hint_nickname"
                         android:inputType="textPersonName"
                         android:maxLength="10"
-                        android:textColor="@color/grey_light"/>
+                        android:textColor="@color/grey_light" />
 
                 </android.support.design.widget.TextInputLayout>
 
@@ -78,16 +78,16 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
+                        android:layout_marginStart="5dp"
                         android:text="@string/gender"
                         android:textColor="@color/bluish"
-                        android:textSize="13sp"/>
+                        android:textSize="13sp" />
 
                     <Spinner
                         android:id="@+id/spinner_gender"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/grey_light"/>
+                        android:textColor="@color/grey_light" />
 
                 </LinearLayout>
 
@@ -101,16 +101,16 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
+                        android:layout_marginStart="5dp"
                         android:text="@string/race"
                         android:textColor="@color/bluish"
-                        android:textSize="13sp"/>
+                        android:textSize="13sp" />
 
                     <Spinner
                         android:id="@+id/spinner_race"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/grey_light"/>
+                        android:textColor="@color/grey_light" />
 
                 </LinearLayout>
 
@@ -119,7 +119,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp">
+                android:layout_marginTop="5dp">
 
                 <android.support.design.widget.TextInputLayout
                     android:layout_width="0dp"
@@ -129,17 +129,18 @@
                     layout:hintTextAppearance="@style/Text.EditText.Label">
 
                     <android.support.v7.widget.AppCompatEditText
-                        android:id="@+id/edit_text_date"
+                        android:id="@+id/edit_text_birth_date"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="@string/hint_birth_date"
                         android:inputType="number"
                         android:maxLength="10"
-                        android:textColor="@color/grey_light"/>
+                        android:textColor="@color/grey_light" />
 
                 </android.support.design.widget.TextInputLayout>
 
                 <LinearLayout
+                    android:id="@+id/linear_layout_parent"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="33dp"
@@ -147,19 +148,19 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/text_view_relationship"
+                        android:id="@+id/text_view_parent"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
+                        android:layout_marginStart="5dp"
                         android:text="@string/relationship"
                         android:textColor="@color/bluish"
-                        android:textSize="13sp"/>
+                        android:textSize="13sp" />
 
                     <Spinner
-                        android:id="@+id/spinner_relationship"
+                        android:id="@+id/spinner_parent"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/grey_light"/>
+                        android:textColor="@color/grey_light" />
 
                 </LinearLayout>
 
@@ -169,8 +170,8 @@
                 android:id="@+id/text_layout_mail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:visibility="invisible"
+                android:layout_marginTop="5dp"
+                android:visibility="gone"
                 layout:hintTextAppearance="@style/Text.EditText.Label">
 
                 <android.support.v7.widget.AppCompatEditText
@@ -182,14 +183,14 @@
                     android:maxLength="50"
                     android:singleLine="true"
                     android:textColor="@color/grey_light"
-                    android:visibility="invisible"/>
+                    android:visibility="gone" />
 
             </android.support.design.widget.TextInputLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp">
+                android:layout_marginTop="5dp">
 
                 <LinearLayout
                     android:layout_width="0dp"
@@ -200,16 +201,16 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
+                        android:layout_marginStart="5dp"
                         android:text="@string/residence_country"
                         android:textColor="@color/bluish"
-                        android:textSize="13sp"/>
+                        android:textSize="13sp" />
 
                     <Spinner
                         android:id="@+id/spinner_country"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/grey_light"/>
+                        android:textColor="@color/grey_light" />
 
                 </LinearLayout>
 
@@ -223,17 +224,17 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
+                        android:layout_marginStart="5dp"
                         android:lines="1"
                         android:text="@string/residence_state"
                         android:textColor="@color/bluish"
-                        android:textSize="13sp"/>
+                        android:textSize="13sp" />
 
                     <Spinner
                         android:id="@+id/spinner_state"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/grey_light"/>
+                        android:textColor="@color/grey_light" />
 
                 </LinearLayout>
 
@@ -242,22 +243,23 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
                 android:orientation="vertical">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
+                    android:layout_marginStart="5dp"
                     android:text="@string/profile"
                     android:textColor="@color/bluish"
-                    android:textSize="13sp"/>
+                    android:textSize="13sp" />
 
                 <Spinner
                     android:id="@+id/spinner_profile"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/grey_light"/>
+                    android:textColor="@color/grey_light" />
 
             </LinearLayout>
 
@@ -276,6 +278,6 @@
         android:layout_marginTop="15dp"
         android:background="@drawable/selector_button_gold_white"
         android:text="@string/save"
-        android:textColor="@color/selector_white_blue"/>
+        android:textColor="@color/selector_white_blue" />
 
 </RelativeLayout>

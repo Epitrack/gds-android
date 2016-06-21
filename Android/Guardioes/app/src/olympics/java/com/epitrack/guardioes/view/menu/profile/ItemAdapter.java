@@ -30,7 +30,7 @@ public class ItemAdapter extends ArrayAdapter<String> {
         if (view == null) {
 
             view = LayoutInflater.from(viewGroup.getContext())
-                    .inflate(R.layout.item_preview, viewGroup, false);
+                                 .inflate(R.layout.item_preview, viewGroup, false);
 
             viewHolder = new ViewHolder();
 

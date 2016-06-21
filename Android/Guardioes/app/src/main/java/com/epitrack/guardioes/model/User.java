@@ -35,7 +35,9 @@ public class User {
     private String relationship;
     private String versionBuild;
     private String gcmToken;
-
+    private String country;
+    private String state;
+    private int profile;
     private int energy = 10;
     private int level = 1;
     private Map<Integer, Boolean> pieceMap = new HashMap<>();
@@ -252,6 +254,30 @@ public class User {
 
     public void setGcmToken(String gcmToken) {
         this.gcmToken = gcmToken;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    public int getProfile() {
+        return profile;
+    }
+
+    public void setProfile(int profile) {
+        this.profile = profile;
     }
 
     public int getEnergy() {

@@ -79,6 +79,18 @@ public class UserRequester extends BaseRequester {
                                 user.setUserToken(json.getString("token"));
                                 user.setImage(jsonObjectUser.getInt("picture"));
 
+                                if (jsonObjectUser.has("country")) {
+                                    user.setCountry(jsonObjectUser.getString("country"));
+                                }
+
+                                if (jsonObjectUser.has("state")) {
+                                    user.setState(jsonObjectUser.getString("state"));
+                                }
+
+                                if (jsonObjectUser.has("role")) {
+                                    user.setProfile(jsonObjectUser.getInt("role"));
+                                }
+
                                 try {
 
                                     user.setHashtags(Utility.toList(jsonObjectUser.getJSONArray("hashtags")));
@@ -129,6 +141,9 @@ public class UserRequester extends BaseRequester {
         bodyMap.put("gender", user.getGender());
         bodyMap.put("app_token", user.getAppToken());
         bodyMap.put("race", user.getRace());
+        bodyMap.put("country", user.getCountry());
+        bodyMap.put("state", user.getState());
+        bodyMap.put("role", user.getProfile());
         bodyMap.put("platform", user.getPlatform());
         bodyMap.put("picture", "0");
         bodyMap.put("gcm_token", user.getGcmToken());
@@ -166,6 +181,18 @@ public class UserRequester extends BaseRequester {
                                 user.setRace(jsonObjectUser.getString("race"));
                                 user.setDob(jsonObjectUser.getString("dob"));
                                 user.setUserToken(jsonObjectUser.getString("token"));
+
+                                if (jsonObjectUser.has("country")) {
+                                    user.setCountry(jsonObjectUser.getString("country"));
+                                }
+
+                                if (jsonObjectUser.has("state")) {
+                                    user.setState(jsonObjectUser.getString("state"));
+                                }
+
+                                if (jsonObjectUser.has("role")) {
+                                    user.setProfile(jsonObjectUser.getInt("role"));
+                                }
 
                                 if (new PrefManager(getContext()).put(Constants.Pref.USER, user)) {
 
@@ -310,6 +337,18 @@ public class UserRequester extends BaseRequester {
                                 } catch (Exception e) {
                                 }
 
+                                if (jsonObject.has("country")) {
+                                    user.setCountry(jsonObject.getString("country"));
+                                }
+
+                                if (jsonObject.has("state")) {
+                                    user.setState(jsonObject.getString("state"));
+                                }
+
+                                if (jsonObject.has("role")) {
+                                    user.setProfile(jsonObject.getInt("role"));
+                                }
+
                                 parentList.add(user);
                             }
                         }
@@ -371,6 +410,18 @@ public class UserRequester extends BaseRequester {
 
                                 }
 
+                                if (jsonObject.has("country")) {
+                                    user.setCountry(jsonObject.getString("country"));
+                                }
+
+                                if (jsonObject.has("state")) {
+                                    user.setState(jsonObject.getString("state"));
+                                }
+
+                                if (jsonObject.has("role")) {
+                                    user.setProfile(jsonObject.getInt("role"));
+                                }
+
                                 parentList.add(user);
                             }
                         }
@@ -401,6 +452,9 @@ public class UserRequester extends BaseRequester {
         bodyMap.put("gender", user.getGender());
         bodyMap.put("app_token", user.getAppToken());
         bodyMap.put("race", user.getRace());
+        bodyMap.put("country", user.getCountry());
+        bodyMap.put("state", user.getState());
+        bodyMap.put("role", user.getProfile());
         bodyMap.put("platform", user.getPlatform());
         bodyMap.put("picture", user.getImage());
         bodyMap.put("relationship", user.getRelationship());
@@ -471,5 +525,8 @@ public class UserRequester extends BaseRequester {
         singleUser.setRace(type.getRace());
         singleUser.setDob(type.getDob());
         singleUser.setUserToken(type.getUserToken());
+        singleUser.setState(type.getState());
+        singleUser.setCountry(type.getCountry());
+        singleUser.setProfile(type.getProfile());
     }
 }
