@@ -111,12 +111,12 @@
     <string name="open_google_maps">Deseja visualizar endereço no Google Maps?</string>
     <string name="subject">Título</string>
     <string name="message">Décrirez le problème</string>
-    <string name="report_title">Si vous avez rencontré des difficultés d’utilisation de Les Gardiens de la Santé, veuillez remplir le formulaire ci-dessous et envoyez votre message à notre équipe d'experts.</string>
+    <string name="report_title">Si vous avez rencontré des difficultés d\’utilisation de Les Gardiens de la Santé, veuillez remplir le formulaire ci-dessous et envoyez votre message à notre équipe d\'experts.</string>
     <string name="send">Envoyer</string>
     <string name="email_null">Título e/ou mensagem não informados.</string>
     <string name="open_link">Souhaitez-vous ouvrir le lien de l’info ?</string>
     <string name="share_participation"> Eu faço minha parte, faça sua parte também no combate ao mosquito Aedes aegypti #ZikaZero. Acesse: www.guardioesdasaude.org</string>
-    <string name="alert_pharmacy">Certaines pharmacies peuvent ne pas s'afficher sur la carte.</string>
+    <string name="alert_pharmacy">Certaines pharmacies peuvent ne pas s\'afficher sur la carte.</string>
     <string name="share_ok">Merci pour le partage !</string>
 
     <string name="syndromes_desc">As síndromes são conjuntos de manifestações clínicas comuns a um número de doenças, entre elas:
@@ -330,7 +330,7 @@
     <string name="message_zika">Atenção: Os sintomas informados podem estar\n relacionados ao Zika vírus. Procure a Unidade\n de Pronto Atendimento mais próxima.</string>
     <string name="message_hospital">Não deixe de procurar um serviço de saúde mais\npróximo. Continue informando diariamente como\nestá sua saúde.</string>
     <string name="message_invite_friend">Convide seus amigos para serem guardiões.</string>
-    <string name="message_thanks">Merci pour l'information !</string>
+    <string name="message_thanks">Merci pour l\'information !</string>
     <string name="message_thanks_2">Acompanhe seu histórico no Diário da Saúde</string>
     <string name="message_thanks_zika">Obrigado pela\n informação!</string>
 
