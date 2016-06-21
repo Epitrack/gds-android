@@ -21,6 +21,7 @@ import android.widget.Toast;
 import com.epitrack.guardioes.R;
 import com.epitrack.guardioes.helper.DateFormat;
 import com.epitrack.guardioes.helper.DialogBuilder;
+import com.epitrack.guardioes.helper.Helper;
 import com.epitrack.guardioes.helper.Mask;
 import com.epitrack.guardioes.model.User;
 import com.epitrack.guardioes.push.HashReceiver;
@@ -84,6 +85,15 @@ public class CreateAccountActivity extends BaseAppCompatActivity {
     @Bind(R.id.spinner_gender)
     Spinner spinnerGender;
 
+    @Bind(R.id.spinner_country)
+    Spinner spinnerCountry;
+
+    @Bind(R.id.spinner_state)
+    Spinner spinnerState;
+
+    @Bind(R.id.spinner_profile)
+    Spinner spinnerProfile;
+
     private SocialFragment socialFragment;
     private Validator validator;
     private State state = State.SOCIAL;
@@ -111,10 +121,11 @@ public class CreateAccountActivity extends BaseAppCompatActivity {
     private void load() {
 
         editTextBirthDate.addTextChangedListener(Mask.insert("##/##/####", editTextBirthDate));
-
         spinnerGender.setAdapter(new ItemAdapter(this, getResources().getStringArray(R.array.gender_array)));
-
         spinnerRace.setAdapter(new ItemAdapter(this, getResources().getStringArray(R.array.race_array)));
+        spinnerCountry.setAdapter(new com.epitrack.guardioes.view.menu.profile.ItemAdapter(this, Helper.loadCountry().toArray(new String[0])));
+        spinnerState.setAdapter(new com.epitrack.guardioes.view.menu.profile.ItemAdapter(this, getResources().getStringArray(R.array.array_state)));
+        spinnerProfile.setAdapter(new com.epitrack.guardioes.view.menu.profile.ItemAdapter(this, getResources().getStringArray(R.array.array_profile)));
     }
 
     @Override

@@ -107,7 +107,6 @@
     <string name="cadastro_sucesso">Cadastro realizado com sucesso!</string>
 
     <string name="password_fail">A senha precisa ter pelo menos seis caracteres.</string>
-    <string name="password_not_equal">As senhas precisam ser iguais.</string>
     <string name="open_google_maps">Deseja visualizar endereço no Google Maps?</string>
     <string name="subject">Título</string>
     <string name="message">Descreva o problema</string>
