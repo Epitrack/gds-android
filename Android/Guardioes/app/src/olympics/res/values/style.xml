@@ -97,7 +97,7 @@
         <item name="windowActionBarOverlay">true</item>
         <item name="android:windowBackground">@drawable/background_blue</item>
 
-        <item name="actionBarTheme">@style/Theme.ActionBar</item>
+        <item name="actionBarTheme">@style/Theme.ActionBar.Gold</item>
         <item name="actionBarStyle">@style/Theme.Style.ActionBar.Logo</item>
         <item name="drawerArrowStyle">@style/Theme.DrawerArrow</item>
 
