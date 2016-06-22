@@ -87,6 +87,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
                 android:baselineAligned="false">
 
                 <LinearLayout
@@ -136,7 +137,8 @@
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp">
 
                 <EditText
                     android:id="@+id/edit_text_birth_date"
@@ -154,6 +156,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
                 android:text="@string/residence_country"
                 android:textColor="@android:color/white"
                 android:textSize="13sp" />
@@ -168,6 +171,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
                 android:text="@string/residence_state"
                 android:textColor="@android:color/white"
                 android:textSize="13sp" />
@@ -182,6 +186,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
                 android:text="@string/profile"
                 android:textColor="@android:color/white"
                 android:textSize="13sp" />
@@ -194,7 +199,8 @@
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp">
 
                 <EditText
                     android:id="@+id/edit_text_mail"
@@ -211,12 +217,14 @@
             <android.support.design.widget.TextInputLayout
                 android:id="@+id/text_layout_password"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp">
 
                 <EditText
                     android:id="@+id/edit_text_password"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:hint="@string/hint_password"
                     android:inputType="textPassword"
                     android:maxLength="16"
                     android:textColor="@android:color/white"

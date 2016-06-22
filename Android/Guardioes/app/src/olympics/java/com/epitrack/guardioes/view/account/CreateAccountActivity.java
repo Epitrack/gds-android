@@ -123,9 +123,9 @@ public class CreateAccountActivity extends BaseAppCompatActivity {
         editTextBirthDate.addTextChangedListener(Mask.insert("##/##/####", editTextBirthDate));
         spinnerGender.setAdapter(new ItemAdapter(this, getResources().getStringArray(R.array.gender_array)));
         spinnerRace.setAdapter(new ItemAdapter(this, getResources().getStringArray(R.array.race_array)));
-        spinnerCountry.setAdapter(new com.epitrack.guardioes.view.menu.profile.ItemAdapter(this, Helper.loadCountry().toArray(new String[0])));
-        spinnerState.setAdapter(new com.epitrack.guardioes.view.menu.profile.ItemAdapter(this, getResources().getStringArray(R.array.array_state)));
-        spinnerProfile.setAdapter(new com.epitrack.guardioes.view.menu.profile.ItemAdapter(this, getResources().getStringArray(R.array.array_profile)));
+        spinnerCountry.setAdapter(new ItemAdapter(this, Helper.loadCountry().toArray(new String[0])));
+        spinnerState.setAdapter(new ItemAdapter(this, getResources().getStringArray(R.array.array_state)));
+        spinnerProfile.setAdapter(new ItemAdapter(this, getResources().getStringArray(R.array.array_profile)));
     }
 
     @Override
@@ -361,6 +361,9 @@ public class CreateAccountActivity extends BaseAppCompatActivity {
             String gender = spinnerGender.getSelectedItem().toString().substring(0, 1);
             user.setGender(gender.toUpperCase());
             user.setRace(spinnerRace.getSelectedItem().toString().toLowerCase());
+            user.setCountry(spinnerCountry.getSelectedItem().toString().toLowerCase());
+            user.setState(spinnerState.getSelectedItem().toString().toLowerCase());
+            user.setProfile(spinnerProfile.getSelectedItemPosition());
             user.setEmail(editTextMail.getText().toString().trim().toLowerCase());
 
             if (user.getTw() != null || user.getFb() != null || user.getGl() != null) {
