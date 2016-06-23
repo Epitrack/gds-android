@@ -51,15 +51,16 @@ public class GameFragment extends BaseFragment implements AdapterView.OnItemClic
     public void onViewCreated(final View view, @Nullable final Bundle bundle) {
 
         bind(view);
-
-        final Phase phase = ((GameActivity) getActivity()).getPhase();
-
-        textViewLevel.setText(getString(R.string.level, phase.getId()));
     }
 
     @Override
     public void onResume() {
         super.onResume();
+
+        update();
+    }
+
+    public void update() {
 
         final Phase phase = ((GameActivity) getActivity()).getPhase();
         final Map<Integer, Boolean> pieceMap = GameActivity.USER.getPieceMap();
@@ -73,6 +74,12 @@ public class GameFragment extends BaseFragment implements AdapterView.OnItemClic
             imageView.setVisibility(View.VISIBLE);
 
             imageView.setImageResource(phase.getImage());
+
+            textViewLevel.setText(R.string.congratulations);
+
+        } else {
+
+            textViewLevel.setText(getString(R.string.level, phase.getId()));
         }
     }
 
@@ -113,6 +120,8 @@ public class GameFragment extends BaseFragment implements AdapterView.OnItemClic
             public void onTimeOver(final AnswerDialog dialog, final int energy) {
 
                 dialog.dismiss();
+
+                ((GameActivity) getActivity()).setEnergy(energy);
             }
 
             @Override
@@ -120,16 +129,20 @@ public class GameFragment extends BaseFragment implements AdapterView.OnItemClic
 
                 dialog.dismiss();
 
+                ((GameActivity) getActivity()).setEnergy(energy);
+
                 new EnergyDialog().setEnergy(energy).show(getFragmentManager(), EnergyDialog.TAG);
             }
 
             @Override
             public void onWrong(final AnswerDialog dialog, final int energy) {
-
+                ((GameActivity) getActivity()).setEnergy(energy);
             }
 
             @Override
             public void onCorrect(final AnswerDialog dialog, final int amount, final int energy) {
+
+                ((GameActivity) getActivity()).setEnergy(energy);
 
                 final Phase phase = ((GameActivity) getActivity()).getPhase();
 
@@ -163,8 +176,6 @@ public class GameFragment extends BaseFragment implements AdapterView.OnItemClic
         }).show(getFragmentManager(), AnswerDialog.TAG);
 
         setPiecePosition(position);
-        setPieceView(gridView.getChildAt(position));
-
         setQuestion(question);
     }
 
