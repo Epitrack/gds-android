@@ -8,13 +8,18 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.epitrack.guardioes.R;
+import com.epitrack.guardioes.helper.Constants;
+import com.epitrack.guardioes.manager.PrefManager;
+import com.epitrack.guardioes.model.User;
 import com.epitrack.guardioes.request.GameRequester;
 import com.epitrack.guardioes.request.base.RequestHandler;
 import com.epitrack.guardioes.view.base.BaseFragment;
 import com.epitrack.guardioes.view.game.dialog.ScoreDialog;
 import com.epitrack.guardioes.view.game.dialog.TrophyDialog;
+import com.epitrack.guardioes.view.game.model.Phase;
 import com.epitrack.guardioes.view.game.model.Score;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.Bind;
@@ -57,7 +62,21 @@ public class EnergyFragment extends BaseFragment {
 
     @OnClick(R.id.button_trophy)
     public void onTrophy() {
-        new TrophyDialog().show(getFragmentManager(), TrophyDialog.TAG);
+
+        final List<Phase> phaseList = new ArrayList<>();
+
+        final int level = new PrefManager(getActivity()).get(Constants.Pref.USER, User.class).getLevel();
+
+        for (final Phase phase : Phase.values()) {
+
+            if (phase.getId() > level) {
+                break;
+            }
+
+            phaseList.add(phase);
+        }
+
+        new TrophyDialog().setPhaseList(phaseList).show(getFragmentManager(), TrophyDialog.TAG);
     }
 
     public void setEnergy(final int energy) {
