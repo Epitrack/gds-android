@@ -6,6 +6,7 @@ import org.parceler.Parcel;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -44,6 +45,15 @@ public class User {
 
     public User() {
 
+        pieceMap.put(0, false);
+        pieceMap.put(1, false);
+        pieceMap.put(2, false);
+        pieceMap.put(3, false);
+        pieceMap.put(4, false);
+        pieceMap.put(5, false);
+        pieceMap.put(6, false);
+        pieceMap.put(7, false);
+        pieceMap.put(8, false);
     }
 
     public User(String id) {
@@ -302,5 +312,22 @@ public class User {
 
     public void setPieceMap(final Map<Integer, Boolean> pieceMap) {
         this.pieceMap = pieceMap;
+    }
+
+    private void loadPieceMap() {
+
+        final Map<Integer, Boolean> pieceMap = new LinkedHashMap<>(9);
+
+        pieceMap.put(0, false);
+        pieceMap.put(1, false);
+        pieceMap.put(2, false);
+        pieceMap.put(3, false);
+        pieceMap.put(4, false);
+        pieceMap.put(5, false);
+        pieceMap.put(6, false);
+        pieceMap.put(7, false);
+        pieceMap.put(8, false);
+
+        setPieceMap(pieceMap);
     }
 }

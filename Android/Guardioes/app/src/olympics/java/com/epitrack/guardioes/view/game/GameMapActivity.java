@@ -10,7 +10,6 @@ import android.widget.ScrollView;
 
 import com.epitrack.guardioes.R;
 import com.epitrack.guardioes.helper.Constants;
-import com.epitrack.guardioes.helper.Logger;
 import com.epitrack.guardioes.manager.PrefManager;
 import com.epitrack.guardioes.model.User;
 import com.epitrack.guardioes.view.base.BaseAppCompatActivity;
@@ -44,18 +43,11 @@ public class GameMapActivity extends BaseAppCompatActivity implements View.OnCli
 
         setContentView(R.layout.game_map);
 
-        final User user = new PrefManager(this).get(Constants.Pref.USER, User.class);
+        GameActivity.USER = new PrefManager(this).get(Constants.Pref.USER, User.class);
 
-        if (user == null) {
+        load(GameActivity.USER.getLevel());
 
-            Logger.logDebug(TAG, "The user is null.");
-
-        } else {
-
-            load(user.getLevel());
-
-            getEnergyFragment().setEnergy(user.getEnergy());
-        }
+        getEnergyFragment().setEnergy(GameActivity.USER.getEnergy());
     }
 
     private void load(final int level) {

@@ -18,7 +18,6 @@ import com.epitrack.guardioes.view.game.model.Phase;
 import com.epitrack.guardioes.view.game.model.Question;
 import com.epitrack.guardioes.view.game.model.QuestionHandler;
 
-import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
@@ -41,9 +40,7 @@ public class GameActivity extends BaseAppCompatActivity {
     private PlayFragment playFragment;
 
     private Phase phase;
-    private User user;
-
-    private Map<Integer, Boolean> pieceMap;
+    public static User USER;
 
     @Override
     protected void onCreate(@Nullable final Bundle bundle) {
@@ -51,9 +48,7 @@ public class GameActivity extends BaseAppCompatActivity {
 
         setContentView(R.layout.game);
 
-        loadPieceMap();
-
-        getEnergyFragment().setEnergy(getUser().getEnergy());
+        getEnergyFragment().setEnergy(USER.getEnergy());
 
         showGameFragment();
     }
@@ -94,15 +89,6 @@ public class GameActivity extends BaseAppCompatActivity {
         return phase;
     }
 
-    public User getUser() {
-
-        if (user == null) {
-            user = new PrefManager(this).get(Constants.Pref.USER, User.class);
-        }
-
-        return user;
-    }
-
     public void showGameFragment()  {
 
         getFragmentManager().beginTransaction()
@@ -130,7 +116,7 @@ public class GameActivity extends BaseAppCompatActivity {
         final int position = getGameFragment().getPiecePosition();
         final Question question = getGameFragment().getQuestion();
 
-        getGameFragment().loadAnswer(position, user.getEnergy(), pieceMap, question);
+        getGameFragment().loadAnswer(position, USER.getEnergy(), USER.getPieceMap(), question);
     }
 
     public void onGame() {
@@ -149,7 +135,7 @@ public class GameActivity extends BaseAppCompatActivity {
 
     public void onPlay() {
 
-        for (final Map.Entry<Integer, Boolean> entry : pieceMap.entrySet()) {
+        for (final Map.Entry<Integer, Boolean> entry : USER.getPieceMap().entrySet()) {
 
             if (!entry.getValue()) {
 
@@ -158,7 +144,7 @@ public class GameActivity extends BaseAppCompatActivity {
                     @Override
                     public void onQuestion(final Question question) {
 
-                        getGameFragment().loadAnswer(entry.getKey(), user.getEnergy(), pieceMap, question);
+                        getGameFragment().loadAnswer(entry.getKey(), USER.getEnergy(), USER.getPieceMap(), question);
                     }
                 });
 
@@ -168,6 +154,8 @@ public class GameActivity extends BaseAppCompatActivity {
     }
 
     public void onCorrect(final int amount, final int piece) {
+
+        new PrefManager(this).put(Constants.Pref.USER, USER);
 
         getPlayFragment().setAmount(amount);
         getPlayFragment().setPiece(getPhase().getPieceArray()[piece]);
@@ -216,31 +204,6 @@ public class GameActivity extends BaseAppCompatActivity {
 
         animator.start();
 
-        pieceMap.put(position, true);
-    }
-
-    public final Map<Integer, Boolean> getPieceMap() {
-        return pieceMap;
-    }
-
-    public final void setPieceMap(final Map<Integer, Boolean> pieceMap) {
-        this.pieceMap = pieceMap;
-    }
-
-    private void loadPieceMap() {
-
-        final Map<Integer, Boolean> pieceMap = new LinkedHashMap<>(9);
-
-        pieceMap.put(0, false);
-        pieceMap.put(1, false);
-        pieceMap.put(2, false);
-        pieceMap.put(3, false);
-        pieceMap.put(4, false);
-        pieceMap.put(5, false);
-        pieceMap.put(6, false);
-        pieceMap.put(7, false);
-        pieceMap.put(8, false);
-
-        setPieceMap(pieceMap);
+        USER.getPieceMap().put(position, true);
     }
 }
