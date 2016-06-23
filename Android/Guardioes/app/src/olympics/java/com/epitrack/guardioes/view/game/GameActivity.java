@@ -157,6 +157,13 @@ public class GameActivity extends BaseAppCompatActivity {
 
     public void onCorrect(final int amount, final int piece) {
 
+        if (!USER.getPieceMap().containsValue(false)) {
+
+            USER.setLevel(USER.getLevel() + 1);
+
+            USER.resetPieceMap();
+        }
+
         new PrefManager(this).put(Constants.Pref.USER, USER);
 
         getPlayFragment().setAmount(amount);

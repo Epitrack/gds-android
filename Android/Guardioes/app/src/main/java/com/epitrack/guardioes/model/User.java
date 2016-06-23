@@ -314,7 +314,7 @@ public class User {
         this.pieceMap = pieceMap;
     }
 
-    private void loadPieceMap() {
+    public void resetPieceMap() {
 
         final Map<Integer, Boolean> pieceMap = new LinkedHashMap<>(9);
         pieceMap.put(0, false);

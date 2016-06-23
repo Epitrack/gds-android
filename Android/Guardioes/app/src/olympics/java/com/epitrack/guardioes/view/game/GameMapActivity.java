@@ -44,6 +44,11 @@ public class GameMapActivity extends BaseAppCompatActivity implements View.OnCli
         setContentView(R.layout.game_map);
 
         GameActivity.USER = new PrefManager(this).get(Constants.Pref.USER, User.class);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
 
         load(GameActivity.USER.getLevel());
 
@@ -63,9 +68,9 @@ public class GameMapActivity extends BaseAppCompatActivity implements View.OnCli
                 final int width = imageView.getWidth();
                 final int height = imageView.getHeight();
 
-                final ImageView imageView = new ImageView(GameMapActivity.this);
-
                 for (final Phase phase : Phase.values()) {
+
+                    final ImageView imageView = new ImageView(GameMapActivity.this);
 
                     if (phase.getId() == level) {
 

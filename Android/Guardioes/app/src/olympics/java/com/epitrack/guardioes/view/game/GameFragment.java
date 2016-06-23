@@ -68,7 +68,7 @@ public class GameFragment extends BaseFragment implements AdapterView.OnItemClic
         gridView.setAdapter(new PieceAdapter(getActivity(), pieceMap, phase.getPieceArray()));
         gridView.setOnItemClickListener(this);
 
-        if (!pieceMap.containsValue(false)) {
+        if (phase.getId() < GameActivity.USER.getLevel()) {
 
             gridView.setVisibility(View.GONE);
             imageView.setVisibility(View.VISIBLE);
