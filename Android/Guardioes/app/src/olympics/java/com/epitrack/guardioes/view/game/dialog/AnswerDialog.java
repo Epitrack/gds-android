@@ -57,6 +57,8 @@ public class AnswerDialog extends DialogFragment implements View.OnClickListener
 
     private TimerHandler timer;
 
+    private int amount;
+
     private int energy;
 
     private Question question;
@@ -135,6 +137,7 @@ public class AnswerDialog extends DialogFragment implements View.OnClickListener
 
             final Option option = (Option) view.getTag();
 
+            amount++;
             energy--;
 
             if (option.isCorrect()) {
@@ -144,7 +147,9 @@ public class AnswerDialog extends DialogFragment implements View.OnClickListener
                 view.setBackgroundResource(R.drawable.button_answer_correct);
                 imageViewAnswer.setImageResource(R.drawable.image_answer_green);
 
-                listener.onCorrect(this, energy);
+                handler.removeCallbacks(timer);
+
+                listener.onCorrect(this, amount, energy);
 
             } else {
 
