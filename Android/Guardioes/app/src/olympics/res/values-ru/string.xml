@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Стражи Здоровья</string>
+    <string name="app_name">Guardiões da Saúde</string>
     <string name="app_name_short">Guardiões</string>
 
     # Google
@@ -11,134 +11,141 @@
 
     # Common
 
-    <string name="exit_message">Tem certeza que deseja sair?</string>
-    <string name="permission_location_rationale">A permissão a sua localização é necessária para exibir o mapa.</string>
-    <string name="permission_available_location">Permissão a sua localização liberada.</string>
-    <string name="permissions_not_granted">Permissão a sua localização negada!</string>
+    <string name="exit_message">Вы уверены, что хотите выйти из приложения ?</string>
+    <string name="permission_location_rationale">Не можем определить ваше местоположение. Убедитесь в том, что на устройстве все службы включены.</string>
+    <string name="permission_available_location">Разрешение их местоположения освобожден.</string>
+    <string name="permissions_not_granted">Отказано свое местоположение !</string>
     <string name="about">О</string>
-    <string name="alert">Alertas</string>
-    <string name="attention">Atenção</string>
-    <string name="avatar">Avatar</string>
+    <string name="alert">оповещения</string>
+    <string name="attention">осторожность</string>
+    <string name="avatar">Аватар</string>
     <string name="bad">Плохо</string>
     <string name="calendar">Календарь</string>
+    <!-- NA -->
     <string name="report_day">Total de envios no dia</string>
-    <string name="category">Category</string>
+    <string name="category">категория</string>
     <string name="confirm">Подтвердите</string>
     <string name="contact">Свяжитесь </string>
     <string name="diarrheal">Вызывающий диарею</string>
     <string name="diary_health">Дневник Здоровья</string>
-    <string name="diary_health_1">Diário da\nSaúde</string>
-    <string name="disease">Doenças</string>
+    <string name="diary_health_1">Дневник Здоровья</string>
+    <string name="disease">болезни</string>
     <string name="enter">Войти</string>
     <string name="exit">Выход</string>
     <string name="facebook">Facebook</string>
-    <string name="frequency">Frequência</string>
+    <string name="frequency">частота</string>
     <string name="gender">Пол</string>
     <string name="general">Общий</string>
     <string name="gmail">Gmail</string>
     <string name="good">Хорошо</string>
     <string name="google">Google</string>
-    <string name="hashtag">Hashtag</string>
-    <string name="health">Saúde</string>
+    <string name="hashtag">хэштегом</string>
+    <string name="health">здоровье</string>
     <string name="help">Помощь</string>
-    <string name="home">Ínicio</string>
+    <string name="home">Главная</string>
     <string name="hospital">Пункты Скорой Помощи</string>
     <string name="zika">Денге, Чикунгунья и Зика</string>
     <string name="hyphen">-</string>
-    <string name="interest">Interesses</string>
-    <string name="join">Participe\n   agora!</string>
+    <string name="interest">интересы</string>
+    <string name="join">Присоединяйтесь к нам сейчас!</string>
     <string name="login">Войти</string>
     <string name="mail">Электронная почта</string>
-    <string name="mails">E-mails</string>
+    <string name="mails">Электронная почта</string>
     <string name="game_enjoy">Получайте удовольствие</string>
     <string name="map_health">Карта здоровья</string>
-    <string name="map_health_1">Mapa da\nSaúde</string>
-    <string name="member">Membro do domicílio</string>
+    <string name="map_health_1">Карта здоровья</string>
+    <string name="member">член домашнего хозяйства</string>
     <string name="next">Ближайшее</string>
-    <string name="no">NÃO</string>
+    <string name="no">Нет</string>
     <string name="notice">Новости</string>
-    <string name="notification">Notificações</string>
+    <string name="notification">уведомления</string>
     <string name="option">Параметры</string>
     <string name="other">Другие </string>
     <string name="pharmacy">Аптеки</string>
-    <string name="privacy">Privacidade</string>
+    <string name="privacy">неприкосновенность частной жизни</string>
     <string name="profile">Профиль</string>
     <string name="race">Цвет Кожи / Раса</string>
     <string name="relationship">Родство</string>
     <string name="rash">Сыпь</string>
     <string name="register">Регистрация</string>
-    <string name="report">Relatar erros no aplicativo</string>
+    <string name="report">Отчёт об Ошибках</string>
     <string name="respiratory">Респираторный</string>
     <string name="resume">Выводы</string>
     <string name="save">Сохранить</string>
-    <string name="search">Procurar</string>
+    <string name="search">поиск</string>
     <string name="setting">Настройки</string>
-    <string name="share">Compartilhar</string>
-    <string name="sound">Sons</string>
+    <string name="share">доля</string>
+    <string name="sound">звуки</string>
     <string name="syndromes">Синдромы</string>
-    <string name="take_photo">Tirar foto</string>
-    <string name="term">Termos e Politícas</string>
+    <string name="take_photo">принять фото</string>
+    <string name="term">Правила и Условия</string>
     <string name="tip_health">Советы для Здоровья</string>
-    <string name="tip_health_1">Dicas de\nSaúde</string>
+    <string name="tip_health_1">Советы для Здоровья</string>
     <string name="tutorial">Обучающий материал </string>
     <string name="twitter">Twitter</string>
-    <string name="yes">SIM</string>
-    <string name="you">Você</string>
-    <string name="welfare">Bem estar</string>
+    <string name="yes">Да</string>
+    <string name="you">вы</string>
+    <string name="welfare">благосостояние</string>
     <string name="welcome">Добро пожаловать!</string>
-    <string name="ok">OK</string>
+    <string name="ok">Хорошо</string>
     <string name="cancel">Отменить</string>
-    <string name="call">Ligar</string>
-    <string name="crop_photo">Recortar foto</string>
-    <string name="message_image_load">Não é possível carregar esta imagem</string>
-    <string name="network_disable">Serviços de localização desativados. Habilite-os nas configurações do aparelho para poder visualiar o mapa.</string>
-    <string name="google_fail">Não foi possível realizar o login. Tente novamente em alguns minutos ou acesse através do seu e-mail.</string>
-    <string name="facebook_fail">Não foi possível realizar o login. Tente novamente em alguns minutos ou acesse através do seu e-mail.</string>
+    <string name="call">вызов</string>
+    <string name="crop_photo">вырезать фото</string>
+    <string name="message_image_load">не может загрузить эту</string>
+    <string name="network_disable">Не можем определить ваше местоположение. Убедитесь в том, что на устройстве все службы включены.</string>
+    <string name="google_fail">Невозможно войти в систему. Неверная электронная почта и / или  пароль.</string>
+    <string name="facebook_fail">Невозможно войти в систему. Неверная электронная почта и / или  пароль.</string>
+    <!-- NA -->
     <string name="facebook_cancel">Acesso ao Guardiões da Saúde via Facebook cancelado.</string>
+    <!-- NA -->
     <string name="facebook_error">Não foi possível acessar o Guardiões da Saúde através do Facebook. Tente novamente em alguns minutos ou acesse através do seu e-mail.</string>
+    <!-- NA -->
     <string name="google_access_error">O Guardiões da Saúde não obteve permissão para acessar seus dados do Google. Verifique suas configurações.</string>
+    <!-- NA -->
     <string name="twitter_fail">Não foi possível acessar o Guardiões da Saúde através do Twitter. Tente novamente em alguns minutos ou acesse através do seu e-mail.</string>
-    <string name="new_user_social_media">Complete o cadastro a seguir para acessar o Guardiões da Saúde.</string>
-    <string name="register_fail">Ocorreu um erro ao cadastrar</string>
-    <string name="user_exist">Cadastro realizado anterioremente com essa rede social ou e-mail.</string>
+    <string name="new_user_social_media">Заполните информацию для завершения регистрации</string>
+    <string name="register_fail">Не удалось выполнить регистрацию. Пожалуйста, повторите попытку через несколько минут!</string>
+    <string name="user_exist">Ранее заполненный кадастр с этой социальной сети.</string>
     <string name="delete_profile">Вы хотите навсегда удалить профиль?</string>
-    <string name="internet_fail">É preciso estar conectado a internet para continuar a utilizar o Guardiões da Saúde</string>
-    <string name="network_fail">É necessário estar conectado para acessar esta função. Por Favor, verifique sua rede!</string>
-    <string name="cadastro_sucesso">Cadastro realizado com sucesso!</string>
+    <string name="internet_fail">Вы должны быть подключены для того, чтобы иметь доступ к этой функции. Пожалуйста, проверьте сеть!</string>
+    <string name="network_fail">Вы должны быть подключены для того, чтобы иметь доступ к этой функции. Пожалуйста, проверьте сеть!</string>
+    <string name="cadastro_sucesso">Операция выполнена успешно.</string>
 
-    <string name="password_fail">A senha precisa ter pelo menos seis caracteres.</string>
-    <string name="password_not_equal">As senhas precisam ser iguais.</string>
-    <string name="open_google_maps">Deseja visualizar endereço no Google Maps?</string>
-    <string name="subject">Título</string>
+    <string name="password_fail">Пароль должен содержать не менее 6 символов</string>
+    <string name="password_not_equal">Пароли не совпадают.</string>
+    <string name="open_google_maps">Адрес, который вы хотите просмотреть в Google Maps ?</string>
+    <string name="subject">Тема</string>
     <string name="message">Опишите проблему</string>
     <string name="report_title">Если вы обнаружили какие-либо трудности с использованием приложения «Стражи Здоровья», заполните форму ниже и отправьте сообщение нашей команде специалистов.</string>
     <string name="send">Отправить </string>
-    <string name="email_null">Título e/ou mensagem não informados.</string>
+    <string name="email_null">Тема и/или сообщение не были указаны.</string>
     <string name="open_link">Чтобы открыть ссылку новостей?</string>
+    <!-- NA -->
     <string name="share_participation"> Eu faço minha parte, faça sua parte também no combate ao mosquito Aedes aegypti #ZikaZero. Acesse: www.guardioesdasaude.org</string>
     <string name="alert_pharmacy">Некоторые аптеки могут не отображаться на карте.</string>
     <string name="share_ok">Спасибо за то, что поделились!</string>
 
-    <string name="syndromes_desc">As síndromes são conjuntos de manifestações clínicas comuns a um número de doenças, entre elas:
-	\n\n•	Diarreica (febre e náusea ou vômito, além de algum destes sintomas: dores no corpo ou dor de cabeça)
-	\n\n•	Respiratória (febre, além de algum destes sintomas: tosse ou dor de garganta ou falta de ar ou manchas vermelhas no corpo)
-	\n\n•	Exantemática (manchas vermelhas no corpo, além de algum destes sintomas: febre ou dores no corpo ou dores nas juntas ou dor de cabeça ou coceira ou olhos vermelhos ou sangramento)</string>
-    <string name="new_password">As instruções para a nova senha foram enviadas para o seu e-mail.</string>
-    <string name="email_send">Mensagem enviada com sucesso.\nObrigado!</string>
+    <string name="syndromes_desc">   Синдромы являются общие наборы клинических проявлений ряда заболеваний, в том числе:
+	\n\nДиарея (лихорадка и тошнота или рвота и понос, а также любой из этих симптомов: боли в теле или головная боль)
+	\n\nДыхательная (лихорадка и кашель, и некоторые из этих симптомов: боль в горле или одышка)
+	\n\nСыпь (красные пятна на теле, и любой из этих симптомов: лихорадка или боли в теле или боли в суставах или головная боль или зуд или покраснение глаз или кровотечение)</string>
+    <string name="new_password">сообщение по электронной почте было отправлено, следуйте инструкциям, отправленным для получения пароля.</string>
+    <string name="email_send">Сообщение успешно отправлено. Спасибо!</string>
+    <!-- NA -->
     <string name="email_not_send">Devido a problema técnicos não conseguimos enviar sua mensagem.\nTente novamente em alguns minutos.</string>
-    <string name="whatsapp_not_installed">WhatsApp não instalado!</string>
+    <string name="whatsapp_not_installed">На этом устройстве Whatsapp не установлен.</string>
 
     <string name="message_user_max">Вы можете добавить только 10 членов!</string>
 
-    <string name="residence_state">Estado de Residência</string>
-    <string name="residence_country">País de Residência</string>
+    <string name="residence_state">Состояние</string>
+    <string name="residence_country">Страна</string>
 
     <string name="traveler_health">Здоровье путешественника</string>
     <string name="safe_sex">Практикуйте безопасный секс </string>
 
     <string-array name="image_array">
-        <item>Camera</item>
-        <item>Gallery</item>
+        <item>Тем не менее камера</item>
+        <item>галерея</item>
     </string-array>
 
     <string-array name="gender_array">
@@ -151,7 +158,7 @@
         <item>Черный</item>
         <item>Пардо</item>
         <item>Жёлтый</item>
-        <item>Indigena</item>
+        <item>Индейская</item>
     </string-array>
 
     <string-array name="relationship_array">
@@ -181,39 +188,41 @@
     </string-array>
 
     <string-array name="array_country">
-        <item>Brasil</item>
+        <item>Бразилия</item>
     </string-array>
 
     <string-array name="array_profile">
-        <item>Atleta/Delegação</item>
-        <item>Trabalhador/Voluntário</item>
-        <item>Fã/Espectador</item>
+        <item>Спортсмен / Делегация</item>
+        <item>Работающий / Доброволец</item>
+        <item>Болельщик / Зритель</item>
     </string-array>
 
-    <string name="not_now">AGORA NÃO</string>
-    <string name="setting_upper">CONFIGURAÇÕES</string>
-    <string name="location_disabled">Não estamos conseguindo obter sua localização. Verifique se os serviços estão habilitados no aparelho.</string>
-
+    <string name="not_now">Не сейчас</string>
+    <string name="setting_upper">Настройки</string>
+    <string name="location_disabled">Не можем определить ваше местоположение. Убедитесь в том, что на устройстве все службы включены.</string>
+<!-- NA -->
     <string name="generic_error">Não foi possível executar a operação. Tente novamente em alguns instantes.</string>
+    <!-- NA -->
     <string name="generic_error_login">Não foi possível executar a operação. Verifique se todos os campos estão preenchidos corretamente ou se o e-mail utilizado já está em uso.</string>
+    <!-- NA -->
     <string name="erro_new_user">Não foi possível realizar o cadastro. Verifique se todos os campos estão preenchidos corretamente ou se o e-mail utilizado já está em uso.</string>
-    <string name="generic_update_data_ok">Dados alterados com sucesso.</string>
+    <string name="generic_update_data_ok">Операция выполнена успешно.</string>
 
     # Tip
 
     <string name="vaccine">Прививки</string>
-    <string name="phone">Telefone úteis</string>
-    <string name="care">Cuidados básicos</string>
+    <string name="phone">Полезные Телефоны</string>
+    <string name="care">Общий Уход</string>
     <string name="prevention">Профилактика </string>
     <string name="zika_tip">Денге, Чикунгунья и Зика</string>
 
     <string name="emergency">SAMU</string>
     <string name="police">Полиция</string>
-    <string name="fireman">Bombeiros</string>
+    <string name="fireman">Гражданский пожарным</string>
     <string name="defense">Гражданская Защита</string>
     <string name="sus">SUS</string>
     <string name="useful_phones">Полезные Телефоны</string>
-
+<!-- NA -->
     <string name="emergence_text">Serviço de Atendimento Móvel de Urgência</string>
     <string name="police_text">Полиция</string>
     <string name="fireman_text">Гражданский пожарным</string>
@@ -222,80 +231,85 @@
 
     # Hint
 
-    <string name="hint_birth_date">Data de nascimento</string>
-    <string name="hint_birth_date_dt">Nascimento</string>
+    <string name="hint_birth_date">Дата Рождения</string>
+    <string name="hint_birth_date_dt">рождение</string>
     <string name="hint_mail">Электронная почта</string>
     <string name="hint_nickname">Фамилия</string>
-    <string name="hint_password">Senha - Mínimo de 6 caracteres</string>
+    <string name="hint_password">Пароль должен содержать не менее 6 символов</string>
     <string name="hint_password_short">Пароль</string>
-    <string name="hint_repeat_password">Repetir senha</string>
+    <string name="hint_repeat_password">RПовторить Пароль</string>
     <string name="hint_redefine_password">Восстановление Пароля</string>
-    <string name="hint_country_name">Informe o nome do país que você esteve</string>
+    <string name="hint_country_name">Выберите страну</string>
 
     # Validation
 
-    <string name="validation_confirm_password">Senhas não conferem</string>
+    <string name="validation_confirm_password">Пароли не совпадают.</string>
+    <!-- NA -->
     <string name="validation_empty">Campo obrigatório</string>
+    <!-- NA -->
     <string name="validation_length">Mínimo três caracteres</string>
-    <string name="validation_mail">E-mail inválido</string>
-    <string name="validation_password">Senha inválida ou com menos de 6 caracteres</string>
+    <string name="validation_mail">Не верно указана электронная почта!</string>
+    <string name="validation_password">Ваш пароль должен быть не менее 6 цифр</string>
 
     # Message
 
     <string name="message_use_mail">Или использовать ваш электронный адрес:</string>
-    <string name="forgot_password">Digite seu e-mail e siga as instruções.</string>
-    <string name="loading">Carregando…</string>
+    <string name="forgot_password">Введите адрес электронной почты и проверьте свой почтовый ящик.</string>
+    <string name="loading">Loading...</string>
 
     # Welcome
 
-    <string name="message_follow">Acompanhe os casos de doenças em seu bairro\nou em um determinado local.</string>
+    <string name="message_follow">Следите за случаями заболеваний в вашем районе или в определенном месте.</string>
     <string name="message_health">Как ваше здоровье?</string>
-    <string name="message_prepared">Preparado para se tornar um\nGuardião da Saúde?</string>
-    <string name="message_prevent">Veja como se prevenir de doenças, quais UPAs e\nfarmácias mais próximas de você e\ntelefones úteis para caso de emergência.</string>
-    <string name="message_symptom">Marque na lista os sintomas que\nvocê apresenta.</string>
+    <string name="message_prepared">Готов стать Стражем Здоровья?</string>
+    <string name="message_prevent">Посмотрите, как предотвратить заболевания, какие Пункты Скорой Помощи находятся ближе к вам, а также полезные телефоны для экстренных случаев.</string>
+    <string name="message_symptom">Проверьте список своих симптомов.</string>
 
     # Login
 
     <string name="message_forgot_password"><u>Забыли свой пароль?</u></string>
-    <string name="message_login_enter">Entrar rapidamente com:</string>
+    <string name="message_login_enter">Войдите быстро с</string>
 
     # Create Account
 
-    <string name="message_agree">Concordo com os</string>
+    <string name="message_agree">Я согласен с Условиями Использования.</string>
     <string name="message_create_account">Быстрая регистрация с:</string>
-    <string name="message_term"><u>Termos de uso.</u></string>
+    <string name="message_term"><u>Политика конфиденциальности и условия использования</u></string>
 
     # Privacy
 
-    <string name="message_privacy">Nós nos preocupamos\ncom a sua privacidade</string>
+    <string name="message_privacy">Мы заботимся о вашей конфиденциальности</string>
 
-    <string name="message_privacy_tip_1">• Sua participação é voluntária e anônima</string>
-    <string name="message_privacy_tip_2">• Os  dados fornecidos serão utilizados para promover uma comunidade mais saudável</string>
-    <string name="message_privacy_tip_3">• Para maiores informações, consulte os Termos de Uso</string>
+    <string name="message_privacy_tip_1">Ваше участие является добровольным и анонимным</string>
+    <string name="message_privacy_tip_2">Предоставленные данные, будут содействовать оздоровлению сообщества</string>
+    <string name="message_privacy_tip_3">Для получения дополнительной информации смотрите Условия Использования</string>
 
     # Home
 
-    <string name="message_hello">Olá, %s!</string>
+    <string name="message_hello">Здравствуйте, %s!</string>
 
     # Profile Activity
 
-    <string name="message_select_profile">Selecione qual dos perfis\nabaixo quer editar.</string>
-    <string name="add_member">Adicionar novo integrante</string>
+    <string name="message_select_profile">Выберите, какой из профилей ниже хотите редактировать.</string>
+    <string name="add_member">Добавить член домицилия</string>
+    <!-- NA -->
     <string name="not_remove_member">Você não pode remover seu perfil.</string>
-    <string name="delete_user">Integrante excluído com sucesso.</string>
-    <string name="new_member_ok">Integrante incluído com sucesso.</string>
-    <string name="error_add_new_member">Não foi possível realizar o cadastro. Verifique se todos os campos estão preenchidos corretamente e tente novamente ou se o e-mail já possui cadastro e tente novamente.</string>
-    <string name="dob_invalid">Data de nascimento inválida.</string>
+    <string name="delete_user">Операция выполнена успешно.</string>
+    <string name="new_member_ok">Операция выполнена успешно.</string>
+    <string name="error_add_new_member">Заполните информацию для завершения регистрации</string>
+    <string name="dob_invalid">Использование приложения разрешается только лицам старше 13 (тринадцать) лет.</string>
 
     # Profile Fragment
 
-    <string name="edit_profile">Editar perfil</string>
+    <string name="edit_profile">Изменить Профиль</string>
+    <!-- NA -->
     <string name="message_profile">Atualize as informações do seu perfil e dos membros domicíliar</string>
+    <!-- NA -->
     <string name="message_interest">Selecione as categorias e hashtags que você deseja seguir</string>
 
     # User
-    <string name="message_new_member">Preencha todos os campos abaixo\npara adicionar um novo integrante.</string>
-    <string name="message_fields">Apenas os campos habilitados\npoderão ser alterados.</string>
+    <string name="message_new_member">Заполните все ячейки, чтобы добавить нового участника.</string>
+    <string name="message_fields">Только активированные ячейки могут быть изменены.</string>
 
     # Interest
 
@@ -305,34 +319,34 @@
 
     # Select Participant
 
-    <string name="message_age">%d anos</string>
+    <string name="message_age">%d лет</string>
     <string name="message_home_member">Члены семьи</string>
-    <string name="message_select_join">Selecione algum dos perfis abaixo\npara começar a participar.</string>
+    <string name="message_select_join">Выберите некоторые из приведенных ниже профилей, чтобы начать участвовать.</string>
     <string name="message_who_participate">Кто будет участвовать?</string>
 
     # State
 
-    <string name="message_health_state">Como está sua saúde\nnesse momento?</string>
-    <string name="message_present_symptom">Alguns sinais e sintomas serão apresentados na\npróxima tela caso a opção \"Mal\" seja selecionada.</string>
+    <string name="message_health_state">Как вы себя чувствуете прямо сейчас?</string>
+    <string name="message_present_symptom">Некоторые признаки и симптомы будут отображаться на следующем экране, если выбрана опция «Плохо».</string>
 
     # Symptom
-    <string name="message_check_symptom">Marque abaixo o que você está\nsentindo nesse momento:</string>
+    <string name="message_check_symptom">Отметьте ниже, что вы сейчас чувствуете:</string>
 
     # About
 
-    <string name="message_about_title_01">Sobre o “Guardiões da Saúde”\n</string>
+    <string name="message_about_title_01">О ПРИЛОЖЕНИИ «СТРАЖИ ЗДОРОВЬЯ»</string>
 
     # Diary
 
-    <string name="message_select_member">Selecione um membro</string>
+    <string name="message_select_member">Выберите участника </string>
 
     # Share
-    <string name="message_zika">Atenção: Os sintomas informados podem estar\n relacionados ao Zika vírus. Procure a Unidade\n de Pronto Atendimento mais próxima.</string>
-    <string name="message_hospital">Não deixe de procurar um serviço de saúde mais\npróximo. Continue informando diariamente como\nestá sua saúde.</string>
-    <string name="message_invite_friend">Convide seus amigos para serem guardiões.</string>
+    <string name="message_zika">Внимание: Указанные симптомы могут быть связаны с вирусом Зика. Найдите ближайший Пункт Скорой Помощи.</string>
+    <string name="message_hospital">Обязательно обратитесь в ближайшей пункт медпомощи.</string>
+    <string name="message_invite_friend">Пригласите своих друзей стать Стражами Здоровья.</string>
     <string name="message_thanks">Спасибо за информацию!</string>
-    <string name="message_thanks_2">Acompanhe seu histórico no Diário da Saúde</string>
-    <string name="message_thanks_zika">Obrigado pela\n informação!</string>
+    <string name="message_thanks_2">Продолжайте сообщать ежедневно, о вашем самочувствии.</string>
+    <string name="message_thanks_zika">Спасибо за информацию!</string>
 
     # Dialog Survey
 
@@ -341,189 +355,189 @@
 
     #Prevention
     <string name="prevention_title_01">Профилактика </string>
-    <string name="prevention_content_01"><b>Malária:</b>
-	\n\n•	No Brasil, a transmissão concentra-se na Região Amazônica, composta pelos estados do Acre, Amapá, Amazonas, Maranhão, Mato Grosso, Pará, Rondônia, Roraima e Tocantins;
-	\n\n•	Em áreas de transmissão de malária, é fundamental que o viajante tenha conhecimento sobre o horário de maior atividade de mosquitos vetores de malária, do pôr-do-sol ao amanhecer;
-	\n\n•	Use roupas claras e com manga longa, durante atividades de exposição elevada;
-	\n\n•	Aplique repelente nas áreas expostas da pele, seguindo a orientação do fabricante. Em crianças com idade inferior a dois anos, não é recomendado o uso de repelente sem orientação médica;
-	\n\n•	Em áreas de transmissão de malária é imprescindível que o viajante fique atento ao surgimento de sintomas da doença, como febre, dor no corpo e dor de cabeça;
-	\n\n•	Em caso de manifestação de algum sintoma da doença, procure uma unidade de saúde especializada mais próxima. O ideal é que este atendimento seja feito o quanto antes, em até 48 horas após os primeiros sintomas;
-	\n\n•	O Brasil conta com uma rede pública de saúde estruturada para diagnosticar e tratar os pacientes, de forma oportuna e adequada;
-	\n\n•	Caso você queira adquirir mais informações acerca da malária, antes de realizar a sua viagem, busque orientações em um dos Centros de Referência.
-\n\n<b>Previna-se contra doenças de transmissão respiratória:</b>
-	\n\n•	Lavar as mãos com água e sabonete antes das refeições, de tocar os olhos, a boca e o nariz e após tossir, espirrar ou usar o banheiro;
-	\n\n•	Indivíduos doentes devem ficar em repouso, consumir alimentação balanceada, aumentar a ingestão de líquidos e evitar aglomerações e ambientes fechados;
-	\n\n•	Mantenha os ambientes ventilados;
-	\n\n•	Esteja sempre atento ao apresentar sintomas respiratórios de maior gravidade e procure imediatamente assistência médica.
-\n\n<b>Consuma alimentos e bebidas de forma saudável:</b>
-	\n\n•	Evite consumir alimentos cujas condições higiênicas, de preparo e acondicionamento, são precárias;
-	\n\n•	Prefira alimentos que contenham baixo teor de açúcares, gorduras e sal;
-	\n\n•	Beba bastante líquido, preferencialmente água ou suco. Evite alimentos crus ou mal cozidos, principalmente os frutos do mar;
-	\n\n•	Alimentos embalados devem conter no rótulo a identificação do produtor, data de validade e a embalagem deve estar íntegra;
-	\n\n•	Durante o turismo rural, dê preferência aos alimentos que podem ficar sem refrigeração e não estraguem com o calor;
-	\n\n•	Caso tenha diarreia e vômitos por conta da ingestão de alimentos e bebidas, é preciso cuidado redobrado com a desidratação. Recomenda-se a ingestão de sal de reidratação oral, disponibilizado gratuitamente pelo Sistema Único de Saúde, ou outras soluções do tipo. As bebidas esportivas não compensam corretamente as perdas e não devem ser utilizadas para tratamento de doença diarreica.</string>
+    <string name="prevention_content_01"><b>Малярия::</b>
+	\n\n•       В Бразилии, передача сосредоточена в Районе Амазонки, в который входят Штаты - Акре, Амапа, Амазонас, Мараньян, Мату-Гросу, Пara, Рондония, Рорайма и Токантинс;
+	\n\n•       В районах заражения малярией, крайне важно, чтобы путешественник знал о периоде времени наибольшей активности векторов комаров малярии, от захода солнца до рассвета;
+	\n\n•       Используйте легкую одежду с длинным рукавом во время высокой активности комара;
+	\n\n•       Нанесите репеллент на открытые участки кожи, следуя инструкциям изготовителя. Нанесение репеллента детям в возрасте до двух лет, без медицинского наблюдения, не рекомендуется;
+	\n\n•       В районах заражения малярии крайне важно, чтобы путешественник заметил появление симптомов заболевания, такие как температура, боль в теле и головная боль;
+	\n\n•       В случае проявления каких-либо симптомов заболевания, обратитесь к ближайшему медику специалисту. В идеале, если это обращение будет сделано как можно раньше, в течение 48 часов после появления первых симптомов;
+	\n\n•       Бразилия имеет систему общественного здравоохранения структурированную для диагностики и лечения пациентов своевременно и надлежащим образом;
+	\n\n•       Если вы хотите получить более подробную информацию о малярии, перед вашей поездкой, получить указания в одном из Справочных Центров.
+\n\n<b>Проводите профилактику респираторных заболеваний: </b>
+	\n\n•       Мойте руки с мылом перед принятием пищи, не трогайте глаза, рот и нос, и после кашля, чихания или использования туалетов;
+	\n\n•       Больные люди должны отдыхать, есть сбалансированную диету, увеличивая потребление жидкости и избегать скопления людей и в помещении;
+	\n\n•       Проветривайте помещения;
+	\n\n•       Всегда будьте внимательны к респираторным симптомам и немедленно обратитесь к врачу.
+\n\n<b>Потребляйте здоровую пищу и напитки:</b>
+	\n\n•       Избегайте потребления пищевых продуктов, приготовленных и упакованных в сомнительных гигиенических условиях;
+	\n\n•       Отдавайте предпочтение продуктам, с низким содержанием сахара, жира и соли;
+	\n\n•       Пейте много жидкости, предпочтительно воды или сок. Избегайте сырые или недоваренные продукты, особенно морепродукты;
+	\n\n•       Упакованные пищевые продукты должны быть маркированы, чтобы идентифицировать производителя, срок годности и упаковка должны быть неповрежденными;
+	\n\n•       Во время сельского туризма, отдают предпочтение продуктам, которые могут храниться не охлажденными и не портятся в жару;
+	\n\n•       Если у вас есть диарея и рвота вследствие приема пищи и питья, вы должны быть более внимательны с обезвоживанием. Рекомендуется прием оральной регидратационной соли, которую можно бесплатно приобрести в Единой Системе Здравоохранения или других похожих растворов. Спортивные напитки не компенсируют должным образом потери и не должны использоваться для лечения желудочно-кишечных заболеваний.</string>
 
     #Care
 
-    <string name="care_title_01">Cuidados básicos</string>
-    <string name="care_content_01">Saúde do Viajante:
-	\n\n•	Procure seu médico, preferencialmente, entre 4 e 8 semanas antes da viagem para informar seu roteiro. Peça orientações sobre cuidados para proteção contra doenças e lesões;
-	\n\n•	Você pode ter dificuldade ou não encontrar os medicamentos que utiliza habitualmente, durante a viagem. Peça orientação ao seu médico sobre quais medicamentos e em que quantidade deve levar, incluindo a bagagem de mão;
-	\n\n•	Carregue com você os seus documentos de identificação, de preferência em inglês e português, com informações de contatos pessoais, tipo sanguíneo, se tem alergias, diabetes ou outras doenças que possam requerer particular atenção;
-	\n\n•	Toda gestante deve consultar seu médico antes da viagem, pois estará sujeita a vários riscos e a viagem pode afetar sua segurança e conforto;
-	\n\n•	Antes de viajar consulte a empresa de transporte sobre as regras específicas para gestantes;
-	\n\n•	O Brasil é um país de clima tropical. Recomenda-se ao viajante a ingestão constante de líquidos para evitar a desidratação;
-	\n\n•	Use roupas e calçados confortáveis. Eles lhe darão segurança e proteção contra torções, picadas de insetos e acidentes com animais peçonhentos;
-	\n\n•	Para se proteger do sol, cubra-se com roupas apropriadas, utilize chapéu ou boné e óculos escuros. Evite a exposição direta ao sol entre 10 horas da manhã e 4 horas da tarde;
-	\n\n•	Use protetor solar com fator de proteção adequado à cor de sua pele, de acordo com as orientações do fabricante. Mesmo em locais mais frios, sua pele ficará protegida dos raios solares;
-	\n\n•	Use repelentes quando houver necessidade;
-	\n\n•	Lave as mãos com água e sabão várias vezes ao dia, principalmente antes de ingerir alimentos, após utilizar conduções públicas, visitar mercados ou locais com grande fluxo de pessoas;
-	\n\n•	No Brasil, é proibido por lei dirigir após o consumo de bebida alcoólica, mesmo em pequenas quantidades.</string>
+    <string name="care_title_01">Общий Уход</string>
+    <string name="care_content_01">Здоровье Путешественника: 
+	\n\n•       Обратитесь к врачу, предпочтительно за 4 - 8 недель до начала поездки, чтобы сообщить ему о вашей поездке. Спросите его совета по уходу для защиты от заболеваний и травм;
+	\n\n•       Во время поездки может быть вам будет трудно найти медикаменты, которыми вы обычно  пользуетесь . Спросите совета своего врача о том, какие лекарства и в каком количестве следует взять с собой, в том числе в ручной клади;
+	\n\n•       Держите всегда при себе свои документы, удостоверяющие личность, желательно на английском и португальском языках, с личной контактной информации, типом крови, если у вас есть аллергия, диабет или другие заболевания, информация о которых может потребоваться;
+	\n\n•       Все беременные должны проконсультироваться со своим врачом перед путешествием, поскольку будут подвержены различным рискам и поездка может повлиять на вашу безопасность и комфорт;
+	\n\n•       Перед поездкой проконсультироваться с транспортной компанией насчёт специальных правил для беременных женщин;
+	\n\n•       Бразилия это страна тропического климата. Рекомендуем путешественникам постоянно принимать жидкости, чтобы предотвратить обезвоживание;
+	\n\n•       Носите удобную одежду и обувь. В них вы будете себя чувствовать безопасно и защищёно от растяжений, укусов насекомых и несчастных случаев с ядовитыми животными;
+	\n\n•       Для защиты от солнца, носите соответствующую одежду, включая шляпы или кепки и солнцезащитные очки. Избегайте прямых солнечных лучей с 10 утра до 4 вечера;
+	\n\n•       Используйте солнцезащитный крем с фактором защиты, соответствующим цвету вашей кожи, как рекомендует производитель. Даже в более в прохладных местах, ваша кожа будет защищена от воздействия солнечных лучей;
+	\n\n•       Используйте репелленты в случае необходимости;
+	\n\n•       Мойте руки с мылом несколько раз в день, особенно перед едой, после использования общественного транспорта, посещения рынков или мест с большим потоком людей;
+	\n\n•       В Бразилии, закон запрещает садиться за руль после употребления спиртных напитков, даже в небольших количествах.</string>
 
     #Vacinne
     <string name="vacinne_title_01">Прививки</string>
-    <string name="vacinne_content_01">•	A Organização Mundial da Saúde (OMS) informa que não há calendário internacional de vacinação para todos os viajantes. Para cada viajante, será adotada recomendação personalizada, de acordo com os países a serem visitados, dependendo do tipo, duração e tempo disponível para aplicação da vacina antes da partida.
-	\n\n•	O Brasil não exige o Certificado Internacional de Vacinação ou Profilaxia para entrada no país.
-	\n\n•	Certifique-se de que suas vacinas de rotina estejam em dia, de acordo com as recomendações de seu país de origem, pois é uma medida eficaz e segura para a prevenção de várias doenças.
-	\n\n•	Devido à circulação do sarampo na Europa, África e Ásia recomenda-se que pessoas com origem ou destino a países com ocorrência dessa doença sejam vacinados previamente.
-	\n\n•	A preparação para a viagem é uma boa oportunidade para verificar o estado vacinal de bebês, crianças, adolescentes, adultos e idosos.
-	\n\n•	Todo morador ou visitante de qualquer cidade brasileira tem disponível também as vacinas para influenza e Pólio, que são enfermidades relacionadas a possíveis emergências de saúde pública de importância internacional para a Organização Mundial de Saúde.
-\n\nPrevenção contra febre amarela:
-	\n\n•	Previna-se contra febre amarela tomando a vacina 10 dias antes de visitar áreas de mata ou de praticar turismo ecológico ou rural.
-	\n\n•	Procure seu médico, pois ele poderá lhe ajudar a decidir se a vacina é necessária, com base em seu plano de viagem.</string>
+    <string name="vacinne_content_01">•       Всемирная Организация Здравоохранения (ВОЗ) сообщает, что не существует международного календаря прививок для всех путешественников. Каждому путешественнику, будет сделана персонализированная рекомендация, в соответствии с посещаемой страной, в зависимости от типа, продолжительности и наличии времени для принятия прививки перед вылетом.
+	\n\n•       Бразилия не требует Международного Сертификата о Прививках или Профилактике для въезда в страну.
+	\n\n•       Убедитесь, что у вас сделаны все обычные прививки, в соответствии с рекомендациями вашей страны происхождения, так как это является безопасным и эффективным средством для профилактики различных заболеваний.
+	\n\n•       Из-за существования кори в Европе, Африке и Азии рекомендуется, чтобы люди путешествующие из или в страны где наблюдается это заболевание, были бы предварительно привиты.
+	\n\n•       Подготовка к поездке является хорошей возможностью проверить статус вакцинации младенцев, детей подростков, взрослых и пожилых людей.
+	\n\n•       Для каждого жителя или посетителя любого бразильского города имеются вакцины против гриппа и полиомиелита, заболеваний, связанных с возможными чрезвычайными ситуациями в области общественного здравоохранения международного значения для Всемирной Организации Здравоохранения.
+\n\nПрофилактика против желтой лихорадки:
+	\n\n•       Проведите профилактику против желтой лихорадки, прививаясь за 10 дней до посещения лесных участков или провождения экологического и сельского туризма.
+	\n\n•       Обратитесь к врачу, так как он может помочь вам решить, нужно ли прививаться, на основе вашего плана путешествия.</string>
 
     #Terms of use
-    <string name="terms_title_01">POLÍTICA DE PRIVACIDADE E TERMOS DE USO</string>
+    <string name="terms_title_01">ПОЛИТИКА КОНФИДЕНЦИАЛЬНОСТИ И УСЛОВИЯ ИСПОЛЬЗОВАНИЯ</string>
 
-    <string name="terms_content_01">Por favor, leia estes termos legais de uso antes de utilizar o aplicativo “Guardiões da Saúde”, fazer qualquer colaboração, acessar ou baixar qualquer informação deste aplicativo.
-\n\nAo acessar ou utilizar o aplicativo “Guardiões da Saúde”, você aceita e concorda em cumprir os termos e condições estabelecidos nos “Termos de Uso”.
-\n\nEste termo é um acordo vinculativo entre você e o aplicativo “Guardiões da Saúde”, que abrange todo o seu acesso e uso dessa aplicação, o que inclui o uso de todas as informações, dados, ferramentas, produtos, serviços e outros conteúdos disponíveis por meio deste.
-\n\nAo utilizar esta aplicação, você confirma que compreende e concorda com as seguintes regras dispostas:
-\n\n1. Respeito às leis:
-\n\nO usuário cadastrado deverá acessar o aplicativo “Guardiões da Saúde” apenas para finalidades lícitas e relacionadas à saúde;
-\n\nO usuário concorda em utilizar a aplicação apenas para os devidos fins e em conformidade com o presente termo e limitações legais, bem como quaisquer políticas aplicáveis no Brasil;
-\n\nSeu acesso é proibido em territórios onde o conteúdo seja considerado ilegal. Aqueles que optarem por acessar este site a partir de outras localidades, o farão por iniciativa própria e serão responsáveis pelo cumprimento das leis locais aplicáveis. Os materiais não deverão ser usados ou exportados em descumprimento das leis brasileiras. Qualquer pendência com relação aos materiais será dirimida pelas leis brasileiras.
-\n\nA alteração não autorizada do conteúdo deste site é expressamente proibida.
-\n\n2. Restrições de Uso:
-\n\nA utilização do aplicativo está permitida somente para indivíduos de 13 (treze) anos de idade ou mais.
-\n\n3. Responsabilidade pelo Conteúdo:
-\n\nAs instituições e desenvolvedores do aplicativo “Guardiões da Saúde” não são responsáveis pelo conteúdo de quaisquer informações eventualmente trocadas pelos usuários entre si, por meio de redes sociais, ou para o aplicativo “Guardiões da Saúde”, sejam elas lícitas ou ilícitas.
-\n\nOs comentários compartilhados, pelo usuário, por meio de redes sociais não representam a opinião das instituições envolvidas no projeto e a responsabilidade é do autor da mensagem.
-\n\nO usuário concorda que é o único responsável pela sua própria conduta e pela veracidade das informações fornecidas enquanto utilizar o serviço e que é responsável pelas consequências que resultem do fornecimento intencional de dados incorretos.
-\n\nO usuário concorda que, ao usar o aplicativo “Guardiões da Saúde”, não irá publicar, enviar, distribuir ou divulgar conteúdo ou informação de caráter difamatório, obsceno ou ilícito, inclusive informações de propriedade exclusiva pertencentes a outras pessoas ou empresas, bem como marcas registradas ou informações protegidas por direitos autorais, sem a expressa autorização do detentor desses direitos;
-\n\nNinguém pode agir em seu nome no uso do aplicativo “Guardiões da Saúde”. Você é responsável pelo conteúdo que indivíduos não autorizados produzirem ao usar essa aplicação utilizando, com sua permissão, seu perfil cadastrado. Essa regra não se aplica aos casos de violação ou outros problemas de segurança da aplicação.
-\n\n4. Acessibilidade ao Conteúdo:
-\n\nA equipe do aplicativo “Guardiões da Saúde” não garante que esta aplicação esteja parcial ou completamente funcional para uso fora do território nacional. Se você optar por acessar o Webapp e a aplicação de outras localidades, você o fará por sua própria iniciativa e seu próprio risco. Você é responsável pelo cumprimento das leis locais e, na medida em que leis locais sejam aplicáveis, você concorda especificamente em cumprir todas as leis aplicáveis relativas à transmissão de dados técnicos exportados a partir desse local.
-\n\n5. Propriedade Intelectual:
-\n\nO Ministério da Saúde, Secretarias de Saúde envolvidas e instituições parceiras são detentores do direito de autoria dos conteúdos produzidos e apresentados nessa aplicação. Essa premissa não se aplica as informações consideradas como de Domínio Público ou de Utilidade Pública. Todas as outras marcas comerciais, marcas de serviço, nomes e logotipos que aparecem nessa aplicação são de propriedade de seus respectivos proprietários.
-\n\nO aplicativo “Guardiões da Saúde” é um software open source cuja utilização por terceiros se submete aos termos da licença internacional http://opensource.org/licenses/gpl-3.0 GNU General Public License, version 3 (GPL-3.0). Os direitos de uso do conteúdo e dos relatórios gerados pelo Webapp e pela aplicação são cedidos pelos desenvolvedores, em especial aqueles que decorrem dos termos da licença http://creativecommons.org/licenses/by-nc/4.0/ Creative Commons - Atribuição-Não Comercial 4.0 Internacional http://creativecommons.org.br/as-licencas/attachment/by-nc/.
-\n\nApenas informações divulgadas pelos serviços de saúde devem ser consideradas oficiais para divulgação pública, no que tange aos dados relacionados a esse tema. Nenhuma das informação proveniente do aplicativo “Guardiões da Saúde”, apesar do empenho da equipe em garantir a qualidade, atualidade e autenticidade das informações, deverá ser considerada oficial para divulgação pública. Os dados coletados por meio do aplicativo “Guardiões da Saúde” são provenientes dos usuários que voluntariamente forneceram as informações e que pode sofrer influência pela sua capacidade de acesso aos dispositivos móveis ou computadores com especificações tecnológicas mínimas.
-\n\nAssim, as informações geradas, a partir dessa estratégia, podem ser insuficientes para representar estatisticamente ao real padrão epidemiológico daquele período e local. As informações lúdicas ou de utilidade pública poderão apresentar eventuais incorreções ou falhas de atualização, sendo recomendada sua validação pelos usuários em casos de urgência e emergência ou de qualquer outra situação de ameaça à vossa saúde ou integridade.
-\n\n6. Leis, Regulamentos, Direitos e Deveres:
-\n\nÉ política da equipe do aplicativo “Guardiões da Saúde” cumprir todas as leis e regulamentos aplicáveis e vigentes. No caso de qualquer disposição do presente Termo de Uso estar em conflito com qualquer lei ou regulamento aplicável, a lei ou regulamentação aplicável substituirá a disposição contrária.
-\n\nEste Termo de Uso e o uso do aplicativo “Guardiões da Saúde” são e serão regidos e interpretados de acordo com as leis internas do Brasil, sem levar em conta as suas regras de conflitos de leis. Em caso de qualquer conflito entre as leis, regras e regulamentos estrangeiros e as do Brasil, as leis, regras e regulamentos do Brasil deverão prevalecer.
-\n\nO aplicativo “Guardiões da Saúde” poderá, mas não é obrigado, monitorar, revisar e restringir o acesso a qualquer de suas áreas onde os usuários transmitem informações, podendo retirar do ar ou retirar o acesso a qualquer destas informações ou comunicações. Se você tiver alguma dúvida em relação ao aplicativo “Guardiões da Saúde”, não hesite em contatar-nos pelo e-mail: contato@guardioesdasaude.org
-\n\n7. Uso das Contribuições:
-\n\nAo enviar uma contribuição escrita ou postar informações no aplicativo “Guardiões da Saúde”, você concede uma licença perpétua, isenta de royalties, licença incondicional para essa aplicação e qualquer organização sucessora, a publicar a sua contribuição no aplicativo “Guardiões da Saúde”, bem como divulgá-las, de forma agregada (nunca individual) a outros meios de comunicação, e para discutir ou referenciá-la em quaisquer publicações decorrentes do aplicativo “Guardiões da Saúde”.
-\n\nVocê também concorda que o aplicativo “Guardiões da Saúde”tem o direito, mas não a obrigação, de editar ou remover qualquer contribuição, ou incluí-la no texto, em conjunto com outras contribuições, a critério exclusivo da equipe relacionada a essa aplicação.
-\n\n8. Garantia de Sigilo e Privacidade:
-\n\nSerá garantido o sigilo e a privacidade de todas as informações produzidas por você no aplicativo “Guardiões da Saúde” e o acesso as informações seguem as regras previstas na Lei de Acesso à Informação.
-Reservamo-nos o direito de usar esta informação internamente e, neste âmbito, sua contribuição estará vinculada ao seu e-mail e será anonimizada para qualquer fim de análise dos dados.
-\n\nInformamos também que, para atender a finalidade principal do aplicativo, que é identificar aglomerados de individuos com sintomas, as informações sobre seu estado de saúde serão geolocalizadas através da captura do sinal de GPS de seu dispositivo.".
-\nO aplicativo “Guardiões da Saúde”, seus colaboradores e usuários, incluindo agências governamentais e não governamentais, dependem dos usuários para a precisão das contribuições. A equipe não se responsabiliza por erros ou imprecisões em qualquer submissão. Deturpação deliberada de informações por um usuário pode constituir uma violação da lei, e se for séria, será comunicada às autoridades governamentais apropriadas.
-\n9. Atualização do aplicativo “Guardiões da Saúde”:
-\nModificações dessa aplicação e dos seus Termos de Uso poderão ocorrer. A menos que indique o contrário, seu uso do Webapp e da aplicação indica a aceitação integral dos Termos de Uso naquela versão vigente, cada vez que você usar o aplicativo “Guardiões da Saúde”. Fiquem atentos às atualizações e, em caso de dúvida, os Termos de Uso estarão sempre disponíveis para acesso e concordância ou não.
-\n10. Responsabilidade por Ações com base no Conteúdo:
-\nO aplicativo “Guardiões da Saúde” não assume responsabilidade por quaisquer prejuízos e/ou danos a pessoas ou bens, em consequência de qualquer utilização das ideias, conteúdos, instruções, métodos, produtos ou procedimentos contidos nessa aplicação.
-\nEm hipótese alguma os profissionais envolvidos com o desenvolvimento ou gestão dessa aplicação serão responsabilizados por qualquer decisão ou ação tomada por você em base a tal conteúdo.
-\nDiante de ameaças ou qualquer outra situação de risco a vossa saúde ou integridade, procure sempre orientações validadas e atualizadas pelos serviços locais de saúde pública.
-\n11. Responsabilidade por Problemas Tecnológicos:
-\nEventualmente, todo o conteúdo ou qualquer parte do aplicativo “Guardiões da Saúde” pode não estar disponível e pode não funcionar corretamente em qualquer momento. Fazemos esforços razoáveis para evitar problemas tecnológicos, mas em qualquer momento podem ocorrer nessa aplicação problemas tecnológicos das mais diversas naturezas, tais como vírus, rotinas de programação prejudiciais ou problemas relacionados ao aparelho.
-\nO Webapp e a aplicação são fornecidos "como está" e "conforme estiver disponível". Sem limitar o nosso aviso geral, não garantimos a disponibilidade, integridade, pontualidade, funcionalidade, confiabilidade, sequenciamento ou a velocidade de entrega nessa aplicação ou de qualquer parte do conteúdo.
-\nO aplicativo “Guardiões da Saúde” não se responsabiliza por qualquer dano ou prejuízo causado pelo desempenho ou falha de desempenho de toda ou qualquer parte da aplicação. O aplicativo “Guardiões da Saúde” não se responsabiliza por quaisquer defeitos, atrasos ou erros resultantes da sua utilização dessa aplicação.
-\nA utilização de todas as funcionalidades do aplicativo “Guardiões da Saúde” exige disponibilidade do acesso à internet pelo usuário, por wi-fi ou cabo de rede de dados. A ausência desse pré-requisito pode limitar a utilização da aplicação com todo seu potencial de uso. A equipe do aplicativo “Guardiões da Saúde”, considerando esse aviso, não assume responsabilidade decorrente dessa limitação.
-\nEsta isenção de responsabilidade aplica-se a todos e quaisquer danos ou prejuízos, incluindo aqueles causados por qualquer falha de desempenho, erro, omissão, interrupção, remoção, defeito, atraso na operação ou transmissão, vírus de computador, falha de linha de comunicação, roubo, destruição ou acesso não autorizado, a alteração ou uso de qualquer bem, seja por violação de contrato, comportamento ilícito, negligência ou qualquer outra causa de ação.
-\n12. Responsabilidade por Informações de Terceiros:
-\nA disposição através do Webapp e da aplicação de links e referências para outros sites, publicações ou recursos de informação não constitui o endosso desses sites ou de seus recursos por parte do aplicativo “Guardiões da Saúde”, de seus agentes ou representantes. A equipe do aplicativo “Guardiões da Saúde” não faz representações ou asserções quanto à qualidade, conteúdo e precisão das informações, serviços ou produtos que podem ser fornecidos por esses recursos e, especificamente, se isenta de quaisquer garantias, incluindo, mas não limitando, às garantias implícitas ou expressas de comerciabilidade ou adequação para qualquer utilização particular, aplicação ou finalidade.
-\n13. Considerações Finais
-\nO acesso ao serviço representa a aceitação expressa e irrestrita dos Termos de Uso acima descritos. Ao concordar com esses termos você concede uma licença perpétua, isenta de royalties, licença incondicional para o aplicativo “Guardiões da Saúde”, Ministério da Saúde e todas as organizações sucessoras, para publicar a sua contribuição de forma agregada, na própria aplicação, bem como divulgá-las aos serviços de vigilância em saúde pública relacionados. Você também concorda que o aplicativo “Guardiões da Saúde” tem o direito, mas não a obrigação, de editar ou remover qualquer contribuição a critério exclusivo da equipe do aplicativo.</string>
+    <string name="terms_content_01">Пожалуйста, прочтите эти правовые условия использования перед использованием приложения «Стражи Здоровья», вступлением в любое сотрудничество, доступом или загрузкой какой-либо информации этого приложения.
+\n\nПосещая и используя приложение «Стражи Здоровья», вы принимаете и соглашаетесь соблюдать условия, изложенные в «Условия Использования».
+\n\nЭти условия являются обязательным соглашением между вами и приложением «Стражи Здоровья», которое охватывает весь ваш доступ и использование этого приложения, что включает в себя использование любой информации, данных, инструментов, товаров, услуг и прочих материалов, доступных в нём.
+\n\nИспользуя это приложение, вы подтверждаете, что вы понимаете и соглашаетесь со следующими правилами:
+\n\n1. Уважение к закону:
+\n\nЗарегистрированный пользователь должен получить доступ к приложению «Стражи Здоровья» только в законных и связанных со здоровьем целях;
+\n\nПользователь согласен с тем, чтобы использовать приложение только по назначению и в соответствии с этими условиями и правовыми ограничениями, как и любыми другими законами Бразилии;
+\n\nДоступ запрещен с территорий, где его содержание является незаконным. Те, кто входит в это приложение из других мест, делают это по своей собственной инициативе и несут ответственность за соблюдение местных законов. Материалы не должны быть использованы или экспортированы, если это ведёт к нарушению бразильских законов. Любые связанные материалы определяются законодательством Бразилии.
+\n\nНесанкционированное изменение содержимого этого сайта строго запрещено.
+\n\n2. Ограничение Использования:
+\n\nИспользование приложения разрешается только лицам старше 13 (тринадцать) лет.
+\n\n3. Ответственность за Содержание:
+\n\nОрганизации и разработчики приложения «Стражи Здоровья» не несут ответственности за содержание любой информации, которая была обменена пользователями друг с другом через социальные сети, или в приложении «Стражи Здоровья», будь она закона или не закона. 
+\n\nКомментарии, которыми делятся пользователи через социальные сети, не отражают точку зрения организаций, участвующих в проекте, а ответственность возлагается на автора сообщений. 
+\n\nПользователь согласен с тем, что несёт ответственность за собственное поведение и достоверность информации, предоставленной при использовании услуги, а также несёт ответственность за последствия за умышленное предоставление неверных данных.
+\n\nПользователь согласен с тем, что при использовании приложения «Стражи Здоровья», не будет публиковать, посылать или распространять содержание или информацию клеветнического, непристойного или незаконного характера, в том числе конфиденциальную информацию, принадлежащую другим лицам или компаниям, зарегистрированным брендам, а также информацию, защищенную авторским правом, без явного разрешения владельца авторских прав;
+\n\nНикто не может действовать от вашего имени используя приложение «Стражи Здоровья». Вы несете ответственность за содержание, которое не уполномоченные лица располагают, используя это приложение, с вашего позволения, ваш зарегистрированный профиль. Это правило не распространяется на случаи взлома или других проблем в связанных с безопасностью приложения.
+\n\n4. Доступность Содержания:
+\n\nКоманда приложения «Стражи Здоровья» не гарантирует, что это приложение является частично или полностью функциональным для использования за границей. Если вы решили зайти в Webapp и приложение в других странах, вы делаете это по собственной инициативе и на свой страх и риск. Вы несёте ответственность за соблюдение местного законодательства, и в той мере, насколько местные законы применимы, вы соглашаетесь соблюдать все применяемые законы, касающиеся передачи технических данных, экспортируемых на этой территории.
+\n\n5. Интеллектуальная Собственность:
+\n\nМинистерство Здравоохранения, вовлечённые Департаменты Здравоохранения и организации - партнёры, являются обладателями прав авторства содержания, произведенного и представленного в данном приложении. Это предположение не относится к информации, которая считается Общественным Достоянием или Общественным Использованием. Все прочие товарные знаки, знаки услуг, наименования и логотипы, представленные в данном приложении, являются собственностью их соответствующих владельцев.
+\n\nПриложение «Стражи Здоровья» - ПО с открытым исходным кодом, использование которого третьими лицами подчиняются условиям международной лицензии http://opensource.org/licenses/gpl-3.0 GNU General Public License, версия 3 (GPL-3.0). Права на использование содержания и отчётов, сделанных через Webapp и через приложение, даются разработчиками, особенно те, которые вытекают из условий лицензии  http://creativecommons.org/licenses/by-nc/4.0/ Creative Commons - Atribuição-Não Comercial 4.0 Internacional http://creativecommons.org.br/as-licencas/attachment/by-nc/.
+\n\nТолько информацию, распространяемую службами здравоохранения, следует считать официальной для публичного распространения, в отношении данных, связанных с этой темой. Никакая информация приложения «Стражи Здоровья», не смотря на все старания команды в обеспечении качества, своевременности и достоверности информации, не должна считаться официальной для публичного распространения. Данные, собранные с помощью приложения «Стражи Здоровья», поступают от пользователей добровольно предоставляющих информацию, и могут быть подвержены влиянию их способности доступа в мобильные устройства или компьютера  с минимальными возможностями в технологиях.
+\n\nТаким образом, общая полученная информация, может оказаться недостаточной, чтобы представлять статистически реальную эпидемиологическую картину того периода и места. Полезная информация или общественно-официальная, может содержать какие-либо неточности или ошибки обновления, поэтому пользователям рекомендуется проверить, в случае срочности и чрезвычайного положения или другой угрожающей ситуации для вашего здоровья.
+\n\n6. Законы, Постановления, Права и Обязанности:
+\n\nПолитикой команды приложения «Стражи Здоровья» соблюдать все применимые законы и постановления. Если какое-либо положение настоящих Условий Использования находится в конфликте с любым законом или нормативным актом, закон или нормативный акт заменяет обратное.
+\n\nЭти Условия Использования приложения «Стражи Здоровья»  есть и будут регулироваться и толковаться в соответствии с внутренним законодательством Бразилии, без учета своих правил коллизии законов. В случае возникновения противоречий между законами, правилами и нормами  международными и Бразилии, законы, нормы и правила Бразилии имеют преимущественную силу.
+\n\nПриложение «Стражи Здоровья» может, но не обязательно, осуществлять мониторинг, проверку и ограничение доступа к любой из областей, где пользователи передают информацию, и снимать с сайта или закрывать доступ к любой информации или сообщениям. Если у вас есть какие-либо вопросы, касающиеся приложения «Стражи Здоровья», обращайтесь к нам по электронной почте: contato@guardioesdasaude.org
+\n\n7. Использование Внесённой Информации:
+\n\nВнося письменные материалы или размещая информацию в приложении «Стражи Здоровья», вы предоставляете бессрочную, безвозмездную, безусловную лицензию данному приложению и любому преемнику организации, на то, чтобы опубликовать свою информацию в приложении «Стражи Здоровья», а также распространять её, в общей форме (ни в коем случае не в индивидуальной) в других средствах массовой информации, а также обсуждать или ссылаться на неё в любых публикациях вытекающих из приложения «Стражи Здоровья».
+\n\nВы также согласны с тем, что приложение «Стражи Здоровья» имеет право, но не обязанность, редактировать или удалять любую информацию или материалы, или включать их в текст, наряду с другими, по усмотрению команды связанной с этим приложением.
+\n\n8. Гарантия Секретности и Конфиденциальность:
+\n\nБудет обеспечена секретность и конфиденциальность всей информации, получаемой от вас в приложении «Стражи Здоровья» , а также доступ к информации, по правилам, установленным Законом Доступа к Информации. 
+Оставляем за собой право использовать эту информацию внутри нашей системы, и в этом контексте, ваша информация или материалы будут связаны с вашим адресом электронной почты, и будет анонимной для любых целей анализа данных. 
+\n\nТакже информируем, что для достижения главной цели приложения: определение группы людей с определёнными симптомами, информация о состоянии вашего здоровья будет привязана через сигнал GPS вашего устройства.".
+\nПриложение «Стражи Здоровья», его сотрудники и пользователи, в том числе государственные и негосударственные агентства, зависят от пользователей в точности внесённой информации. Команда не несет ответственности за ошибки или неточности в любом представлении. Преднамеренное искажение информации пользователем, может являться нарушением закона, а если это серьезное нарушение, оно будет доведено до сведения соответствующих органов исполнительной власти.
+\n9. Обновление  приложения «Стражи Здоровья»:
+\nМожет произойти изменения в данном приложении и его Условиях Использования. Если только указано обратное, использование вашего Webapp и приложения указывает на полное принятие Условий Использования, текущей версии, каждый раз, когда вы используете приложение «Стражи Здоровья». Следите за обновлениями и, если у вас появились сомнения, Условия Использования всегда свободны для доступа, чтобы принять их или нет. 
+\n10. Ответственность за Действия, на основании Содержания:
+\nПриложение «Стражи Здоровья» не несет никакой ответственности за любые убытки и/или ущерб, причиненный людям или имуществу в результате любого использования идей, содержания, инструкций, методов, продуктов или процедур, содержащихся в данном приложении.
+\nНи в коем случае профессионалы участвующие в разработке или управлении этого приложения будут нести ответственность за любые решения или действия, предпринятые вами на основе этого содержания.
+\nЕсли что-то угрожает вашему здоровью или целостности, всегда обращаются за подтвержденной и обновленной помощью к местным службам общественного здравоохранения.
+\n11. 11. Ответственность за Технологические Проблемы:
+\nВ конечном итоге всё содержание или какая-либо часть приложения «Стражи Здоровья», может быть недоступна или находится в нерабочем режиме. Мы прилагаем все усилия, чтобы избежать технологических проблем, но они могут возникнуть в этом приложении в любое время  и различного характера, например, такие как вирус, обычные процедуры программирования, или проблемы связанные с устройством.
+\nWebapp и приложение предоставляются «как есть» и «как доступно». Не ограничивая нашу ответственность, мы не можем гарантировать доступность, целостность, своевременность, функциональность, надежность, последовательность или скорость доставки в этом приложении или любой части его содержания.
+\nПриложение «Стражи Здоровья» не несет ответственности за какие-либо повреждения или травмы, вызванные исполнением или неисполнением всего или любой части приложения. Приложение «Стражи Здоровья» не несет ответственности за какие-либо дефекты, задержки или ошибки, связанные с использованием этого приложения.
+\nИспользование всех функциональных возможностей приложения «Стражи Здоровья» требует наличия доступа пользователя к Интернету, с помощью Wi-Fi или сети передачи данных. Отсутствие этого необходимого условия может ограничить использование приложения со всем его потенциалом. Команда приложения «Стражи Здоровья», принимая во внимание это предупреждение, не несёт ответственности из-за этого ограничения.
+\nЭтот освобождение от ответственности относится к любой потери или повреждению, в том числе тех, которые вызваны недостатком в работе, упущением, прерыванием, удалением, дефектом, задержкой в работе или передачей данных, компьютерным вирусом, отказом соединения линии связи, кражей, уничтожением или несанкционированным доступом, изменением или использованием какого-либо имущества, будь то нарушение условий контракта, противоправное поведение, небрежности или по какой-либо другой причине.
+\n12. Ответственность за Информацию Третьих Лиц:
+\nПредоставление через Webapp и приложение ссылок и рекомендаций на другие сайты, публикации или информационные ресурсы, не означает одобрения этих сайтов или их ресурсов приложением «Стражи Здоровья», его агентами или представителями. Команда приложения «Стражи Здоровья» не делает никаких заявлений или претензий в отношении качества, содержания и точности информации, товаров или услуг, которые могут быть предоставлены этими ресурсами, и в частности отказывается от каких-либо гарантий, включая, но не ограничивая явных или подразумеваемых гарантий пригодности для продажи или достаточности для любого конкретного использования, применения или цели.
+\n13. Заключительные Аспекты
+\nДоступ к услуге является безусловным принятием Условий Использования приведённых выше. Соглашаясь с этими условиями, вы предоставляете бессрочную, безвозмездную и безусловную лицензию приложению «Стражи Здоровья», Министерству Здравоохранения и всех организациям-преемникам, для опубликования  предоставленной вами информацией в совокупности, в самом приложении, а также её распространения соответствующим службам надзора в области общественного здравоохранения. Вы также согласны с тем, что приложение «Стражи Здоровья» имеет право, но не обязательство, редактировать или удалять любую информацию по усмотрению команды приложения.</string>
 
     <string name="zika_title_01">Денге, Чикунгунья и Зика</string>
 
-    <string name="zika_content_01" formatted="false">•	Os vírus da Dengue, Zika e Chikungunya são transmitidos pelo mosquito Aedes aegypti e apresentam sinais e sintomas parecidos. 
-	\n\n•	É importante que você procure o serviço de saúde mais próximo, quando apresentar febre, manchas vermelhas pelo corpo, dores no corpo ou dor nas juntas (articulações) ou coceira. 
-	\n\n•	Procure se informar se no seu bairro ou cidade estão acontecendo casos de Dengue, Zika ou Chikungunya. 
-	\n\n•	Se estiver com suspeita de Dengue, Zika ou Chikungunya, tome líquidos em abundância.
-	\n\n•	A principal medida de prevenção é evitar a reprodução dos mosquitos Aedes aegypti, transmissores das três doenças.
-	\n\n•	Os repelentes para uso sobre a pele podem ser utilizados por gestantes, desde que estejam devidamente registrados na ANVISA e que sejam seguidas as instruções de uso descritas no rótulo. Produtos à base de DEET, Icaridin (Picaridin), EBAAP (IR3535) são considerados seguros para serem utilizados por gestantes. 
-	\n\n•	Produtos à base DEET não devem ser usados em crianças menores de 2 anos. Em crianças entre 2 e 12 anos, a concentração dever ser no máximo 10% e a aplicação deve se restringir a 3 vezes por dia. Para maiores de 12 anos, são permitidas as concentrações superiores a 10%.
-	\n\n•	Os repelentes de ambiente, como aqueles de parede (aparelhos elétricos) ou espirais não devem ser utilizados em locais com pouca ventilação nem na presença de pessoas asmáticas ou com alergias respiratórias. Estes podem ser utilizados em qualquer ambiente da casa, desde que estejam, no mínimo, a dois metros de distância das pessoas. 
-Dengue
-	\n\n•	A Dengue é a doença mais comum entre as três, já sendo bem conhecida pela população brasileira. 
-	\n\n•	Não usar medicamentos à base de ácido acetilsalicílico (ex.: AAS, Aspirina entre outros) e nem anti-inflamatórios, em função do risco aumentado de complicações hemorrágicas (sangramento) no caso de doenças como a Dengue. 
-	\n\n•	Atenção para sinais que podem indicar agravamento da Dengue: falta de ar, tontura, dores abdominais ou sangramentos.
-	\n\n•	Ao apresentar qualquer sinal ou sintoma de Dengue, procure um serviço de saúde imediatamente. 
-Chikungunya
-	\n\n•	Os primeiros casos de infecção pelo Chikungunya ocorreram em 2014.
-	\n\n•	Ao apresentar qualquer sinal ou sintoma de Chikungunya, procure um serviço de saúde imediatamente. 
-Zika
-	\n\n•	Os primeiros casos de infecção pelo vírus Zika ocorreram em fevereiro de 2015.
-	\n\n•	No caso da infecção pelo vírus Zika, a maior parte das pessoas (mais de 80%) não apresenta sinais e sintomas.
-\n\nAs complicações causadas pela infecção pelo vírus Zika são pouco conhecidas. Manifestações neurológicas (paralisia facial, fraqueza nas pernas e Síndrome de Guillain-Barré), raramente, podem ocorrer alguns dias depois do quadro agudo. A infecção durante a gestação pode levar a malformações congênitas graves, em especial a microcefalia. 
-\n\nNão existe tratamento específico para a infecção pelo vírus Zika. 
-\n\nAo apresentar qualquer sinal ou sintoma de Zika, procure um serviço de saúde imediatamente. 
-\n\nCombata o mosquito periodicamente:
-	\n\n•	Mantenha bem tampados tonéis e barris de água.
-	\n\n•	Lave semanalmente por dentro com escova e sabão os tanques utilizados para armazenar água.
-	\n\n•	Mantenha a caixa-d’água bem fechada. Coloque também uma tela no ladrão da caixa-d’água.
-	\n\n•	Remova folhas, galhos e tudo que possa impedir a água de correr pelas calhas.
-	\n\n•	Não deixe água acumulada sobre a laje.
-	\n\n•	Encha os pratinhos de vasos de plantas com areia até a borda.
-	\n\n•	Outra opção para os pratinhos de plantas é lavar uma vez por semana.
-	\n\n•	Troque a água dos vasos de plantas aquáticas e lave-os com escova, água e sabão uma vez por semana.
-	\n\n•	Coloque o lixo em sacos plásticos e mantenha a lixeira bem fechada.
-	\n\n•	Feche bem os sacos de lixo e deixe-os fora do alcance de animais.
-	\n\n•	Mantenha as garrafas com a boca virada para baixo, evitando o acúmulo de água.
-	\n\n•	Pneus devem ser acondicionados em locais cobertos.
-	\n\n•	Faça sempre a manutenção de piscinas ou fontes utilizando os produtos químicos apropriados.
-	\n\n•	Se o ralo não for de abrir e fechar, coloque uma tela fina para impedir o acesso do mosquito à água.
-	\n\n•	Coloque areia dentro de todos os cacos que possam acumular água.
-	\n\n•	Não deixe água acumulada em folhas secas e tampas de garrafas.
-	\n\n•	Os vasos sanitários fora de uso ou de uso eventual devem ser tampados e verificados semanalmente.
-	\n\n•	Limpe sempre a bandeja do ar-condicionado para evitar o acúmulo de água.
-	\n\n•	Lonas usadas para cobrir objetos ou entulhos devem ser bem esticadas para evitar poças-d’água.
-\n\nPara dúvidas referentes à Dengue, Zika e Chikungunya, favor ligar para o Disque Saúde, por meio do número <b><a href="tel:136">136</a></b> e digitar a opção 3. </string>
+    <string name="zika_content_01" formatted="false">•       Вирус Денге, Зика и Чикунгунья передаётся комаром  Aedes aegypti и имеют схожие признаки и симптомы. 
+	\n\n•       Обязательно обратитесь в ближайший центр медицинского обслуживания, если у вас лихорадка, красные пятна на теле, боли в теле или суставах или зуд.  
+	\n\n•       Узнайте были ли в вашем районе или городе случаи  лихорадки Денге, Чикунгунья или Зика.  
+	\n\n•       Если вы заподозрили что у вас лихорадка Денге, Чикунгунья или Зика, принимайте количество жидкости.
+	\n\n•       Основной профилактической мерой является предотвращение размножения комаров Aedes aegypti,  передатчиков этих трех заболеваний. 
+	\n\n•       Репелленты для кожи можно использовать беременным женщинам, при условии, что они надлежащим образом зарегистрированы в ANVISA, а также, при соблюдении всех инструкций по использованию на этикетке. Продукты на основе DEET, Icaridin (Picaridin), EBAAP (IR3535), считаются безопасными для использования беременными женщинами.  
+	\n\n•       Продукты на основе DEET не должны использоваться детьми в возрасте до 2-х лет. Используемая концентрация для детей в возрасте от 2 до 12 лет, не должна превышать 10%, а нанесение должно быть ограничено до 3-х раз в день. Пациенты старше 12 лет, используемая концентрация может быть выше 10%.
+	\n\n•       Репелленты для помещений, как например для стен (электроприборы) или в виде спиралей не должны использоваться в местах с плохой вентиляцией или в присутствии людей, страдающих астмой или дыхательной аллергией. Они могут быть использованы в любой комнате в доме, при условии, что они находятся, по крайней мере в двух метрах от людей. 
+Лихорадка Денге
+	\n\n•       Лихорадка Денге из трёх названных является наиболее распространенным заболеванием, которая уже хорошо известна бразильскому населению.  
+	\n\n•       Не используйте препараты на основе ацетилсалициловой кислоты (например.: АСК, Аспирин и другие), а также противовоспалительные средства, в связи с повышенным риском развития геморрагических осложнений (кровотечение) в случае таких заболеваний, как лихорадка Денге.  
+	\n\n•       Обратите внимание на признаки, которые могут указывать на ухудшение Денге: нехватка воздуха, головокружение, боли в животе, или кровотечение.
+	\n\n•       При появлении каких-либо признаков или симптомов лихорадки Денге, обратитесь за медицинской помощью немедленно.  
+Лихорадка Чикунгунья
+	\n\n•       Первые случаи инфицирования лихорадкой Чикунгунья были зарегистрированы в 2014 году.
+	\n\n•       При предъявлении каких-либо признаков или симптомов лихорадки Чикунгунья, обратитесь за медицинской помощью немедленно.  
+Лихорадка Зика
+	\n\n•       Первые случаи инфицирования вирусом Зика были зарегистрированы в феврале 2015 года.
+	\n\n•       В случае вирусной инфекции Зика, большинство людей (более 80%), не имеют признаков и симптомов. 
+\n\n•       Осложнения, вызванные инфекцией вируса Зика мало неизвестны. Неврологические проявления (паралич лицевого нерва, слабость в ногах и Синдром Гийена-Барре), редко, могут проявиться через несколько дней после обострения. Инфекция во время беременности может привести к серьезным врожденным дефектам, особенно микроцефалия. 
+\n\n•       Нет никакого специального лечения для инфекции вируса Зика.  
+\n\n•       При проявлении каких-либо признаков или симптомов Зика, обратитесь за медицинской помощью немедленно. 
+\n\nБоритесь с комарами периодически:
+	\n\n•       Хранить хорошо закрытыми ёмкости и бочки с водой.
+	\n\n•       Еженедельно промывайте внутри с щеткой и мылом цистерны, используемые для хранения воды.
+	\n\n•       Водяной бак плотно закрывайте крышкой. Также установите защитный экран на водосливе водяного бака.
+	\n\n•       Удалите листья, веточки и все, что может предотвратить движение воды по водосточным желобам.
+	\n\n•       Не давайте воде скапливаться.
+	\n\n•       Заполните песком маленькие тарелочки горшочков до краёв.
+	\n\n•       Еще один вариант для тарелочек горшков для цветов - мыть один раз в неделю.
+	\n\n•       Меняйте воду в горшках водных растений и промывайте их щеткой и мылом один раз в неделю.
+	\n\n•       Поместите мусор в полиэтиленовые пакеты и держите его плотно закрытым.
+	\n\n•       Плотно закрывайте мешки для мусора и оставляйте их в недоступном для животных месте.
+	\n\n•       Храните бутылки горлышком вниз, предотвращая накопление воды.
+	\n\n•       Шины должны храниться в закрытых местах.
+	\n\n•       Всегда поддерживайте обслуживание бассейнов и фонтанов с использованием соответствующих химических веществ.
+	\n\n•       Если дренажные решётки не открываются и закрываются, закройте их тонким покрытием, чтобы предотвратить доступ комара к воде.
+	\n\n•       Поместите песок во все полые предметы, где может собираться вода.
+	\n\n•       Не давайте собраться воде в сухих листьях и пробках от бутылок.
+	\n\n•       Не используемые унитазы, или те, которые используются мало, нужно держать закрытыми и еженедельно проверяться.
+	\n\n•       Всегда мойте поддон в аппарате кондиционирования воздуха, чтобы предотвратить накопление воды.
+	\n\n•       Брезент, используемый для накрытия предметов или строительного мусора, должен быть правильно натянут, чтобы избежать скоплений воды.
+\n\nЕсли у вас возникли вопросы связанные с лихорадкой Денге, Зика и Чикунгунья, пожалуйста, позвоните по телефону горячей линии Здоровья, по номеру 136, опция 3. </string>
 
     # Game
-    <string name="welcome_game_welcome">Bem-vindo a nossa pista de corrida! Arraste para saber mais sobre como jogar.</string>
-    <string name="welcome_game_point">Para jogar, é preciso ter pontos de energia. Participe diariamente do Guardiões da Saúde para ganhá-los!</string>
-    <string name="welcome_game_phase">Nossa pista de corrida é formada por fases. Conclua cada fase para chegar mais longe na corrida!</string>
-    <string name="welcome_game_play">Cada fase contém um quebra-cabeça. Complete-o para passar de fase.</string>
+    <string name="welcome_game_welcome">Добро пожаловать на нашу беговую дорожку! Перетащите, чтобы узнать больше о том, как играть.</string>
+    <string name="welcome_game_point">Чтобы играть, вы должны иметь заряд энергии. Будьте ежедневно Стражами Здоровья, чтобы их заработать!</string>
+    <string name="welcome_game_phase">Наша беговая дорожка состоит из этапов. Завершите каждый этап, чтобы дальше продвинуться в соревновании!</string>
+    <string name="welcome_game_play">Каждая фаза содержит задачку.  Завершите, чтобы перейти к другому этапу.</string>
     <string name="welcome_game_answer">Отвечайте правильно на вопросы, касающиеся здоровья, чтобы выявить детали.</string>
     <string name="welcome_game_card">Собирайте фигурки олимпийских видов спорта после завершения каждого этапа!</string>
 
     <string name="safe_sex_title">Практикуйте безопасный секс </string>
-    <string name="safe_sex_content">Camisinha
-	\n\n•	A camisinha é a maneira prática para se proteger contra o HIV/ aids, as hepatites virais e as infecções sexualmente transmissíveis (IST), como a sífilis e a gonorreia.
-	\n\n•	Use e descarte corretamente o preservativo.
-	\n\n•	Se a camisinha “estourou” ou você transou sem camisinha, pode ser necessário o uso de profilaxia pós-exposição de risco ao HIV , conhecida como PEP.
-	\n\n•	PEP
-	\n\n•	A PEP é um tratamento com medicamento antirretroviral que evita a infecção pelo vírus HIV, causador da aids. Está indicada para as pessoas que apresentaram exposição de risco ao HIV, como sexo ocasional, violência sexual e acidente ocupacional com material biológico.
-	\n\n•	Caso seja indicado pelo médico, o tratamento de PEP dura 28 dias e deve ser iniciado em até 72 horas após o contato sexual desprotegido.
-	\n\n•	Onde encontrar PEP? (Link direto para o aplicativo e/ou site)  http://pep.aids.gov.br
-\n\nImportante
-	\n\n•	Todos têm direito à informação e ao atendimento sem preconceito, estigma e discriminação.
-	\n\n•	No Brasil, as camisinhas feminina e masculina e o gel lubrificante são distribuídos gratuitamente em unidades de saúde, albergues, Centros de Atendimento ao Turista e outros.  Informe-se sobre os pontos de distribuição mais próximos.
-	\n\n•	Se precisar de medicamentos contra o HIV (perdeu ou esqueceu), procure a unidade de saúde mais próxima, levando algum documento de identificação. Turista estrangeiro, informe-se com seu seguro de saúde (health insurance).
-\n\nLembre-se
-	\n\n•	Evite a infeção pelas hepatites virais. Se fizer tatuagens ou colocar piercing, escolha lugares com alvará/ licença sanitária expedida pela Vigilância Sanitária local. Exija essa certificação, se não estiver visível no local.
-	\n\n•	Exija que o material utilizado seja esterilizado ou descartável.
-	\n\n•	Não compartilhe seus objetos de uso pessoal, como alicates de cutícula, lâminas de barbear, escova de dente, agulhas e seringas com outras pessoas.
-	\n\n•	Se observar qualquer sinal ou sintoma, como corrimentos ou feridas,  ou algum outro problema de saúde, procure orientação do profissional de saúde.
-\n\nVocê sabia?
-	\n\n•	Muitas pessoas vivem com o HIV e hepatites virais e não sabem.
-	\n\n•	A única maneira de tomar conhecimento é fazendo o teste. Os testes anti-HIV e das hepatites são gratuitos e oferecidos na rede pública de saúde. Turista estrangeiro, informe-se com seu seguro de saúde (health insurance).
-	\n\n•	Existe vacina para Hepatite B. Deve ser tomada em 3 doses em períodos diferentes. Informe-se onde está disponível.
+    <string name="safe_sex_content">Презерватив
+	\n\n•       Презерватив является практическим способом защиты от ВИЧ/СПИДа, вирусных гепатитов и инфекций, передаваемых половым путем (ИППП), таких как сифилис и гонорея. 
+	\n\n•       Используйте и выбрасывайте презервативы надлежащим образом.
+	\n\n•       Если презерватив «порвался» или вы занимались сексом без презерватива, возможно, придется воспользоваться постконтактной профилактикой ВИЧ, известной как АРВ. 
+	\n\n•       АРВ
+	\n\n•       АРВ - лечение с помощью антиретровирусных препаратов, который предотвращает вирус ВИЧ, вызванный СПИДом. Предназначен для людей, подверженных риску заражения ВИЧ, таких как случайные половые связи, сексуальное насилие и несчастные случаи на производстве с биологическим материалом.
+	\n\n•       Если врач назначил лечение АРВ, оно длится 28 дней, и должно быть начато в течение 72 часов после незащищенного полового контакта.
+	\n\nГде найти АПВ? (Прямая ссылка на приложение и/или веб-сайт)  http://pep.aids.gov.br 
+\n\nВажная информация
+	\n\n•       Каждый человек имеет право на получение информации и услуг без предубеждения, стигмы и дискриминации. 
+	\n\n•       В Бразилии, женские и мужские презервативы и смазки распространяются бесплатно в медицинских учреждениях, хостелах, центрах туристического сервиса и другие местах.  Узнайте о ближайших точках распространения.
+	\n\n•       Если вам нужны лекарства против ВИЧ (свои вы потеряли или забыли), ищите ближайший медицинский пункт, и возьмите с собой какой-либо документ удостоверяющий личность. Иностранный турист, проконсультируйтесь о вашей страховке (медицинское страхование). 
+\n\nПомните 
+	\n\n•       Избегайте заражения вирусным гепатитом. Если вы хотите сделать татуировку или проколоть пирсинг, выбирайте места с разрешением/санитарной лицензией, выданной местный Органом Медицинского Надзора. Требуйте предъявления такого сертификата, если он его нет в заведении.
+	\n\n•       Требуйте, чтобы используемый материал был простерилизован или одноразового использования.
+	\n\n•       Не делитесь вещами личного пользования, как щипчики, бритвы, зубные щетки, иглы и шприцы с другими.
+	\n\n•       Если вы заметили какие-либо признаки или симптомы, такие как повреждения или раны, или какие-то другие проблемы со здоровьем, обратитесь за консультацией к специалисту в области здравоохранения.
+\n\nЗнаете ли вы?
+	\n\n•       Многие люди живут с ВИЧ и вирусным гепатитом и не знают об этом. 
+	\n\n•       Единственный способ быть проинформированным это сдать анализы. Анализы на ВИЧ и гепатит делаются бесплатно и предлагаются в сети общественного здравоохранения. Иностранный турист, проконсультируйтесь о вашей страховке (медицинское страхование). 
+	\n\n•       Существует прививка против гепатита B. Следует принимать её в 3-х дозах в разное время. Узнайте, где это можно сделать.a em 3 doses em períodos diferentes. Informe-se onde está disponível.
 </string>
     
     <string name="my_trophies">Мои Призы </string>
@@ -534,62 +548,62 @@ Zika
 
     <string name="pointing_message">Счет эквивалентен каждой разблокированной фазе всеми пользователями с учетом их национальной принадлежности.</string>
 
-    <string name="level">Nível %s</string>
+    <string name="level">уровень %s</string>
 
-    <string name="energy">%s Energias</string>
+    <string name="energy">%s Энергия</string>
 
-    <string name="join_now">Participe agora!</string>
+    <string name="join_now">Присоединяйтесь к нам сейчас!</string>
     
-    <string name="congratulations">Parabéns</string>
+    <string name="congratulations">Поздравляю</string>
     
-    <string name="about_text">SOBRE O APLICATIVO “GUARDIÕES DA SAÚDE”
+    <string name="about_text">О ПРИЛОЖЕНИИ «СТРАЖИ ЗДОРОВЬЯ»
 
-\n\nO aplicativo “Guardiões da Saúde”, desenvolvido para celulares, tablets e computadores, faz parte da iniciativa do Ministério da Saúde, em parceria com a Organização Não-Governamental Skoll Global Threats Fund, dos Estados Unidos da América, visando avaliar o potencial uso de aplicativos para dispositivos móveis como parte da estratégia de fortalecimento da capacidade de detecção de surtos e emergências em saúde pública, no âmbito do Sistema Único de Saúde (SUS), principalmente durante eventos de massa, como nos Jogos Olímpicos e Paralímpicos de 2016.
-
-
-\n\nEsta estratégia é a evolução do projeto realizado com a mesma instituição, denominado “Saúde na Copa” e lançado exclusivamente para o período dos jogos da Copa do Mundo FIFA Brasil 2014®, cujos resultados mostraram-se promissores e foram mantidos os interesses de ambas as instituições para a realização de uma nova estratégia para os Jogos Olímpicos e Paralímpicos em 2016.
-
-\n\nA primeira versão do aplicativo Guardiões da Saúde já está disponível para os sistemas operacionais iOS da Apple e Android da Google e também por meio do site http://guardioesdasaude.org/.
-Inicialmente desenvolvido no idioma português, nas próximas versões, o aplicativo “Guardiões da Saúde” estará disponível também nos idiomas oficiais das Nações Unidas, sendo um instrumento complementar para orientações aos viajantes internacionais ao Brasil, principalmente com destino às sedes dos Jogos Olímpicos e Paralímpicos de 2016.
-
-\n\nA participação na iniciativa está restrita aos usuários com 13 anos ou mais de idade. Além disso, é fundamental que antes de se cadastrar, os usuários leiam e aceitem os “Termos de Uso” e preenchimento de cadastro simplificado, contendo apelido, endereço de e-mail, data de nascimento, raça/cor, sexo e senha de acesso. A participação é voluntária, sigilosa e os dados fornecidos estão protegidos no âmbito Lei nº 12.527, de 18 de novembro de 2011.
-
-\n\nOs resultados do projeto serão utilizados pela vigilância em saúde dos Estados, Municípios e Governo Federal, visando detectar e prevenir surtos e emergências em saúde pública, por meio da adoção de medidas de prevenção e controle oportunas. A divulgação dos resultados do projeto será realizada de modo agregado e anonimizado , visando descrever o perfil da condição de saúde dos voluntários, a partir das informações repassadas por meio do aplicativo.
-
-\n\nSobre a participação voluntária
-
-\n\nSua participação é voluntária e uma gentil contribuição para o aprimoramento da vigilância em saúde no Brasil. O preenchimento do formulário sobre a condição de saúde não representa consulta médica, não garante acesso diferenciado aos serviços de saúde e o usuário não receberá o contato de nenhum profissional ou serviço de saúde para obter informações, seja por e-mail ou qualquer outro meio de contato.
-
-\n\nDurante a participação, mensagens de texto poderão ser enviadas aos usuários, apenas pelo aplicativo, por meio da tecnologia Push (Push Notification), contendo orientações sobre cuidados de saúde ou orientações dos órgãos de vigilância.
-
-\n\nÉ importante destacar que caso você informe que não está se sentindo bem, é recomendável que consulte um médico de referência ou serviço de saúde mais próximo de você. Para isso, está disponível no aplicativo um atalho com pesquisa pré-configurada de serviços de saúde e farmácias mais próximos de você, com base no serviço de geolocalização do seu dispositivo móvel no Google Maps. Essa funcionalidade não faz parte do aplicativo. Por esse motivo, será direcionado ao aplicativo de mapas de seu aparelho e recomenda-se cuidado ao transitar por áreas desconhecidas e evitar zonas de risco. Para isso, procure informações junto aos órgãos governamentais locais.
-
-\n\nO aplicativo foi configurado com um conjunto de telefones úteis incluindo o do SAMU (Serviço de Atendimento Móvel de Urgência), cuja ligação é gratuita e funciona 24 horas por dia atendendo solicitações de atendimento de urgência para ocorrências de natureza traumática, clínica, pediátrica, cirúrgica, gineco-obstétrica e de saúde mental, em residências, locais de trabalho e vias públicas.
-
-\n\nBenefícios da participação\n
-	\n•	Participar ativamente das ações de vigilância em saúde que visam à prevenção de doenças na comunidade;
-	\n•	Acessar os contatos de serviços públicos úteis sem precisar alterar sua agenda de telefones;
-	\n•	Acessar facilmente informações úteis sobre cuidados de saúde e medidas de prevenção contra doenças;
-	\n•	Usufruir de facilidades, como a pesquisa pré-configurada por Unidades de Pronto Atendimento e farmácias próximas (20 km) no Google Maps;
-	\n•	Acompanhar os resultados do projeto, por meio do website www.guardioesdasaude.org;
-
-\n\nSaiba mais sobre o uso do aplicativo
+\n\nПриложение «Стражи Здоровья», разработанное для мобильных телефонов, планшетов и компьютеров, является частью инициативы Министерства Здравоохранения, в партнерстве с неправительственной организацией Skoll Global Threats Fund, из Соединенных Штатов Америки,  направлено на то, чтобы оценить потенциал использования приложений для мобильных устройств в стратегии укрепления потенциала обнаружения вспышек и чрезвычайных ситуаций в области общественного здравоохранения, в рамках Единая Система Здравоохранения (СЕЗ), главным образом во время массовых мероприятий таких, как Олимпийские и Паралимпийские игры 2016 года. 
 
 
-\n\nO aplicativo “Guardiões da Saúde” está disponível gratuitamente para download e utilização em sistemas operacionais iOS, Android e navegadores de internet. Em várias cidades há pontos de internet para uso gratuito ou o usuário poderá utilizar o seu próprio pacote de dados contratado.
+\n\nЭта стратегия зародилась во время проведения проекта того же учреждения, под названием «Здоровье на Кубке», который был запущен исключительно на период игр Кубка Мира ФИФА 2014®, результаты были столь обнадеживающими, что обе организации проявили интерес и решили продолжить его в свете новой стратегии для Олимпийских и Паралимпийских Игр 2016 года. 
+
+\n\nПервая версия приложения Стражи Здоровья уже доступна для операционных систем iOS Apple и Android Google, а также через сайт http://guardioesdasaude.org/. 
+Изначально разработанное на португальском языке, в будущих версиях, приложение «Стражи Здоровья» будет доступно на официальных языках Организации Объединенных Наций, как дополнительный ориентационный инструмент в Бразилии для международных путешественников, главным образом в местах проведения Олимпийских и Паралимпийских Игр 2016 года.  
+
+\n\nУчастие в инициативе разрешается только пользователям старше 13 лет. Кроме того, перед регистрацией, пользователь должен прочитать и согласиться с «Условиями Использования», также заполнить упрощенную регистрационную форму указывая имя, адрес электронной почты, дату рождения, расу/цвет кожи, пол и пароль доступа. Участие является добровольным, конфиденциальным, а представленные данные защищены Законом № 12.527, от 18 ноября 2011 года.
+
+\n\nРезультаты проекта будут использованы службой надзора в сфере здравоохранения Штатов, Муниципалитетов и Федерального Правительства, с целью выявления и предотвращения вспышек и чрезвычайных ситуаций государственного здравоохранения, путем принятия предупреждающих и контрольных мер. Распространение результатов проекта будет осуществляться в общей форме  сохраняя анонимность, описывая профиль состояния здоровья добровольцев, исходя из информации приложения. 
+
+\n\nО добровольном участии
+
+\n\nВаше участие является добровольным и внесёт важный вклад в улучшение медицинского надзора в Бразилии. Заполнение формы по состоянию здоровья не является медицинской консультацией, не гарантирует дифференцированный доступ к услугам здравоохранения, с пользователем не будет вступать в контакт врач или организация здравоохранения с целью получения информации по электронной почте или любым другим средствам связи. 
+
+\n\nВ период участия текстовые сообщения могут быть отправлены пользователям, только по приложению, с помощью технологии Push (Push Notification), содержащие рекомендации по здоровью или руководства службы надзора. 
+
+\n\nВажно подчеркнуть, что если вы проинформируете о плохом самочувствии, рекомендуется, проконсультироваться с врачом или посетить ближайший к вам медицинский пункт. Для этого, в приложении есть ссылка, с предварительно настроенным поиском, о пункте здравоохранения и аптек, находящихся вблизи от вас, на основе географического расположения службы мобильного устройства на картах Google. Эта функция не является частью приложения.  Поэтому вы будете перенаправлены к приложению карт вашего аппарата, рекомендуем быть осторожными при прохождению по неизвестным районам во избежание зон риска. Для этого, проконсультируйтесь на официальных информационных сайтах. 
+
+\n\nВ приложении представлен список важных номеров телефонов, включая SAMU (Служба Скорой Медицинской Помощи), звонок осуществляется бесплатно и работают они 24 часа в сутки, обслуживая экстренные вызовы травматологического, клинического, педиатрического, хирургического, акушерского и психического характера, на дому, рабочих местах и дорогах.
+
+\n\nПреимущества участия\n
+	\n·       Принимать активное участие в мероприятиях надзора за здоровьем, направленные на предупреждение заболеваний в обществе;
+	\n·       Иметь доступ к полезным услугам, без ввода новых регистров в вашей телефонной книге.  
+	\n·       Лёгкое получение доступа полезной информации о здравоохранении и мерах профилактики заболеваний
+	\n·       Пользоваться удобствами, такими как предварительно настроенный поиск на Пункты Скорой Помощи и близлежащих аптек (в радиусе 20 км) на картах Google;  
+	\n·       Следить за результатами проекта по веб-сайту www.guardioesdasaude.org;
+
+\n\nПодробнее об использовании приложения
 
 
-\n\nInforma-se que as chamadas telefônicas para os serviços públicos de referência registrados no aplicativo necessitam de plano de telefonia contratado. Portanto, consulte sua operadora antes de utilizar essa funcionalidade. Esse serviço não funcionará sem a presença da função de telefone no aparelho. Essa informação deve ser observada, principalmente por usuários de outros países.
-
-\n\nSobre a parceria
-
-\n\nA iniciativa pioneira é da Secretaria de Vigilância em Saúde do Ministério da Saúde em parceria com as cidades sedes dos Jogos Olímpicos e Paralímpicos. Na parceria, a Organização Não Governamental (ONG) Skoll Global Threats Fund ficou responsável pelos custos de contratação e desenvolvimento do software, sob supervisão da Associação Brasileira de Profissionais de Epidemiologia de Campo (ProEpi), ambas são Organizações Não Governamentais, sem fins lucrativos, que atuam no aprimoramento da vigilância em saúde no Brasil e no mundo.
+\n\nПриложение «Стражи Здоровья» доступно для свободного скачивания и использования в операционных системах iOS, Android, и интернет-браузеров. В некоторых городах есть пункты бесплатного интернета, пользователь также может использовать свой собственный интернет. 
 
 
-\n\nA ProEpi é responsável por garantir que os requisitos estabelecidos pelo Ministério da Saúde e pela Skoll Global Threats Fund sejam cumpridos, conforme previsto no projeto: privacidade dos dados dos usuários, transparência e publicidade dos resultados públicos do projeto e disponibilidade do código fonte e documentação em ambiente de livre acesso para download, adequação e uso do aplicativo por serviços de saúde do Brasil e de países interessados, desde que garantida a finalidade sem fins lucrativos.
+\n\nОбратите внимание на то, что телефонные звонки в справочные службы зарегистрированные в приложении требуют подключения к телефонной связи. Поэтому, обратитесь к оператору услуг, прежде чем использовать эту функцию. Эта услуга не будет работать без подключения услуг телефонной связи на устройстве. Эта информация очень важна, особенно для пользователей из других стран. 
 
-\n\nAgradecimento
-\nAs instituições organizadoras agradecem a todos os voluntários, profissionais de saúde e gestores do Sistema Único de Saúde por acreditarem no projeto piloto e apoiarem essa iniciativa pioneira na saúde pública internacional.
-Agradecimento especial às Secretarias de Saúde dos Municípios Sedes dos Jogos Olímpicos e Paralímpicos (Belo Horizonte, Distrito Federal, Manaus, Rio de Janeiro, Salvador e São Paulo).</string>
+\n\nО партнёрстве
+
+\n\nНоваторская инициатива Службы Надзора Здравоохранения Министерства Здравоохранения в сотрудничестве с принимающими городами Олимпийских и Паралимпийских игр. В партнерстве, Неправительственная Организация (НПО) Skoll Global Threats Fund, несет ответственность за оплату и разработку программного обеспечения, под руководством Бразильской Ассоциации Специалистов по Полевой Эпидемиологии (ProEpi), обе являются неправительственными и некоммерческими организациями, целью которых улучшить надзор здравоохранения в Бразилии и во всем мире.
+
+
+\n\nProEpi несет ответственность за обеспечение выполнения требований, установленных Министерством Здравоохранения и НПО Skoll Global Threats Fund, которые предусмотрены в проекте: конфиденциальность данных пользователей, прозрачность и гласность результатов проекта, наличие исходного кода и документации в режиме свободного доступа скачивания, адаптации и использование приложения бразильскими службами здравоохранения и другими заинтересованными странами, при условии того, что прибыль не является целью этого проекта. 
+
+\n\nБлагодарность
+\nОрганизующие учреждения благодарят всех волонтеров, специалистов здравоохранения и руководителей Единой Системы Здравоохранения, за то, что верят в экспериментальный проект и поддерживают эту новаторскую инициативу в области международного общественного здравоохранения. 
+Особая благодарность выражаем Департаменту Здравоохранения Муниципалитетов Принимающих Олимпийские и Паралимпийские Игры (Белу-Оризонти, Федеральный Округ, Манаус, Рио-де-Жанейро, Сальвадор и Сан-Паулу). </string>
 
 </resources>
