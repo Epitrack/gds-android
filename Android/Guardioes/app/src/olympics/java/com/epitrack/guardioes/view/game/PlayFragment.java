@@ -68,6 +68,11 @@ public class PlayFragment extends BaseFragment {
         } else if (amount == MID) {
 
             imageViewStarCenter.setImageResource(R.drawable.image_star_center);
+
+        } else if (amount == HIGH) {
+
+            imageViewStarCenter.setImageResource(R.drawable.image_star_white_center);
+            imageViewStarRight.setImageResource(R.drawable.image_star_white_right);
         }
     }
 
