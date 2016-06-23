@@ -9,13 +9,19 @@ import android.widget.ImageView;
 
 import com.epitrack.guardioes.R;
 
+import java.util.Map;
+
 /**
  * @author Igor Morais
  */
 public class PieceAdapter extends ArrayAdapter<Integer> {
 
-    public PieceAdapter(final Context context, final Integer[] pieceArray) {
+    private final Map<Integer, Boolean> pieceMap;
+
+    public PieceAdapter(final Context context, final Map<Integer, Boolean> pieceMap, final Integer[] pieceArray) {
         super(context, 0, pieceArray);
+
+        this.pieceMap = pieceMap;
     }
 
     private static class ViewHolder {
@@ -46,7 +52,10 @@ public class PieceAdapter extends ArrayAdapter<Integer> {
             viewHolder = (ViewHolder) view.getTag();
         }
 
-        // viewHolder.imageViewPiece.setImageResource(getItem(position));
+        if (pieceMap.get(position)) {
+
+            viewHolder.imageViewPiece.setImageResource(getItem(position));
+        }
 
         return view;
     }

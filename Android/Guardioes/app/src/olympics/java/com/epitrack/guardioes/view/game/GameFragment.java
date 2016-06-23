@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.epitrack.guardioes.R;
@@ -28,6 +29,9 @@ public class GameFragment extends BaseFragment implements AdapterView.OnItemClic
 
     @Bind(R.id.text_view_level)
     TextView textViewLevel;
+
+    @Bind(R.id.image_view_image)
+    ImageView imageView;
 
     @Bind(R.id.grid_view)
     GridView gridView;
@@ -51,19 +55,35 @@ public class GameFragment extends BaseFragment implements AdapterView.OnItemClic
         final Phase phase = ((GameActivity) getActivity()).getPhase();
 
         textViewLevel.setText(getString(R.string.level, phase.getId()));
+    }
 
-        gridView.setAdapter(new PieceAdapter(getActivity(), phase.getPieceArray()));
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        final Phase phase = ((GameActivity) getActivity()).getPhase();
+        final Map<Integer, Boolean> pieceMap = GameActivity.USER.getPieceMap();
+
+        gridView.setAdapter(new PieceAdapter(getActivity(), pieceMap, phase.getPieceArray()));
         gridView.setOnItemClickListener(this);
+
+        if (!pieceMap.containsValue(false)) {
+
+            gridView.setVisibility(View.GONE);
+            imageView.setVisibility(View.VISIBLE);
+
+            imageView.setImageResource(phase.getImage());
+        }
     }
 
     @Override
     public void onItemClick(final AdapterView<?> adapterView, final View view, final int position, final long id) {
 
-        final int energy = ((GameActivity) getActivity()).getUser().getEnergy();
+        final int energy = GameActivity.USER.getEnergy();
 
         if (energy > 0) {
 
-            final Map<Integer, Boolean> pieceMap = ((GameActivity) getActivity()).getPieceMap();
+            final Map<Integer, Boolean> pieceMap = GameActivity.USER.getPieceMap();
 
             if (!pieceMap.get(position)) {
 
@@ -113,6 +133,8 @@ public class GameFragment extends BaseFragment implements AdapterView.OnItemClic
 
                 final Phase phase = ((GameActivity) getActivity()).getPhase();
 
+                pieceMap.put(position, true);
+
                 new GameRequester(getActivity()).update(question.getId(), energy, phase.getId(), pieceMap, new RequestListener<Boolean>() {
 
                     private final LoadDialog loadDialog = new LoadDialog();
@@ -124,7 +146,7 @@ public class GameFragment extends BaseFragment implements AdapterView.OnItemClic
 
                     @Override
                     public void onError(final Exception e) {
-
+                        loadDialog.dismiss();
                     }
 
                     @Override
