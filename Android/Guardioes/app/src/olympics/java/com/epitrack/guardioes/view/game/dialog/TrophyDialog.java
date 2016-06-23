@@ -10,8 +10,9 @@ import android.widget.ListView;
 
 import com.epitrack.guardioes.R;
 import com.epitrack.guardioes.view.game.TrophyAdapter;
+import com.epitrack.guardioes.view.game.model.Phase;
 
-import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author Igor Morais
@@ -19,6 +20,8 @@ import java.util.ArrayList;
 public class TrophyDialog extends DialogFragment implements View.OnClickListener {
 
     public static final String TAG = TrophyDialog.class.getSimpleName();
+
+    private List<Phase> phaseList;
 
     @Override
     public void onCreate(final Bundle bundle) {
@@ -38,7 +41,7 @@ public class TrophyDialog extends DialogFragment implements View.OnClickListener
 
         final ListView listView = (ListView) view.findViewById(R.id.list_view);
 
-        listView.setAdapter(new TrophyAdapter(getActivity(), new ArrayList<String>(10)));
+        listView.setAdapter(new TrophyAdapter(getActivity(), phaseList));
 
         view.findViewById(R.id.image_button_close).setOnClickListener(this);
     }
@@ -46,5 +49,11 @@ public class TrophyDialog extends DialogFragment implements View.OnClickListener
     @Override
     public void onClick(final View view) {
         dismiss();
+    }
+
+    public TrophyDialog setPhaseList(final List<Phase> phaseList) {
+        this.phaseList = phaseList;
+
+        return this;
     }
 }

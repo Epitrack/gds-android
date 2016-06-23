@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content">
+    xmlns:layout="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
 
-    <ImageView
+    <com.github.siyamed.shapeimageview.CircularImageView
         android:id="@+id/image"
         android:layout_width="58dp"
         android:layout_height="58dp"
         android:layout_marginBottom="20dp"
         android:layout_marginStart="15dp"
         android:layout_marginTop="20dp"
-        android:background="#17c1ff"
-        android:contentDescription="@null"/>
+        android:contentDescription="@null"
+        layout:siBorderColor="@color/white" />
 
     <TextView
         android:id="@+id/name"
@@ -20,10 +21,9 @@
         android:layout_gravity="center_vertical"
         android:layout_marginStart="10dp"
         android:layout_weight="1"
-        android:text="Natação"
         android:textColor="@color/warm_grey_two"
         android:textSize="15sp"
-        android:textStyle="bold"/>
+        android:textStyle="bold" />
 
     <ImageView
         android:id="@+id/arrow"
@@ -32,6 +32,7 @@
         android:layout_gravity="center_vertical"
         android:layout_marginEnd="15dp"
         android:contentDescription="@null"
-        android:src="@drawable/image_arrow"/>
+        android:src="@drawable/image_arrow"
+        android:visibility="invisible" />
 
 </LinearLayout>

@@ -9,25 +9,22 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.epitrack.guardioes.R;
+import com.epitrack.guardioes.view.game.model.Phase;
+import com.github.siyamed.shapeimageview.CircularImageView;
 
 import java.util.List;
 
-public class TrophyAdapter extends ArrayAdapter<String> {
+public class TrophyAdapter extends ArrayAdapter<Phase> {
 
-    public TrophyAdapter(final Context context, final List<String> tagList) {
-        super(context, 0, tagList);
+    public TrophyAdapter(final Context context, final List<Phase> phaseList) {
+        super(context, 0, phaseList);
     }
 
     private static class ViewHolder {
 
         TextView textViewName;
-        ImageView imageViewImage;
+        CircularImageView imageViewImage;
         ImageView imageViewArrow;
-    }
-
-    @Override
-    public int getCount() {
-        return 10;
     }
 
     @Override
@@ -44,8 +41,8 @@ public class TrophyAdapter extends ArrayAdapter<String> {
 
             viewHolder = new ViewHolder();
 
-            viewHolder.imageViewImage = (ImageView) view.findViewById(R.id.image);
             viewHolder.textViewName = (TextView) view.findViewById(R.id.name);
+            viewHolder.imageViewImage = (CircularImageView) view.findViewById(R.id.image);
             viewHolder.imageViewArrow = (ImageView) view.findViewById(R.id.arrow);
 
             view.setTag(viewHolder);
@@ -54,6 +51,11 @@ public class TrophyAdapter extends ArrayAdapter<String> {
 
             viewHolder = (ViewHolder) view.getTag();
         }
+
+        final Phase phase = getItem(position);
+
+        viewHolder.textViewName.setText(phase.getName());
+        viewHolder.imageViewImage.setImageResource(phase.getName());
 
         return view;
     }
