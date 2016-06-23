@@ -10,5 +10,5 @@ public interface IAnswer {
 
     void onWrong(AnswerDialog dialog, int energy);
 
-    void onCorrect(AnswerDialog dialog, int energy);
+    void onCorrect(AnswerDialog dialog, int amount, int energy);
 }
