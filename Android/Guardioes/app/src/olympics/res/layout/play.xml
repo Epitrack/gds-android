@@ -33,12 +33,23 @@
 
     <ImageView
         android:id="@+id/image_view_piece"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_above="@+id/layout_star"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="25dp"
         android:contentDescription="@null" />
 
     <include
+        android:id="@+id/layout_star"
+        layout="@layout/layout_star"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/layout_play"
+        android:layout_centerHorizontal="true" />
+
+    <include
+        android:id="@+id/layout_play"
         layout="@layout/layout_play"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
