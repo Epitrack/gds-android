@@ -45,6 +45,13 @@ public class EnergyFragment extends BaseFragment {
         bind(view);
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        setEnergy(GameActivity.USER.getEnergy());
+    }
+
     @OnClick(R.id.button_medal)
     public void onMedal() {
 
@@ -69,7 +76,7 @@ public class EnergyFragment extends BaseFragment {
 
         for (final Phase phase : Phase.values()) {
 
-            if (phase.getId() > level) {
+            if (phase.getId() >= level) {
                 break;
             }
 
