@@ -78,14 +78,23 @@ public class UserRequester extends BaseRequester {
                                 user.setDob(jsonObjectUser.getString("dob"));
                                 user.setUserToken(json.getString("token"));
                                 user.setImage(jsonObjectUser.getInt("picture"));
-                                user.setLevel(jsonObjectUser.getInt("level"));
-                                user.setEnergy(jsonObjectUser.getInt("xp"));
 
-                                final JSONArray array = jsonObjectUser.getJSONArray("answers");
+                                if (jsonObjectUser.has("level")) {
+                                    user.setLevel(jsonObjectUser.getInt("level"));
+                                }
 
-                                for (int i = 0; i < array.length(); i++) {
+                                if (jsonObjectUser.has("xp")) {
+                                    user.setEnergy(jsonObjectUser.getInt("xp"));
+                                }
 
-                                    user.getPieceMap().put(i, array.getInt(i) == 1);
+                                if (jsonObjectUser.has("answers")) {
+
+                                    final JSONArray array = jsonObjectUser.getJSONArray("answers");
+
+                                    for (int i = 0; i < array.length(); i++) {
+
+                                        user.getPieceMap().put(i, array.getInt(i) == 1);
+                                    }
                                 }
 
                                 if (jsonObjectUser.has("country")) {
@@ -191,14 +200,22 @@ public class UserRequester extends BaseRequester {
                                 user.setDob(jsonObjectUser.getString("dob"));
                                 user.setUserToken(jsonObjectUser.getString("token"));
 
-                                user.setLevel(jsonObjectUser.getInt("level"));
-                                user.setEnergy(jsonObjectUser.getInt("xp"));
+                                if (jsonObjectUser.has("level")) {
+                                    user.setLevel(jsonObjectUser.getInt("level"));
+                                }
 
-                                final JSONArray array = jsonObjectUser.getJSONArray("answers");
+                                if (jsonObjectUser.has("xp")) {
+                                    user.setEnergy(jsonObjectUser.getInt("xp"));
+                                }
 
-                                for (int i = 0; i < array.length(); i++) {
+                                if (jsonObjectUser.has("answers")) {
 
-                                    user.getPieceMap().put(i, array.getInt(i) == 1);
+                                    final JSONArray array = jsonObjectUser.getJSONArray("answers");
+
+                                    for (int i = 0; i < array.length(); i++) {
+
+                                        user.getPieceMap().put(i, array.getInt(i) == 1);
+                                    }
                                 }
 
                                 if (jsonObjectUser.has("country")) {

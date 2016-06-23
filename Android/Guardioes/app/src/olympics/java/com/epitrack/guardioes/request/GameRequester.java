@@ -14,6 +14,7 @@ import com.epitrack.guardioes.request.base.Method;
 import com.epitrack.guardioes.request.base.RequestException;
 import com.epitrack.guardioes.request.base.RequestListener;
 import com.epitrack.guardioes.request.base.Requester;
+import com.epitrack.guardioes.request.base.RequesterConfig;
 import com.epitrack.guardioes.view.game.model.Option;
 import com.epitrack.guardioes.view.game.model.Question;
 import com.epitrack.guardioes.view.game.model.Score;
@@ -44,7 +45,7 @@ public class GameRequester extends BaseRequester {
 
     public void getScore(final RequestListener<List<Score>> listener) {
 
-        final String url = "http://rest.guardioesdasaude.org/game/ranking/";
+        final String url = RequesterConfig.URL + "/game/ranking/";
 
         listener.onStart();
 
@@ -88,7 +89,7 @@ public class GameRequester extends BaseRequester {
 
     public void getQuestion(final RequestListener<List<Question>> listener) {
 
-        final String url = "http://rest.guardioesdasaude.org/game/questions/?lang=pt_BR";
+        final String url = RequesterConfig.URL + "/game/questions/?lang=pt_BR";
 
         listener.onStart();
 
@@ -143,7 +144,7 @@ public class GameRequester extends BaseRequester {
 
     public void update(final String id, final int energy, final int level, final Map<Integer, Boolean> pieceMap, final RequestListener<Boolean> listener) {
 
-        final String url = "http://rest.guardioesdasaude.org/game/";
+        final String url = RequesterConfig.URL + "/game/";
 
         final Map<String, Object> bodyMap = new HashMap<>();
 
@@ -180,7 +181,7 @@ public class GameRequester extends BaseRequester {
 
     public void updateUser(final int energy, final int level, final Map<Integer, Boolean> pieceMap, final User user, final RequestListener<User> listener) {
 
-        final String url = "http://rest.guardioesdasaude.org/user/lookup/";
+        final String url = RequesterConfig.URL + "/user/lookup/";
 
         final Map<String, Object> bodyMap = new HashMap<>();
 
@@ -195,9 +196,9 @@ public class GameRequester extends BaseRequester {
         bodyMap.put("platform", user.getPlatform());
         bodyMap.put("picture", user.getImage());
         bodyMap.put("gcm_token", user.getGcmToken());
-        //bodyMap.put("xp", user.getEnergy());
-        //bodyMap.put("level", user.getLevel());
-        //bodyMap.put("puzzleMatriz", toIntArray(user.getPieceMap()));
+        bodyMap.put("xp", user.getEnergy());
+        bodyMap.put("level", user.getLevel());
+        bodyMap.put("puzzleMatriz", toIntArray(user.getPieceMap()));
 
         listener.onStart();
 
