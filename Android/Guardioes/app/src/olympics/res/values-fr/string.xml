@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Les Gardiens de la Santé</string>
+    <string name="app_name">Guardiões da Saúde</string>
     <string name="app_name_short">Guardiões</string>
 
     # Google
@@ -11,134 +11,141 @@
 
     # Common
 
-    <string name="exit_message">Tem certeza que deseja sair?</string>
-    <string name="permission_location_rationale">A permissão a sua localização é necessária para exibir o mapa.</string>
-    <string name="permission_available_location">Permissão a sua localização liberada.</string>
-    <string name="permissions_not_granted">Permissão a sua localização negada!</string>
+    <string name="exit_message">Êtes-vous sûr de vouloir quitter l'application ?</string>
+    <string name="permission_location_rationale">Nous n’arrivons pas à vous localiser. Vérifiez que les services sont validés sur l’appareil.</string>
+    <string name="permission_available_location">Permission de leur emplacement libéré.</string>
+    <string name="permissions_not_granted">Permission denied leur emplacement !</string>
     <string name="about">Sur</string>
-    <string name="alert">Alertas</string>
-    <string name="attention">Atenção</string>
+    <string name="alert">Alertes</string>
+    <string name="attention">Prudence</string>
     <string name="avatar">Avatar</string>
     <string name="bad">Mal</string>
     <string name="calendar">Calendrier</string>
+    <!-- NA -->
     <string name="report_day">Total de envios no dia</string>
-    <string name="category">Category</string>
+    <string name="category">Catégorie</string>
     <string name="confirm">Confirmer</string>
     <string name="contact">Entrez en contact</string>
     <string name="diarrheal">Diarrhéique</string>
     <string name="diary_health">Quotidien de la Santé</string>
-    <string name="diary_health_1">Diário da\nSaúde</string>
-    <string name="disease">Doenças</string>
+    <string name="diary_health_1">Quotidien de la Santé</string>
+    <string name="disease">Maladies</string>
     <string name="enter">Se connecter</string>
     <string name="exit">Sortir</string>
     <string name="facebook">Facebook</string>
-    <string name="frequency">Frequência</string>
+    <string name="frequency">Fréquence</string>
     <string name="gender">Sexe</string>
     <string name="general">Général</string>
     <string name="gmail">Gmail</string>
     <string name="good">Bien</string>
     <string name="google">Google</string>
     <string name="hashtag">Hashtag</string>
-    <string name="health">Saúde</string>
+    <string name="health">Santé</string>
     <string name="help">Aide</string>
-    <string name="home">Ínicio</string>
+    <string name="home">Accueil</string>
     <string name="hospital">Les urgences</string>
     <string name="zika">Dengue, Zika et Chikungunya</string>
     <string name="hyphen">-</string>
-    <string name="interest">Interesses</string>
-    <string name="join">Participe\n   agora!</string>
+    <string name="interest">Intérêts</string>
+    <string name="join">Participez dès maintenant !</string>
     <string name="login">Se connecter</string>
     <string name="mail">E-mail</string>
     <string name="mails">E-mails</string>
     <string name="game_enjoy">Amusez-vous</string>
     <string name="map_health">Carte de la Santé</string>
-    <string name="map_health_1">Mapa da\nSaúde</string>
-    <string name="member">Membro do domicílio</string>
+    <string name="map_health_1">Carte de la Santé</string>
+    <string name="member">Membres du domicile</string>
     <string name="next">Suivant</string>
-    <string name="no">NÃO</string>
+    <string name="no">NON</string>
     <string name="notice">Nouvelles</string>
-    <string name="notification">Notificações</string>
+    <string name="notification">Notifications</string>
     <string name="option">Options</string>
     <string name="other">Autres</string>
     <string name="pharmacy">Pharmacies</string>
-    <string name="privacy">Privacidade</string>
+    <string name="privacy">Intimité</string>
     <string name="profile">Profil</string>
     <string name="race">Couleur/Race</string>
     <string name="relationship">Lien de parenté</string>
     <string name="rash">Exanthématique.</string>
     <string name="register">Inscrivez-vous</string>
-    <string name="report">Relatar erros no aplicativo</string>
+    <string name="report">Signaler des erreurs</string>
     <string name="respiratory">Respiratoire</string>
     <string name="resume">Résumé</string>
     <string name="save">Enregistrer</string>
-    <string name="search">Procurar</string>
+    <string name="search">Recherche</string>
     <string name="setting">Paramètres</string>
-    <string name="share">Compartilhar</string>
+    <string name="share">Partager</string>
     <string name="sound">Sons</string>
     <string name="syndromes">Syndromes</string>
-    <string name="take_photo">Tirar foto</string>
-    <string name="term">Termos e Politícas</string>
+    <string name="take_photo">prendre des photo</string>
+    <string name="term">Termes et politique</string>
     <string name="tip_health">Conseils Santé</string>
-    <string name="tip_health_1">Dicas de\nSaúde</string>
+    <string name="tip_health_1">Conseils Santé</string>
     <string name="tutorial">Tutoriel</string>
     <string name="twitter">Twitter</string>
-    <string name="yes">SIM</string>
-    <string name="you">Você</string>
-    <string name="welfare">Bem estar</string>
+    <string name="yes">OUI</string>
+    <string name="you">Vous</string>
+    <string name="welfare">Bien-être</string>
     <string name="welcome">Bienvenue !</string>
     <string name="ok">OK</string>
     <string name="cancel">Annuler</string>
-    <string name="call">Ligar</string>
-    <string name="crop_photo">Recortar foto</string>
-    <string name="message_image_load">Não é possível carregar esta imagem</string>
-    <string name="network_disable">Serviços de localização desativados. Habilite-os nas configurações do aparelho para poder visualiar o mapa.</string>
-    <string name="google_fail">Não foi possível realizar o login. Tente novamente em alguns minutos ou acesse através do seu e-mail.</string>
-    <string name="facebook_fail">Não foi possível realizar o login. Tente novamente em alguns minutos ou acesse através do seu e-mail.</string>
+    <string name="call">Appel</string>
+    <string name="crop_photo">Photo de coupe</string>
+    <string name="message_image_load">Impossible de charger cette imagem</string>
+    <string name="network_disable">Nous n’arrivons pas à vous localiser. Vérifiez que les services sont validés sur l’appareil.</string>
+    <string name="google_fail">Impossible de se connecter. E-mail et/ou mot de passe non valide.</string>
+    <string name="facebook_fail">Impossible de se connecter. E-mail et/ou mot de passe non valide.</string>
+    <!-- NA -->
     <string name="facebook_cancel">Acesso ao Guardiões da Saúde via Facebook cancelado.</string>
+    <!-- NA -->
     <string name="facebook_error">Não foi possível acessar o Guardiões da Saúde através do Facebook. Tente novamente em alguns minutos ou acesse através do seu e-mail.</string>
+   <!-- NA -->
     <string name="google_access_error">O Guardiões da Saúde não obteve permissão para acessar seus dados do Google. Verifique suas configurações.</string>
+    <!-- NA -->
     <string name="twitter_fail">Não foi possível acessar o Guardiões da Saúde através do Twitter. Tente novamente em alguns minutos ou acesse através do seu e-mail.</string>
-    <string name="new_user_social_media">Complete o cadastro a seguir para acessar o Guardiões da Saúde.</string>
-    <string name="register_fail">Ocorreu um erro ao cadastrar</string>
-    <string name="user_exist">Cadastro realizado anterioremente com essa rede social ou e-mail.</string>
+    <string name="new_user_social_media">Complétez votre information pour terminer l'enregistrement</string>
+    <string name="register_fail">Impossible de faire l’enregistrement. Réessayer dans quelques minutes !</string>
+    <string name="user_exist">Vous vous êtes déjà inscrit à ce réseau social</string>
     <string name="delete_profile">Souhaitez-vous supprimer définitivement le profil ?</string>
-    <string name="internet_fail">É preciso estar conectado a internet para continuar a utilizar o Guardiões da Saúde</string>
-    <string name="network_fail">É necessário estar conectado para acessar esta função. Por Favor, verifique sua rede!</string>
-    <string name="cadastro_sucesso">Cadastro realizado com sucesso!</string>
+    <string name="internet_fail">Vous devez être connecté pour accéder à cette fonction. S'il vous plaît, vérifiez votre réseau !</string>
+    <string name="network_fail">Vous devez être connecté pour accéder à cette fonction. S'il vous plaît, vérifiez votre réseau !</string>
+    <string name="cadastro_sucesso">Opération réalisée avec succès.</string>
 
-    <string name="password_fail">A senha precisa ter pelo menos seis caracteres.</string>
-    <string name="password_not_equal">As senhas precisam ser iguais.</string>
-    <string name="open_google_maps">Deseja visualizar endereço no Google Maps?</string>
-    <string name="subject">Título</string>
+    <string name="password_fail">Senha precisa ter pelo menos 6 caracteres</string>
+    <string name="password_not_equal">Les mots de passe sont différents.</string>
+    <string name="open_google_maps">Adresse que vous souhaitez afficher dans Google Maps ?</string>
+    <string name="subject">Sujet</string>
     <string name="message">Décrirez le problème</string>
     <string name="report_title">Si vous avez rencontré des difficultés d\’utilisation de Les Gardiens de la Santé, veuillez remplir le formulaire ci-dessous et envoyez votre message à notre équipe d\'experts.</string>
     <string name="send">Envoyer</string>
-    <string name="email_null">Título e/ou mensagem não informados.</string>
+    <string name="email_null">Sujet et/ou message non informés</string>
     <string name="open_link">Souhaitez-vous ouvrir le lien de l’info ?</string>
+    <!-- NA -->
     <string name="share_participation"> Eu faço minha parte, faça sua parte também no combate ao mosquito Aedes aegypti #ZikaZero. Acesse: www.guardioesdasaude.org</string>
     <string name="alert_pharmacy">Certaines pharmacies peuvent ne pas s\'afficher sur la carte.</string>
     <string name="share_ok">Merci pour le partage !</string>
 
-    <string name="syndromes_desc">As síndromes são conjuntos de manifestações clínicas comuns a um número de doenças, entre elas:
-	\n\n•	Diarreica (febre e náusea ou vômito, além de algum destes sintomas: dores no corpo ou dor de cabeça)
-	\n\n•	Respiratória (febre, além de algum destes sintomas: tosse ou dor de garganta ou falta de ar ou manchas vermelhas no corpo)
-	\n\n•	Exantemática (manchas vermelhas no corpo, além de algum destes sintomas: febre ou dores no corpo ou dores nas juntas ou dor de cabeça ou coceira ou olhos vermelhos ou sangramento)</string>
-    <string name="new_password">As instruções para a nova senha foram enviadas para o seu e-mail.</string>
-    <string name="email_send">Mensagem enviada com sucesso.\nObrigado!</string>
+    <string name="syndromes_desc">Les syndromes sont des ensembles communs de manifestations cliniques à un certain nombre de maladies, y compris:
+	\n\nDiarrhée (fièvre et des nausées ou des vomissements et la diarrhée, ainsi que l'un de ces symptômes: douleurs corporelles ou des maux de tête)
+	\n\nRespiratory (fever and cough, and some of these symptoms: sore throat or shortness of breath)
+	\n\nRash (Les taches rouges sur le corps, et un de ces symptômes: la fièvre ou des courbatures ou des douleurs articulaires ou des maux de tête ou les yeux qui piquent ou rouge ou des saignements)</string>
+    <string name="new_password">Un message à l'adresse e-mail a été envoyé, suivez les instructions envoyées pour récupérer votre mot de passe.</string>
+    <string name="email_send">Message envoyé avec succès. Merci!</string>
+    <!-- NA -->
     <string name="email_not_send">Devido a problema técnicos não conseguimos enviar sua mensagem.\nTente novamente em alguns minutos.</string>
-    <string name="whatsapp_not_installed">WhatsApp não instalado!</string>
+    <string name="whatsapp_not_installed">WhatsApp n'est pas installé sur cet appareil.</string>
 
     <string name="message_user_max">Vous ne pouvez ajouter que 10 membres !</string>
 
-    <string name="residence_state">Estado de Residência</string>
-    <string name="residence_country">País de Residência</string>
+    <string name="residence_state">État</string>
+    <string name="residence_country">Pays</string>
 
     <string name="traveler_health">Santé des voyageurs</string>
     <string name="safe_sex">Avoir des rapports sexuels sûrs</string>
 
     <string-array name="image_array">
-        <item>Camera</item>
-        <item>Gallery</item>
+        <item>Appareil photographique</item>
+        <item>Galerie</item>
     </string-array>
 
     <string-array name="gender_array">
@@ -151,7 +158,7 @@
         <item>Noir</item>
         <item>Brun</item>
         <item>Jaune</item>
-        <item>Indigena</item>
+        <item>Indigène</item>
     </string-array>
 
     <string-array name="relationship_array">
@@ -181,39 +188,41 @@
     </string-array>
 
     <string-array name="array_country">
-        <item>Brasil</item>
+        <item>Brésil</item>
     </string-array>
 
     <string-array name="array_profile">
-        <item>Atleta/Delegação</item>
-        <item>Trabalhador/Voluntário</item>
-        <item>Fã/Espectador</item>
+        <item>Athlète/Délégation</item>
+        <item>Travailleur/bénévole</item>
+        <item>Fan/Spectateur</item>
     </string-array>
 
-    <string name="not_now">AGORA NÃO</string>
-    <string name="setting_upper">CONFIGURAÇÕES</string>
-    <string name="location_disabled">Não estamos conseguindo obter sua localização. Verifique se os serviços estão habilitados no aparelho.</string>
-
+    <string name="not_now">Pas maintenant</string>
+    <string name="setting_upper">Paramètres</string>
+    <string name="location_disabled">Nous n’arrivons pas à vous localiser. Vérifiez que les services sont validés sur l’appareil.</string>
+<!-- NA -->
     <string name="generic_error">Não foi possível executar a operação. Tente novamente em alguns instantes.</string>
+    <!-- NA -->
     <string name="generic_error_login">Não foi possível executar a operação. Verifique se todos os campos estão preenchidos corretamente ou se o e-mail utilizado já está em uso.</string>
+    <!-- NA -->
     <string name="erro_new_user">Não foi possível realizar o cadastro. Verifique se todos os campos estão preenchidos corretamente ou se o e-mail utilizado já está em uso.</string>
-    <string name="generic_update_data_ok">Dados alterados com sucesso.</string>
+    <string name="generic_update_data_ok">Opération réalisée avec succès.</string>
 
     # Tip
 
     <string name="vaccine">Vaccins</string>
-    <string name="phone">Telefone úteis</string>
-    <string name="care">Cuidados básicos</string>
+    <string name="phone">Numéros utiles</string>
+    <string name="care">Soins de base</string>
     <string name="prevention">Prévention</string>
     <string name="zika_tip">Dengue, Zika et Chikungunya</string>
 
     <string name="emergency">SAMU</string>
     <string name="police">Police militaire</string>
-    <string name="fireman">Bombeiros</string>
+    <string name="fireman">Pompier civil</string>
     <string name="defense">Défense civile</string>
     <string name="sus">SUS</string>
     <string name="useful_phones">Numéros utiles</string>
-
+<!-- NA -->
     <string name="emergence_text">Serviço de Atendimento Móvel de Urgência</string>
     <string name="police_text">Police militaire</string>
     <string name="fireman_text">Pompier civil</string>
@@ -222,80 +231,85 @@
 
     # Hint
 
-    <string name="hint_birth_date">Data de nascimento</string>
-    <string name="hint_birth_date_dt">Nascimento</string>
+    <string name="hint_birth_date">Date de naissance</string>
+    <string name="hint_birth_date_dt">Naissance</string>
     <string name="hint_mail">E-mail</string>
     <string name="hint_nickname">Surnom</string>
-    <string name="hint_password">Senha - Mínimo de 6 caracteres</string>
+    <string name="hint_password">Le mot de passe doit avoir au moins 6 caractères</string>
     <string name="hint_password_short">Mot de passe</string>
-    <string name="hint_repeat_password">Repetir senha</string>
+    <string name="hint_repeat_password">Retaper le mot de passe</string>
     <string name="hint_redefine_password">Redéfinir le mot de passe</string>
-    <string name="hint_country_name">Informe o nome do país que você esteve</string>
+    <string name="hint_country_name">Sélectionnez le pays</string>
 
     # Validation
 
-    <string name="validation_confirm_password">Senhas não conferem</string>
+    <string name="validation_confirm_password">Les mots de passe sont différents.</string>
+    <!-- NA -->
     <string name="validation_empty">Campo obrigatório</string>
+    <!-- NA -->
     <string name="validation_length">Mínimo três caracteres</string>
-    <string name="validation_mail">E-mail inválido</string>
-    <string name="validation_password">Senha inválida ou com menos de 6 caracteres</string>
+    <string name="validation_mail">E-mail non valide !</string>
+    <string name="validation_password">Votre mot de passe doit être d'au moins 6 chiffres</string>
 
     # Message
 
     <string name="message_use_mail">Ou utilisez votre e-mail:</string>
-    <string name="forgot_password">Digite seu e-mail e siga as instruções.</string>
-    <string name="loading">Carregando…</string>
+    <string name="forgot_password">Entrez votre adresse e-mail et vérifiez votre boîte de réception.</string>
+    <string name="loading">Chargement en cours ...</string>
 
     # Welcome
 
-    <string name="message_follow">Acompanhe os casos de doenças em seu bairro\nou em um determinado local.</string>
+    <string name="message_follow">Suivez les cas de maladie dans votre quartier ou à un endroit donné.</string>
     <string name="message_health">Comment va votre santé ?</string>
-    <string name="message_prepared">Preparado para se tornar um\nGuardião da Saúde?</string>
-    <string name="message_prevent">Veja como se prevenir de doenças, quais UPAs e\nfarmácias mais próximas de você e\ntelefones úteis para caso de emergência.</string>
-    <string name="message_symptom">Marque na lista os sintomas que\nvocê apresenta.</string>
+    <string name="message_prepared">Prêt à devenir un Gardien de la Santé ?</string>
+    <string name="message_prevent">Découvrez comment prévenir les maladies, quels services des urgences et pharmacies sont les plus proches de chez vous et les numéros utiles en cas d'urgence.</string>
+    <string name="message_symptom">Sélectionnez dans la liste les symptômes que vous présentez.</string>
 
     # Login
 
     <string name="message_forgot_password"><u>Mot de passe oublié ?</u></string>
-    <string name="message_login_enter">Entrar rapidamente com:</string>
+    <string name="message_login_enter">Entrez rapidement avec :</string>
 
     # Create Account
 
-    <string name="message_agree">Concordo com os</string>
+    <string name="message_agree">J'accepte les Conditions d'utilisation.</string>
     <string name="message_create_account">Inscrivez-vous rapidement avec :</string>
-    <string name="message_term"><u>Termos de uso.</u></string>
+    <string name="message_term"><u>Politique de confidentialité et Conditions d'utilisation</u></string>
 
     # Privacy
 
-    <string name="message_privacy">Nós nos preocupamos\ncom a sua privacidade</string>
+    <string name="message_privacy">Nous nous soucions de votre vie privée</string>
 
-    <string name="message_privacy_tip_1">• Sua participação é voluntária e anônima</string>
-    <string name="message_privacy_tip_2">• Os  dados fornecidos serão utilizados para promover uma comunidade mais saudável</string>
-    <string name="message_privacy_tip_3">• Para maiores informações, consulte os Termos de Uso</string>
+    <string name="message_privacy_tip_1">Votre participation est volontaire et anonyme</string>
+    <string name="message_privacy_tip_2">Les données fournies serviront à favoriser la santé de la collectivité</string>
+    <string name="message_privacy_tip_3">Pour plus d'informations, consultez les conditions d'utilisation</string>
 
     # Home
 
-    <string name="message_hello">Olá, %s!</string>
+    <string name="message_hello">Salut, %s!</string>
 
     # Profile Activity
 
-    <string name="message_select_profile">Selecione qual dos perfis\nabaixo quer editar.</string>
-    <string name="add_member">Adicionar novo integrante</string>
+    <string name="message_select_profile">Sélectionnez le profil ci-dessous que vous souhaitez modifier.</string>
+    <string name="add_member">Ajouter un membre de domicile</string>
+    <!-- NA -->
     <string name="not_remove_member">Você não pode remover seu perfil.</string>
-    <string name="delete_user">Integrante excluído com sucesso.</string>
-    <string name="new_member_ok">Integrante incluído com sucesso.</string>
-    <string name="error_add_new_member">Não foi possível realizar o cadastro. Verifique se todos os campos estão preenchidos corretamente e tente novamente ou se o e-mail já possui cadastro e tente novamente.</string>
-    <string name="dob_invalid">Data de nascimento inválida.</string>
+    <string name="delete_user">Opération réalisée avec succès.</string>
+    <string name="new_member_ok">Opération réalisée avec succès.</string>
+    <string name="error_add_new_member">Complétez votre information pour terminer l'enregistrement</string>
+    <string name="dob_invalid">L'utilisation de l'application est autorisée seulement aux personnes de 13 (treize) ans ou plus.</string>
 
     # Profile Fragment
 
-    <string name="edit_profile">Editar perfil</string>
+    <string name="edit_profile">Modifier le profil</string>
+    <!-- NA -->
     <string name="message_profile">Atualize as informações do seu perfil e dos membros domicíliar</string>
+    <!-- NA -->
     <string name="message_interest">Selecione as categorias e hashtags que você deseja seguir</string>
 
     # User
-    <string name="message_new_member">Preencha todos os campos abaixo\npara adicionar um novo integrante.</string>
-    <string name="message_fields">Apenas os campos habilitados\npoderão ser alterados.</string>
+    <string name="message_new_member">Remplissez tous les champs ci-dessous pour ajouter un nouveau membre.</string>
+    <string name="message_fields">Seuls les champs activés peuvent être changés.</string>
 
     # Interest
 
@@ -305,34 +319,34 @@
 
     # Select Participant
 
-    <string name="message_age">%d anos</string>
+    <string name="message_age">%d ans</string>
     <string name="message_home_member">Membres du domicile</string>
-    <string name="message_select_join">Selecione algum dos perfis abaixo\npara começar a participar.</string>
+    <string name="message_select_join">Sélectionnez l'un des profils ci-dessous pour commencer à participer.</string>
     <string name="message_who_participate">Qui va participer ?</string>
 
     # State
 
-    <string name="message_health_state">Como está sua saúde\nnesse momento?</string>
-    <string name="message_present_symptom">Alguns sinais e sintomas serão apresentados na\npróxima tela caso a opção \"Mal\" seja selecionada.</string>
+    <string name="message_health_state">Comment va votre santé en ce moment ?</string>
+    <string name="message_present_symptom">Certains signes et symptômes seront présentés sur l'écran suivant si l'option « Mal » est sélectionnée.</string>
 
     # Symptom
-    <string name="message_check_symptom">Marque abaixo o que você está\nsentindo nesse momento:</string>
+    <string name="message_check_symptom">Écrivez ci-dessous ce que vous ressentez en ce moment :</string>
 
     # About
 
-    <string name="message_about_title_01">Sobre o “Guardiões da Saúde”\n</string>
+    <string name="message_about_title_01">À PROPOS DE L'APPLICATION « LES GARDIENS DE LA SANTÉ »</string>
 
     # Diary
 
-    <string name="message_select_member">Selecione um membro</string>
+    <string name="message_select_member">Sélectionnez un membre</string>
 
     # Share
-    <string name="message_zika">Atenção: Os sintomas informados podem estar\n relacionados ao Zika vírus. Procure a Unidade\n de Pronto Atendimento mais próxima.</string>
-    <string name="message_hospital">Não deixe de procurar um serviço de saúde mais\npróximo. Continue informando diariamente como\nestá sua saúde.</string>
-    <string name="message_invite_friend">Convide seus amigos para serem guardiões.</string>
+    <string name="message_zika">Attention : Les symptômes rapportés peuvent être apparentés au virus Zika. Dirigez-vous vers le service des urgences le plus proche.</string>
+    <string name="message_hospital">Il est essentiel de rechercher le service de santé le plus proche.</string>
+    <string name="message_invite_friend">Invitez vos amis à devenir des Gardiens de la Santé.</string>
     <string name="message_thanks">Merci pour l\'information !</string>
-    <string name="message_thanks_2">Acompanhe seu histórico no Diário da Saúde</string>
-    <string name="message_thanks_zika">Obrigado pela\n informação!</string>
+    <string name="message_thanks_2">Continuer à informer quotidiennement votre état de santé.</string>
+    <string name="message_thanks_zika">Merci pour l'information !</string>
 
     # Dialog Survey
 
@@ -341,189 +355,187 @@
 
     #Prevention
     <string name="prevention_title_01">Prévention</string>
-    <string name="prevention_content_01"><b>Malária:</b>
-	\n\n•	No Brasil, a transmissão concentra-se na Região Amazônica, composta pelos estados do Acre, Amapá, Amazonas, Maranhão, Mato Grosso, Pará, Rondônia, Roraima e Tocantins;
-	\n\n•	Em áreas de transmissão de malária, é fundamental que o viajante tenha conhecimento sobre o horário de maior atividade de mosquitos vetores de malária, do pôr-do-sol ao amanhecer;
-	\n\n•	Use roupas claras e com manga longa, durante atividades de exposição elevada;
-	\n\n•	Aplique repelente nas áreas expostas da pele, seguindo a orientação do fabricante. Em crianças com idade inferior a dois anos, não é recomendado o uso de repelente sem orientação médica;
-	\n\n•	Em áreas de transmissão de malária é imprescindível que o viajante fique atento ao surgimento de sintomas da doença, como febre, dor no corpo e dor de cabeça;
-	\n\n•	Em caso de manifestação de algum sintoma da doença, procure uma unidade de saúde especializada mais próxima. O ideal é que este atendimento seja feito o quanto antes, em até 48 horas após os primeiros sintomas;
-	\n\n•	O Brasil conta com uma rede pública de saúde estruturada para diagnosticar e tratar os pacientes, de forma oportuna e adequada;
-	\n\n•	Caso você queira adquirir mais informações acerca da malária, antes de realizar a sua viagem, busque orientações em um dos Centros de Referência.
-\n\n<b>Previna-se contra doenças de transmissão respiratória:</b>
-	\n\n•	Lavar as mãos com água e sabonete antes das refeições, de tocar os olhos, a boca e o nariz e após tossir, espirrar ou usar o banheiro;
-	\n\n•	Indivíduos doentes devem ficar em repouso, consumir alimentação balanceada, aumentar a ingestão de líquidos e evitar aglomerações e ambientes fechados;
-	\n\n•	Mantenha os ambientes ventilados;
-	\n\n•	Esteja sempre atento ao apresentar sintomas respiratórios de maior gravidade e procure imediatamente assistência médica.
-\n\n<b>Consuma alimentos e bebidas de forma saudável:</b>
-	\n\n•	Evite consumir alimentos cujas condições higiênicas, de preparo e acondicionamento, são precárias;
-	\n\n•	Prefira alimentos que contenham baixo teor de açúcares, gorduras e sal;
-	\n\n•	Beba bastante líquido, preferencialmente água ou suco. Evite alimentos crus ou mal cozidos, principalmente os frutos do mar;
-	\n\n•	Alimentos embalados devem conter no rótulo a identificação do produtor, data de validade e a embalagem deve estar íntegra;
-	\n\n•	Durante o turismo rural, dê preferência aos alimentos que podem ficar sem refrigeração e não estraguem com o calor;
-	\n\n•	Caso tenha diarreia e vômitos por conta da ingestão de alimentos e bebidas, é preciso cuidado redobrado com a desidratação. Recomenda-se a ingestão de sal de reidratação oral, disponibilizado gratuitamente pelo Sistema Único de Saúde, ou outras soluções do tipo. As bebidas esportivas não compensam corretamente as perdas e não devem ser utilizadas para tratamento de doença diarreica.</string>
+    <string name="prevention_content_01"><b>Paludisme :</b>
+	\n\n•       Au Brésil, la transmission est concentrée dans la Région amazonienne, composée des états de l’Acre, Amapá, Amazonas, Maranhão, Mato Grosso, Pará, Rondônia, Roraima et Tocantins ;
+	\n\n•       Dans les zones de transmission du paludisme, il est crucial que le voyageur soit conscient des heures de l’activité principale des moustiques vecteurs du paludisme, entre le coucher et le lever du soleil ;
+	\n\n•       Utilisez des vêtements clairs à manches longues pendant les activités à exposition élevée ;
+	\n\n•       Appliquer du répulsif sur les zones exposées de la peau, suivant les instructions du fabricant. Chez les enfants âgés de moins de deux ans, il n'est pas recommandé l'utilisation de répulsif sans avis médical ;
+	\n\n•       Dans les zones de transmission du paludisme, il est indispensable que le voyageur soit attentif à l’apparition de symptômes de la maladie, comme la fièvre, les douleurs dans le corps et les maux de tête ;
+	\n\n•       En cas de manifestation de quelques symptômes de la maladie, dirigez-vous vers une unité de santé spécialisée proche de chez vous. Idéalement, cette consultation doit être effectuée le plus tôt possible, dans un maximum de 48 heures après les premiers symptômes ;
+	\n\n•       Le Brésil dispose d'un réseau de santé publique structuré pour diagnostiquer et traiter les patients, de façon opportune et appropriée ;
+	\n\n•       Si vous souhaitez obtenir plus d'informations sur le paludisme avant votre départ, demandez conseil dans un des Centres de référence.
+\n\n<b>Prémunissez-vous des maladies à transmission respiratoire : </b>
+	\n\n•       Lavez-vous les mains avec de l'eau et du savon avant les repas ou les contacts avec les yeux, la bouche ou le nez et après avoir toussé, éternué ou être allé aux toilettes ;
+	\n\n•       Les individus malades devraient se reposer, consommer une alimentation équilibrée, augmenter l'apport de liquides et éviter les agglomérations et les endroits fermés ;
+	\n\n•       Maintenez votre environnement aéré ;
+	\n\n•       Soyez toujours attentif aux symptômes respiratoires les plus graves et dirigez-vous immédiatement vers une assistance médicale.
+\n\n<b>Consommez des aliments et boissons de façon saine :</b>
+	\n\n•       Éviter de consommer des aliments dont les conditions d'hygiène, de préparation et de conditionnement, sont précaires ;
+	\n\n•       Préférez les aliments contenant de faibles taux de sucre, de graisse et de sel ;
+	\n\n•       Buvez beaucoup, de préférence de l'eau ou de jus de fruit. Évitez les aliments crus ou peu cuits, en particulier les fruits de mer ;
+	\n\n•       Les aliments emballés doivent comporter l’identifiant du producteur sur l'étiquette, la date de validité et l’emballage doit être entier ;
+	\n\n•       Pour le tourisme rural, donner la préférence aux aliments qui peuvent se conserver sans réfrigération et qui supportent la chaleur ;
+	\n\n•       Si vous souffrez de diarrhée et de vomissements dus à l'ingestion de nourriture et de boisson, redoublez de vigilance pour éviter la déshydratation. Il est recommandé d’ingérer du sel de réhydratation orale, disponible gratuitement par le Système unique de santé, ou d'autres solutions de ce type. Les boissons énergétiques ne compensent pas correctement les pertes et ne doivent pas être utilisées pour traiter une maladie diarrhéique.</string>
 
     #Care
 
-    <string name="care_title_01">Cuidados básicos</string>
-    <string name="care_content_01">Saúde do Viajante:
-	\n\n•	Procure seu médico, preferencialmente, entre 4 e 8 semanas antes da viagem para informar seu roteiro. Peça orientações sobre cuidados para proteção contra doenças e lesões;
-	\n\n•	Você pode ter dificuldade ou não encontrar os medicamentos que utiliza habitualmente, durante a viagem. Peça orientação ao seu médico sobre quais medicamentos e em que quantidade deve levar, incluindo a bagagem de mão;
-	\n\n•	Carregue com você os seus documentos de identificação, de preferência em inglês e português, com informações de contatos pessoais, tipo sanguíneo, se tem alergias, diabetes ou outras doenças que possam requerer particular atenção;
-	\n\n•	Toda gestante deve consultar seu médico antes da viagem, pois estará sujeita a vários riscos e a viagem pode afetar sua segurança e conforto;
-	\n\n•	Antes de viajar consulte a empresa de transporte sobre as regras específicas para gestantes;
-	\n\n•	O Brasil é um país de clima tropical. Recomenda-se ao viajante a ingestão constante de líquidos para evitar a desidratação;
-	\n\n•	Use roupas e calçados confortáveis. Eles lhe darão segurança e proteção contra torções, picadas de insetos e acidentes com animais peçonhentos;
-	\n\n•	Para se proteger do sol, cubra-se com roupas apropriadas, utilize chapéu ou boné e óculos escuros. Evite a exposição direta ao sol entre 10 horas da manhã e 4 horas da tarde;
-	\n\n•	Use protetor solar com fator de proteção adequado à cor de sua pele, de acordo com as orientações do fabricante. Mesmo em locais mais frios, sua pele ficará protegida dos raios solares;
-	\n\n•	Use repelentes quando houver necessidade;
-	\n\n•	Lave as mãos com água e sabão várias vezes ao dia, principalmente antes de ingerir alimentos, após utilizar conduções públicas, visitar mercados ou locais com grande fluxo de pessoas;
-	\n\n•	No Brasil, é proibido por lei dirigir após o consumo de bebida alcoólica, mesmo em pequenas quantidades.</string>
+    <string name="care_title_01">Soins de base</string>
+    <string name="care_content_01">Santé des voyageurs : 
+	\n\n•       Dirigez-vous vers votre médecin, de préférence entre 4 et 8 semaines avant le départ pour l’informer de votre itinéraire. Renseignez-vous sur les précautions à prendre contre les maladies et les blessures ;
+	\n\n•       Durant le voyage, vous pouvez avoir des difficultés pour trouver les médicaments que vous utilisez habituellement. Demandez conseil à votre médecin pour savoir quels médicaments et quelle quantité transporter dans vos bagages, y compris dans les bagages à main ;
+	\n\n•       Portez sur vous vos pièces d'identité, de préférence en anglais et en portugais, avec les informations de vos contacts personnels, groupe sanguin et d’éventuels allergies, diabète et autres maladies qui peuvent nécessiter une attention particulière ;
+	\n\n•       Toutes les femmes enceintes doivent consulter leur médecin avant le départ, car elles seront exposées à des risques et le voyage peut affecter leur sécurité et leur confort ;
+	\n\n•       Avant le départ, consultez l’entreprise de transport sur les règles concernant les femmes enceintes ;
+	\n\n•       Le Brésil est un pays au climat tropical. Il est recommandé au voyageur de boire régulièrement pour éviter la déshydratation ;
+	\n\n•       Utiliser des vêtements et des chaussures confortables. Ils vous apporterons sécurité et protection contre les entorses, les piqûres d'insectes et les morsures d’animaux venimeux ;
+	\n\n•       Pour vous protéger du soleil, couvrez-vous avec des vêtements appropriés, mettez un chapeau ou une casquette et des lunettes de soleil. Évitez l'exposition directe au soleil entre 10h00 du matin et 16h00 ;
+	\n\n•       Utilisez de la crème solaire avec un indice de protection approprié à la couleur de votre peau, suivant les instructions du fabricant. Même dans des endroits plus frais, votre peau sera protégée des rayons solaires ;
+	\n\n•       Utiliser des répulsifs lorsque cela est nécessaire ;
+	\n\n•       Lavez-vous les mains avec de l’eau et du savon plusieurs fois par jour, surtout avant d’ingérer des aliments, après avoir utilisé les transports publics, visité des marchés ou des lieux avec un nombre important de personnes ;
+	\n\n•       Au Brésil, est interdit par la Loi de conduire après avoir consommé de l'alcool, même en petite quantité.</string>
 
     #Vacinne
     <string name="vacinne_title_01">Vaccins</string>
-    <string name="vacinne_content_01">•	A Organização Mundial da Saúde (OMS) informa que não há calendário internacional de vacinação para todos os viajantes. Para cada viajante, será adotada recomendação personalizada, de acordo com os países a serem visitados, dependendo do tipo, duração e tempo disponível para aplicação da vacina antes da partida.
-	\n\n•	O Brasil não exige o Certificado Internacional de Vacinação ou Profilaxia para entrada no país.
-	\n\n•	Certifique-se de que suas vacinas de rotina estejam em dia, de acordo com as recomendações de seu país de origem, pois é uma medida eficaz e segura para a prevenção de várias doenças.
-	\n\n•	Devido à circulação do sarampo na Europa, África e Ásia recomenda-se que pessoas com origem ou destino a países com ocorrência dessa doença sejam vacinados previamente.
-	\n\n•	A preparação para a viagem é uma boa oportunidade para verificar o estado vacinal de bebês, crianças, adolescentes, adultos e idosos.
-	\n\n•	Todo morador ou visitante de qualquer cidade brasileira tem disponível também as vacinas para influenza e Pólio, que são enfermidades relacionadas a possíveis emergências de saúde pública de importância internacional para a Organização Mundial de Saúde.
-\n\nPrevenção contra febre amarela:
-	\n\n•	Previna-se contra febre amarela tomando a vacina 10 dias antes de visitar áreas de mata ou de praticar turismo ecológico ou rural.
-	\n\n•	Procure seu médico, pois ele poderá lhe ajudar a decidir se a vacina é necessária, com base em seu plano de viagem.</string>
+    <string name="vacinne_content_01">•       L’Organisation mondial de la santé (OMS) signale qu'il n'y a pas de calendrier international de vaccination pour tous les voyageurs. Pour chaque voyageur, une recommandation personnalisée sera adoptée, en fonction du pays visité, du type et de la durée du séjour, ainsi que du temps disponible pour faire le vaccin avant le départ.
+	\n\n•       Le Brésil n’exige pas le Certificat international de vaccination ou Prophylaxie pour l'entrée dans le pays.
+	\n\n•       Assurez-vous que vos vaccins de routine sont à jour, conformément aux recommandations de votre pays d'origine, car il s’agit d’une mesure de sécurité sure et efficace pour la prévention de diverses maladies.
+	\n\n•       En raison de la circulation de la rougeole en Europe, Afrique et Asie, il est recommandé que les personnes en provenance ou à destination de pays touchés par cette maladie soient vaccinées avant leur départ.
+	\n\n•       La préparation du voyage est une bonne occasion pour vérifier l'état des vaccins des nourrissons, enfants, adolescents, adultes et personnes âgées.
+	\n\n•       Tout résident ou visiteur de n'importe quelle ville brésilienne dispose de vaccins contre la grippe et la Polio, maladies liées à une possible urgence de santé publique de portée internationale selon l'Organisation mondiale de la santé.
+\n\nPrévention contre la fièvre jaune :
+	\n\n•       Prémunissez-vous de la fièvre jaune en prenant le vaccin 10 jours avant de visiter une zone de forêt ou de pratiquer le tourisme écologique ou rural.
+	\n\n•       Dirigez-vous vers votre médecin car il pourra vous aider à décider si un vaccin est nécessaire, compte tenu de votre plan de voyage.</string>
 
     #Terms of use
-    <string name="terms_title_01">POLÍTICA DE PRIVACIDADE E TERMOS DE USO</string>
+    <string name="terms_title_01">POLITIQUE DE CONFIDENTIALITÉ ET CONDITIONS D'UTILISATION</string>
 
-    <string name="terms_content_01">Por favor, leia estes termos legais de uso antes de utilizar o aplicativo “Guardiões da Saúde”, fazer qualquer colaboração, acessar ou baixar qualquer informação deste aplicativo.
-\n\nAo acessar ou utilizar o aplicativo “Guardiões da Saúde”, você aceita e concorda em cumprir os termos e condições estabelecidos nos “Termos de Uso”.
-\n\nEste termo é um acordo vinculativo entre você e o aplicativo “Guardiões da Saúde”, que abrange todo o seu acesso e uso dessa aplicação, o que inclui o uso de todas as informações, dados, ferramentas, produtos, serviços e outros conteúdos disponíveis por meio deste.
-\n\nAo utilizar esta aplicação, você confirma que compreende e concorda com as seguintes regras dispostas:
-\n\n1. Respeito às leis:
-\n\nO usuário cadastrado deverá acessar o aplicativo “Guardiões da Saúde” apenas para finalidades lícitas e relacionadas à saúde;
-\n\nO usuário concorda em utilizar a aplicação apenas para os devidos fins e em conformidade com o presente termo e limitações legais, bem como quaisquer políticas aplicáveis no Brasil;
-\n\nSeu acesso é proibido em territórios onde o conteúdo seja considerado ilegal. Aqueles que optarem por acessar este site a partir de outras localidades, o farão por iniciativa própria e serão responsáveis pelo cumprimento das leis locais aplicáveis. Os materiais não deverão ser usados ou exportados em descumprimento das leis brasileiras. Qualquer pendência com relação aos materiais será dirimida pelas leis brasileiras.
-\n\nA alteração não autorizada do conteúdo deste site é expressamente proibida.
-\n\n2. Restrições de Uso:
-\n\nA utilização do aplicativo está permitida somente para indivíduos de 13 (treze) anos de idade ou mais.
-\n\n3. Responsabilidade pelo Conteúdo:
-\n\nAs instituições e desenvolvedores do aplicativo “Guardiões da Saúde” não são responsáveis pelo conteúdo de quaisquer informações eventualmente trocadas pelos usuários entre si, por meio de redes sociais, ou para o aplicativo “Guardiões da Saúde”, sejam elas lícitas ou ilícitas.
-\n\nOs comentários compartilhados, pelo usuário, por meio de redes sociais não representam a opinião das instituições envolvidas no projeto e a responsabilidade é do autor da mensagem.
-\n\nO usuário concorda que é o único responsável pela sua própria conduta e pela veracidade das informações fornecidas enquanto utilizar o serviço e que é responsável pelas consequências que resultem do fornecimento intencional de dados incorretos.
-\n\nO usuário concorda que, ao usar o aplicativo “Guardiões da Saúde”, não irá publicar, enviar, distribuir ou divulgar conteúdo ou informação de caráter difamatório, obsceno ou ilícito, inclusive informações de propriedade exclusiva pertencentes a outras pessoas ou empresas, bem como marcas registradas ou informações protegidas por direitos autorais, sem a expressa autorização do detentor desses direitos;
-\n\nNinguém pode agir em seu nome no uso do aplicativo “Guardiões da Saúde”. Você é responsável pelo conteúdo que indivíduos não autorizados produzirem ao usar essa aplicação utilizando, com sua permissão, seu perfil cadastrado. Essa regra não se aplica aos casos de violação ou outros problemas de segurança da aplicação.
-\n\n4. Acessibilidade ao Conteúdo:
-\n\nA equipe do aplicativo “Guardiões da Saúde” não garante que esta aplicação esteja parcial ou completamente funcional para uso fora do território nacional. Se você optar por acessar o Webapp e a aplicação de outras localidades, você o fará por sua própria iniciativa e seu próprio risco. Você é responsável pelo cumprimento das leis locais e, na medida em que leis locais sejam aplicáveis, você concorda especificamente em cumprir todas as leis aplicáveis relativas à transmissão de dados técnicos exportados a partir desse local.
-\n\n5. Propriedade Intelectual:
-\n\nO Ministério da Saúde, Secretarias de Saúde envolvidas e instituições parceiras são detentores do direito de autoria dos conteúdos produzidos e apresentados nessa aplicação. Essa premissa não se aplica as informações consideradas como de Domínio Público ou de Utilidade Pública. Todas as outras marcas comerciais, marcas de serviço, nomes e logotipos que aparecem nessa aplicação são de propriedade de seus respectivos proprietários.
-\n\nO aplicativo “Guardiões da Saúde” é um software open source cuja utilização por terceiros se submete aos termos da licença internacional http://opensource.org/licenses/gpl-3.0 GNU General Public License, version 3 (GPL-3.0). Os direitos de uso do conteúdo e dos relatórios gerados pelo Webapp e pela aplicação são cedidos pelos desenvolvedores, em especial aqueles que decorrem dos termos da licença http://creativecommons.org/licenses/by-nc/4.0/ Creative Commons - Atribuição-Não Comercial 4.0 Internacional http://creativecommons.org.br/as-licencas/attachment/by-nc/.
-\n\nApenas informações divulgadas pelos serviços de saúde devem ser consideradas oficiais para divulgação pública, no que tange aos dados relacionados a esse tema. Nenhuma das informação proveniente do aplicativo “Guardiões da Saúde”, apesar do empenho da equipe em garantir a qualidade, atualidade e autenticidade das informações, deverá ser considerada oficial para divulgação pública. Os dados coletados por meio do aplicativo “Guardiões da Saúde” são provenientes dos usuários que voluntariamente forneceram as informações e que pode sofrer influência pela sua capacidade de acesso aos dispositivos móveis ou computadores com especificações tecnológicas mínimas.
-\n\nAssim, as informações geradas, a partir dessa estratégia, podem ser insuficientes para representar estatisticamente ao real padrão epidemiológico daquele período e local. As informações lúdicas ou de utilidade pública poderão apresentar eventuais incorreções ou falhas de atualização, sendo recomendada sua validação pelos usuários em casos de urgência e emergência ou de qualquer outra situação de ameaça à vossa saúde ou integridade.
-\n\n6. Leis, Regulamentos, Direitos e Deveres:
-\n\nÉ política da equipe do aplicativo “Guardiões da Saúde” cumprir todas as leis e regulamentos aplicáveis e vigentes. No caso de qualquer disposição do presente Termo de Uso estar em conflito com qualquer lei ou regulamento aplicável, a lei ou regulamentação aplicável substituirá a disposição contrária.
-\n\nEste Termo de Uso e o uso do aplicativo “Guardiões da Saúde” são e serão regidos e interpretados de acordo com as leis internas do Brasil, sem levar em conta as suas regras de conflitos de leis. Em caso de qualquer conflito entre as leis, regras e regulamentos estrangeiros e as do Brasil, as leis, regras e regulamentos do Brasil deverão prevalecer.
-\n\nO aplicativo “Guardiões da Saúde” poderá, mas não é obrigado, monitorar, revisar e restringir o acesso a qualquer de suas áreas onde os usuários transmitem informações, podendo retirar do ar ou retirar o acesso a qualquer destas informações ou comunicações. Se você tiver alguma dúvida em relação ao aplicativo “Guardiões da Saúde”, não hesite em contatar-nos pelo e-mail: contato@guardioesdasaude.org
-\n\n7. Uso das Contribuições:
-\n\nAo enviar uma contribuição escrita ou postar informações no aplicativo “Guardiões da Saúde”, você concede uma licença perpétua, isenta de royalties, licença incondicional para essa aplicação e qualquer organização sucessora, a publicar a sua contribuição no aplicativo “Guardiões da Saúde”, bem como divulgá-las, de forma agregada (nunca individual) a outros meios de comunicação, e para discutir ou referenciá-la em quaisquer publicações decorrentes do aplicativo “Guardiões da Saúde”.
-\n\nVocê também concorda que o aplicativo “Guardiões da Saúde”tem o direito, mas não a obrigação, de editar ou remover qualquer contribuição, ou incluí-la no texto, em conjunto com outras contribuições, a critério exclusivo da equipe relacionada a essa aplicação.
-\n\n8. Garantia de Sigilo e Privacidade:
-\n\nSerá garantido o sigilo e a privacidade de todas as informações produzidas por você no aplicativo “Guardiões da Saúde” e o acesso as informações seguem as regras previstas na Lei de Acesso à Informação.
-Reservamo-nos o direito de usar esta informação internamente e, neste âmbito, sua contribuição estará vinculada ao seu e-mail e será anonimizada para qualquer fim de análise dos dados.
-\n\nInformamos também que, para atender a finalidade principal do aplicativo, que é identificar aglomerados de individuos com sintomas, as informações sobre seu estado de saúde serão geolocalizadas através da captura do sinal de GPS de seu dispositivo.".
-\nO aplicativo “Guardiões da Saúde”, seus colaboradores e usuários, incluindo agências governamentais e não governamentais, dependem dos usuários para a precisão das contribuições. A equipe não se responsabiliza por erros ou imprecisões em qualquer submissão. Deturpação deliberada de informações por um usuário pode constituir uma violação da lei, e se for séria, será comunicada às autoridades governamentais apropriadas.
-\n9. Atualização do aplicativo “Guardiões da Saúde”:
-\nModificações dessa aplicação e dos seus Termos de Uso poderão ocorrer. A menos que indique o contrário, seu uso do Webapp e da aplicação indica a aceitação integral dos Termos de Uso naquela versão vigente, cada vez que você usar o aplicativo “Guardiões da Saúde”. Fiquem atentos às atualizações e, em caso de dúvida, os Termos de Uso estarão sempre disponíveis para acesso e concordância ou não.
-\n10. Responsabilidade por Ações com base no Conteúdo:
-\nO aplicativo “Guardiões da Saúde” não assume responsabilidade por quaisquer prejuízos e/ou danos a pessoas ou bens, em consequência de qualquer utilização das ideias, conteúdos, instruções, métodos, produtos ou procedimentos contidos nessa aplicação.
-\nEm hipótese alguma os profissionais envolvidos com o desenvolvimento ou gestão dessa aplicação serão responsabilizados por qualquer decisão ou ação tomada por você em base a tal conteúdo.
-\nDiante de ameaças ou qualquer outra situação de risco a vossa saúde ou integridade, procure sempre orientações validadas e atualizadas pelos serviços locais de saúde pública.
-\n11. Responsabilidade por Problemas Tecnológicos:
-\nEventualmente, todo o conteúdo ou qualquer parte do aplicativo “Guardiões da Saúde” pode não estar disponível e pode não funcionar corretamente em qualquer momento. Fazemos esforços razoáveis para evitar problemas tecnológicos, mas em qualquer momento podem ocorrer nessa aplicação problemas tecnológicos das mais diversas naturezas, tais como vírus, rotinas de programação prejudiciais ou problemas relacionados ao aparelho.
-\nO Webapp e a aplicação são fornecidos "como está" e "conforme estiver disponível". Sem limitar o nosso aviso geral, não garantimos a disponibilidade, integridade, pontualidade, funcionalidade, confiabilidade, sequenciamento ou a velocidade de entrega nessa aplicação ou de qualquer parte do conteúdo.
-\nO aplicativo “Guardiões da Saúde” não se responsabiliza por qualquer dano ou prejuízo causado pelo desempenho ou falha de desempenho de toda ou qualquer parte da aplicação. O aplicativo “Guardiões da Saúde” não se responsabiliza por quaisquer defeitos, atrasos ou erros resultantes da sua utilização dessa aplicação.
-\nA utilização de todas as funcionalidades do aplicativo “Guardiões da Saúde” exige disponibilidade do acesso à internet pelo usuário, por wi-fi ou cabo de rede de dados. A ausência desse pré-requisito pode limitar a utilização da aplicação com todo seu potencial de uso. A equipe do aplicativo “Guardiões da Saúde”, considerando esse aviso, não assume responsabilidade decorrente dessa limitação.
-\nEsta isenção de responsabilidade aplica-se a todos e quaisquer danos ou prejuízos, incluindo aqueles causados por qualquer falha de desempenho, erro, omissão, interrupção, remoção, defeito, atraso na operação ou transmissão, vírus de computador, falha de linha de comunicação, roubo, destruição ou acesso não autorizado, a alteração ou uso de qualquer bem, seja por violação de contrato, comportamento ilícito, negligência ou qualquer outra causa de ação.
-\n12. Responsabilidade por Informações de Terceiros:
-\nA disposição através do Webapp e da aplicação de links e referências para outros sites, publicações ou recursos de informação não constitui o endosso desses sites ou de seus recursos por parte do aplicativo “Guardiões da Saúde”, de seus agentes ou representantes. A equipe do aplicativo “Guardiões da Saúde” não faz representações ou asserções quanto à qualidade, conteúdo e precisão das informações, serviços ou produtos que podem ser fornecidos por esses recursos e, especificamente, se isenta de quaisquer garantias, incluindo, mas não limitando, às garantias implícitas ou expressas de comerciabilidade ou adequação para qualquer utilização particular, aplicação ou finalidade.
-\n13. Considerações Finais
-\nO acesso ao serviço representa a aceitação expressa e irrestrita dos Termos de Uso acima descritos. Ao concordar com esses termos você concede uma licença perpétua, isenta de royalties, licença incondicional para o aplicativo “Guardiões da Saúde”, Ministério da Saúde e todas as organizações sucessoras, para publicar a sua contribuição de forma agregada, na própria aplicação, bem como divulgá-las aos serviços de vigilância em saúde pública relacionados. Você também concorda que o aplicativo “Guardiões da Saúde” tem o direito, mas não a obrigação, de editar ou remover qualquer contribuição a critério exclusivo da equipe do aplicativo.</string>
+    <string name="terms_content_01">Veuillez lire ces conditions légales d'utilisation avant de vous servir de l'application « Les Gardiens de la Santé », participer au projet, vous connecter ou télécharger des informations de cette application.
+\n\nEn accédant ou en utilisant l'application « Les Gardiens de la Santé », vous acceptez les termes et conditions énoncées dans « Conditions d'utilisation ».
+\n\nCe terme est un accord vous liant à l'application « Les Gardiens de la Santé » et concerne l’accès et l’utilisation de cette application, ce qui inclut l'utilisation de toutes les informations, données, outils, produits, services et autres contenus disponibles sur cette dernière.
+\n\nEn utilisant cette application, vous confirmez que vous comprenez et que vous acceptez le règlement suivant :
+\n\n1. Respect de la loi :
+\n\nL'utilisateur inscrit doit accéder à l'application « Les Gardiens de la Santé » uniquement à des fins légales et en rapport à la santé ;
+\n\nL'utilisateur s'engage à utiliser l'application uniquement à bon escient et en conformité avec les présentes conditions d’utilisation et contraintes juridiques, ainsi que toutes les politiques applicables au Brésil ;
+\n\nL’accès à l’application est interdite dans les territoires où son contenu est considéré illégal. Les personnes qui choisissent d'accéder à ce site depuis d’autres endroits, le feront de leur propre initiative et sont tenues de respecter les lois locales applicables. Les sujets ne devront pas être utilisés ou exportés et constituer un manquement aux lois brésiliennes. Tout litige en relation aux sujets sera réglé par les lois brésiliennes.
+\n\nToute modification non autorisée du contenu de ce site est strictement interdite.
+\n\n2. Restrictions d'utilisation :
+\n\nL'utilisation de l'application est autorisée seulement aux personnes de 13 (treize) ans ou plus.
+\n\n3. Responsabilité pour le contenu :
+\n\nLes institutions et les développeurs de l’application « Les Gardiens de la Santé » ne sont pas responsables du contenu d’informations qui auraient éventuellement été changées par des utilisateurs entre eux par le biais de réseaux sociaux ou sur l'application « Les Gardiens de la Santé », qu'elles soient licites ou illicites. 
+\n\nLes commentaires partagés par l’utilisateur par le biais de réseaux sociaux ne représentent pas l'opinion des institutions engagées dans le projet et la responsabilité revient à l'auteur du message. 
+\n\nL’utilisateur reconnait qu’il est le seul responsable de sa propre conduite et de l'exactitude des informations fournies lors de l’utilisation du service et qu’il est responsable des conséquences résultant de la divulgation de données erronées.
+\n\nL'utilisateur reconnaît qu’en utilisant l'application « Les Gardiens de la Santé », il ne publiera pas, ni ne présentera, distribuera ou diffusera des contenus ou des informations à caractère diffamatoire, obscène ou illégale, y compris des informations confidentielles appartenant à d'autres personnes ou à des entreprises, ainsi que des marques déposées ou des informations protégées par des droits d’auteur, sans l'autorisation expresse du propriétaire de ces droits ;
+\n\nNul ne peut agir en son nom dans l'utilisation de l'application « Les Gardiens de la Santé ». Vous êtes responsable du contenu que des personnes non autorisées pourraient produire sur cette application en utilisant, avec votre permission, votre profil enregistré. Cette règle ne s'applique pas aux cas de violation ou d'autres problèmes de sécurité de l’application.
+\n\n4. Accessibilité du contenu :
+\n\nL'équipe de l'application « Les Gardiens de la Santé » ne garantit pas que celle-ci soit totalement ou partiellement fonctionnelle pour une utilisation en dehors du territoire national. Si vous choisissez d'accéder à la Webapp et à l'application depuis d’autres endroits, vous le ferez de votre propre initiative et à vos risques et périls. Vous êtes responsable du respect des lois locales et, dans la mesure où des lois locales sont applicables, vous acceptez expressément de respecter toutes les lois applicables concernant la transmission de données techniques exportées à partir de cet endroit.
+\n\n5. Propriété intellectuelle :
+\n\nLe Ministère de la santé, les Secrétariats concernés et les institutions partenaires sont propriétaires des droits d'auteur du contenu produit et présenté dans la présente application. Ce principe ne s'applique pas aux informations considérées comme appartenant au domaine public ou reconnu d’utilité publique. Toutes les autres marques, marques de service, noms et logos qui apparaissant dans cette application sont la propriété de leurs détenteurs respectifs.
+\n\nL'application « Les Gardiens de la Santé » est un logiciel open-source dont l'utilisation par des tiers est soumise aux termes de la licence internationale http://opensource.org/licenses/gpl-3.0 GNU General Public License, version 3 (GPL-3.0). Les droits d'utilisation du contenu et des rapports générés par le Webapp et par l'application sont concédés par les développeurs, en particulier ceux découlant des termes de la licence http://creativecommons.org/licenses/by-nc/4.0/ Creative Commons - Atribuição-Não Comercial 4.0 Internacional http://creativecommons.org.br/as-licencas/attachment/by-nc/.
+\n\nSeules les informations concernant les données ayant un rapport avec le thème de la santé et diffusées par les services de santé doivent être considérées comme officielles pour la diffusion publique. Aucune information provenant de l'application « Les Gardiens de la Santé », malgré l'engagement de l'équipe à assurer la qualité, la mise à jour et l'authenticité des informations, ne devra être considérée comme officielle pour la diffusion publique. Les données recueillies par le moyen de l'application « Les Gardiens de la Santé » proviennent des utilisateurs qui ont volontairement fourni les informations et peuvent être restreintes par leur capacité d’accès aux appareils mobiles ou aux ordinateurs ayant des spécifications techniques limitées.
+\n\nC’est pour cette raison que les informations produites par cette stratégie peuvent être insuffisantes pour représenter statistiquement la situation épidémiologique réelle d’une période et d’un lieu. Les informations ludiques ou reconnues d’utilité publique peuvent présenter des inexactitudes ou ne pas être actualisées, même si la validation des utilisateurs en situation d'urgence, ou menaçant la santé et l’intégrité physique des personnes, est recommandée.
+\n\n6. Lois, règlements, droits et devoirs :
+\n\nLa politique de l'équipe de l’application « Les Gardiens de la Santé » est de respecter toutes les lois et règlements applicables en vigueur. Dans le cas où une disposition des présentes Conditions d'utilisation entre en conflit avec une loi ou un règlement applicable, la loi ou le règlement applicable remplacera la disposition.
+\n\nCes conditions d'utilisation et l'utilisation de l'application « Les Gardiens de la Santé » sont et seront régies et interprétées selon les lois internes du Brésil, sans tenir compte de ses règles de conflit de lois. En cas de conflit entre les lois, règles et règlements étrangers et ceux du Brésil, les lois, règles et règlements brésiliens prévaudront.
+\n\nL'application « Les Gardiens de la Santé » pourra, mais sans aucune obligation, contrôler, réviser et restreindre l'accès à n’importe quelle zone où les utilisateurs transmettent des informations, pouvant supprimer ou suspendre l'accès à ces informations ou communications. Si vous avez des questions concernant l'application « Les Gardiens de la Santé », n'hésitez pas à nous contacter par e-mail : contato@guardioesdasaude.org
+\n\n7. Utilisation des contributions
+\n\nEn envoyant une contribution écrite ou en publiant des informations sur l'application « Les Gardiens de la Santé », vous concédez une autorisation perpétuelle, exempte de droits d’auteur, autorisation inconditionnelle à cette application et à toutes organisations qui lui succèderaient, à publier votre contribution sur l'application « Les Gardiens de la santé », mais aussi à la diffuser, de manière agrégée (jamais de manière individuelle) par d'autres moyens de communication, et pour en débattre ou la référencer dans des publications émanant de l'application « Les Gardiens de la Santé ».
+\n\nVous acceptez également que l'application « Les Gardiens de la santé » a le droit, mais non l'obligation, de modifier ou supprimer toute contribution ou l'inclure dans un texte avec d'autres contributions, et ce, selon les critères exclusifs de l’équipe rattachée à cette application.
+\n\n8. Protection de la vie privée et de la confidentialité :
+\n\nLa confidentialité et la vie privée de toutes les informations que vous produisez dans l'application « Les Gardiens de la Santé » seront garanties et l’accès aux informations suivent les règles prévues par la loi d’accès à l’information. 
+Nous nous réservons le droit d'utiliser ces informations en interne et, dans ce cadre, votre contribution sera liée à votre adresse e-mail et rendue anonyme pour l’exécution d’analyses de données. 
+\n\nNous vous informons également que pour répondre à l'objectif principal de l'application, qui consiste à identifier des groupes de personnes présentant des symptômes, les informations sur votre état de santé seront géolocalisées par capture du signal GPS de votre appareil. ".
+\nL'application « Les Gardiens de la Santé », ses collaborateurs et utilisateurs, comprenant les agences gouvernementales et non gouvernementales, dépendent des utilisateurs pour la précision des contributions. L'équipe n'est pas responsable des erreurs ou des inexactitudes des contributions envoyées. La dénaturation délibérée d'informations par un utilisateur peut constituer une violation de la Loi, et si elle est grave, elle sera communiquée aux autorités gouvernementales compétentes.
+\n9. Mise à jour de l’application « Les Gardiens de la Santé »:
+\nDes modifications de la présente application et de ses Conditions d’utilisation peuvent survenir. Sauf indication contraire, votre utilisation du Webapp et de l'application indique que vous acceptez intégralement les Conditions d’utilisation de cette version en vigueur, chaque fois que vous utilisez l'application « Les Gardiens de la Santé ». Informez-vous sur les mises à jour et, si vous avez des questions, les Conditions d'utilisation seront toujours disponibles pour l'accès et l’acceptation ou non.
+\n10. Responsabilité pour les actions basées sur le contenu :
+\nL'application « Les Gardiens de la Santé » n'assume aucune responsabilité pour les préjudices et/ou dommages corporels ou matériels résultant de toute utilisation des idées, contenus, instructions, méthodes, produits ou procédures contenues dans la présente application.
+\nEn aucun cas les professionnels engagés dans le développement ou la gestion de cette application seront responsables de toute décision ou mesure que vous prenez et qui sont basées sur ledit contenu.
+\nFace à des menaces ou à toute autre situation de risque pour votre santé ou votre intégrité, recherchez toujours des instructions validées et mis à jour par les services locaux de santé publique.
+\n11. Responsabilité pour les problèmes techniques :
+\nTout le contenu ou une partie de l'application « Les Gardiens de la Santé » peut éventuellement et à tout moment, ne pas être disponible et peut ne pas fonctionner correctement. Nous fournissons des efforts raisonnables pour éviter des problèmes techniques, mais, dans cette application, il peut survenir à tout moment des problèmes techniques de diverses natures, tels que des virus, des routines de programmation nuisibles ou des problèmes liés à l'appareil.
+\nLe Webapp et l'application sont fournis « tel quel » et « tel que disponible ». Sans limiter notre avertissement général, nous ne garantissons pas la disponibilité, l'intégrité, la ponctualité, la fonctionnalité, la fiabilité, l’enchaînement ou la rapidité de diffusion de cette application ou L'application « Les Gardiens de la Santé » n'est pas responsable de tout dommage ou préjudice résultant de l'exécution ou l'inexécution de tout ou d’une partie de l’application. L'application « Les Gardiens de la Santé » ne sont pas responsables des défauts, des retards ou des erreurs résultant de l'utilisation de cette application.
+\nL'utilisation de toutes les fonctionnalités de l'application « Les Gardiens de la Santé » nécessite la disponibilité d'accès à internet par l'utilisateur, par Wifi ou réseau de données. L'absence de cette condition préalable peut limiter l'utilisation de l'application et de tout son potentiel. L'équipe de l’application « Les Gardiens de la Santé », au regard de cet avertissement, n'assume aucune responsabilité découlant de cette limitation.
+\nCette exemption de responsabilité s'applique à tout dommage ou préjudice, y compris ceux causés par tout défaut d'exécution, erreur, omission, interruption, suppression, défaut, retard dans l'opération ou la transmission, virus informatique, défaut de ligne de communication, vol, destruction ou accès non autorisé, la modification ou l’utilisation de tout bien, que ce soit par rupture de contrat, comportement illicite, négligence ou tout autre motif d'action.
+\n12. Responsabilité pour les informations de tiers :
+\nLa mise à disposition, sur le Webapp et l'application, de liens et de références d'autres sites, de publications ou de ressources d’informations ne constitue aucunement une recommandation pour ces sites ou leurs ressources de la part de l'application « Les Gardiens de la Santé », ses agents ou représentants. L'équipe de l'application « Les Gardiens de la Santé » ne fait aucune affirmation ou déclaration quant à la qualité, le contenu et l'exactitude des informations, des services ou des produits qui peuvent être fournis par ces ressources et, plus précisément, s’exempte de toute garantie, incluant, mais ne limitant pas, les garanties implicites ou expresses de commercialisation ou d'adaptation à toute utilisation particulière, application ou finalité.
+\n13. Considérations finales
+\nL’accès au service signifie l'acceptation expresse et sans restriction des Conditions d'utilisation décrites ci-dessus. En acceptant ces Conditions, vous concédez une autorisation perpétuelle, exempte de droits d’auteur, autorisation inconditionnelle à l’application «Les Gardiens de la Santé», au Ministère de la santé et à toutes les organisations qui lui succèderaient à publier votre contribution de manière agrégée sur la propre application, ainsi que de la diffuser aux services de surveillance de santé publique concernés. Vous acceptez également que l'application « Les Gardiens de la santé » ait le droit, mais non l'obligation, de modifier ou supprimer toute contribution selon les critères exclusifs de l’équipe rattachée à cette application.</string>
 
     <string name="zika_title_01">Dengue, Zika et Chikungunya</string>
 
-    <string name="zika_content_01" formatted="false">•	Os vírus da Dengue, Zika e Chikungunya são transmitidos pelo mosquito Aedes aegypti e apresentam sinais e sintomas parecidos. 
-	\n\n•	É importante que você procure o serviço de saúde mais próximo, quando apresentar febre, manchas vermelhas pelo corpo, dores no corpo ou dor nas juntas (articulações) ou coceira. 
-	\n\n•	Procure se informar se no seu bairro ou cidade estão acontecendo casos de Dengue, Zika ou Chikungunya. 
-	\n\n•	Se estiver com suspeita de Dengue, Zika ou Chikungunya, tome líquidos em abundância.
-	\n\n•	A principal medida de prevenção é evitar a reprodução dos mosquitos Aedes aegypti, transmissores das três doenças.
-	\n\n•	Os repelentes para uso sobre a pele podem ser utilizados por gestantes, desde que estejam devidamente registrados na ANVISA e que sejam seguidas as instruções de uso descritas no rótulo. Produtos à base de DEET, Icaridin (Picaridin), EBAAP (IR3535) são considerados seguros para serem utilizados por gestantes. 
-	\n\n•	Produtos à base DEET não devem ser usados em crianças menores de 2 anos. Em crianças entre 2 e 12 anos, a concentração dever ser no máximo 10% e a aplicação deve se restringir a 3 vezes por dia. Para maiores de 12 anos, são permitidas as concentrações superiores a 10%.
-	\n\n•	Os repelentes de ambiente, como aqueles de parede (aparelhos elétricos) ou espirais não devem ser utilizados em locais com pouca ventilação nem na presença de pessoas asmáticas ou com alergias respiratórias. Estes podem ser utilizados em qualquer ambiente da casa, desde que estejam, no mínimo, a dois metros de distância das pessoas. 
-Dengue
-	\n\n•	A Dengue é a doença mais comum entre as três, já sendo bem conhecida pela população brasileira. 
-	\n\n•	Não usar medicamentos à base de ácido acetilsalicílico (ex.: AAS, Aspirina entre outros) e nem anti-inflamatórios, em função do risco aumentado de complicações hemorrágicas (sangramento) no caso de doenças como a Dengue. 
-	\n\n•	Atenção para sinais que podem indicar agravamento da Dengue: falta de ar, tontura, dores abdominais ou sangramentos.
-	\n\n•	Ao apresentar qualquer sinal ou sintoma de Dengue, procure um serviço de saúde imediatamente. 
-Chikungunya
-	\n\n•	Os primeiros casos de infecção pelo Chikungunya ocorreram em 2014.
-	\n\n•	Ao apresentar qualquer sinal ou sintoma de Chikungunya, procure um serviço de saúde imediatamente. 
+    <string name="zika_content_01" formatted="false">•       Les virus de la dengue, chikungunya et Zika sont transmis par le moustique Aedes aegypti et présentent des signes et des symptômes semblables. 
+	\n\n•       Il est important que vous vous dirigiez vers le service de santé le plus proche si vous avez de la fièvre, des taches rouges sur la corps, des douleurs dans le corps ou aux articulations ou des démangeaisons.  
+	\n\n•       Renseignez-vous sur d’éventuels cas de dengue, chikungunya ou Zika dans votre quartier ou ville. 
+	\n\n•       Si vous soupçonnez d’avoir la dengue, le Zika ou le Chikungunya, buvez abondement.
+	\n\n•       La principale mesure de prévention consiste à éviter la reproduction des moustiques Aedes aegypti, transmetteurs des trois maladies. 
+	\n\n•       Les répulsifs pour la peau peuvent être utilisés par les femmes enceintes, à condition qu'ils aient l’accréditation ANVISA et que les instructions d'utilisation décrites sur l'étiquette soient respectées. Les produits à base de DEET, Acaridine (Picaridine), EBAAP (IR3535) sont considérés comme sûrs pour les femmes enceintes.  
+	\n\n•       Les produits à base de DEET ne doivent pas être utilisés chez les enfants âgés de moins de 2 ans. Chez les enfants âgés de 2 à 12 ans, la concentration doit être de 10 % maximum et l’application doit être limitée à 3 fois par jour. Pour les plus de 12 ans, une concentration supérieure à 10 % est permise.
+	\n\n•       Les systèmes anti-moustiques, comme ceux qui se fixent aux murs (appareils électriques) ou les spirales ne doivent pas être utilisés dans des endroits avec une ventilation insuffisante ou en présence de personnes souffrant d'asthme ou d'allergies respiratoires. Ceux-ci peuvent être utilisés dans n'importe quelle pièce de la maison, à condition qu'elles soient placés à au moins deux mètres de distance des personnes.  
+La dengue
+	\n\n•       La dengue est la maladie la plus répandue des trois et est déjà bien connue de la population brésilienne. 
+	\n\n•       N'utilisez pas de médicaments à base d'acide acétylsalicylique (par exemple : AAS, aspirine entre autres) ni des anti-inflammatoires, à cause d’un risque accru de complications hémorragiques (saignement) dans le cas de maladies telles que la dengue.  
+	\n\n•       Attention aux signes qui peuvent indiquer une aggravation de la dengue : essoufflement, vertiges, douleurs abdominales ou saignements.
+	\n\n•       Si vous présentez des signes ou symptômes de dengue, dirigez-vous immédiatement vers un service de santé. 
+Le chikungunya
+	\n\n•       Les premiers cas d'infections par le chikungunya ont eu lieu en 2014.
+	\n\n•       Si vous présentez des signes ou symptômes de chikungunya, dirigez-vous immédiatement vers un service de santé. 
 Zika
-	\n\n•	Os primeiros casos de infecção pelo vírus Zika ocorreram em fevereiro de 2015.
-	\n\n•	No caso da infecção pelo vírus Zika, a maior parte das pessoas (mais de 80%) não apresenta sinais e sintomas.
-\n\nAs complicações causadas pela infecção pelo vírus Zika são pouco conhecidas. Manifestações neurológicas (paralisia facial, fraqueza nas pernas e Síndrome de Guillain-Barré), raramente, podem ocorrer alguns dias depois do quadro agudo. A infecção durante a gestação pode levar a malformações congênitas graves, em especial a microcefalia. 
-\n\nNão existe tratamento específico para a infecção pelo vírus Zika. 
-\n\nAo apresentar qualquer sinal ou sintoma de Zika, procure um serviço de saúde imediatamente. 
-\n\nCombata o mosquito periodicamente:
-	\n\n•	Mantenha bem tampados tonéis e barris de água.
-	\n\n•	Lave semanalmente por dentro com escova e sabão os tanques utilizados para armazenar água.
-	\n\n•	Mantenha a caixa-d’água bem fechada. Coloque também uma tela no ladrão da caixa-d’água.
-	\n\n•	Remova folhas, galhos e tudo que possa impedir a água de correr pelas calhas.
-	\n\n•	Não deixe água acumulada sobre a laje.
-	\n\n•	Encha os pratinhos de vasos de plantas com areia até a borda.
-	\n\n•	Outra opção para os pratinhos de plantas é lavar uma vez por semana.
-	\n\n•	Troque a água dos vasos de plantas aquáticas e lave-os com escova, água e sabão uma vez por semana.
-	\n\n•	Coloque o lixo em sacos plásticos e mantenha a lixeira bem fechada.
-	\n\n•	Feche bem os sacos de lixo e deixe-os fora do alcance de animais.
-	\n\n•	Mantenha as garrafas com a boca virada para baixo, evitando o acúmulo de água.
-	\n\n•	Pneus devem ser acondicionados em locais cobertos.
-	\n\n•	Faça sempre a manutenção de piscinas ou fontes utilizando os produtos químicos apropriados.
-	\n\n•	Se o ralo não for de abrir e fechar, coloque uma tela fina para impedir o acesso do mosquito à água.
-	\n\n•	Coloque areia dentro de todos os cacos que possam acumular água.
-	\n\n•	Não deixe água acumulada em folhas secas e tampas de garrafas.
-	\n\n•	Os vasos sanitários fora de uso ou de uso eventual devem ser tampados e verificados semanalmente.
-	\n\n•	Limpe sempre a bandeja do ar-condicionado para evitar o acúmulo de água.
-	\n\n•	Lonas usadas para cobrir objetos ou entulhos devem ser bem esticadas para evitar poças-d’água.
-\n\nPara dúvidas referentes à Dengue, Zika e Chikungunya, favor ligar para o Disque Saúde, por meio do número <b><a href="tel:136">136</a></b> e digitar a opção 3. </string>
+	\n\n•       Les premiers cas d'infections par le virus Zika ont eu lieu en février 2015.
+	\n\n•       En cas d'infection par le virus Zika, la plupart des personnes (plus de 80 %) ne présente pas de signes ni de symptômes. 
+\n\n•       Les complications causées par l'infection du virus Zika sont mal connues. Des manifestations neurologiques (paralysie faciale, faiblesse dans les jambes et syndrome de Guillain-Barré) peuvent, dans de rares cas, apparaitre après la phase aigüe. L’infection pendant la grossesse peut entraîner des malformations congénitales graves, en particulier la microcéphalie.  
+\n\n•       Il n'y a pas de traitement spécifique pour l'infection par le virus Zika.  
+\n\n•       Si vous présentez des signes ou symptômes de Zika, dirigez-vous immédiatement vers un service de santé.  
+\n\nLutter contre le moustique régulièrement :
+	\n\n•       Stockez les futs et les jerricans d’eau bien bouchés
+	\n\n•       Chaque semaine, lavez l’intérieur des réservoirs de stockage d’eau avec de l’eau et du savon.
+	\n\n•       Maintenez le réservoir d’eau bien fermé. Mettre également une toile sur le trop-plein du réservoir d’eau.
+	\n\n•       Enlever les feuilles, les brindilles et tout ce qui peut empêcher l'eau de couler dans les gouttières.
+	\n\n•       Ne laissez pas l'eau s’accumuler sur la dalle.
+	\n\n•       Remplissez de sable, et jusqu’au bord, les soucoupes des pots pour plantes.
+	\n\n•       L’autre option pour les soucoupes des pots pour plantes consiste à les laver une fois par semaine.
+	\n\n•       Changez l'eau des pots de plantes aquatiques et lavez-les une fois par semaine avec une brosse, de l'eau et du savon.
+	\n\n•       Mettez les ordures dans des sacs en plastique et garder la poubelle bien fermée.
+	\n\n•       Fermez bien les sacs à ordures et gardez-les hors de portée des animaux.
+	\n\n•       Stockez les bouteilles goulot vers le bas, empêchant ainsi l'accumulation d'eau.
+	\n\n•       Les pneus doivent être stockés dans des endroits couverts.
+	\n\n•       Effectuez toujours l’entretien des piscines ou des fontaines en utilisant des produits chimiques appropriés.
+	\n\n•       Si vous ne possédez pas d’évacuation qui s’ouvre et se ferme, mettez une toile fine pour empêcher les moustiques d’accéder à l’eau.
+	\n\n•       Mettre du sable dans les débris qui peuvent accumuler de l'eau.
+	\n\n•       Ne laissez pas l’eau s’accumuler sur les feuilles sèches et les bouchons de bouteilles.
+	\n\n•       Rabattez et vérifiez chaque semaine l’abattant de la cuvette des toilettes hors d’usages ou peu utilisées.
+	\n\n•       Nettoyez toujours le plateau du climatiseur pour éviter l'accumulation d'eau.
+	\n\n•       Les bâches utilisées pour couvrir des objets ou des gravas doivent être bien étirées pour éviter que l'eau s’y accumule.
+\n\nPour toute question concernant la dengue, le chikungunya et le Zika,veuillez appeler le Numéro santé en composant le 136 option 3.  </string>
 
     # Game
-    <string name="welcome_game_welcome">Bem-vindo a nossa pista de corrida! Arraste para saber mais sobre como jogar.</string>
-    <string name="welcome_game_point">Para jogar, é preciso ter pontos de energia. Participe diariamente do Guardiões da Saúde para ganhá-los!</string>
-    <string name="welcome_game_phase">Nossa pista de corrida é formada por fases. Conclua cada fase para chegar mais longe na corrida!</string>
-    <string name="welcome_game_play">Cada fase contém um quebra-cabeça. Complete-o para passar de fase.</string>
+    <string name="welcome_game_welcome">Bienvenue sur notre piste de course ! Faites glisser pour en savoir plus sur la façon de jouer.</string>
+    <string name="welcome_game_point">Pour jouer, vous devez avoir des points d’énergie. Rejoignez les Gardiens de la Santé tous les jours pour en gagner !</string>
+    <string name="welcome_game_phase">Notre piste de course est formé de plusieurs étapes. Terminer chaque étape pour aller le plus loin possible dans la course.</string>
+    <string name="welcome_game_play">Chaque étape contient un puzzle. Terminez pour passer à l’étape suivante</string>
     <string name="welcome_game_answer">Répondez correctement aux questions sur la santé pour révéler des parties.</string>
     <string name="welcome_game_card">Collectionnez des figurines des sports olympiques après avoir terminé chaque étape.</string>
 
     <string name="safe_sex_title">Avoir des rapports sexuels sûrs</string>
-    <string name="safe_sex_content">Camisinha
-	\n\n•	A camisinha é a maneira prática para se proteger contra o HIV/ aids, as hepatites virais e as infecções sexualmente transmissíveis (IST), como a sífilis e a gonorreia.
-	\n\n•	Use e descarte corretamente o preservativo.
-	\n\n•	Se a camisinha “estourou” ou você transou sem camisinha, pode ser necessário o uso de profilaxia pós-exposição de risco ao HIV , conhecida como PEP.
-	\n\n•	PEP
-	\n\n•	A PEP é um tratamento com medicamento antirretroviral que evita a infecção pelo vírus HIV, causador da aids. Está indicada para as pessoas que apresentaram exposição de risco ao HIV, como sexo ocasional, violência sexual e acidente ocupacional com material biológico.
-	\n\n•	Caso seja indicado pelo médico, o tratamento de PEP dura 28 dias e deve ser iniciado em até 72 horas após o contato sexual desprotegido.
-	\n\n•	Onde encontrar PEP? (Link direto para o aplicativo e/ou site)  http://pep.aids.gov.br
-\n\nImportante
-	\n\n•	Todos têm direito à informação e ao atendimento sem preconceito, estigma e discriminação.
-	\n\n•	No Brasil, as camisinhas feminina e masculina e o gel lubrificante são distribuídos gratuitamente em unidades de saúde, albergues, Centros de Atendimento ao Turista e outros.  Informe-se sobre os pontos de distribuição mais próximos.
-	\n\n•	Se precisar de medicamentos contra o HIV (perdeu ou esqueceu), procure a unidade de saúde mais próxima, levando algum documento de identificação. Turista estrangeiro, informe-se com seu seguro de saúde (health insurance).
-\n\nLembre-se
-	\n\n•	Evite a infeção pelas hepatites virais. Se fizer tatuagens ou colocar piercing, escolha lugares com alvará/ licença sanitária expedida pela Vigilância Sanitária local. Exija essa certificação, se não estiver visível no local.
-	\n\n•	Exija que o material utilizado seja esterilizado ou descartável.
-	\n\n•	Não compartilhe seus objetos de uso pessoal, como alicates de cutícula, lâminas de barbear, escova de dente, agulhas e seringas com outras pessoas.
-	\n\n•	Se observar qualquer sinal ou sintoma, como corrimentos ou feridas,  ou algum outro problema de saúde, procure orientação do profissional de saúde.
-\n\nVocê sabia?
-	\n\n•	Muitas pessoas vivem com o HIV e hepatites virais e não sabem.
-	\n\n•	A única maneira de tomar conhecimento é fazendo o teste. Os testes anti-HIV e das hepatites são gratuitos e oferecidos na rede pública de saúde. Turista estrangeiro, informe-se com seu seguro de saúde (health insurance).
-	\n\n•	Existe vacina para Hepatite B. Deve ser tomada em 3 doses em períodos diferentes. Informe-se onde está disponível.
+    <string name="safe_sex_content">Préservatifs
+	\n\n•       Le préservatif est le moyen pratique pour se protéger contre le VIH/sida, les hépatites virales et les infections sexuellement transmissibles (IST), comme la syphilis et la gonorrhée. cções sexualmente transmissíveis (IST), como a sífilis e •       Utilisez et éliminez correctement le préservatif.•	Use e descarte corretamente o preservativo.
+	\n\n•       Si le préservatif «a craqué» ou si vous avez eu des rapports sexuels sans préservatif, il peut être nécessaire d’utiliser une prophylaxie post-exposition contre le risque du VIH, connu sous l’acronyme PPE. 
+	\n\n•       PPE
+	\n\n•       La PPE est un traitement avec un médicament antirétroviral qui empêche l'infection par le VIH, responsable du sida. Elle est indiquée pour les personnes exposées aux risques du VIH, tels que les relations sexuelles occasionnelles, les violences sexuelles et les accidents de travail avec des matières biologiques.
+	\n\n•       Si cela est indiqué par le médecin, le traitement PEP dure 28 jours et doit commencer dans les 72 heures après le contact sexuel non protégé.
+	\n\nOù trouver des PEP ? (Lien direct vers l’application et/ou le site)  http://pep.aids.gov.br 
+\n\nImportant
+	\n\n•       Toute personne a droit à l’information et à l’accueil sans préjugés, stigmatisation, ni discrimination. 
+	\n\n•       Au Brésil, les préservatifs féminins et masculins et le gel lubrifiant sont distribués gratuitement dans les unités de santé, les foyers, les Centres touristiques et autres.  Renseignez-vous sur les points de distribution les plus proches.
+	\n\n•       Si vous avez besoin de médicaments contre le VIH (perdus ou oubliés), dirigez-vous vers l’unité de santé la plus proche, en emmenant des documents d’identification. Touristes étrangers, renseignez-vous auprès de votre assurance santé (assurance maladie). 
+\n\nN’oubliez pas
+	\n\n•       Éviter l'infection par les hépatites virales. Si vous vous faites faire un tatouage ou un piercing, choisissez des lieux qui possèdent une licence/autorisation délivrée par la Vigilance sanitaire locale. Exiger cette certification, si elle n'est pas affichée sur le site.
+	\n\n•       Exigez que le matériel utilisé soit stérilisé ou jetable.
+	\n\n•       Ne partagez pas avec d’autres personnes vos effets personnels, tels que la pince à cuticules, les lames de rasoir, la brosse à dents, les aiguilles et les seringues.
+	\n\n•       Si vous remarquez tout signe ou symptôme, comme des écoulements ou des plaies, ou tout autre problème de santé, informez-vous auprès d’un professionnel de la santé.
+\n\nLe saviez-vous ?
+	\n\n•       De nombreuses personnes vivent avec le VIH et des hépatites virales et ne le savent pas. 
+	\n\n•       La seule façon de le savoir est de faire un test. Les tests anti-VIH et des hépatites sont gratuits et offerts dans le réseau de santé publique. Touristes étrangers, renseignez-vous auprès de votre assurance santé (assurance maladie). 
+	\n\n•       Il existe un vaccin contre l’hépatite B. Il doit être pris en 3 doses à différentes. Informez-vous pour savoir où il est disponible.
 </string>
     
     <string name="my_trophies">Mes trophées</string>
@@ -534,62 +546,62 @@ Zika
 
     <string name="pointing_message">Les points correspondent à chaque étape débloquée par tous les utilisateurs en fonction de leur nationalité.</string>
 
-    <string name="level">Nível %s</string>
+    <string name="level">Niveau %s</string>
 
-    <string name="energy">%s Energias</string>
+    <string name="energy">%s Énergies</string>
 
-    <string name="join_now">Participe agora!</string>
+    <string name="join_now">Participez dès maintenant !</string>
     
-    <string name="congratulations">Parabéns</string>
+    <string name="congratulations">Félicitations</string>
     
-    <string name="about_text">SOBRE O APLICATIVO “GUARDIÕES DA SAÚDE”
+    <string name="about_text">À PROPOS DE L'APPLICATION « LES GARDIENS DE LA SANTÉ »”
 
-\n\nO aplicativo “Guardiões da Saúde”, desenvolvido para celulares, tablets e computadores, faz parte da iniciativa do Ministério da Saúde, em parceria com a Organização Não-Governamental Skoll Global Threats Fund, dos Estados Unidos da América, visando avaliar o potencial uso de aplicativos para dispositivos móveis como parte da estratégia de fortalecimento da capacidade de detecção de surtos e emergências em saúde pública, no âmbito do Sistema Único de Saúde (SUS), principalmente durante eventos de massa, como nos Jogos Olímpicos e Paralímpicos de 2016.
-
-
-\n\nEsta estratégia é a evolução do projeto realizado com a mesma instituição, denominado “Saúde na Copa” e lançado exclusivamente para o período dos jogos da Copa do Mundo FIFA Brasil 2014®, cujos resultados mostraram-se promissores e foram mantidos os interesses de ambas as instituições para a realização de uma nova estratégia para os Jogos Olímpicos e Paralímpicos em 2016.
-
-\n\nA primeira versão do aplicativo Guardiões da Saúde já está disponível para os sistemas operacionais iOS da Apple e Android da Google e também por meio do site http://guardioesdasaude.org/.
-Inicialmente desenvolvido no idioma português, nas próximas versões, o aplicativo “Guardiões da Saúde” estará disponível também nos idiomas oficiais das Nações Unidas, sendo um instrumento complementar para orientações aos viajantes internacionais ao Brasil, principalmente com destino às sedes dos Jogos Olímpicos e Paralímpicos de 2016.
-
-\n\nA participação na iniciativa está restrita aos usuários com 13 anos ou mais de idade. Além disso, é fundamental que antes de se cadastrar, os usuários leiam e aceitem os “Termos de Uso” e preenchimento de cadastro simplificado, contendo apelido, endereço de e-mail, data de nascimento, raça/cor, sexo e senha de acesso. A participação é voluntária, sigilosa e os dados fornecidos estão protegidos no âmbito Lei nº 12.527, de 18 de novembro de 2011.
-
-\n\nOs resultados do projeto serão utilizados pela vigilância em saúde dos Estados, Municípios e Governo Federal, visando detectar e prevenir surtos e emergências em saúde pública, por meio da adoção de medidas de prevenção e controle oportunas. A divulgação dos resultados do projeto será realizada de modo agregado e anonimizado , visando descrever o perfil da condição de saúde dos voluntários, a partir das informações repassadas por meio do aplicativo.
-
-\n\nSobre a participação voluntária
-
-\n\nSua participação é voluntária e uma gentil contribuição para o aprimoramento da vigilância em saúde no Brasil. O preenchimento do formulário sobre a condição de saúde não representa consulta médica, não garante acesso diferenciado aos serviços de saúde e o usuário não receberá o contato de nenhum profissional ou serviço de saúde para obter informações, seja por e-mail ou qualquer outro meio de contato.
-
-\n\nDurante a participação, mensagens de texto poderão ser enviadas aos usuários, apenas pelo aplicativo, por meio da tecnologia Push (Push Notification), contendo orientações sobre cuidados de saúde ou orientações dos órgãos de vigilância.
-
-\n\nÉ importante destacar que caso você informe que não está se sentindo bem, é recomendável que consulte um médico de referência ou serviço de saúde mais próximo de você. Para isso, está disponível no aplicativo um atalho com pesquisa pré-configurada de serviços de saúde e farmácias mais próximos de você, com base no serviço de geolocalização do seu dispositivo móvel no Google Maps. Essa funcionalidade não faz parte do aplicativo. Por esse motivo, será direcionado ao aplicativo de mapas de seu aparelho e recomenda-se cuidado ao transitar por áreas desconhecidas e evitar zonas de risco. Para isso, procure informações junto aos órgãos governamentais locais.
-
-\n\nO aplicativo foi configurado com um conjunto de telefones úteis incluindo o do SAMU (Serviço de Atendimento Móvel de Urgência), cuja ligação é gratuita e funciona 24 horas por dia atendendo solicitações de atendimento de urgência para ocorrências de natureza traumática, clínica, pediátrica, cirúrgica, gineco-obstétrica e de saúde mental, em residências, locais de trabalho e vias públicas.
-
-\n\nBenefícios da participação\n
-	\n•	Participar ativamente das ações de vigilância em saúde que visam à prevenção de doenças na comunidade;
-	\n•	Acessar os contatos de serviços públicos úteis sem precisar alterar sua agenda de telefones;
-	\n•	Acessar facilmente informações úteis sobre cuidados de saúde e medidas de prevenção contra doenças;
-	\n•	Usufruir de facilidades, como a pesquisa pré-configurada por Unidades de Pronto Atendimento e farmácias próximas (20 km) no Google Maps;
-	\n•	Acompanhar os resultados do projeto, por meio do website www.guardioesdasaude.org;
-
-\n\nSaiba mais sobre o uso do aplicativo
+\n\nL'application « Les Gardiens de la Santé », développée pour les téléphones portables, les tablettes et les ordinateurs, fait partie de l'initiative du Ministère de la santé, en partenariat avec l'organisation non gouvernementale Skoll Global Threats Fund, des États-Unis d'Amérique et a pour but d'évaluer l'utilisation potentielle des applications pour appareils mobiles dans le cadre de la stratégie de renforcement des capacités de détection des épidémies et des urgences en santé publique au sein du Système Unique de Santé (SUS), en particulier lors d’événements de masse tels que les Jeux olympiques et Paralympiques de 2016. 
 
 
-\n\nO aplicativo “Guardiões da Saúde” está disponível gratuitamente para download e utilização em sistemas operacionais iOS, Android e navegadores de internet. Em várias cidades há pontos de internet para uso gratuito ou o usuário poderá utilizar o seu próprio pacote de dados contratado.
+\n\nCette stratégie est l’évolution du projet réalisé avec la même institution, nommé « Santé à la Coupe du monde » et lancé exclusivement pendant la durée de la Coupe du monde de la FIFA Brésil 2014TM, dont les résultats se sont révélés prometteurs. Pour continuer sur leur lancée, les deux institutions ont vu l’intérêt de réaliser une nouvelle stratégie pour les Jeux Olympiques et Paralympiques de 2016. 
+
+\n\nLa première version des Gardiens de la Santé est déjà disponible pour les systèmes d'exploitation iOS d’Apple et Android de Google et également par le biais du site http://guardioesdasaude.org/. 
+Étant un instrument complémentaire pour fournir des instructions aux voyageurs internationaux se rendant au Brésil, principalement sur les sites des Jeux olympiques et Paralympiques de 2016 et initialement développée en langue portugaise, l'application « Les Gardiens de la Santé » sera disponible dans les langues officielles de l'ONU lors des prochaines versions.  
+
+\n\nLa participation à l'initiative est limitée aux utilisateurs âgés de 13 ans ou plus. De plus, il est essentiel qu'avant de s'inscrire, les utilisateurs lisent et acceptent les « Conditions d'utilisation » et remplissent le formulaire d'inscription simplifié, contenant le surnom, l’adresse électronique, la date de naissance, la race/couleur, le sexe et le mot de passe. La participation est volontaire, confidentielle et les données fournies sont protégées en vertu de la loi n° 12.527, du 18 novembre 2011.
+
+\n\nLes résultats du projet seront utilisés par la surveillance de la santé des états, des municipalités et du gouvernement fédéral, afin de détecter et prévenir des épidémies et des urgences en santé publique, par l'adoption de mesures de contrôle et de prévention appropriées. La diffusion des résultats du projet s'effectuera de façon agrégée et anonyme, dans le but de décrire le profil de l'état de santé des volontaires, grâce aux informations transmises par le biais de l'application. 
+
+\n\nÀ propos de la participation volontaire
+
+\n\nVotre participation est volontaire et est une aimable contribution à l'amélioration de la surveillance de la santé au Brésil. Le fait de remplir le formulaire sur l'état de santé ne constitue pas une consultation médicale, ni ne garantit un accès différencié aux services de santé et l'utilisateur ne recevra aucun contact de professionnels ni de services de santé pour obtenir des informations, que ce soit par e-mail ou par tout autre type de contact. 
+
+\n\nLors de leur participation, des messages textes peuvent être envoyés aux utilisateurs, et ce, uniquement par le biais de l'application avec la technologie Push (Push Notification), contenant des conseils sur des soins de santé ou des conseils des organes de surveillance. 
+
+\n\nIl est important de souligner que si vous indiquez que vous ne vous sentez pas bien, il est recommandé de consulter un médecin de référence ou le service de santé le plus proche de chez vous. Pour ce faire, un raccourci avec des recherches pré-configurées de services de santé et de pharmacies proches de chez vous est disponible dans l'application. Celui-ci est basé sur le service de géolocalisation Google Maps de votre appareil mobile. Cette fonctionnalité ne fait pas partie de l’application. C’est pour cette raison que vous serez dirigé vers l'application des cartes de votre appareil et nous vous recommandons d’être prudent si vous devez vous rendre dans des lieux que vous ne connaissez pas et d’éviter les zones à risque. Pour ce faire, renseignez-vous auprès d’organes gouvernementaux locaux. 
+
+\n\nL'application a été configurée avec une liste de numéros utiles, comme celui du SAMU (Service d’aide médicale urgente), dont l’appel est gratuit et fonctionne 24 heures sur 24, pour répondre aux demandes de services d'urgence pour les cas de nature traumatique, clinique, pédiatrique, chirurgicale, gynéco-obstétrique et de santé mentale, à domicile, sur le lieu de travail et les lieux publics.
+
+\n\nAvantages de la participation\n
+	\n·       Participer activement aux actions de surveillance de la santé qui visent la prévention des maladies dans la collectivité ;
+	\n·       Accéder aux contacts de services publics utiles sans avoir à modifier votre répertoire téléphonique ;
+	\n·       Accéder facilement à des informations utiles sur des soins de santé et des mesures de prévention des maladies ;
+	\n·       Profitez des outils tels que la recherche pré-configurée des services d’urgence et des pharmacies de proximité (20 km) de Google Maps ;
+	\n·       Suivre les résultats du projet sur le site www.guardioesdasaude.org;
+
+\n\nEn savoir plus sur l'utilisation de l’application
 
 
-\n\nInforma-se que as chamadas telefônicas para os serviços públicos de referência registrados no aplicativo necessitam de plano de telefonia contratado. Portanto, consulte sua operadora antes de utilizar essa funcionalidade. Esse serviço não funcionará sem a presença da função de telefone no aparelho. Essa informação deve ser observada, principalmente por usuários de outros países.
-
-\n\nSobre a parceria
-
-\n\nA iniciativa pioneira é da Secretaria de Vigilância em Saúde do Ministério da Saúde em parceria com as cidades sedes dos Jogos Olímpicos e Paralímpicos. Na parceria, a Organização Não Governamental (ONG) Skoll Global Threats Fund ficou responsável pelos custos de contratação e desenvolvimento do software, sob supervisão da Associação Brasileira de Profissionais de Epidemiologia de Campo (ProEpi), ambas são Organizações Não Governamentais, sem fins lucrativos, que atuam no aprimoramento da vigilância em saúde no Brasil e no mundo.
+\n\nL'application « Les Gardiens de la Santé » est disponible gratuitement pour le téléchargement et son utilisation dans les systèmes d'exploitation iOS, Android et navigateurs internet. Dans plusieurs villes, il existe des points Internet gratuit ou l'utilisateur pourra utiliser son propre paquet de données. 
 
 
-\n\nA ProEpi é responsável por garantir que os requisitos estabelecidos pelo Ministério da Saúde e pela Skoll Global Threats Fund sejam cumpridos, conforme previsto no projeto: privacidade dos dados dos usuários, transparência e publicidade dos resultados públicos do projeto e disponibilidade do código fonte e documentação em ambiente de livre acesso para download, adequação e uso do aplicativo por serviços de saúde do Brasil e de países interessados, desde que garantida a finalidade sem fins lucrativos.
+\n\nVeuillez noter que les appels téléphoniques vers les services publics de référencés dans l’application nécessitent un contrat avec un opérateur téléphonique. Veuillez donc consulter votre opérateur avant d'utiliser cette fonctionnalité. Ce service ne fonctionnera pas sans la présence de la fonction téléphone de l'appareil. Cette information doit être observée, particulièrement par les utilisateurs d'autres pays. 
 
-\n\nAgradecimento
-\nAs instituições organizadoras agradecem a todos os voluntários, profissionais de saúde e gestores do Sistema Único de Saúde por acreditarem no projeto piloto e apoiarem essa iniciativa pioneira na saúde pública internacional.
-Agradecimento especial às Secretarias de Saúde dos Municípios Sedes dos Jogos Olímpicos e Paralímpicos (Belo Horizonte, Distrito Federal, Manaus, Rio de Janeiro, Salvador e São Paulo).</string>
+\n\nÀ propos du partenariat
+
+\n\nL'initiative revient au Secrétariat de la Surveillance de la santé du Ministère de la santé en partenariat avec les villes qui accueilleront les Jeux olympiques et Paralympiques. Dans ce partenariat, l'Organisation non gouvernementale (ONG) Skoll Global Threats Fund est responsable du budget recrutement et développement du logiciel, sous la supervision de l'Association brésilienne des professionnels en épidémiologie (ProEpi). Ces deux organisations non gouvernementales sont à but non lucratif et œuvrent pour améliorer la surveillance de la santé au Brésil et dans le monde.
+
+
+\n\nLa ProEpi a en charge de s’assurer que le cahier des charges établi par le Ministère de la santé et le Skoll Global Threats Fund soit respecté, tel qu’il est prévu dans le projet : confidentialité des données des utilisateurs, transparence et diffusion des résultats publics du projet ; code source et documentation en accès libre pour le téléchargement, adéquation et utilisation de l’application par des services de santé brésiliens et de pays intéressés, à condition que ces derniers en garantissent une utilisation non lucrative. 
+
+\n\nRemerciements
+\nLes institutions organisatrices remercient tous les bénévoles, les professionnels de santé et les responsables du Système unique de santé pour avoir cru en ce projet et soutenu cette initiative pionnière en santé publique internationale. 
+Remerciement spécial aux Secrétariats de santé des communes qui accueilleront les Jeux Olympiques et Paralympiques (Belo Horizonte, District fédéral ,Manaus, Rio de Janeiro, Salvador et São Paulo). </string>
 
 </resources>
