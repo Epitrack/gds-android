@@ -161,6 +161,8 @@ public class GameActivity extends BaseAppCompatActivity {
                         getGameFragment().loadAnswer(entry.getKey(), user.getEnergy(), pieceMap, question);
                     }
                 });
+
+                break;
             }
         }
     }
