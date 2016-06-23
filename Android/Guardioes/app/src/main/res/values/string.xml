@@ -129,6 +129,9 @@
 
     <string name="message_user_max">Só é possível adicionar 10 integrantes!</string>
 
+    <string name="traveler_health">Saúde do viajante</string>
+    <string name="safe_sex">Pratique sexo de forma segura</string>
+
     <string-array name="image_array">
         <item>Camera</item>
         <item>Gallery</item>
