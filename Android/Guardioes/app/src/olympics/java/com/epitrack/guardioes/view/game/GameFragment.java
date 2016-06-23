@@ -1,8 +1,5 @@
 package com.epitrack.guardioes.view.game;
 
-import android.animation.Animator;
-import android.animation.AnimatorInflater;
-import android.animation.AnimatorSet;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -10,20 +7,19 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.epitrack.guardioes.R;
 import com.epitrack.guardioes.request.GameRequester;
 import com.epitrack.guardioes.request.base.RequestListener;
 import com.epitrack.guardioes.view.base.BaseFragment;
+import com.epitrack.guardioes.view.dialog.LoadDialog;
 import com.epitrack.guardioes.view.game.dialog.AnswerDialog;
 import com.epitrack.guardioes.view.game.dialog.EnergyDialog;
 import com.epitrack.guardioes.view.game.model.Phase;
 import com.epitrack.guardioes.view.game.model.Question;
 import com.epitrack.guardioes.view.game.model.QuestionHandler;
 
-import java.util.LinkedHashMap;
 import java.util.Map;
 
 import butterknife.Bind;
@@ -36,9 +32,10 @@ public class GameFragment extends BaseFragment implements AdapterView.OnItemClic
     @Bind(R.id.grid_view)
     GridView gridView;
 
-    private int position;
+    private int piecePosition;
+    private View pieceView;
 
-    private final Map<Integer, Boolean> pieceMap = getPieceMap();
+    private Question question;
 
     @Nullable
     @Override
@@ -66,141 +63,110 @@ public class GameFragment extends BaseFragment implements AdapterView.OnItemClic
 
         if (energy > 0) {
 
+            final Map<Integer, Boolean> pieceMap = ((GameActivity) getActivity()).getPieceMap();
+
             if (!pieceMap.get(position)) {
 
                 QuestionHandler.with().requestQuestion(getActivity(), new IQuestion() {
 
                     @Override
                     public void onQuestion(final Question question) {
-
-                        new AnswerDialog().setEnergy(energy).setQuestion(question).setListener(new IAnswer() {
-
-                            @Override
-                            public void onTimeOver(final AnswerDialog dialog, final int energy) {
-
-                                dialog.dismiss();
-                            }
-
-                            @Override
-                            public void onEnergyOver(final AnswerDialog dialog, final int energy) {
-
-                                dialog.dismiss();
-
-                                new EnergyDialog().setEnergy(energy).show(getFragmentManager(), EnergyDialog.TAG);
-                            }
-
-                            @Override
-                            public void onWrong(final AnswerDialog dialog, final int energy) {
-
-                            }
-
-                            @Override
-                            public void onCorrect(final AnswerDialog dialog, final int energy) {
-
-                                final Phase phase = ((GameActivity) getActivity()).getPhase();
-
-                                update(question.getId(), energy, phase.getId(), pieceMap);
-                            }
-
-                        }).show(getFragmentManager(), AnswerDialog.TAG);
+                        loadAnswer(position, energy, pieceMap, question);
                     }
                 });
+            }
 
-            } else {
+        } else {
+
+            new EnergyDialog().setEnergy(energy).show(getFragmentManager(), EnergyDialog.TAG);
+        }
+
+        setPiecePosition(position);
+        setPieceView(view);
+    }
+
+    public void loadAnswer(final int position, final int energy, final Map<Integer, Boolean> pieceMap, final Question question) {
+
+        new AnswerDialog().setEnergy(energy).setQuestion(question).setListener(new IAnswer() {
+
+            @Override
+            public void onTimeOver(final AnswerDialog dialog, final int energy) {
+
+                dialog.dismiss();
+            }
+
+            @Override
+            public void onEnergyOver(final AnswerDialog dialog, final int energy) {
+
+                dialog.dismiss();
 
                 new EnergyDialog().setEnergy(energy).show(getFragmentManager(), EnergyDialog.TAG);
             }
-        }
-
-        setPosition(position);
-    }
-
-    private void flip(final int position, final View view) {
-
-        final AnimatorSet animator = (AnimatorSet) AnimatorInflater.loadAnimator(getActivity(), R.animator.flip);
-
-        animator.setTarget(view);
-
-        animator.addListener(new Animator.AnimatorListener() {
 
             @Override
-            public void onAnimationStart(final Animator animation) {
+            public void onWrong(final AnswerDialog dialog, final int energy) {
 
             }
 
             @Override
-            public void onAnimationEnd(final Animator animation) {
+            public void onCorrect(final AnswerDialog dialog, final int amount, final int energy) {
 
                 final Phase phase = ((GameActivity) getActivity()).getPhase();
 
-                ((ImageView) view).setImageResource(phase.getPieceArray()[position]);
+                new GameRequester(getActivity()).update(question.getId(), energy, phase.getId(), pieceMap, new RequestListener<Boolean>() {
 
-                final AnimatorSet animator = (AnimatorSet) AnimatorInflater.loadAnimator(getActivity(), R.animator.alpha);
+                    private final LoadDialog loadDialog = new LoadDialog();
 
-                animator.setTarget(view);
+                    @Override
+                    public void onStart() {
+                        loadDialog.show(getFragmentManager(), LoadDialog.TAG);
+                    }
 
-                animator.start();
+                    @Override
+                    public void onError(final Exception e) {
+
+                    }
+
+                    @Override
+                    public void onSuccess(final Boolean result) {
+                        loadDialog.dismiss();
+
+                        dialog.dismiss();
+
+                        ((GameActivity) getActivity()).onCorrect(amount, position);
+                    }
+                });
             }
 
-            @Override
-            public void onAnimationCancel(final Animator animation) {
+        }).show(getFragmentManager(), AnswerDialog.TAG);
 
-            }
+        setPiecePosition(position);
+        setPieceView(gridView.getChildAt(position));
 
-            @Override
-            public void onAnimationRepeat(final Animator animation) {
-
-            }
-        });
-
-        animator.start();
+        setQuestion(question);
     }
 
-    private Map<Integer, Boolean> getPieceMap() {
-
-        final Map<Integer, Boolean> pieceMap = new LinkedHashMap<>(9);
-
-        pieceMap.put(0, false);
-        pieceMap.put(1, false);
-        pieceMap.put(2, false);
-        pieceMap.put(3, false);
-        pieceMap.put(4, false);
-        pieceMap.put(5, false);
-        pieceMap.put(6, false);
-        pieceMap.put(7, false);
-        pieceMap.put(8, false);
-
-        return pieceMap;
+    public int getPiecePosition() {
+        return piecePosition;
     }
 
-    private void update(final String id, final int energy, final int level, final Map<Integer, Boolean> pieceMap) {
-
-        new GameRequester(getActivity()).update(id, energy, level, pieceMap, new RequestListener<Boolean>() {
-
-            @Override
-            public void onStart() {
-
-            }
-
-            @Override
-            public void onError(final Exception e) {
-
-
-                //pieceMap.put(position, true);
-
-                //flip(position, view);
-
-            }
-
-            @Override
-            public void onSuccess(final Boolean result) {
-
-                ((GameActivity) getActivity()).onCorrect(position);
-            }
-        });
+    public void setPiecePosition(final int piecePosition) {
+        this.piecePosition = piecePosition;
     }
 
-    private void setPosition(final int position) {
-        this.position = position;
+    public final View getPieceView() {
+        return pieceView;
+    }
+
+    public void setPieceView(final View pieceView) {
+        this.pieceView = pieceView;
+    }
+
+    public Question getQuestion() {
+        return question;
+    }
+
+    public void setQuestion(final Question question) {
+        this.question = question;
     }
 }

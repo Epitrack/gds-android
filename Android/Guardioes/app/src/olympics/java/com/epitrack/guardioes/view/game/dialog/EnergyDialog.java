@@ -21,6 +21,8 @@ public class EnergyDialog extends DialogFragment {
 
     TextView textViewEnergy;
 
+    private int energy;
+
     @Override
     public void onCreate(final Bundle bundle) {
         super.onCreate(bundle);
@@ -38,6 +40,8 @@ public class EnergyDialog extends DialogFragment {
     public void onViewCreated(final View view, @Nullable final Bundle bundle) {
 
         textViewEnergy = (TextView) view.findViewById(R.id.text_view_energy);
+
+        textViewEnergy.setText(getString(R.string.energy, energy));
 
         view.findViewById(R.id.image_button_join).setOnClickListener(new View.OnClickListener() {
 
@@ -63,7 +67,7 @@ public class EnergyDialog extends DialogFragment {
     }
 
     public EnergyDialog setEnergy(final int energy) {
-        textViewEnergy.setText(getString(R.string.energy, energy));
+        this.energy = energy;
 
         return this;
     }
