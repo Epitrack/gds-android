@@ -78,6 +78,15 @@ public class UserRequester extends BaseRequester {
                                 user.setDob(jsonObjectUser.getString("dob"));
                                 user.setUserToken(json.getString("token"));
                                 user.setImage(jsonObjectUser.getInt("picture"));
+                                user.setLevel(jsonObjectUser.getInt("level"));
+                                user.setEnergy(jsonObjectUser.getInt("xp"));
+
+                                final JSONArray array = jsonObjectUser.getJSONArray("answers");
+
+                                for (int i = 0; i < array.length(); i++) {
+
+                                    user.getPieceMap().put(i, array.getInt(i) == 1);
+                                }
 
                                 if (jsonObjectUser.has("country")) {
                                     user.setCountry(jsonObjectUser.getString("country"));
@@ -181,6 +190,16 @@ public class UserRequester extends BaseRequester {
                                 user.setRace(jsonObjectUser.getString("race"));
                                 user.setDob(jsonObjectUser.getString("dob"));
                                 user.setUserToken(jsonObjectUser.getString("token"));
+
+                                user.setLevel(jsonObjectUser.getInt("level"));
+                                user.setEnergy(jsonObjectUser.getInt("xp"));
+
+                                final JSONArray array = jsonObjectUser.getJSONArray("answers");
+
+                                for (int i = 0; i < array.length(); i++) {
+
+                                    user.getPieceMap().put(i, array.getInt(i) == 1);
+                                }
 
                                 if (jsonObjectUser.has("country")) {
                                     user.setCountry(jsonObjectUser.getString("country"));
@@ -528,5 +547,8 @@ public class UserRequester extends BaseRequester {
         singleUser.setState(type.getState());
         singleUser.setCountry(type.getCountry());
         singleUser.setProfile(type.getProfile());
+        singleUser.setLevel(type.getLevel());
+        singleUser.setEnergy(type.getEnergy());
+        singleUser.setPieceMap(type.getPieceMap());
     }
 }

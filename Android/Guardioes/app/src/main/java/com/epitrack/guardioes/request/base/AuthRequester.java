@@ -27,6 +27,7 @@ import com.epitrack.guardioes.model.User;
 import com.koushikdutta.async.future.FutureCallback;
 import com.koushikdutta.ion.Response;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -110,10 +111,14 @@ public final class AuthRequester extends BaseRequester {
             user.setDob(json.getString("dob"));
             user.setUserToken(json.getString("token"));
 
-            try {
-                user.setPath(json.getString("file"));
+            user.setLevel(json.getInt("level"));
+            user.setEnergy(json.getInt("xp"));
 
-            } catch (Exception e) {
+            final JSONArray array = json.getJSONArray("answers");
+
+            for (int i = 0; i < array.length(); i++) {
+
+                user.getPieceMap().put(i, array.getInt(i) == 1);
             }
 
             try {
