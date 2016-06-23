@@ -123,11 +123,13 @@ public class GameActivity extends BaseAppCompatActivity {
 
         showGameFragment();
 
+        getGameFragment().update();
+
         handler.postDelayed(new Runnable() {
 
             @Override
             public void run() {
-                flip();
+                //flip();
             }
 
         }, WAIT);
