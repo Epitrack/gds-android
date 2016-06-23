@@ -24,7 +24,7 @@ public final class Constants {
         public static final String ID = "id";
         public static final String COUNTRY = "country";
         public static final String POSITION = "position";
-        public static final String URL = "flagUrl";
+        public static final String URL = "flagURL";
 
         public static final String TITLE = "title";
         public static final String OPTION = "option";

@@ -55,7 +55,7 @@ public class ScoreAdapter extends ArrayAdapter<Score> {
         final Score score = getItem(position);
 
         viewHolder.textViewName.setText(score.getCountry());
-        viewHolder.textViewNumber.setText(String.valueOf(score.getPosition()));
+        viewHolder.textViewNumber.setText(String.valueOf(position + 1));
 
         Picasso.with(viewGroup.getContext())
                 .load(score.getUrl())
