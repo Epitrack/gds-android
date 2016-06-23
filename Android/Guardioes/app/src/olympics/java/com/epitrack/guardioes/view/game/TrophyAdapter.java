@@ -55,7 +55,7 @@ public class TrophyAdapter extends ArrayAdapter<Phase> {
         final Phase phase = getItem(position);
 
         viewHolder.textViewName.setText(phase.getName());
-        viewHolder.imageViewImage.setImageResource(phase.getName());
+        viewHolder.imageViewImage.setImageResource(phase.getImage());
 
         return view;
     }
