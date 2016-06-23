@@ -14,7 +14,6 @@ import com.epitrack.guardioes.request.base.Method;
 import com.epitrack.guardioes.request.base.RequestException;
 import com.epitrack.guardioes.request.base.RequestListener;
 import com.epitrack.guardioes.request.base.Requester;
-import com.epitrack.guardioes.request.base.RequesterConfig;
 import com.epitrack.guardioes.view.game.model.Option;
 import com.epitrack.guardioes.view.game.model.Question;
 import com.epitrack.guardioes.view.game.model.Score;
@@ -45,7 +44,7 @@ public class GameRequester extends BaseRequester {
 
     public void getScore(final RequestListener<List<Score>> listener) {
 
-        final String url = RequesterConfig.URL + "/game/ranking/";
+        final String url = "http://rest.guardioesdasaude.org/game/ranking/";
 
         listener.onStart();
 
@@ -66,7 +65,6 @@ public class GameRequester extends BaseRequester {
 
                                 final Score score = new Score();
 
-                                score.setPosition(jsonNode.get(Constants.Json.POSITION).asInt());
                                 score.setCountry(jsonNode.get(Constants.Json.COUNTRY).asText());
                                 score.setUrl(jsonNode.get(Constants.Json.URL).asText());
 
