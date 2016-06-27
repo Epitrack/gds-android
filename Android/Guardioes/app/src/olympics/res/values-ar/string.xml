@@ -4,6 +4,8 @@
     <string name="app_name">غوادلوبي</string>
     <string name="app_name_short">Guardiões</string>
 
+    <string name="locale">ar</string>
+
     # Google
     <string name="google_client_id">997325640691-p7453ssirrdtkoh51tlphdmbb0lfdkg3.apps.googleusercontent.com</string>
     <string name="server_api_key">AIzaSyBEAcmjcVIRr8Hz1G2n5CqGimHixeNNe50</string>

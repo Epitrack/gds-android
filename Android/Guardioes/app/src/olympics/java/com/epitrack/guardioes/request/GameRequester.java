@@ -2,6 +2,7 @@ package com.epitrack.guardioes.request;
 
 import android.content.Context;
 
+import com.epitrack.guardioes.R;
 import com.epitrack.guardioes.helper.Constants;
 import com.epitrack.guardioes.helper.DateFormat;
 import com.epitrack.guardioes.helper.Logger;
@@ -89,7 +90,7 @@ public class GameRequester extends BaseRequester {
 
     public void getQuestion(final RequestListener<List<Question>> listener) {
 
-        final String url = RequesterConfig.URL + "/game/questions/?lang=pt_BR";
+        final String url = RequesterConfig.URL + "/game/questions/?lang=" + getCurrent();
 
         listener.onStart();
 
@@ -326,5 +327,9 @@ public class GameRequester extends BaseRequester {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+    }
+
+    private String getCurrent() {
+        return getContext().getString(R.string.locale);
     }
 }
