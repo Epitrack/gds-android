@@ -15,7 +15,7 @@ import butterknife.Bind;
  */
 public class TravelerActivity extends BaseAppCompatActivity {
 
-    private static final String URL = "https://github.com";
+    private static final String URL = "http://portalsaude.saude.gov.br/index.php/o-ministerio/principal/secretarias/svs/viajante";
 
     @Bind(R.id.web_view)
     WebView webView;
