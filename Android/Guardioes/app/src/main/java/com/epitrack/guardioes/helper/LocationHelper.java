@@ -4,7 +4,6 @@ import android.content.Context;
 import android.location.Location;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -36,8 +35,6 @@ public class LocationHelper implements GoogleApiClient.ConnectionCallbacks, Goog
 
     private GoogleApiClient locationHandler;
 
-    private final Handler handler = new Handler();
-
     private final Context context;
     private final List<LocationListener> listenerList = new LinkedList<>();
 
@@ -56,30 +53,26 @@ public class LocationHelper implements GoogleApiClient.ConnectionCallbacks, Goog
 
         for (final LocationListener listener : listenerList) {
 
-            handler.post(new Runnable() {
+            try {
 
-                @Override
-                public void run() {
+                final Location location = LocationServices.FusedLocationApi.getLastLocation(locationHandler);
 
-                    try {
+                listener.onLastLocation(location);
 
-                        final Location location = LocationServices.FusedLocationApi.getLastLocation(locationHandler);
-
-                        listener.onLastLocation(location);
-
-                    } catch (final SecurityException e) {
-                        Logger.logDebug(TAG, e.getMessage());
-                    }
-                }
-            });
+            } catch (final SecurityException e) {
+                Logger.logDebug(TAG, e.getMessage());
+            }
         }
 
-        try {
+        if (locationHandler.isConnected()) {
 
-            LocationServices.FusedLocationApi.requestLocationUpdates(locationHandler, LOCATION_REQUEST, LocationHelper.this);
+            try {
 
-        } catch (final SecurityException e) {
-            Logger.logDebug(TAG, e.getMessage());
+                LocationServices.FusedLocationApi.requestLocationUpdates(locationHandler, LOCATION_REQUEST, LocationHelper.this);
+
+            } catch (final SecurityException e) {
+                Logger.logDebug(TAG, e.getMessage());
+            }
         }
     }
 
@@ -87,15 +80,7 @@ public class LocationHelper implements GoogleApiClient.ConnectionCallbacks, Goog
     public void onConnectionSuspended(final int i) {
 
         for (final LocationListener listener : listenerList) {
-
-            handler.post(new Runnable() {
-
-                @Override
-                public void run() {
-
-                    listener.onSuspend(i);
-                }
-            });
+            listener.onSuspend(i);
         }
     }
 
@@ -103,15 +88,7 @@ public class LocationHelper implements GoogleApiClient.ConnectionCallbacks, Goog
     public void onLocationChanged(final Location location) {
 
         for (final LocationListener listener : listenerList) {
-
-            handler.post(new Runnable() {
-
-                @Override
-                public void run() {
-
-                    listener.onLocation(location);
-                }
-            });
+            listener.onLocation(location);
         }
     }
 
@@ -119,15 +96,7 @@ public class LocationHelper implements GoogleApiClient.ConnectionCallbacks, Goog
     public void onConnectionFailed(@NonNull final ConnectionResult connectionResult) {
 
         for (final LocationListener listener : listenerList) {
-
-            handler.post(new Runnable() {
-
-                @Override
-                public void run() {
-
-                    listener.onFail(connectionResult);
-                }
-            });
+            listener.onFail(connectionResult);
         }
     }
 
