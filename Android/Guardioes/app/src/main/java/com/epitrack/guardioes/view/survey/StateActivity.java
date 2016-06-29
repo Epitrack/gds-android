@@ -35,6 +35,8 @@ public class StateActivity extends BaseAppCompatActivity {
 
     private String id;
 
+    private final LoadDialog loadDialog = new LoadDialog();
+
     private final SingleUser singleUser = SingleUser.getInstance();
 
     @Override
@@ -60,8 +62,6 @@ public class StateActivity extends BaseAppCompatActivity {
 
         if (locationHelper.isEnabled()) {
 
-            final LoadDialog loadDialog = new LoadDialog();
-
             loadDialog.show(getFragmentManager(), LoadDialog.TAG);
 
             locationHelper.addListener(new LocationListener() {
@@ -84,34 +84,23 @@ public class StateActivity extends BaseAppCompatActivity {
                 @Override
                 public void onLastLocation(final Location location) {
 
-                    locationHelper.disconnect();
+                    if (location != null) {
 
-                    new SurveyRequester(StateActivity.this).saveSurveyGood(new User(id), new LatLng(location.getLatitude(), location.getLongitude()), new RequestListener<Boolean>() {
+                        locationHelper.disconnect();
 
-                        @Override
-                        public void onStart() {
-
-                        }
-
-                        @Override
-                        public void onError(final Exception e) {
-                            loadDialog.dismiss();
-
-                            Toast.makeText(StateActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
-                        }
-
-                        @Override
-                        public void onSuccess(final Boolean result) {
-                            loadDialog.dismiss();
-
-                            navigateTo(ShareActivity.class);
-                        }
-                    });
+                        sendSurvey(new LatLng(location.getLatitude(), location.getLongitude()));
+                    }
                 }
 
                 @Override
                 public void onLocation(final Location location) {
 
+                    if (location != null) {
+
+                        locationHelper.disconnect();
+
+                        sendSurvey(new LatLng(location.getLatitude(), location.getLongitude()));
+                    }
                 }
             });
 
@@ -133,6 +122,31 @@ public class StateActivity extends BaseAppCompatActivity {
 
                     }).show();
         }
+    }
+
+    private void sendSurvey(final LatLng latLng) {
+
+        new SurveyRequester(StateActivity.this).saveSurveyGood(new User(id), latLng, new RequestListener<Boolean>() {
+
+            @Override
+            public void onStart() {
+
+            }
+
+            @Override
+            public void onError(final Exception e) {
+                loadDialog.dismiss();
+
+                Toast.makeText(StateActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onSuccess(final Boolean result) {
+                loadDialog.dismiss();
+
+                navigateTo(ShareActivity.class);
+            }
+        });
     }
 
     @OnClick(R.id.text_view_state_bad)
@@ -171,22 +185,25 @@ public class StateActivity extends BaseAppCompatActivity {
                 @Override
                 public void onLastLocation(final Location location) {
 
-                    locationHelper.disconnect();
+                    if (location != null) {
 
-                    loadDialog.dismiss();
+                        loadDialog.dismiss();
+                        locationHelper.disconnect();
 
-                    final Bundle bundle = new Bundle();
-
-                    bundle.putString("id_user", id);
-                    bundle.putDouble("latitude", location.getLatitude());
-                    bundle.putDouble("longitude", location.getLongitude());
-
-                    navigateTo(SymptomActivity.class, bundle);
+                        navigateToSymptomActivity(new LatLng(location.getLatitude(), location.getLongitude()));
+                    }
                 }
 
                 @Override
                 public void onLocation(final Location location) {
 
+                    if (location != null) {
+
+                        loadDialog.dismiss();
+                        locationHelper.disconnect();
+
+                        navigateToSymptomActivity(new LatLng(location.getLatitude(), location.getLongitude()));
+                    }
                 }
             });
 
@@ -208,6 +225,17 @@ public class StateActivity extends BaseAppCompatActivity {
 
                     }).show();
         }
+    }
+
+    private void navigateToSymptomActivity(final LatLng latLng) {
+
+        final Bundle bundle = new Bundle();
+
+        bundle.putString("id_user", id);
+        bundle.putDouble("latitude", latLng.latitude);
+        bundle.putDouble("longitude", latLng.longitude);
+
+        navigateTo(SymptomActivity.class, bundle);
     }
 
     @Override
