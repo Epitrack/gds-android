@@ -99,7 +99,6 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="5dp"
                         android:text="@string/gender"
                         android:textColor="@android:color/white"
                         android:textSize="13sp" />
@@ -121,7 +120,6 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="5dp"
                         android:text="@string/race"
                         android:textColor="@android:color/white"
                         android:textSize="13sp" />
@@ -155,8 +153,6 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:layout_marginTop="5dp"
                 android:text="@string/residence_country"
                 android:textColor="@android:color/white"
                 android:textSize="13sp" />
@@ -168,10 +164,9 @@
                 android:textColor="@color/grey_light" />
 
             <TextView
+                android:id="@+id/text_view_state"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:layout_marginTop="5dp"
                 android:text="@string/residence_state"
                 android:textColor="@android:color/white"
                 android:textSize="13sp" />
@@ -185,8 +180,6 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:layout_marginTop="5dp"
                 android:text="@string/profile"
                 android:textColor="@android:color/white"
                 android:textSize="13sp" />
