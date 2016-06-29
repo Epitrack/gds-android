@@ -7,6 +7,7 @@ import android.support.design.widget.TextInputLayout;
 import android.support.v7.widget.AppCompatEditText;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -42,6 +43,8 @@ import butterknife.OnClick;
  */
 public class UserActivity extends BaseAppCompatActivity {
 
+    private static final int BRAZIL = 30;
+
     @Bind(R.id.text_view_message)
     TextView textViewMessage;
 
@@ -59,6 +62,9 @@ public class UserActivity extends BaseAppCompatActivity {
 
     @Bind(R.id.edit_text_birth_date)
     AppCompatEditText editTextBirthDate;
+
+    @Bind(R.id.text_view_state)
+    TextView textViewState;
 
     @Bind(R.id.spinner_gender)
     Spinner spinnerGender;
@@ -177,6 +183,22 @@ public class UserActivity extends BaseAppCompatActivity {
         spinnerRace.setAdapter(new ItemAdapter(this, getResources().getStringArray(R.array.race_array)));
         spinnerParent.setAdapter(new ItemAdapter(this, getResources().getStringArray(R.array.relationship_array)));
         spinnerCountry.setAdapter(new ItemAdapter(this, Helper.loadCountry().toArray(new String[0])));
+
+        spinnerCountry.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+            @Override
+            public void onItemSelected(final AdapterView<?> adapterView, final View view, final int position, final long id) {
+
+                textViewState.setVisibility(position == BRAZIL ? View.VISIBLE : View.INVISIBLE);
+                spinnerState.setVisibility(position == BRAZIL ? View.VISIBLE : View.INVISIBLE);
+            }
+
+            @Override
+            public void onNothingSelected(final AdapterView<?> adapterView) {
+
+            }
+        });
+
         spinnerState.setAdapter(new ItemAdapter(this, getResources().getStringArray(R.array.array_state)));
         spinnerProfile.setAdapter(new ItemAdapter(this, getResources().getStringArray(R.array.array_profile)));
 

@@ -11,11 +11,13 @@ import android.view.View;
 import android.view.Window;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.epitrack.guardioes.R;
@@ -55,6 +57,8 @@ public class CreateAccountActivity extends BaseAppCompatActivity {
 
     private static final int MIN_CHAR_NICKNAME = 3;
 
+    private static final int BRAZIL = 30;
+
     private static final String SOCIAL_FRAGMENT = "social_fragment";
 
     @Bind(R.id.linear_layout_social_account)
@@ -78,6 +82,9 @@ public class CreateAccountActivity extends BaseAppCompatActivity {
     @NotEmpty(messageResId = R.string.validation_empty)
     @Bind(R.id.edit_text_birth_date)
     EditText editTextBirthDate;
+
+    @Bind(R.id.text_view_state)
+    TextView textViewState;
 
     @Bind(R.id.spinner_race)
     Spinner spinnerRace;
@@ -124,6 +131,22 @@ public class CreateAccountActivity extends BaseAppCompatActivity {
         spinnerGender.setAdapter(new ItemAdapter(this, getResources().getStringArray(R.array.gender_array)));
         spinnerRace.setAdapter(new ItemAdapter(this, getResources().getStringArray(R.array.race_array)));
         spinnerCountry.setAdapter(new ItemAdapter(this, Helper.loadCountry().toArray(new String[0])));
+
+        spinnerCountry.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+            @Override
+            public void onItemSelected(final AdapterView<?> adapterView, final View view, final int position, final long id) {
+
+                textViewState.setVisibility(position == BRAZIL ? View.VISIBLE : View.INVISIBLE);
+                spinnerState.setVisibility(position == BRAZIL ? View.VISIBLE : View.INVISIBLE);
+            }
+
+            @Override
+            public void onNothingSelected(final AdapterView<?> adapterView) {
+
+            }
+        });
+
         spinnerState.setAdapter(new ItemAdapter(this, getResources().getStringArray(R.array.array_state)));
         spinnerProfile.setAdapter(new ItemAdapter(this, getResources().getStringArray(R.array.array_profile)));
     }
@@ -254,6 +277,24 @@ public class CreateAccountActivity extends BaseAppCompatActivity {
         });
 
         final Animation slideOut = AnimationUtils.loadAnimation(this, R.anim.slide_out_right);
+
+        slideOut.setAnimationListener(new Animation.AnimationListener() {
+
+            @Override
+            public void onAnimationStart(final Animation animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(final Animation animation) {
+                visibleView.clearAnimation();
+            }
+
+            @Override
+            public void onAnimationRepeat(final Animation animation) {
+
+            }
+        });
 
         visibleView.startAnimation(slideIn);
 
