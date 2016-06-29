@@ -12,9 +12,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.epitrack.guardioes.R;
-import com.epitrack.guardioes.helper.Constants;
-import com.epitrack.guardioes.manager.PrefManager;
-import com.epitrack.guardioes.model.User;
 import com.epitrack.guardioes.view.game.GameActivity;
 import com.epitrack.guardioes.view.game.IAnswer;
 import com.epitrack.guardioes.view.game.model.Option;
@@ -235,10 +232,8 @@ public class AnswerDialog extends DialogFragment implements View.OnClickListener
 
             } else {
 
-                listener.onTimeOver(AnswerDialog.this, energy--);
+                listener.onTimeOver(AnswerDialog.this, --energy);
             }
         }
     }
-
-
 }
