@@ -185,14 +185,6 @@
         <item>Autres</item>
     </string-array>
 
-    <string-array name="array_state">
-        <item>Acre</item>
-    </string-array>
-
-    <string-array name="array_country">
-        <item>Brésil</item>
-    </string-array>
-
     <string-array name="array_profile">
         <item>Athlète/Délégation</item>
         <item>Travailleur/bénévole</item>

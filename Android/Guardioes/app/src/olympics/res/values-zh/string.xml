@@ -185,14 +185,6 @@
         <item>或使用您的電子郵件註冊</item>
     </string-array>
 
-    <string-array name="array_state">
-        <item>Acre</item>
-    </string-array>
-
-    <string-array name="array_country">
-        <item>巴西</item>
-    </string-array>
-
     <string-array name="array_profile">
         <item>運動員 / 代表團</item>
         <item>工人 / 志願者</item>

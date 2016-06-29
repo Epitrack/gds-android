@@ -178,14 +178,6 @@
         <item>أو سجل الاشتراك باستخدام بريدك الإلكتروني</item>
     </string-array>
 
-    <string-array name="array_state">
-        <item>Acre</item>
-    </string-array>
-
-    <string-array name="array_country">
-        <item>Brasil</item>
-    </string-array>
-
     <string-array name="array_profile">
         <item>Atleta/Delegação</item>
         <item>Trabalhador/Voluntário</item>

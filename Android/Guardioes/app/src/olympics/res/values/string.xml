@@ -187,10 +187,32 @@
 
     <string-array name="array_state">
         <item>Acre</item>
-    </string-array>
-
-    <string-array name="array_country">
-        <item>Brasil</item>
+        <item>Alagoas</item>
+        <item>Amazonas</item>
+        <item>Amapá</item>
+        <item>Bahia</item>
+        <item>Ceará</item>
+        <item>Distrito Federal</item>
+        <item>Espírito Santo</item>
+        <item>Goiás</item>
+        <item>Maranhão</item>
+        <item>Minas Gerais</item>
+        <item>Mato Grosso do Sul</item>
+        <item>Mato Grosso</item>
+        <item>Pará</item>
+        <item>Paraíba</item>
+        <item>Pernambuco</item>
+        <item>Piauí</item>
+        <item>Paraná</item>
+        <item>Rio de Janeiro</item>
+        <item>Rio Grande do Norte</item>
+        <item>Rondônia</item>
+        <item>Roraima</item>
+        <item>Rio Grande do Sul</item>
+        <item>Santa Catarina</item>
+        <item>Sergipe</item>
+        <item>São Paulo</item>
+        <item>Tocantins</item>
     </string-array>
 
     <string-array name="array_profile">
