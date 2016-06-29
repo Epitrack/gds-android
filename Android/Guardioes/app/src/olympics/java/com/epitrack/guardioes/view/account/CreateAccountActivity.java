@@ -21,6 +21,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.epitrack.guardioes.R;
+import com.epitrack.guardioes.helper.Constants;
 import com.epitrack.guardioes.helper.DateFormat;
 import com.epitrack.guardioes.helper.DialogBuilder;
 import com.epitrack.guardioes.helper.Helper;
@@ -30,10 +31,10 @@ import com.epitrack.guardioes.push.HashReceiver;
 import com.epitrack.guardioes.push.RegisterService;
 import com.epitrack.guardioes.request.UserRequester;
 import com.epitrack.guardioes.request.base.RequestListener;
-import com.epitrack.guardioes.view.HomeActivity;
 import com.epitrack.guardioes.view.ItemAdapter;
 import com.epitrack.guardioes.view.base.BaseAppCompatActivity;
 import com.epitrack.guardioes.view.dialog.LoadDialog;
+import com.epitrack.guardioes.view.survey.StateActivity;
 import com.epitrack.guardioes.view.welcome.TermActivity;
 import com.google.android.gms.analytics.HitBuilders;
 import com.mobsandgeeks.saripaar.ValidationError;
@@ -425,7 +426,6 @@ public class CreateAccountActivity extends BaseAppCompatActivity {
 
                 @Override
                 public void onError(final Exception e) {
-
                     loadDialog.dismiss();
 
                     Toast.makeText(CreateAccountActivity.this, R.string.erro_new_user, Toast.LENGTH_SHORT).show();
@@ -433,11 +433,13 @@ public class CreateAccountActivity extends BaseAppCompatActivity {
 
                 @Override
                 public void onSuccess(final User type) {
-
                     loadDialog.dismiss();
 
-                    navigateTo(HomeActivity.class, Intent.FLAG_ACTIVITY_CLEAR_TASK |
-                                                   Intent.FLAG_ACTIVITY_NEW_TASK);
+                    final Bundle bundle = new Bundle();
+
+                    bundle.putBoolean(Constants.Bundle.MAIN_MEMBER, true);
+
+                    navigateTo(StateActivity.class, Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK, bundle);
                 }
             });
         }

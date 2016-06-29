@@ -142,12 +142,15 @@ public class SelectParticipantActivity extends BaseAppCompatActivity implements 
 
     @Override
     public void onParentSelect(String id) {
+
         if (id.equals("-1")) {
+
             final Bundle bundle = new Bundle();
 
             bundle.putBoolean(Constants.Bundle.NEW_MEMBER, true);
-            bundle.putBoolean(Constants.Bundle.SOCIAL_NEW, false);
+
             navigateTo(UserActivity.class, bundle);
+
         } else {
 
             getTracker().send(new HitBuilders.EventBuilder()
