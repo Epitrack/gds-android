@@ -78,4 +78,47 @@ public class SurveyRequester extends BaseRequester {
             }
         });
     }
+
+    public void getSymptom(final RequestListener<String> listener) {
+
+        final String url = RequesterConfig.URL + "/symptoms";
+
+        new Requester(getContext()).request(Method.GET, url ,getAuthHeaderMap(), new FutureCallback<Response<String>>() {
+
+            @Override
+            public void onCompleted(final Exception e, final Response<String> response) {
+
+                if (e == null) {
+
+                    listener.onSuccess(response.getResult());
+
+                } else {
+
+                    listener.onError(e);
+                }
+            }
+        });
+    }
+
+    public void sendSurvey(final Map<String, Object> bodyMap, final RequestListener<String> listener) {
+
+        final String url = RequesterConfig.URL + "/survey/create";
+
+        new Requester(getContext()).request(Method.POST, url, getAuthHeaderMap(), bodyMap, new FutureCallback<Response<String>>() {
+
+            @Override
+            public void onCompleted(final Exception e, final Response<String> response) {
+
+                if (e == null) {
+
+                    listener.onSuccess(response.getResult());
+
+                } else {
+
+                    listener.onError(e);
+                }
+            }
+        });
+
+    }
 }

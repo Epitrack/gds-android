@@ -17,9 +17,8 @@ import com.epitrack.guardioes.helper.SocialShare;
 import com.epitrack.guardioes.model.SingleUser;
 import com.epitrack.guardioes.model.SymptomList;
 import com.epitrack.guardioes.model.User;
-import com.epitrack.guardioes.request.base.Method;
-import com.epitrack.guardioes.request.old.Requester;
-import com.epitrack.guardioes.request.old.SimpleRequester;
+import com.epitrack.guardioes.request.SurveyRequester;
+import com.epitrack.guardioes.request.base.RequestListener;
 import com.epitrack.guardioes.view.HomeActivity;
 import com.epitrack.guardioes.view.base.BaseAppCompatActivity;
 import com.google.android.gms.analytics.HitBuilders;
@@ -29,7 +28,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.ExecutionException;
 
 import butterknife.Bind;
@@ -49,12 +50,16 @@ public class SymptomActivity extends BaseAppCompatActivity {
 
     private List<SymptomList> symptomArray = new ArrayList<>();
     private String id;
+    private double latitude;
+    private double longitude;
 
     @Override
     protected void onCreate(final Bundle bundle) {
         super.onCreate(bundle);
 
         id = getIntent().getStringExtra("id_user");
+        latitude = getIntent().getDoubleExtra("latitude", 0);
+        longitude = getIntent().getDoubleExtra("longitude", 0);
 
         setContentView(R.layout.symptom);
 
@@ -402,39 +407,48 @@ public class SymptomActivity extends BaseAppCompatActivity {
 
         listView.addFooterView(footerView);
 
-        SimpleRequester simpleRequester = new SimpleRequester();
-        simpleRequester.setMethod(Method.GET);
-        simpleRequester.setUrl(Requester.API_URL + "symptoms");
-        simpleRequester.setJsonObject(null);
+        new SurveyRequester(this).getSymptom(new RequestListener<String>() {
 
-        try {
-            String jsonStr = simpleRequester.execute(simpleRequester).get();
-            JSONObject jsonObject = new JSONObject(jsonStr);
+            @Override
+            public void onStart() {
 
-            if (jsonObject.get("error").toString() == "false") {
-
-                JSONArray jsonArray = jsonObject.getJSONArray("data");
-
-                if (jsonArray.length() > 0) {
-                    for (int i = 0; i < jsonArray.length(); i++) {
-                        JSONObject jsonObjectSymptoms = jsonArray.getJSONObject(i);
-                        SymptomList symptomList = new SymptomList(jsonObjectSymptoms.get("code").toString(), jsonObjectSymptoms.get("name").toString());
-                        symptomArray.add(symptomList);
-                    }
-                }
-                symptomArray.add(new SymptomList("hadContagiousContact", "Tive contato com alguém com um desses sintomas"));
-                symptomArray.add(new SymptomList("hadHealthCare", "Procurei um serviço de saúde"));
-                symptomArray.add(new SymptomList("hadTravelledAbroad", "Estive fora do Brasil nos últimos 14 dias"));
             }
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
 
-        listView.setAdapter(new SymptomAdapter(this, symptomArray));
+            @Override
+            public void onError(final Exception e) {
+
+            }
+
+            @Override
+            public void onSuccess(final String result) {
+
+                try {
+
+                    JSONObject jsonObject = new JSONObject(result);
+
+                    if (!jsonObject.getBoolean("error")) {
+
+                        JSONArray jsonArray = jsonObject.getJSONArray("data");
+
+                        if (jsonArray.length() > 0) {
+                            for (int i = 0; i < jsonArray.length(); i++) {
+                                JSONObject jsonObjectSymptoms = jsonArray.getJSONObject(i);
+                                SymptomList symptomList = new SymptomList(jsonObjectSymptoms.get("code").toString(), jsonObjectSymptoms.get("name").toString());
+                                symptomArray.add(symptomList);
+                            }
+                        }
+                        symptomArray.add(new SymptomList("hadContagiousContact", "Tive contato com alguém com um desses sintomas"));
+                        symptomArray.add(new SymptomList("hadHealthCare", "Procurei um serviço de saúde"));
+                        symptomArray.add(new SymptomList("hadTravelledAbroad", "Estive fora do Brasil nos últimos 14 dias"));
+
+                        listView.setAdapter(new SymptomAdapter(SymptomActivity.this, symptomArray));
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 
     @Override
@@ -448,59 +462,74 @@ public class SymptomActivity extends BaseAppCompatActivity {
 
     private void sendSymptom() throws JSONException, ExecutionException, InterruptedException {
 
-        JSONObject jsonObject = new JSONObject();
+        final Map<String, Object> map = new HashMap<>();
 
         final User user = new User();
 
         user.setId(id);
 
-        final double latitude = getIntent().getDoubleExtra("latitude", 0);
-        final double longitude = getIntent().getDoubleExtra("longitude", 0);
-
         SingleUser singleUser = SingleUser.getInstance();
 
-        jsonObject.put("user_id", singleUser.getId());
+        map.put("user_id", singleUser.getId());
 
         if (!(user.getId().equals(singleUser.getId()))) {
-            jsonObject.put("household_id", user.getId());
+            map.put("household_id", user.getId());
         }
-        jsonObject.put("lat", latitude);
-        jsonObject.put("lon", longitude);
-        jsonObject.put("app_token", user.getAppToken());
-        jsonObject.put("platform", user.getPlatform());
-        jsonObject.put("client", user.getClient());
-        jsonObject.put("no_symptom", "N");
-        jsonObject.put("token", singleUser.getUserToken());
-        jsonObject.put("travelLocation", country);
+        map.put("lat", latitude);
+        map.put("lon", longitude);
+        map.put("app_token", user.getAppToken());
+        map.put("platform", user.getPlatform());
+        map.put("client", user.getClient());
+        map.put("no_symptom", "N");
+        map.put("token", singleUser.getUserToken());
+        map.put("travelLocation", country);
 
         for (int i = 0; i < symptomArray.size(); i++) {
             String symptomName = symptomArray.get(i).getCodigo();
 
             if (symptomArray.get(i).isSelected()) {
                 if(symptomName.equals("hadContagiousContact") || symptomName.equals("hadHealthCare") || symptomName.equals("hadTravelledAbroad")) {
-                    jsonObject.put(symptomArray.get(i).getCodigo(), "true");
+                    map.put(symptomArray.get(i).getCodigo(), "true");
                 } else {
-                    jsonObject.put(symptomArray.get(i).getCodigo(), "Y");
+                    map.put(symptomArray.get(i).getCodigo(), "Y");
                 }
             }
         }
 
-        SimpleRequester sendPostRequest = new SimpleRequester();
-        sendPostRequest.setUrl(Requester.API_URL + "survey/create");
-        sendPostRequest.setJsonObject(jsonObject);
-        sendPostRequest.setMethod(Method.POST);
+        new SurveyRequester(this).sendSurvey(map, new RequestListener<String>() {
 
-       String jsonStr = sendPostRequest.execute(sendPostRequest).get();
+            @Override
+            public void onStart() {
 
-        jsonObject = new JSONObject(jsonStr);
-
-        if (jsonObject.get("error").toString() == "true") {
-            Toast.makeText(getApplicationContext(), jsonObject.get("message").toString(), Toast.LENGTH_SHORT).show();
-        } else {
-            if (jsonObject.get("exantematica").toString() == "true") {
-                isExantematica = true;
             }
-        }
+
+            @Override
+            public void onError(final Exception e) {
+
+            }
+
+            @Override
+            public void onSuccess(final String result) {
+
+                try {
+
+                    final JSONObject jsonObject = new JSONObject(result);
+
+                    if (jsonObject.get("error").toString() == "true") {
+                        Toast.makeText(getApplicationContext(), jsonObject.get("message").toString(), Toast.LENGTH_SHORT).show();
+
+                    } else {
+
+                        if (jsonObject.get("exantematica").toString() == "true") {
+                            isExantematica = true;
+                        }
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 
     @Override
