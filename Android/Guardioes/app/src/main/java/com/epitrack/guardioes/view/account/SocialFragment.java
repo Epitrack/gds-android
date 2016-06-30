@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 
 import com.epitrack.guardioes.R;
 import com.epitrack.guardioes.helper.Constants;
+import com.epitrack.guardioes.helper.Logger;
 import com.epitrack.guardioes.model.User;
 import com.epitrack.guardioes.request.UserRequester;
 import com.epitrack.guardioes.request.base.RequestListener;
@@ -45,6 +46,8 @@ import butterknife.OnClick;
  * @author Igor Morais
  */
 public class SocialFragment extends BaseFragment implements GoogleApiClient.OnConnectionFailedListener {
+
+    private static final String TAG = SocialFragment.class.getSimpleName();
 
     private static final int REQUEST_TERM = 6661;
 
@@ -329,42 +332,48 @@ public class SocialFragment extends BaseFragment implements GoogleApiClient.OnCo
 
     private void onGoogle(final GoogleSignInAccount account) {
 
-        final String id = account.getId();
-        final String name = account.getDisplayName();
-        final String mail = account.getEmail();
+        if (account == null) {
+            Logger.logDebug(TAG, "The account is null.");
 
-        new UserRequester(getActivity()).validateSocialAccount("user/get?gl=", id, new RequestListener<User>() {
+        } else {
 
-            @Override
-            public void onStart() {
+            final String id = account.getId();
+            final String name = account.getDisplayName();
+            final String mail = account.getEmail();
 
-            }
+            new UserRequester(getActivity()).validateSocialAccount("user/get?gl=", id, new RequestListener<User>() {
 
-            @Override
-            public void onError(final Exception error) {
-                listener.onError();
-            }
+                @Override
+                public void onStart() {
 
-            @Override
-            public void onSuccess(final User type) {
-
-                if (type == null) {
-
-                    final User user = new User();
-
-                    user.setNick(name);
-                    user.setEmail(mail);
-                    user.setPassword(mail);
-                    user.setGl(id);
-
-                    listener.onNotFound(user);
-
-                } else {
-
-                    listener.onSuccess(type);
                 }
-            }
-        });
+
+                @Override
+                public void onError(final Exception error) {
+                    listener.onError();
+                }
+
+                @Override
+                public void onSuccess(final User type) {
+
+                    if (type == null) {
+
+                        final User user = new User();
+
+                        user.setNick(name);
+                        user.setEmail(mail);
+                        user.setPassword(mail);
+                        user.setGl(id);
+
+                        listener.onNotFound(user);
+
+                    } else {
+
+                        listener.onSuccess(type);
+                    }
+                }
+            });
+        }
     }
 
     @Override
