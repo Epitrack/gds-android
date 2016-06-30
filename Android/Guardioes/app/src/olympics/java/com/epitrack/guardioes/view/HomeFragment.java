@@ -13,7 +13,7 @@ import com.epitrack.guardioes.model.SingleUser;
 import com.epitrack.guardioes.view.base.BaseFragment;
 import com.epitrack.guardioes.view.diary.DiaryActivity;
 import com.epitrack.guardioes.view.game.welcome.WelcomeGameActivity;
-import com.epitrack.guardioes.view.menu.profile.ProfileActivity;
+import com.epitrack.guardioes.view.menu.Home;
 import com.epitrack.guardioes.view.survey.SelectParticipantActivity;
 import com.epitrack.guardioes.view.tip.TipActivity;
 import com.github.siyamed.shapeimageview.CircularImageView;
@@ -71,7 +71,11 @@ public class HomeFragment extends BaseFragment {
 
     @OnClick(R.id.image_view_image)
     public void onProfile() {
-        navigateTo(ProfileActivity.class);
+
+        if (!((HomeActivity) getActivity()).getCurrentFragment().getTag().equals(Home.PROFILE.getTag())) {
+
+            ((HomeActivity) getActivity()).replaceFragment(Home.PROFILE.getType(), Home.PROFILE.getTag());
+        }
     }
 
     @OnClick(R.id.text_view_notice)

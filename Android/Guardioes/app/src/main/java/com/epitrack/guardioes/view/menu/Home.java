@@ -9,6 +9,7 @@ import com.epitrack.guardioes.R;
 import com.epitrack.guardioes.view.HomeFragment;
 import com.epitrack.guardioes.view.IMenu;
 import com.epitrack.guardioes.view.menu.help.HelpFragment;
+import com.epitrack.guardioes.view.menu.profile.ProfileFragment;
 
 /**
  * @author Igor Morais
@@ -16,7 +17,7 @@ import com.epitrack.guardioes.view.menu.help.HelpFragment;
 public enum Home implements IMenu {
 
     HOME        (R.id.home, R.string.home, R.drawable.icon_home, HomeFragment.class),
-    PROFILE     (R.id.profile, R.string.profile, R.drawable.icon_profile, null),
+    PROFILE     (R.id.profile, R.string.profile, R.drawable.icon_profile, ProfileFragment.class),
     ABOUT       (R.id.about, R.string.about, R.drawable.icon_about, AboutFragment.class),
     FACEBOOK    (R.id.facebook, R.string.facebook, R.drawable.icon_facebook, null),
     TWITTER     (R.id.twitter, R.string.twitter, R.drawable.icon_twitter, null),
