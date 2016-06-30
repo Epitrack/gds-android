@@ -3,7 +3,6 @@ package com.epitrack.guardioes.model;
 public class Point {
 
     private String name;
-    private Address address;
 
     // TODO: This is temp atributes
     private double latitude;
@@ -21,14 +20,6 @@ public class Point {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public Address getAddress() {
-        return address;
-    }
-
-    public void setAddress(Address address) {
-        this.address = address;
     }
 
     public double getLatitude() {
