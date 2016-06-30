@@ -20,12 +20,14 @@ import com.epitrack.guardioes.helper.DateFormat;
 import com.epitrack.guardioes.helper.DialogBuilder;
 import com.epitrack.guardioes.helper.Helper;
 import com.epitrack.guardioes.helper.Mask;
+import com.epitrack.guardioes.model.Country;
 import com.epitrack.guardioes.model.SingleUser;
 import com.epitrack.guardioes.model.User;
 import com.epitrack.guardioes.request.UserRequester;
 import com.epitrack.guardioes.request.base.AuthRequester;
 import com.epitrack.guardioes.request.base.RequestHandler;
 import com.epitrack.guardioes.request.base.RequestListener;
+import com.epitrack.guardioes.view.CountryAdapter;
 import com.epitrack.guardioes.view.base.BaseAppCompatActivity;
 import com.github.siyamed.shapeimageview.CircularImageView;
 import com.google.android.gms.analytics.HitBuilders;
@@ -33,6 +35,9 @@ import com.squareup.picasso.MemoryPolicy;
 import com.squareup.picasso.Picasso;
 
 import org.parceler.Parcels;
+
+import java.util.List;
+import java.util.Locale;
 
 import butterknife.Bind;
 import butterknife.OnClick;
@@ -150,11 +155,13 @@ public class UserActivity extends BaseAppCompatActivity {
 
         if (user.getCountry() != null) {
 
-            final String[] countryArray = Helper.loadCountry().toArray(new String[0]);
+            final List<Country> countryList = Helper.loadCountry();
 
-            for (int i = 0; i < countryArray.length; i++) {
+            for (int i = 0; i < countryList.size(); i++) {
 
-                if (user.getCountry().equalsIgnoreCase(countryArray[i])) {
+                final String name = new Locale("", countryList.get(i).getCode()).getDisplayCountry(Locale.ENGLISH).toLowerCase();
+
+                if (user.getCountry().equalsIgnoreCase(name)) {
                     spinnerCountry.setSelection(i);
                 }
             }
@@ -182,7 +189,8 @@ public class UserActivity extends BaseAppCompatActivity {
         spinnerGender.setAdapter(new ItemAdapter(this, getResources().getStringArray(R.array.gender_array)));
         spinnerRace.setAdapter(new ItemAdapter(this, getResources().getStringArray(R.array.race_array)));
         spinnerParent.setAdapter(new ItemAdapter(this, getResources().getStringArray(R.array.relationship_array)));
-        spinnerCountry.setAdapter(new ItemAdapter(this, Helper.loadCountry().toArray(new String[0])));
+
+        spinnerCountry.setAdapter(new CountryAdapter(this, Helper.loadCountry()));
 
         spinnerCountry.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
@@ -298,7 +306,12 @@ public class UserActivity extends BaseAppCompatActivity {
         user.setGender(spinnerGender.getSelectedItem().toString().substring(0, 1).toUpperCase());
         user.setRace(spinnerRace.getSelectedItem().toString().toLowerCase());
         user.setEmail(editTextMail.getText().toString().toLowerCase().trim());
-        user.setCountry(spinnerCountry.getSelectedItem().toString().toLowerCase());
+
+        final String country = ((Country) spinnerCountry.getSelectedItem()).getCode();
+        final String name = new Locale("", country).getDisplayCountry(Locale.ENGLISH).toLowerCase();
+
+        user.setCountry(name);
+
         user.setState(spinnerState.getSelectedItem().toString().toLowerCase());
         user.setProfile(spinnerProfile.getSelectedItemPosition());
         user.setPath(path);
