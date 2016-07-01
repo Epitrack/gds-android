@@ -1,5 +1,6 @@
 package com.epitrack.guardioes.view.account;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -299,19 +300,22 @@ public class SocialFragment extends BaseFragment implements GoogleApiClient.OnCo
 
         if (requestCode == REQUEST_TERM) {
 
-            setRequest(intent.getIntExtra(Constants.Bundle.TYPE, Integer.MIN_VALUE));
+            if (resultCode == Activity.RESULT_OK) {
 
-            if (request == REQUEST_GOOGLE) {
+                setRequest(intent.getIntExtra(Constants.Bundle.TYPE, Integer.MIN_VALUE));
 
-                loadGoogle();
+                if (request == REQUEST_GOOGLE) {
 
-            } else if (request == REQUEST_TWITTER) {
+                    loadGoogle();
 
-                loadTwitter();
+                } else if (request == REQUEST_TWITTER) {
 
-            } else if (request == REQUEST_FACEBOOK) {
+                    loadTwitter();
 
-                LoginManager.getInstance().logInWithReadPermissions(getActivity(), Arrays.asList("public_profile", "email"));
+                } else if (request == REQUEST_FACEBOOK) {
+
+                    LoginManager.getInstance().logInWithReadPermissions(getActivity(), Arrays.asList("public_profile", "email"));
+                }
             }
 
         } else if (request == REQUEST_GOOGLE) {
