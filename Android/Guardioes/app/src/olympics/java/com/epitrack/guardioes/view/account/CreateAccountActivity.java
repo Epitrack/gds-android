@@ -141,8 +141,8 @@ public class CreateAccountActivity extends BaseAppCompatActivity {
             @Override
             public void onItemSelected(final AdapterView<?> adapterView, final View view, final int position, final long id) {
 
-                textViewState.setVisibility(position == BRAZIL ? View.VISIBLE : View.INVISIBLE);
-                spinnerState.setVisibility(position == BRAZIL ? View.VISIBLE : View.INVISIBLE);
+                textViewState.setVisibility(position == BRAZIL ? View.VISIBLE : View.GONE);
+                spinnerState.setVisibility(position == BRAZIL ? View.VISIBLE : View.GONE);
             }
 
             @Override
