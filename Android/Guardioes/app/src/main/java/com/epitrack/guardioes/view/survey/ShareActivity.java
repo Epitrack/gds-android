@@ -15,6 +15,10 @@ import com.epitrack.guardioes.helper.Constants;
 import com.epitrack.guardioes.helper.DialogBuilder;
 import com.epitrack.guardioes.helper.SocialShare;
 import com.epitrack.guardioes.helper.ViewUtility;
+import com.epitrack.guardioes.manager.PrefManager;
+import com.epitrack.guardioes.model.User;
+import com.epitrack.guardioes.request.SurveyRequester;
+import com.epitrack.guardioes.request.base.RequestListener;
 import com.epitrack.guardioes.view.HomeActivity;
 import com.epitrack.guardioes.view.base.BaseActivity;
 import com.facebook.CallbackManager;
@@ -98,6 +102,8 @@ public class ShareActivity extends BaseActivity {
 
             ViewUtility.setMarginTop(textViewHSocialMessage, ViewUtility.toPixel(this, MARGIN_TOP));
         }
+
+        hasSurveyToday();
     }
 
     @Override
@@ -200,5 +206,37 @@ public class ShareActivity extends BaseActivity {
                     .positiveText(R.string.ok)
                     .show();
         }
+    }
+
+    private void hasSurveyToday() {
+
+        new SurveyRequester(this).hasSurveyToday(new RequestListener<Integer>() {
+
+            @Override
+            public void onStart() {
+
+            }
+
+            @Override
+            public void onError(final Exception e) {
+
+            }
+
+            @Override
+            public void onSuccess(final Integer amount) {
+
+                if (amount == 1) {
+
+                    final User user = new PrefManager(ShareActivity.this).get(Constants.Pref.USER, User.class);
+
+                    if (user != null) {
+
+                        user.addEnergy(10);
+
+                        new PrefManager(ShareActivity.this).put(Constants.Pref.USER, user);
+                    }
+                }
+            }
+        });
     }
 }

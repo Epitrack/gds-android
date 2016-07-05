@@ -17,6 +17,7 @@ import com.koushikdutta.ion.Response;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -119,6 +120,98 @@ public class SurveyRequester extends BaseRequester {
                 }
             }
         });
+    }
 
+    public void hasSurvey(final Calendar calendar, final RequestListener<Boolean> listener) {
+
+        final String url = RequesterConfig.URL + "/user/calendar/day";
+
+        final Map<String, String> paramMap = new HashMap<>();
+
+        paramMap.put("day", String.valueOf(calendar.get(Calendar.DAY_OF_MONTH)));
+        paramMap.put("month", String.valueOf(calendar.get(Calendar.MONTH)));
+        paramMap.put("year", String.valueOf(calendar.get(Calendar.YEAR)));
+
+        new Requester(getContext()).request(Method.GET, url, paramMap, getAuthHeaderMap(), null, new FutureCallback<Response<String>>() {
+
+            @Override
+            public void onCompleted(final Exception error, final Response<String> response) {
+
+                if (error == null) {
+
+                    try {
+
+                        final JSONObject jsonObject = new JSONObject(response.getResult());
+
+                        if (jsonObject.getBoolean("error")) {
+
+                            listener.onError(new RequestException());
+
+                        } else {
+
+                            if (jsonObject.getJSONArray("data").length() == 0) {
+
+                                listener.onSuccess(false);
+
+                            } else {
+
+                                listener.onSuccess(true);
+                            }
+                        }
+
+                    } catch (JSONException e) {
+
+                    }
+
+                } else {
+
+                    listener.onError(error);
+                }
+            }
+        });
+    }
+
+    public void hasSurveyToday(final RequestListener<Integer> listener) {
+
+        final String url = RequesterConfig.URL + "/user/calendar/day";
+
+        final Map<String, String> paramMap = new HashMap<>();
+
+        final Calendar calendar = Calendar.getInstance();
+
+        paramMap.put("day", String.valueOf(calendar.get(Calendar.DAY_OF_MONTH)));
+        paramMap.put("month", String.valueOf(calendar.get(Calendar.MONTH)));
+        paramMap.put("year", String.valueOf(calendar.get(Calendar.YEAR)));
+
+        new Requester(getContext()).request(Method.GET, url, paramMap, getAuthHeaderMap(), null, new FutureCallback<Response<String>>() {
+
+            @Override
+            public void onCompleted(final Exception error, final Response<String> response) {
+
+                if (error == null) {
+
+                    try {
+
+                        final JSONObject jsonObject = new JSONObject(response.getResult());
+
+                        if (jsonObject.getBoolean("error")) {
+
+                            listener.onError(new RequestException());
+
+                        } else {
+
+                            listener.onSuccess(jsonObject.getJSONArray("data").length());
+                        }
+
+                    } catch (JSONException e) {
+
+                    }
+
+                } else {
+
+                    listener.onError(error);
+                }
+            }
+        });
     }
 }
