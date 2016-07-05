@@ -9,9 +9,12 @@ import android.widget.TextView;
 
 import com.epitrack.guardioes.R;
 import com.epitrack.guardioes.helper.AvatarHelper;
+import com.epitrack.guardioes.helper.Constants;
+import com.epitrack.guardioes.manager.PrefManager;
 import com.epitrack.guardioes.model.SingleUser;
 import com.epitrack.guardioes.view.base.BaseFragment;
 import com.epitrack.guardioes.view.diary.DiaryActivity;
+import com.epitrack.guardioes.view.game.GameMapActivity;
 import com.epitrack.guardioes.view.game.welcome.WelcomeGameActivity;
 import com.epitrack.guardioes.view.menu.Home;
 import com.epitrack.guardioes.view.survey.SelectParticipantActivity;
@@ -141,6 +144,6 @@ public class HomeFragment extends BaseFragment {
                 .setAction("Game Button")
                 .build());
 
-        navigateTo(WelcomeGameActivity.class);
+        navigateTo(new PrefManager(getActivity()).getBoolean(Constants.Pref.WELCOME_GAME, true) ? WelcomeGameActivity.class : GameMapActivity.class);
     }
 }

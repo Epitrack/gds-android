@@ -2,6 +2,8 @@ package com.epitrack.guardioes.view.game;
 
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.ImageView;
@@ -14,6 +16,7 @@ import com.epitrack.guardioes.manager.PrefManager;
 import com.epitrack.guardioes.model.User;
 import com.epitrack.guardioes.view.base.BaseAppCompatActivity;
 import com.epitrack.guardioes.view.game.model.Phase;
+import com.epitrack.guardioes.view.game.welcome.WelcomeGameActivity;
 
 import butterknife.Bind;
 
@@ -53,6 +56,17 @@ public class GameMapActivity extends BaseAppCompatActivity implements View.OnCli
         load(GameActivity.USER.getLevel());
 
         getEnergyFragment().setEnergy(GameActivity.USER.getEnergy());
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(final Menu menu) {
+        getMenuInflater().inflate(R.menu.game, menu);
+
+        return true;
+    }
+
+    public void onWelcome(final MenuItem item) {
+        navigateTo(WelcomeGameActivity.class);
     }
 
     private void load(final int level) {
