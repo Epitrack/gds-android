@@ -223,7 +223,7 @@
 
     <string name="not_now">AGORA NÃO</string>
     <string name="setting_upper">CONFIGURAÇÕES</string>
-    <string name="location_disabled">Não estamos conseguindo obter sua localização. Verifique se os serviços estão habilitados no aparelho.</string>
+    <string name="location_disabled">Para contribuir ativamente com a vigilância em saúde no Brasil é necessário que você compartilhe a sua localização.</string>
 <!-- NA -->
     <string name="generic_error">Não foi possível executar a operação. Tente novamente em alguns instantes.</string>
     <!-- NA -->
