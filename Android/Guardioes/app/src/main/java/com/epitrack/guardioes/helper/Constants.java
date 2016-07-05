@@ -56,6 +56,7 @@ public final class Constants {
 
     public static class Pref {
 
+        public static final String WELCOME_GAME = "WelcomeGame";
         public static final String USER = "user";
         public static final String PREFS_NAME = "preferences_user_token";
     }
