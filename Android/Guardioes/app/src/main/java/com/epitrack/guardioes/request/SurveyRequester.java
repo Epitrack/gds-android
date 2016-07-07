@@ -129,7 +129,7 @@ public class SurveyRequester extends BaseRequester {
         final Map<String, String> paramMap = new HashMap<>();
 
         paramMap.put("day", String.valueOf(calendar.get(Calendar.DAY_OF_MONTH)));
-        paramMap.put("month", String.valueOf(calendar.get(Calendar.MONTH)));
+        paramMap.put("month", String.valueOf(calendar.get(Calendar.MONTH) + 1));
         paramMap.put("year", String.valueOf(calendar.get(Calendar.YEAR)));
 
         new Requester(getContext()).request(Method.GET, url, paramMap, getAuthHeaderMap(), null, new FutureCallback<Response<String>>() {
