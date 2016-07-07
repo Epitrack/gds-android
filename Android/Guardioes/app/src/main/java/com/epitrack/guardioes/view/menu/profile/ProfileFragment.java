@@ -93,6 +93,7 @@ public class ProfileFragment extends BaseFragment implements UserListener {
                     single.getImage());
 
             user.setPath(single.getPath());
+            user.setCountry(single.getCountry());
 
             parentList.add(0, user);
 
