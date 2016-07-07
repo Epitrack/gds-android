@@ -145,6 +145,16 @@
     <string name="traveler_health">Saúde do viajante</string>
     <string name="safe_sex">Pratique sexo de forma segura</string>
 
+    <string-array name="language_array">
+        <item>English</item>
+        <item>Español</item>
+        <item>Fraçais</item>
+        <item>Português (Brasil)</item>
+        <item>Pycknñ</item>
+        <item>简体中文</item>
+        <item>العربية</item>
+    </string-array>
+
     <string-array name="image_array">
         <item>Camera</item>
         <item>Galeria</item>

@@ -1,6 +1,8 @@
 package com.epitrack.guardioes.view;
 
 import android.content.Intent;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.os.Handler;
 
@@ -20,6 +22,7 @@ import com.epitrack.guardioes.view.welcome.WelcomeActivity;
 import com.google.android.gms.analytics.HitBuilders;
 
 import java.util.Calendar;
+import java.util.Locale;
 
 /**
  * @author Igor Morais
@@ -60,6 +63,48 @@ public class SplashActivity extends BaseActivity implements Runnable {
 
     @Override
     public void run() {
+
+        final Language language = new PrefManager(SplashActivity.this).get(Constants.Pref.LANGUAGE, Language.class);
+
+        if (language == null) {
+
+            new LanguageDialog().setListener(new LanguageDialog.ILanguage() {
+
+                @Override
+                public void onLanguage(final Language language) {
+
+                    if (new PrefManager(SplashActivity.this).put(Constants.Pref.LANGUAGE, language)) {
+
+                        loadLang(new Locale(language.getLocale()));
+
+                        loadAuth();
+                    }
+                }
+
+            }).show(getFragmentManager(), LanguageDialog.TAG);
+
+        } else {
+
+            loadLang(new Locale(language.getLocale()));
+
+            loadAuth();
+        }
+    }
+
+    private void loadLang(final Locale locale) {
+
+        Locale.setDefault(locale);
+
+        final Resources resource = getResources();
+
+        final Configuration configuration = resource.getConfiguration();
+
+        configuration.locale = locale;
+
+        resource.updateConfiguration(configuration, resource.getDisplayMetrics());
+    }
+
+    private void loadAuth() {
 
         final User user = new PrefManager(SplashActivity.this).get(Constants.Pref.USER, User.class);
 
