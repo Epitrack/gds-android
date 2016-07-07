@@ -27,6 +27,7 @@ import com.epitrack.guardioes.helper.DialogBuilder;
 import com.epitrack.guardioes.helper.Helper;
 import com.epitrack.guardioes.helper.Mask;
 import com.epitrack.guardioes.model.Country;
+import com.epitrack.guardioes.model.Race;
 import com.epitrack.guardioes.model.User;
 import com.epitrack.guardioes.push.HashReceiver;
 import com.epitrack.guardioes.push.RegisterService;
@@ -406,7 +407,9 @@ public class CreateAccountActivity extends BaseAppCompatActivity {
 
             String gender = spinnerGender.getSelectedItem().toString().substring(0, 1);
             user.setGender(gender.toUpperCase());
-            user.setRace(spinnerRace.getSelectedItem().toString().toLowerCase());
+
+            final String race = Race.getBy(spinnerRace.getSelectedItemPosition() + 1).getValue();
+            user.setRace(race);
 
             final String country = ((Country) spinnerCountry.getSelectedItem()).getCode();
             final String name = new Locale("", country).getDisplayCountry(Locale.ENGLISH).toLowerCase();
