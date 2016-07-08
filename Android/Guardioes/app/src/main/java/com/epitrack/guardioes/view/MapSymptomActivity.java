@@ -421,7 +421,10 @@ public class MapSymptomActivity extends AbstractBaseMapActivity implements Searc
         }
 
         simpleRequester.execute();
-
+        final String participacoes_ultimos_dias = this.getString(R.string.participacoes_ultimos_dias);
+        final String bem = this.getString(R.string.bem);
+        final String mal = this.getString(R.string.mal);
+        final String relatorios = this.getString(R.string.relatorios);
         simpleRequester.setListener(new RequestListener<String>() {
 
             @Override
@@ -467,7 +470,7 @@ public class MapSymptomActivity extends AbstractBaseMapActivity implements Searc
                         }
 
                         textViewState.setText(getStateDescription(jsonObjectLocation.get("state").toString().toUpperCase()));
-                        textViewParticipation.setText(jsonObjectData.getString("total_surveys") + " Participações nos últimos dias");
+                        textViewParticipation.setText(jsonObjectData.getString("total_surveys") + " "+participacoes_ultimos_dias);
 
                         double totalNoSympton = Double.parseDouble(jsonObjectData.get("total_no_symptoms").toString());
                         double goodPercent = 0;
@@ -476,10 +479,10 @@ public class MapSymptomActivity extends AbstractBaseMapActivity implements Searc
                             goodPercent = (totalNoSympton / Double.parseDouble(jsonObjectData.get("total_surveys").toString()));
                         }
 
-                        String htmlStringGood = "<b>" + (int) (goodPercent * 100) + "%</b> Bem";
+                        String htmlStringGood = "<b>" + (int) (goodPercent * 100) + "%</b> "+bem;
                         textViewGoodPercentage.setText(Html.fromHtml(htmlStringGood));
                         //textViewGoodPercentage.setText((int)(goodPercent * 100) + "% Bem");
-                        textViewGoodReport.setText(jsonObjectData.getString("total_no_symptoms") + " Relatórios");
+                        textViewGoodReport.setText(jsonObjectData.getString("total_no_symptoms") + " "+relatorios);
 
                         double totalSympton = jsonObjectData.getDouble("total_symptoms");
                         double badPercent = 0;
@@ -488,10 +491,10 @@ public class MapSymptomActivity extends AbstractBaseMapActivity implements Searc
                             badPercent = (totalSympton / jsonObjectData.getDouble("total_surveys"));
                         }
 
-                        String htmlStringBad = "<b>" + (int) (badPercent * 100) + "%</b> Mal";
+                        String htmlStringBad = "<b>" + (int) (badPercent * 100) + "%</b> "+mal;
                         textViewBadPercentage.setText(Html.fromHtml(htmlStringBad));
                         //textViewBadPercentage.setText((int)(badPercent * 100) + "% Mal");
-                        textViewBadReport.setText(jsonObjectData.getString("total_symptoms") + " Relatórios");
+                        textViewBadReport.setText(jsonObjectData.getString("total_symptoms") + " "+relatorios);
 
                         JSONObject json = jsonObjectData.getJSONObject("diseases");
 

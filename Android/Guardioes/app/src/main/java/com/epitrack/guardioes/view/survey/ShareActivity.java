@@ -68,7 +68,7 @@ public class ShareActivity extends BaseActivity {
         super.onCreate(bundle);
 
         setContentView(R.layout.share);
-
+        MSG = this.getString(R.string.share_participation);
         FacebookSdk.sdkInitialize(getApplicationContext());
         callbackManager = CallbackManager.Factory.create();
         //shareDialog = new ShareDialog(this);
@@ -152,7 +152,7 @@ public class ShareActivity extends BaseActivity {
 
         ShareLinkContent content = new ShareLinkContent.Builder()
                 .setContentDescription(MSG)
-                .setContentTitle("Guardiões da Saúde")
+                .setContentTitle(this.getString(R.string.app_name))
                 .setContentUrl(Uri.parse("http://www.guardioesdasaude.org"))
                 .build();
 

@@ -138,6 +138,16 @@
     <string name="traveler_health">سانت بارثولوميو</string>
     <string name="safe_sex">يرجى ملء جميع الحقول في النموذج التالي.</string>
 
+    <string-array name="language_array">
+        <item>English</item>
+        <item>Español</item>
+        <item>Fraçais</item>
+        <item>Português (Brasil)</item>
+        <item>Pycknñ</item>
+        <item>简体中文</item>
+        <item>العربية</item>
+    </string-array>
+
     <string-array name="image_array">
         <item>Camera</item>
         <item>Gallery</item>
@@ -153,7 +163,9 @@
         <item>الممارسة الجنسية الآمنة</item>
         <item>نشكرك على مواجهة هذا التحدي.</item>
         <item>أصفر</item>
-        <item>Indigena</item>
+        <item>
+            للشعوب الأصلية
+        </item>
     </string-array>
 
     <string-array name="relationship_array">
@@ -179,9 +191,9 @@
     </string-array>
 
     <string-array name="array_profile">
-        <item>Atleta/Delegação</item>
-        <item>Trabalhador/Voluntário</item>
-        <item>Fã/Espectador</item>
+        <item>رياضي / وفد</item>
+        <item>عامل / متطوع</item>
+        <item>مروحة / المشاهد</item>
     </string-array>
 
     <string name="not_now">AGORA NÃO</string>

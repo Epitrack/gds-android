@@ -66,6 +66,8 @@ public class SelectParticipantActivity extends BaseAppCompatActivity implements 
 
     private void loadHousehold() {
 
+        final String novo_integrante = this.getString(R.string.adicionar_novo_integrante);
+
         new UserRequester(this).getAllHousehold(singleUser.getId(), new RequestListener<List<User>>() {
 
             final LoadDialog loadDialog = new LoadDialog();
@@ -84,7 +86,7 @@ public class SelectParticipantActivity extends BaseAppCompatActivity implements 
             public void onSuccess(final List<User> parentList) {
                 loadDialog.dismiss();
 
-                parentList.add(new User("    Adicionar\nnovo integrante", "", "-1", "", "", "", R.drawable.img_add_profile));
+                parentList.add(new User("    "+novo_integrante, "", "-1", "", "", "", R.drawable.img_add_profile));
 
                 recyclerView.setAdapter(new ParentAdapter(SelectParticipantActivity.this, SelectParticipantActivity.this, parentList));
             }
