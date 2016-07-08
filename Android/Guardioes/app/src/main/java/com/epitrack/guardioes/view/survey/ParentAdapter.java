@@ -29,6 +29,7 @@ public class ParentAdapter extends RecyclerView.Adapter<ParentAdapter.ViewHolder
 
     private List<User> parentList = new ArrayList<>();
 
+
     public ParentAdapter(final Context context, final ParentListener listener, final List<User> parentList) {
 
         if (listener == null) {
@@ -38,6 +39,7 @@ public class ParentAdapter extends RecyclerView.Adapter<ParentAdapter.ViewHolder
         this.listener = listener;
         this.parentList = parentList;
         this.context = context;
+
     }
 
     @Override
@@ -95,7 +97,7 @@ public class ParentAdapter extends RecyclerView.Adapter<ParentAdapter.ViewHolder
 
         } else {
             viewHolder.textViewName.setText(parent.getNick());
-            viewHolder.textViewAge.setText(DateFormat.getDateDiff(parent.getDob()) + " Anos");
+            viewHolder.textViewAge.setText(DateFormat.getDateDiff(parent.getDob()) + " "+context.getString(R.string.anos));
             viewHolder.textViewId.setText(parent.getId());
 
             new AvatarHelper().loadImage(context, viewHolder.imageViewPhoto, parent);

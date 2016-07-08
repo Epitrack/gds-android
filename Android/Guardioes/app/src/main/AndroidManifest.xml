@@ -112,15 +112,8 @@
 
         # Profile
         <activity
-            android:name=".view.menu.profile.ProfileActivity"
-            android:exported="false"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.ActionBar.Profile" />
-
-        <activity
             android:name=".view.menu.profile.UserActivity"
             android:exported="false"
-            android:parentActivityName=".view.menu.profile.ProfileActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.ActionBar.Profile"
             android:windowSoftInputMode="stateHidden" />
@@ -267,7 +260,6 @@
         <activity
             android:name=".view.game.welcome.WelcomeGameActivity"
             android:exported="false"
-            android:parentActivityName=".view.HomeActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Game" />
 

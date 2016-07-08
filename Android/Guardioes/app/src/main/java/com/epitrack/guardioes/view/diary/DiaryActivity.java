@@ -126,7 +126,7 @@ public class DiaryActivity extends BaseAppCompatActivity implements ParentListen
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
 
-        textViewFrequencyReport.setText("Frequência de envio de relatório em " + CalendarDay.today().getYear());
+        textViewFrequencyReport.setText(this.getString(R.string.freq_label) +" "+ CalendarDay.today().getYear());
 
         // Get all member..
         new UserRequester(this).getAllHousehold(singleUser.getId(), new MemberHandler());
@@ -168,7 +168,7 @@ public class DiaryActivity extends BaseAppCompatActivity implements ParentListen
         materialCalendarView.setOnDateChangedListener(DiaryActivity.this);
         materialCalendarView.setOnMonthChangedListener(DiaryActivity.this);
         materialCalendarView.setWeekDayLabels(new String[]{"D", "S", "T", "Q", "Q", "S", "S"});
-        materialCalendarView.setTitleMonths(new String[]{"Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"});
+        materialCalendarView.setTitleMonths(new String[]{this.getString(R.string.janeiro),this.getString(R.string.fevereiro),this.getString(R.string.marco),this.getString(R.string.abril), this.getString(R.string.maio),this.getString(R.string.junho),this.getString(R.string.julho),this.getString(R.string.agosto),this.getString(R.string.setembro),this.getString(R.string.outubro),this.getString(R.string.novembro),this.getString(R.string.dezembro) });
     }
 
     private void loadViewLineChart() {
@@ -188,7 +188,7 @@ public class DiaryActivity extends BaseAppCompatActivity implements ParentListen
         viewport.setScrollable(false);
 
         final StaticLabelsFormatter staticLabelsFormatter = new StaticLabelsFormatter(lineChart);
-        staticLabelsFormatter.setHorizontalLabels(new String[]{"jan", "fev", "mar", "abr", "mai", "jun", "jul", "ago", "set", "out", "nov", "dez"});
+        staticLabelsFormatter.setHorizontalLabels(new String[]{this.getString(R.string.jan), this.getString(R.string.fev), this.getString(R.string.mar), this.getString(R.string.abr), this.getString(R.string.mai), this.getString(R.string.jun), this.getString(R.string.jul), this.getString(R.string.ago), this.getString(R.string.set), this.getString(R.string.out), this.getString(R.string.nov), this.getString(R.string.dez)});
         staticLabelsFormatter.setVerticalLabels(new String[]{"0%", "25%", "50%", "75%", "100%"});
 
         lineChart.getGridLabelRenderer().setLabelFormatter(staticLabelsFormatter);
@@ -240,6 +240,10 @@ public class DiaryActivity extends BaseAppCompatActivity implements ParentListen
     private void loadPieChart(final String idHouseHold) {
 
         final String url = idHouseHold == null || idHouseHold.equals(singleUser.getId()) ? "user/survey/summary" : "household/survey/summary?household_id=" + idHouseHold;
+        final String participacoes = this.getString(R.string.participacoes);
+        final String bem = this.getString(R.string.bem);
+        final String mal = this.getString(R.string.mal);
+        final String relatorios = this.getString(R.string.relatorios);
 
         new DiaryRequester(this).loadPieChart(url, new com.epitrack.guardioes.request.base.RequestListener<String>() {
 
@@ -266,21 +270,21 @@ public class DiaryActivity extends BaseAppCompatActivity implements ParentListen
                     badCount = Integer.parseInt(jsonObjectSympton.getString("symptom"));
                     totalCount = Integer.parseInt(jsonObjectSympton.getString("total"));
 
-                    textViewParticipation.setText((int) totalCount + " Participações");
+                    textViewParticipation.setText((int) totalCount + " "+participacoes);
 
                     goodPercent = totalCount == 0 ? 0 : goodCount / totalCount;
 
-                    String htmlStringGood = "<b>" + (int) (goodPercent * 100) + "%</b> Bem";
+                    String htmlStringGood = "<b>" + (int) (goodPercent * 100) + "%</b> "+bem;
                     textViewGoodPercentage.setText(Html.fromHtml(htmlStringGood));
                     //textViewGoodPercentage.setText((int) (goodPercent * 100) + "% Bem");
-                    textViewGoodReport.setText((int) goodCount + " Relatórios");
+                    textViewGoodReport.setText((int) goodCount + " "+R.string.relatorios);
 
                     badPercent = totalCount == 0 ? 0 : badCount / totalCount;
 
-                    String htmlStringBad = "<b>" + (int) (badPercent * 100) + "%</b> Mal";
+                    String htmlStringBad = "<b>" + (int) (badPercent * 100) + "%</b> "+mal;
                     textViewBadPercentage.setText(Html.fromHtml(htmlStringBad));
                     //textViewBadPercentage.setText((int) (badPercent * 100) + "% Mal");
-                    textViewBadReport.setText((int) badCount + " Relatórios");
+                    textViewBadReport.setText((int) badCount + " "+relatorios);
 
                     setData();
 
@@ -307,7 +311,7 @@ public class DiaryActivity extends BaseAppCompatActivity implements ParentListen
     private void setData() {
 
         float[] yData = {(int) (badPercent * 100), (int) (goodPercent * 100)};
-        String[] xData = {"Mal", "Bem"};
+        String[] xData = { this.getString(R.string.mal), this.getString(R.string.participacoes)};
 
         ArrayList<Entry> yVals1 = new ArrayList<Entry>();
 
@@ -349,7 +353,7 @@ public class DiaryActivity extends BaseAppCompatActivity implements ParentListen
         } else {
             url = "household/calendar/year?year=" + calendarDay.getYear() + "&household_id=" + idSelectedUser;
         }
-
+        final String  freq_relatorio = this.getString(R.string.freq_relatorio);
         new DiaryRequester(this).requestLineChart(url, new com.epitrack.guardioes.request.base.RequestListener<String>() {
 
             @Override
@@ -401,7 +405,7 @@ public class DiaryActivity extends BaseAppCompatActivity implements ParentListen
 
                             @Override
                             public void onTap(Series series, DataPointInterface dataPoint) {
-                                Toast.makeText(getApplicationContext(), dataPoint.getY() + "% da frequência no envio de relatórios.", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(), dataPoint.getY() + "% "+freq_relatorio+".", Toast.LENGTH_SHORT).show();
                             }
                         });
 

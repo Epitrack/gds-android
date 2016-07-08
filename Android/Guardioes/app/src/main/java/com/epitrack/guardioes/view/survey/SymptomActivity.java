@@ -64,7 +64,7 @@ public class SymptomActivity extends BaseAppCompatActivity {
         setContentView(R.layout.symptom);
 
         final View footerView = LayoutInflater.from(this).inflate(R.layout.symptom_footer, null);
-
+        final String obrigado = getString(R.string.obrigado);
         footerView.findViewById(R.id.button_confirm).setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -381,7 +381,7 @@ public class SymptomActivity extends BaseAppCompatActivity {
                                         country = strName;
                                         AlertDialog.Builder builderInner = new AlertDialog.Builder(
                                                 SymptomActivity.this);
-                                        builderInner.setMessage("Obrigado pela infomação!");
+                                        builderInner.setMessage(obrigado);
                                         builderInner.setTitle(R.string.app_name);
                                         builderInner.setPositiveButton(
                                                 "Ok",
@@ -406,7 +406,9 @@ public class SymptomActivity extends BaseAppCompatActivity {
         });
 
         listView.addFooterView(footerView);
-
+        final String contato = this.getString(R.string.symptom_contato);
+        final String procurei = this.getString(R.string.symptom_procureiservicosaude);
+        final String estivefora = this.getString(R.string.symptom_estivefora);
         new SurveyRequester(this).getSymptom(new RequestListener<String>() {
 
             @Override
@@ -437,9 +439,9 @@ public class SymptomActivity extends BaseAppCompatActivity {
                                 symptomArray.add(symptomList);
                             }
                         }
-                        symptomArray.add(new SymptomList("hadContagiousContact", "Tive contato com alguém com um desses sintomas"));
-                        symptomArray.add(new SymptomList("hadHealthCare", "Procurei um serviço de saúde"));
-                        symptomArray.add(new SymptomList("hadTravelledAbroad", "Estive fora do Brasil nos últimos 14 dias"));
+                        symptomArray.add(new SymptomList("hadContagiousContact", contato));
+                        symptomArray.add(new SymptomList("hadHealthCare", procurei));
+                        symptomArray.add(new SymptomList("hadTravelledAbroad", estivefora));
 
                         listView.setAdapter(new SymptomAdapter(SymptomActivity.this, symptomArray));
                     }

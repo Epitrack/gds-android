@@ -294,6 +294,10 @@ public class User {
         return energy;
     }
 
+    public void addEnergy(final int amount) {
+        this.energy += amount;
+    }
+
     public void setEnergy(final int energy) {
         this.energy = energy;
     }

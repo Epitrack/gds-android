@@ -36,7 +36,7 @@ public class AboutFragment extends BaseFragment {
 
         bind(view);
 
-        textViewVersionBuild.setText("Versão " + SingleUser.getInstance().getVersionBuild());
+        textViewVersionBuild.setText(this.getString(R.string.versao)+" " + SingleUser.getInstance().getVersionBuild());
     }
 
     @Override

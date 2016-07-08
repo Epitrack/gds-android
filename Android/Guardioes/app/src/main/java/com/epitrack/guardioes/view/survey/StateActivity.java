@@ -1,5 +1,6 @@
 package com.epitrack.guardioes.view.survey;
 
+import android.Manifest;
 import android.content.Intent;
 import android.location.Location;
 import android.os.Bundle;
@@ -25,6 +26,13 @@ import com.epitrack.guardioes.view.dialog.LoadDialog;
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.maps.model.LatLng;
+import com.karumi.dexter.Dexter;
+import com.karumi.dexter.MultiplePermissionsReport;
+import com.karumi.dexter.PermissionToken;
+import com.karumi.dexter.listener.PermissionRequest;
+import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
+
+import java.util.List;
 
 import butterknife.OnClick;
 
@@ -54,73 +62,92 @@ public class StateActivity extends BaseAppCompatActivity {
     public void onStateGood() {
 
         getTracker().send(new HitBuilders.EventBuilder()
-                .setCategory("Action")
-                .setAction("Survey State Good Button")
-                .build());
+                    .setCategory("Action")
+                    .setAction("Survey State Good Button")
+                    .build());
 
-        final LocationHelper locationHelper = new LocationHelper(this);
+        if (!Dexter.isRequestOngoing()) {
 
-        if (locationHelper.isEnabled()) {
-
-            loadDialog.show(getFragmentManager(), LoadDialog.TAG);
-
-            locationHelper.addListener(new LocationListener() {
+            Dexter.checkPermissions(new MultiplePermissionsListener() {
 
                 @Override
-                public void onConnect(final Bundle bundle) {
+                public void onPermissionsChecked(final MultiplePermissionsReport permissionReport) {
 
-                }
+                    if (permissionReport.areAllPermissionsGranted()) {
 
-                @Override
-                public void onSuspend(final int i) {
+                        final LocationHelper locationHelper = new LocationHelper(StateActivity.this);
 
-                }
+                        if (locationHelper.isEnabled()) {
 
-                @Override
-                public void onFail(final ConnectionResult connectionResult) {
+                            loadDialog.show(getFragmentManager(), LoadDialog.TAG);
 
-                }
+                            locationHelper.addListener(new LocationListener() {
 
-                @Override
-                public void onLastLocation(final Location location) {
+                                @Override
+                                public void onConnect(final Bundle bundle) {
 
-                    if (location != null) {
+                                }
 
-                        locationHelper.disconnect();
+                                @Override
+                                public void onSuspend(final int i) {
 
-                        sendSurvey(new LatLng(location.getLatitude(), location.getLongitude()));
-                    }
-                }
+                                }
 
-                @Override
-                public void onLocation(final Location location) {
+                                @Override
+                                public void onFail(final ConnectionResult connectionResult) {
 
-                    if (location != null) {
+                                }
 
-                        locationHelper.disconnect();
+                                @Override
+                                public void onLastLocation(final Location location) {
 
-                        sendSurvey(new LatLng(location.getLatitude(), location.getLongitude()));
-                    }
-                }
-            });
+                                    if (location != null) {
 
-            locationHelper.connect();
+                                        locationHelper.disconnect();
 
-        } else {
+                                        sendSurvey(new LatLng(location.getLatitude(), location.getLongitude()));
+                                    }
+                                }
 
-            new DialogBuilder(this).load()
-                    .content(R.string.location_disabled)
-                    .cancelable(false)
-                    .negativeText(R.string.not_now)
-                    .positiveText(R.string.setting_upper)
-                    .onPositive(new MaterialDialog.SingleButtonCallback() {
+                                @Override
+                                public void onLocation(final Location location) {
 
-                        @Override
-                        public void onClick(@NonNull final MaterialDialog dialog, @NonNull final DialogAction which) {
-                            startActivity(new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS));
+                                    if (location != null) {
+
+                                        locationHelper.disconnect();
+
+                                        sendSurvey(new LatLng(location.getLatitude(), location.getLongitude()));
+                                    }
+                                }
+                            });
+
+                            locationHelper.connect();
+
+                        } else {
+
+                            new DialogBuilder(StateActivity.this).load()
+                                                                 .content(R.string.location_disabled)
+                                                                 .cancelable(false)
+                                                                 .negativeText(R.string.not_now)
+                                                                 .positiveText(R.string.setting_upper)
+                                                                 .onPositive(new MaterialDialog.SingleButtonCallback() {
+
+                                                                    @Override
+                                                                    public void onClick(@NonNull final MaterialDialog dialog, @NonNull final DialogAction which) {
+                                                                        startActivity(new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS));
+                                                                    }
+
+                                                                 }).show();
                         }
+                    }
+                }
 
-                    }).show();
+                @Override
+                public void onPermissionRationaleShouldBeShown(final List<PermissionRequest> permissionList, final PermissionToken permissionToken) {
+                    permissionToken.continuePermissionRequest();
+                }
+
+            }, Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION);
         }
     }
 
@@ -153,77 +180,96 @@ public class StateActivity extends BaseAppCompatActivity {
     public void onStateBad() {
 
         getTracker().send(new HitBuilders.EventBuilder()
-                .setCategory("Action")
-                .setAction("Survey State Bad Button")
-                .build());
+                    .setCategory("Action")
+                    .setAction("Survey State Bad Button")
+                    .build());
 
-        final LocationHelper locationHelper = new LocationHelper(this);
+        if (!Dexter.isRequestOngoing()) {
 
-        if (locationHelper.isEnabled()) {
-
-            final LoadDialog loadDialog = new LoadDialog();
-
-            loadDialog.show(getFragmentManager(), LoadDialog.TAG);
-
-            locationHelper.addListener(new LocationListener() {
+            Dexter.checkPermissions(new MultiplePermissionsListener() {
 
                 @Override
-                public void onConnect(final Bundle bundle) {
+                public void onPermissionsChecked(final MultiplePermissionsReport permissionReport) {
 
-                }
+                    if (permissionReport.areAllPermissionsGranted()) {
 
-                @Override
-                public void onSuspend(final int i) {
+                        final LocationHelper locationHelper = new LocationHelper(StateActivity.this);
 
-                }
+                        if (locationHelper.isEnabled()) {
 
-                @Override
-                public void onFail(final ConnectionResult connectionResult) {
+                            final LoadDialog loadDialog = new LoadDialog();
 
-                }
+                            loadDialog.show(getFragmentManager(), LoadDialog.TAG);
 
-                @Override
-                public void onLastLocation(final Location location) {
+                            locationHelper.addListener(new LocationListener() {
 
-                    if (location != null) {
+                                @Override
+                                public void onConnect(final Bundle bundle) {
 
-                        loadDialog.dismiss();
-                        locationHelper.disconnect();
+                                }
 
-                        navigateToSymptomActivity(new LatLng(location.getLatitude(), location.getLongitude()));
-                    }
-                }
+                                @Override
+                                public void onSuspend(final int i) {
 
-                @Override
-                public void onLocation(final Location location) {
+                                }
 
-                    if (location != null) {
+                                @Override
+                                public void onFail(final ConnectionResult connectionResult) {
 
-                        loadDialog.dismiss();
-                        locationHelper.disconnect();
+                                }
 
-                        navigateToSymptomActivity(new LatLng(location.getLatitude(), location.getLongitude()));
-                    }
-                }
-            });
+                                @Override
+                                public void onLastLocation(final Location location) {
 
-            locationHelper.connect();
+                                    if (location != null) {
 
-        } else {
+                                        loadDialog.dismiss();
+                                        locationHelper.disconnect();
 
-            new DialogBuilder(this).load()
-                    .content(R.string.location_disabled)
-                    .cancelable(false)
-                    .negativeText(R.string.not_now)
-                    .positiveText(R.string.setting_upper)
-                    .onPositive(new MaterialDialog.SingleButtonCallback() {
+                                        navigateToSymptomActivity(new LatLng(location.getLatitude(), location.getLongitude()));
+                                    }
+                                }
 
-                        @Override
-                        public void onClick(@NonNull final MaterialDialog dialog, @NonNull final DialogAction which) {
-                            startActivity(new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS));
+                                @Override
+                                public void onLocation(final Location location) {
+
+                                    if (location != null) {
+
+                                        loadDialog.dismiss();
+                                        locationHelper.disconnect();
+
+                                        navigateToSymptomActivity(new LatLng(location.getLatitude(), location.getLongitude()));
+                                    }
+                                }
+                            });
+
+                            locationHelper.connect();
+
+                        } else {
+
+                            new DialogBuilder(StateActivity.this).load()
+                                    .content(R.string.location_disabled)
+                                    .cancelable(false)
+                                    .negativeText(R.string.not_now)
+                                    .positiveText(R.string.setting_upper)
+                                    .onPositive(new MaterialDialog.SingleButtonCallback() {
+
+                                        @Override
+                                        public void onClick(@NonNull final MaterialDialog dialog, @NonNull final DialogAction which) {
+                                            startActivity(new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS));
+                                        }
+
+                                    }).show();
                         }
+                    }
+                }
 
-                    }).show();
+                @Override
+                public void onPermissionRationaleShouldBeShown(final List<PermissionRequest> permissionList, final PermissionToken permissionToken) {
+                    permissionToken.continuePermissionRequest();
+                }
+
+            }, Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION);
         }
     }
 

@@ -26,11 +26,14 @@ import com.epitrack.guardioes.helper.DateFormat;
 import com.epitrack.guardioes.helper.DialogBuilder;
 import com.epitrack.guardioes.helper.Helper;
 import com.epitrack.guardioes.helper.Mask;
+import com.epitrack.guardioes.model.Country;
+import com.epitrack.guardioes.model.Race;
 import com.epitrack.guardioes.model.User;
 import com.epitrack.guardioes.push.HashReceiver;
 import com.epitrack.guardioes.push.RegisterService;
 import com.epitrack.guardioes.request.UserRequester;
 import com.epitrack.guardioes.request.base.RequestListener;
+import com.epitrack.guardioes.view.CountryAdapter;
 import com.epitrack.guardioes.view.ItemAdapter;
 import com.epitrack.guardioes.view.base.BaseAppCompatActivity;
 import com.epitrack.guardioes.view.dialog.LoadDialog;
@@ -45,6 +48,7 @@ import com.mobsandgeeks.saripaar.annotation.NotEmpty;
 import com.mobsandgeeks.saripaar.annotation.Password;
 
 import java.util.List;
+import java.util.Locale;
 
 import butterknife.Bind;
 import butterknife.OnClick;
@@ -131,15 +135,15 @@ public class CreateAccountActivity extends BaseAppCompatActivity {
         editTextBirthDate.addTextChangedListener(Mask.insert("##/##/####", editTextBirthDate));
         spinnerGender.setAdapter(new ItemAdapter(this, getResources().getStringArray(R.array.gender_array)));
         spinnerRace.setAdapter(new ItemAdapter(this, getResources().getStringArray(R.array.race_array)));
-        spinnerCountry.setAdapter(new ItemAdapter(this, Helper.loadCountry().toArray(new String[0])));
+        spinnerCountry.setAdapter(new CountryAdapter(this, Helper.loadCountry()));
 
         spinnerCountry.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
             @Override
             public void onItemSelected(final AdapterView<?> adapterView, final View view, final int position, final long id) {
 
-                textViewState.setVisibility(position == BRAZIL ? View.VISIBLE : View.INVISIBLE);
-                spinnerState.setVisibility(position == BRAZIL ? View.VISIBLE : View.INVISIBLE);
+                textViewState.setVisibility(position == BRAZIL ? View.VISIBLE : View.GONE);
+                spinnerState.setVisibility(position == BRAZIL ? View.VISIBLE : View.GONE);
             }
 
             @Override
@@ -400,10 +404,18 @@ public class CreateAccountActivity extends BaseAppCompatActivity {
 
             user.setNick(editTextNickname.getText().toString().trim());
             user.setDob(editTextBirthDate.getText().toString().trim().toLowerCase());
+
             String gender = spinnerGender.getSelectedItem().toString().substring(0, 1);
             user.setGender(gender.toUpperCase());
-            user.setRace(spinnerRace.getSelectedItem().toString().toLowerCase());
-            user.setCountry(spinnerCountry.getSelectedItem().toString().toLowerCase());
+
+            final String race = Race.getBy(spinnerRace.getSelectedItemPosition() + 1).getValue();
+            user.setRace(race);
+
+            final String country = ((Country) spinnerCountry.getSelectedItem()).getCode();
+            final String name = new Locale("", country).getDisplayCountry(Locale.ENGLISH).toLowerCase();
+
+            user.setCountry(name);
+
             user.setState(spinnerState.getSelectedItem().toString().toLowerCase());
             user.setProfile(spinnerProfile.getSelectedItemPosition());
             user.setEmail(editTextMail.getText().toString().trim().toLowerCase());

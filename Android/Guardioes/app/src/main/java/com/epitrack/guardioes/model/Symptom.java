@@ -3,30 +3,33 @@ package com.epitrack.guardioes.model;
 /**
  * Created by IgorMorais on 6/12/15.
  */
+
+import com.epitrack.guardioes.R;
+
 public enum Symptom {
 
-    FEVER ("Febre"),
-    FEVER1 ("Tosse"),
-    FEVER2 ("Náusea ou vômito"),
-    FEVER3 ("Manchas vermelhas no corpo"),
-    FEVER4 ("Dor nas juntas"),
-    FEVER5 ("Diarreia"),
-    FEVER6 ("Dor do corpo"),
-    FEVER7 ("Sangramento"),
-    FEVER8 ("Dor de cabeça"),
-    FEVER9 ("Olhos vermelhos"),
-    FEVER10 ("Coceira"),
-    FEVER11 ("Tive contato com alguém com um desses sintomas"),
-    FEVER12 ("Procurei um serviço de saúde"),
-    FEVER13 ("Estive fora do Brasil nos últimos 14 dias");
+    FEVER (R.string.symptom_febre),
+    FEVER1 (R.string.symptom_tosse),
+    FEVER2 (R.string.symptom_nauseas),
+    FEVER3 (R.string.symptom_manchas),
+    FEVER4 (R.string.symptom_dorjuntas),
+    FEVER5 (R.string.symptom_diarreia),
+    FEVER6 (R.string.symptom_dorcorpo),
+    FEVER7 (R.string.symptom_sangramento),
+    FEVER8 (R.string.symptom_dorcabeca),
+    FEVER9 (R.string.symptom_olhosvermelhos),
+    FEVER10 (R.string.symptom_coceira),
+    FEVER11 (R.string.symptom_contato),
+    FEVER12 (R.string.symptom_procureiservicosaude),
+    FEVER13 (R.string.symptom_estivefora);
 
-    private final String name;
+    private final int name;
 
-    Symptom(final String name) {
+    Symptom(final int name) {
         this.name = name;
     }
 
-    public String getName() {
+    public int getName() {
         return name;
     }
 }

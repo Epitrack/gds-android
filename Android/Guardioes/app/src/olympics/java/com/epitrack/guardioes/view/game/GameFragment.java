@@ -11,6 +11,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.epitrack.guardioes.R;
+import com.epitrack.guardioes.helper.Constants;
+import com.epitrack.guardioes.manager.PrefManager;
 import com.epitrack.guardioes.request.GameRequester;
 import com.epitrack.guardioes.request.base.RequestListener;
 import com.epitrack.guardioes.view.base.BaseFragment;
@@ -121,7 +123,12 @@ public class GameFragment extends BaseFragment implements AdapterView.OnItemClic
 
                 dialog.dismiss();
 
-                ((GameActivity) getActivity()).setEnergy(energy);
+                GameActivity.USER.setEnergy(energy);
+
+                if (new PrefManager(getActivity()).put(Constants.Pref.USER, GameActivity.USER)) {
+
+                    ((GameActivity) getActivity()).setEnergy(energy);
+                }
             }
 
             @Override
@@ -129,20 +136,36 @@ public class GameFragment extends BaseFragment implements AdapterView.OnItemClic
 
                 dialog.dismiss();
 
-                ((GameActivity) getActivity()).setEnergy(energy);
+                GameActivity.USER.setEnergy(energy);
 
-                new EnergyDialog().setEnergy(energy).show(getFragmentManager(), EnergyDialog.TAG);
+                if (new PrefManager(getActivity()).put(Constants.Pref.USER, GameActivity.USER)) {
+
+                    ((GameActivity) getActivity()).setEnergy(energy);
+
+                    new EnergyDialog().setEnergy(energy).show(getFragmentManager(), EnergyDialog.TAG);
+                }
             }
 
             @Override
             public void onWrong(final AnswerDialog dialog, final int energy) {
-                ((GameActivity) getActivity()).setEnergy(energy);
+
+                GameActivity.USER.setEnergy(energy);
+
+                if (new PrefManager(getActivity()).put(Constants.Pref.USER, GameActivity.USER)) {
+
+                    ((GameActivity) getActivity()).setEnergy(energy);
+                }
             }
 
             @Override
             public void onCorrect(final AnswerDialog dialog, final int amount, final int energy) {
 
-                ((GameActivity) getActivity()).setEnergy(energy);
+                GameActivity.USER.setEnergy(energy);
+
+                if (new PrefManager(getActivity()).put(Constants.Pref.USER, GameActivity.USER)) {
+
+                    ((GameActivity) getActivity()).setEnergy(energy);
+                }
 
                 final Phase phase = ((GameActivity) getActivity()).getPhase();
 

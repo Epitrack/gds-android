@@ -2,8 +2,11 @@ package com.epitrack.guardioes.view.game.welcome;
 
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
+import android.view.MenuItem;
 
 import com.epitrack.guardioes.R;
+import com.epitrack.guardioes.helper.Constants;
+import com.epitrack.guardioes.manager.PrefManager;
 import com.epitrack.guardioes.view.base.BaseAppCompatActivity;
 import com.epitrack.guardioes.view.game.GameMapActivity;
 import com.viewpagerindicator.CirclePageIndicator;
@@ -33,8 +36,33 @@ public class WelcomeGameActivity extends BaseAppCompatActivity {
         pageIndicator.setViewPager(viewPager);
     }
 
+    @Override
+    public boolean onOptionsItemSelected(final MenuItem item) {
+
+        if (item.getItemId() == android.R.id.home) {
+
+            finish();
+
+        } else {
+
+            return super.onOptionsItemSelected(item);
+        }
+
+        return true;
+    }
+
     @OnClick(R.id.button_next)
     public void onNext() {
-        navigateTo(GameMapActivity.class);
+
+        if (new PrefManager(this).getBoolean(Constants.Pref.WELCOME_GAME, true)) {
+
+            if (new PrefManager(this).putBoolean(Constants.Pref.WELCOME_GAME, false)) {
+                navigateTo(GameMapActivity.class);
+            }
+
+        } else {
+
+            finish();
+        }
     }
 }

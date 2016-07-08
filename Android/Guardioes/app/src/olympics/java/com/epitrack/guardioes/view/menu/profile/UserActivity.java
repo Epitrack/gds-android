@@ -20,12 +20,17 @@ import com.epitrack.guardioes.helper.DateFormat;
 import com.epitrack.guardioes.helper.DialogBuilder;
 import com.epitrack.guardioes.helper.Helper;
 import com.epitrack.guardioes.helper.Mask;
+import com.epitrack.guardioes.manager.PrefManager;
+import com.epitrack.guardioes.model.Country;
+import com.epitrack.guardioes.model.Parent;
+import com.epitrack.guardioes.model.Race;
 import com.epitrack.guardioes.model.SingleUser;
 import com.epitrack.guardioes.model.User;
 import com.epitrack.guardioes.request.UserRequester;
 import com.epitrack.guardioes.request.base.AuthRequester;
 import com.epitrack.guardioes.request.base.RequestHandler;
 import com.epitrack.guardioes.request.base.RequestListener;
+import com.epitrack.guardioes.view.CountryAdapter;
 import com.epitrack.guardioes.view.base.BaseAppCompatActivity;
 import com.github.siyamed.shapeimageview.CircularImageView;
 import com.google.android.gms.analytics.HitBuilders;
@@ -33,6 +38,9 @@ import com.squareup.picasso.MemoryPolicy;
 import com.squareup.picasso.Picasso;
 
 import org.parceler.Parcels;
+
+import java.util.List;
+import java.util.Locale;
 
 import butterknife.Bind;
 import butterknife.OnClick;
@@ -118,14 +126,7 @@ public class UserActivity extends BaseAppCompatActivity {
 
         spinnerGender.setSelection(user.getGender().equalsIgnoreCase("M") ? 0 : 1);
 
-        final String[] raceArray = getResources().getStringArray(R.array.race_array);
-
-        for (int i = 0; i < raceArray.length; i++) {
-
-            if (user.getRace().equalsIgnoreCase(raceArray[i])) {
-                spinnerRace.setSelection(i);
-            }
-        }
+        spinnerRace.setSelection(Race.getBy(user.getRace()).getId() - 1);
 
         final String format = DateFormat.getDate(user.getDob(), "dd/MM/yyyy");
 
@@ -138,23 +139,18 @@ public class UserActivity extends BaseAppCompatActivity {
 
         } else {
 
-            final String[] parentArray = getResources().getStringArray(R.array.relationship_array);
-
-            for (int i = 0; i < parentArray.length; i++) {
-
-                if (user.getRelationship().equalsIgnoreCase(parentArray[i])) {
-                    spinnerParent.setSelection(i);
-                }
-            }
+            spinnerParent.setSelection(Parent.getBy(user.getRelationship()).getId() - 1);
         }
 
         if (user.getCountry() != null) {
 
-            final String[] countryArray = Helper.loadCountry().toArray(new String[0]);
+            final List<Country> countryList = Helper.loadCountry();
 
-            for (int i = 0; i < countryArray.length; i++) {
+            for (int i = 0; i < countryList.size(); i++) {
 
-                if (user.getCountry().equalsIgnoreCase(countryArray[i])) {
+                final String name = new Locale("", countryList.get(i).getCode()).getDisplayCountry(Locale.ENGLISH).toLowerCase();
+
+                if (user.getCountry().equalsIgnoreCase(name)) {
                     spinnerCountry.setSelection(i);
                 }
             }
@@ -182,15 +178,16 @@ public class UserActivity extends BaseAppCompatActivity {
         spinnerGender.setAdapter(new ItemAdapter(this, getResources().getStringArray(R.array.gender_array)));
         spinnerRace.setAdapter(new ItemAdapter(this, getResources().getStringArray(R.array.race_array)));
         spinnerParent.setAdapter(new ItemAdapter(this, getResources().getStringArray(R.array.relationship_array)));
-        spinnerCountry.setAdapter(new ItemAdapter(this, Helper.loadCountry().toArray(new String[0])));
+
+        spinnerCountry.setAdapter(new CountryAdapter(this, Helper.loadCountry()));
 
         spinnerCountry.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
             @Override
             public void onItemSelected(final AdapterView<?> adapterView, final View view, final int position, final long id) {
 
-                textViewState.setVisibility(position == BRAZIL ? View.VISIBLE : View.INVISIBLE);
-                spinnerState.setVisibility(position == BRAZIL ? View.VISIBLE : View.INVISIBLE);
+                textViewState.setVisibility(position == BRAZIL ? View.VISIBLE : View.GONE);
+                spinnerState.setVisibility(position == BRAZIL ? View.VISIBLE : View.GONE);
             }
 
             @Override
@@ -296,21 +293,23 @@ public class UserActivity extends BaseAppCompatActivity {
         user.setNick(editTextNickname.getText().toString().trim());
         user.setDob(editTextBirthDate.getText().toString().trim());
         user.setGender(spinnerGender.getSelectedItem().toString().substring(0, 1).toUpperCase());
-        user.setRace(spinnerRace.getSelectedItem().toString().toLowerCase());
+
+        final String race = Race.getBy(spinnerRace.getSelectedItemPosition() + 1).getValue();
+        user.setRace(race);
+
         user.setEmail(editTextMail.getText().toString().toLowerCase().trim());
-        user.setCountry(spinnerCountry.getSelectedItem().toString().toLowerCase());
+
+        final String country = ((Country) spinnerCountry.getSelectedItem()).getCode();
+        final String name = new Locale("", country).getDisplayCountry(Locale.ENGLISH).toLowerCase();
+
+        user.setCountry(name);
+
         user.setState(spinnerState.getSelectedItem().toString().toLowerCase());
         user.setProfile(spinnerProfile.getSelectedItemPosition());
         user.setPath(path);
         user.setImage(image);
 
-        final String parent = spinnerParent.getSelectedItem()
-                .toString()
-                .toLowerCase()
-                .replace("ô", "o")
-                .replace("ã", "a")
-                .replace("ã", "a");
-
+        final String parent = Parent.getBy(spinnerParent.getSelectedItemPosition() + 1).getValue();
         user.setRelationship(parent);
 
         if (validate(user)) {
@@ -349,23 +348,79 @@ public class UserActivity extends BaseAppCompatActivity {
                         @Override
                         public void onSuccess(User type) {
 
-                            new DialogBuilder(UserActivity.this).load()
-                                    .title(R.string.attention)
-                                    .content(create ? R.string.member_added : R.string.member_updated)
-                                    .positiveText(R.string.ok)
-                                    .onPositive(new MaterialDialog.SingleButtonCallback() {
+                            if (main) {
 
-                                        @Override
-                                        public void onClick(@NonNull final MaterialDialog dialog, @NonNull final DialogAction which) {
-                                            finish();
-                                        }
+                                updateUser();
 
-                                    }).show();
+                                loadMain();
+
+                            } else {
+
+                                new DialogBuilder(UserActivity.this).load()
+                                        .title(R.string.attention)
+                                        .content(create ? R.string.member_added : R.string.member_updated)
+                                        .positiveText(R.string.ok)
+                                        .onPositive(new MaterialDialog.SingleButtonCallback() {
+
+                                            @Override
+                                            public void onClick(@NonNull final MaterialDialog dialog, @NonNull final DialogAction which) {
+                                                finish();
+                                            }
+
+                                        }).show();
+                            }
                         }
                     });
                 }
             });
         }
+    }
+
+    private void updateUser() {
+
+        final User user = new PrefManager(UserActivity.this).get(Constants.Pref.USER, User.class);
+
+        if (user != null) {
+
+            user.setPath(path);
+
+            SingleUser.getInstance().setPath(path);
+
+            new PrefManager(UserActivity.this).put(Constants.Pref.USER, user);
+        }
+    }
+
+    private void loadMain() {
+
+        new AuthRequester(this).loadAuth(new RequestListener<User>() {
+
+            @Override
+            public void onStart() {
+
+            }
+
+            @Override
+            public void onError(final Exception e) {
+
+            }
+
+            @Override
+            public void onSuccess(final User user) {
+
+                new DialogBuilder(UserActivity.this).load()
+                        .title(R.string.attention)
+                        .content(create ? R.string.member_added : R.string.member_updated)
+                        .positiveText(R.string.ok)
+                        .onPositive(new MaterialDialog.SingleButtonCallback() {
+
+                            @Override
+                            public void onClick(@NonNull final MaterialDialog dialog, @NonNull final DialogAction which) {
+                                finish();
+                            }
+
+                        }).show();
+            }
+        });
     }
 
     private boolean validate(final User user) {

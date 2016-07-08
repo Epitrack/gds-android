@@ -90,7 +90,7 @@ public class ForgotPasswordActivity extends BaseAppCompatActivity {
 
             return jsonObject.get("message").toString();
         } catch (Exception e) {
-            return "Não foi possível enviar o e-mail. Tente novamente em alguns minutos";
+            return this.getString(R.string.email_fail);
         }
     }
 

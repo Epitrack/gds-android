@@ -22,7 +22,6 @@ import com.epitrack.guardioes.helper.DialogBuilder;
 import com.epitrack.guardioes.manager.PrefManager;
 import com.epitrack.guardioes.push.DeleteService;
 import com.epitrack.guardioes.view.menu.Home;
-import com.epitrack.guardioes.view.menu.profile.ProfileActivity;
 import com.epitrack.guardioes.view.welcome.WelcomeActivity;
 import com.google.android.gms.analytics.GoogleAnalytics;
 import com.google.android.gms.analytics.HitBuilders;
@@ -120,11 +119,7 @@ public class HomeActivity extends AppCompatActivity implements AdapterView.OnIte
 
         final Home home = (Home) adapterView.getItemAtPosition(position);
 
-        if (home == Home.PROFILE) {
-
-            startActivity(new Intent(HomeActivity.this, ProfileActivity.class));
-
-        } else if (home == Home.FACEBOOK) {
+        if (home == Home.FACEBOOK) {
 
             getTracker().send(new HitBuilders.EventBuilder()
                     .setCategory("Action")
@@ -163,7 +158,7 @@ public class HomeActivity extends AppCompatActivity implements AdapterView.OnIte
         }
     }
 
-    private Fragment getCurrentFragment() {
+    public Fragment getCurrentFragment() {
         return getFragmentManager().findFragmentById(R.id.frame_layout);
     }
 
@@ -178,7 +173,7 @@ public class HomeActivity extends AppCompatActivity implements AdapterView.OnIte
         fragmentMap.put(tag, fragment);
     }
 
-    private void replaceFragment(final Class<?> fragmentClass, final String tag) {
+    public void replaceFragment(final Class<?> fragmentClass, final String tag) {
 
         Fragment fragment = fragmentMap.get(tag);
 
