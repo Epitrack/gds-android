@@ -283,7 +283,6 @@ public class SocialFragment extends BaseFragment implements GoogleApiClient.OnCo
     private void loadGoogle() {
 
         final GoogleSignInOptions option = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken(getString(R.string.google_client_id))
                 .requestEmail()
                 .build();
 
