@@ -52,6 +52,7 @@ import butterknife.OnClick;
 public class UserActivity extends BaseAppCompatActivity {
 
     private static final int BRAZIL = 30;
+    private static final int FRANCE = 74;
 
     @Bind(R.id.text_view_message)
     TextView textViewMessage;
@@ -76,6 +77,9 @@ public class UserActivity extends BaseAppCompatActivity {
 
     @Bind(R.id.spinner_gender)
     Spinner spinnerGender;
+
+    @Bind(R.id.text_view_race)
+    TextView textViewRace;
 
     @Bind(R.id.spinner_race)
     Spinner spinnerRace;
@@ -188,6 +192,9 @@ public class UserActivity extends BaseAppCompatActivity {
 
                 textViewState.setVisibility(position == BRAZIL ? View.VISIBLE : View.GONE);
                 spinnerState.setVisibility(position == BRAZIL ? View.VISIBLE : View.GONE);
+
+                textViewRace.setVisibility(position == FRANCE ? View.GONE : View.VISIBLE);
+                spinnerRace.setVisibility(position == FRANCE ? View.GONE : View.VISIBLE);
             }
 
             @Override
