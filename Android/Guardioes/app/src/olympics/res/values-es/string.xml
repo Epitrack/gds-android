@@ -1,77 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="key_facebook">961547147258065</string>
     <string name="about">Sobre</string>
-<string name="about_text">SOBRE LA APLICACIÓN “GUARDIANES DE LA SALUD”
-
-\n\nLa aplicación “Guardianes de la Salud”, desarrollada para celulares, tablets y computadoras, forma parte de la iniciativa del Ministerio de Salud, en sociedad con la Organización No Gubernamental Skoll Global Threats Fund, de los Estados Unidos de América, contemplando evaluar el uso potencial de aplicaciones para dispositivos móviles como parte de la estrategia de fortalecimiento de la capacidad de detección de brotes y emergencias de salud pública, bajo el ámbito del Sistema Único de Salud (SUS), principalmente durante eventos masivos, como en los Juegos Olímpicos y Paralímpicos de 2016.
-
-\n\nEsta estrategia es la evolución del proyecto realizado con la misma institución, denominado “Salud en la Copa” y lanzado exclusivamente para el período de los juegos de la Copa del Mundo FIFA Brasil 2014®, cuyos resultados demostraron ser prometedores y se mantuvieron los intereses de ambas instituciones para la realización de una nueva estrategia para los Juegos Olímpicos y Paralímpicos en 2016.
-
-
-\n\nLa primera versión de la aplicación Guardianes de la Salud ya está disponible para los sistemas operativos iOS de Apple y Android de Google, y también mediante el sitio http://guardioesdasaude.org/.
-
-
-\n\nInicialmente desarrollada en portugués, esta versión de la aplicación “Guardianes de la Salud” está disponible también en los idiomas oficiales de las Naciones Unidas, siendo un instrumento complementario para orientación de los viajeros internacionales que visitan Brasil, principalmente para los cuyo destino son las sedes de los Juegos Olímpicos y Paralímpicos de 2016.
-
-\n\nLa participación en la iniciativa está restringida a los usuarios con 13 años o más de edad. Además, es fundamental que antes de registrarse, los usuarios lean y acepten los “Términos de Uso” y el rellenado del registro simplificado, que contiene apodo, dirección de e-mail, fecha de nacimiento, raza/color, sexo y contraseña de acceso. La participación es voluntaria, sigilosa y los datos proporcionados están protegidos bajo la Ley nº 12.527, de 18 de noviembre de 2011.
-
-\n\nLos resultados del proyecto serán utilizados por la vigilancia de la salud de los Estados, Municipios y Gobierno Federal, vislumbrando detectar y prevenir brotes y emergencias de salud pública, mediante la adopción de medidas de prevención y control oportunas. La divulgación de los resultados del proyecto se realizará de modo agregado y anónimo, contemplando describir el perfil de la condición de salud de los voluntarios, a partir de la información entregada mediante la aplicación.
-
-\n\nSOBRE LA PARTICIPACIÓN VOLUNTARIA
-
-\n\nSu participación es voluntaria y representa una gentil contribución para el perfeccionamiento de la vigilancia de la salud en Brasil. El rellenado del formulario sobre la condición de salud no representa una consulta médica, no garantiza acceso diferenciado a los servicios de salud y el usuario no recibirá el contacto de ningún profesional o servicio de salud para obtener información, ya sea por e-mail o por cualquier otro medio de contacto.
-
-\n\nDurante la participación, podrán ser enviados mensajes de texto a los usuarios, sólo por la aplicación, mediante la tecnología Push (Push Notification), conteniendo orientaciones sobre cuidados de salud u orientaciones de los órganos de vigilancia.
-
-
-\n\nEs importante destacar que en caso de que usted informe que no se siente bien, se recomienda que consulte a un médico de referencia o al servicio de salud más cercano a usted. Para tal fin, está disponible en la aplicación un atajo con búsqueda preconfigurada de servicios de salud y farmacias más cercanas a usted, con base en el servicio de geolocalización de su dispositivo móvil en Google Maps. Esta funcionalidad no forma parte de la aplicación. Por este motivo, será direccionado a la aplicación de mapas de su aparato y se recomienda tener cuidado al transitar por áreas desconocidas y evitar zonas de riesgo. Para tal fin, busque información en los órganos gubernamentales locales.
-
-
-\n\nLa aplicación fue configurada con un conjunto de teléfonos útiles incluyendo el de SAMU (Servicio de Atención Móvil de Urgencia), cuya llamada es gratuita y funciona 24 horas por día atendiendo solicitudes de atención de urgencia para ocurrencias de naturaleza traumática, clínica, pediátrica, quirúrgica, gineco-obstétrica y de salud mental, en residencias, lugares de trabajo y vías públicas.
-
-
-\n\nBENEFICIOS DE LA PARTICIPACIÓN
-
-\n\n•       Participar activamente en las acciones de vigilancia en salud que vislumbran la prevención de enfermedades en la comunidad;
-
-\n\n•       Acceder a los contactos de servicios públicos útiles sin necesitar alterar su agenda de teléfonos;
-
-\n\n•       Acceder fácilmente a información útil sobre cuidados de salud y medidas de prevención contra enfermedades;
-
-\n\n•       Disfrutar de facilidades, como la búsqueda preconfigurada por Unidades de Urgencias y farmacias cercanas (20 km) en Google Maps;
-
-
-\n\n•       Seguir los resultados del proyecto, mediante el website
- www.guardioesdasaude.org;
-
-\n\nSEPA MÁS SOBRE EL USO DE LA APLICACIÓN
-
-\n\nLa aplicación “Guardianes de la Salud” está disponible gratuitamente para download y utilización en sistemas operativos iOS, Android y navegadores de Internet. En diversas ciudades existen puntos de Internet para uso gratuito o el usuario podrá utilizar su propio paquete de datos contratado.
-
-
-\n\nSe informa que las llamadas telefónicas para los servicios públicos de referencia registrados en la aplicación necesitan de un plan de telefonía contratado. Por lo tanto, consulte a su operadora antes de utilizar esta funcionalidad. Este servicio no funcionará sin la presencia de la función de teléfono en el aparato. Esta información debe ser observada, principalmente por usuarios de otros países.
-
-
-\n\nSOBRE LA SOCIEDAD
-
-\n\nEsta iniciativa pionera es de la Secretaría de Vigilancia de la Salud del Ministerio de la Salud, en sociedad con las ciudades sedes de los Juegos Olímpicos y Paralímpicos. En la sociedad, la Organización No Gubernamental (ONG) Skoll Global Threats Fund es responsable por los costos de contratación y desarrollo del software, bajo la supervisión de la Asociación Brasileña de Profesionales de Epidemiología de Campo (ProEpi), ambas son Organizaciones No Gubernamentales, sin fines de lucro, que actúan en el perfeccionamiento de la vigilancia de la salud en Brasil y en el mundo.
-
-\n\nProEpi es responsable por garantizar que los requisitos establecidos por el Ministerio de Salud y por Skoll Global Threats Fund se cumplan, conforme a lo previsto en el proyecto: privacidad de los datos de los usuarios, transparencia y publicidad de los resultados públicos del proyecto y disponibilidad del código fuente y documentación en ambiente de libre acceso para download, adecuación y uso de la aplicación por servicios de salud de Brasil y de países interesados, siempre que esté garantizada la finalidad sin fines de lucro.
-
-\n\nAGRADECIMIENTO
-
-\n\nLas instituciones organizadoras agradecen a todos los voluntarios, profesionales de salud y gestores del Sistema Único de Salud por creer en el proyecto piloto y apoyar esta iniciativa pionera en la salud pública internacional.
-
-\n\nAgradecimiento especial a las Secretarías de Salud de los Municipios Sedes de los Juegos Olímpicos y Paralímpicos (Belo Horizonte, Distrito Federal, Manaus, Río de Janeiro, Salvador y São Paulo).
-</string>
+    <string name="about_text">SOBRE LA APLICACIÓN “GUARDIANES DE LA SALUD”\n\nLa aplicación “Guardianes de la Salud”, desarrollada para celulares, tablets y computadoras, forma parte de la iniciativa del Ministerio de Salud, en sociedad con la Organización No Gubernamental Skoll Global Threats Fund, de los Estados Unidos de América, contemplando evaluar el uso potencial de aplicaciones para dispositivos móviles como parte de la estrategia de fortalecimiento de la capacidad de detección de brotes y emergencias de salud pública, bajo el ámbito del Sistema Único de Salud (SUS), principalmente durante eventos masivos, como en los Juegos Olímpicos y Paralímpicos de 2016. \n\nEsta estrategia es la evolución del proyecto realizado con la misma institución, denominado “Salud en la Copa” y lanzado exclusivamente para el período de los juegos de la Copa del Mundo FIFA Brasil 2014®, cuyos resultados demostraron ser prometedores y se mantuvieron los intereses de ambas instituciones para la realización de una nueva estrategia para los Juegos Olímpicos y Paralímpicos en 2016. \n\nLa primera versión de la aplicación Guardianes de la Salud ya está disponible para los sistemas operativos iOS de Apple y Android de Google, y también mediante el sitio http://guardioesdasaude.org/. \n\nInicialmente desarrollada en portugués, esta versión de la aplicación “Guardianes de la Salud” está disponible también en los idiomas oficiales de las Naciones Unidas, siendo un instrumento complementario para orientación de los viajeros internacionales que visitan Brasil, principalmente para los cuyo destino son las sedes de los Juegos Olímpicos y Paralímpicos de 2016.  \n\nLa participación en la iniciativa está restringida a los usuarios con 13 años o más de edad. Además, es fundamental que antes de registrarse, los usuarios lean y acepten los “Términos de Uso” y el rellenado del registro simplificado, que contiene apodo, dirección de e-mail, fecha de nacimiento, raza/color, sexo y contraseña de acceso. La participación es voluntaria, sigilosa y los datos proporcionados están protegidos bajo la Ley nº 12.527, de 18 de noviembre de 2011.\n\nLos resultados del proyecto serán utilizados por la vigilancia de la salud de los Estados, Municipios y Gobierno Federal, vislumbrando detectar y prevenir brotes y emergencias de salud pública, mediante la adopción de medidas de prevención y control oportunas. La divulgación de los resultados del proyecto se realizará de modo agregado y anónimo, contemplando describir el perfil de la condición de salud de los voluntarios, a partir de la información entregada mediante la aplicación. \n\nSOBRE LA PARTICIPACIÓN VOLUNTARIA\n\nSu participación es voluntaria y representa una gentil contribución para el perfeccionamiento de la vigilancia de la salud en Brasil. El rellenado del formulario sobre la condición de salud no representa una consulta médica, no garantiza acceso diferenciado a los servicios de salud y el usuario no recibirá el contacto de ningún profesional o servicio de salud para obtener información, ya sea por e-mail o por cualquier otro medio de contacto. \n\nDurante la participación, podrán ser enviados mensajes de texto a los usuarios, sólo por la aplicación, mediante la tecnología Push (Push Notification), conteniendo orientaciones sobre cuidados de salud u orientaciones de los órganos de vigilancia. \n\nEs importante destacar que en caso de que usted informe que no se siente bien, se recomienda que consulte a un médico de referencia o al servicio de salud más cercano a usted. Para tal fin, está disponible en la aplicación un atajo con búsqueda preconfigurada de servicios de salud y farmacias más cercanas a usted, con base en el servicio de geolocalización de su dispositivo móvil en Google Maps. Esta funcionalidad no forma parte de la aplicación. Por este motivo, será direccionado a la aplicación de mapas de su aparato y se recomienda tener cuidado al transitar por áreas desconocidas y evitar zonas de riesgo. Para tal fin, busque información en los órganos gubernamentales locales. \n\nLa aplicación fue configurada con un conjunto de teléfonos útiles incluyendo el de SAMU (Servicio de Atención Móvil de Urgencia), cuya llamada es gratuita y funciona 24 horas por día atendiendo solicitudes de atención de urgencia para ocurrencias de naturaleza traumática, clínica, pediátrica, quirúrgica, gineco-obstétrica y de salud mental, en residencias, lugares de trabajo y vías públicas.\n\nBENEFICIOS DE LA PARTICIPACIÓN\n\n•       Participar activamente en las acciones de vigilancia en salud que vislumbran la prevención de enfermedades en la comunidad;\n\n•       Acceder a los contactos de servicios públicos útiles sin necesitar alterar su agenda de teléfonos;\n\n•       Acceder fácilmente a información útil sobre cuidados de salud y medidas de prevención contra enfermedades;\n\n•       Disfrutar de facilidades, como la búsqueda preconfigurada por Unidades de Urgencias y farmacias cercanas (20 km) en Google Maps;\n\n•       Seguir los resultados del proyecto, mediante el website www.guardioesdasaude.org;\n\nSEPA MÁS SOBRE EL USO DE LA APLICACIÓN\n\nLa aplicación “Guardianes de la Salud” está disponible gratuitamente para download y utilización en sistemas operativos iOS, Android y navegadores de Internet. En diversas ciudades existen puntos de Internet para uso gratuito o el usuario podrá utilizar su propio paquete de datos contratado. \n\nSe informa que las llamadas telefónicas para los servicios públicos de referencia registrados en la aplicación necesitan de un plan de telefonía contratado. Por lo tanto, consulte a su operadora antes de utilizar esta funcionalidad. Este servicio no funcionará sin la presencia de la función de teléfono en el aparato. Esta información debe ser observada, principalmente por usuarios de otros países. \n\nSOBRE LA SOCIEDAD\n\nEsta iniciativa pionera es de la Secretaría de Vigilancia de la Salud del Ministerio de la Salud, en sociedad con las ciudades sedes de los Juegos Olímpicos y Paralímpicos. En la sociedad, la Organización No Gubernamental (ONG) Skoll Global Threats Fund es responsable por los costos de contratación y desarrollo del software, bajo la supervisión de la Asociación Brasileña de Profesionales de Epidemiología de Campo (ProEpi), ambas son Organizaciones No Gubernamentales, sin fines de lucro, que actúan en el perfeccionamiento de la vigilancia de la salud en Brasil y en el mundo.\n\nProEpi es responsable por garantizar que los requisitos establecidos por el Ministerio de Salud y por Skoll Global Threats Fund se cumplan, conforme a lo previsto en el proyecto: privacidad de los datos de los usuarios, transparencia y publicidad de los resultados públicos del proyecto y disponibilidad del código fuente y documentación en ambiente de libre acceso para download, adecuación y uso de la aplicación por servicios de salud de Brasil y de países interesados, siempre que esté garantizada la finalidad sin fines de lucro. \n\nAGRADECIMIENTO\n\nLas instituciones organizadoras agradecen a todos los voluntarios, profesionales de salud y gestores del Sistema Único de Salud por creer en el proyecto piloto y apoyar esta iniciativa pionera en la salud pública internacional. \n\nAgradecimiento especial a las Secretarías de Salud de los Municipios Sedes de los Juegos Olímpicos y Paralímpicos (Belo Horizonte, Distrito Federal, Manaus, Río de Janeiro, Salvador y São Paulo). </string>
     <string name="abr">Abr</string>
     <string name="add_member">Añadir miembro del domicilio</string>
     <string name="adicionar_novo_integrante">Añadir \\n nuevo miembro</string>
+    <string name="ago">Ago</string>
     <string name="abril">Abril</string>
     <string name="agosto">Agosto</string>
-    <string name="alert">Alertas</string>
     <string name="alert_pharmacy">Algunas farmacias pueden no exhibirse en el mapa.</string>
-    <string name="ago">Ago</string>
+    <string name="alert">Alertas</string>
     <string name="anos">años</string>
     <string name="app_name">Guardianes de la Salud</string>
     <string name="app_name_short">Guardianes</string>
@@ -80,14 +19,14 @@
     <string name="calendar">Calendario</string>
     <string name="bem">Bien</string>
     <string name="call">Ligar</string>
-    <string name="care_content_01">SALUD DEL VIAJERO: \n\n•       Busque a su médico, preferencialmente, entre 4 y 8 semanas antes del viaje para informar su itinerario. Solicite orientación sobre cuidados para protección contra enfermedades y lesiones; \n\n•       Usted puede tener dificultad o no encontrar los medicamentos que utiliza habitualmente, durante el viaje. Solicite orientación a su médico sobre qué medicamentos y en qué cantidad debe llevar, incluyendo en el equipaje de mano; \n\n•       Cargue con usted sus documentos de identificación, de preferencia en inglés y portugués, con información de contactos personales, tipo sanguíneo, se tiene alergias, diabetes u otras enfermedades que puedan requerir atención particular; \n\n•       Toda gestante debe consultar a su médico antes del viaje, ya que estará sujeta a varios riesgos y el viaje puede afectar su seguridad y comodidad; \n\n•       Antes de viajar consulte a la empresa de transporte sobre las reglas específicas para gestantes; \n\n•       Brasil es un país de clima tropical. Se recomienda al viajero tomar constantemente líquidos para evitar deshidratación; \n\n•       Use ropa y calzado cómodos. Le brindarán seguridad y comodidad contra torceduras, picaduras de insectos y accidentes con animales ponzoñosos; \n\n•       Para protegerse del sol, cúbrase con ropa apropiada, utilice sobrero o gorra y gafas oscuras. Evite la exposición directa al sol entre 10 horas de la mañana y 4 horas de la tarde; \n\n•       Use protector solar con factor de protección adecuado al color de su piel, de acuerdo con las orientaciones del fabricante. Incluso en lugares más fríos, su piel estará protegida de los rayos solares; \n\n•       Use repelentes cuando haya necesidad; \n\n•       Lávese las manos con agua y jabón varias veces al día, principalmente antes de ingerir alimentos, después de utilizar transporte público, visitar mercados o lugares con un gran flujo de personas; \n\n•       En Brasil, está prohibido por ley conducir después del consumo de bebidas alcohólicas, incluso en pequeñas cantidades.</string>
-    <string name="care_title_01">CUIDADOS BÁSICOS</string>
     <string name="cancel">Cancelar</string>
+    <string name="care_content_01">SALUD DEL VIAJERO: \n\n•       Busque a su médico, preferencialmente, entre 4 y 8 semanas antes del viaje para informar su itinerario. Solicite orientación sobre cuidados para protección contra enfermedades y lesiones; \n\n•       Usted puede tener dificultad o no encontrar los medicamentos que utiliza habitualmente, durante el viaje. Solicite orientación a su médico sobre qué medicamentos y en qué cantidad debe llevar, incluyendo en el equipaje de mano; \n\n•       Cargue con usted sus documentos de identificación, de preferencia en inglés y portugués, con información de contactos personales, tipo sanguíneo, se tiene alergias, diabetes u otras enfermedades que puedan requerir atención particular; \n\n•       Toda gestante debe consultar a su médico antes del viaje, ya que estará sujeta a varios riesgos y el viaje puede afectar su seguridad y comodidad; \n\n•       Antes de viajar consulte a la empresa de transporte sobre las reglas específicas para gestantes; \n\n•       Brasil es un país de clima tropical. Se recomienda al viajero tomar constantemente líquidos para evitar deshidratación; \n\n•       Use ropa y calzado cómodos. Le brindarán seguridad y comodidad contra torceduras, picaduras de insectos y accidentes con animales ponzoñosos; \n\n•       Para protegerse del sol, cúbrase con ropa apropiada, utilice sobrero o gorra y gafas oscuras. Evite la exposición directa al sol entre 10 horas de la mañana y 4 horas de la tarde; \n\n•       Use protector solar con factor de protección adecuado al color de su piel, de acuerdo con las orientaciones del fabricante. Incluso en lugares más fríos, su piel estará protegida de los rayos solares; \n\n•       Use repelentes cuando haya necesidad; \n\n•       Lávese las manos con agua y jabón varias veces al día, principalmente antes de ingerir alimentos, después de utilizar transporte público, visitar mercados o lugares con un gran flujo de personas; \n\n•       En Brasil, está prohibido por ley conducir después del consumo de bebidas alcohólicas, incluso en pequeñas cantidades.</string>
     <string name="category">Categoría</string>
-    <string name="congratulations">Felicitaciones</string>
+    <string name="care_title_01">CUIDADOS BÁSICOS</string>
     <string name="confirm">Confirmar</string>
-    <string name="contact">Entre en contacto</string>
+    <string name="congratulations">Felicitaciones</string>
     <string name="crop_photo">Recortar foto</string>
+    <string name="contact">Entre en contacto</string>
     <string name="defense_text">Defensa Civil</string>
     <string name="delete_profile">¿Desea remover el perfil definitivamente?</string>
     <string name="dez">Diez</string>
@@ -108,10 +47,10 @@
     <string name="erro_new_user">No fue posible realizar el registro. ¡Intente nuevamente en algunos minutos!</string>
     <string name="error_add_new_member">Complete su información para completar el registro</string>
     <string name="exit">Salir</string>
-    <string name="exit_message">¿Está seguro de que desea salir de la aplicación?</string>
     <string name="facebook">Facebook</string>
-    <string name="facebook_cancel">Error al hacer el login con Facebook.</string>
+    <string name="exit_message">¿Está seguro de que desea salir de la aplicación?</string>
     <string name="facebook_error">Error al hacer el login con Facebook.</string>
+    <string name="facebook_cancel">Error al hacer el login con Facebook.</string>
     <string name="facebook_fail">Error al hacer el login con Facebook.</string>
     <string name="fev">Feb</string>
     <string name="fevereiro">Febrero</string>
@@ -119,8 +58,8 @@
     <string name="forgot_password">Digite su e-mail y verifique su buzón de entrada.</string>
     <string name="freq_label">informe de frecuencia de envío</string>
     <string name="freq_relatorio">la frecuencia de envío de informes</string>
-    <string name="frequency">Frecuencia</string>
     <string name="game_enjoy">Diviértase</string>
+    <string name="frequency">Frecuencia</string>
     <string name="gender">Sexo</string>
     <string name="general">General</string>
     <string name="general_ranking">Ranking General</string>
@@ -144,12 +83,12 @@
     <string name="hint_repeat_password">Repetir Contraseña</string>
     <string name="home">Inicio</string>
     <string name="hospital">UPAs</string>
-    <string name="hyphen">-</string>
     <string name="interest">Intereses</string>
-    <string name="jan">Ene</string>
+    <string name="hyphen">-</string>
     <string name="janeiro">Enero</string>
-    <string name="join_now">¡Participe Ahora!</string>
+    <string name="jan">Ene</string>
     <string name="join">¡Participe\n Ahora!</string>
+    <string name="join_now">¡Participe Ahora!</string>
     <string name="jul">Jul</string>
     <string name="julho">Julio</string>
     <string name="jun">Jun</string>
@@ -159,8 +98,8 @@
     <string name="locale">es</string>
     <string name="location_disabled">Para contribuir activamente a la vigilancia de la salud en Brasil tiene que compartir su ubicación</string>
     <string name="login">Entrar</string>
-    <string name="mails">E-mails</string>
     <string name="mai">May</string>
+    <string name="mails">E-mails</string>
     <string name="maio">Mayo</string>
     <string name="mal">Mal</string>
     <string name="map_health">Mapa de la Salud</string>
@@ -190,13 +129,13 @@
     <string name="message_present_symptom">Algunas señales y síntomas se presentarán en la próxima pantalla en caso de que la opción "Mal" sea seleccionada.</string>
     <string name="message_prevent">Vea cómo prevenirse de enfermedades, qué UPAs y farmacias están más cerca de usted y los teléfonos útiles para casos de emergencia.</string>
     <string name="message_privacy">Nos preocupamos con su privacidad</string>
-    <string name="message_privacy_tip_1">Su participación es voluntaria y anónima</string>
     <string name="message_privacy_tip_2">Los dados proporcionados serán utilizados para promover una comunidad más saludable</string>
+    <string name="message_privacy_tip_1">Su participación es voluntaria y anónima</string>
     <string name="message_privacy_tip_3">Para obtener más información, consulte los Términos de Uso</string>
     <string name="message_profile">undefined</string>
     <string name="message_register_info">¿Desea registrar su información?</string>
-    <string name="message_register_no_symptom">Escoja algún síntoma antes de confirmar.</string>
     <string name="message_select_join">Seleccione alguno de los perfiles de abajo para comenzar a participar.</string>
+    <string name="message_register_no_symptom">Escoja algún síntoma antes de confirmar.</string>
     <string name="message_select_member">Seleccione un integrante</string>
     <string name="message_select_profile">Seleccione cuál de los perfiles de abajo desea editar.</string>
     <string name="message_symptom">Marque en la lista los síntomas que usted presenta.</string>
@@ -215,8 +154,8 @@
     <string name="no">No</string>
     <string name="not_now">Ahora no</string>
     <string name="not_remove_member">No se puede eliminar su perfil</string>
-    <string name="notification">Notificaciones</string>
     <string name="notice">Noticias</string>
+    <string name="notification">Notificaciones</string>
     <string name="nov">Nov</string>
     <string name="novembro">Noviembre</string>
     <string name="obrigado">¡Gracias por la información!</string>
@@ -235,28 +174,7 @@
     <string name="pointing">Puntuación</string>
     <string name="pointing_message">La puntuación es equivalente a cada fase desbloqueada por todos los usuarios tomando en cuenta su país de origen.</string>
     <string name="police_text">Policía Militar</string>
-<string name="prevention_content_01">MALARIA:
-\n\n•       En Brasil, la transmisión se concentra en la Región Amazónica, compuesta por los estados de Acre, Amapá, Amazonas, Maranhão, Mato Grosso, Pará, Rondônia, Roraima y Tocantins;
-\n\n•       En áreas de transmisión de malaria, es fundamental que el viajero tenga conocimiento que el horario de mayor actividad de mosquitos vectores de malaria, es de la puesta del sol hasta el amanecer;
-\n\n•       Use ropas clara y con mangas largas, durante las actividades de exposición elevada;
-\n\n•       Aplique repelente en las áreas expuestas de la piel, siguiendo la orientación del fabricante. En niños con edad inferior a dos años, no se recomienda el uso de repelente sin orientación médica;
-\n\n•       En áreas de transmisión de malaria es imprescindible que el viajero esté atento al surgimiento de síntomas de la enfermedad, como fiebre, dolor en el cuerpo y dolor de cabeza;
-\n\n•       En caso de que se manifieste algún síntoma de la enfermedad, busque la unidad de salud especializada más cercana. Lo ideal es que esta atención sea realizada cuanto antes, en hasta 48 horas después de los primeros síntomas;
-\n\n•       Brasil cuenta con una red pública de salud estructurada para diagnosticar y tratar a los pacientes, de forma oportuna y adecuada;
-\n\n•       En caso de que usted desee obtener más información acerca de la malaria, antes de realizar su viaje, busque orientación en uno de los Centros de Referencia.
-\n\nPrevéngase contra enfermedades de transmisión respiratoria:
-\n\n•       Lavarse las manos con agua y jabón antes de comer, de tocarse los ojos, la boca y la nariz y después de toser, estornudar o usar el baño;
-\n\n•       Las personas enfermas deben quedarse en reposo, consumir alimentación balanceada, aumentar la ingestión de líquidos y evitar aglomeraciones y ambientes cerrados;
-\n\n•       Mantenga los ambientes ventilados;
-\n\n•       Esté siempre atento al presentar síntomas respiratorios de mayor gravedad y busque inmediatamente asistencia médica.
-\n\nConsuma alimentos y bebidas de forma saludable:
-\n\n•       Evite consumir alimentos cuyas condiciones higiénicas, de preparación y acondicionamiento, sean precarias;
-\n\n•       Prefiera alimentos que contengan un bajo contenido de azúcares, grasas y sal;
-\n\n•       Beba bastante líquido, preferentemente agua o jugo. Evite alimentos crudos o mal cocidos, principalmente mariscos;
-\n\n•       Los alimentos envasados deben contar contener en el rótulo la identificación del productor, fecha de validez y el embalaje debe estar íntegro;
-\n\n•       Durante el turismo rural, dé preferencia a los alimentos que pueden quedarse sin refrigeración y no se echen a perder con el calor;
-\n\n•       En caso de que tenga diarrea y vómito debidos a la ingestión de alimentos y bebidas, es necesario tener un cuidado redoblado con la deshidratación. Se recomienda la ingestión de sal de rehidratación oral, puesta a disposición gratuitamente por el Sistema Único de Salud, u otras soluciones del tipo. Las bebidas deportivas no compensan correctamente las pérdidas y no deben ser utilizadas para el tratamiento de la enfermedad diarreica.
-</string>
+    <string name="prevention_content_01">MALARIA:\n\n•       En Brasil, la transmisión se concentra en la Región Amazónica, compuesta por los estados de Acre, Amapá, Amazonas, Maranhão, Mato Grosso, Pará, Rondônia, Roraima y Tocantins;\n\n•       En áreas de transmisión de malaria, es fundamental que el viajero tenga conocimiento que el horario de mayor actividad de mosquitos vectores de malaria, es de la puesta del sol hasta el amanecer;\n\n•       Use ropas clara y con mangas largas, durante las actividades de exposición elevada;\n\n•       Aplique repelente en las áreas expuestas de la piel, siguiendo la orientación del fabricante. En niños con edad inferior a dos años, no se recomienda el uso de repelente sin orientación médica;\n\n•       En áreas de transmisión de malaria es imprescindible que el viajero esté atento al surgimiento de síntomas de la enfermedad, como fiebre, dolor en el cuerpo y dolor de cabeza;\n\n•       En caso de que se manifieste algún síntoma de la enfermedad, busque la unidad de salud especializada más cercana. Lo ideal es que esta atención sea realizada cuanto antes, en hasta 48 horas después de los primeros síntomas;\n\n•       Brasil cuenta con una red pública de salud estructurada para diagnosticar y tratar a los pacientes, de forma oportuna y adecuada;\n\n•       En caso de que usted desee obtener más información acerca de la malaria, antes de realizar su viaje, busque orientación en uno de los Centros de Referencia.\n\nPrevéngase contra enfermedades de transmisión respiratoria: \n\n•       Lavarse las manos con agua y jabón antes de comer, de tocarse los ojos, la boca y la nariz y después de toser, estornudar o usar el baño;\n\n•       Las personas enfermas deben quedarse en reposo, consumir alimentación balanceada, aumentar la ingestión de líquidos y evitar aglomeraciones y ambientes cerrados;\n\n•       Mantenga los ambientes ventilados;\n\n•       Esté siempre atento al presentar síntomas respiratorios de mayor gravedad y busque inmediatamente asistencia médica.\n\nConsuma alimentos y bebidas de forma saludable:\n\n•       Evite consumir alimentos cuyas condiciones higiénicas, de preparación y acondicionamiento, sean precarias;\n\n•       Prefiera alimentos que contengan un bajo contenido de azúcares, grasas y sal;\n\n•       Beba bastante líquido, preferentemente agua o jugo. Evite alimentos crudos o mal cocidos, principalmente mariscos;\n\n•       Los alimentos envasados deben contar contener en el rótulo la identificación del productor, fecha de validez y el embalaje debe estar íntegro;\n\n•       Durante el turismo rural, dé preferencia a los alimentos que pueden quedarse sin refrigeración y no se echen a perder con el calor;\n\n•       En caso de que tenga diarrea y vómito debidos a la ingestión de alimentos y bebidas, es necesario tener un cuidado redoblado con la deshidratación. Se recomienda la ingestión de sal de rehidratación oral, puesta a disposición gratuitamente por el Sistema Único de Salud, u otras soluciones del tipo. Las bebidas deportivas no compensan correctamente las pérdidas y no deben ser utilizadas para el tratamiento de la enfermedad diarreica.</string>
     <string name="prevention_title_01">PREVENCIÓN  </string>
     <string name="privacy">Privacidad</string>
     <string name="profile">Perfil</string>
@@ -273,28 +191,7 @@
     <string name="residence_state">Estado</string>
     <string name="respiratory">Respiratoria</string>
     <string name="resume">Resumen</string>
-<string name="safe_sex_content">\n\nCONDÓN
-n\n•       El condón es la manera práctica para protegerse contra VIH/ sida, las hepatitis virales y las infecciones sexualmente transmisibles (IST), como la sífilis y la gonorrea.
-n\n•       Use y descarte correctamente el preservativo.
-n\n•       Si el condón “se reventó” o usted tuvo sexo sin condón, puede ser necesario el uso de profilaxis post-exposición de riesgo al VIH, conocida como PEP.
-n\n•       PEP
-n\n•       PEP es un tratamiento con medicamento antirretroviral que evita la infección por el virus VIH, causante del sida. Es indicado para las personas que presentaron exposición de riesgo al VIH, como sexo ocasional, violencia sexual y accidente ocupacional con material biológico.
-n\n•       En caso de que sea indicado por el médico, el tratamiento de PEP dura 28 días y debe ser iniciado en hasta 72 horas después del contacto sexual sin protección.
-n\n¿Dónde encontrar PEP? (Enlace directo hacia la aplicación y/o sitio)  http://pep.aids.gov.br
-n\nIMPORTANTE
-n\n•       Todos tienen derecho a la información y a la atención sin prejuicios, estigmas o discriminación.
-n\n•       En Brasil, los condones femeninos y masculinos y el gel lubricante son distribuidos gratuitamente en unidades de salud, albergues, Centros de Atención al Turista y otros.  Infórmese sobre los puntos de distribución más cercanos.
-n\n•       Si necesita medicamentos contra el VIH (los perdió u olvidó), busque la unidad de salud más cercana, llevando algún documento de identificación. Turista extranjero, infórmese con su seguro de salud (health insurance).
-n\nRECUERDE
-n\n•       Evite la infección por hepatitis virales. Si se hace tatuajes o coloca piercing, opte por lugares con licencia sanitaria expedida por la Vigilancia Sanitaria local. Exija esa certificación, si no está visible en el local.
-n\n•       Exija que el material utilizado esté esterilizado o sea desechable.
-n\n•       No comparta sus objetos de uso personal, como alicates de cutícula, rastrillos, cepillo de dientes, agujas y jeringas con otras personas.
-n\n•       Si observa cualquier señal o síntoma, como secreciones o heridas,  o algún otro problema de salud, busque orientación del profesional de salud.
-n\n¿SABÍA USTED?
-n\n•       Muchas personas viven con VIH y hepatitis virales y no lo saben.
-n\n•       La única manera de enterarse es realizando la prueba. Las pruebas anti-VIH y de las hepatitis son gratuitas y se ofrecen en la red pública de salud. Turista extranjero, infórmese con su seguro de salud.
-n\n•       Existe vacuna para la Hepatitis B. Debe ser tomada en 3 dosis en períodos diferentes. Infórmese dónde está disponible.
-</string>
+    <string name="safe_sex_content">\n\nCONDÓNn\n•       El condón es la manera práctica para protegerse contra VIH/ sida, las hepatitis virales y las infecciones sexualmente transmisibles (IST), como la sífilis y la gonorrea. n\n•       Use y descarte correctamente el preservativo.n\n•       Si el condón “se reventó” o usted tuvo sexo sin condón, puede ser necesario el uso de profilaxis post-exposición de riesgo al VIH, conocida como PEP. n\n•       PEPn\n•       PEP es un tratamiento con medicamento antirretroviral que evita la infección por el virus VIH, causante del sida. Es indicado para las personas que presentaron exposición de riesgo al VIH, como sexo ocasional, violencia sexual y accidente ocupacional con material biológico.n\n•       En caso de que sea indicado por el médico, el tratamiento de PEP dura 28 días y debe ser iniciado en hasta 72 horas después del contacto sexual sin protección.n\n¿Dónde encontrar PEP? (Enlace directo hacia la aplicación y/o sitio)  http://pep.aids.gov.br n\nIMPORTANTEn\n•       Todos tienen derecho a la información y a la atención sin prejuicios, estigmas o discriminación. n\n•       En Brasil, los condones femeninos y masculinos y el gel lubricante son distribuidos gratuitamente en unidades de salud, albergues, Centros de Atención al Turista y otros.  Infórmese sobre los puntos de distribución más cercanos.n\n•       Si necesita medicamentos contra el VIH (los perdió u olvidó), busque la unidad de salud más cercana, llevando algún documento de identificación. Turista extranjero, infórmese con su seguro de salud (health insurance). n\nRECUERDE n\n•       Evite la infección por hepatitis virales. Si se hace tatuajes o coloca piercing, opte por lugares con licencia sanitaria expedida por la Vigilancia Sanitaria local. Exija esa certificación, si no está visible en el local.n\n•       Exija que el material utilizado esté esterilizado o sea desechable.n\n•       No comparta sus objetos de uso personal, como alicates de cutícula, rastrillos, cepillo de dientes, agujas y jeringas con otras personas.n\n•       Si observa cualquier señal o síntoma, como secreciones o heridas,  o algún otro problema de salud, busque orientación del profesional de salud.n\n¿SABÍA USTED?n\n•       Muchas personas viven con VIH y hepatitis virales y no lo saben. n\n•       La única manera de enterarse es realizando la prueba. Las pruebas anti-VIH y de las hepatitis son gratuitas y se ofrecen en la red pública de salud. Turista extranjero, infórmese con su seguro de salud. n\n•       Existe vacuna para la Hepatitis B. Debe ser tomada en 3 dosis en períodos diferentes. Infórmese dónde está disponible.</string>
     <string name="safe_sex_title">PRACTIQUE SEXO DE FORMA SEGURA</string>
     <string name="save">Guardar</string>
     <string name="search">Buscar</string>
@@ -307,8 +204,8 @@ n\n•       Existe vacuna para la Hepatitis B. Debe ser tomada en 3 dosis en pe
     <string name="share">Compartir</string>
     <string name="share_ok">¡Gracias por compartir!</string>
     <string name="share_participation">Yo hago mi parte, haga su parte también en el combate al mosquito Aedes aegypti #ZikaZero. Acceda: http://www.guardioesdasaude.org</string>
-    <string name="subject">Asunto</string>
     <string name="sound">Sonar</string>
+    <string name="subject">Asunto</string>
     <string name="sus">SUS</string>
     <string name="symptom_coceira">Comezón</string>
     <string name="symptom_contato">Tuve contacto con alguien que tiene uno de estos síntomas</string>
@@ -341,16 +238,7 @@ n\n•       Existe vacuna para la Hepatitis B. Debe ser tomada en 3 dosis en pe
     <string name="twitter_fail">No se pudo acceder guardianes de la salud a través de Twitter. Por favor, inténtelo de nuevo en unos pocos minutos o inicio de sesión utilizando su correo electrónico.</string>
     <string name="useful_phones">Teléfonos Útiles</string>
     <string name="user_exist">Registro realizado anteriormente con esa red social.</string>
-<string name="vacinne_content_01">\n\n•       La Organización Mundial de la Salud (OMS) informa que no existe calendario internacional de vacunación para todos los viajeros. Para cada viajero, será adoptada una recomendación personalizada, de acuerdo con los países a ser visitados, dependiendo del tipo, duración y tiempo disponible para la aplicación de la vacuna antes de la partida.
-\n\n•       Brasil no exige el Certificado Internacional de Vacunación o Profilaxis para la entrada al país.
-\n\n•       Asegúrese de que sus vacunas de rutina estén al día, de acuerdo con las recomendaciones de su país de origen, ya que es una medida eficaz y segura para la prevención de varias enfermedades.
-\n\n•       Debido a la circulación de sarampión en Europa, África y Asia se recomienda que las personas con origen de o destino a países con ocurrencia de esta enfermedad sean vacunadas previamente.
-\n\n•       La preparación para el viaje representa una buena oportunidad para verificar el estado de las vacunas de los bebés, niños, adolescentes, adultos y personas de edad avanzada.
-\n\n•       Todo habitante o visitante de cualquier ciudad brasileña tiene disponible también las vacunas para influenza y poliomielitis, que son enfermedades relacionadas a posibles emergencias de salud pública de importancia internacional para la Organización Mundial de la Salud.
-\n\nPREVENCIÓN CONTRA FIEBRE AMARILLA:
-\n\n•       Prevéngase contra la fiebre amarilla tomando la vacuna 10 días antes de visitar áreas con bosques o de practicar turismo ecológico o rural.
-\n\n•       Busque a su médico, ya que él podrá ayudarlo a decidir si la vacuna es necesaria, con base en su plan de viaje.
-</string>
+    <string name="vacinne_content_01">\n\n•       La Organización Mundial de la Salud (OMS) informa que no existe calendario internacional de vacunación para todos los viajeros. Para cada viajero, será adoptada una recomendación personalizada, de acuerdo con los países a ser visitados, dependiendo del tipo, duración y tiempo disponible para la aplicación de la vacuna antes de la partida.\n\n•       Brasil no exige el Certificado Internacional de Vacunación o Profilaxis para la entrada al país.\n\n•       Asegúrese de que sus vacunas de rutina estén al día, de acuerdo con las recomendaciones de su país de origen, ya que es una medida eficaz y segura para la prevención de varias enfermedades.\n\n•       Debido a la circulación de sarampión en Europa, África y Asia se recomienda que las personas con origen de o destino a países con ocurrencia de esta enfermedad sean vacunadas previamente.\n\n•       La preparación para el viaje representa una buena oportunidad para verificar el estado de las vacunas de los bebés, niños, adolescentes, adultos y personas de edad avanzada.\n\n•       Todo habitante o visitante de cualquier ciudad brasileña tiene disponible también las vacunas para influenza y poliomielitis, que son enfermedades relacionadas a posibles emergencias de salud pública de importancia internacional para la Organización Mundial de la Salud.\n\nPREVENCIÓN CONTRA FIEBRE AMARILLA: \n\n•       Prevéngase contra la fiebre amarilla tomando la vacuna 10 días antes de visitar áreas con bosques o de practicar turismo ecológico o rural.\n\n•       Busque a su médico, ya que él podrá ayudarlo a decidir si la vacuna es necesaria, con base en su plan de viaje.</string>
     <string name="vacinne_title_01">VACUNAS</string>
     <string name="validation_confirm_password">Las contraseñas no son iguales.</string>
     <string name="validation_empty">Campo obligatorio</string>
@@ -370,92 +258,7 @@ n\n•       Existe vacuna para la Hepatitis B. Debe ser tomada en 3 dosis en pe
     <string name="yes">Sí</string>
     <string name="you">Tú</string>
     <string name="zika_136">136</string>
-<string name="zika_content_01">\n\n•       Los virus de la Dengue, Zika y Chikungunya son transmitidos por el mosquito Aedes aegypti y presentan señales y síntomas parecidos.
-
-\n\n•       Es importante que usted busque al servicio de salud más cercano cuando presente fiebre, manchas rojas por el cuerpo, dolores en el cuerpo o dolor en las articulaciones o comezón.
-
-\n\n•       Intente informarse si en su barro o ciudad están presentándose casos de Dengue, Zika o Chikungunya.
-
-\n\n•       Si tiene alguna sospecha de Dengue, Zika o Chikungunya, tome líquidos en abundancia.
-
-\n\n•       La principal medida de prevención es evitar la reproducción de los mosquitos Aedes aegypti, transmisores de las tres enfermedades.
-
-\n\n•       Los repelentes para uso sobre la piel pueden ser utilizados por gestantes, siempre que estén debidamente registrados en ANVISA y que se sigan las instrucciones de uso descritas en el rótulo. Los productos a base de DEET, Icaridin (Picaridin), EBAAP (IR3535) son considerados seguros para ser utilizados por gestantes.
-
-\n\n•       Los productos a base DEET no deben ser usados en niños menores de 2 años. En niños entre 2 y 12 años, la concentración debe ser de máximo 10% y la aplicación restringirse a 3 veces por día. Para mayores de 12 años se permiten las concentraciones superiores a 10%.
-
-\n\n•       Los repelentes de ambiente, como aquellos de pared (aparatos eléctricos) o espirales no deben ser utilizados en lugares con poca ventilación ni bajo la presencia de personas asmáticas o con alergias respiratorias. Estos pueden ser utilizados en cualquier ambiente de casa, siempre que estén, como mínimo, a dos metros de distancia de las personas.
-
-\n\nDENGUE
-
-\n\n•       El dengue es la enfermedad más común entre las tres, siendo bien conocida por la población brasileña.
-
-\n\n•       No usar medicamentos a base de ácido acetilsalicílico (ej.: AAS, Aspirina entre otros) y ni antiinflamatorios, debido al incremento en el riesgo de complicaciones hemorrágicas (sangrado) en el caso de enfermedades como el dengue.
-
-\n\n•       Esté atento a señales que puedan indicar agravamiento del Dengue: falta de aire, mareo, dolores abdominales o sangrados.
-
-\n\n•       Al presentar cualquier señal o síntoma de Dengue, busque un servicio de salud inmediatamente.
-
-\n\nChikungunya
-
-\n\n•       Los primeros casos de infección por Chikungunya se presentaron en 2014.
-
-\n\n•       Al presentar cualquier señal o síntoma de Chikungunya, busque un servicio de salud inmediatamente.
-
-\n\nZIKA
-
-\n\n•       Los primeros casos de infección por el virus Zika ocurrieron en febrero de 2015.
-
-\n\n•       En el caso de la infección por el virus Zika, la mayor parte de las personas (más de 80%) no presenta señales ni síntomas.
-
-\n\n•       Las complicaciones causadas por la infección por el virus Zika son poco conocidas. Manifestaciones neurológicas (parálisis facial, debilidad en las piernas y Síndrome de Guillain-Barré), raramente, pueden ocurrir algunos días después del cuadro agudo. La infección durante la gestación puede generar malformaciones congénitas graves, en especial microcefalia.
-
-\n\n•       No existe tratamiento específico para la infección por el virus Zika.
-
-\n\n•       Al presentar cualquier señal o síntoma de del Zika, busque a un servicio de salud inmediatamente.
-
-\n\nCOMBATA AL MOSQUITO PERIÓDICAMENTE:
-
-\n\n•       Mantenga bien tapados toneles y barriles de agua.
-
-\n\n•       Lave semanalmente por dentro con cepillo y jabón los tanques utilizados para almacenar agua.
-
-\n\n•       Mantenga la caja de agua bien cerrada. Coloque también un cedazo fino en el tubo de escape de líquido excedente de la caja de agua.
-
-\n\n•       Remueva hojas, ramas y todo lo que pueda impedir que el agua de circule por las canaletas.
-
-\n\n•       No deje agua acumulada sobre la losa.
-
-\n\n•       Rellene los platos de las macetas de plantas con arena hasta el borde.
-
-\n\n•       Otra opción para los platos de plantas es lavarlos una vez por semana.
-
-\n\n•       Cambie el agua de las macetas de plantas acuáticas y lávelos con cepillo, agua y jabón una vez por semana.
-
-\n\n•       Coloque la basura en bolsas plásticas y mantenga la basura bien cerrada.
-
-\n\n•       Cierre bien las bolsas de basura y déjelas fuera del alcance de los animales.
-
-\n\n•       Mantenga las botellas con la boca volteada hacia abajo, evitando la acumulación de agua.
-
-\n\n•       Los neumáticos deben ser acondicionados en lugares cubiertos.
-
-\n\n•       Siempre realice el mantenimiento de piscinas o fuentes utilizando los productos químicos apropiados.
-
-\n\n•       Si el desagüe no es de abrir y cerrar, colocar un cedazo fino para evitar el acceso del mosquito al agua.
-
-\n\n•       Coloque arena dentro de todos los espacios que puedan acumular agua.
-
-\n\n•       No deje agua acumulada en hojas secas y tapas de botellas.
-
-\n\n•       Los inodoros fuera de uso o de uso eventual deben taparse y verificarse semanalmente.
-
-\n\n•       Limpie siempre la bandeja del aire acondicionado para evitar la acumulación de agua.
-
-\n\n•       Las lonas usadas para cubrir objetos o desechos deben estar bien extendidas para evitar charcos de agua.
-
-\n\nSi tiene dudas referentes al Dengue, Zika y Chikungunya, por favor llame a Disque Salud, mediante el número 136 y digite la opción 3.
-</string>
+    <string name="zika_content_01" formatted="false">\n\n•       Los virus de la Dengue, Zika y Chikungunya son transmitidos por el mosquito Aedes aegypti y presentan señales y síntomas parecidos. \n\n•       Es importante que usted busque al servicio de salud más cercano cuando presente fiebre, manchas rojas por el cuerpo, dolores en el cuerpo o dolor en las articulaciones o comezón. \n\n•       Intente informarse si en su barro o ciudad están presentándose casos de Dengue, Zika o Chikungunya. \n\n•       Si tiene alguna sospecha de Dengue, Zika o Chikungunya, tome líquidos en abundancia.\n\n•       La principal medida de prevención es evitar la reproducción de los mosquitos Aedes aegypti, transmisores de las tres enfermedades. \n\n•       Los repelentes para uso sobre la piel pueden ser utilizados por gestantes, siempre que estén debidamente registrados en ANVISA y que se sigan las instrucciones de uso descritas en el rótulo. Los productos a base de DEET, Icaridin (Picaridin), EBAAP (IR3535) son considerados seguros para ser utilizados por gestantes. \n\n•       Los productos a base DEET no deben ser usados en niños menores de 2 años. En niños entre 2 y 12 años, la concentración debe ser de máximo 10% y la aplicación restringirse a 3 veces por día. Para mayores de 12 años se permiten las concentraciones superiores a 10%.\n\n•       Los repelentes de ambiente, como aquellos de pared (aparatos eléctricos) o espirales no deben ser utilizados en lugares con poca ventilación ni bajo la presencia de personas asmáticas o con alergias respiratorias. Estos pueden ser utilizados en cualquier ambiente de casa, siempre que estén, como mínimo, a dos metros de distancia de las personas. \n\nDENGUE\n\n•       El dengue es la enfermedad más común entre las tres, siendo bien conocida por la población brasileña. \n\n•       No usar medicamentos a base de ácido acetilsalicílico (ej.: AAS, Aspirina entre otros) y ni antiinflamatorios, debido al incremento en el riesgo de complicaciones hemorrágicas (sangrado) en el caso de enfermedades como el dengue. \n\n•       Esté atento a señales que puedan indicar agravamiento del Dengue: falta de aire, mareo, dolores abdominales o sangrados.\n\n•       Al presentar cualquier señal o síntoma de Dengue, busque un servicio de salud inmediatamente. \n\nChikungunya\n\n•       Los primeros casos de infección por Chikungunya se presentaron en 2014.\n\n•       Al presentar cualquier señal o síntoma de Chikungunya, busque un servicio de salud inmediatamente. \n\nZIKA\n\n•       Los primeros casos de infección por el virus Zika ocurrieron en febrero de 2015.\n\n•       En el caso de la infección por el virus Zika, la mayor parte de las personas (más de 80%) no presenta señales ni síntomas. \n\n•       Las complicaciones causadas por la infección por el virus Zika son poco conocidas. Manifestaciones neurológicas (parálisis facial, debilidad en las piernas y Síndrome de Guillain-Barré), raramente, pueden ocurrir algunos días después del cuadro agudo. La infección durante la gestación puede generar malformaciones congénitas graves, en especial microcefalia. \n\n•       No existe tratamiento específico para la infección por el virus Zika. \n\n•       Al presentar cualquier señal o síntoma de del Zika, busque a un servicio de salud inmediatamente. \n\nCOMBATA AL MOSQUITO PERIÓDICAMENTE:\n\n•       Mantenga bien tapados toneles y barriles de agua.\n\n•       Lave semanalmente por dentro con cepillo y jabón los tanques utilizados para almacenar agua.\n\n•       Mantenga la caja de agua bien cerrada. Coloque también un cedazo fino en el tubo de escape de líquido excedente de la caja de agua.\n\n•       Remueva hojas, ramas y todo lo que pueda impedir que el agua de circule por las canaletas.\n\n•       No deje agua acumulada sobre la losa.\n\n•       Rellene los platos de las macetas de plantas con arena hasta el borde.\n\n•       Otra opción para los platos de plantas es lavarlos una vez por semana.\n\n•       Cambie el agua de las macetas de plantas acuáticas y lávelos con cepillo, agua y jabón una vez por semana.\n\n•       Coloque la basura en bolsas plásticas y mantenga la basura bien cerrada.\n\n•       Cierre bien las bolsas de basura y déjelas fuera del alcance de los animales.\n\n•       Mantenga las botellas con la boca volteada hacia abajo, evitando la acumulación de agua.\n\n•       Los neumáticos deben ser acondicionados en lugares cubiertos.\n\n•       Siempre realice el mantenimiento de piscinas o fuentes utilizando los productos químicos apropiados.\n\n•       Si el desagüe no es de abrir y cerrar, colocar un cedazo fino para evitar el acceso del mosquito al agua.\n\n•       Coloque arena dentro de todos los espacios que puedan acumular agua.\n\n•       No deje agua acumulada en hojas secas y tapas de botellas.\n\n•       Los inodoros fuera de uso o de uso eventual deben taparse y verificarse semanalmente.\n\n•       Limpie siempre la bandeja del aire acondicionado para evitar la acumulación de agua.\n\n•       Las lonas usadas para cubrir objetos o desechos deben estar bien extendidas para evitar charcos de agua.\n\nSi tiene dudas referentes al Dengue, Zika y Chikungunya, por favor llame a Disque Salud, mediante el número 136 y digite la opción 3. </string>
     <string name="zika_title_01">DENGUE, ZIKA Y CHIKUNGUNYA</string>
     <string-array name="language_array"><item>English</item><item>Español</item><item>Fraçais</item><item>Português (Brasil)</item><item>Pycknñ</item><item>简体中文</item><item>العربية</item></string-array><string-array name="image_array"><item>Cámara</item><item>Galería</item></string-array><string-array name="gender_array"><item>Masculino</item><item>Femenino</item></string-array><string-array name="race_array"><item>Blanco</item><item>Negro</item><item>Pardo</item><item>Amarillo</item><item>Indígena</item></string-array><string-array name="relationship_array"><item>Padre</item><item>Madre</item><item>Hijo</item><item>Hermano</item><item>Abuelo</item><item>Nieto</item><item>Tío</item><item>Sobrino</item><item>Bisabuelo</item><item>Bisnieto</item><item>Primo</item><item>Suegro</item><item>Yerno</item><item>Nuera</item><item>Padrastro</item><item>Madrastra</item><item>Hijastro</item><item>Conyugue</item><item>Otros</item></string-array><string-array name="array_profile"><item>Atleta / Delegación</item><item>Trabajador / Voluntario</item><item>Fan / Espectador</item></string-array>
 
