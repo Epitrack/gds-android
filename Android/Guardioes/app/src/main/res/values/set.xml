@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="key_facebook">961547147258065</string>
+    <string name="key_facebook" translatable="false">961547147258065</string>
 
 </resources>
