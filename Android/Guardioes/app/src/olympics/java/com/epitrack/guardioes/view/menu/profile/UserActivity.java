@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
@@ -39,6 +40,8 @@ import com.squareup.picasso.Picasso;
 
 import org.parceler.Parcels;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 
@@ -50,6 +53,8 @@ import butterknife.OnClick;
  * @author Miqueias Lopes
  */
 public class UserActivity extends BaseAppCompatActivity {
+
+    private static final int NONE = 0;
 
     private static final int BRAZIL = 30;
     private static final int FRANCE = 74;
@@ -175,15 +180,28 @@ public class UserActivity extends BaseAppCompatActivity {
         spinnerProfile.setSelection(user.getProfile());
     }
 
+    private List<String> toList(final String[] valueArray) {
+
+        final List<String> valueList = new ArrayList<>(Arrays.asList(valueArray));
+
+        valueList.add(getString(R.string.select));
+
+        return valueList;
+    }
+
     private void loadView() {
 
         editTextBirthDate.addTextChangedListener(Mask.insert("##/##/####", editTextBirthDate));
 
-        spinnerGender.setAdapter(new ItemAdapter(this, getResources().getStringArray(R.array.gender_array)));
-        spinnerRace.setAdapter(new ItemAdapter(this, getResources().getStringArray(R.array.race_array)));
-        spinnerParent.setAdapter(new ItemAdapter(this, getResources().getStringArray(R.array.relationship_array)));
+        spinnerGender.setAdapter(new ItemAdapter(this, toList(getResources().getStringArray(R.array.gender_array))));
+        spinnerRace.setAdapter(new ItemAdapter(this, toList(getResources().getStringArray(R.array.race_array))));
+        spinnerParent.setAdapter(new ItemAdapter(this, toList(getResources().getStringArray(R.array.relationship_array))));
 
-        spinnerCountry.setAdapter(new CountryAdapter(this, Helper.loadCountry()));
+        final List<Country> countryList = Helper.loadCountry();
+
+        countryList.add(0, new Country("", getString(R.string.select)));
+
+        spinnerCountry.setAdapter(new CountryAdapter(this, countryList));
 
         spinnerCountry.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
@@ -203,8 +221,8 @@ public class UserActivity extends BaseAppCompatActivity {
             }
         });
 
-        spinnerState.setAdapter(new ItemAdapter(this, getResources().getStringArray(R.array.array_state)));
-        spinnerProfile.setAdapter(new ItemAdapter(this, getResources().getStringArray(R.array.array_profile)));
+        spinnerState.setAdapter(new ItemAdapter(this, toList(getResources().getStringArray(R.array.array_state))));
+        spinnerProfile.setAdapter(new ItemAdapter(this, toList(getResources().getStringArray(R.array.array_profile))));
 
         if (main) {
 
@@ -450,6 +468,41 @@ public class UserActivity extends BaseAppCompatActivity {
                     .content(R.string.dob_invalid)
                     .positiveText(R.string.ok)
                     .show();
+
+            return false;
+        }
+
+        if (spinnerGender.getSelectedItemPosition() == NONE) {
+
+            Toast.makeText(this, R.string.validation_gender, Toast.LENGTH_SHORT).show();
+
+            return false;
+        }
+
+        if (spinnerRace.getVisibility() == View.VISIBLE && spinnerRace.getSelectedItemPosition() == NONE) {
+
+            Toast.makeText(this, R.string.validation_race, Toast.LENGTH_SHORT).show();
+
+            return false;
+        }
+
+        if (spinnerCountry.getSelectedItemPosition() == NONE) {
+
+            Toast.makeText(this, R.string.validation_country, Toast.LENGTH_SHORT).show();
+
+            return false;
+        }
+
+        if (spinnerState.getVisibility() == View.VISIBLE && spinnerState.getSelectedItemPosition() == NONE) {
+
+            Toast.makeText(this, R.string.validation_state, Toast.LENGTH_SHORT).show();
+
+            return false;
+        }
+
+        if (spinnerProfile.getSelectedItemPosition() == NONE) {
+
+            Toast.makeText(this, R.string.validation_profile, Toast.LENGTH_SHORT).show();
 
             return false;
         }

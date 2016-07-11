@@ -9,10 +9,12 @@ import android.widget.TextView;
 
 import com.epitrack.guardioes.R;
 
+import java.util.List;
+
 public class ItemAdapter extends ArrayAdapter<String> {
 
-    public ItemAdapter(final Context context, final String[] itemArray) {
-        super(context, 0, itemArray);
+    public ItemAdapter(final Context context, final List<String> itemList) {
+        super(context, 0, itemList);
     }
 
     private static class ViewHolder {

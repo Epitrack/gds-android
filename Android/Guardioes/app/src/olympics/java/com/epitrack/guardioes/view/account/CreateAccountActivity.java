@@ -47,6 +47,8 @@ import com.mobsandgeeks.saripaar.annotation.Length;
 import com.mobsandgeeks.saripaar.annotation.NotEmpty;
 import com.mobsandgeeks.saripaar.annotation.Password;
 
+import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
 
@@ -61,6 +63,8 @@ public class CreateAccountActivity extends BaseAppCompatActivity {
     private static final int REQUEST_MAIL = 6669;
 
     private static final int MIN_CHAR_NICKNAME = 3;
+
+    private static final int NONE = 0;
 
     private static final int BRAZIL = 30;
     private static final int FRANCE = 74;
@@ -134,12 +138,28 @@ public class CreateAccountActivity extends BaseAppCompatActivity {
         getSocialFragment().setListener(new AccountHandler());
     }
 
+    private List<String> toList(final String[] valueArray) {
+
+        final List<String> valueList = new LinkedList<>(Arrays.asList(valueArray));
+
+        valueList.add(0, getString(R.string.select));
+
+        return valueList;
+    }
+
     private void load() {
 
         editTextBirthDate.addTextChangedListener(Mask.insert("##/##/####", editTextBirthDate));
-        spinnerGender.setAdapter(new ItemAdapter(this, getResources().getStringArray(R.array.gender_array)));
-        spinnerRace.setAdapter(new ItemAdapter(this, getResources().getStringArray(R.array.race_array)));
-        spinnerCountry.setAdapter(new CountryAdapter(this, Helper.loadCountry()));
+
+        spinnerGender.setAdapter(new ItemAdapter(this, toList(getResources().getStringArray(R.array.gender_array))));
+
+        spinnerRace.setAdapter(new ItemAdapter(this, toList(getResources().getStringArray(R.array.race_array))));
+
+        final List<Country> countryList = Helper.loadCountry();
+
+        countryList.add(0, new Country("", getString(R.string.select)));
+
+        spinnerCountry.setAdapter(new CountryAdapter(this, countryList));
 
         spinnerCountry.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
@@ -159,8 +179,8 @@ public class CreateAccountActivity extends BaseAppCompatActivity {
             }
         });
 
-        spinnerState.setAdapter(new ItemAdapter(this, getResources().getStringArray(R.array.array_state)));
-        spinnerProfile.setAdapter(new ItemAdapter(this, getResources().getStringArray(R.array.array_profile)));
+        spinnerState.setAdapter(new ItemAdapter(this, toList(getResources().getStringArray(R.array.array_state))));
+        spinnerProfile.setAdapter(new ItemAdapter(this, toList(getResources().getStringArray(R.array.array_profile))));
     }
 
     @Override
@@ -412,7 +432,7 @@ public class CreateAccountActivity extends BaseAppCompatActivity {
             user.setNick(editTextNickname.getText().toString().trim());
             user.setDob(editTextBirthDate.getText().toString().trim().toLowerCase());
 
-            String gender = spinnerGender.getSelectedItem().toString().substring(0, 1);
+            final String gender = spinnerGender.getSelectedItem().toString().substring(0, 1);
             user.setGender(gender.toUpperCase());
 
             final String race = Race.getBy(spinnerRace.getSelectedItemPosition() + 1).getValue();
@@ -431,6 +451,7 @@ public class CreateAccountActivity extends BaseAppCompatActivity {
                 user.setPassword(user.getEmail());
 
             } else {
+
                 user.setPassword(editTextPassword.getText().toString().trim());
             }
 
@@ -482,11 +503,33 @@ public class CreateAccountActivity extends BaseAppCompatActivity {
                 }
 
                 if (dobIsFail) {
+
                     new DialogBuilder(CreateAccountActivity.this).load()
                             .title(R.string.attention)
                             .content(R.string.dob_invalid)
                             .positiveText(R.string.ok)
                             .show();
+
+                } else if (spinnerGender.getSelectedItemPosition() == NONE) {
+
+                    Toast.makeText(CreateAccountActivity.this, R.string.validation_gender, Toast.LENGTH_SHORT).show();
+
+                } else if (spinnerRace.getVisibility() == View.VISIBLE && spinnerRace.getSelectedItemPosition() == NONE) {
+
+                    Toast.makeText(CreateAccountActivity.this, R.string.validation_race, Toast.LENGTH_SHORT).show();
+
+                } else if (spinnerCountry.getSelectedItemPosition() == NONE) {
+
+                        Toast.makeText(CreateAccountActivity.this, R.string.validation_country, Toast.LENGTH_SHORT).show();
+
+                } else if (spinnerState.getVisibility() == View.VISIBLE && spinnerState.getSelectedItemPosition() == NONE) {
+
+                    Toast.makeText(CreateAccountActivity.this, R.string.validation_state, Toast.LENGTH_SHORT).show();
+
+                } else if (spinnerProfile.getSelectedItemPosition() == NONE) {
+
+                    Toast.makeText(CreateAccountActivity.this, R.string.validation_profile, Toast.LENGTH_SHORT).show();
+
                 } else {
 
                     loadDialog.show(getFragmentManager(), LoadDialog.TAG);
