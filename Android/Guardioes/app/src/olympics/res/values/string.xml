@@ -124,7 +124,7 @@
     <string name="message_forgot_password"><u>Esqueceu sua senha?</u></string>
     <string name="message_health"> Como está sua saúde?</string>
     <string name="message_health_state"> Como está sua saúde nesse momento?</string>
-    <string name="message_hello">Olá, %s!</string>
+    <string name="message_hello">Olá, %1$s!</string>
     <string name="message_home_member"> Integrantes do domicílio</string>
     <string name="message_hospital"> Não deixe de procurar o serviço de saúde mais próximo.</string>
     <string name="message_image_load">Não é possível carregar esta imagem</string>

@@ -2,12 +2,22 @@ package com.epitrack.guardioes.model;
 
 public final class Country {
 
+    private int id;
     private String code;
     private String name;
 
-    public Country(final String code, final String name) {
+    public Country(final int id, final String code, final String name) {
+        this.id = id;
         this.code = code;
         this.name = name;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getCode() {

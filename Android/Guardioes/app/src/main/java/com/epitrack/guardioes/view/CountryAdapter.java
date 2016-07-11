@@ -14,13 +14,27 @@ import java.util.List;
 
 public class CountryAdapter extends ArrayAdapter<Country> {
 
-    public CountryAdapter(final Context context, final List<Country> countryList) {
+    public enum Type {
+
+        STANDARD, EDIT
+    }
+
+    private Type type;
+
+    public CountryAdapter(final Context context, final Type type, final List<Country> countryList) {
         super(context, 0, countryList);
+
+        this.type = type;
     }
 
     private static class ViewHolder {
 
         TextView textViewName;
+    }
+
+    @Override
+    public boolean hasStableIds() {
+        return true;
     }
 
     @Override
@@ -33,7 +47,7 @@ public class CountryAdapter extends ArrayAdapter<Country> {
         if (view == null) {
 
             view = LayoutInflater.from(viewGroup.getContext())
-                    .inflate(R.layout.item_preview_white, viewGroup, false);
+                    .inflate(type == Type.EDIT ? R.layout.item_preview : R.layout.item_preview_white, viewGroup, false);
 
             viewHolder = new ViewHolder();
 

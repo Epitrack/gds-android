@@ -116,7 +116,7 @@
     <string name="message_forgot_password"><u>Forgot your password?</u></string>
     <string name="message_health">How is your health?</string>
     <string name="message_health_state">How is your health now?</string>
-    <string name="message_hello">Hello, %!</string>
+    <string name="message_hello">Hello, %1$s!</string>
     <string name="message_home_member">Household members</string>
     <string name="message_hospital">Be sure to seek out the nearest healthcare service.</string>
     <string name="message_image_load">Fail to load the image</string>

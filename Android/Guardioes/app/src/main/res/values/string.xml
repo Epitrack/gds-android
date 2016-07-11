@@ -261,7 +261,7 @@
 
     # Home
 
-    <string name="message_hello">Olá,\n%s!</string>
+    <string name="message_hello">Olá,\n%1$s !</string>
 
     # Profile Activity
 

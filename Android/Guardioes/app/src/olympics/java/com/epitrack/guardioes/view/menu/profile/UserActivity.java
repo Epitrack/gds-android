@@ -57,7 +57,7 @@ public class UserActivity extends BaseAppCompatActivity {
     private static final int NONE = 0;
 
     private static final int BRAZIL = 30;
-    private static final int FRANCE = 74;
+    private static final int FRANCE = 76;
 
     @Bind(R.id.text_view_message)
     TextView textViewMessage;
@@ -199,20 +199,20 @@ public class UserActivity extends BaseAppCompatActivity {
 
         final List<Country> countryList = Helper.loadCountry();
 
-        countryList.add(0, new Country("", getString(R.string.select)));
+        countryList.add(0, new Country(0, "", getString(R.string.select)));
 
-        spinnerCountry.setAdapter(new CountryAdapter(this, countryList));
+        spinnerCountry.setAdapter(new CountryAdapter(this, CountryAdapter.Type.EDIT, countryList));
 
         spinnerCountry.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
             @Override
             public void onItemSelected(final AdapterView<?> adapterView, final View view, final int position, final long id) {
 
-                textViewState.setVisibility(position == BRAZIL ? View.VISIBLE : View.GONE);
-                spinnerState.setVisibility(position == BRAZIL ? View.VISIBLE : View.GONE);
+                textViewState.setVisibility(id == BRAZIL ? View.VISIBLE : View.GONE);
+                spinnerState.setVisibility(id == BRAZIL ? View.VISIBLE : View.GONE);
 
-                textViewRace.setVisibility(position == FRANCE ? View.GONE : View.VISIBLE);
-                spinnerRace.setVisibility(position == FRANCE ? View.GONE : View.VISIBLE);
+                textViewRace.setVisibility(id == FRANCE ? View.GONE : View.VISIBLE);
+                spinnerRace.setVisibility(id == FRANCE ? View.GONE : View.VISIBLE);
             }
 
             @Override
