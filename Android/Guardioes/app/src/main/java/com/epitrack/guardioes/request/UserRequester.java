@@ -164,6 +164,19 @@ public class UserRequester extends BaseRequester {
         bodyMap.put("role", user.getProfile());
         bodyMap.put("platform", user.getPlatform());
         bodyMap.put("picture", "0");
+
+        if (user.getTw() != null) {
+            bodyMap.put("tw", user.getTw());
+        }
+
+        if (user.getFb() != null) {
+            bodyMap.put("fb", user.getFb());
+        }
+
+        if (user.getGl() != null) {
+            bodyMap.put("gl", user.getGl());
+        }
+
         bodyMap.put("gcm_token", user.getGcmToken());
 
         listener.onStart();
