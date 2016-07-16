@@ -297,7 +297,7 @@ public class UserRequester extends BaseRequester {
                                 final JSONObject json = jsonArray.getJSONObject(0);
 
                                 final String email = json.getString("email");
-                                final String password = json.getString("password");
+                                final String password = json.getString("email");
 
                                 final User user = new User();
 
