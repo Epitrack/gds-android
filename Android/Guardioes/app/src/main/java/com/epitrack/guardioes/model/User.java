@@ -296,6 +296,10 @@ public class User {
 
     public void addEnergy(final int amount) {
         this.energy += amount;
+
+        if (energy > 10) {
+            this.energy = 10;
+        }
     }
 
     public void setEnergy(final int energy) {
