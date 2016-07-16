@@ -211,8 +211,8 @@ public class UserActivity extends BaseAppCompatActivity {
                 textViewState.setVisibility(id == BRAZIL ? View.VISIBLE : View.GONE);
                 spinnerState.setVisibility(id == BRAZIL ? View.VISIBLE : View.GONE);
 
-                textViewRace.setVisibility(id == FRANCE ? View.GONE : View.VISIBLE);
-                spinnerRace.setVisibility(id == FRANCE ? View.GONE : View.VISIBLE);
+                textViewRace.setVisibility(id == NONE || id == FRANCE ? View.GONE : View.VISIBLE);
+                spinnerRace.setVisibility(id == NONE || id == FRANCE ? View.GONE : View.VISIBLE);
             }
 
             @Override
