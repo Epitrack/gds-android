@@ -506,6 +506,7 @@ public class UserRequester extends BaseRequester {
         bodyMap.put("role", user.getProfile());
         bodyMap.put("platform", user.getPlatform());
         bodyMap.put("picture", user.getImage());
+        bodyMap.put("profile", user.getProfile());
         bodyMap.put("relationship", user.getRelationship());
 
         if (mainId == null) {

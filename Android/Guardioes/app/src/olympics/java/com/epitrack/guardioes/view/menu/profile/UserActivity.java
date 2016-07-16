@@ -40,8 +40,8 @@ import com.squareup.picasso.Picasso;
 
 import org.parceler.Parcels;
 
-import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
 
@@ -133,7 +133,7 @@ public class UserActivity extends BaseAppCompatActivity {
 
         editTextNickname.setText(user.getNick());
 
-        spinnerGender.setSelection(user.getGender().equalsIgnoreCase("M") ? 0 : 1);
+        spinnerGender.setSelection(user.getGender().equalsIgnoreCase("M") ? 1 : 2);
 
         spinnerRace.setSelection(Race.getBy(user.getRace()).getId() - 1);
 
@@ -160,7 +160,7 @@ public class UserActivity extends BaseAppCompatActivity {
                 final String name = new Locale("", countryList.get(i).getCode()).getDisplayCountry(Locale.ENGLISH).toLowerCase();
 
                 if (user.getCountry().equalsIgnoreCase(name)) {
-                    spinnerCountry.setSelection(i);
+                    spinnerCountry.setSelection(i + 1);
                 }
             }
         }
@@ -172,7 +172,7 @@ public class UserActivity extends BaseAppCompatActivity {
             for (int i = 0; i < stateArray.length; i++) {
 
                 if (user.getState().equalsIgnoreCase(stateArray[i])) {
-                    spinnerState.setSelection(i);
+                    spinnerState.setSelection(i + 1);
                 }
             }
         }
@@ -182,9 +182,9 @@ public class UserActivity extends BaseAppCompatActivity {
 
     private List<String> toList(final String[] valueArray) {
 
-        final List<String> valueList = new ArrayList<>(Arrays.asList(valueArray));
+        final List<String> valueList = new LinkedList<>(Arrays.asList(valueArray));
 
-        valueList.add(getString(R.string.select));
+        valueList.add(0, getString(R.string.select));
 
         return valueList;
     }
