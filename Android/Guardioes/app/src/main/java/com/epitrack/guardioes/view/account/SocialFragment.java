@@ -8,6 +8,7 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.epitrack.guardioes.R;
 import com.epitrack.guardioes.helper.Constants;
@@ -282,14 +283,12 @@ public class SocialFragment extends BaseFragment implements GoogleApiClient.OnCo
 
     private void loadGoogle() {
 
-        final GoogleSignInOptions option = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+       final GoogleSignInOptions option = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail()
                 .build();
-
         apiClient = new GoogleApiClient.Builder(getActivity())
                 .addApi(Auth.GOOGLE_SIGN_IN_API, option)
                 .build();
-
         startActivityForResult(Auth.GoogleSignInApi.getSignInIntent(apiClient), REQUEST_GOOGLE);
     }
 

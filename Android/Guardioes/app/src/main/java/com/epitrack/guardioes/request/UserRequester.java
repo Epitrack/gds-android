@@ -1,6 +1,7 @@
 package com.epitrack.guardioes.request;
 
 import android.content.Context;
+import android.widget.Toast;
 
 import com.epitrack.guardioes.helper.Constants;
 import com.epitrack.guardioes.helper.DateFormat;
@@ -164,6 +165,19 @@ public class UserRequester extends BaseRequester {
         bodyMap.put("role", user.getProfile());
         bodyMap.put("platform", user.getPlatform());
         bodyMap.put("picture", "0");
+
+        if (user.getTw() != null) {
+            bodyMap.put("tw", user.getTw());
+        }
+
+        if (user.getFb() != null) {
+            bodyMap.put("fb", user.getFb());
+        }
+
+        if (user.getGl() != null) {
+            bodyMap.put("gl", user.getGl());
+        }
+
         bodyMap.put("gcm_token", user.getGcmToken());
 
         listener.onStart();
@@ -183,7 +197,7 @@ public class UserRequester extends BaseRequester {
 
                             if (json.getBoolean("error")) {
 
-                                listener.onError(new RequestException());
+                                listener.onError(new RequestException(response.getResult()));
 
                             } else {
 
@@ -242,12 +256,12 @@ public class UserRequester extends BaseRequester {
                         } catch (final JSONException e) {
                             Logger.logDebug(TAG, e.getMessage());
 
-                            listener.onError(new RequestException());
+                            listener.onError(new RequestException(e));
                         }
 
                     } else {
 
-                        listener.onError(new RequestException());
+                        listener.onError(new RequestException(response.getResult()));
                     }
 
                 } else {
@@ -284,7 +298,7 @@ public class UserRequester extends BaseRequester {
                                 final JSONObject json = jsonArray.getJSONObject(0);
 
                                 final String email = json.getString("email");
-                                final String password = json.getString("password");
+                                final String password = json.getString("email");
 
                                 final User user = new User();
 
@@ -493,6 +507,7 @@ public class UserRequester extends BaseRequester {
         bodyMap.put("role", user.getProfile());
         bodyMap.put("platform", user.getPlatform());
         bodyMap.put("picture", user.getImage());
+        bodyMap.put("profile", user.getProfile());
         bodyMap.put("relationship", user.getRelationship());
 
         if (mainId == null) {

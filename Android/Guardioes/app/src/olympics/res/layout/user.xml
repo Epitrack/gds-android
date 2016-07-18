@@ -85,6 +85,7 @@
 
                     <Spinner
                         android:id="@+id/spinner_gender"
+                        style="@style/Theme.Spinner"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textColor="@color/grey_light" />
@@ -109,6 +110,7 @@
 
                     <Spinner
                         android:id="@+id/spinner_race"
+                        style="@style/Theme.Spinner"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textColor="@color/grey_light" />
@@ -159,6 +161,7 @@
 
                     <Spinner
                         android:id="@+id/spinner_parent"
+                        style="@style/Theme.Spinner"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textColor="@color/grey_light" />
@@ -209,6 +212,7 @@
 
                     <Spinner
                         android:id="@+id/spinner_country"
+                        style="@style/Theme.Spinner"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textColor="@color/grey_light" />
@@ -234,6 +238,7 @@
 
                     <Spinner
                         android:id="@+id/spinner_state"
+                        style="@style/Theme.Spinner"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textColor="@color/grey_light" />
@@ -259,6 +264,7 @@
 
                 <Spinner
                     android:id="@+id/spinner_profile"
+                    style="@style/Theme.Spinner"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textColor="@color/grey_light" />

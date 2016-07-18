@@ -94,6 +94,8 @@ public class ProfileFragment extends BaseFragment implements UserListener {
 
             user.setPath(single.getPath());
             user.setCountry(single.getCountry());
+            user.setProfile(single.getProfile());
+            user.setState(single.getState());
 
             parentList.add(0, user);
 

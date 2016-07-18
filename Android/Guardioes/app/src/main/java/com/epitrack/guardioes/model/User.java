@@ -296,6 +296,10 @@ public class User {
 
     public void addEnergy(final int amount) {
         this.energy += amount;
+
+        if (energy > 10) {
+            this.energy = 10;
+        }
     }
 
     public void setEnergy(final int energy) {
@@ -332,5 +336,40 @@ public class User {
         pieceMap.put(8, false);
 
         setPieceMap(pieceMap);
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "image=" + image +
+                ", nick='" + nick + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", client='" + client + '\'' +
+                ", path='" + path + '\'' +
+                ", dob='" + dob + '\'' +
+                ", gender='" + gender + '\'' +
+                ", app_token='" + app_token + '\'' +
+                ", lon=" + lon +
+                ", lat=" + lat +
+                ", race='" + race + '\'' +
+                ", platform='" + platform + '\'' +
+                ", type='" + type + '\'' +
+                ", id='" + id + '\'' +
+                ", user_token='" + user_token + '\'' +
+                ", tw='" + tw + '\'' +
+                ", fb='" + fb + '\'' +
+                ", gl='" + gl + '\'' +
+                ", hashtags=" + hashtags +
+                ", relationship='" + relationship + '\'' +
+                ", versionBuild='" + versionBuild + '\'' +
+                ", gcmToken='" + gcmToken + '\'' +
+                ", country='" + country + '\'' +
+                ", state='" + state + '\'' +
+                ", profile=" + profile +
+                ", energy=" + energy +
+                ", level=" + level +
+                ", pieceMap=" + pieceMap +
+                '}';
     }
 }

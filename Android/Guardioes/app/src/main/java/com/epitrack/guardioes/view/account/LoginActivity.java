@@ -246,9 +246,11 @@ public class LoginActivity extends BaseAppCompatActivity {
             socialLogin = true;
 
             setUser(user);
-
+            try{
             loadDialog.show(getFragmentManager(), LoadDialog.TAG);
-
+            }catch(Exception e){
+                e.printStackTrace();
+            }
             startService(new Intent(LoginActivity.this, RegisterService.class));
         }
     }

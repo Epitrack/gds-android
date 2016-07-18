@@ -102,7 +102,6 @@
         <item name="drawerArrowStyle">@style/Theme.DrawerArrow</item>
 
         <item name="android:editTextStyle">@style/Theme.EditText.Grey</item>
-        <item name="android:spinnerStyle">@style/Theme.Spinner</item>
 
         <item name="colorControlNormal">@color/black_10</item>
         <item name="colorControlActivated">@color/black_10</item>
