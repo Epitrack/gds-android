@@ -1,8 +1,11 @@
 package com.epitrack.guardioes.view.menu.help;
 
+import android.os.Build;
 import android.os.Bundle;
+import android.telephony.TelephonyManager;
 import android.view.MenuItem;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.epitrack.guardioes.R;
@@ -49,8 +52,17 @@ public class ReportActivity extends BaseAppCompatActivity {
 
     @OnClick(R.id.button_send_email)
     public void sendEmail() {
-
-        getTracker().send(new HitBuilders.EventBuilder()
+        String info ="";
+        try{
+            info="\n\nInfos:";
+            info += "\n OS Version: " + System.getProperty("os.version") + "(" + android.os.Build.VERSION.INCREMENTAL + ")";
+            info += "\n OS API Level: " + android.os.Build.VERSION.SDK_INT;
+            info += "\n Device: " + android.os.Build.DEVICE;
+            info += "\n Model (and Product): " + android.os.Build.MODEL + " ("+ android.os.Build.PRODUCT + ")";
+        }catch(Exception e){
+        }
+        //Toast.makeText(ReportActivity.this, info, Toast.LENGTH_SHORT).show();
+       getTracker().send(new HitBuilders.EventBuilder()
                 .setCategory("Action")
                 .setAction("Send ReportActivity Button")
                 .build());
@@ -70,7 +82,7 @@ public class ReportActivity extends BaseAppCompatActivity {
 
                 JSONObject jsonPost = new JSONObject();
                 jsonPost.put("title", txtSubject.getText().toString().trim());
-                jsonPost.put("text", txtMessage.getText().toString().trim());
+                jsonPost.put("text", txtMessage.getText().toString().trim()+" ; "+info);
 
                 SimpleRequester simpleRequester = new SimpleRequester();
                 simpleRequester.setMethod(Method.POST);

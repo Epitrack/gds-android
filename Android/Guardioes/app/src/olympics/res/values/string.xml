@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="accept">ACEITO</string>
+    <string name="not_accept">NÃO ACEITO</string>
     <string name="validation_state">Estado é um campo obrigatório</string>
     <string name="validation_country">País é um campo obrigatório</string>
     <string name="select">Selecione</string>
@@ -75,7 +77,7 @@
     <string name="call">Ligar</string>
     <string name="cancel"> Cancelar</string>
     <string name="care_content_01">SAÚDE DO VIAJANTE: \n\n•       Procure seu médico, preferencialmente, entre 4 e 8 semanas antes da viagem para informar seu roteiro. Peça orientações sobre cuidados para proteção contra doenças e lesões; \n\n•       Você pode ter dificuldade ou não encontrar os medicamentos que utiliza habitualmente, durante a viagem. Peça orientação ao seu médico sobre quais medicamentos e em que quantidade deve levar, incluindo a bagagem de mão; \n\n•       Carregue com você os seus documentos de identificação, de preferência em inglês e português, com informações de contatos pessoais, tipo sanguíneo, se tem alergias, diabetes ou outras doenças que possam requerer particular atenção; \n\n•       Antes de viajar consulte a empresa de transporte sobre as regras específicas para gestantes; \n\n•       O Brasil é um país de clima tropical. Recomenda-se ao viajante a ingestão constante de líquidos para evitar a desidratação; \n\n•       Use roupas e calçados confortáveis. Eles lhe darão segurança e proteção contra torções, picadas de insetos e acidentes com animais peçonhentos; \n\n•       Para se proteger do sol, cubra-se com roupas apropriadas, utilize chapéu ou boné e óculos escuros. Evite a exposição direta ao sol entre 10 horas da manhã e 4 horas da tarde; \n\n•       Use protetor solar com fator de proteção adequado à cor de sua pele, de acordo com as orientações do fabricante. Mesmo em locais mais frios, sua pele ficará protegida dos raios solares; \n\n•       Use repelentes quando houver necessidade; \n\n•       Lave as mãos com água e sabão várias vezes ao dia, principalmente antes de ingerir alimentos, após utilizar conduções públicas, visitar mercados ou locais com grande fluxo de pessoas; \n\n•       No Brasil, é proibido por lei dirigir após o consumo de bebida alcoólica, mesmo em pequenas quantidades.</string>
-    <string name="care_title_01"> CUIDADOS BÁSICOS</string>
+    <string name="care_title_01"> Cuidados Básicos</string>
     <string name="category">Categoria</string>
     <string name="confirm"> Confirmar</string>
     <string name="congratulations"> Parabéns</string>
@@ -279,11 +281,11 @@
     <string name="syndromes"> Síndromes</string>
     <string name="tag_app">#GuardioesDaSaude</string>
     <string name="tag_flu">#Gripe</string>
-<string name="syndromes_desc">As síndromes são conjuntos de manifestaç+A1:H6ões clínicas comuns a um número de doenças, entre elas:
+<string name="syndromes_desc">As síndromes são conjuntos de manifestações clínicas comuns a um número de doenças, entre elas:\n\n
 
-•   Diarreica (febre e náusea ou vômito e diarreia, além de algum destes sintomas: dores no corpo ou dor de cabeça)
+•   Diarreica (febre e náusea ou vômito e diarreia, além de algum destes sintomas: dores no corpo ou dor de cabeça)\n\n
 
-•   Respiratória (febre além de algum destes sintomas: tosse, dor de garganta ou falta de ar)
+•   Respiratória (febre além de algum destes sintomas: tosse, dor de garganta ou falta de ar)\n\n
 
 •   Exantemática (manchas vermelhas no corpo, além de algum destes sintomas: febre ou dores no corpo ou dores nas juntas ou dor de cabeça ou coceira ou olhos vermelhos ou sangramento)</string>
     <string name="tag_ministry">#MinisterioDaSaude</string>

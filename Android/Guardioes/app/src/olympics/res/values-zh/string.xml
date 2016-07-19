@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="accept">接受</string>
+    <string name="not_accept">不接受</string>
     <string name="validation_profile">简介为必填字段。</string>
     <string name="validation_race">赛为必填字段</string>
     <string name="validation_state">国家是一个必填字段。</string>
@@ -71,7 +73,7 @@
     <string name="agosto">8 月</string>
     <string name="alert">警報</string>
     <string name="alert_pharmacy">有些藥店可能不顯示在地圖。</string>
-    <string name="anos">年</string>
+    <string name="anos">岁</string>
     <string name="app_name">健康衛士</string>
     <string name="app_name_short">守護者</string>
     <string name="attention">警告</string>
@@ -283,11 +285,11 @@
     <string name="symptom_sangramento">出血</string>
     <string name="symptom_tosse">咳嗽</string>
     <string name="syndromes">綜合征</string>
-<string name="syndromes_desc">校正子是臨床表現的公共集的若干疾病，包括：
+<string name="syndromes_desc">校正子是臨床表現的公共集的若干疾病，包括：\n\n
 
-•   腹瀉（發熱，噁心，嘔吐和腹瀉，以及這些症狀：身體疼痛或頭痛）
+•   腹瀉（發熱，噁心，嘔吐和腹瀉，以及這些症狀：身體疼痛或頭痛）\n\n
 
-•   呼吸道（發熱，咳嗽，和其中的一些症狀：咽部或氣短瘡）
+•   呼吸道（發熱，咳嗽，和其中的一些症狀：咽部或氣短瘡）\n\n
 
 •   皮疹（在身上的紅色斑點，而這些症狀：發熱或全身酸痛或關節痛或頭痛，或癢或眼睛發紅或出血）</string>
     <string name="tag_app">#GuardioesDaSaude</string>

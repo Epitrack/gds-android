@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="accept">ACCEPTER</string>
+    <string name="not_accept">PAS ACCEPTER</string>
     <string name="validation_country">Pays est un champ obligatoire</string>
     <string name="validation_race">Race est un champ obligatoire</string>
     <string name="validation_state">État est un champ obligatoire.</string>
@@ -285,11 +287,11 @@
     <string name="symptom_sangramento">Le saignement</string>
     <string name="symptom_tosse">La toux</string>
     <string name="syndromes">Syndromes</string>
-<string name="syndromes_desc">Les syndromes sont des ensembles communs de manifestations cliniques à un certain nombre de maladies, y compris:
+<string name="syndromes_desc">Les syndromes sont des ensembles communs de manifestations cliniques à un certain nombre de maladies, y compris:\n\n
 
-•   Diarrhée (fièvre et des nausées ou des vomissements et la diarrhée, ainsi que l\'un de ces symptômes: douleurs corporelles ou des maux de tête)
+•   Diarrhée (fièvre et des nausées ou des vomissements et la diarrhée, ainsi que l\'un de ces symptômes: douleurs corporelles ou des maux de tête)\n\n
 
-•   Respiratoire (fiévre et toux et un ou plusieurs des symptomes suivants: mal à la gorge, essouflement)
+•   Respiratoire (fiévre et toux et un ou plusieurs des symptomes suivants: mal à la gorge, essouflement)\n\n
 
 •   Eruptions (Les taches rouges sur le corps, et un de ces symptômes: la fièvre ou des courbatures ou des douleurs articulaires ou des maux de tête ou les yeux qui piquent ou rouge ou des saignements)</string>
     <string name="tag_app">#GuardioesDaSaude</string>

@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="accept">اعقد</string>
+    <string name="not_accept">لا يقبل</string>
     <string name="validation_race">السباق إلى حقل مطلوب</string>
     <string name="validation_country">البلد هو حقل مطلوب</string>
     <string name="validation_state">الدولة حقل مطلوب.</string>
