@@ -337,4 +337,39 @@ public class User {
 
         setPieceMap(pieceMap);
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "image=" + image +
+                ", nick='" + nick + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", client='" + client + '\'' +
+                ", path='" + path + '\'' +
+                ", dob='" + dob + '\'' +
+                ", gender='" + gender + '\'' +
+                ", app_token='" + app_token + '\'' +
+                ", lon=" + lon +
+                ", lat=" + lat +
+                ", race='" + race + '\'' +
+                ", platform='" + platform + '\'' +
+                ", type='" + type + '\'' +
+                ", id='" + id + '\'' +
+                ", user_token='" + user_token + '\'' +
+                ", tw='" + tw + '\'' +
+                ", fb='" + fb + '\'' +
+                ", gl='" + gl + '\'' +
+                ", hashtags=" + hashtags +
+                ", relationship='" + relationship + '\'' +
+                ", versionBuild='" + versionBuild + '\'' +
+                ", gcmToken='" + gcmToken + '\'' +
+                ", country='" + country + '\'' +
+                ", state='" + state + '\'' +
+                ", profile=" + profile +
+                ", energy=" + energy +
+                ", level=" + level +
+                ", pieceMap=" + pieceMap +
+                '}';
+    }
 }

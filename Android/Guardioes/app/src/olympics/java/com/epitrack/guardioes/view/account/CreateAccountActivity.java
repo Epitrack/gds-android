@@ -192,12 +192,13 @@ public class CreateAccountActivity extends BaseAppCompatActivity {
 
     @Override
     public void onResume() {
-        super.onResume();
+
 
         LocalBroadcastManager.getInstance(this).registerReceiver(receiver, new IntentFilter(HashReceiver.HASH_RECEIVER));
 
         getTracker().setScreenName("Create Account Screen - " + this.getClass().getSimpleName());
         getTracker().send(new HitBuilders.ScreenViewBuilder().build());
+        super.onResume();
     }
 
     @Override
@@ -456,7 +457,7 @@ public class CreateAccountActivity extends BaseAppCompatActivity {
             }
 
             user.setGcmToken(hash);
-
+            //Toast.makeText(CreateAccountActivity.this, user.toString(), Toast.LENGTH_SHORT).show();
             new UserRequester(CreateAccountActivity.this).createAccount(user, new RequestListener<User>() {
 
                 @Override
@@ -467,8 +468,17 @@ public class CreateAccountActivity extends BaseAppCompatActivity {
                 @Override
                 public void onError(final Exception e) {
                     loadDialog.dismiss();
-
-                    Toast.makeText(CreateAccountActivity.this, R.string.erro_new_user, Toast.LENGTH_SHORT).show();
+                   Toast.makeText(CreateAccountActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                    if(e.getMessage().equalsIgnoreCase("User already exists")){
+                        new DialogBuilder(CreateAccountActivity.this).load()
+                                .title(R.string.attention)
+                                .content("User already exists")
+                                .positiveText(R.string.ok)
+                                .show();
+                    }else{
+                        Toast.makeText(CreateAccountActivity.this, R.string.erro_new_user, Toast.LENGTH_SHORT).show();
+                    }
+                    e.printStackTrace();
                 }
 
                 @Override

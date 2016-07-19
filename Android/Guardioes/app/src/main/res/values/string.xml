@@ -12,7 +12,7 @@
     # Common
 
     <string name="exit_message">Tem certeza que deseja sair?</string>
-    <string name="permission_location_rationale">A permissão a sua localização é necessária para exibir o mapa.</string>
+    <string name="permission_location_rationale" >A permissão a sua localização é necessária para exibir o mapa.</string>
     <string name="permission_available_location">Permissão a sua localização liberada.</string>
     <string name="permissions_not_granted">Permissão a sua localização negada!</string>
     <string name="about">Sobre</string>
@@ -92,19 +92,19 @@
     <string name="crop_photo">Recortar foto</string>
     <string name="message_image_load">Não é possível carregar esta imagem</string>
     <string name="network_disable">Serviços de localização desativados. Habilite-os nas configurações do aparelho para poder visualiar o mapa.</string>
-    <string name="google_fail">Não foi possível realizar o login. Tente novamente em alguns minutos ou acesse através do seu e-mail.</string>
+    <string name="google_fail" >Não foi possível realizar o login. Tente novamente em alguns minutos ou acesse através do seu e-mail.</string>
     <string name="facebook_fail">Não foi possível realizar o login. Tente novamente em alguns minutos ou acesse através do seu e-mail.</string>
     <string name="facebook_cancel">Acesso ao Guardiões da Saúde via Facebook cancelado.</string>
     <string name="facebook_error">Não foi possível acessar o Guardiões da Saúde através do Facebook. Tente novamente em alguns minutos ou acesse através do seu e-mail.</string>
     <string name="google_access_error">O Guardiões da Saúde não obteve permissão para acessar seus dados do Google. Verifique suas configurações.</string>
     <string name="twitter_fail">Não foi possível acessar o Guardiões da Saúde através do Twitter. Tente novamente em alguns minutos ou acesse através do seu e-mail.</string>
-    <string name="new_user_social_media">Complete o cadastro a seguir para acessar o Guardiões da Saúde.</string>
+    <string name="new_user_social_media" >Complete o cadastro a seguir para acessar o Guardiões da Saúde.</string>
     <string name="register_fail">Ocorreu um erro ao cadastrar</string>
     <string name="user_exist">Cadastro realizado anterioremente com essa rede social ou e-mail.</string>
     <string name="delete_profile">Deseja remover o perfil definitivamente?</string>
     <string name="internet_fail">É preciso estar conectado a internet para continuar a utilizar o Guardiões da Saúde</string>
     <string name="network_fail">É necessário estar conectado para acessar esta função. Por Favor, verifique sua rede!</string>
-    <string name="cadastro_sucesso">Cadastro realizado com sucesso!</string>
+    <string name="cadastro_sucesso" >Cadastro realizado com sucesso!</string>
 
     <string name="password_fail">A senha precisa ter pelo menos seis caracteres.</string>
     <string name="password_not_equal">As senhas precisam ser iguais.</string>
@@ -459,7 +459,7 @@ Pratique sexo de forma segura:\n\n
     - Previna-se contra febre amarela tomando a vacina 10 dias antes de visitar áreas de mata ou de praticar turismo ecológico ou rural.\n\n
 
 - Procure seu medico, pois ele poderá lhe ajudar a decidir se a vacina é necessária, com base em seu plano de viagem;\n\n</string>
-    <string name="vacinne_title_02">Prevenção contra febre amarela\n\n</string>
+    <string name="vacinne_title_02" translatable="false">Prevenção contra febre amarela\n\n</string>
     <string name="vacinne_content_02">- Previna-se contra febre amarela tomando a vacina 10 dias antes de visitar áreas de mata ou de praticar turismo ecológico ou rural.\n\n
 
 - Procure seu medico, pois ele poderá lhe ajudar a decidir se a vacina é necessária, com base em seu plano de viagem;\n\n

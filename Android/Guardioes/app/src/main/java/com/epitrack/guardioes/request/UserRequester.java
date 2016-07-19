@@ -1,6 +1,7 @@
 package com.epitrack.guardioes.request;
 
 import android.content.Context;
+import android.widget.Toast;
 
 import com.epitrack.guardioes.helper.Constants;
 import com.epitrack.guardioes.helper.DateFormat;
@@ -196,7 +197,7 @@ public class UserRequester extends BaseRequester {
 
                             if (json.getBoolean("error")) {
 
-                                listener.onError(new RequestException());
+                                listener.onError(new RequestException(response.getResult()));
 
                             } else {
 
@@ -255,12 +256,12 @@ public class UserRequester extends BaseRequester {
                         } catch (final JSONException e) {
                             Logger.logDebug(TAG, e.getMessage());
 
-                            listener.onError(new RequestException());
+                            listener.onError(new RequestException(e));
                         }
 
                     } else {
 
-                        listener.onError(new RequestException());
+                        listener.onError(new RequestException(response.getResult()));
                     }
 
                 } else {
