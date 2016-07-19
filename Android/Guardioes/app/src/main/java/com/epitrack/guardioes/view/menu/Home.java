@@ -19,6 +19,7 @@ public enum Home implements IMenu {
     HOME        (R.id.home, R.string.home, R.drawable.icon_home, HomeFragment.class),
     PROFILE     (R.id.profile, R.string.profile, R.drawable.icon_profile, ProfileFragment.class),
     ABOUT       (R.id.about, R.string.about, R.drawable.icon_about, AboutFragment.class),
+    LANGUAGE    (R.id.language, R.string.language, R.drawable.page_1, null),
     FACEBOOK    (R.id.facebook, R.string.facebook, R.drawable.icon_facebook, null),
     TWITTER     (R.id.twitter, R.string.twitter, R.drawable.icon_twitter, null),
     HELP        (R.id.help, R.string.help, R.drawable.icon_help, HelpFragment.class),

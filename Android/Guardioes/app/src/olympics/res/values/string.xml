@@ -101,6 +101,7 @@
     <string name="jun"> Jun</string>
     <string name="junho"> Junho</string>
     <string name="level">Nível %s</string>
+    <string name="language">Language</string>
     <string name="loading">Carregando...</string>
     <string name="locale">pt_BR</string>
     <string name="location_disabled"> Para contribuir ativamente com a vigilância em saúde no Brasil é necessário que você compartilhe a sua localização</string>

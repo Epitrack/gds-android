@@ -2,6 +2,8 @@ package com.epitrack.guardioes.view;
 
 import android.app.Fragment;
 import android.content.Intent;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -18,9 +20,13 @@ import android.widget.ListView;
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.epitrack.guardioes.R;
+import com.epitrack.guardioes.helper.Constants;
 import com.epitrack.guardioes.helper.DialogBuilder;
 import com.epitrack.guardioes.manager.PrefManager;
+import com.epitrack.guardioes.model.User;
 import com.epitrack.guardioes.push.DeleteService;
+import com.epitrack.guardioes.request.base.AuthRequester;
+import com.epitrack.guardioes.request.base.RequestListener;
 import com.epitrack.guardioes.view.menu.Home;
 import com.epitrack.guardioes.view.welcome.WelcomeActivity;
 import com.google.android.gms.analytics.GoogleAnalytics;
@@ -28,6 +34,7 @@ import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 import butterknife.Bind;
@@ -149,6 +156,22 @@ public class HomeActivity extends AppCompatActivity implements AdapterView.OnIte
 
             onExit();
 
+        }else if (home == Home.LANGUAGE){
+            final HomeActivity me = this;
+            new LanguageDialog().setListener(new LanguageDialog.ILanguage() {
+
+                @Override
+                public void onLanguage(final Language language) {
+
+                    if (new PrefManager(HomeActivity.this).put(Constants.Pref.LANGUAGE, language)) {
+
+                        loadLang(new Locale(language.getLocale()));
+
+                        startActivity(new Intent(me, HomeActivity.class));
+                    }
+                }
+
+            }).show(getFragmentManager(), LanguageDialog.TAG);
         } else if (home.isFragment()) {
 
             if (!home.getTag().equals(getCurrentFragment().getTag())) {
@@ -156,6 +179,20 @@ public class HomeActivity extends AppCompatActivity implements AdapterView.OnIte
                 replaceFragment(home.getType(), home.getTag());
             }
         }
+
+    }
+
+    private void loadLang(final Locale locale) {
+
+        Locale.setDefault(locale);
+
+        final Resources resource = getResources();
+
+        final Configuration configuration = resource.getConfiguration();
+
+        configuration.locale = locale;
+
+        resource.updateConfiguration(configuration, resource.getDisplayMetrics());
     }
 
     public Fragment getCurrentFragment() {
