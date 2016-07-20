@@ -79,7 +79,7 @@ public class StateActivity extends BaseAppCompatActivity {
 
                         if (locationHelper.isEnabled()) {
 
-                            loadDialog.show(getFragmentManager(), LoadDialog.TAG);
+//                            loadDialog.show(getFragmentManager(), LoadDialog.TAG);
 
                             locationHelper.addListener(new LocationListener() {
 
@@ -152,6 +152,8 @@ public class StateActivity extends BaseAppCompatActivity {
     }
 
     private void sendSurvey(final LatLng latLng) {
+
+        loadDialog.show(getFragmentManager(), LoadDialog.TAG);
 
         new SurveyRequester(StateActivity.this).saveSurveyGood(new User(id), latLng, new RequestListener<Boolean>() {
 
