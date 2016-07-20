@@ -3,6 +3,7 @@ package com.epitrack.guardioes.view.survey;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -409,6 +410,21 @@ public class SymptomActivity extends BaseAppCompatActivity {
         final String contato = this.getString(R.string.symptom_contato);
         final String procurei = this.getString(R.string.symptom_procureiservicosaude);
         final String estivefora = this.getString(R.string.symptom_estivefora);
+
+        final String febre = this.getString(R.string.symptom_febre);
+        final String manchas_vermelhas = this.getString(R.string.symptom_manchas);
+        final String dor_no_corpo = this.getString(R.string.symptom_dorcorpo);
+        final String dor_nas_juntas = this.getString(R.string.symptom_dorjuntas);
+        final String dor_de_cabeca = this.getString(R.string.symptom_dorcabeca);
+        final String coceira = this.getString(R.string.symptom_coceira);
+        final String olhos_vermelhos = this.getString(R.string.symptom_olhosvermelhos);
+        final String dor_de_garganta = this.getString(R.string.symptom_dorgarganta);
+        final String tosse = this.getString(R.string.symptom_tosse);
+        final String falta_de_ar = this.getString(R.string.symptom_faltaar);
+        final String nausea_vomito = this.getString(R.string.symptom_nauseas);
+        final String diarreia = this.getString(R.string.symptom_diarreia);
+        final String sangramento = this.getString(R.string.symptom_sangramento);
+
         new SurveyRequester(this).getSymptom(new RequestListener<String>() {
 
             @Override
@@ -431,11 +447,68 @@ public class SymptomActivity extends BaseAppCompatActivity {
                     if (!jsonObject.getBoolean("error")) {
 
                         JSONArray jsonArray = jsonObject.getJSONArray("data");
-
                         if (jsonArray.length() > 0) {
                             for (int i = 0; i < jsonArray.length(); i++) {
                                 JSONObject jsonObjectSymptoms = jsonArray.getJSONObject(i);
-                                SymptomList symptomList = new SymptomList(jsonObjectSymptoms.get("code").toString(), jsonObjectSymptoms.get("name").toString());
+                                Log.d("Code",jsonObjectSymptoms.get("code").toString()+" ; "+jsonObjectSymptoms.get("name").toString());
+                                String symptom_translated="";
+                                switch(jsonObjectSymptoms.get("code").toString()){
+                                    case "febre":
+                                        symptom_translated=febre;
+                                        break;
+                                    case "manchas-vermelhas":
+                                        symptom_translated=manchas_vermelhas;
+                                        break;
+                                    case "dor-no-corpo":
+                                        symptom_translated=dor_no_corpo;
+                                        break;
+                                    case "dor-nas-juntas":
+                                        symptom_translated=dor_nas_juntas;
+                                        break;
+                                    case "dor-de-cabeca":
+                                        symptom_translated=dor_de_cabeca;
+                                        break;
+                                    case "coceira":
+                                        symptom_translated=coceira;
+                                        break;
+                                    case "olhos-vermelhos":
+                                        symptom_translated=olhos_vermelhos;
+                                        break;
+                                    case "dor-de-garganta":
+                                        symptom_translated=dor_de_garganta;
+                                        break;
+                                    case "tosse":
+                                        symptom_translated=tosse;
+                                        break;
+                                    case "falta-de-ar":
+                                        symptom_translated=falta_de_ar;
+                                        break;
+                                    case "nausea-vomito":
+                                        symptom_translated=nausea_vomito;
+                                        break;
+                                    case "diarreia":
+                                        symptom_translated=diarreia;
+                                        break;
+                                    case "sangramento":
+                                        symptom_translated=sangramento;
+                                        break;
+                                }
+                                /*
+                                * febre
+                                * manchas-vermelhas
+                                * dor-no-corpo
+                                * dor-nas-juntas
+                                * dor-de-cabeca
+                                * coceira
+                                * olhos-vermelhos
+                                * dor-de-garganta
+                                * tosse
+                                * falta-de-ar
+                                * nausea-vomito
+                                * diarreia
+                                * sangramento
+                                * */
+                                SymptomList symptomList = new SymptomList(jsonObjectSymptoms.get("code").toString(), symptom_translated);
                                 symptomArray.add(symptomList);
                             }
                         }

@@ -16,6 +16,8 @@ import com.google.android.gms.analytics.HitBuilders;
 
 import org.json.JSONObject;
 
+import java.util.Locale;
+
 import butterknife.Bind;
 import butterknife.OnClick;
 
@@ -76,6 +78,12 @@ public class ForgotPasswordActivity extends BaseAppCompatActivity {
         try {
 
             JSONObject jsonObject = new JSONObject();
+
+            try{
+                jsonObject.put("lang", Locale.getDefault().toString());
+            }catch(Exception e){
+
+            }
 
             jsonObject.put("email", email);
 

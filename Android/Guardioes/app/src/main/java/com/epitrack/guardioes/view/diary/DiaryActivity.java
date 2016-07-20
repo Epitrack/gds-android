@@ -277,7 +277,7 @@ public class DiaryActivity extends BaseAppCompatActivity implements ParentListen
                     String htmlStringGood = "<b>" + (int) (goodPercent * 100) + "%</b> "+bem;
                     textViewGoodPercentage.setText(Html.fromHtml(htmlStringGood));
                     //textViewGoodPercentage.setText((int) (goodPercent * 100) + "% Bem");
-                    textViewGoodReport.setText((int) goodCount + " "+R.string.relatorios);
+                    textViewGoodReport.setText((int) goodCount + " "+relatorios);
 
                     badPercent = totalCount == 0 ? 0 : badCount / totalCount;
 

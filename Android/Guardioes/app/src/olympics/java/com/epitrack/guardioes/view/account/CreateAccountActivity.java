@@ -27,6 +27,7 @@ import com.epitrack.guardioes.helper.DialogBuilder;
 import com.epitrack.guardioes.helper.Helper;
 import com.epitrack.guardioes.helper.Mask;
 import com.epitrack.guardioes.model.Country;
+import com.epitrack.guardioes.model.Gender;
 import com.epitrack.guardioes.model.Race;
 import com.epitrack.guardioes.model.User;
 import com.epitrack.guardioes.push.HashReceiver;
@@ -432,18 +433,17 @@ public class CreateAccountActivity extends BaseAppCompatActivity {
 
             user.setNick(editTextNickname.getText().toString().trim());
             user.setDob(editTextBirthDate.getText().toString().trim().toLowerCase());
-
-            final String gender = spinnerGender.getSelectedItem().toString().substring(0, 1);
-            user.setGender(gender.toUpperCase());
+            //final String gender = spinnerGender.getSelectedItem().toString().substring(0, 1);
+            final String gender = Gender.getBy(spinnerGender.getSelectedItemPosition()).getValue();
+            //Toast.makeText(CreateAccountActivity.this, spinnerGender.getAdapter().getSelectedItem().toString(), Toast.LENGTH_SHORT).show();
+            //user.setGender(gender.toUpperCase());
+            user.setGender(gender);
 
             final String race = Race.getBy(spinnerRace.getSelectedItemPosition() + 1).getValue();
             user.setRace(race);
-
             final String country = ((Country) spinnerCountry.getSelectedItem()).getCode();
             final String name = new Locale("", country).getDisplayCountry(Locale.ENGLISH).toLowerCase();
-
             user.setCountry(name);
-
             user.setState(spinnerState.getSelectedItem().toString().toLowerCase());
             user.setProfile(spinnerProfile.getSelectedItemPosition());
             user.setEmail(editTextMail.getText().toString().trim().toLowerCase());
@@ -457,8 +457,8 @@ public class CreateAccountActivity extends BaseAppCompatActivity {
             }
 
             user.setGcmToken(hash);
-            //Toast.makeText(CreateAccountActivity.this, user.toString(), Toast.LENGTH_SHORT).show();
-            new UserRequester(CreateAccountActivity.this).createAccount(user, new RequestListener<User>() {
+            //Toast.makeText(CreateAccountActivity.this, user.toString(), Toast.LENGTH_LONG).show();
+           new UserRequester(CreateAccountActivity.this).createAccount(user, new RequestListener<User>() {
 
                 @Override
                 public void onStart() {

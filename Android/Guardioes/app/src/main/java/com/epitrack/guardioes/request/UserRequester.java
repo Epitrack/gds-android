@@ -194,7 +194,7 @@ public class UserRequester extends BaseRequester {
                         try {
 
                             final JSONObject json = new JSONObject(response.getResult());
-
+                            System.out.print(json.toString());
                             if (json.getBoolean("error")) {
 
                                 listener.onError(new RequestException(response.getResult()));

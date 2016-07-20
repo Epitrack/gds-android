@@ -63,7 +63,7 @@
     <string name="abril"> Abril</string>
     <string name="add_member"> Adicionar Integrante do Domicílio</string>
     <string name="ago"> Ago</string>
-    <string name="adicionar_novo_integrante"> Adicionar\nnovo integrante</string>
+    <string name="adicionar_novo_integrante"> Adicionar \n novo integrante</string>
     <string name="agosto"> Agosto</string>
     <string name="alert_pharmacy"> Algumas farmácias podem não ser exibidas no mapa.</string>
     <string name="anos"> anos</string>
@@ -150,7 +150,7 @@
     <string name="jun"> Jun</string>
     <string name="junho"> Junho</string>
     <string name="level">Nível %s</string>
-    <string name="language">Language</string>
+    <string name="language">Idioma</string>
     <string name="loading">Carregando...</string>
     <string name="locale">pt_BR</string>
     <string name="location_disabled"> Para contribuir ativamente com a vigilância em saúde no Brasil é necessário que você compartilhe a sua localização</string>
@@ -278,6 +278,8 @@
     <string name="symptom_procureiservicosaude"> Procurei um serviço de saúde</string>
     <string name="symptom_sangramento"> Sangramento</string>
     <string name="symptom_tosse"> Tosse</string>
+    <string name="symptom_dorgarganta">Dor de garganta</string>
+    <string name="symptom_faltaar">Falta de ar</string>
     <string name="syndromes"> Síndromes</string>
     <string name="tag_app">#GuardioesDaSaude</string>
     <string name="tag_flu">#Gripe</string>

@@ -53,7 +53,7 @@ public class SelectParticipantActivity extends BaseAppCompatActivity implements 
         int j = DateFormat.getDateDiff(singleUser.getDob());
 
         textViewName.setText(singleUser.getNick());
-        textViewAge.setText(j + " Anos");
+        textViewAge.setText(j + " "+this.getString(R.string.anos));
 
         new AvatarHelper().loadImage(this, imageViewAvatar, singleUser);
 

@@ -10,6 +10,7 @@ import android.widget.Toast;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.epitrack.guardioes.R;
 import com.epitrack.guardioes.helper.DialogBuilder;
+import com.epitrack.guardioes.model.SingleUser;
 import com.epitrack.guardioes.request.base.Method;
 import com.epitrack.guardioes.request.old.Requester;
 import com.epitrack.guardioes.request.old.SimpleRequester;
@@ -19,6 +20,7 @@ import com.google.android.gms.analytics.HitBuilders;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.Locale;
 import java.util.concurrent.ExecutionException;
 
 import butterknife.Bind;
@@ -34,7 +36,7 @@ public class ReportActivity extends BaseAppCompatActivity {
 
     @Bind(R.id.report_message)
     EditText txtMessage;
-
+    private final SingleUser singleUser = SingleUser.getInstance();
     @Override
     public void onCreate(Bundle bundle) {
         super.onCreate(bundle);
@@ -61,7 +63,7 @@ public class ReportActivity extends BaseAppCompatActivity {
             info += "\n Model (and Product): " + android.os.Build.MODEL + " ("+ android.os.Build.PRODUCT + ")";
         }catch(Exception e){
         }
-        //Toast.makeText(ReportActivity.this, info, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(ReportActivity.this, Locale.getDefault().toString(), Toast.LENGTH_SHORT).show();
        getTracker().send(new HitBuilders.EventBuilder()
                 .setCategory("Action")
                 .setAction("Send ReportActivity Button")
@@ -81,6 +83,7 @@ public class ReportActivity extends BaseAppCompatActivity {
             try {
 
                 JSONObject jsonPost = new JSONObject();
+                jsonPost.put("email", singleUser.getEmail());
                 jsonPost.put("title", txtSubject.getText().toString().trim());
                 jsonPost.put("text", txtMessage.getText().toString().trim()+" ; "+info);
 
