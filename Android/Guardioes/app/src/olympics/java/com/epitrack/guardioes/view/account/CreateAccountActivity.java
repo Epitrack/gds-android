@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.v4.content.LocalBroadcastManager;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -67,8 +68,8 @@ public class CreateAccountActivity extends BaseAppCompatActivity {
 
     private static final int NONE = 0;
 
-    private static final int BRAZIL = 30;
-    private static final int FRANCE = 76;
+    private static final String BRAZIL = "BR";
+    private static final String FRANCE = "FR";
 
     private static final String SOCIAL_FRAGMENT = "social_fragment";
 
@@ -166,12 +167,12 @@ public class CreateAccountActivity extends BaseAppCompatActivity {
 
             @Override
             public void onItemSelected(final AdapterView<?> adapterView, final View view, final int position, final long id) {
+                String codeCountrySelected = countryList.get(position).getCode();
+                textViewState.setVisibility(codeCountrySelected.equals(BRAZIL) ? View.VISIBLE : View.GONE);
+                spinnerState.setVisibility(codeCountrySelected.equals(BRAZIL) ? View.VISIBLE : View.GONE);
 
-                textViewState.setVisibility(id == BRAZIL ? View.VISIBLE : View.GONE);
-                spinnerState.setVisibility(id == BRAZIL ? View.VISIBLE : View.GONE);
-
-                textViewRace.setVisibility(id == NONE || id == FRANCE? View.GONE : View.VISIBLE);
-                spinnerRace.setVisibility(id == NONE || id == FRANCE ? View.GONE : View.VISIBLE);
+                textViewRace.setVisibility(id == NONE || codeCountrySelected.equals(FRANCE)? View.GONE : View.VISIBLE);
+                spinnerRace.setVisibility(id == NONE || codeCountrySelected.equals(FRANCE) ? View.GONE : View.VISIBLE);
             }
 
             @Override

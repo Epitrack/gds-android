@@ -3,6 +3,7 @@ package com.epitrack.guardioes.view;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.content.res.Resources;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 
@@ -19,6 +20,7 @@ import com.epitrack.guardioes.request.base.RequestListener;
 import com.epitrack.guardioes.view.base.BaseActivity;
 import com.epitrack.guardioes.view.survey.StateActivity;
 import com.epitrack.guardioes.view.welcome.WelcomeActivity;
+import com.facebook.applinks.AppLinkData;
 import com.google.android.gms.analytics.HitBuilders;
 
 import java.util.Calendar;
@@ -42,6 +44,15 @@ public class SplashActivity extends BaseActivity implements Runnable {
         loadDirectory();
 
         SingleUser.getInstance().setVersionBuild(BuildConfig.VERSION_NAME);
+
+        AppLinkData.fetchDeferredAppLinkData(this,
+                new AppLinkData.CompletionHandler() {
+                    @Override
+                    public void onDeferredAppLinkDataFetched(AppLinkData appLinkData) {
+                        // Processar dados do link de aplicativo
+                    }
+                }
+        );
     }
 
     @Override
