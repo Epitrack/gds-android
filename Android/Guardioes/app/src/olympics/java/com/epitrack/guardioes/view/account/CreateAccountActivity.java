@@ -445,7 +445,11 @@ public class CreateAccountActivity extends BaseAppCompatActivity {
             final String country = ((Country) spinnerCountry.getSelectedItem()).getCode();
             final String name = new Locale("", country).getDisplayCountry(Locale.ENGLISH).toLowerCase();
             user.setCountry(name);
-            user.setState(spinnerState.getSelectedItem().toString().toLowerCase());
+            if(!name.equalsIgnoreCase("brazil")){
+                user.setState("AO");
+            }else{
+                user.setState(spinnerState.getSelectedItem().toString().toLowerCase());
+            }
             user.setProfile(spinnerProfile.getSelectedItemPosition());
             user.setEmail(editTextMail.getText().toString().trim().toLowerCase());
 
@@ -458,7 +462,7 @@ public class CreateAccountActivity extends BaseAppCompatActivity {
             }
 
             user.setGcmToken(hash);
-            //Toast.makeText(CreateAccountActivity.this, user.toString(), Toast.LENGTH_LONG).show();
+           // Toast.makeText(CreateAccountActivity.this, user.toString(), Toast.LENGTH_LONG).show();
            new UserRequester(CreateAccountActivity.this).createAccount(user, new RequestListener<User>() {
 
                 @Override
@@ -469,7 +473,8 @@ public class CreateAccountActivity extends BaseAppCompatActivity {
                 @Override
                 public void onError(final Exception e) {
                     loadDialog.dismiss();
-                   Toast.makeText(CreateAccountActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                   Toast.makeText(CreateAccountActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
+                    try{
                     if(e.getMessage().equalsIgnoreCase("User already exists")){
                         new DialogBuilder(CreateAccountActivity.this).load()
                                 .title(R.string.attention)
@@ -477,7 +482,10 @@ public class CreateAccountActivity extends BaseAppCompatActivity {
                                 .positiveText(R.string.ok)
                                 .show();
                     }else{
-                        Toast.makeText(CreateAccountActivity.this, R.string.erro_new_user, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(CreateAccountActivity.this, R.string.erro_new_user, Toast.LENGTH_LONG).show();
+                    }
+                    }catch(Exception ex){
+                        Toast.makeText(CreateAccountActivity.this, R.string.erro_new_user, Toast.LENGTH_LONG).show();
                     }
                     e.printStackTrace();
                 }

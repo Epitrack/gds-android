@@ -1,6 +1,7 @@
 package com.epitrack.guardioes.request;
 
 import android.content.Context;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.epitrack.guardioes.helper.Constants;
@@ -26,6 +27,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 public class UserRequester extends BaseRequester {
@@ -156,7 +158,17 @@ public class UserRequester extends BaseRequester {
         bodyMap.put("email", user.getEmail());
         bodyMap.put("password", user.getPassword());
         bodyMap.put("client", user.getClient());
-        bodyMap.put("dob", DateFormat.getDate(user.getDob()));
+        if(Locale.getDefault().toString().equalsIgnoreCase("ar")){
+            try{
+                String[] d = user.getDob().split("/");
+                String nd = d[2]+"-"+d[1]+"-"+d[0];
+                bodyMap.put("dob", nd);
+            }catch(Exception ex){
+                bodyMap.put("dob", user.getDob());
+            }
+        }else{
+            bodyMap.put("dob", DateFormat.getDate(user.getDob()));
+        }
         bodyMap.put("gender", user.getGender());
         bodyMap.put("app_token", user.getAppToken());
         bodyMap.put("race", user.getRace());
@@ -182,6 +194,7 @@ public class UserRequester extends BaseRequester {
 
         listener.onStart();
 
+
         new Requester(getContext()).request(Method.POST, url, getHeaderMap(), bodyMap, new FutureCallback<Response<String>>() {
 
             @Override
@@ -194,7 +207,7 @@ public class UserRequester extends BaseRequester {
                         try {
 
                             final JSONObject json = new JSONObject(response.getResult());
-                            System.out.print(json.toString());
+                            Log.d("User Response",json.toString());
                             if (json.getBoolean("error")) {
 
                                 listener.onError(new RequestException(response.getResult()));

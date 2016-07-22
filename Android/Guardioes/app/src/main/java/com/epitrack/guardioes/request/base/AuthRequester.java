@@ -110,8 +110,11 @@ public final class AuthRequester extends BaseRequester {
             user.setRace(json.getString("race"));
             user.setDob(json.getString("dob"));
             user.setUserToken(json.getString("token"));
-
+            try{
             user.setLevel(json.getInt("level"));
+            }catch(Exception e){
+                user.setLevel(1);
+            }
             user.setEnergy(json.getInt("xp"));
 
             final JSONArray array = json.getJSONArray("answers");

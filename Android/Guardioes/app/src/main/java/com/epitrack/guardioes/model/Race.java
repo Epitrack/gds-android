@@ -33,7 +33,7 @@ public enum Race {
             }
         }
 
-        throw new IllegalArgumentException("The Race has not found.");
+        return Race.BLACK;
     }
 
     public static Race getBy(final String value) {
@@ -45,6 +45,6 @@ public enum Race {
             }
         }
 
-        throw new IllegalArgumentException("The Race has not found.");
+        return Race.BLACK;
     }
 }
