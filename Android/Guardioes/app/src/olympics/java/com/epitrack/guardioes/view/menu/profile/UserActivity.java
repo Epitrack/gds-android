@@ -8,6 +8,7 @@ import android.support.v7.widget.AppCompatEditText;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -101,6 +102,9 @@ public class UserActivity extends BaseAppCompatActivity {
     @Bind(R.id.spinner_profile)
     Spinner spinnerProfile;
 
+    @Bind(R.id.button_change_password)
+    Button btnChangePassword;
+
     private int image;
     private String path;
 
@@ -147,7 +151,7 @@ public class UserActivity extends BaseAppCompatActivity {
             editTextMail.setText(user.getEmail());
 
         } else {
-
+            this.btnChangePassword.setVisibility(View.GONE);
             spinnerParent.setSelection(Parent.getBy(user.getRelationship()).getId() - 1);
         }
 
@@ -261,6 +265,14 @@ public class UserActivity extends BaseAppCompatActivity {
                 .build());
 
         add();
+    }
+
+    @OnClick(R.id.button_change_password)
+    public void onChangePassword(){
+        final Bundle bundle = new Bundle();
+
+        bundle.putParcelable(Constants.Bundle.USER, Parcels.wrap(user));
+        navigateTo(ChangePasswordActivity.class, bundle);
     }
 
     @Override

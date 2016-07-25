@@ -563,6 +563,24 @@ public class UserRequester extends BaseRequester {
 
     }
 
+    public void changePassword(User user, String password, String newPassword, final RequestListener<String> listener){
+
+        final Map<String, String> bodyMap = new HashMap<>();
+        bodyMap.put("userId", user.getId());
+        bodyMap.put("passwd", user.getId());
+        bodyMap.put("passwdn", user.getId());
+        new Requester(getContext()).request(Method.POST, RequesterConfig.URL + "/user/changepass", getAuthHeaderMap(), bodyMap, new FutureCallback<Response<String>>() {
+            @Override
+            public void onCompleted(Exception error, Response<String> result) {
+                if (error == null){
+                    listener.onSuccess("");
+                }else{
+                    listener.onError(error);
+                }
+            }
+        });
+    }
+
     // TODO: Refactor soon..
     private void loadUser(final User type) {
 
