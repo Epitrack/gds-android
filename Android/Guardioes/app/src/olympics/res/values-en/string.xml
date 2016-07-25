@@ -235,6 +235,7 @@
     <string name="prevention_title_01">PREVENTION</string>
     <string name="privacy">Privacy</string>
     <string name="profile">Profile</string>
+    <string name="redefine_password">Reset password</string>
     <string name="race">Color/Race</string>
     <string name="rash">Exanthematic</string>
     <string name="register_fail">The sign-up process could not be completed. Try again in a few minutes.</string>

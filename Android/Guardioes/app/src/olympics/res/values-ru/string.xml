@@ -245,6 +245,7 @@
     <string name="race">Цвет Кожи / Раса</string>
     <string name="privacy">Конфиденциальность</string>
     <string name="rash">Сыпь</string>
+    <string name="redefine_password">Восстановление Пароля</string>
     <string name="register">Регистрация</string>
     <string name="register_fail">Не удалось выполнить регистрацию. Пожалуйста, повторите попытку через несколько минут!</string>
     <string name="relationship">Родство</string>
