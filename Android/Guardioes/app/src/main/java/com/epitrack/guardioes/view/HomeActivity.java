@@ -135,7 +135,7 @@ public class HomeActivity extends AppCompatActivity implements AdapterView.OnIte
 
             final Intent intent = new Intent(Intent.ACTION_VIEW);
 
-            intent.setData(Uri.parse("https://www.facebook.com/minsaude"));
+            intent.setData(Uri.parse("https://www.facebook.com/appguardioesdasaude"));
 
             startActivity(intent);
 

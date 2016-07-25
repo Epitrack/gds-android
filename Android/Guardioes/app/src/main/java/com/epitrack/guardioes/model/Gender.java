@@ -30,7 +30,7 @@ public enum Gender {
             }
         }
 
-        throw new IllegalArgumentException("The Gender has not found.");
+        return Gender.MALE;
     }
 
     public static Gender getBy(final String value) {
@@ -42,6 +42,6 @@ public enum Gender {
             }
         }
 
-        throw new IllegalArgumentException("The Gender has not found.");
+        return Gender.MALE;
     }
 }
