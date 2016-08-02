@@ -22,6 +22,7 @@ import com.epitrack.guardioes.request.SurveyRequester;
 import com.epitrack.guardioes.request.base.RequestListener;
 import com.epitrack.guardioes.view.HomeActivity;
 import com.epitrack.guardioes.view.base.BaseAppCompatActivity;
+import com.epitrack.guardioes.view.dialog.LoadDialog;
 import com.google.android.gms.analytics.HitBuilders;
 
 import org.json.JSONArray;
@@ -53,7 +54,7 @@ public class SymptomActivity extends BaseAppCompatActivity {
     private String id;
     private double latitude;
     private double longitude;
-
+    final LoadDialog loadDialog = new LoadDialog();
     @Override
     protected void onCreate(final Bundle bundle) {
         super.onCreate(bundle);
@@ -536,7 +537,7 @@ public class SymptomActivity extends BaseAppCompatActivity {
 
 
     private void sendSymptom() throws JSONException, ExecutionException, InterruptedException {
-
+        loadDialog.show(getFragmentManager(), LoadDialog.TAG);
         final Map<String, Object> map = new HashMap<>();
 
         final User user = new User();
@@ -580,12 +581,12 @@ public class SymptomActivity extends BaseAppCompatActivity {
 
             @Override
             public void onError(final Exception e) {
-
+                loadDialog.dismiss();
             }
 
             @Override
             public void onSuccess(final String result) {
-
+                loadDialog.dismiss();
                 try {
 
                     final JSONObject jsonObject = new JSONObject(result);
@@ -597,7 +598,16 @@ public class SymptomActivity extends BaseAppCompatActivity {
                         if (jsonObject.get("exantematica").toString() == "true") {
                             isExantematica = true;
                         }
-                        Log.d("exantematica",""+(isExantematica));
+                    }
+                    Log.d("ISEXANTEMATICA",""+isExantematica);
+                    if (isExantematica) {
+                        Log.d("confirmSendSymptons","navigateTo(ZikaActivity.class)");
+                        navigateTo(ZikaActivity.class);
+                    } else {
+                        Log.d("confirmSendSymptons","navigateTo(ShareActivity.class, bundle)");
+                        final Bundle bundle = new Bundle();
+                        bundle.putBoolean(Constants.Bundle.BAD_STATE, true);
+                        navigateTo(ShareActivity.class, bundle);
                     }
 
                 } catch (JSONException e) {
@@ -637,18 +647,8 @@ public class SymptomActivity extends BaseAppCompatActivity {
                     public void onPositive(final MaterialDialog dialog) {
                     try {
                             sendSymptom();
-                            if (isExantematica) {
-                                navigateTo(ZikaActivity.class);
-                            } else {
-                                final Bundle bundle = new Bundle();
-                                bundle.putBoolean(Constants.Bundle.BAD_STATE, true);
-                                navigateTo(ShareActivity.class, bundle);
-                            }
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        } catch (ExecutionException e) {
-                            e.printStackTrace();
-                        } catch (InterruptedException e) {
+
+                        } catch (Exception e) {
                             e.printStackTrace();
                         }
                     }

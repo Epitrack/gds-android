@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         android:scaleType="fitXY"
         android:src="@drawable/image_home_top"
-        android:layout_marginTop="-60dp" />
+        android:layout_marginTop="-90dp" />
 
 
     <TextView
@@ -58,10 +58,5 @@
         android:layout_marginTop="50dp"
         android:background="@drawable/button_translucent"
         android:text="@string/confirm" />
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:scaleType="fitXY"
-        android:src="@drawable/image_home_bottom"/>
+
 </LinearLayout>

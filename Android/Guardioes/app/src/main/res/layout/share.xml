@@ -1,14 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="wrap_content"
+    android:background="@drawable/background_blue"
+    android:orientation="vertical"
+    android:gravity="fill_vertical">
 
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitXY"
+        android:src="@drawable/image_home_top"
+        android:layout_marginTop="-90dp"
+        android:adjustViewBounds="true" />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="-70dp"
         android:gravity="center_horizontal"
         android:text="@string/message_thanks"
         android:textSize="20dp" />
@@ -26,7 +35,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="25dp"
-        android:src="@drawable/image_complete" />
+        android:src="@drawable/entrar_button" />
 
     <TextView
         android:id="@+id/text_view_hospital_message_hint"
@@ -43,7 +52,7 @@
         android:id="@+id/text_view_social_message_hint"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="10dp"
         android:text="@string/message_invite_friend"
         android:textSize="13dp"
         android:layout_gravity="center_horizontal"/>
