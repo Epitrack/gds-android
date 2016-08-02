@@ -5,11 +5,20 @@
     android:orientation="vertical"
     android:background="@drawable/background_blue">
 
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scaleType="fitXY"
+        android:src="@drawable/image_home_top"
+        android:layout_marginTop="-60dp" />
+
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="15dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="-60dp"
         android:gravity="center_horizontal"
         android:text="@string/message_thanks_zika"
         android:textSize="25dp" />
@@ -49,5 +58,10 @@
         android:layout_marginTop="50dp"
         android:background="@drawable/button_translucent"
         android:text="@string/confirm" />
-
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:scaleType="fitXY"
+        android:src="@drawable/image_home_bottom"/>
 </LinearLayout>

@@ -589,15 +589,15 @@ public class SymptomActivity extends BaseAppCompatActivity {
                 try {
 
                     final JSONObject jsonObject = new JSONObject(result);
-
+                    Log.d("sendSurvey",jsonObject.toString());
                     if (jsonObject.get("error").toString() == "true") {
                         Toast.makeText(getApplicationContext(), jsonObject.get("message").toString(), Toast.LENGTH_SHORT).show();
 
                     } else {
-
                         if (jsonObject.get("exantematica").toString() == "true") {
                             isExantematica = true;
                         }
+                        Log.d("exantematica",""+(isExantematica));
                     }
 
                 } catch (JSONException e) {
