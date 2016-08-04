@@ -260,6 +260,11 @@ public class MapPointActivity extends AbstractBaseMapActivity {
         return true;
     }
 
+    @Override
+    public void onBackPressed() {
+        navigateTo(HomeActivity.class);
+    }
+
     private String format(final Point point) {
         return point.getLogradouro() + ", " + point.getNumero();
     }

@@ -105,7 +105,7 @@
     <string name="email_send">成功發送信息。謝謝！</string>
     <string name="emergence_text">緊急醫療服務</string>
     <string name="emergency">SAMU</string>
-    <string name="energy">能量</string>
+    <string name="energy">%1$s 能量</string>
     <string name="erro_new_user">無法完成註冊過程。幾分鐘後再試。</string>
     <string name="error_add_new_member">填寫您的信息，以完成註冊</string>
     <string name="exit">退出</string>

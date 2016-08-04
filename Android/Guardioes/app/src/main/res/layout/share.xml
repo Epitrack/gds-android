@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/background_blue"
+    android:background="@drawable/background_home"
     android:orientation="vertical"
     android:gravity="fill_vertical">
 
@@ -11,7 +11,7 @@
         android:layout_height="match_parent"
         android:scaleType="fitXY"
         android:src="@drawable/image_home_top"
-        android:layout_marginTop="-90dp"
+        android:layout_marginTop="-110dp"
         android:adjustViewBounds="true" />
     <TextView
         android:layout_width="wrap_content"
@@ -34,8 +34,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="25dp"
-        android:src="@drawable/entrar_button" />
+        android:layout_marginTop="10dp"
+        android:src="@drawable/share_button_menor" />
 
     <TextView
         android:id="@+id/text_view_hospital_message_hint"
@@ -85,8 +85,8 @@
         android:id="@+id/button_confirm"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="35dp"
-        android:layout_marginRight="35dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
         android:layout_marginTop="10dp"
         android:background="@drawable/button_translucent"
         android:text="@string/confirm" />

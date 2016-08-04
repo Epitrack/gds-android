@@ -56,7 +56,7 @@ public class ZikaActivity extends BaseActivity {
                 .setAction("Zika Survey UPAs Button")
                 .build());
 
-        final Tip tip = Tip.getBy(1);
+        final Tip tip = Tip.HOSPITAL;
         final Intent intent = new Intent(this, tip.getType());
         intent.putExtra(Constants.Bundle.TIP, tip.getId());
         startActivity(intent);

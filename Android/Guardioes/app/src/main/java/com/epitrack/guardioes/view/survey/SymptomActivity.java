@@ -15,6 +15,8 @@ import com.epitrack.guardioes.R;
 import com.epitrack.guardioes.helper.Constants;
 import com.epitrack.guardioes.helper.DialogBuilder;
 import com.epitrack.guardioes.helper.SocialShare;
+import com.epitrack.guardioes.manager.PrefManager;
+import com.epitrack.guardioes.model.Country;
 import com.epitrack.guardioes.model.SingleUser;
 import com.epitrack.guardioes.model.SymptomList;
 import com.epitrack.guardioes.model.User;
@@ -32,6 +34,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.concurrent.ExecutionException;
 
@@ -109,261 +112,13 @@ public class SymptomActivity extends BaseAppCompatActivity {
                         final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(
                                 SymptomActivity.this,
                                 R.layout.select_dialog_singlechoice_gds);
-                        arrayAdapter.add("Afeganistão");
-                        arrayAdapter.add("África do Sul");
-                        arrayAdapter.add("Akrotiri");
-                        arrayAdapter.add("Albânia");
-                        arrayAdapter.add("Alemanha");
-                        arrayAdapter.add("Andorra");
-                        arrayAdapter.add("Angola");
-                        arrayAdapter.add("Anguila");
-                        arrayAdapter.add("Antárctida");
-                        arrayAdapter.add("Antígua e Barbuda");
-                        arrayAdapter.add("Antilhas Neerlandesas");
-                        arrayAdapter.add("Arábia Saudita");
-                        arrayAdapter.add("Arctic Ocean");
-                        arrayAdapter.add("Argélia");
-                        arrayAdapter.add("Argentina");
-                        arrayAdapter.add("Arménia");
-                        arrayAdapter.add("Aruba");
-                        arrayAdapter.add("Ashmore and Cartier Islands");
-                        arrayAdapter.add("Atlantic Ocean");
-                        arrayAdapter.add("Austrália");
-                        arrayAdapter.add("Áustria");
-                        arrayAdapter.add("Azerbaijão");
-                        arrayAdapter.add("Baamas");
-                        arrayAdapter.add("Bangladeche");
-                        arrayAdapter.add("Barbados");
-                        arrayAdapter.add("Barém");
-                        arrayAdapter.add("Bélgica");
-                        arrayAdapter.add("Belize");
-                        arrayAdapter.add("Benim");
-                        arrayAdapter.add("Bermudas");
-                        arrayAdapter.add("Bielorrússia");
-                        arrayAdapter.add("Birmânia");
-                        arrayAdapter.add("Bolívia");
-                        arrayAdapter.add("Bósnia e Herzegovina");
-                        arrayAdapter.add("Botsuana");
-                        arrayAdapter.add("Brunei");
-                        arrayAdapter.add("Bulgária");
-                        arrayAdapter.add("Burquina Faso");
-                        arrayAdapter.add("Burúndi");
-                        arrayAdapter.add("Butão");
-                        arrayAdapter.add("Cabo Verde");
-                        arrayAdapter.add("Camarões");
-                        arrayAdapter.add("Camboja");
-                        arrayAdapter.add("Canadá");
-                        arrayAdapter.add("Catar");
-                        arrayAdapter.add("Cazaquistão");
-                        arrayAdapter.add("Chade");
-                        arrayAdapter.add("Chile");
-                        arrayAdapter.add("China");
-                        arrayAdapter.add("Chipre");
-                        arrayAdapter.add("Clipperton Island");
-                        arrayAdapter.add("Colômbia");
-                        arrayAdapter.add("Comores");
-                        arrayAdapter.add("Congo-Brazzaville");
-                        arrayAdapter.add("Congo-Kinshasa");
-                        arrayAdapter.add("Coral Sea Islands");
-                        arrayAdapter.add("Coreia do Norte");
-                        arrayAdapter.add("Coreia do Sul");
-                        arrayAdapter.add("Costa do Marfim");
-                        arrayAdapter.add("Costa Rica");
-                        arrayAdapter.add("Croácia");
-                        arrayAdapter.add("Cuba");
-                        arrayAdapter.add("Dhekelia");
-                        arrayAdapter.add("Dinamarca");
-                        arrayAdapter.add("Domínica");
-                        arrayAdapter.add("Egipto");
-                        arrayAdapter.add("Emiratos Árabes Unidos");
-                        arrayAdapter.add("Equador");
-                        arrayAdapter.add("Eritreia");
-                        arrayAdapter.add("Eslováquia");
-                        arrayAdapter.add("Eslovénia");
-                        arrayAdapter.add("Espanha");
-                        arrayAdapter.add("Estados Unidos");
-                        arrayAdapter.add("Estónia");
-                        arrayAdapter.add("Etiópia");
-                        arrayAdapter.add("Faroé");
-                        arrayAdapter.add("Fiji");
-                        arrayAdapter.add("Filipinas");
-                        arrayAdapter.add("Finlândia");
-                        arrayAdapter.add("França");
-                        arrayAdapter.add("Gabão");
-                        arrayAdapter.add("Gâmbia");
-                        arrayAdapter.add("Gana");
-                        arrayAdapter.add("Gaza Strip");
-                        arrayAdapter.add("Geórgia");
-                        arrayAdapter.add("Geórgia do Sul e Sandwich do Sul");
-                        arrayAdapter.add("Gibraltar");
-                        arrayAdapter.add("Granada");
-                        arrayAdapter.add("Grécia");
-                        arrayAdapter.add("Gronelândia");
-                        arrayAdapter.add("Guame");
-                        arrayAdapter.add("Guatemala");
-                        arrayAdapter.add("Guernsey");
-                        arrayAdapter.add("Guiana");
-                        arrayAdapter.add("Guiné");
-                        arrayAdapter.add("Guiné Equatorial");
-                        arrayAdapter.add("Guiné-Bissau");
-                        arrayAdapter.add("Haiti");
-                        arrayAdapter.add("Honduras");
-                        arrayAdapter.add("Hong Kong");
-                        arrayAdapter.add("Hungria");
-                        arrayAdapter.add("Iémen");
-                        arrayAdapter.add("Ilha Bouvet");
-                        arrayAdapter.add("Ilha do Natal");
-                        arrayAdapter.add("Ilha Norfolk");
-                        arrayAdapter.add("Ilhas Caimão");
-                        arrayAdapter.add("Ilhas Cook");
-                        arrayAdapter.add("Ilhas dos Cocos");
-                        arrayAdapter.add("Ilhas Falkland");
-                        arrayAdapter.add("Ilhas Heard e McDonald");
-                        arrayAdapter.add("Ilhas Marshall");
-                        arrayAdapter.add("Ilhas Salomão");
-                        arrayAdapter.add("Ilhas Turcas e Caicos");
-                        arrayAdapter.add("Ilhas Virgens Americanas");
-                        arrayAdapter.add("Ilhas Virgens Britânicas");
-                        arrayAdapter.add("Índia");
-                        arrayAdapter.add("Indian Ocean");
-                        arrayAdapter.add("Indonésia");
-                        arrayAdapter.add("Irão");
-                        arrayAdapter.add("Iraque");
-                        arrayAdapter.add("Irlanda");
-                        arrayAdapter.add("Islândia");
-                        arrayAdapter.add("Israel");
-                        arrayAdapter.add("Itália");
-                        arrayAdapter.add("Jamaica");
-                        arrayAdapter.add("Jan Mayen");
-                        arrayAdapter.add("Japão");
-                        arrayAdapter.add("Jersey");
-                        arrayAdapter.add("Jibuti");
-                        arrayAdapter.add("Jordânia");
-                        arrayAdapter.add("Kuwait");
-                        arrayAdapter.add("Laos");
-                        arrayAdapter.add("Lesoto");
-                        arrayAdapter.add("Letónia");
-                        arrayAdapter.add("Líbano");
-                        arrayAdapter.add("Libéria");
-                        arrayAdapter.add("Líbia");
-                        arrayAdapter.add("Listenstaine");
-                        arrayAdapter.add("Lituânia");
-                        arrayAdapter.add("Luxemburgo");
-                        arrayAdapter.add("Macau");
-                        arrayAdapter.add("Macedónia");
-                        arrayAdapter.add("Madagáscar");
-                        arrayAdapter.add("Malásia");
-                        arrayAdapter.add("Malávi");
-                        arrayAdapter.add("Maldivas");
-                        arrayAdapter.add("Mali");
-                        arrayAdapter.add("Malta");
-                        arrayAdapter.add("Man, Isle of");
-                        arrayAdapter.add("Marianas do Norte");
-                        arrayAdapter.add("Marrocos");
-                        arrayAdapter.add("Maurícia");
-                        arrayAdapter.add("Mauritânia");
-                        arrayAdapter.add("Mayotte");
-                        arrayAdapter.add("México");
-                        arrayAdapter.add("Micronésia");
-                        arrayAdapter.add("Moçambique");
-                        arrayAdapter.add("Moldávia");
-                        arrayAdapter.add("Mónaco");
-                        arrayAdapter.add("Mongólia");
-                        arrayAdapter.add("Monserrate");
-                        arrayAdapter.add("Montenegro");
-                        arrayAdapter.add("Mundo");
-                        arrayAdapter.add("Namíbia");
-                        arrayAdapter.add("Nauru");
-                        arrayAdapter.add("Navassa Island");
-                        arrayAdapter.add("Nepal");
-                        arrayAdapter.add("Nicarágua");
-                        arrayAdapter.add("Níger");
-                        arrayAdapter.add("Nigéria");
-                        arrayAdapter.add("Niue");
-                        arrayAdapter.add("Noruega");
-                        arrayAdapter.add("Nova Caledónia");
-                        arrayAdapter.add("Nova Zelândia");
-                        arrayAdapter.add("Omã");
-                        arrayAdapter.add("Pacific Ocean");
-                        arrayAdapter.add("Países Baixos");
-                        arrayAdapter.add("Palau");
-                        arrayAdapter.add("Panamá");
-                        arrayAdapter.add("Papua-Nova Guiné");
-                        arrayAdapter.add("Paquistão");
-                        arrayAdapter.add("Paracel Islands");
-                        arrayAdapter.add("Paraguai");
-                        arrayAdapter.add("Peru");
-                        arrayAdapter.add("Pitcairn");
-                        arrayAdapter.add("Polinésia Francesa");
-                        arrayAdapter.add("Polónia");
-                        arrayAdapter.add("Porto Rico");
-                        arrayAdapter.add("Portugal");
-                        arrayAdapter.add("Quénia");
-                        arrayAdapter.add("Quirguizistão");
-                        arrayAdapter.add("Quiribáti");
-                        arrayAdapter.add("Reino Unido");
-                        arrayAdapter.add("República Centro-Africana");
-                        arrayAdapter.add("República Checa");
-                        arrayAdapter.add("República Dominicana");
-                        arrayAdapter.add("Roménia");
-                        arrayAdapter.add("Ruanda");
-                        arrayAdapter.add("Rússia");
-                        arrayAdapter.add("Salvador");
-                        arrayAdapter.add("Samoa");
-                        arrayAdapter.add("Samoa Americana");
-                        arrayAdapter.add("Santa Helena");
-                        arrayAdapter.add("Santa Lúcia");
-                        arrayAdapter.add("São Cristóvão e Neves");
-                        arrayAdapter.add("São Marinho");
-                        arrayAdapter.add("São Pedro e Miquelon");
-                        arrayAdapter.add("São Tomé e Príncipe");
-                        arrayAdapter.add("São Vicente e Granadinas");
-                        arrayAdapter.add("Sara Ocidental");
-                        arrayAdapter.add("Seicheles");
-                        arrayAdapter.add("Senegal");
-                        arrayAdapter.add("Serra Leoa");
-                        arrayAdapter.add("Sérvia");
-                        arrayAdapter.add("Singapura");
-                        arrayAdapter.add("Síria");
-                        arrayAdapter.add("Somália");
-                        arrayAdapter.add("Southern Ocean");
-                        arrayAdapter.add("Spratly Islands");
-                        arrayAdapter.add("Sri Lanca");
-                        arrayAdapter.add("Suazilândia");
-                        arrayAdapter.add("Sudão");
-                        arrayAdapter.add("Suécia");
-                        arrayAdapter.add("Suíça");
-                        arrayAdapter.add("Suriname");
-                        arrayAdapter.add("Svalbard e Jan Mayen");
-                        arrayAdapter.add("Tailândia");
-                        arrayAdapter.add("Taiwan");
-                        arrayAdapter.add("Tajiquistão");
-                        arrayAdapter.add("Tanzânia");
-                        arrayAdapter.add("Território Britânico do Oceano Índico");
-                        arrayAdapter.add("Territórios Austrais Franceses");
-                        arrayAdapter.add("Timor Leste");
-                        arrayAdapter.add("Togo");
-                        arrayAdapter.add("Tokelau");
-                        arrayAdapter.add("Tonga");
-                        arrayAdapter.add("Trindade e Tobago");
-                        arrayAdapter.add("Tunísia");
-                        arrayAdapter.add("Turquemenistão");
-                        arrayAdapter.add("Turquia");
-                        arrayAdapter.add("Tuvalu");
-                        arrayAdapter.add("Ucrânia");
-                        arrayAdapter.add("Uganda");
-                        arrayAdapter.add("União Europeia");
-                        arrayAdapter.add("Uruguai");
-                        arrayAdapter.add("Usbequistão");
-                        arrayAdapter.add("Vanuatu");
-                        arrayAdapter.add("Vaticano");
-                        arrayAdapter.add("Venezuela");
-                        arrayAdapter.add("Vietname");
-                        arrayAdapter.add("Wake Island");
-                        arrayAdapter.add("Wallis e Futuna");
-                        arrayAdapter.add("West Bank");
-                        arrayAdapter.add("Zâmbia");
-                        arrayAdapter.add("Zimbabué");
+                        final ArrayList<Country> listCountry = new ArrayList<Country>();
+                        String[] locales = Locale.getISOCountries();
+                        for (String countryCode : locales) {
+                            Locale obj = new Locale("", countryCode);
+                            arrayAdapter.add(obj.getDisplayCountry(Locale.getDefault()));
+                            listCountry.add(new Country(obj.getCountry().hashCode(),obj.getCountry(),obj.getDisplayCountry(Locale.getDefault()),obj.getDisplayCountry(Locale.ENGLISH)));
+                        }
 
                         builderSingle.setNegativeButton(
                                 R.string.cancel,
@@ -379,7 +134,7 @@ public class SymptomActivity extends BaseAppCompatActivity {
                                 new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialog, int which) {
-                                        String strName = arrayAdapter.getItem(which);
+                                        String strName = listCountry.get(which).getName_en();
                                         country = strName;
                                         AlertDialog.Builder builderInner = new AlertDialog.Builder(
                                                 SymptomActivity.this);
@@ -389,9 +144,7 @@ public class SymptomActivity extends BaseAppCompatActivity {
                                                 "Ok",
                                                 new DialogInterface.OnClickListener() {
                                                     @Override
-                                                    public void onClick(
-                                                            DialogInterface dialog,
-                                                            int which) {
+                                                    public void onClick( DialogInterface dialog, int which) {
                                                         confirmSendSymptons();
                                                         dialog.dismiss();
                                                     }
@@ -559,10 +312,14 @@ public class SymptomActivity extends BaseAppCompatActivity {
         map.put("no_symptom", "N");
         map.put("token", singleUser.getUserToken());
         map.put("travelLocation", country);
-
+        //
+        Log.d("lat", ""+latitude);
+        Log.d("lon", ""+longitude);
+        Log.d("household_id", user.getId());
+        Log.d("TRAVEL_LOCATION",country);
         for (int i = 0; i < symptomArray.size(); i++) {
             String symptomName = symptomArray.get(i).getCodigo();
-
+            Log.d("symptomArray("+i+")",symptomName);
             if (symptomArray.get(i).isSelected()) {
                 if(symptomName.equals("hadContagiousContact") || symptomName.equals("hadHealthCare") || symptomName.equals("hadTravelledAbroad")) {
                     map.put(symptomArray.get(i).getCodigo(), "true");
@@ -586,6 +343,7 @@ public class SymptomActivity extends BaseAppCompatActivity {
 
             @Override
             public void onSuccess(final String result) {
+                hasSurveyToday();
                 loadDialog.dismiss();
                 try {
 
@@ -653,5 +411,37 @@ public class SymptomActivity extends BaseAppCompatActivity {
                         }
                     }
                 }).show();
+    }
+
+    private void hasSurveyToday() {
+
+        new SurveyRequester(this).hasSurveyToday(new RequestListener<Integer>() {
+
+            @Override
+            public void onStart() {
+
+            }
+
+            @Override
+            public void onError(final Exception e) {
+
+            }
+
+            @Override
+            public void onSuccess(final Integer amount) {
+
+                if (amount == 1) {
+
+                    final User user = new PrefManager(SymptomActivity.this).get(Constants.Pref.USER, User.class);
+
+                    if (user != null) {
+
+                        user.addEnergy(10);
+
+                        new PrefManager(SymptomActivity.this).put(Constants.Pref.USER, user);
+                    }
+                }
+            }
+        });
     }
 }

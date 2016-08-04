@@ -152,7 +152,7 @@ public class StateActivity extends BaseAppCompatActivity {
     }
 
     private void sendSurvey(final LatLng latLng) {
-
+        Toast.makeText(StateActivity.this, latLng.latitude+" - "+latLng.longitude, Toast.LENGTH_LONG).show();
         loadDialog.show(getFragmentManager(), LoadDialog.TAG);
 
         new SurveyRequester(StateActivity.this).saveSurveyGood(new User(id), latLng, new RequestListener<Boolean>() {

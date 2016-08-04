@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.widget.AppCompatEditText;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -134,7 +135,7 @@ public class UserActivity extends BaseAppCompatActivity {
     }
 
     private void load(final User user, final boolean main) {
-
+        Log.d("USER load",user.toString());
         editTextNickname.setText(user.getNick());
 
         spinnerGender.setSelection(user.getGender().equalsIgnoreCase("M") ? 1 : 2);
@@ -295,7 +296,7 @@ public class UserActivity extends BaseAppCompatActivity {
 
                     final String path = intent.getStringExtra(Constants.Bundle.PATH);
 
-                    this.image = 0;
+                    this.image = user.getImage();
                     this.path = path;
 
                     final int width = imageViewImage.getWidth();
@@ -344,13 +345,18 @@ public class UserActivity extends BaseAppCompatActivity {
         user.setState(spinnerState.getSelectedItem().toString().toLowerCase());
         user.setProfile(spinnerProfile.getSelectedItemPosition());
         user.setPath(path);
-        user.setImage(image);
+
+        if(image==0){
+            user.setImage(user.getImage());
+        }else{
+            user.setImage(image);
+        }
 
         final String parent = Parent.getBy(spinnerParent.getSelectedItemPosition() + 1).getValue();
         user.setRelationship(parent);
 
         if (validate(user)) {
-
+            Log.d("USER /user/update",user.toString());
             final String url = main ? "/user/update" : create ? "/household/create" : "/household/update";
 
             new UserRequester(this).addOrUpdate(url, user, create ? SingleUser.getInstance().getId() : null, new RequestHandler<String>(this) {

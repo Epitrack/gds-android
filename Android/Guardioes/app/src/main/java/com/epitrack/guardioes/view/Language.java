@@ -35,6 +35,6 @@ public enum Language {
             }
         }
 
-        throw new IllegalArgumentException("The Language has not found.");
+        return Language.ENGLISH;
     }
 }

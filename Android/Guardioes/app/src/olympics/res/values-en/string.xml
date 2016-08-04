@@ -100,7 +100,7 @@
     <string name="email_send">Message successfully sent. Thank you!</string>
     <string name="emergence_text">Emergency Healthcare Service</string>
     <string name="emergency">SAMU</string>
-    <string name="energy">% Energies</string>
+    <string name="energy">%1$s Energies</string>
     <string name="erro_new_user">The sign-up process could not be completed. Try again in a few minutes.</string>
     <string name="error_add_new_member">Complete your information to complete the registration</string>
     <string name="exit">Exit</string>
