@@ -25,6 +25,7 @@ import com.epitrack.guardioes.request.base.RequestListener;
 import com.epitrack.guardioes.view.HomeActivity;
 import com.epitrack.guardioes.view.base.BaseAppCompatActivity;
 import com.epitrack.guardioes.view.dialog.LoadDialog;
+import com.epitrack.guardioes.view.game.GameActivity;
 import com.google.android.gms.analytics.HitBuilders;
 
 import org.json.JSONArray;
@@ -429,8 +430,8 @@ public class SymptomActivity extends BaseAppCompatActivity {
 
             @Override
             public void onSuccess(final Integer amount) {
-
-                if (amount == 1) {
+                Log.d("hasSurveyToday",""+ amount);
+                if (amount == 0) {
 
                     final User user = new PrefManager(SymptomActivity.this).get(Constants.Pref.USER, User.class);
 
@@ -440,6 +441,7 @@ public class SymptomActivity extends BaseAppCompatActivity {
 
                         new PrefManager(SymptomActivity.this).put(Constants.Pref.USER, user);
                     }
+                    Log.d("hasSurveyToday.user",""+ user.toString());
                 }
             }
         });
