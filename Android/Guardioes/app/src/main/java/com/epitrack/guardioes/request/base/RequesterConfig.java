@@ -22,10 +22,13 @@ package com.epitrack.guardioes.request.base;
 public final class RequesterConfig {
     
     private static final String ADDRESS = "https://api.guardioesdasaude.org";
+    private static final String ADDRESS_DEV = "http://rest.guardioesdasaude.org";
     private static final String PORT = "";
     private static final String CONTEXT = "";
     
-    public static final String URL = ADDRESS + CONTEXT;
+    public static final String URL_PROD = ADDRESS + CONTEXT;
+    public static final String URL_DEV = ADDRESS_DEV + CONTEXT;
+    public static final String URL = URL_PROD;
     
     public static final int TIMEOUT = 25;
     

@@ -1,6 +1,7 @@
 package com.epitrack.guardioes.request;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.epitrack.guardioes.model.SingleUser;
 import com.epitrack.guardioes.model.User;
@@ -193,7 +194,7 @@ public class SurveyRequester extends BaseRequester {
                     try {
 
                         final JSONObject jsonObject = new JSONObject(response.getResult());
-
+                        Log.d("jsonObject",""+ jsonObject.toString());
                         if (jsonObject.getBoolean("error")) {
 
                             listener.onError(new RequestException());
