@@ -312,6 +312,7 @@ public class SymptomActivity extends BaseAppCompatActivity {
         map.put("no_symptom", "N");
         map.put("token", singleUser.getUserToken());
         map.put("travelLocation", country);
+        map.put("deviceModel",android.os.Build.MODEL + " ("+ android.os.Build.PRODUCT + ")");
         //
         Log.d("lat", ""+latitude);
         Log.d("lon", ""+longitude);
