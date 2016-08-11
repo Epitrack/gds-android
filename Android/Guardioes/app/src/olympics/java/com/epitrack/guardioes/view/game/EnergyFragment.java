@@ -2,6 +2,7 @@ package com.epitrack.guardioes.view.game;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -48,7 +49,7 @@ public class EnergyFragment extends BaseFragment {
     @Override
     public void onResume() {
         super.onResume();
-
+        Log.d("USER.getEnergy",""+GameActivity.USER.getEnergy());
         setEnergy(GameActivity.USER.getEnergy());
     }
 
