@@ -477,9 +477,9 @@ public class UserActivity extends BaseAppCompatActivity {
             return false;
         }
 
-        final int date = DateFormat.getDateDiff(DateFormat.getDate(editTextBirthDate.getText().toString()));
+        final int date = DateFormat.getDateDiff(user.getDob());
 
-        if (!DateFormat.isDate(user.getDob()) || date < 0 || date > 120) {
+        if (!DateFormat.isDate(editTextBirthDate.getText().toString()) || date < 0 || date > 120) {
 
             new DialogBuilder(UserActivity.this).load()
                     .title(R.string.attention)
