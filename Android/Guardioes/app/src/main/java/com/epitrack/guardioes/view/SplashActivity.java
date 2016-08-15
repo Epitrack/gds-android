@@ -1,11 +1,13 @@
 package com.epitrack.guardioes.view;
 
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.res.Configuration;
 import android.content.res.Resources;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v4.content.LocalBroadcastManager;
+import android.util.Log;
 
 import com.epitrack.guardioes.BuildConfig;
 import com.epitrack.guardioes.R;
@@ -14,7 +16,10 @@ import com.epitrack.guardioes.helper.FileHandler;
 import com.epitrack.guardioes.manager.PrefManager;
 import com.epitrack.guardioes.model.SingleUser;
 import com.epitrack.guardioes.model.User;
+import com.epitrack.guardioes.push.HashReceiver;
+import com.epitrack.guardioes.push.RegisterService;
 import com.epitrack.guardioes.request.SurveyRequester;
+import com.epitrack.guardioes.request.UserRequester;
 import com.epitrack.guardioes.request.base.AuthRequester;
 import com.epitrack.guardioes.request.base.RequestListener;
 import com.epitrack.guardioes.view.base.BaseActivity;
@@ -34,6 +39,7 @@ public class SplashActivity extends BaseActivity implements Runnable {
     private static final long WAIT_TIME = 1000;
 
     private final Handler handler = new Handler();
+    private User mainUser;
 
     @Override
     protected void onCreate(final Bundle bundle) {
@@ -139,7 +145,7 @@ public class SplashActivity extends BaseActivity implements Runnable {
 
                 @Override
                 public void onSuccess(final User user) {
-                    hasSurvey();
+                    checkGcmToken(user);
                 }
             });
         }
@@ -183,4 +189,41 @@ public class SplashActivity extends BaseActivity implements Runnable {
 
         new FileHandler().createDirectory(Constants.DIRECTORY_TEMP);
     }
+
+    private void checkGcmToken(User user){
+        String gcmVersion = new PrefManager(SplashActivity.this).get(Constants.Pref.GCM_TOKEN_VERSION, String.class);
+        if (gcmVersion == null){
+            mainUser = user;
+            LocalBroadcastManager.getInstance(this).registerReceiver(receiver, new IntentFilter(HashReceiver.HASH_RECEIVER));
+            startService(new Intent(SplashActivity.this, RegisterService.class));
+        }else{
+            hasSurvey();
+        }
+    }
+
+    private HashReceiver receiver = new HashReceiver() {
+
+        public void onHash(final String hash) {
+            Log.i("DOUGLAS", hash);
+
+            mainUser.setGcmToken(hash);
+            new UserRequester(SplashActivity.this).addOrUpdate("/user/update", mainUser, null, new RequestListener<String>() {
+                @Override
+                public void onStart() {
+
+                }
+
+                @Override
+                public void onError(Exception e) {
+                    hasSurvey();
+                }
+
+                @Override
+                public void onSuccess(String type) {
+                    new PrefManager(SplashActivity.this).put(Constants.Pref.GCM_TOKEN_VERSION, "1");
+                    hasSurvey();
+                }
+            });
+        }
+    };
 }

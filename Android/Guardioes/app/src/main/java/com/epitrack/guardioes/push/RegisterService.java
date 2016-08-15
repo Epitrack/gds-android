@@ -17,7 +17,7 @@ public class RegisterService extends IntentService {
 
     private static final String TAG = RegisterService.class.getSimpleName();
 
-    private static final String SENDER = "997325640691";
+    private static final String SENDER = "761648787941";
 
     public RegisterService() {
         super(TAG);

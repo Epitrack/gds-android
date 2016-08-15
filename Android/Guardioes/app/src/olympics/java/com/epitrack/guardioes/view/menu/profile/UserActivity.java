@@ -329,7 +329,7 @@ public class UserActivity extends BaseAppCompatActivity {
     private void add() {
 
         user.setNick(editTextNickname.getText().toString().trim());
-        user.setDob(editTextBirthDate.getText().toString().trim());
+        user.setDob(DateFormat.getDate(editTextBirthDate.getText().toString().trim()));
         user.setGender(spinnerGender.getSelectedItem().toString().substring(0, 1).toUpperCase());
 
         final String race = Race.getBy(spinnerRace.getSelectedItemPosition() + 1).getValue();
