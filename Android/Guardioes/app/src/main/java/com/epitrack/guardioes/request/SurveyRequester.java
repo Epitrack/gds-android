@@ -44,7 +44,7 @@ public class SurveyRequester extends BaseRequester {
         if (!user.getId().equals(singleUser.getId())) {
             bodyMap.put("household_id", user.getId());
         }
-        
+
         bodyMap.put("lat", latLng.latitude);
         bodyMap.put("lon", latLng.longitude);
         bodyMap.put("app_token", user.getAppToken());
