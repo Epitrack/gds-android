@@ -60,5 +60,6 @@ public final class Constants {
         public static final String USER = "user";
         public static final String LANGUAGE = "Language";
         public static final String PREFS_NAME = "preferences_user_token";
+        public static final String GCM_TOKEN_VERSION = "new_gcm_token";
     }
 }

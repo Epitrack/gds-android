@@ -329,7 +329,7 @@ public class UserActivity extends BaseAppCompatActivity {
     private void add() {
 
         user.setNick(editTextNickname.getText().toString().trim());
-        user.setDob(editTextBirthDate.getText().toString().trim());
+        user.setDob(DateFormat.getDate(editTextBirthDate.getText().toString().trim()));
         user.setGender(spinnerGender.getSelectedItem().toString().substring(0, 1).toUpperCase());
 
         final String race = Race.getBy(spinnerRace.getSelectedItemPosition() + 1).getValue();
@@ -477,9 +477,9 @@ public class UserActivity extends BaseAppCompatActivity {
             return false;
         }
 
-        final int date = DateFormat.getDateDiff(DateFormat.getDate(editTextBirthDate.getText().toString()));
+        final int date = DateFormat.getDateDiff(user.getDob());
 
-        if (!DateFormat.isDate(user.getDob()) || date < 0 || date > 120) {
+        if (!DateFormat.isDate(editTextBirthDate.getText().toString()) || date < 0 || date > 120) {
 
             new DialogBuilder(UserActivity.this).load()
                     .title(R.string.attention)

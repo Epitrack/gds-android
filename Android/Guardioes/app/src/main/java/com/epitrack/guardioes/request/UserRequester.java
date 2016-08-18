@@ -2,7 +2,6 @@ package com.epitrack.guardioes.request;
 
 import android.content.Context;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.epitrack.guardioes.helper.Constants;
 import com.epitrack.guardioes.helper.DateFormat;
@@ -120,7 +119,11 @@ public class UserRequester extends BaseRequester {
                                     e.printStackTrace();
                                 }
 
-                                if (new PrefManager(getContext()).put(Constants.Pref.USER, user)) {
+                                PrefManager prefManager = new PrefManager(getContext());
+
+                                prefManager.put(Constants.Pref.GCM_TOKEN_VERSION, "1");
+
+                                if (prefManager.put(Constants.Pref.USER, user)) {
 
                                     // TODO: Remove this singleton..
                                     loadUser(user);
@@ -257,7 +260,11 @@ public class UserRequester extends BaseRequester {
                                     user.setProfile(jsonObjectUser.getInt("role"));
                                 }
 
-                                if (new PrefManager(getContext()).put(Constants.Pref.USER, user)) {
+                                PrefManager prefManager = new PrefManager(getContext());
+
+                                prefManager.put(Constants.Pref.GCM_TOKEN_VERSION, "1");
+
+                                if (prefManager.put(Constants.Pref.USER, user)) {
 
                                     // TODO: Remove this singleton..
                                     loadUser(user);
@@ -511,7 +518,7 @@ public class UserRequester extends BaseRequester {
         bodyMap.put("email", user.getEmail());
         bodyMap.put("password", user.getPassword());
         bodyMap.put("client", user.getClient());
-        bodyMap.put("dob", DateFormat.getDate(user.getDob()));
+        bodyMap.put("dob", user.getDob());
         bodyMap.put("gender", user.getGender());
         bodyMap.put("app_token", user.getAppToken());
         bodyMap.put("race", user.getRace());

@@ -5,9 +5,9 @@
     <string name="app_name_short">Guardiões</string>
 
     # Google
-    <string name="google_client_id">997325640691-p7453ssirrdtkoh51tlphdmbb0lfdkg3.apps.googleusercontent.com</string>
-    <string name="server_api_key">AIzaSyBEAcmjcVIRr8Hz1G2n5CqGimHixeNNe50</string>
-    <string name="sender_id">997325640691</string>
+    <string name="google_client_id">761648787941-d7p0ja4of7ei126eph2f8vve6rg59cbu.apps.googleusercontent.com</string>
+    <string name="server_api_key">AIzaSyDPVnLM8mqTGc-yrvZgQ7o360qAnGyo9YU</string>
+    <string name="sender_id">761648787941</string>
 
     # Common
 

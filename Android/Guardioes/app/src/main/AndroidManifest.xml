@@ -125,6 +125,11 @@
             android:windowSoftInputMode="stateHidden" />
 
         <activity
+            android:name=".view.menu.profile.ChangePasswordActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+
+        <activity
             android:name=".view.menu.profile.AvatarActivity"
             android:exported="false"
             android:label="@string/avatar"
