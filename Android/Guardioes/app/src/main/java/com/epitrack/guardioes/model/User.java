@@ -42,6 +42,7 @@ public class User {
     private int energy = 10;
     private int level = 1;
     private Map<Integer, Boolean> pieceMap = new HashMap<>();
+    private List<String> gcmTokens= new ArrayList<String>();
 
     public User() {
 
@@ -320,6 +321,14 @@ public class User {
 
     public void setPieceMap(final Map<Integer, Boolean> pieceMap) {
         this.pieceMap = pieceMap;
+    }
+
+    public List<String> getGcmTokens() {
+        return gcmTokens;
+    }
+
+    public void setGcmTokens(List<String> gcmTokens) {
+        this.gcmTokens = gcmTokens;
     }
 
     public void resetPieceMap() {
