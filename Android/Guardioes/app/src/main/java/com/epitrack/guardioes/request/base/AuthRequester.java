@@ -115,13 +115,26 @@ public final class AuthRequester extends BaseRequester {
             }catch(Exception e){
                 user.setLevel(1);
             }
-            user.setEnergy(json.getInt("xp"));
 
-            final JSONArray array = json.getJSONArray("answers");
+            if (!json.isNull("xp")) {
+                user.setEnergy(json.getInt("xp"));
+            }
 
-            for (int i = 0; i < array.length(); i++) {
+            if (!json.isNull("answers")) {
+                final JSONArray array = json.getJSONArray("answers");
 
-                user.getPieceMap().put(i, array.getInt(i) == 1);
+                for (int i = 0; i < array.length(); i++) {
+
+                    user.getPieceMap().put(i, array.getInt(i) == 1);
+                }
+            }
+
+            if (!json.isNull("gcmTokens")) {
+                final JSONArray arrGcmToken = json.getJSONArray("gcmTokens");
+
+                for (int i = 0; i < arrGcmToken.length(); i++) {
+                    user.getGcmTokens().add(arrGcmToken.getString(i));
+                }
             }
 
             try {

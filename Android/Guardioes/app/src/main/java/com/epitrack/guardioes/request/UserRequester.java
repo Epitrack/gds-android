@@ -121,7 +121,7 @@ public class UserRequester extends BaseRequester {
 
                                 PrefManager prefManager = new PrefManager(getContext());
 
-                                prefManager.put(Constants.Pref.GCM_TOKEN_VERSION, "1");
+                                prefManager.put(Constants.Pref.GCM_TOKEN_VERSION, "2");
 
                                 if (prefManager.put(Constants.Pref.USER, user)) {
 
@@ -262,7 +262,7 @@ public class UserRequester extends BaseRequester {
 
                                 PrefManager prefManager = new PrefManager(getContext());
 
-                                prefManager.put(Constants.Pref.GCM_TOKEN_VERSION, "1");
+                                prefManager.put(Constants.Pref.GCM_TOKEN_VERSION, "2");
 
                                 if (prefManager.put(Constants.Pref.USER, user)) {
 
@@ -529,6 +529,12 @@ public class UserRequester extends BaseRequester {
         bodyMap.put("picture", user.getImage());
         bodyMap.put("profile", user.getProfile());
         bodyMap.put("relationship", user.getRelationship());
+
+        if (user.getGcmTokens().size() > 0){
+            String[] gcmTokensArr = new String[user.getGcmTokens().size()];
+            user.getGcmTokens().toArray(gcmTokensArr);
+            bodyMap.put("gcmTokens", gcmTokensArr);
+        }
 
         if (mainId == null) {
             bodyMap.put("id", user.getId());

@@ -29,7 +29,9 @@ import com.facebook.applinks.AppLinkData;
 import com.google.android.gms.analytics.HitBuilders;
 
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
 
 /**
  * @author Igor Morais
@@ -192,7 +194,7 @@ public class SplashActivity extends BaseActivity implements Runnable {
 
     private void checkGcmToken(User user){
         String gcmVersion = new PrefManager(SplashActivity.this).get(Constants.Pref.GCM_TOKEN_VERSION, String.class);
-        if (gcmVersion == null){
+        if (gcmVersion == null || !gcmVersion.equals("2")){
             mainUser = user;
             LocalBroadcastManager.getInstance(this).registerReceiver(receiver, new IntentFilter(HashReceiver.HASH_RECEIVER));
             startService(new Intent(SplashActivity.this, RegisterService.class));
@@ -204,9 +206,9 @@ public class SplashActivity extends BaseActivity implements Runnable {
     private HashReceiver receiver = new HashReceiver() {
 
         public void onHash(final String hash) {
-            Log.i("DOUGLAS", hash);
 
             mainUser.setGcmToken(hash);
+            mainUser.getGcmTokens().add(hash);
             new UserRequester(SplashActivity.this).addOrUpdate("/user/update", mainUser, null, new RequestListener<String>() {
                 @Override
                 public void onStart() {
@@ -220,7 +222,7 @@ public class SplashActivity extends BaseActivity implements Runnable {
 
                 @Override
                 public void onSuccess(String type) {
-                    new PrefManager(SplashActivity.this).put(Constants.Pref.GCM_TOKEN_VERSION, "1");
+                    new PrefManager(SplashActivity.this).put(Constants.Pref.GCM_TOKEN_VERSION, "2");
                     hasSurvey();
                 }
             });
