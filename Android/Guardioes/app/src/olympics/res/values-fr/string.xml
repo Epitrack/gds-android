@@ -89,8 +89,10 @@
     <string name="category">Catégorie</string>
     <string name="confirm">Confirmer</string>
     <string name="congratulations">Félicitations</string>
+    <string name="deactivate_account_msg">La désactivation du compte désactivera votre profil. Vous ne pourrez plus aider la communauté ou suivre votre santé et celle de vos proches à moins que votre compte ne soit réactivé.\n\n Voulez-vous continuer ?</string>
     <string name="contact">Entrez en contact</string>
     <string name="crop_photo">Recadrer l\'image</string>
+    <string name="deactivate_account">Supprimer le compte</string>
     <string name="defense_text">Défense civile</string>
     <string name="delete_profile">Souhaitez-vous supprimer définitivement le profil ?</string>
     <string name="dez">Dix</string>

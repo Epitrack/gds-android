@@ -85,9 +85,11 @@
     <string name="crop_photo">Recortar foto</string>
     <string name="contact">Entre en contacto</string>
     <string name="bem">Bien</string>
+    <string name="deactivate_account">Excluir Cuenta</string>
     <string name="defense_text">Defensa Civil</string>
     <string name="delete_profile">¿Desea remover el perfil definitivamente?</string>
     <string name="dezembro">Diciembre</string>
+    <string name="deactivate_account_msg">La desactivación de la cuenta deshabilitará su perfil. Usted ya no podrá ayudar su comunidad ni ver cómo está su salud y la de los integrantes de su domicilio a menos que la cuenta sea reactivada.\n\n ¿Desea continuar?</string>
     <string name="diarrheal">Diarreica</string>
     <string name="diary_health">Diario de Salud</string>
     <string name="dez">Diez</string>

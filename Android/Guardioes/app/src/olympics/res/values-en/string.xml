@@ -84,10 +84,12 @@
     <string name="congratulations">Congratulations</string>
     <string name="contact">Contact</string>
     <string name="crop_photo">Crop picture</string>
+    <string name="deactivate_account">Deactivate Account</string>
     <string name="defense_text">Civil Defense</string>
     <string name="delete_profile">Permanently delete the profile?</string>
     <string name="dez">Dec</string>
     <string name="dezembro">December</string>
+    <string name="deactivate_account_msg">Deactivating the account will disable your profile. You will no longer be able tohelp the community orkeep track of your health or the health of your household members unless the account is reactivated.\n\nWould you like to continue?</string>
     <string name="diarrheal">Diarrheal</string>
     <string name="diary_health">Health Journal</string>
     <string name="diary_health_1">Health\nJournal</string>

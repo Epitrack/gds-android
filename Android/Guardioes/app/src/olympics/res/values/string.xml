@@ -87,6 +87,8 @@
     <string name="delete_profile"> Deseja remover o perfil definitivamente?</string>
     <string name="dez"> Dez</string>
     <string name="dezembro"> Dezembro</string>
+    <string name="deactivate_account">Desativar Conta</string>
+    <string name="deactivate_account_msg">A desativação da conta desabilitará o seu perfil. Você não poderá mais ajudar sua comunidade ou acompanhar como anda a sua saúde e dos integrantes do seu domicílio, a menos que a conta seja reativada.\n\nDeseja continuar?</string>
     <string name="diarrheal"> Diarreica</string>
     <string name="diary_health"> Diário da Saúde</string>
     <string name="diary_health_1">Diário da\nSaúde</string>

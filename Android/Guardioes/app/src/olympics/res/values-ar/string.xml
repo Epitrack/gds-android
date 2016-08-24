@@ -89,8 +89,10 @@
     <string name="category">فئة</string>
     <string name="confirm">تأكيد</string>
     <string name="congratulations">تهنئة</string>
+    <string name="deactivate_account_msg">سيؤدي إلغاء تنشيط الحساب إلى تعطيل ملف تعريفك. لن تكون قادرًا على مساعدة المجتمع أو تتبع صحتك أو صحة أحد أفراد عائلتك بعد الآن ما لم يتم إعادة تنشيط حسابك. ه\n\nل تريد المتابعة؟</string>
     <string name="contact">جهة الاتصال</string>
     <string name="crop_photo">قص الصورة</string>
+    <string name="deactivate_account">طفحي</string>
     <string name="defense_text">الدفاع المدني</string>
     <string name="delete_profile">هل تريد حذف ملف التعريف بشكل دائم؟</string>
     <string name="dez">ديسمبر</string>

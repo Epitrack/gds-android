@@ -89,6 +89,8 @@
     <string name="congratulations">祝賀</string>
     <string name="contact">連絡</string>
     <string name="crop_photo">裁切照片</string>
+    <string name="deactivate_account_msg">停用帳戶將禁用您的設定檔。如果您不重新啟動該帳戶您將不再能夠幫助社區或監測您的健康或您家庭成員的健康情況，。\n\n繼續？</string>
+    <string name="deactivate_account">刪除帳戶</string>
     <string name="defense_text">民防</string>
     <string name="delete_profile">永久刪除該設定檔？</string>
     <string name="dez">12 月</string>

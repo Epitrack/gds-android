@@ -29,12 +29,14 @@ import com.epitrack.guardioes.model.Parent;
 import com.epitrack.guardioes.model.Race;
 import com.epitrack.guardioes.model.SingleUser;
 import com.epitrack.guardioes.model.User;
+import com.epitrack.guardioes.push.DeleteService;
 import com.epitrack.guardioes.request.UserRequester;
 import com.epitrack.guardioes.request.base.AuthRequester;
 import com.epitrack.guardioes.request.base.RequestHandler;
 import com.epitrack.guardioes.request.base.RequestListener;
 import com.epitrack.guardioes.view.CountryAdapter;
 import com.epitrack.guardioes.view.base.BaseAppCompatActivity;
+import com.epitrack.guardioes.view.welcome.WelcomeActivity;
 import com.github.siyamed.shapeimageview.CircularImageView;
 import com.google.android.gms.analytics.HitBuilders;
 import com.squareup.picasso.MemoryPolicy;
@@ -106,6 +108,12 @@ public class UserActivity extends BaseAppCompatActivity {
     @Bind(R.id.button_change_password)
     Button btnChangePassword;
 
+    @Bind(R.id.txt_or)
+    TextView txtOr;
+
+    @Bind(R.id.button_delete)
+    Button btnDelete;
+
     private int image;
     private String path;
 
@@ -153,6 +161,8 @@ public class UserActivity extends BaseAppCompatActivity {
 
         } else {
             this.btnChangePassword.setVisibility(View.GONE);
+            this.btnDelete.setVisibility(View.GONE);
+            this.txtOr.setVisibility(View.GONE);
             spinnerParent.setSelection(Parent.getBy(user.getRelationship()).getId() - 1);
         }
 
@@ -530,5 +540,51 @@ public class UserActivity extends BaseAppCompatActivity {
 
     private void setCreate(final boolean create) {
         this.create = create;
+    }
+
+    @OnClick(R.id.button_delete)
+    public void deleteAccount(){
+        new DialogBuilder(UserActivity.this).load()
+                .title(R.string.attention)
+                .content(R.string.deactivate_account_msg)
+                .positiveText(R.string.yes)
+                .negativeText(R.string.no)
+                .onPositive(new MaterialDialog.SingleButtonCallback() {
+
+                    @Override
+                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+
+                        new UserRequester(UserActivity.this).deleteAccount(new RequestListener<String>() {
+                            @Override
+                            public void onStart() {
+
+                            }
+
+                            @Override
+                            public void onError(Exception e) {
+                                new DialogBuilder(UserActivity.this).load()
+                                        .title(R.string.attention)
+                                        .content(R.string.internet_fail)
+                                        .positiveText(R.string.ok)
+                                        .show();
+                            }
+
+                            @Override
+                            public void onSuccess(String type) {
+                                startService(new Intent(UserActivity.this, DeleteService.class));
+
+                                if (new PrefManager(UserActivity.this).clear()) {
+
+                                    final Intent intent = new Intent(UserActivity.this, WelcomeActivity.class);
+
+                                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+
+                                    startActivity(intent);
+                                }
+                            }
+                        });
+                    }
+
+                }).show();
     }
 }

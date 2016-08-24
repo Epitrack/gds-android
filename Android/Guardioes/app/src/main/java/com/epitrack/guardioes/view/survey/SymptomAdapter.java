@@ -14,7 +14,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.epitrack.guardioes.R;
-import com.epitrack.guardioes.model.Symptom;
 import com.epitrack.guardioes.model.SymptomList;
 import com.epitrack.guardioes.view.menu.profile.InterestActivity;
 

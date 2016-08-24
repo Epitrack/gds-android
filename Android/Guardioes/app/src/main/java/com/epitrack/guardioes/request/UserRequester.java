@@ -607,6 +607,19 @@ public class UserRequester extends BaseRequester {
         });
     }
 
+    public void deleteAccount(final RequestListener<String> listener){
+        new Requester(getContext()).request(Method.DELETE, RequesterConfig.URL + "/user/delete/", getAuthHeaderMap(), new FutureCallback<Response<String>>() {
+            @Override
+            public void onCompleted(Exception error, Response<String> response) {
+                if (error == null && isSuccess(response)){
+                    listener.onSuccess(response.getResult());
+                }else{
+                    listener.onError(error);
+                }
+            }
+        });
+    }
+
     // TODO: Refactor soon..
     private void loadUser(final User type) {
 
