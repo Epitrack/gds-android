@@ -56,6 +56,14 @@ public class GameMapActivity extends BaseAppCompatActivity implements View.OnCli
         load(GameActivity.USER.getLevel());
 
         getEnergyFragment().setEnergy(GameActivity.USER.getEnergy());
+        scrollView.post(new Runnable() {
+            @Override
+            public void run() {
+                scrollView.fullScroll(ScrollView.FOCUS_DOWN);
+            }
+        });
+
+
     }
 
     @Override
@@ -93,7 +101,14 @@ public class GameMapActivity extends BaseAppCompatActivity implements View.OnCli
 
                         imageView.setX(phase.getX(width) - widthSize);
                         imageView.setY(phase.getY(height) - heightSize);
-
+                        try{
+                            scrollView.post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    scrollView.setScrollY((int)imageView.getY());
+                                }
+                            });
+                        }catch(Exception e){}
                         imageView.setImageDrawable(iconPhaseCurrent);
                         imageView.setTag(phase);
                         imageView.setOnClickListener(GameMapActivity.this);
@@ -119,6 +134,8 @@ public class GameMapActivity extends BaseAppCompatActivity implements View.OnCli
                 }
 
                 imageView.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+
+
             }
         });
     }
