@@ -28,7 +28,7 @@ public final class RequesterConfig {
     
     public static final String URL_PROD = ADDRESS + CONTEXT;
     public static final String URL_DEV = ADDRESS_DEV + CONTEXT;
-    public static final String URL = URL_DEV;
+    public static final String URL = URL_PROD;
     
     public static final int TIMEOUT = 25;
     
