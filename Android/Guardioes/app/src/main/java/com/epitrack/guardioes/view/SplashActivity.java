@@ -22,6 +22,7 @@ import com.epitrack.guardioes.request.SurveyRequester;
 import com.epitrack.guardioes.request.UserRequester;
 import com.epitrack.guardioes.request.base.AuthRequester;
 import com.epitrack.guardioes.request.base.RequestListener;
+import com.epitrack.guardioes.view.account.LoginActivity;
 import com.epitrack.guardioes.view.base.BaseActivity;
 import com.epitrack.guardioes.view.survey.StateActivity;
 import com.epitrack.guardioes.view.welcome.WelcomeActivity;
@@ -129,7 +130,7 @@ public class SplashActivity extends BaseActivity implements Runnable {
 
         if (user == null) {
 
-            navigateTo(WelcomeActivity.class);
+            navigateTo(LoginActivity.class);
 
         } else {
 
@@ -142,7 +143,7 @@ public class SplashActivity extends BaseActivity implements Runnable {
 
                 @Override
                 public void onError(final Exception e) {
-                    navigateTo(WelcomeActivity.class);
+                    navigateTo(LoginActivity.class);
                 }
 
                 @Override

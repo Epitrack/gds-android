@@ -95,30 +95,41 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="168dp">
 
             <Button
                 android:id="@+id/button_login"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_above="@+id/text_view_forgot_password"
-                android:layout_marginBottom="35dp"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
                 android:background="@drawable/selector_button_gold_white"
                 android:text="@string/login"
-                android:textColor="@android:color/white"/>
+                android:textColor="@android:color/white"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true" />
 
             <TextView
                 android:id="@+id/text_view_forgot_password"
                 style="@style/TextHintLight"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_centerHorizontal="true"
-                android:layout_marginBottom="30dp"
-                android:text="@string/message_forgot_password"/>
+                android:text="@string/message_forgot_password"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true" />
 
+            <Button
+                android:id="@+id/button_create_account"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:background="@drawable/selector_button_translucent_gold"
+                android:text="@string/register"
+                android:textColor="@android:color/white"
+                android:textSize="16sp"
+                android:layout_alignParentBottom="true"
+                android:layout_alignEnd="@+id/button_login" />
         </RelativeLayout>
 
     </LinearLayout>

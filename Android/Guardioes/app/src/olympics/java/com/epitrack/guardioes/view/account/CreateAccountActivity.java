@@ -138,6 +138,8 @@ public class CreateAccountActivity extends BaseAppCompatActivity {
         validator.setValidationListener(new ValidationHandler());
 
         getSocialFragment().setListener(new AccountHandler());
+
+        onMail();
     }
 
     private List<String> toList(final String[] valueArray) {
@@ -622,6 +624,7 @@ public class CreateAccountActivity extends BaseAppCompatActivity {
         } else {
 
             getSocialFragment().onActivityResult(requestCode, resultCode, intent);
+            navigateTo(LoginActivity.class);
         }
     }
 }

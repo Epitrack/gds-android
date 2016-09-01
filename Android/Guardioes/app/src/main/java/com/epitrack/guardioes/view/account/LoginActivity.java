@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.v4.content.LocalBroadcastManager;
+import android.view.KeyEvent;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.Animation;
@@ -72,13 +74,15 @@ public class LoginActivity extends BaseAppCompatActivity {
 
         setContentView(R.layout.login);
 
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        getSupportActionBar().hide();
+        //getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         validator = new Validator(this);
         validator.setValidationListener(new ValidationHandler());
 
-        getSocialFragment().setLogin(true);
+        getSocialFragment().setLogin(false);
         getSocialFragment().setListener(new AccountHandler());
+
     }
 
     @Override
@@ -127,6 +131,7 @@ public class LoginActivity extends BaseAppCompatActivity {
             handlerAnimation();
 
         } else {
+
             super.onBackPressed();
         }
     }
@@ -144,7 +149,6 @@ public class LoginActivity extends BaseAppCompatActivity {
 
     @OnClick(R.id.button_mail)
     public void onLoginAnimation() {
-
         final Animation slideIn = AnimationUtils.loadAnimation(this, R.anim.slide_in_left);
 
         slideIn.setAnimationListener(new AnimationListener() {
@@ -184,6 +188,7 @@ public class LoginActivity extends BaseAppCompatActivity {
             @Override
             public void onAnimationStart(final Animation animation) {
                 linearLayoutSocialLogin.setVisibility(View.VISIBLE);
+
             }
 
             @Override
@@ -206,6 +211,28 @@ public class LoginActivity extends BaseAppCompatActivity {
         linearLayoutSocialLogin.startAnimation(slideIn);
         linearLayoutLogin.startAnimation(slideOut);
     }
+
+    @OnClick(R.id.button_create_account)
+    public void onCreateAccount() {
+
+        getTracker().send(new HitBuilders.EventBuilder()
+                .setCategory("Action")
+                .setAction("Welcome Create Account Button")
+                .build());
+
+        navigateTo(CreateAccountActivity.class);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(final Menu menu) {
+        try{
+            getMenuInflater().inflate(R.menu.privacy, menu);
+        }catch(Exception e){
+
+        }
+        return true;
+    }
+
 
     @OnClick(R.id.button_login)
     public void onLogin() {

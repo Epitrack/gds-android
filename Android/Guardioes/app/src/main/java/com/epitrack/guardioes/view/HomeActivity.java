@@ -27,6 +27,7 @@ import com.epitrack.guardioes.model.User;
 import com.epitrack.guardioes.push.DeleteService;
 import com.epitrack.guardioes.request.base.AuthRequester;
 import com.epitrack.guardioes.request.base.RequestListener;
+import com.epitrack.guardioes.view.account.LoginActivity;
 import com.epitrack.guardioes.view.menu.Home;
 import com.epitrack.guardioes.view.welcome.WelcomeActivity;
 import com.google.android.gms.analytics.GoogleAnalytics;
@@ -251,7 +252,7 @@ public class HomeActivity extends AppCompatActivity implements AdapterView.OnIte
 
                         if (new PrefManager(HomeActivity.this).clear()) {
 
-                            final Intent intent = new Intent(HomeActivity.this, WelcomeActivity.class);
+                            final Intent intent = new Intent(HomeActivity.this, LoginActivity.class);
 
                             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
 
