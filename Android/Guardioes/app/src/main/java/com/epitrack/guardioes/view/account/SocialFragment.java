@@ -312,7 +312,7 @@ public class SocialFragment extends BaseFragment implements GoogleApiClient.OnCo
 
                 } else if (request == REQUEST_FACEBOOK) {
 
-                    LoginManager.getInstance().logInWithReadPermissions(getActivity(), Arrays.asList("public_profile", "email"));
+                        LoginManager.getInstance().logInWithReadPermissions(getActivity(), Arrays.asList("public_profile", "email"));
                 }
             }
 

@@ -1,17 +1,21 @@
 package com.epitrack.guardioes.view.account;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.v4.content.LocalBroadcastManager;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.view.animation.Animation;
 import android.view.animation.Animation.AnimationListener;
 import android.view.animation.AnimationUtils;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 
 import com.epitrack.guardioes.R;
@@ -74,9 +78,10 @@ public class LoginActivity extends BaseAppCompatActivity {
 
         setContentView(R.layout.login);
 
-        getSupportActionBar().hide();
-        //getSupportActionBar().setDisplayShowTitleEnabled(false);
-
+        //getSupportActionBar().hide();
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+        //getSupportActionBar().setHomeButtonEnabled(false);
         validator = new Validator(this);
         validator.setValidationListener(new ValidationHandler());
 
@@ -93,6 +98,7 @@ public class LoginActivity extends BaseAppCompatActivity {
 
         getTracker().setScreenName("Login Screen - " + this.getClass().getSimpleName());
         getTracker().send(new HitBuilders.ScreenViewBuilder().build());
+
     }
 
     @Override
@@ -156,6 +162,7 @@ public class LoginActivity extends BaseAppCompatActivity {
             @Override
             public void onAnimationStart(final Animation animation) {
                 linearLayoutLogin.setVisibility(View.VISIBLE);
+                getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             }
 
             @Override
@@ -196,7 +203,7 @@ public class LoginActivity extends BaseAppCompatActivity {
                 inLogin = false;
 
                 linearLayoutLogin.setVisibility(View.INVISIBLE);
-
+                getSupportActionBar().setDisplayHomeAsUpEnabled(false);
                 linearLayoutLogin.clearAnimation();
             }
 
@@ -227,12 +234,28 @@ public class LoginActivity extends BaseAppCompatActivity {
     public boolean onCreateOptionsMenu(final Menu menu) {
         try{
             getMenuInflater().inflate(R.menu.privacy, menu);
+
         }catch(Exception e){
 
         }
         return true;
     }
 
+    public void onPrivacy(final MenuItem item) {
+
+        final Dialog dialog = new Dialog(this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.privacy);
+        ImageButton dialogButton = (ImageButton) dialog.findViewById(R.id.image_button_close);
+        dialogButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+
+        dialog.show();
+    }
 
     @OnClick(R.id.button_login)
     public void onLogin() {
@@ -269,12 +292,10 @@ public class LoginActivity extends BaseAppCompatActivity {
 
         @Override
         public void onSuccess(final User user) {
-
-            socialLogin = true;
-
             setUser(user);
+            socialLogin = true;
             try{
-            loadDialog.show(getFragmentManager(), LoadDialog.TAG);
+                loadDialog.show(getFragmentManager(), LoadDialog.TAG);
             }catch(Exception e){
                 e.printStackTrace();
             }

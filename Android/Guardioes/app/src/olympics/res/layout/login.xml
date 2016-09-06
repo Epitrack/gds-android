@@ -124,7 +124,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
-                android:background="@drawable/selector_button_translucent_gold"
+                android:background="@drawable/selector_button_translucent_white"
                 android:text="@string/register"
                 android:textColor="@android:color/white"
                 android:textSize="16sp"

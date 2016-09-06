@@ -36,6 +36,7 @@ import com.epitrack.guardioes.push.RegisterService;
 import com.epitrack.guardioes.request.UserRequester;
 import com.epitrack.guardioes.request.base.RequestListener;
 import com.epitrack.guardioes.view.CountryAdapter;
+import com.epitrack.guardioes.view.HomeActivity;
 import com.epitrack.guardioes.view.ItemAdapter;
 import com.epitrack.guardioes.view.base.BaseAppCompatActivity;
 import com.epitrack.guardioes.view.dialog.LoadDialog;
@@ -619,6 +620,10 @@ public class CreateAccountActivity extends BaseAppCompatActivity {
 
                 linearLayoutSocial.setVisibility(View.INVISIBLE);
                 layoutAccount.setVisibility(View.VISIBLE);
+            }else{
+                //getSocialFragment().onActivityResult(requestCode, resultCode, intent);
+                navigateTo(LoginActivity.class, Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                        Intent.FLAG_ACTIVITY_NEW_TASK);
             }
 
         } else {
