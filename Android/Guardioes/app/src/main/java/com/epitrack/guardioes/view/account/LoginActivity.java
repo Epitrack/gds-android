@@ -170,7 +170,6 @@ public class LoginActivity extends BaseAppCompatActivity {
                 inLogin = true;
 
                 linearLayoutSocialLogin.setVisibility(View.INVISIBLE);
-
                 linearLayoutSocialLogin.clearAnimation();
             }
 

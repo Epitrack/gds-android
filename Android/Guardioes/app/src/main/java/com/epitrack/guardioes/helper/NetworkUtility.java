@@ -1,8 +1,8 @@
 package com.epitrack.guardioes.helper;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.net.ConnectivityManager;
-
 import com.epitrack.guardioes.manager.LocationManager;
 
 /**
@@ -34,7 +34,7 @@ public final class NetworkUtility {
     public static boolean isLocationServiceOn(Context context) {
         boolean bReturn = false;
         try {
-            LocationManager cm = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
+            @SuppressLint("ServiceCast") LocationManager cm = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
             if (cm.isEnabled()) {
                 bReturn = true;
             } else {
